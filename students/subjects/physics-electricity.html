@@ -36,29 +36,17 @@
       <div class="topic-card" onclick="openModal('Electrostatics')">
         <div class="topic-title">Electrostatics</div>
       </div>
-      <div class="topic-card" onclick="openModal('Capacitors')">
-        <div class="topic-title">Capacitors</div>
-      </div>
       <div class="topic-card" onclick="openModal('Current Electricity')">
         <div class="topic-title">Current Electricity</div>
-      </div>
-      <div class="topic-card" onclick="openModal('Electrical Energy')">
-        <div class="topic-title">Electrical Energy</div>
       </div>
       <div class="topic-card" onclick="openModal('Magnetism')">
         <div class="topic-title">Magnetism</div>
       </div>
-      <div class="topic-card" onclick="openModal('Electromagnetic Effects')">
-        <div class="topic-title">Electromagnetic Effects</div>
-      </div>
       <div class="topic-card" onclick="openModal('Electromagnetic Induction')">
         <div class="topic-title">Electromagnetic Induction</div>
       </div>
-      <div class="topic-card" onclick="openModal('AC Circuits')">
-        <div class="topic-title">AC Circuits</div>
-      </div>
-      <div class="topic-card" onclick="openModal('Electrical Conduction')">
-        <div class="topic-title">Electrical Conduction</div>
+      <div class="topic-card" onclick="openModal('Alternating Current')">
+        <div class="topic-title">Alternating Current</div>
       </div>
       <div class="topic-card" onclick="openModal('Electronics')">
         <div class="topic-title">Electronics</div>
@@ -75,90 +63,37 @@
   <script>
     const subtopics = {
       'Electrostatics': [
-        'Electric Charges and Matter',
-        'Charging by Friction, Contact and Induction',
-        'Coulomb\'s Inverse Square Law',
-        'Electric Field and Potential',
-        'Electric Field Intensity',
-        'Electric Discharge and Lightning',
-        'Electroscopes'
-      ],
-      'Capacitors': [
-        'Types and Functions of Capacitors',
-        'Parallel Plate Capacitors',
-        'Capacitance Calculations',
-        'Factors Affecting Capacitance',
-        'Series and Parallel Combinations',
-        'Energy Stored in Capacitors'
+        'Electric Charges',
+        'Coulomb\'s Law',
+        'Electric Field',
+        'Capacitance'
       ],
       'Current Electricity': [
-        'Electric Cells and Batteries',
-        'EMF and Potential Difference',
-        'Ohm\'s Law and Resistance',
-        'Series and Parallel Circuits',
-        'Electrical Networks',
-        'Potentiometer Measurements',
-        'Internal Resistance',
-        'Meter Bridge'
-      ],
-      'Electrical Energy': [
-        'Electrical Energy and Power',
-        'Commercial Units',
-        'Power Transmission',
-        'Heating Effects',
-        'House Wiring',
-        'Fuses and Safety'
+        'Ohm\'s Law',
+        'Resistors',
+        'Kirchhoff\'s Laws',
+        'Electrical Energy & Power'
       ],
       'Magnetism': [
-        'Natural and Artificial Magnets',
-        'Magnetic Properties',
-        'Making Magnets and Demagnetization',
-        'Magnetic Fields',
-        'Earth\'s Magnetic Field',
-        'Magnetic Flux and Flux Density',
-        'Applications in Navigation'
-      ],
-      'Electromagnetic Effects': [
-        'Force on Current-Carrying Conductors',
-        'Force on Moving Charges',
-        'DC Motors',
+        'Magnetic Field',
         'Electromagnets',
-        'Moving Coil Instruments',
-        'Conversion of Galvanometers',
-        'Electromagnetic Devices'
+        'Earth\'s Magnetism'
       ],
       'Electromagnetic Induction': [
-        'Faraday\'s Laws',
+        'Faraday\'s Law',
         'Lenz\'s Law',
-        'AC and DC Generators',
-        'Transformers',
-        'Inductance',
-        'Energy in Inductors',
-        'Eddy Currents'
+        'Transformers'
       ],
-      'AC Circuits': [
-        'AC Current and Voltage',
-        'Peak and RMS Values',
-        'Reactance and Impedance',
-        'R-L-C Circuits',
-        'Power Factor',
-        'Resonance'
-      ],
-      'Electrical Conduction': [
-        'Conduction in Liquids',
-        'Electrolysis',
-        'Faraday\'s Laws of Electrolysis',
-        'Electroplating',
-        'Conduction in Gases',
+      'Alternating Current': [
+        'A.C. Circuits',
+        'Rectification',
         'Applications'
       ],
       'Electronics': [
         'Semiconductors',
-        'Intrinsic and Extrinsic Types',
-        'P-N Junction Diodes',
-        'Rectification',
+        'Diodes',
         'Transistors',
-        'Basic Electronic Applications'
+        'Logic Gates'
       ]
     };
     function openModal(topic) {
