@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Student Dashboard - uLesson Clone</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      background: #f7f8fa;
+      color: #1e293b;
+    }
+    .layout {
+      display: flex;
+      min-height: 100vh;
+    }
+    .sidebar {
+      width: 240px;
+      background: #1e293b;
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      padding: 2rem 1rem;
+      min-height: 100vh;
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 100vh;
+      z-index: 100;
+    }
+    .sidebar__logo {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 2rem;
+      text-decoration: none;
+    }
+    .sidebar__menu {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+    .sidebar__item {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 0.75rem 1rem;
+      color: #fff;
+      text-decoration: none;
+      border-radius: 8px;
+      font-size: 1rem;
+      font-weight: normal;
+      transition: background 0.2s;
+    }
+    .sidebar__item.active, .sidebar__item:hover {
+      background: #334155;
+      color: #38bdf8;
+    }
+    .main-content {
+      flex: 1;
+      padding: 2rem 2.5rem;
+      background: #f7f8fa;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      margin-left: 240px;
+    }
+    .topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 2rem;
+    }
+    .search-bar {
+      flex: 1;
+      max-width: 400px;
+      padding: 0.75rem 1.5rem;
+      border-radius: 999px;
+      border: 1px solid #e2e8f0;
+      font-size: 1rem;
+      background: #fff;
+      margin-right: 2rem;
+    }
+    .user-info {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+    .banner {
+      width: 100%;
+      height: 180px;
+      background: #fff;
+      border-radius: 16px;
+      box-shadow: 0 2px 8px rgba(30,41,59,0.07);
+      margin-bottom: 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+    .banner img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 16px;
+    }
+    .section-title {
+      font-size: 1.3rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+    }
+    .subject-cards {
+      display: flex;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+      margin-bottom: 2rem;
+    }
+    .subject-card {
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(30,41,59,0.07);
+      padding: 1.5rem 2rem;
+      min-width: 160px;
+      text-align: center;
+      font-weight: 600;
+      font-size: 1.1rem;
+      color: #fff;
+      cursor: pointer;
+      transition: box-shadow 0.2s, transform 0.2s;
+    }
+    .subject-card.math { background: #f87171; }
+    .subject-card.biology { background: #34d399; }
+    .subject-card.chemistry { background: #fbbf24; }
+    .subject-card.literature { background: #a78bfa; }
+    .subject-card.physics { background: #60a5fa; }
+    .subject-card.english { background: #f472b6; }
+    .subject-card.economics { background: #38bdf8; }
+    .subject-card.accounting { background: #f59e42; }
+    .subject-card:hover {
+      box-shadow: 0 4px 16px rgba(0,0,0,0.13);
+      transform: translateY(-2px);
+      opacity: 0.95;
+    }
+    .subject-card.government { background: #6366f1; }
+    .subject-card.commerce { background: #10b981; }
+    .user-level-badge {
+      background: #334155;
+      color: #fff;
+      padding: 0.5rem 1rem;
+      border-radius: 8px;
+      display: inline-block;
+      font-size: 1rem;
+    }
+    .user-avatar {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+    }
+  </style>
+</head>
+<body>
+  <div class="layout">
+    <aside class="sidebar">
+      <a href="#" class="sidebar__logo">
+        <i class="fas fa-graduation-cap"></i>
+        <span>EduNext-prep100</span>
+      </a>
+      <nav class="sidebar__menu">
+      <a href="student-dashboard.html" class="sidebar__item"><i class="fas fa-home"></i> Home</a>
+      <a href="ai-tutor-chatbot.html" class="sidebar__item active"><i class="fas fa-robot"></i> AI Tutor</a>
+      <a href="study-plan.html" class="sidebar__item"><i class="fas fa-calendar-alt"></i> Study Plan</a>
+      <a href="smart-note.html" class="sidebar__item"><i class="fas fa-sticky-note"></i> Smart Notes</a>
+      <a href="video-library.html" class="sidebar__item"><i class="fas fa-video"></i> Video Library</a>
+      <a href="mock-exams.html" class="sidebar__item"><i class="fas fa-file-alt"></i> Mock Exams</a>
+      <a href="practice-exams.html" class="sidebar__item"><i class="fas fa-pencil-alt"></i> Practice Exams</a>
+      <a href="notifications.html" class="sidebar__item"><i class="fas fa-bell"></i> Notifications</a>
+      <a href="student-live-session.html" class="sidebar__item"><i class="fas fa-chalkboard-teacher"></i> Join Live Session</a>
+      </nav>
+    </aside>
+    <main class="main-content">
+      <div class="topbar">
+        <input class="search-bar" type="text" placeholder="What would you like to learn..." />
+        <div class="user-info">
+          <span class="user-level-badge">SS 3/WAEC</span>
+          <i class="fas fa-bell"></i>
+          <img src="https://ui-avatars.com/api/?name=Student" alt="User" class="user-avatar" />
+        </div>
+      </div>
+      <div class="banner">
+        <img src="https://ulesson.com/_next/image?url=%2Fimages%2Fback-to-school-banner.png&w=1200&q=75" alt="Back to School Banner" />
+      </div>
+      <div class="section-title">Lessons</div>
+      <div class="subject-cards">
+        <a href="subjects/mathematics.html" class="subject-card math">MATHEMATICS</a>
+        <a href="subjects/biology.html" class="subject-card biology">BIOLOGY</a>
+        <a href="subjects/chemistry.html" class="subject-card chemistry">CHEMISTRY</a>
+        <a href="subjects/literature.html" class="subject-card literature">LITERATURE</a>
+        <a href="subjects/physics.html" class="subject-card physics">PHYSICS</a>
+        <a href="subjects/english.html" class="subject-card english">ENGLISH</a>
+        <a href="subjects/economics.html" class="subject-card economics">ECONOMICS</a>
+        <a href="subjects/accounting.html" class="subject-card accounting">ACCOUNTING</a>
+        <a href="subjects/government.html" class="subject-card government">GOVERNMENT</a>
+        <a href="subjects/commerce.html" class="subject-card commerce">COMMERCE</a>
+      </div>
+      <!-- Add more dashboard sections here as needed -->
+    </main>
+  </div>
+</body>
+</html>
+
+

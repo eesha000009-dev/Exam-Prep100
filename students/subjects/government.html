@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Government - Topics</title>
+  <link rel="stylesheet" href="../styles.css" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
+  <style>
+    .layout {
+      display: flex;
+      min-height: 100vh;
+    }
+.sidebar {
+  width: 240px;
+}
+    .search-icon {
+      position: absolute;
+      right: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #888;
+      font-size: 1.2rem;
+    }
+    .topics-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 28px;
+    }
+    .topic-card {
+      background: #fff;
+      border-radius: 16px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+      padding: 32px 24px 24px 24px;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      transition: box-shadow 0.2s;
+      min-height: 120px;
+    }
+    .topic-card:hover {
+      box-shadow: 0 4px 16px rgba(26,115,232,0.08);
+    }
+    .topic-title {
+      font-size: 1.15rem;
+      font-weight: 600;
+      margin-bottom: 8px;
+      color: #1a73e8;
+      text-decoration: none;
+    }
+    .topic-desc {
+      font-size: 0.95rem;
+      color: #555;
+    }
+    @media (max-width: 700px) {
+      .sidebar { width: 100px; }
+      .main { margin-left: 100px; padding: 16px; }
+      .topbar h1 { font-size: 1.2rem; }
+      .search-box { width: 140px; }
+      .topics-grid { grid-template-columns: 1fr; gap: 16px; }
+      .topic-card { padding: 16px; }
+    }
+  </style>
+  <script>
+    const topics = [
+      "Government Topics",
+      "Basic Elements in Government",
+      "Introduction to Government - Basic Concepts",
+      "Forms of Government",
+      "The Workings of Government I - Organs & Systems",
+      "The Workings of Government II - Unitary, Federal & Confederal Structures",
+      "Basic Principles of Government",
+      "Political Ideologies",
+      "Constitution",
+      "Principles of a Democratic Government",
+      "Processes of Legislation",
+      "Day-to-Day Operation and Public Administration",
+      "Citizenship",
+      "Political Parties & Party Systems",
+      "Franchise, Elections & The Electoral System",
+      "Public Opinion & The Mass Media",
+      "Pressure Groups",
+      "The Civil Service",
+      "Public Corporations",
+      "Local Government",
+      "Political and Constitutional Development in Nigeria",
+      "Pre-Colonial Administration in Nigeria",
+      "Colonial Administration I - British Colonial Administration",
+      "Colonial Administration II - French Colonial Administration",
+      "Colonial Administration III - Putting it all together...",
+      "The Process of Decolonisation - Nationalism",
+      "Constitutional Development in Nigeria I - Pre-Independence",
+      "Constitutional Development in Nigeria II - Independence & Post-Independence",
+      "Military Rule in Nigeria",
+      "Nigerian Federalism",
+      "Institutions of Government in Post-Independence Nigeria",
+      "Political Parties in Nigeria",
+      "Political Crises in Nigeria",
+      "Local Government Administration in Nigeria",
+      "Foreign Policy and Nigeria's Relationship with the International Community",
+      "Nigeria's Foreign Policy",
+      "International Organisations I - OAU, AU, ECOWAS, APPA",
+      "International Organisations II- League of Nations, UNO/ UN, OPEC, The Commonwealth of Nations",
+      "Social Dynamics and Classical Political Thought",
+      "Conflict Resolution and Management",
+      "Peace Education",
+      "Leadership and Followership",
+      "Classical Political Thoughts"
+    ];
+    function renderTopics(filter = "") {
+      const grid = document.getElementById('topicsGrid');
+      grid.innerHTML = "";
+      topics.filter(t => t.toLowerCase().includes(filter.toLowerCase())).forEach((topic, idx) => {
+        grid.innerHTML += `
+          <div class="topic-card">
+            <a class="topic-title" href="government-explanation.html?topic=${encodeURIComponent(topic)}">${topic}</a>
+            <div class="topic-desc">Chapter ${idx+1}</div>
+          </div>
+        `;
+      });
+    }
+    function filterTopics() {
+      const val = document.getElementById('searchInput').value;
+      renderTopics(val);
+    }
+    renderTopics();
+  </script>
+</body>
+</html>

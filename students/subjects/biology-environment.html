@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Environment Topics</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      background: #f7f8fa;
+      color: #1e293b;
+    }
+    .main-content {
+      max-width: 900px;
+      margin: 40px auto 0 auto;
+      background: #fff;
+      border-radius: 16px;
+      box-shadow: 0 2px 8px rgba(30,41,59,0.07);
+      padding: 2.5rem 2rem 2rem 2rem;
+      min-height: 80vh;
+      display: flex;
+      flex-direction: column;
+    }
+    .back-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: #f1f5f9;
+      color: #1e293b;
+      border: none;
+      border-radius: 8px;
+      padding: 0.5rem 1.2rem;
+      font-size: 1rem;
+      font-weight: 500;
+      cursor: pointer;
+      margin-bottom: 2rem;
+      box-shadow: 0 1px 4px rgba(30,41,59,0.05);
+      transition: background 0.2s, color 0.2s;
+      text-decoration: none;
+    }
+    .back-btn:hover {
+      background: #e0e7ef;
+      color: #38bdf8;
+    }
+    h1 {
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: #1e3a8a;
+      margin-bottom: 1.5rem;
+    }
+    .topic-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.3rem;
+    }
+    .topic-card {
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(30,41,59,0.07);
+      padding: 1.5rem 1rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.7rem;
+      font-size: 1.05rem;
+      color: #1e293b;
+      font-weight: 500;
+      cursor: pointer;
+      text-decoration: none;
+      transition: box-shadow 0.2s;
+    }
+    .topic-card:hover {
+      box-shadow: 0 4px 16px rgba(26,115,232,0.08);
+      color: #1a73e8;
+    }
+    .topic-title {
+      font-weight: 600;
+      font-size: 1.1rem;
+      color: #1e3a8a;
+    }
+    @media (max-width: 600px) {
+      .main-content {
+        padding: 1rem 0.5rem;
+      }
+      .topic-list {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="main-content">
+    <a href="biology.html" class="back-btn"><i class="fas fa-arrow-left"></i> Back to Biology</a>
+    <h1>Environment</h1>
+    <div class="topic-list">
+      <a class="topic-card" href="#" onclick="openModal('Basic Ecological Concepts')">
+        <div class="topic-title">Basic Ecological Concepts</div>
+      </a>
+      <a class="topic-card" href="#" onclick="openModal('Functioning Ecosystem')">
+        <div class="topic-title">Functioning Ecosystem</div>
+      </a>
+      <a class="topic-card" href="#" onclick="openModal('Energy transformation in Nature')">
+        <div class="topic-title">Energy transformation in Nature</div>
+      </a>
+      <a class="topic-card" href="#" onclick="openModal('Aquatic Habitats')">
+        <div class="topic-title">Aquatic Habitats</div>
+      </a>
+      <a class="topic-card" href="#" onclick="openModal('Terrestrial Habitats')">
+        <div class="topic-title">Terrestrial Habitats</div>
+      </a>
+      <a class="topic-card" href="#" onclick="openModal('Nutrient Cycling in Nature')">
+        <div class="topic-title">Nutrient Cycling in Nature</div>
+      </a>
+      <a class="topic-card" href="#" onclick="openModal('Ecological Management')">
+        <div class="topic-title">Ecological Management</div>
+      </a>
+      <a class="topic-card" href="#" onclick="openModal('Conservation of Natural Resources')">
+        <div class="topic-title">Conservation of Natural Resources</div>
+      </a>
+      <a class="topic-card" href="#" onclick="openModal('Ecology of Population')">
+        <div class="topic-title">Ecology of Population</div>
+      </a>
+      <a class="topic-card" href="#" onclick="openModal('Adaptation for survival')">
+        <div class="topic-title">Adaptation for survival</div>
+      </a>
+    </div>
+  </main>
+  <div id="modal" style="display:none;position:fixed;top:0;left:0;width:100vw;height:100vh;background:rgba(30,41,59,0.25);z-index:1000;align-items:center;justify-content:center;">
+    <div style="background:#fff;border-radius:12px;max-width:400px;width:90vw;padding:2rem;box-shadow:0 2px 16px rgba(30,41,59,0.15);position:relative;">
+      <button onclick="closeModal()" style="position:absolute;top:12px;right:12px;background:none;border:none;font-size:1.2rem;cursor:pointer;color:#888;"><i class="fas fa-times"></i></button>
+      <h2 id="modalTitle" style="margin-top:0;font-size:1.2rem;color:#1e3a8a;">Sub-topics:</h2>
+      <div id="modalContent"></div>
+    </div>
+  </div>
+  <script>
+    const subtopics = {
+      'Basic Ecological Concepts': [
+        { name: 'Abiotic and biotic factors, measurement, human impact', link: 'biology-explanation.html?topic=Abiotic%20and%20biotic%20factors%2C%20measurement%2C%20human%20impact' },
+        { name: 'deduce effects of abiotic/biotic factors', link: 'biology-explanation.html?topic=deduce%20effects%20of%20abiotic%2Fbiotic%20factors' },
+        { name: 'describe human impact', link: 'biology-explanation.html?topic=describe%20human%20impact' }
+      ],
+      'Functioning Ecosystem': [
+        { name: 'Food chains/webs, nutrient cycles (carbon, water, nitrogen)', link: 'biology-explanation.html?topic=Food%20chains%2Fwebs%2C%20nutrient%20cycles%20(carbon%2C%20water%2C%20nitrogen)' },
+        { name: 'determine examples of symbiosis', link: 'biology-explanation.html?topic=determine%20examples%20of%20symbiosis' },
+        { name: 'analyze food chains/webs', link: 'biology-explanation.html?topic=analyze%20food%20chains%2Fwebs' },
+        { name: 'describe cycles and significance', link: 'biology-explanation.html?topic=describe%20cycles%20and%20significance' }
+      ],
+      'Energy transformation in Nature': [
+        { name: 'Energy flow in ecosystem', link: 'biology-explanation.html?topic=Energy%20flow%20in%20ecosystem' },
+        { name: 'analyze energy transfer and loss', link: 'biology-explanation.html?topic=analyze%20energy%20transfer%20and%20loss' }
+      ],
+      'Aquatic Habitats': [
+        { name: 'Aquatic and terrestrial habitats, Nigerian biomes', link: 'biology-explanation.html?topic=Aquatic%20and%20terrestrial%20habitats%2C%20Nigerian%20biomes' },
+        { name: 'associate organisms with habitats', link: 'biology-explanation.html?topic=associate%20organisms%20with%20habitats' },
+        { name: 'relate features to biomes', link: 'biology-explanation.html?topic=relate%20features%20to%20biomes' }
+      ],
+      'Terrestrial Habitats': [
+        { name: 'Aquatic and terrestrial habitats, Nigerian biomes', link: 'biology-explanation.html?topic=Aquatic%20and%20terrestrial%20habitats%2C%20Nigerian%20biomes' },
+        { name: 'associate organisms with habitats', link: 'biology-explanation.html?topic=associate%20organisms%20with%20habitats' },
+        { name: 'relate features to biomes', link: 'biology-explanation.html?topic=relate%20features%20to%20biomes' }
+      ],
+      'Nutrient Cycling in Nature': [
+        { name: 'Food chains/webs, nutrient cycles (carbon, water, nitrogen)', link: 'biology-explanation.html?topic=Food%20chains%2Fwebs%2C%20nutrient%20cycles%20(carbon%2C%20water%2C%20nitrogen)' },
+        { name: 'describe cycles and significance', link: 'biology-explanation.html?topic=describe%20cycles%20and%20significance' }
+      ],
+      'Ecological Management': [
+        { name: 'Soil types, structure, components, fertility, conservation', link: 'biology-explanation.html?topic=Soil%20types%2C%20structure%2C%20components%2C%20fertility%2C%20conservation' },
+        { name: 'identify soil properties, relate to plant growth, apply conservation methods', link: 'biology-explanation.html?topic=identify%20soil%20properties%2C%20relate%20to%20plant%20growth%2C%20apply%20conservation%20methods' }
+      ],
+      'Conservation of Natural Resources': [
+        { name: 'Diseases, pollution, conservation, game reserves, health agencies', link: 'biology-explanation.html?topic=Diseases%2C%20pollution%2C%20conservation%2C%20game%20reserves%2C%20health%20agencies' },
+        { name: 'identify disease conditions, pollution types, conservation methods, and agencies', link: 'biology-explanation.html?topic=identify%20disease%20conditions%2C%20pollution%20types%2C%20conservation%20methods%2C%20and%20agencies' }
+      ],
+      'Ecology of Population': [
+        { name: 'Population density, competition, succession, factors affecting size', link: 'biology-explanation.html?topic=Population%20density%2C%20competition%2C%20succession%2C%20factors%20affecting%20size' },
+        { name: 'analyze population changes, competition, succession, and factors affecting size', link: 'biology-explanation.html?topic=analyze%20population%20changes%2C%20competition%2C%20succession%2C%20and%20factors%20affecting%20size' }
+      ],
+      'Adaptation for survival': [
+        { name: 'Structural, functional, and behavioural adaptations', link: 'biology-explanation.html?topic=Structural%2C%20functional%2C%20and%20behavioural%20adaptations' },
+        { name: 'describe adaptations to environment and way of life', link: 'biology-explanation.html?topic=describe%20adaptations%20to%20environment%20and%20way%20of%20life' },
+        { name: 'account for adaptation in food, protection, mating, temperature, and water conservation', link: 'biology-explanation.html?topic=account%20for%20adaptation%20in%20food%2C%20protection%2C%20mating%2C%20temperature%2C%20and%20water%20conservation' }
+      ]
+    };
+    function openModal(topic) {
+      document.getElementById('modal').style.display = 'flex';
+      document.getElementById('modalTitle').textContent = 'Sub-topics: ' + topic;
+      const content = subtopics[topic] || [];
+      document.getElementById('modalContent').innerHTML = content.map(s => `<div style='display:flex;align-items:center;justify-content:space-between;margin-bottom:0.7rem;'><span>${s.name}</span><a href='${s.link}' class='back-btn' style='margin:0 0 0 1rem;padding:0.3rem 0.8rem;font-size:0.95rem;'>Start Learning</a></div>`).join('');
+    }
+    function closeModal() {
+      document.getElementById('modal').style.display = 'none';
+    }
+    window.onclick = function(event) {
+      const modal = document.getElementById('modal');
+      if(event.target === modal) closeModal();
+    }
+  </script>
+</body>
+</html>

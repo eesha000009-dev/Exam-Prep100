@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Economics - Topics</title>
+  <link rel="stylesheet" href="../styles.css" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
+  <style>
+    .layout {
+      display: flex;
+      min-height: 100vh;
+    }
+.sidebar {
+  width: 240px;
+  margin: 0 0 32px 32px;
+  color: #1a73e8;
+  font-weight: 700;
+}
+    .sidebar ul {
+      list-style: none;
+      padding: 0 0 0 32px;
+      margin: 0;
+    }
+    .sidebar ul li {
+      margin-bottom: 20px;
+    }
+    .sidebar ul li a {
+      color: #222;
+      text-decoration: none;
+      font-size: 1.05rem;
+      transition: color 0.2s;
+    }
+    .sidebar ul li a:hover {
+      color: #1a73e8;
+    }
+    .main {
+      margin-left: 240px;
+      padding: 32px 40px 40px 40px;
+    }
+    /* Removed old sidebar styles to prevent white background conflict */
+    .search-box input {
+      width: 100%;
+      padding: 10px 40px 10px 16px;
+      border-radius: 24px;
+      border: 1px solid #ddd;
+      font-size: 1rem;
+      background: #fff;
+      outline: none;
+      color: #222;
+      font-family: inherit;
+      box-sizing: border-box;
+      transition: border-color 0.2s;
+    }
+    .search-icon {
+      position: absolute;
+      right: 18px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #888;
+      font-size: 1.2rem;
+      pointer-events: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 24px;
+      width: 24px;
+    }
+    .topics-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 28px;
+    }
+    .topic-card {
+      background: #fff;
+      border-radius: 16px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+      padding: 32px 24px 24px 24px;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      transition: box-shadow 0.2s;
+      min-height: 120px;
+    }
+    .topic-card:hover {
+      box-shadow: 0 4px 16px rgba(26,115,232,0.08);
+    }
+    .topic-title {
+      font-size: 1.15rem;
+      font-weight: 600;
+      margin-bottom: 8px;
+      color: #1a73e8;
+      text-decoration: none;
+    }
+    .topic-desc {
+      font-size: 0.95rem;
+      color: #555;
+    }
+    @media (max-width: 700px) {
+      .sidebar { width: 100px; }
+      .main { margin-left: 100px; padding: 16px; }
+      .topbar h1 { font-size: 1.2rem; }
+      .search-box { width: 140px; }
+      .topics-grid { grid-template-columns: 1fr; gap: 16px; }
+      .topic-card { padding: 16px; }
+    }
+  </style>
+  <script>
+    const topics = [
+      "Economics as a science",
+      "Basic Concepts: Wants, Scarcity, choice, scale of preference, opportunity cost, Rationality, production, distribution, consumption.",
+      "Economic problems of; What, how, and for whom to produce and efficiency of resource use.",
+      "Application of PPF to solution of economic problems.",
+      "Economic Systems",
+      "Types; free enterprise centrally planned and mixed economies",
+      "Solutions to economic problems under different systems",
+      "Contemporary issues in economic systems (economic reforms e.g deregulation, banking sector consolidation, cash policy reform).",
+      "Methods and Tools of Economic Analysis",
+      "Scientific Approach: inductive and deductive methods, positive and normative reasoning",
+      "Basic Tools: tables, charts and graphs, measures of central tendency: mean, median and mode, and their applications, measures of dispersion; variance, standard deviation, range and their applications; merits and demerits of the tools.",
+      "The Theory of Demand",
+      "Meaning and determinants of demand",
+      "Demand schedules and curves",
+      "Distinction between change in quantity demanded and change in demand.",
+      "Types of demand: Composite, derived, competitive and joint demand",
+      "Types, nature and determinants of elasticity and their measurement - price, income and cross elasticity of demand",
+      "Importance of elasticity of demand to consumers, producers and government.",
+      "The Theory of Consumer Behaviour",
+      "Utility (cardinal, ordinal, total average and marginal utilities)",
+      "Indifference curve and budget line.",
+      "Diminishing marginal utility and the law of demand.",
+      "Consumer equilibrium using the indifference curve and marginal analyses.",
+      "Effects of shift in the budget line and the indifference curve.",
+      "Consumer surplus and its applications.",
+      "The Theory of Supply",
+      "Meaning and determinants of supply",
+      "Supply schedules and supply curves",
+      "Distinction between change in quantity supplied and change in supply",
+      "Types of Supply: Joint/complementary, competitive and composite",
+      "Elasticity of Supply: determinants, measurements, nature and applications",
+      "The Theory of Price Determination",
+      "The concepts of market and price",
+      "Functions of the price system",
+      "Equilibrium price and quantity in product and factor markets",
+      "Price legislation and its effects",
+      "Effects of changes in supply and demand on equilibrium price and quantity.",
+      "The Theory of Production",
+      "Meaning and types of production",
+      "Concepts of production and their interrelationships (TP, AP, MP and the law of variable proportion).",
+      "Division of labour and specialization",
+      "Scale of Production: Internal and external economies of scale and their implications.",
+      "Production functions and returns to scale",
+      "Producers' equilibrium isoquant - isocost and marginal analyses.",
+      "Factors affecting productivity."
+    ];
+    function renderTopics(filter = "") {
+      const grid = document.getElementById('topicsGrid');
+      grid.innerHTML = "";
+      topics.filter(t => t.toLowerCase().includes(filter.toLowerCase())).forEach((topic, idx) => {
+        grid.innerHTML += `
+          <div class="topic-card">
+            <a class="topic-title" href="economics-explanation.html?topic=${encodeURIComponent(topic)}">${topic}</a>
+            <div class="topic-desc">Chapter ${idx+1}</div>
+          </div>
+        `;
+      });
+    }
+    function filterTopics() {
+      const val = document.getElementById('searchInput').value;
+      renderTopics(val);
+    }
+    renderTopics();
+  </script>
+</body>
+</html>

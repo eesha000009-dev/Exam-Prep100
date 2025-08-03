@@ -1,0 +1,65 @@
+<!-- Modal for video call, hidden by default. Managed by video-modal.js -->
+<script src='https://8x8.vc/vpaas-magic-cookie-29d1aa3d1dd04579a28364a8dfdabc89/external_api.js'></script>
+<script src="video-modal.js"></script>
+<style>
+  #video-modal {
+    display: none;
+    position: fixed;
+    z-index: 9999;
+    right: 24px;
+    bottom: 24px;
+    width: 420px;
+    height: 340px;
+    background: rgba(0,0,0,0.15);
+    align-items: flex-end;
+    justify-content: flex-end;
+  }
+  #video-modal-content {
+    background: #222;
+    border-radius: 12px;
+    box-shadow: 0 2px 16px rgba(0,0,0,0.18);
+    padding: 0.5rem 0.5rem 0.5rem 0.5rem;
+    position: relative;
+    width: 400px;
+    height: 300px;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+  }
+  #close-video-modal {
+    position: absolute;
+    top: 6px;
+    right: 10px;
+    background: none;
+    border: none;
+    color: #fff;
+    font-size: 1.5rem;
+    cursor: pointer;
+    z-index: 2;
+  }
+  #video-modal-jitsi {
+    flex: 1;
+    width: 100%;
+    height: 100%;
+    border-radius: 8px;
+    overflow: hidden;
+  }
+</style>
+<div id="video-modal"></div>
+<aside class="canvas-sidebar">
+  <div class="canvas-logo" title="Canvas">🖼️</div>
+  <nav>
+    <a href="teacher-dashboard.html" title="Dashboard">🏠<span class="menu-label">Dashboard</span></a>
+    <a href="sticky-notes.html" title="Sticky Notes">📝<span class="menu-label">Sticky Notes</span></a>
+    <a href="todo-list.html" title="To-Do List">✅<span class="menu-label">To-Do List</span></a>
+    <a href="timer.html" title="Timer">⏲️<span class="menu-label">Timer</span></a>
+    <a href="lesson-planner.html" title="Lesson Planner">📅<span class="menu-label">Lesson Planner</span></a>
+    <a href="quick-links.html" title="Quick Links">🔗<span class="menu-label">Quick Links</span></a>
+    <a href="#" id="toggle-theme" title="Toggle Dark/Light Mode">🌓<span class="menu-label">Theme</span></a>
+    <a href="motivational-quotes.html" title="Motivational Quotes">💡<span class="menu-label">Quotes</span></a>
+    <a href="teacher-sessions.html" title="Host Live Session">🎥<span class="menu-label">Host Live Session</span></a>
+  </nav>
+  <div class="canvas-footer">
+    <!-- Optionally add more icons or links here -->
+  </div>
+</aside>

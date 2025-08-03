@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Literature - Topics</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      background: #f7f8fa;
+      color: #1e293b;
+    }
+    .main-content {
+      max-width: 900px;
+      margin: 40px auto 0 auto;
+      background: #fff;
+      border-radius: 16px;
+      box-shadow: 0 2px 8px rgba(30,41,59,0.07);
+      padding: 2.5rem 2rem 2rem 2rem;
+      min-height: 80vh;
+      display: flex;
+      flex-direction: column;
+    }
+    .back-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: #f1f5f9;
+      color: #1e293b;
+      border: none;
+      border-radius: 8px;
+      padding: 0.5rem 1.2rem;
+      font-size: 1rem;
+      font-weight: 500;
+      cursor: pointer;
+      margin-bottom: 2rem;
+      box-shadow: 0 1px 4px rgba(30,41,59,0.05);
+      transition: background 0.2s, color 0.2s;
+      text-decoration: none;
+    }
+    .back-btn:hover {
+      background: #e0e7ef;
+      color: #38bdf8;
+    }
+    h1 {
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: #1e3a8a;
+      margin-bottom: 1.5rem;
+    }
+    .topic-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.3rem;
+    }
+    .topic-card {
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(30,41,59,0.07);
+      padding: 1.5rem 1rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.7rem;
+      font-size: 1.05rem;
+      color: #1e293b;
+      font-weight: 500;
+    }
+    .topic-title {
+      font-weight: 600;
+      font-size: 1.1rem;
+      color: #1e3a8a;
+      text-decoration: none;
+    }
+    .topic-desc {
+      color: #64748b;
+      font-size: 0.98rem;
+    }
+    @media (max-width: 600px) {
+      .main-content {
+        padding: 1rem 0.5rem;
+      }
+      .topic-list {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+<body>
+  <main class="main-content">
+    <a href="../student-dashboard.html" class="back-btn"><i class="fas fa-arrow-left"></i> Back to Dashboard</a>
+    <h1>Literature</h1>
+    <div class="topic-list">
+      <a class="topic-card" href="literature-drama.html">
+        <div class="topic-title">Drama</div>
+      </a>
+      <a class="topic-card" href="literature-prose.html">
+        <div class="topic-title">Prose</div>
+      </a>
+      <a class="topic-card" href="literature-poetry.html">
+        <div class="topic-title">Poetry</div>
+      </a>
+      <a class="topic-card" href="literature-principles.html">
+        <div class="topic-title">General Literary Principles</div>
+      </a>
+      <a class="topic-card" href="literature-appreciation.html">
+        <div class="topic-title">Literary Appreciation</div>
+      </a>
+      <a class="topic-card" href="literature-texts.html">
+        <div class="topic-title">Recommended Texts</div>
+      </a>
+    </div>
+  </main>
+</body>
+</html>
