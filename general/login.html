@@ -4,104 +4,263 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>EduNext - Login</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
   <style>
-    body { margin: 0; font-family: 'Inter', Arial, sans-serif; background: #f9fafb; color: #222; }
-    .centered { min-height: 100vh; display: flex; align-items: center; justify-content: center; }
-    .auth-card { background: #fff; border-radius: 1rem; box-shadow: 0 2px 8px rgba(0,0,0,0.04); max-width: 400px; width: 100%; padding: 32px 24px; }
-    .role-toggle { display: flex; gap: 8px; margin-bottom: 18px; }
-    .role-btn { flex: 1; padding: 8px 0; border-radius: 8px; border: none; background: #f1f5f9; color: #1e3a8a; font-weight: 600; cursor: pointer; transition: background 0.2s; }
-    .role-btn.active { background: #1e3a8a; color: #fff; }
-    .form-group { margin-bottom: 18px; }
-    .form-label { display: block; margin-bottom: 6px; color: #374151; font-weight: 500; }
-    .form-input { width: 100%; padding: 10px; border-radius: 6px; border: 1px solid #e5e7eb; font-size: 1rem; }
-    .form-btn { width: 100%; padding: 12px; border-radius: 8px; background: #1e3a8a; color: #fff; font-weight: 600; border: none; font-size: 1rem; margin-top: 8px; cursor: pointer; }
-    .form-btn:hover { background: #2563eb; }
-    .switch-link { color: #1e3a8a; cursor: pointer; text-decoration: underline; font-size: 0.95rem; margin-top: 12px; display: inline-block; }
-    #teacher-form { display: none; }
-    .login-title { text-align: center; color: #1e3a8a; margin-bottom: 24px; }
-    .login-heading { 
-      text-align: center; 
-      color: #1e3a8a; 
-      margin-bottom: 24px; 
+    body { 
+      margin: 0; 
+      font-family: 'Inter', Arial, sans-serif; 
+      background: #f0f2f5; 
+      color: #222; 
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
-    .login-heading-alt {
-      text-align: center;
+    .auth-container {
+      width: 100%;
+      max-width: 400px;
+      padding: 0 20px;
+    }
+    .auth-card { 
+      background: #fff; 
+      border-radius: 16px; 
+      box-shadow: 0 4px 20px rgba(0,0,0,0.08); 
+      padding: 32px;
+    }
+    .back-link {
+      display: flex;
+      align-items: center;
+      gap: 8px;
       color: #1e3a8a;
+      text-decoration: none;
       margin-bottom: 24px;
+      font-weight: 500;
+    }
+    .back-link:hover {
+      text-decoration: underline;
+    }
+    .login-heading {
+      font-size: 24px;
+      color: #1e3a8a;
+      margin: 0 0 24px 0;
+      text-align: center;
+    }
+    .role-toggle {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 24px;
+      background: #f1f5f9;
+      padding: 4px;
+      border-radius: 12px;
+    }
+    .role-btn {
+      flex: 1;
+      padding: 12px;
+      border-radius: 8px;
+      border: none;
+      background: transparent;
+      color: #64748b;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .role-btn.active {
+      background: #1e3a8a;
+      color: #fff;
+      box-shadow: 0 2px 8px rgba(30,58,138,0.2);
+    }
+    .form-group {
+      margin-bottom: 20px;
+    }
+    .form-label {
+      display: block;
+      margin-bottom: 8px;
+      color: #374151;
+      font-weight: 500;
+    }
+    .form-input {
+      width: 100%;
+      padding: 12px;
+      border-radius: 8px;
+      border: 2px solid #e5e7eb;
+      font-size: 1rem;
+      transition: border-color 0.2s;
+      box-sizing: border-box;
+    }
+    .form-input:focus {
+      border-color: #1e3a8a;
+      outline: none;
+    }
+    .form-btn {
+      width: 100%;
+      padding: 14px;
+      border-radius: 8px;
+      background: #1e3a8a;
+      color: #fff;
+      font-weight: 600;
+      border: none;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background 0.2s;
+      margin-top: 8px;
+    }
+    .form-btn:hover {
+      background: #2563eb;
+    }
+    .form-footer {
+      text-align: center;
+      margin-top: 24px;
+      color: #6b7280;
+    }
+    .form-footer p {
+      margin: 16px 0 0 0;
+    }
+    .switch-link {
+      color: #1e3a8a;
+      text-decoration: none;
+      font-weight: 500;
+    }
+    .switch-link:hover {
+      text-decoration: underline;
+    }
+    .error-message {
+      color: #dc2626;
+      font-size: 0.875rem;
+      margin-top: 4px;
     }
   </style>
-  <script>
-    function showRole(role) {
-      document.getElementById('student-form').style.display = role==='student' ? 'block' : 'none';
-      document.getElementById('teacher-form').style.display = role==='teacher' ? 'block' : 'none';
-      document.getElementById('login-student-btn').classList.toggle('active', role==='student');
-      document.getElementById('login-teacher-btn').classList.toggle('active', role==='teacher');
-      document.getElementById('role-input').value = role;
-    }
-    window.onload = function() {
-      showRole('student');
-    };
-</script>
-      <h2 class="login-heading-alt">Login to EduNext</h2>
+</head>
 <body>
-  <div class="centered">
-      <h2 class="login-heading">Login to EduNext</h2>
-      <h2 class="login-title">Login to EduNext</h2>
-      <h2 class="login-heading-alt">Login to EduNext</h2>
+  <div class="auth-container">
+    <div class="auth-card">
+      <a href="../index.html" class="back-link">← Back to Home</a>
+      <h1 class="login-heading">Welcome Back</h1>
       <div class="role-toggle">
-        <button type="button" id="login-student-btn" class="role-btn" onclick="showRole('student')">Student</button>
+        <button type="button" id="login-student-btn" class="role-btn active" onclick="showRole('student')">Student</button>
         <button type="button" id="login-teacher-btn" class="role-btn" onclick="showRole('teacher')">Teacher</button>
       </div>
-      <form id="student-form" action="student-dashboard.html" autocomplete="off">
+
+      <form id="login-form" onsubmit="handleLogin(event)">
+        <input type="hidden" id="role-input" name="role" value="student">
+        
         <div class="form-group">
-          <label class="form-label" for="login-email">Email Address</label>
-          <input class="form-input" type="email" id="login-email" name="login-email" required>
+          <label class="form-label" for="email">Email Address</label>
+          <input class="form-input" type="email" id="email" name="email" required>
         </div>
+
+        <div id="student-fields">
+          <div class="form-group">
+            <label class="form-label" for="grade">Grade Level</label>
+            <select class="form-input" id="grade" name="grade">
+              <option value="">Select grade level</option>
+              <option value="grade7">Grade 7</option>
+              <option value="grade8">Grade 8</option>
+              <option value="grade9">Grade 9</option>
+              <option value="grade10">Grade 10</option>
+              <option value="grade11">Grade 11</option>
+              <option value="grade12">Grade 12</option>
+            </select>
+          </div>
+        </div>
+
+        <div id="teacher-fields" style="display: none;">
+          <div class="form-group">
+            <label class="form-label" for="subject">Subject Specialization</label>
+            <select class="form-input" id="subject" name="subject">
+              <option value="">Select your subject</option>
+              <option value="mathematics">Mathematics</option>
+              <option value="physics">Physics</option>
+              <option value="chemistry">Chemistry</option>
+              <option value="biology">Biology</option>
+              <option value="english">English</option>
+              <option value="literature">Literature</option>
+              <option value="economics">Economics</option>
+              <option value="commerce">Commerce</option>
+              <option value="accounting">Accounting</option>
+              <option value="government">Government</option>
+            </select>
+          </div>
+        </div>
+        
         <div class="form-group">
-          <label class="form-label" for="login-grade">Grade Level</label>
-          <select class="form-input" id="login-grade" name="login-grade" required>
-            <option value="">Select grade level</option>
-            <option value="grade7">Grade 7</option>
-            <option value="grade8">Grade 8</option>
-            <option value="grade9">Grade 9</option>
-            <option value="grade10">Grade 10</option>
-            <option value="grade11">Grade 11</option>
-            <option value="grade12">Grade 12</option>
-          </select>
+          <label class="form-label" for="password">Password</label>
+          <input class="form-input" type="password" id="password" name="password" required>
         </div>
-        <div class="form-group">
-          <label class="form-label" for="login-password">Password</label>
-          <input class="form-input" type="password" id="login-password" name="login-password" required>
+
+        <button type="submit" class="form-btn" id="login-btn">Log In as Student</button>
+
+        <div class="form-footer">
+          <a href="#" class="switch-link">Forgot password?</a>
+          <p>
+            Don't have an account? <a href="signup.html" class="switch-link">Sign up</a>
+          </p>
         </div>
-        <button class="form-btn" type="submit">Login</button>
-        <p>Don't have an account? <a href="general/signup.html">Sign up</a></p>
-      <form id="teacher-form" action="teacher-dashboard.html" autocomplete="off">
-      <form id="teacher-form" action="teacher-dashboard.html" autocomplete="off" style="display:none;">
-        <div class="form-group">
-          <label class="form-label" for="login-email-teacher">Email Address</label>
-          <input class="form-input" type="email" id="login-email-teacher" name="login-email-teacher" required>
-        </div>
-        <div class="form-group">
-          <label class="form-label" for="login-subject">Subject Specialization</label>
-          <select class="form-input" id="login-subject" name="login-subject" required>
-            <option value="">Select your subject</option>
-            <option value="mathematics">Mathematics</option>
-            <option value="physics">Physics</option>
-            <option value="chemistry">Chemistry</option>
-            <option value="biology">Biology</option>
-            <option value="english">English</option>
-          </select>
-        </div>
-        <div class="form-group">
-          <label class="form-label" for="login-password-teacher">Password</label>
-          <input class="form-input" type="password" id="login-password-teacher" name="login-password-teacher" required />
-        </div>
-        <button class="form-btn" type="submit">Login</button>
       </form>
     </div>
   </div>
+
+  <script>
+    let currentRole = 'student';
+
+    function showRole(role) {
+      currentRole = role;
+      // Update active states
+      document.getElementById('login-student-btn').classList.toggle('active', role === 'student');
+      document.getElementById('login-teacher-btn').classList.toggle('active', role === 'teacher');
+      
+      // Update form fields visibility
+      document.getElementById('student-fields').style.display = role === 'student' ? 'block' : 'none';
+      document.getElementById('teacher-fields').style.display = role === 'teacher' ? 'block' : 'none';
+      
+      // Update hidden input and button text
+      document.getElementById('role-input').value = role;
+      document.getElementById('login-btn').textContent = `Log In as ${role.charAt(0).toUpperCase() + role.slice(1)}`;
+      
+      // Update required fields
+      const gradeSelect = document.getElementById('grade');
+      const subjectSelect = document.getElementById('subject');
+      
+      if (role === 'student') {
+        gradeSelect.required = true;
+        subjectSelect.required = false;
+      } else {
+        gradeSelect.required = false;
+        subjectSelect.required = true;
+      }
+    }
+
+    function handleLogin(event) {
+      event.preventDefault();
+      const email = document.getElementById('email').value;
+      const password = document.getElementById('password').value;
+      
+      // In a real application, you would validate credentials here
+      // For this demo, we'll just redirect based on role
+      if (currentRole === 'student') {
+        // Validate grade for students
+        const grade = document.getElementById('grade').value;
+        if (!grade) {
+          alert('Please select your grade level');
+          return;
+        }
+        window.location.href = '../students/student-dashboard.html';
+      } else {
+        // Validate subject for teachers
+        const subject = document.getElementById('subject').value;
+        if (!subject) {
+          alert('Please select your subject specialization');
+          return;
+        }
+        window.location.href = '../teachers/teacher-dashboard.html';
+      }
+    }
+
+    // Initialize the form
+    window.onload = function() {
+      showRole('student');
+    };
+  </script>
 </body>
 </html>
 <!-- Actual login.html content moved here -->
