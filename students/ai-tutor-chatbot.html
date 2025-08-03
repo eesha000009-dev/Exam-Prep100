@@ -1,0 +1,368 @@
+<script type="text/javascript">
+        var gk_isXlsx = false;
+        var gk_xlsxFileLookup = {};
+        var gk_fileData = {};
+        function filledCell(cell) {
+          return cell !== '' && cell != null;
+        }
+        function loadFileData(filename) {
+        if (gk_isXlsx && gk_xlsxFileLookup[filename]) {
+            try {
+                var workbook = XLSX.read(gk_fileData[filename], { type: 'base64' });
+                var firstSheetName = workbook.SheetNames[0];
+                var worksheet = workbook.Sheets[firstSheetName];
+
+                // Convert sheet to JSON to filter blank rows
+                var jsonData = XLSX.utils.sheet_to_json(worksheet, { header: 1, blankrows: false, defval: '' });
+                // Filter out blank rows (rows where all cells are empty, null, or undefined)
+                var filteredData = jsonData.filter(row => row.some(filledCell));
+
+                // Heuristic to find the header row by ignoring rows with fewer filled cells than the next row
+                var headerRowIndex = filteredData.findIndex((row, index) =>
+                  row.filter(filledCell).length >= filteredData[index + 1]?.filter(filledCell).length
+                );
+                // Fallback
+                if (headerRowIndex === -1 || headerRowIndex > 25) {
+                  headerRowIndex = 0;
+                }
+
+                // Convert filtered JSON back to CSV
+                var csv = XLSX.utils.aoa_to_sheet(filteredData.slice(headerRowIndex)); // Create a new sheet from filtered array of arrays
+                csv = XLSX.utils.sheet_to_csv(csv, { header: 1 });
+                return csv;
+            } catch (e) {
+                console.error(e);
+                return "";
+            }
+        }
+        return gk_fileData[filename] || "";
+        }
+        </script><!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI Tutor Page</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      background: #f7f8fa;
+      color: #1e293b;
+    }
+    .layout {
+      display: flex;
+      min-height: 100vh;
+    }
+    .sidebar {
+      width: 240px;
+      background: #1e293b;
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      padding: 2rem 1rem;
+      min-height: 100vh;
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 100vh;
+      z-index: 100;
+    }
+    .sidebar__logo {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 2rem;
+      text-decoration: none;
+    }
+    .sidebar__menu {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+    .sidebar__item {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 0.75rem 1rem;
+      color: #fff;
+      text-decoration: none;
+      border-radius: 8px;
+      font-size: 1rem;
+      font-weight: normal;
+      transition: background 0.2s;
+    }
+    .sidebar__item.active, .sidebar__item:hover {
+      background: #334155;
+      color: #38bdf8;
+    }
+    .main-content {
+      flex: 1;
+      padding: 2rem 2.5rem;
+      background: #f7f8fa;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      margin-left: 240px;
+    }
+    .topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 2rem;
+    }
+    .search-bar {
+      flex: 1;
+      max-width: 400px;
+      padding: 0.75rem 1.5rem;
+      border-radius: 999px;
+      border: 1px solid #e2e8f0;
+      font-size: 1rem;
+      background: #fff;
+      margin-right: 2rem;
+    }
+    .user-info {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+    .banner {
+      width: 100%;
+      height: 180px;
+      background: #fff;
+      border-radius: 16px;
+      box-shadow: 0 2px 8px rgba(30,41,59,0.07);
+      margin-bottom: 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+    .banner img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 16px;
+    }
+    .section-title {
+      font-size: 1.3rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+    }
+    .user-level-badge {
+      background: #334155;
+      color: #fff;
+      padding: 0.5rem 1rem;
+      border-radius: 8px;
+      display: inline-block;
+      font-size: 1rem;
+    }
+    .user-avatar {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+    }
+    .chat-container {
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(30,41,59,0.07);
+      padding: 2rem;
+      max-width: 600px;
+      margin: 0 auto 2rem auto;
+    }
+    .chat-messages {
+      min-height: 200px;
+      max-height: 300px;
+      overflow-y: auto;
+      margin-bottom: 1.5rem;
+    }
+    .chat-message {
+      margin-bottom: 1rem;
+    }
+    .chat-message.user {
+      text-align: right;
+      color: #2563eb;
+    }
+    .chat-message.bot {
+      text-align: left;
+      color: #1e293b;
+    }
+    .input-area {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+      margin-top: 1rem;
+    }
+    .input-area input {
+      flex-grow: 1;
+      padding: 10px;
+      border: 1px solid #cbd5e1;
+      border-radius: 24px;
+      outline: none;
+      font-size: 1rem;
+    }
+    .input-area button {
+      padding: 10px 20px;
+      background: #2563eb;
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.15s;
+    }
+    .input-area button:hover {
+      background: #1e3a8a;
+    }
+    .mic-button {
+      padding: 10px;
+      background: #4b5e97;
+      color: #fff;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      margin-left: 8px;
+    }
+    @media (max-width: 700px) {
+      .sidebar { width: 100px; }
+      .main-content { margin-left: 100px; padding: 16px; }
+      .chat-container { max-height: 300px; }
+      .input-area input { width: 70%; }
+    }
+  </style>
+  <div class="layout">
+    <aside class="sidebar">
+      <a href="#" class="sidebar__logo">
+        <i class="fas fa-graduation-cap"></i>
+        <span>EduNext-prep100</span>
+      </a>
+      <nav class="sidebar__menu">
+        <a href="student-dashboard.html" class="sidebar__item"><i class="fas fa-home"></i> Home</a>
+        <a href="ai-tutor-chatbot.html" class="sidebar__item active"><i class="fas fa-robot"></i> AI Tutor</a>
+        <a href="study-plan.html" class="sidebar__item"><i class="fas fa-calendar-alt"></i> Study Plan</a>
+        <a href="smart-note.html" class="sidebar__item"><i class="fas fa-sticky-note"></i> Smart Notes</a>
+        <a href="video-library.html" class="sidebar__item"><i class="fas fa-video"></i> Video Library</a>
+        <a href="mock-exams.html" class="sidebar__item"><i class="fas fa-file-alt"></i> Mock Exams</a>
+        <a href="practice-exams.html" class="sidebar__item"><i class="fas fa-pencil-alt"></i> Practice Exams</a>
+        <a href="notifications.html" class="sidebar__item"><i class="fas fa-bell"></i> Notifications</a>
+        <a href="student-live-session.html" class="sidebar__item"><i class="fas fa-chalkboard-teacher"></i> Join Live Session</a>
+      </nav>
+    </aside>
+    <main class="main-content">
+      <div class="topbar">
+        <input class="search-bar" type="text" placeholder="Ask a question or search..." />
+        <div class="user-info">
+          <span class="user-level-badge">SS 3/WAEC</span>
+          <i class="fas fa-bell"></i>
+          <img src="https://ui-avatars.com/api/?name=Student" alt="User" class="user-avatar" />
+        </div>
+      </div>
+      <div class="banner">
+        <img src="https://ulesson.com/_next/image?url=%2Fimages%2Fback-to-school-banner.png&w=1200&q=75" alt="Back to School Banner" />
+      </div>
+      <div class="section-title">AI Tutor</div>
+      <div class="chat-container" id="chatContainer"></div>
+      <div class="input-area">
+        <input type="text" id="userInput" placeholder="Ask a question..." onkeypress="if(event.key === 'Enter') askAI()">
+        <button type="button" title="Send Message" onclick="askAI()">Send</button>
+        <button type="button" title="Start Voice Input" class="mic-button" onclick="startVoiceInput()">
+          <i class="fas fa-microphone"></i>
+        </button>
+      </div>
+    </main>
+  </div>
+  <script>
+    const GEMINI_API_KEY = 'AIzaSyCTGS3B2ZfPRlLDDV5vFp62rwgrxWRIW8I';
+    let chatHistory = [];
+    let recognition;
+
+    function addMessage(content, isUser = false) {
+      const container = document.getElementById('chatContainer');
+      const message = document.createElement('div');
+      message.className = `chat-message ${isUser ? 'user-message' : 'ai-message'}`;
+      message.textContent = content;
+      container.appendChild(message);
+      container.scrollTop = container.scrollHeight;
+    }
+
+    function startVoiceInput() {
+      if (!('webkitSpeechRecognition' in window)) {
+        addMessage('Voice input requires a supported browser like Chrome. Please use text or switch browsers.');
+        return;
+      }
+      try {
+        recognition = new webkitSpeechRecognition();
+        recognition.continuous = false;
+        recognition.interimResults = false;
+        recognition.lang = 'en-US';
+        recognition.onresult = (event) => {
+          const query = event.results[0][0].transcript.trim();
+          addMessage(query, true);
+          askAI(query);
+        };
+        recognition.onerror = (event) => {
+          addMessage(`Voice input failed: ${event.error}. Please try again or use text.`);
+        };
+        recognition.start();
+      } catch (error) {
+        addMessage('An error occurred with voice input. Please use text input instead.');
+      }
+    }
+
+    async function fetchWebSummary(query) {
+      const simulatedSources = [
+        `Source 1: Information on ${query} suggests...`,
+        `Source 2: Recent data indicates...`,
+        `Source 3: Another perspective highlights...`
+      ];
+      return `Summary based on available information: ${query}. Key points from various sources: ${simulatedSources.join(' ')}.`;
+    }
+
+    async function askAI(query = null) {
+      const input = document.getElementById('userInput');
+      if (!query) query = input.value.trim();
+      if (!query) return;
+      if (!input.value) addMessage(query, true); // For voice input
+      input.value = '';
+
+      try {
+        let prompt = `Provide a clear and concise answer to "${query}".`;
+        if (chatHistory.length > 0 && chatHistory.some(prev => prev.query.toLowerCase().includes(query.toLowerCase()))) {
+          prompt += ' Refer to prior discussions for context and add new details.';
+        }
+        if (query.toLowerCase().match(/richest|president|capital/i)) {
+          prompt += ' Keep it factual and summarized, using the latest available data.';
+        } else if (query.toLowerCase().includes('physics') || query.toLowerCase().includes('chemistry') || query.toLowerCase().includes('biology') || query.toLowerCase().includes('waec') || query.toLowerCase().includes('neco') || query.toLowerCase().includes('jamb')) {
+          prompt += ' Explain like a teacher with step-by-step breakdown and a simple example, tailored for exam prep.';
+        } else {
+          prompt += ' Include a brief example if it clarifies the answer.';
+        }
+
+        const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${GEMINI_API_KEY}`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            contents: [{ parts: [{ text: prompt }] }]
+          })
+        });
+        const data = await response.json();
+        let explanation = data.candidates[0]?.content.parts[0].text || 'I couldn’t find a direct answer. Let me search for more information.';
+        if (explanation.includes('couldn’t fetch') || explanation.includes('try again')) {
+          const webSummary = await fetchWebSummary(query);
+          explanation = webSummary;
+        }
+        addMessage(explanation);
+        chatHistory.push({ query, explanation });
+      } catch (error) {
+        console.error('Error:', error);
+        addMessage('Sorry, there was an issue processing your request. Please try again later.');
+      }
+    }
+  </script>
+</body>
+</html>

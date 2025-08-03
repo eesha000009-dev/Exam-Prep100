@@ -1,0 +1,134 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Accounting - Topics</title>
+  <link rel="stylesheet" href="../styles.css" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
+  <style>
+.back-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+      margin: 1.5rem 0 1rem 0;
+      padding: 0.5rem 1rem;
+      background: #e0e7ef;
+      color: #1e293b;
+      border-radius: 6px;
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 1rem;
+      border: none;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .back-btn:hover {
+      background: #cbd5e1;
+    }
+    .main {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 32px 16px 40px 16px;
+    }
+    .topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 2rem;
+      gap: 1rem;
+    }
+    .topbar h1 {
+      font-size: 2rem;
+      font-weight: 700;
+      color: #1e293b;
+      margin: 0;
+    }
+    .search-box {
+      position: relative;
+      max-width: 400px;
+      width: 100%;
+    }
+    .search-box input {
+      width: 100%;
+      padding: 10px 40px 10px 16px;
+      border-radius: 999px;
+      border: 1px solid #ddd;
+      font-size: 1rem;
+      background: #fff;
+      outline: none;
+    }
+    .search-icon {
+      position: absolute;
+      right: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #888;
+      font-size: 1.2rem;
+    }
+    .topics-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 28px;
+    }
+    .topic-card {
+      background: #fff;
+      border-radius: 16px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+      padding: 32px 24px 24px 24px;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      transition: box-shadow 0.2s;
+      min-height: 120px;
+    }
+    .topic-card:hover {
+      box-shadow: 0 4px 16px rgba(26,115,232,0.08);
+    }
+    .topic-title {
+      font-size: 1.15rem;
+      font-weight: 600;
+      margin-bottom: 8px;
+      color: #1a73e8;
+      text-decoration: none;
+    }
+    .topic-desc {
+      font-size: 0.95rem;
+      color: #555;
+    }
+    body {
+      margin: 0;
+      font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
+      background: #f7f8fa;
+      color: #222;
+    }
+    @media (max-width: 700px) {
+      .main { padding: 12px; }
+      .topbar h1 { font-size: 1.2rem; }
+      .search-box { max-width: 140px; }
+      .topics-grid { grid-template-columns: 1fr; gap: 16px; }
+      .topic-card { padding: 16px; }
+    }
+  </style>
+</head>
+<body>
+  <a href="../student-dashboard.html" class="back-btn"><i class="fas fa-arrow-left"></i> Back</a>
+  <div class="main">
+    <div class="topbar">
+      <h1>Accounting</h1>
+      <div class="search-box">
+        <input type="text" id="searchInput" placeholder="What would you like to learn..." onkeyup="filterTopics()" />
+        <span class="search-icon">&#128269;</span>
+      </div>
+    </div>
+    <div class="topics-grid" id="topicsGrid">
+      <!-- Topic cards will be injected here by JS -->
+    </div>
+  </div>
+  <script>
+    // ...existing code for rendering topics and filtering...
+  </script>
+</body>
+</html>
+</html>

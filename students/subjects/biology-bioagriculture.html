@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bio-Agriculture Topics</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      background: #f7f8fa;
+      color: #1e293b;
+    }
+    .main-content {
+      max-width: 900px;
+      margin: 40px auto 0 auto;
+      background: #fff;
+      border-radius: 16px;
+      box-shadow: 0 2px 8px rgba(30,41,59,0.07);
+      padding: 2.5rem 2rem 2rem 2rem;
+      min-height: 80vh;
+      display: flex;
+      flex-direction: column;
+    }
+    .back-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: #f1f5f9;
+      color: #1e293b;
+      border: none;
+      border-radius: 8px;
+      padding: 0.5rem 1.2rem;
+      font-size: 1rem;
+      font-weight: 500;
+      cursor: pointer;
+      margin-bottom: 2rem;
+      box-shadow: 0 1px 4px rgba(30,41,59,0.05);
+      transition: background 0.2s, color 0.2s;
+      text-decoration: none;
+    }
+    .back-btn:hover {
+      background: #e0e7ef;
+      color: #38bdf8;
+    }
+    h1 {
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: #1e3a8a;
+      margin-bottom: 1.5rem;
+    }
+    .topic-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.3rem;
+    }
+    .topic-card {
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(30,41,59,0.07);
+      padding: 1.5rem 1rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.7rem;
+      font-size: 1.05rem;
+      color: #1e293b;
+      font-weight: 500;
+      cursor: pointer;
+      text-decoration: none;
+      transition: box-shadow 0.2s;
+    }
+    .topic-card:hover {
+      box-shadow: 0 4px 16px rgba(26,115,232,0.08);
+      color: #1a73e8;
+    }
+    .topic-title {
+      font-weight: 600;
+      font-size: 1.1rem;
+      color: #1e3a8a;
+    }
+    @media (max-width: 600px) {
+      .main-content {
+        padding: 1rem 0.5rem;
+      }
+      .topic-list {
+        grid-template-columns: 1fr;
+      }
+    }
+  #modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(30,41,59,0.25);
+    z-index: 1000;
+    align-items: center;
+    justify-content: center;
+  }
+  #modal .modal-content {
+    background: #fff;
+    border-radius: 12px;
+    max-width: 400px;
+    width: 90vw;
+    padding: 2rem;
+    box-shadow: 0 2px 16px rgba(30,41,59,0.15);
+    position: relative;
+  }
+  #modal .modal-close {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background: none;
+    border: none;
+    font-size: 1.2rem;
+    cursor: pointer;
+    color: #888;
+  }
+  #modal .modal-close:hover {
+    color: #1e3a8a;
+  }
+  #modal .modal-title {
+    margin-top: 0;
+    font-size: 1.2rem;
+    color: #1e3a8a;
+  }
+    .modal-close {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      background: none;
+      border: none;
+      font-size: 1.2rem;
+      cursor: pointer;
+      color: #888;
+    }
+    .modal-close:hover {
+      color: #1e3a8a;
+    }
+  </style>
+</head>
+<body>
+  <main class="main-content">
+    <a href="biology.html" class="back-btn"><i class="fas fa-arrow-left"></i> Back to Biology</a>
+    <h1>Bio-Agriculture</h1>
+  <div class="topic-list">
+    <a class="topic-card" href="#" onclick="openModal('Relevance of Biology to agriculture')">
+      <div class="topic-title">Relevance of Biology to agriculture</div>
+    </a>
+    <a class="topic-card" href="#" onclick="openModal('Pests & Diseases of crops')">
+      <div class="topic-title">Pests & Diseases of crops</div>
+    </a>
+    <a class="topic-card" href="#" onclick="openModal('Food Shortage')">
+      <div class="topic-title">Food Shortage</div>
+    </a>
+  </div>
+  <div id="modal">
+    <div class="modal-content">
+      <button onclick="closeModal()" class="modal-close" title="Close"><i class="fas fa-times"></i></button>
+      <h2 id="modalTitle" class="modal-title">Sub-topics:</h2>
+      <div id="modalContent"></div>
+    </div>
+  </div>
+  <script>
+    const subtopics = {
+      'Relevance of Biology to agriculture': [
+        { name: 'Application of biology in agriculture and medicine', link: 'biology-explanation.html?topic=Application%20of%20biology%20in%20agriculture%20and%20medicine' },
+        { name: 'determine heritable characters, analyze inheritance, apply principles in real life', link: 'biology-explanation.html?topic=determine%20heritable%20characters%2C%20analyze%20inheritance%2C%20apply%20principles%20in%20real%20life' }
+      ],
+      'Pests & Diseases of crops': [
+        { name: 'Diseases, pollution, conservation, game reserves, health agencies', link: 'biology-explanation.html?topic=Diseases%2C%20pollution%2C%20conservation%2C%20game%20reserves%2C%20health%20agencies' },
+        { name: 'identify disease conditions, pollution types, conservation methods, and agencies', link: 'biology-explanation.html?topic=identify%20disease%20conditions%2C%20pollution%20types%2C%20conservation%20methods%2C%20and%20agencies' }
+      ],
+      'Food Shortage': [
+        { name: 'Soil types, structure, components, fertility, conservation', link: 'biology-explanation.html?topic=Soil%20types%2C%20structure%2C%20components%2C%20fertility%2C%20conservation' },
+        { name: 'identify soil properties, relate to plant growth, apply conservation methods', link: 'biology-explanation.html?topic=identify%20soil%20properties%2C%20relate%20to%20plant%20growth%2C%20apply%20conservation%20methods' }
+      ]
+    };
+      document.getElementById('modal').style.display = 'flex';
+      document.getElementById('modalTitle').textContent = 'Sub-topics: ' + topic;
+      const content = subtopics[topic] || [];
+      document.getElementById('modalContent').innerHTML = content.map(s => `<div style='display:flex;align-items:center;justify-content:space-between;margin-bottom:0.7rem;'><span>${s.name}</span><a href='${s.link}' class='back-btn' style='margin:0 0 0 1rem;padding:0.3rem 0.8rem;font-size:0.95rem;'>Start Learning</a></div>`).join('');
+    }
+    function closeModal() {
+      document.getElementById('modal').style.display = 'none';
+    }
+    window.onclick = function(event) {
+      const modal = document.getElementById('modal');
+      if(event.target === modal) closeModal();
+    }
+  </script>
+</body>
+</html>

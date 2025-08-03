@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EduNext - Sign Up</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="general/styles.css">
+  <style>
+    body { margin: 0; font-family: 'Inter', Arial, sans-serif; background: #f9fafb; color: #222; }
+    .centered { min-height: 100vh; display: flex; align-items: center; justify-content: center; }
+    .auth-card { background: #fff; border-radius: 1rem; box-shadow: 0 2px 8px rgba(0,0,0,0.04); max-width: 400px; width: 100%; padding: 32px 24px; }
+    .role-toggle { display: flex; gap: 8px; margin-bottom: 18px; }
+    .role-btn { flex: 1; padding: 8px 0; border-radius: 8px; border: none; background: #f1f5f9; color: #1e3a8a; font-weight: 600; cursor: pointer; transition: background 0.2s; }
+    .role-btn.active { background: #1e3a8a; color: #fff; }
+    .form-group { margin-bottom: 18px; }
+    .form-label { display: block; margin-bottom: 6px; color: #374151; font-weight: 500; }
+    .form-input { width: 100%; padding: 10px; border-radius: 6px; border: 1px solid #e5e7eb; font-size: 1rem; }
+    .form-btn { width: 100%; padding: 12px; border-radius: 8px; background: #22c55e; color: #fff; font-weight: 600; border: none; font-size: 1rem; margin-top: 8px; cursor: pointer; }
+    .form-btn:hover { background: #16a34a; }
+    .switch-link { color: #1e3a8a; cursor: pointer; text-decoration: underline; font-size: 0.95rem; margin-top: 12px; display: inline-block; }
+  </style>
+  <script>
+    function showRole(role) {
+      document.getElementById('student-signup-form').style.display = role==='student' ? 'block' : 'none';
+      document.getElementById('teacher-signup-form').style.display = role==='teacher' ? 'block' : 'none';
+      document.getElementById('signup-student-btn').classList.toggle('active', role==='student');
+      document.getElementById('signup-teacher-btn').classList.toggle('active', role==='teacher');
+    }
+    window.onload = function() {
+      showRole('student');
+    };
+  </script>
+</head>
+<body>
+  <div class="centered">
+    <div class="auth-card">
+      <h2 style="text-align:center; color:#22c55e; margin-bottom:24px;">Create Your EduNext Account</h2>
+      <div class="role-toggle">
+        <button type="button" id="signup-student-btn" class="role-btn" onclick="showRole('student')">Student</button>
+        <button type="button" id="signup-teacher-btn" class="role-btn" onclick="showRole('teacher')">Teacher</button>
+      </div>
+      <form id="student-signup-form" action="student-dashboard.html" autocomplete="off">
+        <div class="form-group">
+          <label class="form-label" for="signup-email">Email Address</label>
+          <input class="form-input" type="email" id="signup-email" name="signup-email" required>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="signup-grade">Grade Level</label>
+          <select class="form-input" id="signup-grade" name="signup-grade" required>
+            <option value="">Select grade level</option>
+            <option value="grade7">Grade 7</option>
+            <option value="grade8">Grade 8</option>
+            <option value="grade9">Grade 9</option>
+            <option value="grade10">Grade 10</option>
+            <option value="grade11">Grade 11</option>
+            <option value="grade12">Grade 12</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="signup-password">Password</label>
+          <input class="form-input" type="password" id="signup-password" name="signup-password" required>
+        </div>
+        <button class="form-btn" type="submit">Sign Up</button>
+        <p>Already have an account? <a href="login.html">Login</a></p>
+      </form>
+      <form id="teacher-signup-form" action="teacher-dashboard.html" autocomplete="off" style="display:none;">
+        <div class="form-group">
+          <label class="form-label" for="signup-email-teacher">Email Address</label>
+          <input class="form-input" type="email" id="signup-email-teacher" name="signup-email-teacher" required>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="signup-subject">Subject Specialization</label>
+          <select class="form-input" id="signup-subject" name="signup-subject" required>
+            <option value="">Select your subject</option>
+            <option value="mathematics">Mathematics</option>
+            <option value="physics">Physics</option>
+            <option value="chemistry">Chemistry</option>
+            <option value="biology">Biology</option>
+            <option value="english">English</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="signup-password-teacher">Password</label>
+          <input class="form-input" type="password" id="signup-password-teacher" name="signup-password-teacher" required>
+        </div>
+        <button class="form-btn" type="submit">Sign Up</button>
+        <p>Already have an account? <a href="login.html">Login</a></p>
+      </form>
+    </div>
+  </div>
+</body>
+</html>

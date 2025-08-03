@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EduNext-Prep100 - Learn Without Limits</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    body { margin: 0; font-family: 'Inter', Arial, sans-serif; background: #f9fafb; color: #222; }
+    a { text-decoration: none; color: inherit; }
+    .container { max-width: 1120px; margin: 0 auto; padding: 0 16px; }
+    /* Live Session Features List */
+    .live-feature-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+    .live-feature-icon {
+      font-size: 1.2rem;
+    }
+    /* Navbar */
+    .navbar { background: #fff; box-shadow: 0 1px 4px rgba(0,0,0,0.04); border-bottom: 1px solid #e5e7eb; position: sticky; top: 0; z-index: 50; }
+    .navbar-content { display: flex; justify-content: space-between; align-items: center; height: 64px; }
+    .navbar-brand { display: flex; align-items: center; gap: 8px; font-size: 1.25rem; font-weight: bold; color: #1e3a8a; }
+    .navbar-brand-icon { width: 32px; height: 32px; background: #1e3a8a; border-radius: 8px; display: flex; align-items: center; justify-content: center; color: #fff; font-size: 1.1rem; }
+    .navbar-links { display: flex; gap: 24px; }
+    .navbar-links a { color: #374151; font-weight: 500; transition: color 0.2s; }
+    .navbar-links a:hover { color: #1e3a8a; }
+    .navbar-actions { display: flex; gap: 12px; }
+    .btn { padding: 0.5rem 1.5rem; border-radius: 0.5rem; font-weight: 600; border: none; cursor: pointer; font-size: 1rem; transition: background 0.2s, color 0.2s; }
+    .btn-primary { background: #1e3a8a; color: #fff; }
+    .btn-primary:hover { background: #2563eb; }
+    .btn-outline { background: transparent; border: 2px solid #1e3a8a; color: #1e3a8a; }
+    .btn-outline:hover { background: #1e3a8a; color: #fff; }
+    /* Hero */
+    .hero-section { background: linear-gradient(135deg, #1e3a8a 0%, #1e40af 100%); color: #fff; padding: 80px 0; }
+    .hero-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center; }
+    @media (max-width: 1024px) { .hero-grid { grid-template-columns: 1fr; } }
+    .hero-title { font-size: 2.5rem; font-weight: bold; margin-bottom: 1.5rem; color: #22c55e; }
+    .hero-subtitle { font-size: 1.25rem; margin-bottom: 2rem; color: #fde68a; }
+    .quote-box { background: rgba(255,255,255,0.1); -webkit-backdrop-filter: blur(4px); backdrop-filter: blur(4px); border-radius: 0.75rem; padding: 1.5rem; margin-bottom: 2rem; border: 1px solid rgba(255,255,255,0.2); }
+    .quote-icon { color: #bfdbfe; font-size: 1.25rem; margin-right: 0.75rem; margin-top: 0.25rem; flex-shrink: 0; }
+    .quote-text { font-size: 1.125rem; font-style: italic; color: #f9a8d4; margin-bottom: 0.5rem; }
+    .quote-author { font-size: 0.875rem; color: #fdba74; }
+    .hero-buttons { display: flex; flex-direction: row; gap: 1rem; }
+    .hero-image { position: relative; border-radius: 1rem; overflow: hidden; box-shadow: 0 8px 32px rgba(0,0,0,0.25); }
+    .hero-image img { width: 100%; height: auto; display: block; border-radius: 1rem; }
+    .hero-image::after { content: ''; position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,0.2), transparent); border-radius: 1rem; }
+    .quote-flex { display: flex; align-items: flex-start; }
+    /* Features */
+    .features-section { background: #fff; padding: 80px 0; }
+    .features-title { text-align: center; font-size: 2rem; font-weight: bold; color: #111827; margin-bottom: 1rem; }
+    .features-desc { text-align: center; font-size: 1.25rem; color: #6b7280; margin-bottom: 2.5rem; }
+    .features-grid { 
+      display: flex; 
+      justify-content: space-between; 
+      align-items: stretch; 
+      gap: 32px; 
+      margin-top: 2.5rem;
+    }
+    @media (max-width: 900px) { 
+      .features-grid { 
+        flex-direction: column;
+        grid-template-columns: 1fr; /* fallback for grid if needed */
+      } 
+    }
+    .feature-card { text-align: center; }
+    .feature-icon { width: 64px; height: 64px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1rem; font-size: 2rem; }
+    .feature-live { background: #1e3a8a; color: #fff; }
+    .feature-mobile { background: #22c55e; color: #fff; }
+    .feature-cert { background: #f59e42; color: #fff; }
+    .feature-left { text-align: left; }
+    .feature-center { text-align: center; }
+    .feature-right { text-align: right; }
+    .feature-title {
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: #1e3a8a;
+      margin-bottom: 0.5rem;
+    }
+    /* Courses, Live, Teachers, CTA, Footer (minimal for brevity) */
+    .section { padding: 80px 0; background: #fff; }
+    .section-title { text-align: center; font-size: 2rem; font-weight: bold; color: #111827; margin-bottom: 1rem; }
+    .section-desc { text-align: center; font-size: 1.25rem; color: #6b7280; margin-bottom: 2.5rem; }
+    .footer { background: #1e3a8a; color: #fff; padding: 40px 0; text-align: center; }
+  </style>
+</head>
+<body>
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="container navbar-content">
+      <a href="#" class="navbar-brand">
+        <span class="navbar-brand-icon">🎓</span>
+        EduNext-Prep100
+      </a>
+      <div class="navbar-links">
+        <!-- Removed Home, Courses, Live Classes, Teachers links -->
+      </div>
+      <div class="navbar-actions">
+        <a href="login.html" class="btn btn-outline">Login</a>
+        <a href="signup.html" class="btn btn-primary">Sign Up</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero-section">
+    <div class="container">
+      <div class="hero-grid">
+        <div>
+          <h1 class="hero-title">Learn Without Limits</h1>
+          <p class="hero-subtitle">Access quality education from anywhere. Join thousands of students and teachers on Africa's leading learning platform.</p>
+            <div class="quote-flex">
+              <span class="quote-icon">&#10077;</span>
+              <div>
+                <p class="quote-text">"Education is not preparation for life; education is life itself."</p>
+                <p class="quote-author">- John Dewey</p>
+              </div>
+            </div>
+            </div>
+          </div>
+          <div class="hero-buttons">
+            <!-- Removed Start Learning and Watch Demo buttons -->
+          </div>
+        </div>
+        <div class="hero-image">
+      <div class="features-grid">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features Section -->
+  <section class="features-section">
+    <div class="container">
+          <div class="feature-title">Live Classes</div>
+      <p class="features-desc">Comprehensive learning platform designed for success</p>
+      <div class="features-grid" style="display: flex; justify-content: space-between; align-items: stretch; gap: 32px; margin-top: 2.5rem;">
+        <!-- Left: Live Classes -->
+        <div class="feature-card" style="flex: 1; text-align: left; background: #f1f5f9; border-radius: 1rem; padding: 2.5rem 1.5rem; box-shadow: 0 2px 8px rgba(30,58,138,0.06); display: flex; flex-direction: column; align-items: flex-start;">
+          <div class="feature-icon feature-live" style="margin-left: 0; margin-right: 0;">🎥</div>
+          <div class="feature-title" style="font-size: 1.2rem; font-weight: 700; color: #1e3a8a; margin-bottom: 0.5rem;">Live Classes</div>
+          <div class="feature-desc" style="font-size: 1.05rem; color: #6b7280;">Interactive live sessions with expert teachers</div>
+        </div>
+        <!-- Center: Mobile Learning -->
+        <div class="feature-card" style="flex: 1; text-align: center; background: #f1f5f9; border-radius: 1rem; padding: 2.5rem 1.5rem; box-shadow: 0 2px 8px rgba(30,58,138,0.06); display: flex; flex-direction: column; align-items: center;">
+          <div class="feature-icon feature-mobile">📱</div>
+          <div class="feature-title" style="font-size: 1.2rem; font-weight: 700; color: #1e3a8a; margin-bottom: 0.5rem;">Mobile Learning</div>
+          <div class="feature-desc" style="font-size: 1.05rem; color: #6b7280;">Learn anytime, anywhere on any device</div>
+        </div>
+        <!-- Right: Certificates -->
+        <div class="feature-card" style="flex: 1; text-align: right; background: #f1f5f9; border-radius: 1rem; padding: 2.5rem 1.5rem; box-shadow: 0 2px 8px rgba(30,58,138,0.06); display: flex; flex-direction: column; align-items: flex-end;">
+          <div class="feature-icon feature-cert" style="margin-left: 0; margin-right: 0;">🎓</div>
+          <div class="feature-title" style="font-size: 1.2rem; font-weight: 700; color: #1e3a8a; margin-bottom: 0.5rem;">Certificates</div>
+          <div class="feature-desc" style="font-size: 1.05rem; color: #6b7280;">Earn recognized certificates upon completion</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Courses Section (Placeholder) -->
+  <section id="courses" class="section">
+    <div class="container">
+      <h2 class="section-title">Our Courses</h2>
+      <p class="section-desc">Explore a variety of subjects and find the right course for you.</p>
+      <!-- Add course cards here -->
+      <div style="display: flex; flex-wrap: wrap; gap: 32px; justify-content: center; margin-top: 2.5rem;">
+        <!-- Mathematics Course -->
+        <div id="math-course-card" style="background: #fff; border-radius: 1rem; box-shadow: 0 2px 8px rgba(30,58,138,0.08); width: 320px; padding: 28px 22px; display: flex; flex-direction: column; align-items: flex-start; cursor:pointer;" tabindex="0">
+          <div style="font-size: 2.2rem; color: #22c55e; margin-bottom: 0.5rem;">📐</div>
+          <div style="font-size: 1.15rem; font-weight: 700; color: #1e3a8a; margin-bottom: 0.25rem;">Mathematics</div>
+          <div style="font-size: 1rem; color: #f59e42; font-weight: 600; margin-bottom: 0.5rem;">4.8 ★</div>
+          <div style="font-size: 1.05rem; font-weight: 600; color: #111827; margin-bottom: 0.25rem;">Advanced Mathematics</div>
+          <div style="font-size: 0.98rem; color: #6b7280; margin-bottom: 1.2rem;">Master calculus, algebra, and geometry with expert guidance</div>
+          <div style="font-size: 1.1rem; color: #22c55e; font-weight: 700; margin-bottom: 1rem;">₦15,000</div>
+          <button class="btn btn-primary" style="width: 100%;">Enroll Now</button>
+        </div>
+        <!-- Chemistry Course -->
+        <div id="chem-course-card" style="background: #fff; border-radius: 1rem; box-shadow: 0 2px 8px rgba(30,58,138,0.08); width: 320px; padding: 28px 22px; display: flex; flex-direction: column; align-items: flex-start; cursor:pointer;" tabindex="0">
+          <div style="font-size: 2.2rem; color: #38bdf8; margin-bottom: 0.5rem;">🧪</div>
+          <div style="font-size: 1.15rem; font-weight: 700; color: #1e3a8a; margin-bottom: 0.25rem;">Chemistry</div>
+          <div style="font-size: 1rem; color: #f59e42; font-weight: 600; margin-bottom: 0.5rem;">4.7 ★</div>
+          <div style="font-size: 1.05rem; font-weight: 600; color: #111827; margin-bottom: 0.25rem;">General Chemistry</div>
+          <div style="font-size: 0.98rem; color: #6b7280; margin-bottom: 1.2rem;">Understand chemical reactions, bonding, and molecular structures</div>
+          <div style="font-size: 1.1rem; color: #22c55e; font-weight: 700; margin-bottom: 1rem;">₦12,000</div>
+          <button class="btn btn-primary" style="width: 100%;">Enroll Now</button>
+        </div>
+        <!-- Physics Course -->
+        <div style="background: #fff; border-radius: 1rem; box-shadow: 0 2px 8px rgba(30,58,138,0.08); width: 320px; padding: 28px 22px; display: flex; flex-direction: column; align-items: flex-start;">
+          <div style="font-size: 2.2rem; color: #f59e42; margin-bottom: 0.5rem;">🔭</div>
+          <div style="font-size: 1.15rem; font-weight: 700; color: #1e3a8a; margin-bottom: 0.25rem;">Physics</div>
+          <div style="font-size: 1rem; color: #f59e42; font-weight: 600; margin-bottom: 0.5rem;">4.9 ★</div>
+          <div style="font-size: 1.05rem; font-weight: 600; color: #111827; margin-bottom: 0.25rem;">Physics Fundamentals</div>
+          <div style="font-size: 0.98rem; color: #6b7280; margin-bottom: 1.2rem;">Explore mechanics, thermodynamics, and electromagnetism</div>
+          <div style="font-size: 1.1rem; color: #22c55e; font-weight: 700; margin-bottom: 1rem;">₦18,000</div>
+          <button class="btn btn-primary" style="width: 100%;">Enroll Now</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Live Sessions Section -->
+  <section id="live-classes" class="section" style="background:#fff;">
+    <div class="container">
+      <h2 class="section-title">Live Sessions</h2>
+      <p class="section-desc">Join interactive classes with expert teachers</p>
+            <li class="live-feature-item"><span class="feature-icon feature-cert live-feature-icon">👥</span>Small Class Sizes</li>
+        <div>
+          <img src="https://images.unsplash.com/photo-1588072432836-e10032774350?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&h=500" alt="Teacher conducting online class" class="hero-image">
+        </div>
+        <div>
+          <h3 class="section-title" style="font-size:1.5rem; color:#111827; text-align:left; margin-bottom:1rem;">Interactive Learning Experience</h3>
+          <p class="section-desc" style="color:#6b7280; text-align:left; margin-bottom:1.5rem;">Participate in real-time discussions, ask questions, and collaborate with peers in our live virtual classrooms.</p>
+          <ul style="list-style:none; padding:0; margin-bottom:2rem;">
+            <li style="display:flex; align-items:center; gap:12px; margin-bottom:12px;"><span class="feature-icon feature-live" style="font-size:1.2rem;">🎥</span>HD Video Quality</li>
+            <li style="display:flex; align-items:center; gap:12px; margin-bottom:12px;"><span class="feature-icon feature-mobile" style="font-size:1.2rem;">💬</span>Real-time Chat</li>
+            <li style="display:flex; align-items:center; gap:12px; margin-bottom:12px;"><span class="feature-icon feature-cert" style="font-size:1.2rem;">👥</span>Small Class Sizes</li>
+          </ul>
+          <button class="btn btn-primary">Start Learning</button>
+        </div>  
+      </div>
+    </div>
+  </section>
+
+  <!-- Teachers Section (Placeholder) -->
+  <section id="teachers" class="section">
+    <div class="container">
+      <h2 class="section-title">Meet Our Teachers</h2>
+      <p class="section-desc">Learn from experienced and passionate educators.</p>
+      <!-- Add teacher cards here -->
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="section" style="background:#1e3a8a; color:#fff;">
+    <div class="container" style="text-align:center;">
+      <h2 class="section-title" style="color:#fff;">Ready to Start Learning?</h2>
+      <p class="section-desc" style="color:#dbeafe;">Join thousands of students already learning on EduNext</p>
+      <div style="display:flex; flex-direction:row; justify-content:center; gap:1rem; margin-top:2rem;">
+        <button class="btn btn-outline" style="border-color:#fff; color:#fff;">Sign Up Now</button>
+        <button class="btn btn-primary" style="background:#fff; color:#1e3a8a;">Learn More</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      &copy; 2025 EduNext. All rights reserved.
+    </div>
+  </footer>
+</body>
+</html>

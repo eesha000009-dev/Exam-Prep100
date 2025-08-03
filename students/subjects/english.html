@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>English - Topics</title>
+  <link rel="stylesheet" href="../styles.css" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
+  <style>
+    .layout {
+      display: flex;
+      min-height: 100vh;
+    }
+.sidebar {
+  width: 240px;
+    }
+    .topic-desc {
+      font-size: 0.95rem;
+      color: #555;
+    }
+    @media (max-width: 700px) {
+      .sidebar { width: 100px; }
+      .main { margin-left: 100px; padding: 16px; }
+      .topbar h1 { font-size: 1.2rem; }
+      .search-box { width: 140px; }
+      .topics-grid { grid-template-columns: 1fr; gap: 16px; }
+      .topic-card { padding: 16px; }
+    }
+  </style>
+  <script>
+    const topics = [
+      "English Grammar",
+      "Word Classes",
+      "Phrasal Verb",
+      "Sentence Classification",
+      "Tense and Aspect",
+      "Concord",
+      "Question Tag",
+      "Language Registers",
+      "Reported Speech",
+      "Punctuation",
+      "Idiomatic Expression",
+      "Infinitives, Gerunds and Participles.",
+      "Elements of sentence structure",
+      "Antonyms, Synonyms & Homonyms",
+      "Oral English",
+      "The Sound System",
+      "Vowels",
+      "Consonants",
+      "Syllable",
+      "Stress",
+      "Intonation",
+      "The Vowel Sound: Monophthongs (Pure Vowels)",
+      "The Vowel Sound: Diphthongs",
+      "The Short Vowel Sounds",
+      "Consonant Sounds: Plosives",
+      "Consonant Sounds: Liquid and Semi-Vowel",
+      "Consonant Sounds: Fricatives",
+      "Consonant Sounds: Affricates and Nasals",
+      "Comprehension",
+      "Concept of Comprehension",
+      "Topic Sentence",
+      "Sentence Interpretation",
+      "Grammatical Applications",
+      "Writing",
+      "Summary Writing",
+      "The Writing Process",
+      "The Spelling Rules",
+      "Essay Writing: Descriptive Essay",
+      "Essay Writing: Narrative Essay",
+      "Essay Writing: Argumentative Essay",
+      "Essay Writing: Expository Essay",
+      "Informal Letter Writing",
+      "Formal Letter Writing",
+      "Sentence Building",
+      "Clauses",
+      "Phrases",
+      "Morphemes and Words",
+      "The concept of a Sentence",
+      "The Long Vowel Sounds"
+    ];
+    function renderTopics(filter = "") {
+      const grid = document.getElementById('topicsGrid');
+      grid.innerHTML = "";
+      topics.filter(t => t.toLowerCase().includes(filter.toLowerCase())).forEach((topic, idx) => {
+        grid.innerHTML += `
+          <div class="topic-card">
+            <a class="topic-title" href="english-explanation.html?topic=${encodeURIComponent(topic)}">${topic}</a>
+            <div class="topic-desc">Chapter ${idx+1}</div>
+          </div>
+        `;
+      });
+    }
+    function filterTopics() {
+      const val = document.getElementById('searchInput').value;
+      renderTopics(val);
+    }
+    renderTopics();
+  </script>
+</body>
+</html>

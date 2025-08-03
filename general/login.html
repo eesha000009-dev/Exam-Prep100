@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EduNext - Login</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="general/styles.css">
+  <style>
+    body { margin: 0; font-family: 'Inter', Arial, sans-serif; background: #f9fafb; color: #222; }
+    .centered { min-height: 100vh; display: flex; align-items: center; justify-content: center; }
+    .auth-card { background: #fff; border-radius: 1rem; box-shadow: 0 2px 8px rgba(0,0,0,0.04); max-width: 400px; width: 100%; padding: 32px 24px; }
+    .role-toggle { display: flex; gap: 8px; margin-bottom: 18px; }
+    .role-btn { flex: 1; padding: 8px 0; border-radius: 8px; border: none; background: #f1f5f9; color: #1e3a8a; font-weight: 600; cursor: pointer; transition: background 0.2s; }
+    .role-btn.active { background: #1e3a8a; color: #fff; }
+    .form-group { margin-bottom: 18px; }
+    .form-label { display: block; margin-bottom: 6px; color: #374151; font-weight: 500; }
+    .form-input { width: 100%; padding: 10px; border-radius: 6px; border: 1px solid #e5e7eb; font-size: 1rem; }
+    .form-btn { width: 100%; padding: 12px; border-radius: 8px; background: #1e3a8a; color: #fff; font-weight: 600; border: none; font-size: 1rem; margin-top: 8px; cursor: pointer; }
+    .form-btn:hover { background: #2563eb; }
+    .switch-link { color: #1e3a8a; cursor: pointer; text-decoration: underline; font-size: 0.95rem; margin-top: 12px; display: inline-block; }
+    #teacher-form { display: none; }
+    .login-title { text-align: center; color: #1e3a8a; margin-bottom: 24px; }
+    .login-heading { 
+      text-align: center; 
+      color: #1e3a8a; 
+      margin-bottom: 24px; 
+    }
+    .login-heading-alt {
+      text-align: center;
+      color: #1e3a8a;
+      margin-bottom: 24px;
+    }
+  </style>
+  <script>
+    function showRole(role) {
+      document.getElementById('student-form').style.display = role==='student' ? 'block' : 'none';
+      document.getElementById('teacher-form').style.display = role==='teacher' ? 'block' : 'none';
+      document.getElementById('login-student-btn').classList.toggle('active', role==='student');
+      document.getElementById('login-teacher-btn').classList.toggle('active', role==='teacher');
+      document.getElementById('role-input').value = role;
+    }
+    window.onload = function() {
+      showRole('student');
+    };
+</script>
+      <h2 class="login-heading-alt">Login to EduNext</h2>
+<body>
+  <div class="centered">
+      <h2 class="login-heading">Login to EduNext</h2>
+      <h2 class="login-title">Login to EduNext</h2>
+      <h2 class="login-heading-alt">Login to EduNext</h2>
+      <div class="role-toggle">
+        <button type="button" id="login-student-btn" class="role-btn" onclick="showRole('student')">Student</button>
+        <button type="button" id="login-teacher-btn" class="role-btn" onclick="showRole('teacher')">Teacher</button>
+      </div>
+      <form id="student-form" action="student-dashboard.html" autocomplete="off">
+        <div class="form-group">
+          <label class="form-label" for="login-email">Email Address</label>
+          <input class="form-input" type="email" id="login-email" name="login-email" required>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="login-grade">Grade Level</label>
+          <select class="form-input" id="login-grade" name="login-grade" required>
+            <option value="">Select grade level</option>
+            <option value="grade7">Grade 7</option>
+            <option value="grade8">Grade 8</option>
+            <option value="grade9">Grade 9</option>
+            <option value="grade10">Grade 10</option>
+            <option value="grade11">Grade 11</option>
+            <option value="grade12">Grade 12</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="login-password">Password</label>
+          <input class="form-input" type="password" id="login-password" name="login-password" required>
+        </div>
+        <button class="form-btn" type="submit">Login</button>
+        <p>Don't have an account? <a href="general/signup.html">Sign up</a></p>
+      <form id="teacher-form" action="teacher-dashboard.html" autocomplete="off">
+      <form id="teacher-form" action="teacher-dashboard.html" autocomplete="off" style="display:none;">
+        <div class="form-group">
+          <label class="form-label" for="login-email-teacher">Email Address</label>
+          <input class="form-input" type="email" id="login-email-teacher" name="login-email-teacher" required>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="login-subject">Subject Specialization</label>
+          <select class="form-input" id="login-subject" name="login-subject" required>
+            <option value="">Select your subject</option>
+            <option value="mathematics">Mathematics</option>
+            <option value="physics">Physics</option>
+            <option value="chemistry">Chemistry</option>
+            <option value="biology">Biology</option>
+            <option value="english">English</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="login-password-teacher">Password</label>
+          <input class="form-input" type="password" id="login-password-teacher" name="login-password-teacher" required />
+        </div>
+        <button class="form-btn" type="submit">Login</button>
+      </form>
+    </div>
+  </div>
+</body>
+</html>
+<!-- Actual login.html content moved here -->

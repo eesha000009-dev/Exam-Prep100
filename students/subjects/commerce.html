@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Commerce - Topics</title>
+  <link rel="stylesheet" href="../styles.css" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
+  <style>
+    .layout {
+      display: flex;
+      min-height: 100vh;
+    }
+.sidebar {
+  width: 240px;
+}
+    .sidebar ul {
+      list-style: none;
+      padding: 0 0 0 32px;
+      margin: 0;
+    }
+    .sidebar ul li {
+      margin-bottom: 20px;
+    }
+    .sidebar ul li a {
+      color: #222;
+      text-decoration: none;
+      font-size: 1.05rem;
+      transition: color 0.2s;
+    }
+    .sidebar ul li a:hover {
+      color: #1a73e8;
+    }
+    .main {
+      margin-left: 240px;
+      padding: 32px 40px 40px 40px;
+    }
+    .topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 32px;
+    }
+    .topbar h1 {
+      font-size: 2rem;
+      font-weight: 700;
+      margin: 0;
+    }
+    .search-box {
+      position: relative;
+      width: 320px;
+    }
+    .search-box input {
+      width: 100%;
+      padding: 10px 40px 10px 16px;
+      border-radius: 24px;
+      border: 1px solid #ddd;
+      font-size: 1rem;
+      background: #fff;
+      outline: none;
+    }
+    .search-icon {
+      position: absolute;
+      right: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #888;
+      font-size: 1.2rem;
+    }
+    .topics-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 28px;
+    }
+    .topic-card {
+      background: #fff;
+      border-radius: 16px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+      padding: 32px 24px 24px 24px;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      transition: box-shadow 0.2s;
+      min-height: 120px;
+    }
+    .topic-card:hover {
+      box-shadow: 0 4px 16px rgba(26,115,232,0.08);
+    }
+    .topic-title {
+      font-size: 1.15rem;
+      font-weight: 600;
+      margin-bottom: 8px;
+      color: #1a73e8;
+      text-decoration: none;
+    }
+    .topic-desc {
+      font-size: 0.95rem;
+      color: #555;
+    }
+    @media (max-width: 700px) {
+      .sidebar { width: 100px; }
+      .main { margin-left: 100px; padding: 16px; }
+      .topbar h1 { font-size: 1.2rem; }
+      .search-box { width: 140px; }
+      .topics-grid { grid-template-columns: 1fr; gap: 16px; }
+      .topic-card { padding: 16px; }
+    }
+  </style>
+  <script>
+    const topics = [
+      "Commerce: Meaning and scope, Characteristics, Functions",
+      "Occupation: Meaning and importance, Types (industrial, commercial, and services), Factors that determine choice of occupation",
+      "Production: Factors, characteristics, and rewards (land, labour, capital, and entrepreneur), Division of Labour and specialization, Types (primary, secondary and tertiary)",
+      "Trade: Home Trade (Retail trade: Types of retailers, Functions of retailers, Factors to be considered in setting up retail trade, Trends in retailing, Advantages and disadvantages of retailers; Wholesale trade: Types of wholesalers, Functions of wholesalers, Advantages and disadvantages of wholesalers), Foreign trade (Basic issues in foreign trade, Procedures and documents used in export, import, and entreport trade, Barriers to international trade, Role of Customs and Excise Authority, Ports Authority, etc in foreign trade)",
+      "Purchase and Sale of Goods: Procedure and documentation, Terms of trade, Terms of payments (Cash, Credit)",
+      "Aids-to-trade: Advertising, Banking, Communication, Insurance, Tourism, Transportation, Warehousing",
+      "Business Units: Forms and features, Registration of businesses, Business Mergers, Determination of choice of business units, Dissolution and liquidation, Merits and demerits",
+      "Financing Business: Sources of finance, Types of capital, Calculation of forms of capital, profits, and turnover, Problems of sourcing finance, The role of Bureau de change in an economy",
+      "Trade Associations: Objectives and functions of trade and manufacturer's associations, Objectives and functions of Chambers of Commerce",
+      "Money: Evolution, Forms and qualities, Functions",
+      "Elements of Business Management: Functions, Principles, Organizational structure, Functional areas of business, Business resources",
+      "Stock Exchange: Importance and functions, Types of securities, Procedure of transactions and speculations, Second-Tier Securities Market",
+      "Elements of Marketing: Importance and Functions, The marketing concept, Marketing mix, Market Segmentation, Public relations and Customer Service",
+      "Legal Aspects of Business: Meaning and validity of a simple contract, Agency, Sale of Goods Act and Hire Purchase Act, Contract of employment, Government regulations of business, Consumer protection, Regulatory agencies",
+      "Information and Communication Technology (ICT): Computer, Terms, Activities (e-commerce, e-banking, e-business)",
+      "Business Environment and Social Responsibility: Legal, political, economic, social, cultural, technological environments, Safe products, Types and implication of pollution"
+    ];
+    function renderTopics(filter = "") {
+      const grid = document.getElementById('topicsGrid');
+      grid.innerHTML = "";
+      topics.filter(t => t.toLowerCase().includes(filter.toLowerCase())).forEach((topic, idx) => {
+        grid.innerHTML += `
+          <div class="topic-card">
+            <a class="topic-title" href="commerce-explanation.html?topic=${encodeURIComponent(topic)}">${topic}</a>
+            <div class="topic-desc">Chapter ${idx+1}</div>
+          </div>
+        `;
+      });
+    }
+    function filterTopics() {
+      const val = document.getElementById('searchInput').value;
+      renderTopics(val);
+    }
+    renderTopics();
+  </script>
+</body>
+</html>
