@@ -1,195 +1,209 @@
-<script type="text/javascript">
-        var gk_isXlsx = false;
-        var gk_xlsxFileLookup = {};
-        var gk_fileData = {};
-        function filledCell(cell) {
-          return cell !== '' && cell != null;
-        }
-        function loadFileData(filename) {
-        if (gk_isXlsx && gk_xlsxFileLookup[filename]) {
-            try {
-                var workbook = XLSX.read(gk_fileData[filename], { type: 'base64' });
-                var firstSheetName = workbook.SheetNames[0];
-                var worksheet = workbook.Sheets[firstSheetName];
-
-                // Convert sheet to JSON to filter blank rows
-                var jsonData = XLSX.utils.sheet_to_json(worksheet, { header: 1, blankrows: false, defval: '' });
-                // Filter out blank rows (rows where all cells are empty, null, or undefined)
-                var filteredData = jsonData.filter(row => row.some(filledCell));
-
-                // Heuristic to find the header row by ignoring rows with fewer filled cells than the next row
-                var headerRowIndex = filteredData.findIndex((row, index) =>
-                  row.filter(filledCell).length >= filteredData[index + 1]?.filter(filledCell).length
-                );
-                // Fallback
-                if (headerRowIndex === -1 || headerRowIndex > 25) {
-                  headerRowIndex = 0;
-                }
-
-                // Convert filtered JSON back to CSV
-                var csv = XLSX.utils.aoa_to_sheet(filteredData.slice(headerRowIndex)); // Create a new sheet from filtered array of arrays
-                csv = XLSX.utils.sheet_to_csv(csv, { header: 1 });
-                return csv;
-            } catch (e) {
-                console.error(e);
-                return "";
-            }
-        }
-        return gk_fileData[filename] || "";
-        }
-        </script><!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>AI Tutor Page</title>
+  <title>AI Tutor - EduNext</title>
+  <link rel="stylesheet" href="../general/modernized.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
   <style>
-    body {
-      margin: 0;
-      font-family: 'Inter', sans-serif;
-      background: #f7f8fa;
-      color: #1e293b;
-    }
-    .layout {
-      display: flex;
-      min-height: 100vh;
-    }
-    .sidebar {
-      width: 240px;
-      background: #1e293b;
-      color: #fff;
-      display: flex;
-      flex-direction: column;
-      padding: 2rem 1rem;
-      min-height: 100vh;
-      position: fixed;
-      top: 0;
-      left: 0;
-      height: 100vh;
-      z-index: 100;
-    }
-    .sidebar__logo {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      font-size: 1.5rem;
-      font-weight: 700;
-      color: #fff;
-      margin-bottom: 2rem;
-      text-decoration: none;
-    }
-    .sidebar__menu {
-      display: flex;
-      flex-direction: column;
-      gap: 0.5rem;
-    }
-    .sidebar__item {
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-      padding: 0.75rem 1rem;
-      color: #fff;
-      text-decoration: none;
-      border-radius: 8px;
-      font-size: 1rem;
-      font-weight: normal;
-      transition: background 0.2s;
-    }
-    .sidebar__item.active, .sidebar__item:hover {
-      background: #334155;
-      color: #38bdf8;
-    }
-    .main-content {
-      flex: 1;
-      padding: 2rem 2.5rem;
-      background: #f7f8fa;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      margin-left: 240px;
-    }
-    .topbar {
+    /* Dashboard Specific Styles */
+    .dashboard-topbar {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      margin-bottom: 2rem;
+      margin-bottom: var(--spacing-xl);
+      padding: var(--spacing-sm) 0;
     }
-    .search-bar {
+    
+    .search-container {
       flex: 1;
-      max-width: 400px;
-      padding: 0.75rem 1.5rem;
-      border-radius: 999px;
-      border: 1px solid #e2e8f0;
+      max-width: 480px;
+      position: relative;
+      margin-right: var(--spacing-xl);
+    }
+    
+    .search-icon {
+      position: absolute;
+      left: var(--spacing-sm);
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--text-secondary);
+      font-size: 1.1rem;
+    }
+    
+    .search-input {
+      width: 100%;
+      padding: 0.875rem var(--spacing-xl);
+      padding-left: 2.75rem;
+      border-radius: 9999px;
+      border: 2px solid var(--border-color);
       font-size: 1rem;
+      transition: all 0.2s;
       background: #fff;
-      margin-right: 2rem;
+    }
+    
+    .search-input:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(37,99,235,0.1);
+      outline: none;
     }
     .user-info {
       display: flex;
       align-items: center;
-      gap: 1rem;
+      gap: var(--spacing-md);
     }
-    .banner {
-      width: 100%;
-      height: 180px;
-      background: #fff;
-      border-radius: 16px;
-      box-shadow: 0 2px 8px rgba(30,41,59,0.07);
-      margin-bottom: 2rem;
+    
+    .notification-btn {
+      position: relative;
+      background: none;
+      border: none;
+      color: var(--text-secondary);
+      font-size: 1.25rem;
+      cursor: pointer;
+      padding: var(--spacing-xs);
+      border-radius: var(--radius-md);
+      transition: all 0.2s;
+    }
+    
+    .notification-btn:hover {
+      color: var(--primary);
+      background: rgba(37,99,235,0.1);
+    }
+    
+    .notification-badge {
+      position: absolute;
+      top: 0;
+      right: 0;
+      background: var(--danger);
+      color: white;
+      border-radius: 50%;
+      width: 18px;
+      height: 18px;
+      font-size: 0.75rem;
       display: flex;
       align-items: center;
       justify-content: center;
+    }
+
+    .welcome-banner {
+      background: var(--primary);
+      border-radius: var(--radius-xl);
+      padding: var(--spacing-xl);
+      color: white;
+      margin-bottom: var(--spacing-xl);
+      position: relative;
       overflow: hidden;
+      box-shadow: 0 4px 12px rgba(37,99,235,0.15);
     }
-    .banner img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      border-radius: 16px;
+
+    .welcome-banner h1 {
+      font-size: 2rem;
+      font-weight: 700;
+      margin-bottom: var(--spacing-sm);
     }
-    .section-title {
-      font-size: 1.3rem;
+
+    .welcome-banner p {
+      font-size: 1.1rem;
+      opacity: 0.9;
+      margin-bottom: var(--spacing-md);
+    }
+
+    .welcome-banner .btn-continue {
+      background: white;
+      color: var(--primary);
+      padding: var(--spacing-sm) var(--spacing-lg);
+      border-radius: var(--radius-full);
       font-weight: 600;
-      margin-bottom: 1rem;
+      border: none;
+      cursor: pointer;
+      transition: all 0.2s;
     }
-    .user-level-badge {
-      background: #334155;
-      color: #fff;
-      padding: 0.5rem 1rem;
-      border-radius: 8px;
-      display: inline-block;
-      font-size: 1rem;
+
+    .welcome-banner .btn-continue:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
     }
-    .user-avatar {
-      width: 32px;
-      height: 32px;
-      border-radius: 50%;
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: var(--spacing-md);
+      margin-bottom: var(--spacing-xl);
+    }
+
+    .stat-card {
+      background: var(--surface-card);
+      border-radius: var(--radius-lg);
+      padding: var(--spacing-lg);
+      box-shadow: var(--shadow-sm);
+      text-align: center;
+      transition: all 0.2s;
+    }
+
+    .stat-card:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-md);
+    }
+
+    .stat-title {
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+      margin-bottom: var(--spacing-xs);
+    }
+
+    .stat-value {
+      color: var(--text-primary);
+      font-size: 2rem;
+      font-weight: 700;
+      margin-bottom: var(--spacing-xs);
+    }
+
+    .stat-subtitle {
+      color: var(--text-tertiary);
+      font-size: 0.85rem;
     }
     .chat-container {
-      background: #fff;
-      border-radius: 12px;
-      box-shadow: 0 2px 8px rgba(30,41,59,0.07);
-      padding: 2rem;
-      max-width: 600px;
-      margin: 0 auto 2rem auto;
+      background: var(--surface-card);
+      border-radius: var(--radius-xl);
+      box-shadow: var(--shadow-sm);
+      padding: var(--spacing-xl);
+      margin: 0 auto var(--spacing-xl) auto;
+      transition: all 0.2s;
     }
+
+    .chat-container:hover {
+      box-shadow: var(--shadow-md);
+    }
+
     .chat-messages {
-      min-height: 200px;
-      max-height: 300px;
+      min-height: 300px;
+      max-height: 400px;
       overflow-y: auto;
-      margin-bottom: 1.5rem;
+      margin-bottom: var(--spacing-lg);
+      padding-right: var(--spacing-sm);
     }
-    .chat-message {
-      margin-bottom: 1rem;
+
+    .chat-messages::-webkit-scrollbar {
+      width: 6px;
     }
-    .chat-message.user {
-      text-align: right;
-      color: #2563eb;
+
+    .chat-messages::-webkit-scrollbar-track {
+      background: var(--surface-hover);
+      border-radius: var(--radius-full);
     }
-    .chat-message.bot {
-      text-align: left;
-      color: #1e293b;
+
+    .chat-messages::-webkit-scrollbar-thumb {
+      background: var(--primary);
+      border-radius: var(--radius-full);
+    }
+
+    .message {
+      margin-bottom: var(--spacing-md);
+      opacity: 0;
+      transform: translateY(10px);
+      animation: messageAppear 0.3s ease forwards;
     }
     .input-area {
       display: flex;
@@ -228,6 +242,40 @@
       cursor: pointer;
       margin-left: 8px;
     }
+    .suggestions {
+      display: flex;
+      gap: var(--spacing-md);
+      margin-bottom: var(--spacing-xl);
+      flex-wrap: wrap;
+      background: var(--surface-card);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-sm);
+      padding: var(--spacing-lg);
+      justify-content: center;
+    }
+
+    .suggestion-chip {
+      display: flex;
+      align-items: center;
+      gap: var(--spacing-xs);
+      padding: var(--spacing-sm) var(--spacing-lg);
+      background: var(--primary-light);
+      border: none;
+      border-radius: var(--radius-full);
+      font-size: 1rem;
+      color: var(--primary-dark);
+      font-weight: 500;
+      cursor: pointer;
+      box-shadow: 0 2px 8px rgba(37,99,235,0.07);
+      transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+    }
+
+    .suggestion-chip:hover {
+      background: var(--primary);
+      color: #fff;
+      box-shadow: 0 4px 16px rgba(37,99,235,0.13);
+      transform: translateY(-2px);
+    }
     @media (max-width: 700px) {
       .sidebar { width: 100px; }
       .main-content { margin-left: 100px; padding: 16px; }
@@ -235,44 +283,106 @@
       .input-area input { width: 70%; }
     }
   </style>
-  <div class="layout">
+  <div class="app-container">
     <aside class="sidebar">
       <a href="#" class="sidebar__logo">
         <i class="fas fa-graduation-cap"></i>
         <span>EduNext-prep100</span>
       </a>
       <nav class="sidebar__menu">
-        <a href="student-dashboard.html" class="sidebar__item"><i class="fas fa-home"></i> Home</a>
-        <a href="ai-tutor-chatbot.html" class="sidebar__item active"><i class="fas fa-robot"></i> AI Tutor</a>
-        <a href="study-plan.html" class="sidebar__item"><i class="fas fa-calendar-alt"></i> Study Plan</a>
-        <a href="smart-note.html" class="sidebar__item"><i class="fas fa-sticky-note"></i> Smart Notes</a>
-        <a href="video-library.html" class="sidebar__item"><i class="fas fa-video"></i> Video Library</a>
-        <a href="mock-exams.html" class="sidebar__item"><i class="fas fa-file-alt"></i> Mock Exams</a>
-        <a href="practice-exams.html" class="sidebar__item"><i class="fas fa-pencil-alt"></i> Practice Exams</a>
-        <a href="notifications.html" class="sidebar__item"><i class="fas fa-bell"></i> Notifications</a>
-        <a href="student-live-session.html" class="sidebar__item"><i class="fas fa-chalkboard-teacher"></i> Join Live Session</a>
+        <a href="student-dashboard.html" class="sidebar__item">
+          <i class="fas fa-home"></i> Home
+        </a>
+        <a href="ai-tutor-chatbot.html" class="sidebar__item active">
+          <i class="fas fa-robot"></i> AI Tutor
+        </a>
+        <a href="study-plan.html" class="sidebar__item">
+          <i class="fas fa-calendar-alt"></i> Study Plan
+        </a>
+        <a href="smart-note.html" class="sidebar__item">
+          <i class="fas fa-sticky-note"></i> Smart Notes
+        </a>
+        <a href="video-library.html" class="sidebar__item">
+          <i class="fas fa-video"></i> Video Library
+        </a>
+        <a href="mock-exams.html" class="sidebar__item">
+          <i class="fas fa-file-alt"></i> Mock Exams
+        </a>
+        <a href="practice-exams.html" class="sidebar__item">
+          <i class="fas fa-pencil-alt"></i> Practice Exams
+        </a>
+        <a href="notifications.html" class="sidebar__item">
+          <i class="fas fa-bell"></i> Notifications
+        </a>
+        <a href="student-live-session.html" class="sidebar__item">
+          <i class="fas fa-chalkboard-teacher"></i> Join Live Session
+        </a>
       </nav>
     </aside>
     <main class="main-content">
-      <div class="topbar">
-        <input class="search-bar" type="text" placeholder="Ask a question or search..." />
+      <div class="dashboard-topbar">
+        <div class="search-container">
+          <i class="fas fa-search search-icon"></i>
+          <input type="text" class="search-input" placeholder="Search topics, lessons, or ask a question...">
+        </div>
         <div class="user-info">
-          <span class="user-level-badge">SS 3/WAEC</span>
-          <i class="fas fa-bell"></i>
-          <img src="https://ui-avatars.com/api/?name=Student" alt="User" class="user-avatar" />
+          <div class="badge badge-primary">SS 3/WAEC</div>
+          <button class="notification-btn">
+            <i class="fas fa-bell"></i>
+            <span class="notification-badge">2</span>
+          </button>
+          <img src="" alt="User avatar" class="avatar">
         </div>
       </div>
-      <div class="banner">
-        <img src="https://ulesson.com/_next/image?url=%2Fimages%2Fback-to-school-banner.png&w=1200&q=75" alt="Back to School Banner" />
+
+      <div class="welcome-banner">
+        <div class="banner-content">
+          <h1>Ready to Learn?</h1>
+          <p>Your personalized learning journey continues. Let's make every question count!</p>
+          <button class="btn-continue">Start Learning</button>
+        </div>
       </div>
-      <div class="section-title">AI Tutor</div>
-      <div class="chat-container" id="chatContainer"></div>
-      <div class="input-area">
-        <input type="text" id="userInput" placeholder="Ask a question..." onkeypress="if(event.key === 'Enter') askAI()">
-        <button type="button" title="Send Message" onclick="askAI()">Send</button>
-        <button type="button" title="Start Voice Input" class="mic-button" onclick="startVoiceInput()">
-          <i class="fas fa-microphone"></i>
-        </button>
+
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-title">Questions Asked</div>
+          <div class="stat-value">24</div>
+          <div class="stat-subtitle">This Week</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-title">Understanding Score</div>
+          <div class="stat-value">78%</div>
+          <div class="stat-subtitle">Based on Responses</div>
+        </div>
+      </div>
+
+      <div class="suggestions">
+        <button class="suggestion-chip">How do I solve quadratic equations?</button>
+        <button class="suggestion-chip">Explain photosynthesis</button>
+        <button class="suggestion-chip">Help with Newton's laws</button>
+        <button class="suggestion-chip">Literary devices in poetry</button>
+      </div>
+
+      <div class="chat-container">
+        <div class="chat-messages" id="chatMessages">
+          <!-- AI welcome message -->
+          <div class="message ai">
+            <img src="https://ui-avatars.com/api/?name=AI&background=2563eb&color=fff" alt="AI" class="message-avatar">
+            <div class="message-content">
+              <p>Hello! I'm your AI tutor. I'm here to help you with your studies. What would you like to learn about today?</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="input-area">
+          <input type="text" id="userInput" class="chat-input" placeholder="Type your question here..." onkeypress="if(event.key === 'Enter') askAI()">
+          <button class="mic-button" id="micButton" onclick="startVoiceInput()" title="Start voice input" aria-label="Start voice input">
+            <i class="fas fa-microphone"></i>
+          </button>
+          <button class="send-button" onclick="askAI()" title="Send message" aria-label="Send message">
+            <i class="fas fa-paper-plane"></i>
+          </button>
+        </div>
       </div>
     </main>
   </div>
@@ -281,13 +391,33 @@
     let chatHistory = [];
     let recognition;
 
+    // Initialize user info
+    function initUserInfo() {
+      const session = JSON.parse(sessionStorage.getItem('eduNextSession') || '{"name":"Student"}');
+      document.querySelector('.avatar').src = `https://ui-avatars.com/api/?name=${encodeURIComponent(session.name)}&background=2563eb&color=fff`;
+    }
+    initUserInfo();
+
     function addMessage(content, isUser = false) {
-      const container = document.getElementById('chatContainer');
-      const message = document.createElement('div');
-      message.className = `chat-message ${isUser ? 'user-message' : 'ai-message'}`;
-      message.textContent = content;
-      container.appendChild(message);
-      container.scrollTop = container.scrollHeight;
+      const messagesContainer = document.getElementById('chatMessages');
+      const messageDiv = document.createElement('div');
+      messageDiv.className = `message ${isUser ? 'user' : 'ai'}`;
+      
+      const avatar = document.createElement('img');
+      avatar.className = 'message-avatar';
+      avatar.src = isUser ? 
+        document.querySelector('.avatar').src :
+        'https://ui-avatars.com/api/?name=AI&background=2563eb&color=fff';
+      avatar.alt = isUser ? 'User' : 'AI';
+
+      const messageContent = document.createElement('div');
+      messageContent.className = 'message-content';
+      messageContent.textContent = content;
+
+      messageDiv.appendChild(avatar);
+      messageDiv.appendChild(messageContent);
+      messagesContainer.appendChild(messageDiv);
+      messagesContainer.scrollTop = messagesContainer.scrollHeight;
     }
 
     function startVoiceInput() {
@@ -322,6 +452,14 @@
       ];
       return `Summary based on available information: ${query}. Key points from various sources: ${simulatedSources.join(' ')}.`;
     }
+
+    // Add click handlers for suggestion chips
+    document.querySelectorAll('.suggestion-chip').forEach(chip => {
+      chip.addEventListener('click', () => {
+        document.getElementById('userInput').value = chip.textContent;
+        askAI();
+      });
+    });
 
     async function askAI(query = null) {
       const input = document.getElementById('userInput');

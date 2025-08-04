@@ -3,61 +3,54 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Economics - Topics</title>
+  <title>Economics - Units</title>
   <link rel="stylesheet" href="../styles.css" />
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
   <style>
-    .layout {
-      display: flex;
-      min-height: 100vh;
-    }
-.sidebar {
-  width: 240px;
-  margin: 0 0 32px 32px;
-  color: #1a73e8;
-  font-weight: 700;
-}
-    .sidebar ul {
-      list-style: none;
-      padding: 0 0 0 32px;
-      margin: 0;
-    }
-    .sidebar ul li {
-      margin-bottom: 20px;
-    }
-    .sidebar ul li a {
-      color: #222;
-      text-decoration: none;
-      font-size: 1.05rem;
-      transition: color 0.2s;
-    }
-    .sidebar ul li a:hover {
-      color: #1a73e8;
-    }
-    .main {
-      margin-left: 240px;
-      padding: 32px 40px 40px 40px;
-    }
-    /* Removed old sidebar styles to prevent white background conflict */
-    .search-box input {
-      width: 100%;
-      padding: 10px 40px 10px 16px;
-      border-radius: 24px;
-      border: 1px solid #ddd;
-      font-size: 1rem;
-      background: #fff;
-      outline: none;
-      color: #222;
-      font-family: inherit;
-      box-sizing: border-box;
-      transition: border-color 0.2s;
-    }
-    .search-icon {
-      position: absolute;
-      right: 18px;
-      top: 50%;
-      transform: translateY(-50%);
-      color: #888;
+    .main-content { max-width: 900px; margin: 40px auto 0 auto; background: #fff; border-radius: 16px; box-shadow: 0 2px 8px rgba(30,41,59,0.07); padding: 2.5rem 2rem 2rem 2rem; min-height: 80vh; display: flex; flex-direction: column; }
+    .back-btn { display: inline-flex; align-items: center; gap: 0.5rem; background: #f1f5f9; color: #1e293b; border: none; border-radius: 8px; padding: 0.5rem 1.2rem; font-size: 1rem; font-weight: 500; cursor: pointer; margin-bottom: 2rem; box-shadow: 0 1px 4px rgba(30,41,59,0.05); transition: background 0.2s, color 0.2s; text-decoration: none; }
+    .back-btn:hover { background: #e0e7ef; color: #1a73e8; }
+    h1 { font-size: 1.5rem; font-weight: 600; color: #1a73e8; margin-bottom: 1.5rem; }
+    .topic-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.3rem; }
+    .topic-card { background: #fff; border-radius: 12px; box-shadow: 0 2px 8px rgba(30,41,59,0.07); padding: 1.5rem 1rem; display: flex; flex-direction: column; gap: 0.7rem; font-size: 1.05rem; color: #1e293b; font-weight: 500; text-decoration: none; transition: box-shadow 0.2s; cursor: pointer; }
+    .topic-card:hover { box-shadow: 0 4px 16px rgba(26,115,232,0.13); color: #1a73e8; }
+    .topic-title { font-weight: 600; font-size: 1.1rem; color: #1a73e8; text-decoration: none; }
+    @media (max-width: 600px) { .main-content { padding: 1rem 0.5rem; } .topic-list { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+  <main class="main-content">
+    <a href="../student-dashboard.html" class="back-btn"><i class="fas fa-arrow-left"></i> Back to Dashboard</a>
+    <h1>Economics</h1>
+    <div class="topic-list">
+      <a class="topic-card" href="economics-topic.html?unit=intro">
+        <div class="topic-title">Introduction to Economics</div>
+        <div class="topic-desc">Basic concepts, scope, and methods</div>
+      </a>
+      <a class="topic-card" href="economics-topic.html?unit=micro">
+        <div class="topic-title">Microeconomics</div>
+        <div class="topic-desc">Demand, supply, market structures</div>
+      </a>
+      <a class="topic-card" href="economics-topic.html?unit=macro">
+        <div class="topic-title">Macroeconomics</div>
+        <div class="topic-desc">National income, money, banking, inflation</div>
+      </a>
+      <a class="topic-card" href="economics-topic.html?unit=public">
+        <div class="topic-title">Public Finance</div>
+        <div class="topic-desc">Government revenue, expenditure, taxation</div>
+      </a>
+      <a class="topic-card" href="economics-topic.html?unit=development">
+        <div class="topic-title">Economic Development & Planning</div>
+        <div class="topic-desc">Growth, development, planning, international trade</div>
+      </a>
+      <a class="topic-card" href="economics-topic.html?unit=applied">
+        <div class="topic-title">Applied Economics</div>
+        <div class="topic-desc">Agriculture, industry, population, environment</div>
+      </a>
+    </div>
+  </main>
+</body>
+</html>
       font-size: 1.2rem;
       pointer-events: none;
       display: flex;

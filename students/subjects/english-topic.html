@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>English Topics</title>
+  <link rel="stylesheet" href="../styles.css" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
+  <style>
+    .main-content { max-width: 900px; margin: 40px auto 0 auto; background: #fff; border-radius: 16px; box-shadow: 0 2px 8px rgba(30,41,59,0.07); padding: 2.5rem 2rem 2rem 2rem; min-height: 80vh; display: flex; flex-direction: column; }
+    .back-btn { display: inline-flex; align-items: center; gap: 0.5rem; background: #f1f5f9; color: #1e293b; border: none; border-radius: 8px; padding: 0.5rem 1.2rem; font-size: 1rem; font-weight: 500; cursor: pointer; margin-bottom: 2rem; box-shadow: 0 1px 4px rgba(30,41,59,0.05); transition: background 0.2s, color 0.2s; text-decoration: none; }
+    .back-btn:hover { background: #e0e7ef; color: #1a73e8; }
+    h1 { font-size: 1.5rem; font-weight: 600; color: #1a73e8; margin-bottom: 1.5rem; }
+    .topics-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.3rem; }
+    .topic-card { background: #fff; border-radius: 12px; box-shadow: 0 2px 8px rgba(30,41,59,0.07); padding: 1.5rem 1rem; display: flex; flex-direction: column; gap: 0.7rem; font-size: 1.05rem; color: #1e293b; font-weight: 500; text-decoration: none; transition: box-shadow 0.2s; cursor: pointer; }
+    .topic-card:hover { box-shadow: 0 4px 16px rgba(26,115,232,0.13); color: #1a73e8; }
+    .topic-title { font-weight: 600; font-size: 1.1rem; color: #1a73e8; text-decoration: none; }
+    /* Modal styles */
+    .modal-bg { display: none; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(0,0,0,0.25); z-index: 1000; align-items: center; justify-content: center; }
+    .modal { background: #fff; border-radius: 12px; max-width: 420px; width: 95vw; padding: 2rem 1.5rem 1.5rem 1.5rem; box-shadow: 0 4px 24px rgba(30,41,59,0.18); position: relative; }
+    .modal h2 { margin-top: 0; color: #1a73e8; font-size: 1.2rem; }
+    .modal ul { padding-left: 1.2rem; margin: 1rem 0; }
+    .modal li { margin-bottom: 0.5rem; color: #222; }
+    .modal .start-btn { display: inline-block; background: #1a73e8; color: #fff; border: none; border-radius: 8px; padding: 0.7rem 1.5rem; font-size: 1rem; font-weight: 600; cursor: pointer; margin-top: 1rem; }
+    .modal .start-btn:hover { background: #1557b0; }
+    .modal .close-btn { position: absolute; top: 10px; right: 16px; background: none; border: none; font-size: 1.3rem; color: #888; cursor: pointer; }
+    @media (max-width: 600px) { .main-content { padding: 1rem 0.5rem; } .topics-grid { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+  <main class="main-content">
+    <a href="english.html" class="back-btn"><i class="fas fa-arrow-left"></i> Back to English Units</a>
+    <h1 id="unit-title">English Topics</h1>
+    <div class="topics-grid" id="topicsGrid"></div>
+  </main>
+  <div class="modal-bg" id="modalBg">
+    <div class="modal" id="modal">
+      <button class="close-btn" onclick="closeModal()">&times;</button>
+      <h2 id="modalTitle">Sub-topics:</h2>
+      <ul id="subtopicsList"></ul>
+      <button class="start-btn" id="startBtn">Start Learning</button>
+    </div>
+  </div>
+  <script>
+    // Example topics and sub-topics for each unit
+    // JAMB-aligned syllabus
+    const syllabus = {
+      comprehension: {
+        title: "Comprehension/Summary",
+        topics: [
+          { name: "Comprehension Passages", subtopics: [
+            "Description", "Narration", "Exposition", "Argumentation/Persuasion",
+            "Cloze Passage", "Reading Text", "Synthesis of Ideas", "Inference & Deduction"
+          ] },
+          { name: "Summary Skills", subtopics: [
+            "Identifying Main Points", "Paraphrasing", "Brevity and Clarity", "Combining Information"
+          ] }
+        ]
+      },
+      lexis: {
+        title: "Lexis and Structure",
+        topics: [
+          { name: "Vocabulary & Usage", subtopics: [
+            "Synonyms", "Antonyms", "Homonyms", "Idioms (Standard British)", "Word Classes & Functions"
+          ] },
+          { name: "Sentence Structure", subtopics: [
+            "Clause & Sentence Patterns", "Concord (Agreement)", "Tense, Aspect, Mood", "Punctuation & Spelling", "Sentence Completion"
+          ] }
+        ]
+      },
+      oral: {
+        title: "Oral Forms",
+        topics: [
+          { name: "Phonetics & Pronunciation", subtopics: [
+            "Vowels (Monothongs, Diphthongs)", "Consonants (including clusters)", "Rhymes & Homophones"
+          ] },
+          { name: "Stress & Intonation", subtopics: [
+            "Word Stress", "Sentence Stress", "Intonation Patterns", "Emphatic Stress"
+          ] }
+        ]
+      },
+      grammar: {
+        title: "Grammar",
+        topics: [
+          { name: "Parts of Speech", subtopics: [
+            "Nouns", "Verbs", "Adjectives", "Adverbs", "Pronouns"
+          ] },
+          { name: "Tenses & Agreement", subtopics: [
+            "Present, Past, Future Tenses", "Subject-Verb Agreement", "Question Tags"
+          ] }
+        ]
+      }
+    };
+    // Get unit from URL
+    const urlParams = new URLSearchParams(window.location.search);
+    const unit = urlParams.get('unit');
+    const unitData = syllabus[unit] || { title: "English Topics", topics: [] };
+    document.getElementById('unit-title').textContent = unitData.title;
+    // Render topics
+    const grid = document.getElementById('topicsGrid');
+    unitData.topics.forEach((topic, idx) => {
+      const card = document.createElement('div');
+      card.className = 'topic-card';
+      card.innerHTML = `<span class="topic-title">${topic.name}</span><div class="topic-desc">Topic ${idx+1}</div>`;
+      card.onclick = () => openModal(topic.name, topic.subtopics);
+      grid.appendChild(card);
+    });
+    // Modal logic
+    function openModal(topic, subtopics) {
+      document.getElementById('modalTitle').textContent = `Sub-topics: ${topic}`;
+      const list = document.getElementById('subtopicsList');
+      list.innerHTML = '';
+      subtopics.forEach(st => {
+        const li = document.createElement('li');
+        li.style.display = 'flex';
+        li.style.alignItems = 'center';
+        li.innerHTML = `<span style='flex:1;'>${st}</span> <button class='start-btn' onclick='startLearning("${topic}", "${st}")'>Start Learning</button>`;
+        list.appendChild(li);
+      });
+      document.getElementById('modalBg').style.display = 'flex';
+    }
+    function startLearning(topic, subtopic) {
+      window.location.href = `english-explanation.html?topic=${encodeURIComponent(topic)}&subtopic=${encodeURIComponent(subtopic)}`;
+    }
+    function closeModal() {
+      document.getElementById('modalBg').style.display = 'none';
+    }
+  </script>
+</body>
+</html>

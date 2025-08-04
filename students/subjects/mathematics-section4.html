@@ -35,34 +35,39 @@
     <div class="topic-list">
       <div class="topic-card" onclick="openModal('Differentiation')">
         <div class="topic-title">Differentiation</div>
+        <div class="topic-desc">Rules and techniques</div>
       </div>
-      <div class="topic-card" onclick="openModal('Application of differentiation')">
-        <div class="topic-title">Application of differentiation</div>
+      <div class="topic-card" onclick="openModal('Application of Differentiation')">
+        <div class="topic-title">Application of Differentiation</div>
+        <div class="topic-desc">Maxima, minima and rates</div>
       </div>
       <div class="topic-card" onclick="openModal('Integration')">
         <div class="topic-title">Integration</div>
+        <div class="topic-desc">Methods and techniques</div>
       </div>
       <div class="topic-card" onclick="openModal('Application of Integration')">
         <div class="topic-title">Application of Integration</div>
+        <div class="topic-desc">Areas and volumes</div>
       </div>
     </div>
   </main>
-  <div class="modal" id="modal">
+  <div class="modal" id="topicModal">
     <div class="modal-content">
-      <button class="modal-close" onclick="closeModal()"><i class="fas fa-times"></i></button>
-      <h2 id="modalTitle">Sub-topics:</h2>
+      <button class="modal-close" onclick="closeModal()">&times;</button>
+      <h2 id="modalTitle"></h2>
       <ul class="subtopic-list" id="subtopicList"></ul>
     </div>
   </div>
+
   <script>
-    const subtopics = {
+    const topics = {
       'Differentiation': [
         'Definition and rules of differentiation',
         'Differentiation of polynomials and trigonometric functions',
         'Chain, product and quotient rules',
         'Higher order derivatives'
       ],
-      'Application of differentiation': [
+      'Application of Differentiation': [
         'Maxima and minima',
         'Curve sketching',
         'Rates of change',
@@ -77,28 +82,32 @@
       'Application of Integration': [
         'Area and volume of revolution',
         'Applications in physics and engineering',
+        'Definite integral applications',
         'Solving differential equations'
       ]
     };
+
     function openModal(topic) {
-      document.getElementById('modal').style.display = 'flex';
-      document.getElementById('modalTitle').innerText = 'Sub-topics: ' + topic;
+      document.getElementById('modalTitle').textContent = topic;
       const list = document.getElementById('subtopicList');
       list.innerHTML = '';
-      subtopics[topic].forEach(sub => {
-        list.innerHTML += `<li>${sub} <button class='start-btn' onclick='startLearning(event)'>Start Learning</button></li>`;
+      topics[topic].forEach(subtopic => {
+        const li = document.createElement('li');
+        li.innerHTML = `
+          <span>${subtopic}</span>
+          <button class="start-btn" onclick="startLearning('${topic}', '${subtopic.replace("'", "\\'")}')">Start</button>
+        `;
+        list.appendChild(li);
       });
+      document.getElementById('topicModal').style.display = 'flex';
     }
+
     function closeModal() {
-      document.getElementById('modal').style.display = 'none';
+      document.getElementById('topicModal').style.display = 'none';
     }
-    function startLearning(e) {
-      e.stopPropagation();
-      window.location.href = 'mathematics-explanation.html';
-    }
-    window.onclick = function(event) {
-      const modal = document.getElementById('modal');
-      if (event.target === modal) closeModal();
+
+    function startLearning(topic, subtopic) {
+      window.location.href = `mathematics-explanation.html?topic=${encodeURIComponent(topic)}&subtopic=${encodeURIComponent(subtopic)}`;
     }
   </script>
 </body>

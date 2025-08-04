@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student Dashboard - EduNext</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="../general/modernized.css">
+  <style>
+    /* Dashboard Specific Styles */
+    .dashboard-topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: var(--spacing-xl);
+      padding: var(--spacing-sm) 0;
+    }
+    
+    .search-container {
+      flex: 1;
+      max-width: 480px;
+      position: relative;
+      margin-right: var(--spacing-xl);
+    }
+    
+    .search-icon {
+      position: absolute;
+      left: var(--spacing-sm);
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--text-secondary);
+      font-size: 1.1rem;
+    }
+    
+    .search-input {
+      width: 100%;
+      padding: 0.875rem var(--spacing-xl);
+      padding-left: 2.75rem;
+      border-radius: 9999px;
+      border: 2px solid var(--border-color);
+      font-size: 1rem;
+      transition: all 0.2s;
+      background: #fff;
+    }
+    
+    .search-input:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(37,99,235,0.1);
+      outline: none;
+    }
+    
+    .user-info {
+      display: flex;
+      align-items: center;
+      gap: var(--spacing-md);
+    }
+    
+    .notification-btn {
+      position: relative;
+      background: none;
+      border: none;
+      color: var(--text-secondary);
+      font-size: 1.25rem;
+      cursor: pointer;
+      padding: var(--spacing-xs);
+      border-radius: var(--radius-md);
+      transition: all 0.2s;
+    }
+    
+    .notification-btn:hover {
+      color: var(--primary);
+      background: rgba(37,99,235,0.1);
+    }
+    
+    .notification-badge {
+      position: absolute;
+      top: 0;
+      right: 0;
+      background: var(--danger);
+      color: white;
+      border-radius: 50%;
+      width: 18px;
+      height: 18px;
+      font-size: 0.75rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    .welcome-banner {
+      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+      border-radius: var(--radius-xl);
+      padding: var(--spacing-xl);
+      color: white;
+      margin-bottom: var(--spacing-xl);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .welcome-content {
+      position: relative;
+      z-index: 1;
+      max-width: 600px;
+    }
+    
+    .welcome-title {
+      font-size: 2rem;
+      font-weight: 700;
+      margin-bottom: var(--spacing-sm);
+    }
+    
+    .welcome-subtitle {
+      font-size: 1.1rem;
+      opacity: 0.9;
+      margin-bottom: var(--spacing-lg);
+    }
+    
+    .welcome-banner::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 40%;
+      height: 100%;
+      background: url('https://ulesson.com/_next/image?url=%2Fimages%2Fback-to-school-banner.png&w=1200&q=75') center/cover;
+      opacity: 0.15;
+    }
+    
+    .section {
+      margin-bottom: var(--spacing-xl);
+    }
+    
+    .section-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: var(--spacing-lg);
+    }
+    
+    .section-title {
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: var(--text-primary);
+    }
+    
+    .subject-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: var(--spacing-md);
+    }
+    
+    .subject-card {
+      padding: var(--spacing-lg);
+      border-radius: var(--radius-lg);
+      text-align: center;
+      font-weight: 600;
+      font-size: 1.1rem;
+      color: white;
+      text-decoration: none;
+      transition: all 0.3s;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: var(--spacing-sm);
+    }
+    
+    .subject-card i {
+      font-size: 2rem;
+      margin-bottom: var(--spacing-xs);
+    }
+    
+    .subject-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+    }
+
+    .progress-section {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: var(--spacing-lg);
+      margin-bottom: var(--spacing-xl);
+    }
+
+    .progress-card {
+      background: white;
+      border-radius: var(--radius-lg);
+      padding: var(--spacing-lg);
+      box-shadow: 0 2px 8px rgba(30,41,59,0.07);
+    }
+
+    .progress-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: var(--spacing-md);
+    }
+
+    .progress-title {
+      font-weight: 600;
+      color: var(--text-primary);
+    }
+
+    .progress-value {
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--primary);
+      margin-bottom: var(--spacing-xs);
+    }
+
+    .progress-label {
+      color: var(--text-secondary);
+      font-size: 0.95rem;
+    }
+
+    .progress-bar {
+      width: 100%;
+      height: 8px;
+      background: var(--light);
+      border-radius: 999px;
+      overflow: hidden;
+    }
+
+    .progress-fill {
+      height: 100%;
+      background: var(--primary);
+      border-radius: 999px;
+      transition: width 0.3s ease;
+    }
+
+    @media (max-width: 768px) {
+      .dashboard-topbar {
+        flex-direction: column;
+        align-items: stretch;
+        gap: var(--spacing-md);
+      }
+      
+      .search-container {
+        max-width: 100%;
+        margin-right: 0;
+      }
+      
+      .welcome-banner {
+        padding: var(--spacing-lg);
+      }
+      
+      .welcome-title {
+        font-size: 1.5rem;
+      }
+      
+      .section-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: var(--spacing-sm);
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="layout">
+    <aside class="sidebar">
+      <a href="#" class="sidebar__logo">
+        <i class="fas fa-graduation-cap"></i>
+        <span>EduNext-prep100</span>
+      </a>
+      <nav class="sidebar__menu">
+        <a href="student-dashboard.html" class="sidebar__item active">
+          <i class="fas fa-home"></i> Home
+        </a>
+        <a href="ai-tutor-chatbot.html" class="sidebar__item">
+          <i class="fas fa-robot"></i> AI Tutor
+        </a>
+        <a href="study-plan.html" class="sidebar__item">
+          <i class="fas fa-calendar-alt"></i> Study Plan
+        </a>
+        <a href="smart-note.html" class="sidebar__item">
+          <i class="fas fa-sticky-note"></i> Smart Notes
+        </a>
+        <a href="video-library.html" class="sidebar__item">
+          <i class="fas fa-video"></i> Video Library
+        </a>
+        <a href="mock-exams.html" class="sidebar__item">
+          <i class="fas fa-file-alt"></i> Mock Exams
+        </a>
+        <a href="practice-exams.html" class="sidebar__item">
+          <i class="fas fa-pencil-alt"></i> Practice Exams
+        </a>
+        <a href="notifications.html" class="sidebar__item">
+          <i class="fas fa-bell"></i> Notifications
+        </a>
+        <a href="student-live-session.html" class="sidebar__item">
+          <i class="fas fa-chalkboard-teacher"></i> Join Live Session
+        </a>
+      </nav>
+    </aside>
+
+    <main class="main-content">
+      <div class="dashboard-topbar">
+        <div class="search-container">
+          <i class="fas fa-search search-icon"></i>
+          <input type="text" class="search-input" placeholder="What would you like to learn...">
+        </div>
+        
+        <div class="user-info">
+          <div class="badge badge-primary">SS 3/WAEC</div>
+          <button class="notification-btn">
+            <i class="fas fa-bell"></i>
+            <span class="notification-badge">2</span>
+          </button>
+          <img src="https://ui-avatars.com/api/?name=Student&background=2563eb&color=fff" alt="User" class="avatar">
+        </div>
+      </div>
+
+      <div class="welcome-banner">
+        <div class="welcome-content">
+          <h1 class="welcome-title">Ready to Excel?</h1>
+          <p class="welcome-subtitle">Your personalized learning journey continues. You've completed 65% of your weekly goals!</p>
+          <button class="btn btn-outline" style="border-color: white; color: white;">Continue Learning</button>
+        </div>
+      </div>
+
+      <div class="progress-section">
+        <div class="progress-card">
+          <div class="progress-header">
+            <span class="progress-title">Weekly Progress</span>
+            <i class="fas fa-chart-line" style="color: var(--primary)"></i>
+          </div>
+          <div class="progress-value">65%</div>
+          <div class="progress-label">15/23 Tasks Completed</div>
+          <div class="progress-bar">
+            <div class="progress-fill" style="width: 65%"></div>
+          </div>
+        </div>
+        
+        <div class="progress-card">
+          <div class="progress-header">
+            <span class="progress-title">Mock Tests Score</span>
+            <i class="fas fa-star" style="color: var(--warning)"></i>
+          </div>
+          <div class="progress-value" style="color: var(--warning)">78%</div>
+          <div class="progress-label">Average Score Across Subjects</div>
+          <div class="progress-bar">
+            <div class="progress-fill" style="width: 78%; background: var(--warning)"></div>
+          </div>
+        </div>
+      </div>
+
+      <section class="section">
+        <div class="section-header">
+          <h2 class="section-title">Your Subjects</h2>
+          <button class="btn btn-outline">View All</button>
+        </div>
+        
+        <div class="subject-grid">
+          <a href="subjects/mathematics.html" class="subject-card" style="background: var(--color-math)">
+            <i class="fas fa-square-root-alt"></i>
+            MATHEMATICS
+          </a>
+          <a href="subjects/biology.html" class="subject-card" style="background: var(--color-biology)">
+            <i class="fas fa-dna"></i>
+            BIOLOGY
+          </a>
+          <a href="subjects/chemistry.html" class="subject-card" style="background: var(--color-chemistry)">
+            <i class="fas fa-flask"></i>
+            CHEMISTRY
+          </a>
+          <a href="subjects/physics.html" class="subject-card" style="background: var(--color-physics)">
+            <i class="fas fa-atom"></i>
+            PHYSICS
+          </a>
+          <a href="subjects/english.html" class="subject-card" style="background: var(--color-english)">
+            <i class="fas fa-book"></i>
+            ENGLISH
+          </a>
+          <a href="subjects/literature.html" class="subject-card" style="background: var(--color-literature)">
+            <i class="fas fa-feather"></i>
+            LITERATURE
+          </a>
+          <a href="subjects/accounting.html" class="subject-card" style="background: var(--color-accounting)">
+            <i class="fas fa-calculator"></i>
+            ACCOUNTING
+          </a>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script>
+    // Add active class to current nav item
+    document.addEventListener('DOMContentLoaded', function() {
+      const currentPath = window.location.pathname;
+      const navItems = document.querySelectorAll('.sidebar__item');
+      navItems.forEach(item => {
+        if (item.getAttribute('href') === currentPath.split('/').pop()) {
+          item.classList.add('active');
+        }
+      });
+    });
+  </script>
+</body>
+</html>

@@ -6,87 +6,189 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Student Live Session</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="../general/modernized.css">
   <script src="https://8x8.vc/vpaas-magic-cookie-29d1aa3d1dd04579a28364a8dfdabc89/external_api.js" async></script>
   <style>
-    html, body, #jaas-container {
-      height: 100%;
-      width: 100vw;
-      margin: 0;
-      padding: 0;
-    }
-    body {
-      font-family: 'Open Sans', Arial, sans-serif;
-      background: #f5f6fa;
-      margin: 0;
-      padding: 0;
-    }
     .sessions-container {
       margin: 0 auto;
       max-width: 1200px;
       min-height: 100vh;
-      background: #f5f6fa;
+      background: var(--bg-light);
       display: flex;
       flex-direction: column;
       align-items: stretch;
-      justify-content: flex-start;
-      padding: 2rem 0;
+      padding: var(--spacing-xl) 0;
     }
+
     .tab-bar {
       display: flex;
-      border-bottom: 1px solid #e3e6ea;
-      background: #fff;
-      margin-bottom: 1rem;
+      border-bottom: 1px solid var(--border-color);
+      background: var(--bg-white);
+      margin-bottom: var(--spacing-md);
+      border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+      box-shadow: var(--shadow-sm);
     }
+
     .tab-btn {
       flex: 1;
-      padding: 1rem;
+      padding: var(--spacing-md) var(--spacing-lg);
       font-size: 1.1rem;
       background: none;
       border: none;
       border-bottom: 2px solid transparent;
-      color: #222;
+      color: var(--text-primary);
       cursor: pointer;
+      transition: all var(--transition-base);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: var(--spacing-sm);
     }
+
+    .tab-btn i {
+      font-size: 1.2rem;
+    }
+
+    .tab-btn:hover {
+      background: var(--bg-hover);
+    }
+
     .tab-btn.active {
-      border-bottom: 2px solid #2563eb;
-      color: #2563eb;
+      border-bottom: 2px solid var(--primary);
+      color: var(--primary);
+      background: var(--bg-active);
     }
+
+    .tab-content {
+      flex: 1;
+      background: var(--bg-white);
+      height: calc(100vh - 200px); /* Increased height, accounting for header and session info */
+      border-radius: 0 0 var(--radius-lg) var(--radius-lg);
+      box-shadow: var(--shadow-sm);
+      overflow: hidden;
+      position: relative; /* Added for absolute positioning of content */
+    }
+
     #tab-content-whiteboard {
-      flex: 1;
       display: block;
-      background: #f5f6fa;
-      height: calc(100vh - 56px);
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
     }
+
     #tab-content-video {
-      flex: 1;
       display: none;
-      background: #000;
-      height: calc(100vh - 56px);
+      background: var(--bg-dark);
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
     }
+
     .whiteboard-iframe {
       border: none;
-      min-height: 100%;
       width: 100%;
       height: 100%;
     }
+
     #jaas-container {
       width: 100%;
       height: 100%;
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+
+    .session-info {
+      background: var(--bg-white);
+      padding: var(--spacing-md);
+      border-radius: var(--radius-lg);
+      margin-bottom: var(--spacing-md);
+      box-shadow: var(--shadow-sm);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .session-info__details {
+      display: flex;
+      align-items: center;
+      gap: var(--spacing-md);
+    }
+
+    .session-info__status {
+      display: flex;
+      align-items: center;
+      gap: var(--spacing-sm);
+      color: var(--success);
+      font-weight: 500;
+    }
+
+    .session-info__time {
+      color: var(--text-secondary);
+      font-size: 0.9rem;
     }
   </style>
 </head>
 <body>
-  <div class="sessions-container">
-    <div class="tab-bar">
-      <button id="tab-whiteboard" class="tab-btn active">Whiteboard</button>
-      <button id="tab-video" class="tab-btn">Video Call</button>
-    </div>
-    <div id="tab-content-whiteboard">
-      <iframe src="https://whiteboard.chat/your-session-id" width="100%" height="100%" class="whiteboard-iframe" title="Collaborative Whiteboard"></iframe>
-    </div>
-    <div id="tab-content-video">
-      <div id="jaas-container"></div>
-    </div>
+  <div class="layout">
+    <aside class="sidebar">
+      <a href="#" class="sidebar__logo">
+        <i class="fas fa-graduation-cap"></i>
+        <span>EduNext-prep100</span>
+      </a>
+      <nav class="sidebar__menu">
+        <a href="student-dashboard.html" class="sidebar__item"><i class="fas fa-home"></i> Home</a>
+        <a href="ai-tutor-chatbot.html" class="sidebar__item"><i class="fas fa-robot"></i> AI Tutor</a>
+        <a href="study-plan.html" class="sidebar__item"><i class="fas fa-calendar-alt"></i> Study Plan</a>
+        <a href="smart-note.html" class="sidebar__item"><i class="fas fa-sticky-note"></i> Smart Notes</a>
+        <a href="video-library.html" class="sidebar__item"><i class="fas fa-video"></i> Video Library</a>
+        <a href="mock-exams.html" class="sidebar__item"><i class="fas fa-file-alt"></i> Mock Exams</a>
+        <a href="practice-exams.html" class="sidebar__item"><i class="fas fa-pencil-alt"></i> Practice Exams</a>
+        <a href="notifications.html" class="sidebar__item"><i class="fas fa-bell"></i> Notifications</a>
+        <a href="student-live-session.html" class="sidebar__item active"><i class="fas fa-chalkboard-teacher"></i> Join Live Session</a>
+      </nav>
+    </aside>
+    <main class="main-content">
+      <div class="sessions-container">
+        <div class="session-info">
+          <div class="session-info__details">
+            <h2>Physics: Wave Motion</h2>
+            <div class="session-info__status">
+              <i class="fas fa-circle"></i>
+              Live Now
+            </div>
+          </div>
+          <div class="session-info__time">
+            Duration: 1h 30m
+          </div>
+        </div>
+        
+        <div class="tab-bar">
+          <button id="tab-whiteboard" class="tab-btn active">
+            <i class="fas fa-chalkboard"></i>
+            Whiteboard
+          </button>
+          <button id="tab-video" class="tab-btn">
+            <i class="fas fa-video"></i>
+            Video Call
+          </button>
+        </div>
+        
+        <div class="tab-content">
+          <div id="tab-content-whiteboard">
+            <iframe src="https://whiteboard.chat/your-session-id" width="100%" height="100%" class="whiteboard-iframe" title="Collaborative Whiteboard"></iframe>
+          </div>
+          <div id="tab-content-video">
+            <div id="jaas-container"></div>
+          </div>
+        </div>
+      </div>
+    </main>
   </div>
   <script>
     // Jitsi Meet video call embed

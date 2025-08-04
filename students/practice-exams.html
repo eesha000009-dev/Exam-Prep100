@@ -5,78 +5,115 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Practice Exams - EduNext</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="../general/modernized.css">
   <style>
-    body {
-      margin: 0;
-      font-family: 'Inter', sans-serif;
-      background: #f7f8fa;
-      color: #1e293b;
-    }
-    .layout {
-      display: flex;
-      min-height: 100vh;
-    }
-    .sidebar {
-      width: 240px;
-      background: #1e293b;
-      color: #fff;
-      display: flex;
-      flex-direction: column;
-      padding: 2rem 1rem;
-      min-height: 100vh;
-      position: fixed;
-      top: 0;
-      left: 0;
-      height: 100vh;
-      z-index: 100;
-    }
-    .sidebar__logo {
+    /* Dashboard Specific Styles */
+    .dashboard-topbar {
       display: flex;
       align-items: center;
-      gap: 0.5rem;
-      font-size: 1.5rem;
-      font-weight: 700;
-      color: #fff;
-      margin-bottom: 2rem;
-      text-decoration: none;
+      justify-content: space-between;
+      margin-bottom: var(--spacing-xl);
+      padding: var(--spacing-sm) 0;
     }
-    .sidebar__menu {
-      display: flex;
-      flex-direction: column;
-      gap: 0.5rem;
+    
+    .search-container {
+      flex: 1;
+      max-width: 480px;
+      position: relative;
+      margin-right: var(--spacing-xl);
     }
-    .sidebar__item {
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-      padding: 0.75rem 1rem;
-      color: #fff;
-      text-decoration: none;
-      border-radius: 8px;
+    
+    .search-icon {
+      position: absolute;
+      left: var(--spacing-sm);
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--text-secondary);
+      font-size: 1.1rem;
+    }
+    
+    .search-input {
+      width: 100%;
+      padding: 0.875rem var(--spacing-xl);
+      padding-left: 2.75rem;
+      border-radius: 9999px;
+      border: 2px solid var(--border-color);
       font-size: 1rem;
-      font-weight: normal;
-      transition: background 0.2s;
+      transition: all 0.2s;
+      background: #fff;
     }
-    .sidebar__item.active, .sidebar__item:hover {
-      background: #334155;
-      color: #38bdf8;
+    
+    .search-input:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(37,99,235,0.1);
+      outline: none;
     }
-    .main-content { flex: 1; padding: 2.5rem 2rem 2rem 2rem; }
-    h1 { font-size: 1.5rem; color: #1e3a8a; margin-bottom: 1.5rem; }
-    .practice-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.3rem; }
-    .practice-card { background: #fff; border-radius: 12px; box-shadow: 0 2px 12px rgba(30,58,138,0.07); padding: 1.5rem 1rem; display: flex; flex-direction: column; gap: 0.7rem; }
-    .practice-title { font-weight: 600; font-size: 1.1rem; color: #1e3a8a; }
-    .practice-meta { color: #64748b; font-size: 0.98rem; }
-    .practice-actions { display: flex; gap: 0.7rem; margin-top: 0.7rem; }
-    .btn { padding: 0.5rem 1.2rem; border-radius: 8px; border: none; font-weight: 600; font-size: 1rem; cursor: pointer; }
-    .btn-primary { background: #2563eb; color: #fff; }
-    .btn-outline { background: #fff; color: #2563eb; border: 1.5px solid #2563eb; }
-      .btn-primary:hover, .btn-outline:hover { background: #1e3a8a; color: #fff; }
-    .empty-message { color: #64748b; font-weight: 500; }
-    </style>
-  </head>
+
+    .user-info {
+      display: flex;
+      align-items: center;
+      gap: var(--spacing-md);
+    }
+
+    .level-select {
+      padding: 0.5rem 1rem;
+      border: none;
+      border-radius: 9999px;
+      font-size: 0.9rem;
+      background: rgba(37, 99, 235, 0.1);
+      color: var(--text-primary);
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    
+    .notification-btn {
+      position: relative;
+      background: none;
+      border: none;
+      color: var(--text-secondary);
+      font-size: 1.25rem;
+      cursor: pointer;
+      padding: var(--spacing-xs);
+      border-radius: var(--radius-md);
+      transition: all 0.2s;
+    }
+    
+    .notification-btn:hover {
+      color: var(--primary);
+      background: rgba(37,99,235,0.1);
+    }
+    
+    .notification-badge {
+      position: absolute;
+      top: 0;
+      right: 0;
+      background: var(--danger);
+      color: white;
+      border-radius: 50%;
+      width: 18px;
+      height: 18px;
+      font-size: 0.75rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .user-name {
+      background: var(--primary);
+      color: white;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.9rem;
+      font-weight: 500;
+    }
+  </style>
+</head>
   <body>
-    <div class="layout">
+    <div class="app-container">
       <aside class="sidebar">
         <a href="#" class="sidebar__logo">
           <i class="fas fa-graduation-cap"></i>
@@ -84,35 +121,57 @@
         </a>
         <nav class="sidebar__menu">
         <a href="student-dashboard.html" class="sidebar__item"><i class="fas fa-home"></i> Home</a>
-        <a href="ai-tutor-chatbot.html" class="sidebar__item active"><i class="fas fa-robot"></i> AI Tutor</a>
+        <a href="ai-tutor-chatbot.html" class="sidebar__item"><i class="fas fa-robot"></i> AI Tutor</a>
         <a href="study-plan.html" class="sidebar__item"><i class="fas fa-calendar-alt"></i> Study Plan</a>
         <a href="smart-note.html" class="sidebar__item"><i class="fas fa-sticky-note"></i> Smart Notes</a>
         <a href="video-library.html" class="sidebar__item"><i class="fas fa-video"></i> Video Library</a>
         <a href="mock-exams.html" class="sidebar__item"><i class="fas fa-file-alt"></i> Mock Exams</a>
-        <a href="practice-exams.html" class="sidebar__item"><i class="fas fa-pencil-alt"></i> Practice Exams</a>
+        <a href="practice-exams.html" class="sidebar__item active"><i class="fas fa-pencil-alt"></i> Practice Exams</a>
         <a href="notifications.html" class="sidebar__item"><i class="fas fa-bell"></i> Notifications</a>
         <a href="student-live-session.html" class="sidebar__item"><i class="fas fa-chalkboard-teacher"></i> Join Live Session</a>
         </nav>
       </aside>
-      <main class="main-content">
-      <h1>Practice Exams</h1>
-      <div id="main-cards" class="practice-list">
-        <div class="practice-card" onclick="showTopics()">
-          <div class="practice-title">Topic-by-topic</div>
-          <div class="practice-meta">Practice by subject and topic</div>
+      <main class="main-container" style="margin-left: 280px;">
+        <header class="dashboard-topbar">
+          <div class="search-container">
+            <i class="fas fa-search search-icon"></i>
+            <input type="text" class="search-input" placeholder="Search topics, subjects, or questions..." aria-label="Search topics, subjects, or questions">
+          </div>
+          <div class="user-info">
+            <select class="level-select" aria-label="Select exam level">
+              <option selected>SS 3/WAEC</option>
+              <option>SS 2</option>
+              <option>SS 1</option>
+              <option>JS 3/BECE</option>
+            </select>
+            <button class="notification-btn" onclick="window.location.href='notifications.html'" aria-label="Notifications">
+              <i class="fas fa-bell"></i>
+              <span class="notification-badge">3</span>
+            </button>
+          
+            <span class="user-name">ST</span>
+          </div>
+        </header>
+        <div class="content-wrapper">
+          <h1 class="page-title">Practice Exams</h1>
+          <div id="main-cards" class="card-grid">
+            <div class="card hoverable" onclick="showTopics()">
+              <div class="card__title">Topic-by-topic</div>
+              <div class="card__description">Practice by subject and topic</div>
+            </div>
+            <div class="card hoverable" onclick="showYearly()">
+              <div class="card__title">Year-by-year</div>
+              <div class="card__description">Practice by year for each subject</div>
+            </div>
+            <div class="card hoverable" onclick="showEssay()">
+              <div class="card__title">English Essay Writing</div>
+              <div class="card__description">Practice WAEC/NECO essay types</div>
+            </div>
+          </div>
+          <div id="dynamic-content"></div>
         </div>
-        <div class="practice-card" onclick="showYearly()">
-          <div class="practice-title">Year-by-year</div>
-          <div class="practice-meta">Practice by year for each subject</div>
-        </div>
-        <div class="practice-card" onclick="showEssay()">
-          <div class="practice-title">English Essay Writing</div>
-          <div class="practice-meta">Practice WAEC/NECO essay types</div>
-        </div>
-      </div>
-      <div id="dynamic-content"></div>
-    </main>
-  </div>
+      </main>
+    </div>
   <script>
     // Full list of Mathematics topics
     const mathematicsTopics = [

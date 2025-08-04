@@ -115,20 +115,25 @@
 <body>
   <a href="../student-dashboard.html" class="back-btn"><i class="fas fa-arrow-left"></i> Back</a>
   <div class="main">
-    <div class="topbar">
-      <h1>Accounting</h1>
-      <div class="search-box">
-        <input type="text" id="searchInput" placeholder="What would you like to learn..." onkeyup="filterTopics()" />
-        <span class="search-icon">&#128269;</span>
-      </div>
+    <div class="topic-list">
+      <a class="topic-card" href="accounting-topic.html?unit=principles">
+        <div class="topic-title">Principles of Accounting</div>
+        <div class="topic-desc">Basic concepts, double entry, books of accounts</div>
+      </a>
+      <a class="topic-card" href="accounting-topic.html?unit=final">
+        <div class="topic-title">Final Accounts</div>
+        <div class="topic-desc">Trading, profit & loss, balance sheet</div>
+      </a>
+      <a class="topic-card" href="accounting-topic.html?unit=partnership">
+        <div class="topic-title">Partnership Accounts</div>
+        <div class="topic-desc">Formation, profit sharing, dissolution</div>
+      </a>
+      <a class="topic-card" href="accounting-topic.html?unit=company">
+        <div class="topic-title">Company Accounts</div>
+        <div class="topic-desc">Share capital, reserves, published accounts</div>
+      </a>
+      <a class="topic-card" href="accounting-topic.html?unit=public">
+        <div class="topic-title">Public Sector Accounting</div>
+        <div class="topic-desc">Government accounts, fund management</div>
+      </a>
     </div>
-    <div class="topics-grid" id="topicsGrid">
-      <!-- Topic cards will be injected here by JS -->
-    </div>
-  </div>
-  <script>
-    // ...existing code for rendering topics and filtering...
-  </script>
-</body>
-</html>
-</html>

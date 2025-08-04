@@ -3,61 +3,50 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Government - Topics</title>
+  <title>Government - Units</title>
   <link rel="stylesheet" href="../styles.css" />
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
   <style>
-    .layout {
-      display: flex;
-      min-height: 100vh;
-    }
-.sidebar {
-  width: 240px;
-}
-    .search-icon {
-      position: absolute;
-      right: 12px;
-      top: 50%;
-      transform: translateY(-50%);
-      color: #888;
-      font-size: 1.2rem;
-    }
-    .topics-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 28px;
-    }
-    .topic-card {
-      background: #fff;
-      border-radius: 16px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.04);
-      padding: 32px 24px 24px 24px;
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-      transition: box-shadow 0.2s;
-      min-height: 120px;
-    }
-    .topic-card:hover {
-      box-shadow: 0 4px 16px rgba(26,115,232,0.08);
-    }
-    .topic-title {
-      font-size: 1.15rem;
-      font-weight: 600;
-      margin-bottom: 8px;
-      color: #1a73e8;
-      text-decoration: none;
-    }
-    .topic-desc {
-      font-size: 0.95rem;
-      color: #555;
-    }
-    @media (max-width: 700px) {
-      .sidebar { width: 100px; }
-      .main { margin-left: 100px; padding: 16px; }
-      .topbar h1 { font-size: 1.2rem; }
-      .search-box { width: 140px; }
-      .topics-grid { grid-template-columns: 1fr; gap: 16px; }
+    .main-content { max-width: 900px; margin: 40px auto 0 auto; background: #fff; border-radius: 16px; box-shadow: 0 2px 8px rgba(30,41,59,0.07); padding: 2.5rem 2rem 2rem 2rem; min-height: 80vh; display: flex; flex-direction: column; }
+    .back-btn { display: inline-flex; align-items: center; gap: 0.5rem; background: #f1f5f9; color: #1e293b; border: none; border-radius: 8px; padding: 0.5rem 1.2rem; font-size: 1rem; font-weight: 500; cursor: pointer; margin-bottom: 2rem; box-shadow: 0 1px 4px rgba(30,41,59,0.05); transition: background 0.2s, color 0.2s; text-decoration: none; }
+    .back-btn:hover { background: #e0e7ef; color: #1a73e8; }
+    h1 { font-size: 1.5rem; font-weight: 600; color: #1a73e8; margin-bottom: 1.5rem; }
+    .topic-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.3rem; }
+    .topic-card { background: #fff; border-radius: 12px; box-shadow: 0 2px 8px rgba(30,41,59,0.07); padding: 1.5rem 1rem; display: flex; flex-direction: column; gap: 0.7rem; font-size: 1.05rem; color: #1e293b; font-weight: 500; text-decoration: none; transition: box-shadow 0.2s; cursor: pointer; }
+    .topic-card:hover { box-shadow: 0 4px 16px rgba(26,115,232,0.13); color: #1a73e8; }
+    .topic-title { font-weight: 600; font-size: 1.1rem; color: #1a73e8; text-decoration: none; }
+    @media (max-width: 600px) { .main-content { padding: 1rem 0.5rem; } .topic-list { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+  <main class="main-content">
+    <a href="../student-dashboard.html" class="back-btn"><i class="fas fa-arrow-left"></i> Back to Dashboard</a>
+    <h1>Government</h1>
+    <div class="topic-list">
+      <a class="topic-card" href="government-topic.html?unit=elements">
+        <div class="topic-title">Elements of Government</div>
+        <div class="topic-desc">Nature, scope, organs, types</div>
+      </a>
+      <a class="topic-card" href="government-topic.html?unit=political">
+        <div class="topic-title">Political Development</div>
+        <div class="topic-desc">Political parties, pressure groups, elections</div>
+      </a>
+      <a class="topic-card" href="government-topic.html?unit=institutions">
+        <div class="topic-title">Government Institutions</div>
+        <div class="topic-desc">Legislature, executive, judiciary</div>
+      </a>
+      <a class="topic-card" href="government-topic.html?unit=nigeria">
+        <div class="topic-title">Government in Nigeria</div>
+        <div class="topic-desc">Pre-colonial, colonial, post-independence</div>
+      </a>
+      <a class="topic-card" href="government-topic.html?unit=international">
+        <div class="topic-title">International Relations</div>
+        <div class="topic-desc">Foreign policy, international organizations</div>
+      </a>
+    </div>
+  </main>
+</body>
+</html>
       .topic-card { padding: 16px; }
     }
   </style>

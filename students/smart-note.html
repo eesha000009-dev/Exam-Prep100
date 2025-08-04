@@ -45,63 +45,23 @@
   <title>Smart Note Page</title>
   
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../general/modernized.css">
   <style>
-    /* Sidebar Styles */
-        body {
-      margin: 0;
-      font-family: 'Inter', sans-serif;
-      background: #f7f8fa;
-      color: #1e293b;
-    }
     .layout {
       display: flex;
       min-height: 100vh;
     }
-    .sidebar {
-      width: 240px;
-      background: #1e293b;
-      color: #fff;
-      display: flex;
-      flex-direction: column;
-      padding: 2rem 1rem;
+
+    .main-content {
+      margin-left: 280px;
+      padding: var(--spacing-xl) var(--spacing-xxl);
+      background: var(--bg-light);
       min-height: 100vh;
-      position: fixed;
-      top: 0;
-      left: 0;
-      height: 100vh;
-      z-index: 100;
+      max-width: calc(100% - 280px);
     }
-    .sidebar__logo {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      font-size: 1.5rem;
-      font-weight: 700; /* Bold for logo */
-      color: #fff;
-      margin-bottom: 2rem;
-      text-decoration: none;
-    }
-    .sidebar__menu {
-      display: flex;
-      flex-direction: column;
-      gap: 0.5rem;
-    }
-    .sidebar__item {
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-      padding: 0.75rem 1rem;
-      color: #fff;
-      text-decoration: none;
-      border-radius: 8px;
-      font-size: 1rem;
-      font-weight: normal; /* Normal for menu items */
-      transition: background 0.2s;
-    }
-    .sidebar__item.active, .sidebar__item:hover {
-      background: #334155;
-      color: #38bdf8;
-    }
+
+    /* Using modernized.css sidebar styles */
     .jot-edit-btn {
       background: #2563eb;
       color: #fff;
@@ -157,62 +117,123 @@
       font-weight: 700;
       margin-bottom: 1rem;
     }
-    .create-jot-btn {
-      margin-bottom: 1.5rem;
-      background: #7c3aed;
-      color: #fff;
-      padding: 0.5rem 1.5rem;
-      border-radius: 8px;
-      border: none;
-      font-weight: 600;
-      cursor: pointer;
-      transition: background 0.15s;
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: var(--spacing-sm) var(--spacing-lg);
+      border-radius: var(--radius-lg);
       font-size: 1rem;
+      font-weight: 500;
+      border: none;
+      cursor: pointer;
+      transition: all 0.2s;
+      gap: var(--spacing-sm);
     }
-    .create-jot-btn:hover {
-      background: #5b21b6;
+    
+    .btn-primary {
+      background: var(--primary);
+      color: white;
+    }
+    
+    .btn-primary:hover {
+      background: var(--primary-dark);
     }
 
 
     /* Main Content Styles */
-    .main {
-      margin-left: 240px;
-      padding: 32px 40px;
-      background: #f7f8fa;
-      min-height: 100vh;
+    /* Dashboard Specific Styles */
+    .dashboard-topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: var(--spacing-xl);
+      padding: var(--spacing-sm) 0;
     }
-    .search-box {
+    
+    .search-container {
+      flex: 1;
+      max-width: 480px;
       position: relative;
-      width: 100%;
-      max-width: 500px;
-      margin-bottom: 2rem;
+      margin-right: var(--spacing-xl);
     }
-    .search-box input {
-      width: 100%;
-      padding: 10px 40px 10px 40px;
-      border-radius: 24px;
-      border: 1px solid #ddd;
-      font-size: 1rem;
-      background: #fff;
-      outline: none;
-    }
+    
     .search-icon {
       position: absolute;
-      left: 12px;
+      left: var(--spacing-sm);
       top: 50%;
       transform: translateY(-50%);
-      color: #888;
-      font-size: 1.2rem;
+      color: var(--text-secondary);
+      font-size: 1.1rem;
+    }
+    
+    .search-input {
+      width: 100%;
+      padding: 0.875rem var(--spacing-xl);
+      padding-left: 2.75rem;
+      border-radius: 9999px;
+      border: 2px solid var(--border-color);
+      font-size: 1rem;
+      transition: all 0.2s;
+      background: white;
+    }
+    
+    .search-input:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(37,99,235,0.1);
+      outline: none;
+    }
+
+    .user-info {
+      display: flex;
+      align-items: center;
+      gap: var(--spacing-md);
+    }
+    
+    .notification-btn {
+      position: relative;
+      background: none;
+      border: none;
+      color: var(--text-secondary);
+      font-size: 1.25rem;
+      cursor: pointer;
+      padding: var(--spacing-xs);
+      border-radius: var(--radius-md);
+      transition: all 0.2s;
+    }
+    
+    .notification-btn:hover {
+      color: var(--primary);
+      background: rgba(37,99,235,0.1);
+    }
+    
+    .notification-badge {
+      position: absolute;
+      top: 0;
+      right: 0;
+      background: var(--danger);
+      color: white;
+      border-radius: 50%;
+      width: 18px;
+      height: 18px;
+      font-size: 0.75rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
     .jot-card {
-      background: #fff;
-      border-radius: 16px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.04);
-      padding: 24px;
-      transition: box-shadow 0.2s;
+      background: white;
+      border-radius: var(--radius-lg);
+      padding: var(--spacing-lg);
+      box-shadow: var(--shadow-sm);
+      transition: all 0.2s ease;
+      margin-bottom: var(--spacing-lg);
+      border: 1px solid var(--border-color);
     }
     .jot-card:hover {
-      box-shadow: 0 4px 16px rgba(26,115,232,0.08);
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-md);
+      border-color: var(--primary);
     }
     /* Modal Styles */
     .modal {
@@ -225,16 +246,18 @@
       z-index: 200;
     }
     .modal-content {
-      background: #fff;
-      padding: 24px;
-      border-radius: 8px;
+      background: white;
+      padding: var(--spacing-xl);
+      border-radius: var(--radius-lg);
       width: 100%;
       max-width: 500px;
+      box-shadow: var(--shadow-lg);
     }
     #jotsGrid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-      gap: 1.5rem;
+      gap: var(--spacing-lg);
+      margin-top: var(--spacing-xl);
     }
     #modalTitle {
       font-size: 1.25rem;
@@ -305,38 +328,75 @@
         <span>EduNext-prep100</span>
       </a>
       <nav class="sidebar__menu">
-      <a href="student-dashboard.html" class="sidebar__item"><i class="fas fa-home"></i> Home</a>
-      <a href="ai-tutor-chatbot.html" class="sidebar__item active"><i class="fas fa-robot"></i> AI Tutor</a>
-      <a href="study-plan.html" class="sidebar__item"><i class="fas fa-calendar-alt"></i> Study Plan</a>
-      <a href="smart-note.html" class="sidebar__item"><i class="fas fa-sticky-note"></i> Smart Notes</a>
-      <a href="video-library.html" class="sidebar__item"><i class="fas fa-video"></i> Video Library</a>
-      <a href="mock-exams.html" class="sidebar__item"><i class="fas fa-file-alt"></i> Mock Exams</a>
-      <a href="practice-exams.html" class="sidebar__item"><i class="fas fa-pencil-alt"></i> Practice Exams</a>
-      <a href="notifications.html" class="sidebar__item"><i class="fas fa-bell"></i> Notifications</a>
-      <a href="student-live-session.html" class="sidebar__item"><i class="fas fa-chalkboard-teacher"></i> Join Live Session</a>
+        <a href="student-dashboard.html" class="sidebar__item">
+          <i class="fas fa-home"></i> Home
+        </a>
+        <a href="ai-tutor-chatbot.html" class="sidebar__item">
+          <i class="fas fa-robot"></i> AI Tutor
+        </a>
+        <a href="study-plan.html" class="sidebar__item">
+          <i class="fas fa-calendar-alt"></i> Study Plan
+        </a>
+        <a href="smart-note.html" class="sidebar__item active">
+          <i class="fas fa-sticky-note"></i> Smart Notes
+        </a>
+        <a href="video-library.html" class="sidebar__item">
+          <i class="fas fa-video"></i> Video Library
+        </a>
+        <a href="mock-exams.html" class="sidebar__item">
+          <i class="fas fa-file-alt"></i> Mock Exams
+        </a>
+        <a href="practice-exams.html" class="sidebar__item">
+          <i class="fas fa-pencil-alt"></i> Practice Exams
+        </a>
+        <a href="notifications.html" class="sidebar__item">
+          <i class="fas fa-bell"></i> Notifications
+        </a>
+        <a href="student-live-session.html" class="sidebar__item">
+          <i class="fas fa-chalkboard-teacher"></i> Join Live Session
+        </a>
       </nav>
     </aside>
 
   <!-- Main Content -->
-  <div class="main">
-    <h1>Smart Note Page</h1>
+  <div class="main-content">
+    <div class="dashboard-topbar">
+      <div class="search-container">
+        <i class="fas fa-search search-icon"></i>
+        <input type="text" id="searchInput" class="search-input" placeholder="Search notes by title, content, or tags..." onkeyup="filterJots()">
+      </div>
+      <div class="user-info">
+        <div class="badge badge-primary">SS 3/WAEC</div>
+        <button class="notification-btn">
+          <i class="fas fa-bell"></i>
+          <span class="notification-badge">3</span>
+        </button>
+        <img src="https://ui-avatars.com/api/?name=Student&background=2563eb&color=fff" alt="User" class="avatar">
+      </div>
+    </div>
+
+    <div class="section-header">
+      <h1 class="section-title">Smart Notes</h1>
+      <button onclick="openModal(null)" class="btn btn-primary">
+        <i class="fas fa-plus"></i> Create New Note
+      </button>
+    </div>
+
     <div id="jotsGrid"></div>
-              <!-- The following buttons should be rendered dynamically in JavaScript, not hardcoded here -->
-    <button onclick="openModal(null)" class="create-jot-btn">Create New Jot</button>
-      <h2 id="modalTitle"></h2>
-        <input type="text" id="jotTagsPreview" placeholder="Tags (comma-separated)" class="jot-input jot-tags-input" readonly>
   <!-- Modal for Creating/Editing Jots -->
   <div id="jotModal" class="modal">
     <div class="modal-content">
-      <h2 id="modalTitle"></h2>
-        <div class="modal-btns">
-          <button onclick="saveJot()" class="modal-save-btn">Save</button>
-          <button onclick="closeModal()" class="modal-cancel-btn">Cancel</button>
-        </div>
-        <div class="modal-btns">
-          <button onclick="saveJot()" class="modal-save-btn">Save</button>
-          <button onclick="closeModal()" class="modal-cancel-btn">Cancel</button>
-        </div>
+      <h2 id="modalTitle" class="section-title mb-lg"></h2>
+      <input type="text" id="jotTitle" placeholder="Title" class="form-input" required>
+      <textarea id="jotContent" placeholder="Content" class="form-textarea" required></textarea>
+      <input type="text" id="jotTags" placeholder="Tags (comma-separated)" class="form-input">
+      <div class="flex-row gap-sm mt-lg">
+        <button onclick="saveJot()" class="btn btn-primary">
+          <i class="fas fa-save"></i> Save
+        </button>
+        <button onclick="closeModal()" class="btn btn-secondary">
+          <i class="fas fa-times"></i> Cancel
+        </button>
       </div>
     </div>
   </div>
@@ -358,13 +418,19 @@
       ).forEach(jot => {
         grid.innerHTML += `
           <div class="jot-card">
-            <h3>${jot.title}</h3>
-            <p>${jot.content}</p>
-            <div><strong>Tags:</strong> ${jot.tags.join(", ")}</div>
-            <div class="jot-card-btns" style="margin-top: 0.5rem;">
-              <button onclick="openModal(${jot.id})" style="background: #2563eb; color: #fff; border: none; border-radius: 8px; padding: 0.3rem 1rem; font-size: 1rem; font-weight: 600; cursor: pointer; transition: background 0.15s;" onmouseover="this.style.background='#1e3a8a'" onmouseout="this.style.background='#2563eb'">Edit</button>
-              <button onclick="deleteJot(${jot.id})" style="background: #ef4444; color: #fff; border: none; border-radius: 8px; padding: 0.3rem 1rem; font-size: 1rem; font-weight: 600; cursor: pointer; transition: background 0.15s;" onmouseover="this.style.background='#b91c1c'" onmouseout="this.style.background='#ef4444'">Delete</button>
-              <button onclick="shareJot(${jot.id})" style="background: #22c55e; color: #fff; border: none; border-radius: 8px; padding: 0.3rem 1rem; font-size: 1rem; font-weight: 600; cursor: pointer; transition: background 0.15s;" onmouseover="this.style.background='#15803d'" onmouseout="this.style.background='#22c55e'">Share</button>
+            <h3 class="text-lg font-semibold">${jot.title}</h3>
+            <p class="text-gray-600 mt-2">${jot.content}</p>
+            <div class="text-sm text-gray-500 mt-3"><i class="fas fa-tags"></i> ${jot.tags.join(", ")}</div>
+            <div class="action-buttons">
+              <button onclick="openModal(${jot.id})" class="btn btn-secondary">
+                <i class="fas fa-edit"></i> Edit
+              </button>
+              <button onclick="deleteJot(${jot.id})" class="btn btn-danger">
+                <i class="fas fa-trash"></i> Delete
+              </button>
+              <button onclick="shareJot(${jot.id})" class="btn btn-success">
+                <i class="fas fa-share"></i> Share
+              </button>
             </div>
           </div>
         `;

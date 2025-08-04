@@ -43,128 +43,275 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Study Plan Page</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="../general/modernized.css">
   <style>
-    body {
-      margin: 0;
-      font-family: 'Inter', sans-serif;
-      background: #f7f8fa;
-      color: #1e293b;
-    }
-    .layout {
-      display: flex;
-      min-height: 100vh;
-    }
-    .sidebar {
-      width: 240px;
-      background: #1e293b;
-      color: #fff;
-      display: flex;
-      flex-direction: column;
-      padding: 2rem 1rem;
-      min-height: 100vh;
-      position: fixed;
-      top: 0;
-      left: 0;
-      height: 100vh;
-      z-index: 100;
-    }
-    .sidebar__logo {
+    /* Dashboard Specific Styles */
+    .dashboard-topbar {
       display: flex;
       align-items: center;
-      gap: 0.5rem;
-      font-size: 1.5rem;
-      font-weight: 700; /* Bold for logo */
-      color: #fff;
-      margin-bottom: 2rem;
-      text-decoration: none;
+      justify-content: space-between;
+      margin-bottom: var(--spacing-xl);
+      padding: var(--spacing-sm) 0;
     }
-    .sidebar__menu {
-      display: flex;
-      flex-direction: column;
-      gap: 0.5rem;
-    }
-    .sidebar__item {
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-      padding: 0.75rem 1rem;
-      color: #fff;
-      text-decoration: none;
-      border-radius: 8px;
-      font-size: 1rem;
-      font-weight: normal; /* Normal for menu items */
-      transition: background 0.2s;
-    }
-    .sidebar__item.active, .sidebar__item:hover {
-      background: #334155;
-      color: #38bdf8;
-    }
-    .main {
-      margin-left: 240px;
-      padding: 32px 40px;
-      background: #f7f8fa;
-      min-height: 100vh;
-    }
-    .search-box {
+    
+    .search-container {
+      flex: 1;
+      max-width: 480px;
       position: relative;
-      width: 100%;
-      max-width: 500px;
-      margin-bottom: 2rem;
+      margin-right: var(--spacing-xl);
     }
-    .search-box input {
-      width: 100%;
-      padding: 10px 40px 10px 40px;
-      border-radius: 24px;
-      border: 1px solid #ddd;
-      font-size: 1rem;
-      background: #fff;
-      outline: none;
-    }
+    
     .search-icon {
       position: absolute;
-      left: 12px;
+      left: var(--spacing-sm);
       top: 50%;
       transform: translateY(-50%);
-      color: #888;
-      font-size: 1.2rem;
+      color: var(--text-secondary);
+      font-size: 1.1rem;
     }
-    .plan-card {
+    
+    .search-input {
+      width: 100%;
+      padding: 0.875rem var(--spacing-xl);
+      padding-left: 2.75rem;
+      border-radius: 9999px;
+      border: 2px solid var(--border-color);
+      font-size: 1rem;
+      transition: all 0.2s;
       background: #fff;
-      border-radius: 16px;
-      box-shadow: 0 2px 8px rgba(30,41,59,0.04);
-      padding: 24px;
-      transition: box-shadow 0.2s;
-      margin-bottom: 1.5rem;
+    }
+    
+    .search-input:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(37,99,235,0.1);
+      outline: none;
+    }
+    .user-info {
+      display: flex;
+      align-items: center;
+      gap: var(--spacing-md);
+    }
+    
+    .notification-btn {
+      position: relative;
+      background: none;
+      border: none;
+      color: var(--text-secondary);
+      font-size: 1.25rem;
+      cursor: pointer;
+      padding: var(--spacing-xs);
+      border-radius: var(--radius-md);
+      transition: all 0.2s;
+    }
+    
+    .notification-btn:hover {
+      color: var(--primary);
+      background: rgba(37,99,235,0.1);
+    }
+    
+    .notification-badge {
+      position: absolute;
+      top: 0;
+      right: 0;
+      background: var(--danger);
+      color: white;
+      border-radius: 50%;
+      width: 18px;
+      height: 18px;
+      font-size: 0.75rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .welcome-banner {
+      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+      border-radius: var(--radius-xl);
+      padding: var(--spacing-xl);
+      color: white;
+      margin-bottom: var(--spacing-xl);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .main-content {
+      margin-left: 280px;
+      padding: var(--spacing-xl) var(--spacing-xxl);
+      background: var(--bg-light);
+      min-height: 100vh;
+      max-width: calc(100% - 280px);
+    }
+    /* Remove old search styles */
+    .plan-card {
+      background: white;
+      border-radius: var(--radius-lg);
+      padding: var(--spacing-lg);
+      box-shadow: var(--shadow-sm);
+      transition: all 0.2s ease;
+      margin-bottom: var(--spacing-lg);
+      border: 1px solid var(--border-color);
     }
     .plan-card:hover {
-      box-shadow: 0 4px 16px rgba(30,41,59,0.08);
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-md);
+      border-color: var(--primary);
     }
     .btn {
-      display: inline-block;
-      padding: 0.5rem 1.2rem;
-      border-radius: 8px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.75rem 1.5rem;
+      border-radius: var(--radius-lg);
       font-size: 1rem;
       font-weight: 500;
       border: none;
-      background: #6366f1;
-      color: #fff;
+      background: var(--primary);
+      color: var(--white);
       cursor: pointer;
-      transition: background 0.2s;
-      margin-right: 0.5rem;
+      transition: all 0.2s;
+      margin-right: 0.75rem;
     }
     .btn:hover {
-      background: #4338ca;
+      background: var(--primary-dark);
     }
     .btn.cancel {
-      background: #64748b;
+      background: var(--text-secondary);
     }
     .btn.cancel:hover {
-      background: #334155;
+      background: var(--text-primary);
     }
     .btn-margin-bottom {
-      margin-bottom: 1.5rem;
+      margin-bottom: var(--spacing-lg);
     }
+    
+    .action-buttons {
+      display: flex;
+      gap: var(--spacing-sm);
+      margin-top: var(--spacing-md);
+      flex-wrap: wrap;
+    }
+
+    .btn-warning {
+      background: var(--warning);
+      color: var(--white);
+    }
+    .btn-warning:hover {
+      background: var(--warning-dark);
+    }
+
+    .btn-secondary {
+      background: var(--secondary);
+      color: var(--white);
+    }
+    .btn-secondary:hover {
+      background: var(--secondary-dark);
+    }
+
+    .btn-danger {
+      background: var(--danger);
+      color: var(--white);
+    }
+    .btn-danger:hover {
+      background: var(--danger-dark);
+    }
+
+    .btn-success {
+      background: var(--success);
+      color: var(--white);
+    }
+    .btn-success:hover {
+      background: var(--success-dark);
+    }
+
+    .btn i {
+      margin-right: var(--spacing-xs);
+    }
+
+    /* Calendar Styles */
+    .calendar {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: var(--spacing-xs);
+      background: white;
+      padding: var(--spacing-lg);
+      border-radius: var(--radius-lg);
+      margin-bottom: var(--spacing-xl);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .calendar-header {
+      grid-column: span 7;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: var(--spacing-md) 0;
+      margin-bottom: var(--spacing-sm);
+    }
+
+    .calendar-title {
+      font-weight: 600;
+      font-size: 1.125rem;
+      color: var(--text-primary);
+    }
+
+    .calendar-nav-btn {
+      border: none;
+      background: var(--bg-light);
+      color: var(--text-primary);
+      width: 32px;
+      height: 32px;
+      border-radius: var(--radius-full);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .calendar-nav-btn:hover {
+      background: var(--bg-hover);
+      color: var(--primary);
+    }
+
+    .calendar-weekday {
+      text-align: center;
+      font-weight: 500;
+      color: var(--text-muted);
+      padding: var(--spacing-xs);
+      font-size: 0.875rem;
+    }
+
+    .calendar-cell {
+      aspect-ratio: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.875rem;
+      color: var(--text-primary);
+      border-radius: var(--radius-md);
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .calendar-cell:hover {
+      background: var(--bg-hover);
+      transform: translateY(-1px);
+    }
+
+    .calendar-cell.event {
+      background: var(--primary-light);
+      color: var(--primary);
+      font-weight: 500;
+    }
+
+    .calendar-cell.today {
+      background: var(--primary);
+      color: white;
+      font-weight: 600;
+    }
+
     /* Modal Styles */
     .modal {
       display: none;
@@ -175,31 +322,33 @@
       justify-content: center;
       z-index: 200;
     }
+
     .modal-content {
-      background: #fff;
-      padding: 24px;
-      border-radius: 8px;
+      background: white;
+      padding: var(--spacing-xl);
+      border-radius: var(--radius-lg);
       width: 100%;
       max-width: 500px;
+      box-shadow: var(--shadow-lg);
     }
     /* Calendar Styles */
     .calendar {
       display: grid;
       grid-template-columns: repeat(7, 1fr);
-      gap: 2px;
-      background: #fff;
-      padding: 10px;
-      border-radius: 8px;
-      margin-bottom: 2rem;
-      box-shadow: 0 2px 8px rgba(30,41,59,0.04);
+      gap: var(--spacing-xs);
+      background: white;
+      padding: var(--spacing-md);
+      border-radius: var(--radius-lg);
+      margin-bottom: var(--spacing-xl);
+      box-shadow: 0 2px 8px rgba(30,41,59,0.07);
     }
     .calendar-header {
       grid-column: span 7;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 10px;
-      font-weight: bold;
+      padding: var(--spacing-sm);
+      font-weight: 600;
     }
     .calendar-day {
       text-align: center;
@@ -224,15 +373,37 @@
     .calendar-date.has-plan {
       border: 2px solid #38bdf8;
     }
-    @media (max-width: 700px) {
-      .sidebar { width: 100px; }
-      .main { margin-left: 100px; padding: 16px; }
+    @media (max-width: 768px) {
+      .dashboard-topbar {
+        flex-direction: column;
+        align-items: stretch;
+        gap: var(--spacing-md);
+      }
+      
+      .search-container {
+        max-width: 100%;
+        margin-right: 0;
+      }
+      
+      .welcome-banner {
+        padding: var(--spacing-lg);
+      }
+      
+      .welcome-title {
+        font-size: 1.5rem;
+      }
+      
+      .section-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: var(--spacing-sm);
+      }
     }
     .study-plan-title {
       font-size: 2rem;
       font-weight: 700;
-      text-align: center;
-      margin-bottom: 2rem;
+      color: var(--text-primary);
+      margin-bottom: var(--spacing-xl);
     }
   </style>
   <div class="layout">
@@ -242,24 +413,53 @@
         <span>EduNext-prep100</span>
       </a>
       <nav class="sidebar__menu">
-      <a href="student-dashboard.html" class="sidebar__item"><i class="fas fa-home"></i> Home</a>
-      <a href="ai-tutor-chatbot.html" class="sidebar__item active"><i class="fas fa-robot"></i> AI Tutor</a>
-      <a href="study-plan.html" class="sidebar__item"><i class="fas fa-calendar-alt"></i> Study Plan</a>
-      <a href="smart-note.html" class="sidebar__item"><i class="fas fa-sticky-note"></i> Smart Notes</a>
-      <a href="video-library.html" class="sidebar__item"><i class="fas fa-video"></i> Video Library</a>
-      <a href="mock-exams.html" class="sidebar__item"><i class="fas fa-file-alt"></i> Mock Exams</a>
-      <a href="practice-exams.html" class="sidebar__item"><i class="fas fa-pencil-alt"></i> Practice Exams</a>
-      <a href="notifications.html" class="sidebar__item"><i class="fas fa-bell"></i> Notifications</a>
-      <a href="student-live-session.html" class="sidebar__item"><i class="fas fa-chalkboard-teacher"></i> Join Live Session</a>
+        <a href="student-dashboard.html" class="sidebar__item">
+          <i class="fas fa-home"></i> Home
+        </a>
+        <a href="ai-tutor-chatbot.html" class="sidebar__item">
+          <i class="fas fa-robot"></i> AI Tutor
+        </a>
+        <a href="study-plan.html" class="sidebar__item active">
+          <i class="fas fa-calendar-alt"></i> Study Plan
+        </a>
+        <a href="smart-note.html" class="sidebar__item">
+          <i class="fas fa-sticky-note"></i> Smart Notes
+        </a>
+        <a href="video-library.html" class="sidebar__item">
+          <i class="fas fa-video"></i> Video Library
+        </a>
+        <a href="mock-exams.html" class="sidebar__item">
+          <i class="fas fa-file-alt"></i> Mock Exams
+        </a>
+        <a href="practice-exams.html" class="sidebar__item">
+          <i class="fas fa-pencil-alt"></i> Practice Exams
+        </a>
+        <a href="notifications.html" class="sidebar__item">
+          <i class="fas fa-bell"></i> Notifications
+        </a>
+        <a href="student-live-session.html" class="sidebar__item">
+          <i class="fas fa-chalkboard-teacher"></i> Join Live Session
+        </a>
       </nav>
     </aside>
 
   <!-- Main Content -->
-  <div class="main">
+  <div class="main-content">
+    <div class="dashboard-topbar">
+      <div class="search-container">
+        <i class="fas fa-search search-icon"></i>
+        <input type="text" id="searchInput" class="search-input" placeholder="Search plans by subject, topic, or tags..." onkeyup="filterPlans()">
+      </div>
+      <div class="user-info">
+        <div class="badge badge-primary">SS 3/WAEC</div>
+        <button class="notification-btn">
+          <i class="fas fa-bell"></i>
+          <span class="notification-badge">3</span>
+        </button>
+        <img src="https://ui-avatars.com/api/?name=Student&background=2563eb&color=fff" alt="User" class="avatar">
+      </div>
+    </div>
     <h1 class="study-plan-title">Study Plan Page</h1>
-    <div class="search-box">
-      <input type="text" id="searchInput" placeholder="Search plans by subject, topic, or tags..." onkeyup="filterPlans()">
-      <span class="search-icon"><i class="fas fa-search"></i></span>
     <button onclick="openModal(null)" class="btn btn-margin-bottom">Create New Plan</button>
     <!-- Calendar -->
     <div id="calendar" class="calendar"></div>
@@ -272,19 +472,19 @@
     <div class="modal-content">
       <h2 id="modalTitle" class="text-xl font-bold mb-4"></h2>
       <div>
-        <input type="text" id="planSubject" placeholder="Subject" class="w-full p-2 mb-4 border rounded" required>
-        <input type="text" id="planTopic" placeholder="Topic" class="w-full p-2 mb-4 border rounded" required>
-        <input type="date" id="planDate" class="w-full p-2 mb-4 border rounded" required>
-        <input type="time" id="planTime" class="w-full p-2 mb-4 border rounded" required>
-        <input type="number" id="planDuration" placeholder="Duration (minutes)" class="w-full p-2 mb-4 border rounded" min="1" required>
-        <input type="text" id="planTags" placeholder="Tags (comma-separated)" class="w-full p-2 mb-4 border rounded">
-        <select id="planReminder" class="w-full p-2 mb-4 border rounded">
+        <input type="text" id="planSubject" placeholder="Subject" class="form-input" required>
+        <input type="text" id="planTopic" placeholder="Topic" class="form-input" required>
+        <input type="date" id="planDate" class="form-input" required>
+        <input type="time" id="planTime" class="form-input" required>
+        <input type="number" id="planDuration" placeholder="Duration (minutes)" class="form-input" min="1" required>
+        <input type="text" id="planTags" placeholder="Tags (comma-separated)" class="form-input">
+        <select id="planReminder" class="form-select">
           <option value="none">No Reminder</option>
           <option value="15">15 Minutes Before</option>
           <option value="30">30 Minutes Before</option>
           <option value="60">1 Hour Before</option>
         </select>
-        <div class="flex space-x-2">
+        <div class="flex-row gap-sm mt-lg">
           <button onclick="savePlan()" class="btn">Save</button>
           <button onclick="closeModal()" class="btn cancel">Cancel</button>
         </div>
@@ -305,27 +505,29 @@
       const calendar = document.getElementById('calendar');
       calendar.innerHTML = `
         <div class="calendar-header">
-          <button onclick="prevMonth()">&lt;</button>
-          <span>${new Date(currentYear, currentMonth).toLocaleString('default', { month: 'long', year: 'numeric' })}</span>
-          <button onclick="nextMonth()">&gt;</button>
+          <button class="calendar-nav-btn" onclick="prevMonth()"><i class="fas fa-chevron-left"></i></button>
+          <span class="calendar-title">${new Date(currentYear, currentMonth).toLocaleString('default', { month: 'long', year: 'numeric' })}</span>
+          <button class="calendar-nav-btn" onclick="nextMonth()"><i class="fas fa-chevron-right"></i></button>
         </div>
-        <div class="calendar-day">Sun</div>
-        <div class="calendar-day">Mon</div>
-        <div class="calendar-day">Tue</div>
-        <div class="calendar-day">Wed</div>
-        <div class="calendar-day">Thu</div>
-        <div class="calendar-day">Fri</div>
-        <div class="calendar-day">Sat</div>
+        <div class="calendar-weekday">Sun</div>
+        <div class="calendar-weekday">Mon</div>
+        <div class="calendar-weekday">Tue</div>
+        <div class="calendar-weekday">Wed</div>
+        <div class="calendar-weekday">Thu</div>
+        <div class="calendar-weekday">Fri</div>
+        <div class="calendar-weekday">Sat</div>
       `;
       const firstDay = new Date(currentYear, currentMonth, 1).getDay();
       const daysInMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
       for (let i = 0; i < firstDay; i++) {
-        calendar.innerHTML += `<div class="calendar-date"></div>`;
+        calendar.innerHTML += `<div class="calendar-cell"></div>`;
       }
       for (let day = 1; day <= daysInMonth; day++) {
         const dateStr = `${currentYear}-${String(currentMonth + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
         const hasPlan = plans.some(plan => plan.date === dateStr);
-        calendar.innerHTML += `<div class="calendar-date ${hasPlan ? 'has-plan' : ''}" onclick="filterByDate('${dateStr}')">${day}</div>`;
+        const today = new Date();
+        const isToday = today.getDate() === day && today.getMonth() === currentMonth && today.getFullYear() === currentYear;
+        calendar.innerHTML += `<div class="calendar-cell ${hasPlan ? 'event' : ''} ${isToday ? 'today' : ''}" onclick="filterByDate('${dateStr}')">${day}</div>`;
       }
     }
 
@@ -368,11 +570,19 @@
             <p class="text-gray-600">Duration: ${plan.duration} min</p>
             <p class="text-gray-600">Reminder: ${plan.reminder === 'none' ? 'None' : `${plan.reminder} min before`}</p>
             <p class="text-gray-600">Progress: ${plan.progress}%</p>
-            <div class="mt-2 flex space-x-2">
-              <button onclick="updateProgress(${plan.id}, ${plan.progress + 10})" class="bg-yellow-500 text-white px-2 py-1 rounded hover:bg-yellow-600">Update Progress</button>
-              <button onclick="openModal(${plan.id})" class="bg-blue-500 text-white px-2 py-1 rounded hover:bg-blue-600">Edit</button>
-              <button onclick="deletePlan(${plan.id})" class="bg-red-500 text-white px-2 py-1 rounded hover:bg-red-600">Delete</button>
-              <button onclick="sharePlan(${plan.id})" class="bg-green-500 text-white px-2 py-1 rounded hover:bg-green-600">Share</button>
+            <div class="action-buttons">
+              <button onclick="updateProgress(${plan.id}, ${plan.progress + 10})" class="btn btn-warning">
+                <i class="fas fa-chart-line"></i> Update Progress
+              </button>
+              <button onclick="openModal(${plan.id})" class="btn btn-secondary">
+                <i class="fas fa-edit"></i> Edit
+              </button>
+              <button onclick="deletePlan(${plan.id})" class="btn btn-danger">
+                <i class="fas fa-trash"></i> Delete
+              </button>
+              <button onclick="sharePlan(${plan.id})" class="btn btn-success">
+                <i class="fas fa-share"></i> Share
+              </button>
             </div>
           </div>
         `;

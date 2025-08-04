@@ -35,33 +35,40 @@
     <div class="topic-list">
       <div class="topic-card" onclick="openModal('Polynomials')">
         <div class="topic-title">Polynomials</div>
+        <div class="topic-desc">Operations and factorization</div>
       </div>
       <div class="topic-card" onclick="openModal('Variation')">
         <div class="topic-title">Variation</div>
+        <div class="topic-desc">Direct, inverse and joint variations</div>
       </div>
       <div class="topic-card" onclick="openModal('Inequalities')">
         <div class="topic-title">Inequalities</div>
+        <div class="topic-desc">Linear and quadratic inequalities</div>
       </div>
       <div class="topic-card" onclick="openModal('Progression')">
         <div class="topic-title">Progression</div>
+        <div class="topic-desc">Arithmetic and geometric sequences</div>
       </div>
       <div class="topic-card" onclick="openModal('Binary Operations')">
         <div class="topic-title">Binary Operations</div>
+        <div class="topic-desc">Properties and applications</div>
       </div>
       <div class="topic-card" onclick="openModal('Matrices and Determinants')">
         <div class="topic-title">Matrices and Determinants</div>
+        <div class="topic-desc">Matrix operations and applications</div>
       </div>
     </div>
   </main>
-  <div class="modal" id="modal">
+  <div class="modal" id="topicModal">
     <div class="modal-content">
-      <button class="modal-close" onclick="closeModal()"><i class="fas fa-times"></i></button>
-      <h2 id="modalTitle">Sub-topics:</h2>
+      <button class="modal-close" onclick="closeModal()">&times;</button>
+      <h2 id="modalTitle"></h2>
       <ul class="subtopic-list" id="subtopicList"></ul>
     </div>
   </div>
+
   <script>
-    const subtopics = {
+    const topics = {
       'Polynomials': [
         'Definition and types of polynomials',
         'Operations on polynomials',
@@ -69,13 +76,15 @@
         'Applications in equations'
       ],
       'Variation': [
-        'Direct, inverse, joint and partial variation',
+        'Direct, inverse and joint variation',
         'Solving variation problems',
+        'Graphical representation',
         'Applications in real life'
       ],
       'Inequalities': [
-        'Linear and quadratic inequalities',
-        'Graphical solution',
+        'Linear inequalities',
+        'Quadratic inequalities',
+        'Graphical solutions',
         'Applications in optimization'
       ],
       'Progression': [
@@ -87,6 +96,7 @@
       'Binary Operations': [
         'Definition and properties',
         'Identity and inverse elements',
+        'Closure and associativity',
         'Applications in algebraic structures'
       ],
       'Matrices and Determinants': [
@@ -96,25 +106,28 @@
         'Applications in solving equations'
       ]
     };
+
     function openModal(topic) {
-      document.getElementById('modal').style.display = 'flex';
-      document.getElementById('modalTitle').innerText = 'Sub-topics: ' + topic;
+      document.getElementById('modalTitle').textContent = topic;
       const list = document.getElementById('subtopicList');
       list.innerHTML = '';
-      subtopics[topic].forEach(sub => {
-        list.innerHTML += `<li>${sub} <button class='start-btn' onclick='startLearning(event)'>Start Learning</button></li>`;
+      topics[topic].forEach(subtopic => {
+        const li = document.createElement('li');
+        li.innerHTML = `
+          <span>${subtopic}</span>
+          <button class="start-btn" onclick="startLearning('${topic}', '${subtopic.replace("'", "\\'")}')">Start</button>
+        `;
+        list.appendChild(li);
       });
+      document.getElementById('topicModal').style.display = 'flex';
     }
+
     function closeModal() {
-      document.getElementById('modal').style.display = 'none';
+      document.getElementById('topicModal').style.display = 'none';
     }
-    function startLearning(e) {
-      e.stopPropagation();
-      window.location.href = 'mathematics-explanation.html';
-    }
-    window.onclick = function(event) {
-      const modal = document.getElementById('modal');
-      if (event.target === modal) closeModal();
+
+    function startLearning(topic, subtopic) {
+      window.location.href = `mathematics-explanation.html?topic=${encodeURIComponent(topic)}&subtopic=${encodeURIComponent(subtopic)}`;
     }
   </script>
 </body>
