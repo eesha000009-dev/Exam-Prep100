@@ -6,159 +6,196 @@
   <title>Mock Exams - EduNext-prep100</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="../general/modernized.css" />
   <style>
-    body {
-      margin: 0;
-      font-family: 'Inter', sans-serif;
-      background: #f7f8fa;
-      color: #1e293b;
-    }
     .layout {
       display: flex;
       min-height: 100vh;
     }
-    .sidebar {
-      width: 240px;
-      background: #1e293b;
-      color: #fff;
-      display: flex;
-      flex-direction: column;
-      padding: 2rem 1rem;
-      min-height: 100vh;
-      position: fixed;
-      top: 0;
-      left: 0;
-      height: 100vh;
-      z-index: 100;
-    }
-    .sidebar__logo {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      font-size: 1.5rem;
-      font-weight: 700;
-      color: #fff;
-      margin-bottom: 2rem;
-      text-decoration: none;
-    }
-    .sidebar__menu {
-      display: flex;
-      flex-direction: column;
-      gap: 0.5rem;
-    }
-    .sidebar__item {
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-      padding: 0.75rem 1rem;
-      color: #fff;
-      text-decoration: none;
-      border-radius: 8px;
-      font-size: 1rem;
-      font-weight: normal;
-      transition: background 0.2s;
-    }
-    .sidebar__item.active, .sidebar__item:hover {
-      background: #334155;
-      color: #38bdf8;
-    }
+    
     .main-content {
-      flex: 1;
-      padding: 2rem 2.5rem;
-      background: #f7f8fa;
+      margin-left: 280px;
+      padding: var(--spacing-xl) var(--spacing-xxl);
+      background: var(--bg-light);
       min-height: 100vh;
+      flex: 1;
       display: flex;
       flex-direction: column;
-      margin-left: 240px;
     }
-    .topbar {
+    
+    .dashboard-topbar {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      margin-bottom: 2rem;
+      margin-bottom: var(--spacing-xl);
+      padding: var(--spacing-sm) 0;
     }
-    .search-bar {
+    
+    .search-container {
       flex: 1;
-      max-width: 400px;
-      padding: 0.75rem 1.5rem;
-      border-radius: 999px;
-      border: 1px solid #e2e8f0;
-      font-size: 1rem;
-      background: #fff;
-      margin-right: 2rem;
+      max-width: 480px;
+      position: relative;
+      margin-right: var(--spacing-xl);
     }
+    
+    .search-icon {
+      position: absolute;
+      left: var(--spacing-sm);
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--text-secondary);
+      font-size: 1.1rem;
+    }
+    
+    .search-input {
+      width: 100%;
+      padding: 0.875rem var(--spacing-xl);
+      padding-left: 2.75rem;
+      border-radius: 9999px;
+      border: 2px solid var(--border-color);
+      font-size: 1rem;
+      transition: all 0.2s;
+      background: white;
+    }
+    
+    .search-input:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(37,99,235,0.1);
+      outline: none;
+    }
+    
     .user-info {
       display: flex;
       align-items: center;
-      gap: 1rem;
+      gap: var(--spacing-md);
     }
+    
+    .notification-btn {
+      position: relative;
+      background: none;
+      border: none;
+      color: var(--text-secondary);
+      font-size: 1.25rem;
+      cursor: pointer;
+      padding: var(--spacing-xs);
+      border-radius: var(--radius-md);
+      transition: all 0.2s;
+    }
+    
+    .notification-btn:hover {
+      color: var(--primary);
+      background: rgba(37,99,235,0.1);
+    }
+    
+    .notification-badge {
+      position: absolute;
+      top: 0;
+      right: 0;
+      background: var(--danger);
+      color: white;
+      border-radius: 50%;
+      width: 18px;
+      height: 18px;
+      font-size: 0.75rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
     .banner {
       width: 100%;
       height: 180px;
-      background: #fff;
-      border-radius: 16px;
-      box-shadow: 0 2px 8px rgba(30,41,59,0.07);
-      margin-bottom: 2rem;
+      background: white;
+      border-radius: var(--radius-xl);
+      box-shadow: var(--shadow-sm);
+      margin-bottom: var(--spacing-xl);
       display: flex;
       align-items: center;
       justify-content: center;
       overflow: hidden;
+      transition: transform 0.2s, box-shadow 0.2s;
     }
+    
+    .banner:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-md);
+    }
+
     .banner img {
       width: 100%;
       height: 100%;
       object-fit: cover;
-      border-radius: 16px;
+      border-radius: var(--radius-xl);
     }
+
     .section-title {
-      font-size: 1.3rem;
+      font-size: 1.5rem;
       font-weight: 600;
-      margin-bottom: 1rem;
+      color: var(--text-primary);
+      margin-bottom: var(--spacing-lg);
     }
+
     .mock-exam-list {
-      background: #fff;
-      border-radius: 12px;
-      box-shadow: 0 2px 8px rgba(30,41,59,0.07);
-      padding: 2rem;
-      margin-bottom: 2rem;
+      background: white;
+      border-radius: var(--radius-xl);
+      box-shadow: var(--shadow-sm);
+      padding: var(--spacing-xl);
+      margin-bottom: var(--spacing-xl);
     }
+
     .mock-exam-item {
-      padding: 1rem 0;
-      border-bottom: 1px solid #e2e8f0;
+      padding: var(--spacing-md) 0;
+      border-bottom: 1px solid var(--border-color);
       display: flex;
       align-items: center;
       justify-content: space-between;
+      transition: transform 0.2s;
     }
+
+    .mock-exam-item:hover {
+      transform: translateX(var(--spacing-xs));
+    }
+
     .mock-exam-item:last-child {
       border-bottom: none;
     }
+
+    .mock-exam-item span {
+      font-weight: 500;
+      color: var(--text-primary);
+    }
+
     .start-btn {
-      background: #38bdf8;
-      color: #fff;
+      background: var(--primary);
+      color: white;
       border: none;
-      border-radius: 8px;
-      padding: 0.5rem 1.25rem;
+      border-radius: var(--radius-lg);
+      padding: var(--spacing-sm) var(--spacing-lg);
       font-size: 1rem;
-      font-family: 'Inter', sans-serif;
       font-weight: 500;
       cursor: pointer;
-      transition: background 0.2s;
+      transition: all 0.2s;
     }
+
     .start-btn:hover {
-      background: #0ea5e9;
+      background: var(--primary-dark);
+      transform: translateY(-2px);
     }
-    .user-level-badge {
-      background: #334155;
-      color: #fff;
-      padding: 0.5rem 1rem;
-      border-radius: 8px;
-      display: inline-block;
-      font-size: 1rem;
+
+    .badge {
+      background: var(--primary);
+      color: white;
+      padding: var(--spacing-xs) var(--spacing-md);
+      border-radius: var(--radius-lg);
+      font-size: 0.875rem;
+      font-weight: 500;
     }
-    .user-avatar {
+
+    .avatar {
       width: 32px;
       height: 32px;
       border-radius: 50%;
+      object-fit: cover;
     }
   </style>
 </head>
@@ -182,12 +219,18 @@
       </nav>
     </aside>
     <main class="main-content">
-      <div class="topbar">
-        <input class="search-bar" type="text" placeholder="Search mock exams..." />
+      <div class="dashboard-topbar">
+        <div class="search-container">
+          <i class="fas fa-search search-icon"></i>
+          <input type="text" class="search-input" placeholder="Search mock exams..." />
+        </div>
         <div class="user-info">
-          <span class="user-level-badge">SS 3/WAEC</span>
-          <i class="fas fa-bell"></i>
-          <img src="https://ui-avatars.com/api/?name=Student" alt="User" class="user-avatar" />
+          <div class="badge">SS 3/WAEC</div>
+          <button class="notification-btn">
+            <i class="fas fa-bell"></i>
+            <span class="notification-badge">3</span>
+          </button>
+          <img src="https://ui-avatars.com/api/?name=Student&background=2563eb&color=fff" alt="User" class="avatar" />
         </div>
       </div>
       <div class="banner">

@@ -33,78 +33,91 @@
     <a href="mathematics.html" class="back-btn"><i class="fas fa-arrow-left"></i> Back to Mathematics</a>
     <h1>Statistics</h1>
     <div class="topic-list">
-      <div class="topic-card" onclick="openModal('Representation of data')">
-        <div class="topic-title">Representation of data</div>
+      <div class="topic-card" onclick="openModal('Representation of Data')">
+        <div class="topic-title">Representation of Data</div>
+        <div class="topic-desc">Tables and graphs</div>
       </div>
       <div class="topic-card" onclick="openModal('Measures of Location')">
         <div class="topic-title">Measures of Location</div>
+        <div class="topic-desc">Mean, median and mode</div>
       </div>
       <div class="topic-card" onclick="openModal('Measures of Dispersion')">
         <div class="topic-title">Measures of Dispersion</div>
+        <div class="topic-desc">Variance and deviation</div>
       </div>
       <div class="topic-card" onclick="openModal('Permutation and Combination')">
         <div class="topic-title">Permutation and Combination</div>
+        <div class="topic-desc">Counting principles</div>
       </div>
       <div class="topic-card" onclick="openModal('Probability')">
         <div class="topic-title">Probability</div>
+        <div class="topic-desc">Basic concepts and applications</div>
       </div>
     </div>
   </main>
-  <div class="modal" id="modal">
+  <div class="modal" id="topicModal">
     <div class="modal-content">
-      <button class="modal-close" onclick="closeModal()"><i class="fas fa-times"></i></button>
-      <h2 id="modalTitle">Sub-topics:</h2>
+      <button class="modal-close" onclick="closeModal()">&times;</button>
+      <h2 id="modalTitle"></h2>
       <ul class="subtopic-list" id="subtopicList"></ul>
     </div>
   </div>
+
   <script>
-    const subtopics = {
-      'Representation of data': [
-        'Types of data',
-        'Tabulation and graphical representation',
-        'Bar charts, histograms, and pie charts',
-        'Applications in statistics'
+    const topics = {
+      'Representation of Data': [
+        'Types of data collection',
+        'Tabulation and frequency tables',
+        'Graphs and charts',
+        'Interpreting statistical diagrams'
       ],
       'Measures of Location': [
-        'Mean, median, and mode',
-        'Calculation and interpretation',
+        'Mean: arithmetic and weighted',
+        'Median and quartiles',
+        'Mode and modal class',
         'Applications in data analysis'
       ],
       'Measures of Dispersion': [
-        'Range, variance, and standard deviation',
-        'Calculation and interpretation',
-        'Applications in statistics'
+        'Range and interquartile range',
+        'Variance calculation',
+        'Standard deviation',
+        'Interpreting dispersion measures'
       ],
       'Permutation and Combination': [
-        'Fundamental principle of counting',
-        'Permutations and combinations',
+        'Fundamental counting principles',
+        'Permutations with/without repetition',
+        'Combinations and Pascal triangle',
         'Applications in probability'
       ],
       'Probability': [
-        'Definition and types',
-        'Calculation of probability',
+        'Basic concepts and definitions',
+        'Independent and dependent events',
+        'Addition and multiplication rules',
         'Applications in real life'
       ]
     };
+
     function openModal(topic) {
-      document.getElementById('modal').style.display = 'flex';
-      document.getElementById('modalTitle').innerText = 'Sub-topics: ' + topic;
+      document.getElementById('modalTitle').textContent = topic;
       const list = document.getElementById('subtopicList');
       list.innerHTML = '';
-      subtopics[topic].forEach(sub => {
-        list.innerHTML += `<li>${sub} <button class='start-btn' onclick='startLearning(event)'>Start Learning</button></li>`;
+      topics[topic].forEach(subtopic => {
+        const li = document.createElement('li');
+        li.innerHTML = `
+          <span>${subtopic}</span>
+          <button class="start-btn" onclick="startLearning('${topic}', '${subtopic.replace("'", "\\'")}')">Start</button>
+        `;
+        list.appendChild(li);
       });
+      document.getElementById('topicModal').style.display = 'flex';
     }
+
     function closeModal() {
-      document.getElementById('modal').style.display = 'none';
+      document.getElementById('topicModal').style.display = 'none';
     }
-    function startLearning(e) {
-      e.stopPropagation();
-      window.location.href = 'mathematics-explanation.html';
-    }
-    window.onclick = function(event) {
-      const modal = document.getElementById('modal');
-      if (event.target === modal) closeModal();
+
+    function startLearning(topic, subtopic) {
+      window.location.href = `mathematics-explanation.html?topic=${encodeURIComponent(topic)}&subtopic=${encodeURIComponent(subtopic)}`;
     }
   </script>
 </body>

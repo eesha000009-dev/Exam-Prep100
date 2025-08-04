@@ -35,44 +35,52 @@
     <div class="topic-list">
       <div class="topic-card" onclick="openModal('Euclidean Geometry')">
         <div class="topic-title">Euclidean Geometry</div>
+        <div class="topic-desc">Properties and theorems</div>
       </div>
       <div class="topic-card" onclick="openModal('Mensuration')">
         <div class="topic-title">Mensuration</div>
+        <div class="topic-desc">Area, perimeter and volume</div>
       </div>
       <div class="topic-card" onclick="openModal('Loci')">
         <div class="topic-title">Loci</div>
+        <div class="topic-desc">Construction and applications</div>
       </div>
       <div class="topic-card" onclick="openModal('Coordinate Geometry')">
         <div class="topic-title">Coordinate Geometry</div>
+        <div class="topic-desc">Lines and curves in 2D</div>
       </div>
       <div class="topic-card" onclick="openModal('Trigonometry')">
         <div class="topic-title">Trigonometry</div>
+        <div class="topic-desc">Ratios and applications</div>
       </div>
     </div>
   </main>
-  <div class="modal" id="modal">
+  <div class="modal" id="topicModal">
     <div class="modal-content">
-      <button class="modal-close" onclick="closeModal()"><i class="fas fa-times"></i></button>
-      <h2 id="modalTitle">Sub-topics:</h2>
+      <button class="modal-close" onclick="closeModal()">&times;</button>
+      <h2 id="modalTitle"></h2>
       <ul class="subtopic-list" id="subtopicList"></ul>
     </div>
   </div>
+
   <script>
-    const subtopics = {
+    const topics = {
       'Euclidean Geometry': [
-        'Properties of triangles, quadrilaterals, and circles',
+        'Properties of triangles and quadrilaterals',
+        'Circles and tangents',
         'Congruence and similarity',
-        'Construction and loci',
         'Proofs and theorems'
       ],
       'Mensuration': [
         'Perimeter and area of plane shapes',
-        'Surface area and volume of solids',
+        'Surface area of 3D objects',
+        'Volume of solids',
         'Applications in real life'
       ],
       'Loci': [
-        'Definition and types',
+        'Definition and types of loci',
         'Construction of loci',
+        'Problem solving with loci',
         'Applications in geometry'
       ],
       'Coordinate Geometry': [
@@ -88,25 +96,28 @@
         'Heights and distances'
       ]
     };
+
     function openModal(topic) {
-      document.getElementById('modal').style.display = 'flex';
-      document.getElementById('modalTitle').innerText = 'Sub-topics: ' + topic;
+      document.getElementById('modalTitle').textContent = topic;
       const list = document.getElementById('subtopicList');
       list.innerHTML = '';
-      subtopics[topic].forEach(sub => {
-        list.innerHTML += `<li>${sub} <button class='start-btn' onclick='startLearning(event)'>Start Learning</button></li>`;
+      topics[topic].forEach(subtopic => {
+        const li = document.createElement('li');
+        li.innerHTML = `
+          <span>${subtopic}</span>
+          <button class="start-btn" onclick="startLearning('${topic}', '${subtopic.replace("'", "\\'")}')">Start</button>
+        `;
+        list.appendChild(li);
       });
+      document.getElementById('topicModal').style.display = 'flex';
     }
+
     function closeModal() {
-      document.getElementById('modal').style.display = 'none';
+      document.getElementById('topicModal').style.display = 'none';
     }
-    function startLearning(e) {
-      e.stopPropagation();
-      window.location.href = 'mathematics-explanation.html';
-    }
-    window.onclick = function(event) {
-      const modal = document.getElementById('modal');
-      if (event.target === modal) closeModal();
+
+    function startLearning(topic, subtopic) {
+      window.location.href = `mathematics-explanation.html?topic=${encodeURIComponent(topic)}&subtopic=${encodeURIComponent(subtopic)}`;
     }
   </script>
 </body>

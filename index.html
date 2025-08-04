@@ -3,252 +3,835 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>EduNext-Prep100 - Learn Without Limits</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+  <title>EduNext - AI-Powered Learning Platform for WAEC & JAMB Success</title>
+  <meta name="description" content="Transform your academic journey with EduNext's AI-powered learning platform. Get personalized study plans, live tutoring, and instant help for WAEC, NECO, and JAMB exams.">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css">
+  <link rel="stylesheet" href="general/modernized.css">
+  <link rel="stylesheet" href="style.css">
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12" defer></script>
+  <!-- Firebase SDK -->
+  <script src="https://www.gstatic.com/firebasejs/10.1.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.1.0/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.1.0/firebase-firestore-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.1.0/firebase-storage-compat.js"></script>
   <style>
-    body { margin: 0; font-family: 'Inter', Arial, sans-serif; background: #f9fafb; color: #222; }
-    a { text-decoration: none; color: inherit; }
-    .container { max-width: 1120px; margin: 0 auto; padding: 0 16px; }
-    /* Live Session Features List */
-    .live-feature-item {
+    .footer {
+      background: #1a202c;
+      color: #fff;
+      padding: 4rem 2rem 2rem;
+    }
+
+    .footer-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 4rem;
+    }
+
+    .footer-logo {
       display: flex;
       align-items: center;
-      gap: 12px;
-      margin-bottom: 12px;
+      gap: 0.5rem;
+      margin-bottom: 1.5rem;
+      font-size: 1.5rem;
     }
-    .live-feature-icon {
+
+    .footer-logo i {
+      color: #4299e1;
+      font-size: 2rem;
+    }
+
+    .footer-section {
+      margin-bottom: 2rem;
+    }
+
+    .footer-section p {
+      color: #a0aec0;
+      line-height: 1.6;
+      margin-bottom: 1.5rem;
+    }
+
+    .footer-section h3 {
+      color: #fff;
       font-size: 1.2rem;
+      margin-bottom: 1rem;
+      font-weight: 600;
     }
-    /* Navbar */
-    .navbar { background: #fff; box-shadow: 0 1px 4px rgba(0,0,0,0.04); border-bottom: 1px solid #e5e7eb; position: sticky; top: 0; z-index: 50; }
-    .navbar-content { display: flex; justify-content: space-between; align-items: center; height: 64px; }
-    .navbar-brand { display: flex; align-items: center; gap: 8px; font-size: 1.25rem; font-weight: bold; color: #1e3a8a; }
-    .navbar-brand-icon { width: 32px; height: 32px; background: #1e3a8a; border-radius: 8px; display: flex; align-items: center; justify-content: center; color: #fff; font-size: 1.1rem; }
-    .navbar-links { display: flex; gap: 24px; }
-    .navbar-links a { color: #374151; font-weight: 500; transition: color 0.2s; }
-    .navbar-links a:hover { color: #1e3a8a; }
-    .navbar-actions { display: flex; gap: 12px; }
-    .btn { padding: 0.5rem 1.5rem; border-radius: 0.5rem; font-weight: 600; border: none; cursor: pointer; font-size: 1rem; transition: background 0.2s, color 0.2s; }
-    .btn-primary { background: #1e3a8a; color: #fff; }
-    .btn-primary:hover { background: #2563eb; }
-    .btn-outline { background: transparent; border: 2px solid #1e3a8a; color: #1e3a8a; }
-    .btn-outline:hover { background: #1e3a8a; color: #fff; }
-    /* Hero */
-    .hero-section { background: linear-gradient(135deg, #1e3a8a 0%, #1e40af 100%); color: #fff; padding: 80px 0; }
-    .hero-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center; }
-    @media (max-width: 1024px) { .hero-grid { grid-template-columns: 1fr; } }
-    .hero-title { font-size: 2.5rem; font-weight: bold; margin-bottom: 1.5rem; color: #22c55e; }
-    .hero-subtitle { font-size: 1.25rem; margin-bottom: 2rem; color: #fde68a; }
-    .quote-box { background: rgba(255,255,255,0.1); -webkit-backdrop-filter: blur(4px); backdrop-filter: blur(4px); border-radius: 0.75rem; padding: 1.5rem; margin-bottom: 2rem; border: 1px solid rgba(255,255,255,0.2); }
-    .quote-icon { color: #bfdbfe; font-size: 1.25rem; margin-right: 0.75rem; margin-top: 0.25rem; flex-shrink: 0; }
-    .quote-text { font-size: 1.125rem; font-style: italic; color: #f9a8d4; margin-bottom: 0.5rem; }
-    .quote-author { font-size: 0.875rem; color: #fdba74; }
-    .hero-buttons { display: flex; flex-direction: row; gap: 1rem; }
-    .hero-image { position: relative; border-radius: 1rem; overflow: hidden; box-shadow: 0 8px 32px rgba(0,0,0,0.25); }
-    .hero-image img { width: 100%; height: auto; display: block; border-radius: 1rem; }
-    .hero-image::after { content: ''; position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,0.2), transparent); border-radius: 1rem; }
-    .quote-flex { display: flex; align-items: flex-start; }
-    /* Features */
-    .features-section { background: #fff; padding: 80px 0; }
-    .features-title { text-align: center; font-size: 2rem; font-weight: bold; color: #111827; margin-bottom: 1rem; }
-    .features-desc { text-align: center; font-size: 1.25rem; color: #6b7280; margin-bottom: 2.5rem; }
-    .features-grid { 
-      display: flex; 
-      justify-content: space-between; 
-      align-items: stretch; 
-      gap: 32px; 
-      margin-top: 2.5rem;
+
+    .footer-section ul {
+      list-style: none;
+      padding: 0;
     }
-    @media (max-width: 900px) { 
-      .features-grid { 
+
+    .footer-section ul li {
+      margin-bottom: 0.75rem;
+      color: #a0aec0;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .footer-section ul li i {
+      color: #4299e1;
+      width: 20px;
+    }
+
+    .social-links {
+      display: flex;
+      gap: 1rem;
+    }
+
+    .social-links a {
+      color: #a0aec0;
+      font-size: 1.2rem;
+      transition: color 0.3s ease;
+    }
+
+    .social-links a:hover {
+      color: #4299e1;
+    }
+
+    .footer-bottom {
+      border-top: 1px solid #2d3748;
+      margin-top: 2rem;
+      padding-top: 2rem;
+      text-align: center;
+    }
+
+    .footer-links {
+      margin-top: 1rem;
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+    }
+
+    .footer-links a {
+      color: #a0aec0;
+      text-decoration: none;
+      font-size: 0.9rem;
+      transition: color 0.3s ease;
+    }
+
+    .footer-links a:hover {
+      color: #4299e1;
+    }
+
+    @media (max-width: 768px) {
+      .footer-content {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+
+      .footer-links {
         flex-direction: column;
-        grid-template-columns: 1fr; /* fallback for grid if needed */
-      } 
+        gap: 1rem;
+        align-items: center;
+      }
     }
-    .feature-card { text-align: center; }
-    .feature-icon { width: 64px; height: 64px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1rem; font-size: 2rem; }
-    .feature-live { background: #1e3a8a; color: #fff; }
-    .feature-mobile { background: #22c55e; color: #fff; }
-    .feature-cert { background: #f59e42; color: #fff; }
-    .feature-left { text-align: left; }
-    .feature-center { text-align: center; }
-    .feature-right { text-align: right; }
-    .feature-title {
+
+    .cta-section {
+      background: linear-gradient(135deg, #4299e1 0%, #3182ce 100%);
+      padding: 4rem 2rem;
+      text-align: center;
+      color: white;
+    }
+
+    .cta-content {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .cta-content h2 {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .cta-content p {
       font-size: 1.2rem;
-      font-weight: 700;
-      color: #1e3a8a;
-      margin-bottom: 0.5rem;
+      margin-bottom: 2rem;
     }
-    /* Courses, Live, Teachers, CTA, Footer (minimal for brevity) */
-    .section { padding: 80px 0; background: #fff; }
-    .section-title { text-align: center; font-size: 2rem; font-weight: bold; color: #111827; margin-bottom: 1rem; }
-    .section-desc { text-align: center; font-size: 1.25rem; color: #6b7280; margin-bottom: 2.5rem; }
-    .footer { background: #1e3a8a; color: #fff; padding: 40px 0; text-align: center; }
+
+    .cta-buttons {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+    }
+
+    .trust-badges {
+      padding: 3rem 2rem;
+      background: #f8fafc;
+    }
+
+    .trust-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .trust-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 1rem;
+    }
+
+    .trust-item img {
+      width: 48px;
+      height: 48px;
+      object-fit: contain;
+    }
+
+    .trust-item i {
+      font-size: 2rem;
+      color: #4299e1;
+    }
+
+    .trust-item span {
+      font-weight: 500;
+      color: #2d3748;
+    }
+
+    .programmer-profile {
+      padding: 4rem 2rem;
+      background: linear-gradient(135deg, #f6f9fc 0%, #eef2f7 100%);
+    }
+
+    .programmer-card {
+      max-width: 1000px;
+      margin: 2rem auto;
+      padding: 2rem;
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    }
+
+    .programmer-image img {
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin: 0 auto 2rem;
+      display: block;
+      border: 5px solid #fff;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+
+    .programmer-details {
+      text-align: left;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .programmer-details h3 {
+      font-size: 2rem;
+      color: #2d3748;
+      margin-bottom: 1.5rem;
+      text-align: center;
+    }
+
+    .info-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+    }
+
+    .personal-info, .contact-info {
+      margin-bottom: 2rem;
+      padding: 1rem;
+      background: rgba(255,255,255,0.8);
+      border-radius: 10px;
+    }
+
+    .skills-section h4 {
+      color: #4a5568;
+      margin: 1.5rem 0 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .skills-section ul {
+      list-style: none;
+      padding-left: 1.5rem;
+    }
+
+    .skills-section li {
+      margin: 0.5rem 0;
+      position: relative;
+    }
+
+    .skills-section li:before {
+      content: "•";
+      color: #4299e1;
+      font-weight: bold;
+      position: absolute;
+      left: -1rem;
+    }
+
+    .mission-statement {
+      margin-top: 2rem;
+      padding: 1rem;
+      background: #4299e1;
+      color: white;
+      border-radius: 10px;
+      text-align: center;
+      font-style: italic;
+    }
+
+    @media (max-width: 768px) {
+      .programmer-card {
+        padding: 1rem;
+      }
+      
+      .programmer-details h3 {
+        font-size: 1.5rem;
+      }
+    }
   </style>
 </head>
 <body>
-  <!-- Navbar -->
-  <nav class="navbar">
-    <div class="container navbar-content">
-      <a href="#" class="navbar-brand">
-        <span class="navbar-brand-icon">🎓</span>
-        EduNext-Prep100
-      </a>
-      <div class="navbar-links">
-        <!-- Removed Home, Courses, Live Classes, Teachers links -->
+  <!-- Floating Action Button for Quick Access -->
+  <div class="fab-container">
+    <button class="fab-button" aria-label="Quick Actions">
+      <i class="fas fa-plus"></i>
+    </button>
+    <div class="fab-options">
+      <button class="fab-option" data-action="chat">
+        <i class="fas fa-robot"></i>
+        <span>Ask AI Tutor</span>
+      </button>
+      <button class="fab-option" data-action="practice">
+        <i class="fas fa-pencil-alt"></i>
+        <span>Quick Practice</span>
+      </button>
+      <button class="fab-option" data-action="schedule">
+        <i class="fas fa-calendar-alt"></i>
+        <span>Schedule Class</span>
+      </button>
+    </div>
+  </div>
+
+  <nav class="navbar glass-effect">
+    <div class="nav-container">
+      <div class="logo">
+        <i class="fas fa-graduation-cap gradient-icon"></i>
+        <span>EduNext</span>
       </div>
-      <div class="navbar-actions">
-        <a href="general/login.html" class="btn btn-outline">Login</a>
-        <a href="general/signup.html" class="btn btn-primary">Sign Up</a>
+      <div class="nav-links">
+        <div class="nav-item dropdown">
+          <a href="#features" class="dropdown-trigger">
+            Features
+            <i class="fas fa-chevron-down"></i>
+          </a>
+          <div class="dropdown-content">
+            <a href="#ai-tutoring">
+              <i class="fas fa-robot"></i>
+              AI Tutoring
+            </a>
+            <a href="#live-classes">
+              <i class="fas fa-video"></i>
+              Live Classes
+            </a>
+            <a href="#practice-tests">
+              <i class="fas fa-file-alt"></i>
+              Practice Tests
+            </a>
+          </div>
+        </div>
+        <div class="nav-item dropdown">
+          <a href="#subjects" class="dropdown-trigger">
+            Subjects
+            <i class="fas fa-chevron-down"></i>
+          </a>
+          <div class="dropdown-content">
+            <a href="subjects/mathematics.html">Mathematics</a>
+            <a href="subjects/physics.html">Physics</a>
+            <a href="subjects/chemistry.html">Chemistry</a>
+            <a href="subjects/biology.html">Biology</a>
+          </div>
+        </div>
+       
+        <div class="auth-buttons">
+          <a href="general/login.html" class="btn btn-outline glass-effect">Log In</a>
+          <a href="general/signup.html" class="btn btn-primary pulse-effect">Get Started Free</a>
+        </div>
       </div>
+      <button class="mobile-menu" aria-label="Menu">
+        <i class="fas fa-bars"></i>
+      </button>
     </div>
   </nav>
 
-  <!-- Hero Section -->
-  <section class="hero-section">
-    <div class="container">
-      <div class="hero-grid">
-        <div>
-          <h1 class="hero-title">Learn Without Limits</h1>
-          <p class="hero-subtitle">Access quality education from anywhere. Join thousands of students and teachers on Africa's leading learning platform.</p>
-            <div class="quote-flex">
-              <span class="quote-icon">&#10077;</span>
-              <div>
-                <p class="quote-text">"Education is not preparation for life; education is life itself."</p>
-                <p class="quote-author">- John Dewey</p>
-              </div>
+  <main>
+    <section class="hero gradient-bg">
+      <div class="hero-content" data-aos="fade-right">
+        <h1 class="hero-title">
+          Prepare for 
+          <span class="typed-text"></span>
+          <br>with 
+          <span class="gradient-text glow-effect">AI-Powered Learning</span>
+        </h1>
+        <p class="hero-subtitle">
+          Join Nigeria's most innovative learning platform. Get personalized study plans,
+          instant AI tutoring, and expert guidance for exam success.
+        </p>
+        <div class="hero-cta">
+          <a href="general/signup.html" class="btn btn-primary btn-lg scale-on-hover">
+            Start Your Free Trial
+            <i class="fas fa-arrow-right"></i>
+          </a>
+          <button class="btn btn-outline btn-lg video-trigger" data-video="intro-video">
+            <i class="fas fa-play-circle"></i>
+            Watch Demo
+          </button>
+        </div>
+        
+        <div class="achievement-cards">
+          <div class="achievement-card" data-aos="fade-up" data-aos-delay="100">
+            <div class="achievement-icon">
+              <i class="fas fa-users"></i>
             </div>
+            <div class="achievement-info">
+              <div class="counter" data-target="50000">0</div>
+              <span>Active Students</span>
             </div>
           </div>
-          <div class="hero-buttons">
-            <!-- Removed Start Learning and Watch Demo buttons -->
+          
+          <div class="achievement-card" data-aos="fade-up" data-aos-delay="200">
+            <div class="achievement-icon">
+              <i class="fas fa-chart-line"></i>
+            </div>
+            <div class="achievement-info">
+              <div class="counter" data-target="95">0</div>
+              <span class="percentage">% Success Rate</span>
+            </div>
+          </div>
+          
+          <div class="achievement-card" data-aos="fade-up" data-aos-delay="300">
+            <div class="achievement-icon">
+              <i class="fas fa-award"></i>
+            </div>
+            <div class="achievement-info">
+              <div class="counter" data-target="15000">0</div>
+              <span>A's Achieved</span>
+            </div>
           </div>
         </div>
-        <div class="hero-image">
-      <div class="features-grid">
+        
+        <!-- Live Student Activity Feed -->
+        <div class="live-feed">
+          <div class="feed-header">
+            <i class="fas fa-circle pulse-dot"></i>
+            Live Activity
+          </div>
+          <div class="feed-container">
+            <!-- Dynamic content will be inserted here by JavaScript -->
+          </div>
+        </div>
+      </div>
+      
+      <div class="hero-visual" data-aos="fade-left">
+        <div class="3d-device">
+          <img src="https://images.unsplash.com/photo-1571260899304-425eee4c7efc?auto=format&fit=crop&w=1000&q=80" 
+               alt="AI Learning Platform" 
+               class="device-screen" />
+          <div class="floating-elements">
+            <div class="float-card achievement">
+              <i class="fas fa-trophy"></i>
+              <span>New Achievement!</span>
+            </div>
+            <div class="float-card ai-response">
+              <i class="fas fa-robot"></i>
+              <span>AI Tutor Response</span>
+            </div>
+            <div class="float-card notification">
+              <i class="fas fa-bell"></i>
+              <span>Live Class Starting</span>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Interactive Demo Preview -->
+        <div class="demo-preview">
+          <div class="demo-nav">
+            <button class="demo-tab active" data-tab="ai-tutor">AI Tutor</button>
+            <button class="demo-tab" data-tab="live-class">Live Class</button>
+            <button class="demo-tab" data-tab="practice">Practice</button>
+          </div>
+          <div class="demo-content">
+            <!-- Content will be dynamically loaded -->
+          </div>
+        </div>
+      </div>
+      
+      <!-- Video Modal -->
+      <div id="video-modal" class="modal">
+        <div class="modal-content">
+          <span class="close-modal">&times;</span>
+          <video id="intro-video" controls>
+            <source src="assets/videos/platform-demo.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+          </video>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Features Section -->
-  <section class="features-section">
-    <div class="container">
-          <div class="feature-title">Live Classes</div>
-      <p class="features-desc">Comprehensive learning platform designed for success</p>
-      <div class="features-grid" style="display: flex; justify-content: space-between; align-items: stretch; gap: 32px; margin-top: 2.5rem;">
-        <!-- Left: Live Classes -->
-        <div class="feature-card" style="flex: 1; text-align: left; background: #f1f5f9; border-radius: 1rem; padding: 2.5rem 1.5rem; box-shadow: 0 2px 8px rgba(30,58,138,0.06); display: flex; flex-direction: column; align-items: flex-start;">
-          <div class="feature-icon feature-live" style="margin-left: 0; margin-right: 0;">🎥</div>
-          <div class="feature-title" style="font-size: 1.2rem; font-weight: 700; color: #1e3a8a; margin-bottom: 0.5rem;">Live Classes</div>
-          <div class="feature-desc" style="font-size: 1.05rem; color: #6b7280;">Interactive live sessions with expert teachers</div>
+  <section class="features" id="features">
+    <div class="section-header">
+      <span class="section-tag">Why Choose EduNext?</span>
+      <h2>Features that Set Us Apart</h2>
+    </div>
+    
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-icon">
+          <i class="fas fa-robot"></i>
         </div>
-        <!-- Center: Mobile Learning -->
-        <div class="feature-card" style="flex: 1; text-align: center; background: #f1f5f9; border-radius: 1rem; padding: 2.5rem 1.5rem; box-shadow: 0 2px 8px rgba(30,58,138,0.06); display: flex; flex-direction: column; align-items: center;">
-          <div class="feature-icon feature-mobile">📱</div>
-          <div class="feature-title" style="font-size: 1.2rem; font-weight: 700; color: #1e3a8a; margin-bottom: 0.5rem;">Mobile Learning</div>
-          <div class="feature-desc" style="font-size: 1.05rem; color: #6b7280;">Learn anytime, anywhere on any device</div>
+        <h3>AI-Powered Tutoring</h3>
+        <p>Get instant help from our AI tutor 24/7. Ask questions, solve problems, and understand concepts better.</p>
+      </div>
+      
+      <div class="feature-card">
+        <div class="feature-icon">
+          <i class="fas fa-chalkboard-teacher"></i>
         </div>
-        <!-- Right: Certificates -->
-        <div class="feature-card" style="flex: 1; text-align: right; background: #f1f5f9; border-radius: 1rem; padding: 2.5rem 1.5rem; box-shadow: 0 2px 8px rgba(30,58,138,0.06); display: flex; flex-direction: column; align-items: flex-end;">
-          <div class="feature-icon feature-cert" style="margin-left: 0; margin-right: 0;">🎓</div>
-          <div class="feature-title" style="font-size: 1.2rem; font-weight: 700; color: #1e3a8a; margin-bottom: 0.5rem;">Certificates</div>
-          <div class="feature-desc" style="font-size: 1.05rem; color: #6b7280;">Earn recognized certificates upon completion</div>
+        <h3>Live Interactive Classes</h3>
+        <p>Join expert teachers in real-time sessions with interactive whiteboards and instant doubt clearing.</p>
+      </div>
+      
+      <div class="feature-card">
+        <div class="feature-icon">
+          <i class="fas fa-brain"></i>
+        </div>
+        <h3>Smart Study Plans</h3>
+        <p>Personalized learning paths adapted to your goals, pace, and performance.</p>
+      </div>
+      
+      <div class="feature-card">
+        <div class="feature-icon">
+          <i class="fas fa-chart-line"></i>
+        </div>
+        <h3>Progress Tracking</h3>
+        <p>Detailed analytics and performance insights to help you stay on track.</p>
+      </div>
+      
+      <div class="feature-card">
+        <div class="feature-icon">
+          <i class="fas fa-file-alt"></i>
+        </div>
+        <h3>Practice Tests</h3>
+        <p>Extensive question bank with past papers and AI-generated practice questions.</p>
+      </div>
+      
+      <div class="feature-card">
+        <div class="feature-icon">
+          <i class="fas fa-mobile-alt"></i>
+        </div>
+        <h3>Learn Anywhere</h3>
+        <p>Access your courses on any device, anytime. Study offline with our mobile app.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="subjects" id="subjects">
+    <div class="section-header">
+      <span class="section-tag">Popular Subjects</span>
+      <h2>Master Your Core Subjects</h2>
+    </div>
+    
+    <div class="subjects-grid">
+      <a href="subjects/mathematics.html" class="subject-card">
+        <div class="subject-icon">
+          <i class="fas fa-calculator"></i>
+        </div>
+        <h3>Mathematics</h3>
+        <p>Algebra, Calculus, Statistics</p>
+      </a>
+      
+      <a href="subjects/physics.html" class="subject-card">
+        <div class="subject-icon">
+          <i class="fas fa-atom"></i>
+        </div>
+        <h3>Physics</h3>
+        <p>Mechanics, Electricity, Waves</p>
+      </a>
+      
+      <a href="subjects/chemistry.html" class="subject-card">
+        <div class="subject-icon">
+          <i class="fas fa-flask"></i>
+        </div>
+        <h3>Chemistry</h3>
+        <p>Organic, Inorganic, Physical</p>
+      </a>
+      
+      <a href="subjects/biology.html" class="subject-card">
+        <div class="subject-icon">
+          <i class="fas fa-dna"></i>
+        </div>
+        <h3>Biology</h3>
+        <p>Genetics, Ecology, Physiology</p>
+      </a>
+    </div>
+  </section>
+
+  <section class="programmer-profile" id="programmer">
+    <div class="section-header">
+      <span class="section-tag">Meet Our Programmer</span>
+      <h2>The Mind Behind EduNext</h2>
+    </div>
+    
+    <div class="programmer-content">
+      <div class="programmer-card glass-effect">
+        <div class="programmer-image">
+          <img src="./fuhad.jpg" alt="Abdlrazaq Fuhad Desmond">
+        </div>
+        <div class="programmer-details">
+          <h3>Abdlrazaq Fuhad Desmond</h3>
+          
+          <div class="personal-info">
+            <div class="info-grid">
+              <p><strong>Born:</strong> October 7, 2010</p>
+              <p><strong>Age:</strong> 15</p>
+              <p><strong>Gender:</strong> Male</p>
+              <p><strong>Religion:</strong> Muslim</p>
+              <p><strong>Education:</strong> High School</p>
+            </div>
+          </div>
+
+          <div class="contact-info">
+            <div class="info-grid">
+              <p><i class="fas fa-phone"></i> Phone: 08139776909</p>
+              <p><i class="fab fa-whatsapp"></i> WhatsApp: +234 8139776909</p>
+            </div>
+          </div>
+
+          <div class="skills-section">
+            <h4><i class="fas fa-laptop-code"></i> Technical Skills</h4>
+            <ul>
+              <li>Robotics</li>
+              <li>Artificial Intelligence</li>
+              <li>Programming Languages</li>
+            </ul>
+
+            <h4><i class="fas fa-lightbulb"></i> Entrepreneurial Skills</h4>
+            <ul>
+              <li>Visionary Thinking</li>
+              <li>Solution-building</li>
+              <li>Practical and Scalable Knowledge-seeking</li>
+            </ul>
+
+            <h4><i class="fas fa-users"></i> Soft Skills</h4>
+            <ul>
+              <li>Clarity in Approach</li>
+              <li>Persistence</li>
+              <li>Purpose-driven</li>
+              <li>Bold Thinking</li>
+              <li>Leadership</li>
+            </ul>
+
+            <h4><i class="fas fa-rocket"></i> Innovation and Problem-Solving</h4>
+            <ul>
+              <li>Designing Humanoid Robots</li>
+              <li>Creating EdTech Platforms</li>
+              <li>Engineering Opportunities</li>
+            </ul>
+          </div>
+
+          <div class="inspiration">
+            <p><strong>Role Model:</strong> Elon Musk</p>
+          </div>
+
+          <div class="mission-statement">
+            <p>By the grace of Allah, this platform will revolutionize education in Nigeria and beyond.</p>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Courses Section (Placeholder) -->
-  <section id="courses" class="section">
-    <div class="container">
-      <h2 class="section-title">Our Courses</h2>
-      <p class="section-desc">Explore a variety of subjects and find the right course for you.</p>
-      <!-- Add course cards here -->
-      <div style="display: flex; flex-wrap: wrap; gap: 32px; justify-content: center; margin-top: 2.5rem;">
-        <!-- Mathematics Course -->
-        <div id="math-course-card" style="background: #fff; border-radius: 1rem; box-shadow: 0 2px 8px rgba(30,58,138,0.08); width: 320px; padding: 28px 22px; display: flex; flex-direction: column; align-items: flex-start; cursor:pointer;" tabindex="0">
-          <div style="font-size: 2.2rem; color: #22c55e; margin-bottom: 0.5rem;">📐</div>
-          <div style="font-size: 1.15rem; font-weight: 700; color: #1e3a8a; margin-bottom: 0.25rem;">Mathematics</div>
-          <div style="font-size: 1rem; color: #f59e42; font-weight: 600; margin-bottom: 0.5rem;">4.8 ★</div>
-          <div style="font-size: 1.05rem; font-weight: 600; color: #111827; margin-bottom: 0.25rem;">Advanced Mathematics</div>
-          <div style="font-size: 0.98rem; color: #6b7280; margin-bottom: 1.2rem;">Master calculus, algebra, and geometry with expert guidance</div>
-          <div style="font-size: 1.1rem; color: #22c55e; font-weight: 700; margin-bottom: 1rem;">₦15,000</div>
-          <button class="btn btn-primary" style="width: 100%;">Enroll Now</button>
-        </div>
-        <!-- Chemistry Course -->
-        <div id="chem-course-card" style="background: #fff; border-radius: 1rem; box-shadow: 0 2px 8px rgba(30,58,138,0.08); width: 320px; padding: 28px 22px; display: flex; flex-direction: column; align-items: flex-start; cursor:pointer;" tabindex="0">
-          <div style="font-size: 2.2rem; color: #38bdf8; margin-bottom: 0.5rem;">🧪</div>
-          <div style="font-size: 1.15rem; font-weight: 700; color: #1e3a8a; margin-bottom: 0.25rem;">Chemistry</div>
-          <div style="font-size: 1rem; color: #f59e42; font-weight: 600; margin-bottom: 0.5rem;">4.7 ★</div>
-          <div style="font-size: 1.05rem; font-weight: 600; color: #111827; margin-bottom: 0.25rem;">General Chemistry</div>
-          <div style="font-size: 0.98rem; color: #6b7280; margin-bottom: 1.2rem;">Understand chemical reactions, bonding, and molecular structures</div>
-          <div style="font-size: 1.1rem; color: #22c55e; font-weight: 700; margin-bottom: 1rem;">₦12,000</div>
-          <button class="btn btn-primary" style="width: 100%;">Enroll Now</button>
-        </div>
-        <!-- Physics Course -->
-        <div style="background: #fff; border-radius: 1rem; box-shadow: 0 2px 8px rgba(30,58,138,0.08); width: 320px; padding: 28px 22px; display: flex; flex-direction: column; align-items: flex-start;">
-          <div style="font-size: 2.2rem; color: #f59e42; margin-bottom: 0.5rem;">🔭</div>
-          <div style="font-size: 1.15rem; font-weight: 700; color: #1e3a8a; margin-bottom: 0.25rem;">Physics</div>
-          <div style="font-size: 1rem; color: #f59e42; font-weight: 600; margin-bottom: 0.5rem;">4.9 ★</div>
-          <div style="font-size: 1.05rem; font-weight: 600; color: #111827; margin-bottom: 0.25rem;">Physics Fundamentals</div>
-          <div style="font-size: 0.98rem; color: #6b7280; margin-bottom: 1.2rem;">Explore mechanics, thermodynamics, and electromagnetism</div>
-          <div style="font-size: 1.1rem; color: #22c55e; font-weight: 700; margin-bottom: 1rem;">₦18,000</div>
-          <button class="btn btn-primary" style="width: 100%;">Enroll Now</button>
-        </div>
+  <section class="cta-section">
+    <div class="cta-content">
+      <h2>Ready to Transform Your Learning?</h2>
+      <p>Join thousands of students achieving their academic goals with EduNext.</p>
+      <div class="cta-buttons">
+        <a href="general/signup.html" class="btn btn-primary btn-lg">Get Started Free</a>
+        <a href="#features" class="btn btn-outline btn-lg">Learn More</a>
       </div>
     </div>
   </section>
 
-  <!-- Live Sessions Section -->
-  <section id="live-classes" class="section" style="background:#fff;">
-    <div class="container">
-      <h2 class="section-title">Live Sessions</h2>
-      <p class="section-desc">Join interactive classes with expert teachers</p>
-            <li class="live-feature-item"><span class="feature-icon feature-cert live-feature-icon">👥</span>Small Class Sizes</li>
-        <div>
-          <img src="https://images.unsplash.com/photo-1588072432836-e10032774350?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&h=500" alt="Teacher conducting online class" class="hero-image">
-        </div>
-        <div>
-          <h3 class="section-title" style="font-size:1.5rem; color:#111827; text-align:left; margin-bottom:1rem;">Interactive Learning Experience</h3>
-          <p class="section-desc" style="color:#6b7280; text-align:left; margin-bottom:1.5rem;">Participate in real-time discussions, ask questions, and collaborate with peers in our live virtual classrooms.</p>
-          <ul style="list-style:none; padding:0; margin-bottom:2rem;">
-            <li style="display:flex; align-items:center; gap:12px; margin-bottom:12px;"><span class="feature-icon feature-live" style="font-size:1.2rem;">🎥</span>HD Video Quality</li>
-            <li style="display:flex; align-items:center; gap:12px; margin-bottom:12px;"><span class="feature-icon feature-mobile" style="font-size:1.2rem;">💬</span>Real-time Chat</li>
-            <li style="display:flex; align-items:center; gap:12px; margin-bottom:12px;"><span class="feature-icon feature-cert" style="font-size:1.2rem;">👥</span>Small Class Sizes</li>
-          </ul>
-          <button class="btn btn-primary">Start Learning</button>
-        </div>  
+  <section class="trust-badges">
+    <div class="trust-grid">
+      <div class="trust-item">
+        <img src="https://img.icons8.com/color/48/000000/google-logo.png" alt="Google for Education Partner" />
+        <span>Google for Education Partner</span>
+      </div>
+      <div class="trust-item">
+        <img src="https://img.icons8.com/color/48/000000/microsoft.png" alt="Microsoft Education Partner" />
+        <span>Microsoft Education Partner</span>
+      </div>
+      <div class="trust-item">
+        <i class="fas fa-shield-alt"></i>
+        <span>ISO 27001 Certified</span>
+      </div>
+      <div class="trust-item">
+        <i class="fas fa-award"></i>
+        <span>Best EdTech Platform 2025</span>
       </div>
     </div>
-  </section>
-
-  <!-- Teachers Section (Placeholder) -->
-  <section id="teachers" class="section">
-    <div class="container">
-      <h2 class="section-title">Meet Our Teachers</h2>
-      <p class="section-desc">Learn from experienced and passionate educators.</p>
-      <!-- Add teacher cards here -->
     </div>
   </section>
 
-  <!-- CTA Section -->
-  <section class="section" style="background:#1e3a8a; color:#fff;">
-    <div class="container" style="text-align:center;">
-      <h2 class="section-title" style="color:#fff;">Ready to Start Learning?</h2>
-      <p class="section-desc" style="color:#dbeafe;">Join thousands of students already learning on EduNext</p>
-      <div style="display:flex; flex-direction:row; justify-content:center; gap:1rem; margin-top:2rem;">
-        <button class="btn btn-outline" style="border-color:#fff; color:#fff;">Sign Up Now</button>
-        <button class="btn btn-primary" style="background:#fff; color:#1e3a8a;">Learn More</button>
-      </div>
-    </div>
-  </section>
-
-  <!-- Footer -->
   <footer class="footer">
-    <div class="container">
-      &copy; 2025 EduNext. All rights reserved.
+    <div class="footer-content">
+      <div class="footer-section">
+        <div class="footer-logo">
+          <i class="fas fa-graduation-cap"></i>
+          <span>EduNext</span>
+        </div>
+        <p>Empowering students with AI-powered learning tools and expert guidance for academic excellence.</p>
+        <div class="social-links">
+          <a href="#" aria-label="Facebook" title="Follow us on Facebook">
+            <i class="fab fa-facebook"></i>
+          </a>
+          <a href="#" aria-label="Twitter" title="Follow us on Twitter">
+            <i class="fab fa-twitter"></i>
+          </a>
+          <a href="#" aria-label="Instagram" title="Follow us on Instagram">
+            <i class="fab fa-instagram"></i>
+          </a>
+          <a href="#" aria-label="LinkedIn" title="Connect with us on LinkedIn">
+            <i class="fab fa-linkedin"></i>
+          </a>
+          <a href="#" aria-label="WhatsApp" title="Contact us on WhatsApp">
+            <i class="fab fa-whatsapp"></i>
+          </a>
+        </div>
+      </div>
+
+      <div class="footer-section">
+        <h3>Contact Us</h3>
+        <ul>
+          <li>
+            <i class="fas fa-envelope"></i>
+            <a href="mailto:support@edunext.com">support@edunext.com</a>
+          </li>
+          <li>
+            <i class="fas fa-phone"></i>
+            <a href="tel:+2348139776909">+234 813 977 6909</a>
+          </li>
+          <li>
+            <i class="fas fa-map-marker-alt"></i>
+            Lagos, Nigeria
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>&copy; 2025 EduNext. All rights reserved.</p>
+      <div class="footer-links">
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms of Service</a>
+        <a href="#">Cookie Policy</a>
+      </div>
     </div>
   </footer>
+
+  <script>
+    // Mobile menu toggle
+    const mobileMenu = document.querySelector('.mobile-menu');
+    const navLinks = document.querySelector('.nav-links');
+    
+    mobileMenu.addEventListener('click', () => {
+      navLinks.classList.toggle('active');
+    });
+
+    // Smooth scroll for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        document.querySelector(this.getAttribute('href')).scrollIntoView({
+          behavior: 'smooth'
+        });
+      });
+    });
+
+    // Animation on scroll
+    window.addEventListener('scroll', () => {
+      const cards = document.querySelectorAll('.feature-card, .subject-card, .testimonial-card');
+      cards.forEach(card => {
+        const cardTop = card.getBoundingClientRect().top;
+        if (cardTop < window.innerHeight - 100) {
+          card.classList.add('animate');
+        }
+      });
+    });
+  </script>
+  <!-- Firebase App (the core Firebase SDK) -->
+  <script src="https://www.gstatic.com/firebasejs/10.1.0/firebase-app-compat.js"></script>
+  <!-- Add Firebase products that you want to use -->
+  <script src="https://www.gstatic.com/firebasejs/10.1.0/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.1.0/firebase-firestore-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.1.0/firebase-analytics-compat.js"></script>
+  
+  <!-- Your Firebase configuration file -->
+  <script src="./js/firebase-config.js"></script>
+
+  <script>
+    // Firebase Authentication State Observer
+    firebase.auth().onAuthStateChanged((user) => {
+      if (user) {
+        // User is signed in
+        console.log('User is signed in:', user.email);
+        // Update UI for signed in user
+        updateUIForSignedInUser(user);
+      } else {
+        // User is signed out
+        console.log('User is signed out');
+        // Update UI for signed out user
+        updateUIForSignedOutUser();
+      }
+    });
+
+    function updateUIForSignedInUser(user) {
+      // Update navigation buttons
+      const authButtons = document.querySelector('.auth-buttons');
+      if (authButtons) {
+        authButtons.innerHTML = `
+          <button class="btn btn-outline glass-effect" onclick="signOut()">Sign Out</button>
+          <a href="students/student-dashboard.html" class="btn btn-primary">Dashboard</a>
+        `;
+      }
+    }
+
+    function updateUIForSignedOutUser() {
+      // Reset navigation buttons to default state
+      const authButtons = document.querySelector('.auth-buttons');
+      if (authButtons) {
+        authButtons.innerHTML = `
+          <a href="general/login.html" class="btn btn-outline glass-effect">Log In</a>
+          <a href="general/signup.html" class="btn btn-primary pulse-effect">Get Started Free</a>
+        `;
+      }
+    }
+
+    // Sign out function
+    window.signOut = async () => {
+      try {
+        await auth.signOut();
+        window.location.href = '/';
+      } catch (error) {
+        console.error('Error signing out:', error);
+      }
+    };
+  </script>
 </body>
 </html>
