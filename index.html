@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>EduNext - AI-Powered Learning Platform for WAEC & JAMB Success</title>
-  <meta name="description" content="Transform your academic journey with EduNext's AI-powered learning platform. Get personalized study plans, live tutoring, and instant help for WAEC, NECO, and JAMB exams.">
+  <title>Owluminate - AI-Powered Learning Platform for WAEC & JAMB Success</title>
+  <meta name="description" content="Transform your academic journey with Owluminate's AI-powered learning platform. Get personalized study plans, live tutoring, and instant help for WAEC, NECO, and JAMB exams.">
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css">
@@ -17,7 +17,73 @@
   <script src="https://www.gstatic.com/firebasejs/10.1.0/firebase-auth-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/10.1.0/firebase-firestore-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/10.1.0/firebase-storage-compat.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const dropdownToggle = document.querySelector('.dropdown-toggle');
+      const profileContent = document.querySelector('.profile-content');
+      
+      dropdownToggle.addEventListener('click', function() {
+        this.classList.toggle('active');
+        profileContent.classList.toggle('show');
+      });
+    });
+  </script>
   <style>
+    /* Mobile Menu Styles */
+    .mobile-menu {
+      display: none;
+      background: none;
+      border: none;
+      font-size: 1.5rem;
+      color: #4299e1;
+      cursor: pointer;
+      padding: 0.5rem;
+    }
+
+    @media (max-width: 768px) {
+      .mobile-menu {
+        display: block;
+      }
+
+      .nav-links {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: white;
+        padding: 1rem;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        flex-direction: column;
+        gap: 1rem;
+      }
+
+      .nav-links.active {
+        display: flex;
+      }
+
+      .nav-item.dropdown {
+        width: 100%;
+      }
+
+      .dropdown-content {
+        position: static;
+        box-shadow: none;
+        padding: 0.5rem 0;
+      }
+
+      .auth-buttons {
+        flex-direction: column;
+        width: 100%;
+        gap: 0.5rem;
+      }
+
+      .auth-buttons a {
+        width: 100%;
+        text-align: center;
+      }
+    }
+
     .footer {
       background: #1a202c;
       color: #fff;
@@ -226,52 +292,231 @@
       text-align: left;
       max-width: 800px;
       margin: 0 auto;
+      padding: 2rem;
+      background: rgba(255, 255, 255, 0.95);
+      border-radius: 15px;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    }
+
+    .info-dropdown {
+      text-align: center;
+      margin: 1rem 0 2rem;
+    }
+
+    .dropdown-toggle {
+      background: #4299e1;
+      color: white;
+      border: none;
+      padding: 1rem 2rem;
+      border-radius: 8px;
+      font-size: 1.1rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .dropdown-toggle:hover {
+      background: #3182ce;
+      transform: translateY(-2px);
+    }
+
+    .dropdown-toggle i {
+      transition: transform 0.3s ease;
+    }
+
+    .dropdown-toggle.active i {
+      transform: rotate(180deg);
+    }
+
+    .profile-content {
+      display: none;
+      opacity: 0;
+      transform: translateY(-10px);
+      transition: all 0.3s ease;
+    }
+
+    .profile-content.show {
+      display: block;
+      opacity: 1;
+      transform: translateY(0);
+    }
+      font-size: 1.1rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .dropdown-toggle:hover {
+      background: #3182ce;
+      transform: translateY(-2px);
+    }
+
+    .dropdown-toggle i {
+      transition: transform 0.3s ease;
+    }
+
+    .dropdown-toggle.active i {
+      transform: rotate(180deg);
+    }
+
+    .profile-content {
+      display: none;
+      opacity: 0;
+      transform: translateY(-10px);
+      transition: all 0.3s ease;
+    }
+
+    .profile-content.show {
+      display: block;
+      opacity: 1;
+      transform: translateY(0);
     }
 
     .programmer-details h3 {
-      font-size: 2rem;
+      font-size: 2.5rem;
       color: #2d3748;
-      margin-bottom: 1.5rem;
+      margin-bottom: 2rem;
       text-align: center;
+      position: relative;
+      padding-bottom: 1rem;
+    }
+
+    .programmer-details h3:after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100px;
+      height: 4px;
+      background: linear-gradient(90deg, #4299e1, #3182ce);
+      border-radius: 2px;
     }
 
     .info-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 1rem;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+      margin-bottom: 2rem;
     }
 
     .personal-info, .contact-info {
-      margin-bottom: 2rem;
-      padding: 1rem;
-      background: rgba(255,255,255,0.8);
-      border-radius: 10px;
+      padding: 1.5rem;
+      background: #f8fafc;
+      border-radius: 12px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+      transition: transform 0.3s ease;
+    }
+
+    .personal-info:hover, .contact-info:hover {
+      transform: translateY(-5px);
+    }
+
+    .info-item {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 1rem;
+      padding: 0.5rem;
+      border-radius: 8px;
+      background: white;
+    }
+
+    .info-item i {
+      font-size: 1.2rem;
+      color: #4299e1;
+      width: 24px;
+    }
+
+    .skills-section {
+      margin-top: 2rem;
     }
 
     .skills-section h4 {
-      color: #4a5568;
-      margin: 1.5rem 0 1rem;
+      color: #2d3748;
+      font-size: 1.25rem;
+      margin: 2rem 0 1rem;
       display: flex;
       align-items: center;
-      gap: 0.5rem;
+      gap: 0.75rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 2px solid #e2e8f0;
     }
 
     .skills-section ul {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+      padding: 0;
       list-style: none;
-      padding-left: 1.5rem;
     }
 
     .skills-section li {
-      margin: 0.5rem 0;
-      position: relative;
+      padding: 0.75rem 1rem;
+      background: white;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      transition: all 0.3s ease;
+    }
+
+    .skills-section li:hover {
+      transform: translateX(5px);
+      background: #f0f9ff;
     }
 
     .skills-section li:before {
       content: "•";
       color: #4299e1;
       font-weight: bold;
-      position: absolute;
-      left: -1rem;
+      font-size: 1.5rem;
+    }
+
+    .inspiration {
+      margin-top: 2.5rem;
+      text-align: center;
+      padding: 1.5rem;
+      background: linear-gradient(to right, rgba(66, 153, 225, 0.05), rgba(49, 130, 206, 0.05));
+      border-radius: 10px;
+    }
+
+    .inspiration h4 {
+      color: #2d3748;
+      font-size: 1.25rem;
+      margin-bottom: 0.75rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+    }
+
+    .inspiration h4 i {
+      color: #4299e1;
+      font-size: 1.1rem;
+    }
+
+    .role-model-content {
+      font-size: 1.1rem;
+      color: #2d3748;
+      padding: 0.75rem 1rem;
+      background: white;
+      border-radius: 6px;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+      display: inline-block;
+      min-width: 180px;
+    }
+
+    .role-model-content strong {
+      color: #4299e1;
+      font-weight: 600;
     }
 
     .mission-statement {
@@ -320,8 +565,8 @@
   <nav class="navbar glass-effect">
     <div class="nav-container">
       <div class="logo">
-        <i class="fas fa-graduation-cap gradient-icon"></i>
-        <span>EduNext</span>
+        <i class="fas fa-owl gradient-icon"></i>
+        <span>Owluminate</span>
       </div>
       <div class="nav-links">
         <div class="nav-item dropdown">
@@ -358,8 +603,8 @@
         </div>
        
         <div class="auth-buttons">
-          <a href="general/login.html" class="btn btn-outline glass-effect">Log In</a>
-          <a href="general/signup.html" class="btn btn-primary pulse-effect">Get Started Free</a>
+          <a href="general/login-new.html" class="btn btn-outline glass-effect">Log In</a>
+          <a href="general/signup-new.html" class="btn btn-primary pulse-effect">Get Started Free</a>
         </div>
       </div>
       <button class="mobile-menu" aria-label="Menu">
@@ -378,11 +623,11 @@
           <span class="gradient-text glow-effect">AI-Powered Learning</span>
         </h1>
         <p class="hero-subtitle">
-          Join Nigeria's most innovative learning platform. Get personalized study plans,
+          Join Owluminate, Nigeria's most innovative learning platform. Get personalized study plans,
           instant AI tutoring, and expert guidance for exam success.
         </p>
         <div class="hero-cta">
-          <a href="general/signup.html" class="btn btn-primary btn-lg scale-on-hover">
+          <a href="general/signup-new.html" class="btn btn-primary btn-lg scale-on-hover">
             Start Your Free Trial
             <i class="fas fa-arrow-right"></i>
           </a>
@@ -485,7 +730,7 @@
 
   <section class="features" id="features">
     <div class="section-header">
-      <span class="section-tag">Why Choose EduNext?</span>
+      <span class="section-tag">Why Choose Owluminate?</span>
       <h2>Features that Set Us Apart</h2>
     </div>
     
@@ -584,7 +829,7 @@
   <section class="programmer-profile" id="programmer">
     <div class="section-header">
       <span class="section-tag">Meet Our Programmer</span>
-      <h2>The Mind Behind EduNext</h2>
+      <h2>The Mind Behind Owluminate</h2>
     </div>
     
     <div class="programmer-content">
@@ -595,61 +840,94 @@
         <div class="programmer-details">
           <h3>Abdlrazaq Fuhad Desmond</h3>
           
-          <div class="personal-info">
-            <div class="info-grid">
-              <p><strong>Born:</strong> October 7, 2010</p>
-              <p><strong>Age:</strong> 15</p>
-              <p><strong>Gender:</strong> Male</p>
-              <p><strong>Religion:</strong> Muslim</p>
-              <p><strong>Education:</strong> High School</p>
+          <div class="info-dropdown">
+            <button class="dropdown-toggle">
+              <i class="fas fa-bars"></i> View Profile Details
+            </button>
+          </div>
+
+          <div class="profile-content">
+            <div class="personal-info">
+              <h4><i class="fas fa-user"></i> Personal Information</h4>
+              <div class="info-grid">
+              <div class="info-item">
+                <i class="fas fa-birthday-cake"></i>
+                <span><strong>Born:</strong> October 7, 2010</span>
+              </div>
+              <div class="info-item">
+                <i class="fas fa-calendar-alt"></i>
+                <span><strong>Age:</strong> 15</span>
+              </div>
+              <div class="info-item">
+                <i class="fas fa-venus-mars"></i>
+                <span><strong>Gender:</strong> Male</span>
+              </div>
+              <div class="info-item">
+                <i class="fas fa-pray"></i>
+                <span><strong>Religion:</strong> Muslim</span>
+              </div>
+              <div class="info-item">
+                <i class="fas fa-school"></i>
+                <span><strong>Education:</strong> High School</span>
+              </div>
             </div>
           </div>
 
           <div class="contact-info">
+            <h4><i class="fas fa-address-card"></i> Contact Information</h4>
             <div class="info-grid">
-              <p><i class="fas fa-phone"></i> Phone: 08139776909</p>
-              <p><i class="fab fa-whatsapp"></i> WhatsApp: +234 8139776909</p>
+              <div class="info-item">
+                <i class="fas fa-phone"></i>
+                <span>08139776909</span>
+              </div>
+              <div class="info-item">
+                <i class="fab fa-whatsapp"></i>
+                <span>+234 8139776909</span>
+              </div>
             </div>
           </div>
 
           <div class="skills-section">
             <h4><i class="fas fa-laptop-code"></i> Technical Skills</h4>
             <ul>
-              <li>Robotics</li>
-              <li>Artificial Intelligence</li>
-              <li>Programming Languages</li>
+              <li><i class="fas fa-robot"></i> Robotics</li>
+              <li><i class="fas fa-brain"></i> Artificial Intelligence</li>
+              <li><i class="fas fa-code"></i> Programming Languages</li>
             </ul>
 
             <h4><i class="fas fa-lightbulb"></i> Entrepreneurial Skills</h4>
             <ul>
-              <li>Visionary Thinking</li>
-              <li>Solution-building</li>
-              <li>Practical and Scalable Knowledge-seeking</li>
+              <li><i class="fas fa-eye"></i> Visionary Thinking</li>
+              <li><i class="fas fa-tools"></i> Solution-building</li>
+              <li><i class="fas fa-search"></i> Practical and Scalable Knowledge-seeking</li>
             </ul>
 
             <h4><i class="fas fa-users"></i> Soft Skills</h4>
             <ul>
-              <li>Clarity in Approach</li>
-              <li>Persistence</li>
-              <li>Purpose-driven</li>
-              <li>Bold Thinking</li>
-              <li>Leadership</li>
+              <li><i class="fas fa-bullseye"></i> Clarity in Approach</li>
+              <li><i class="fas fa-clock"></i> Persistence</li>
+              <li><i class="fas fa-compass"></i> Purpose-driven</li>
+              <li><i class="fas fa-bolt"></i> Bold Thinking</li>
+              <li><i class="fas fa-crown"></i> Leadership</li>
             </ul>
 
             <h4><i class="fas fa-rocket"></i> Innovation and Problem-Solving</h4>
             <ul>
-              <li>Designing Humanoid Robots</li>
-              <li>Creating EdTech Platforms</li>
-              <li>Engineering Opportunities</li>
+              <li><i class="fas fa-microchip"></i> Designing Humanoid Robots</li>
+              <li><i class="fas fa-laptop"></i> Creating EdTech Platforms</li>
+              <li><i class="fas fa-cogs"></i> Engineering Opportunities</li>
             </ul>
           </div>
 
           <div class="inspiration">
-            <p><strong>Role Model:</strong> Elon Musk</p>
+            <h4><i class="fas fa-star"></i> Role Model</h4>
+            <div class="role-model-content">
+              <span><strong>Elon Musk</strong></span>
+            </div>
           </div>
 
           <div class="mission-statement">
-            <p>By the grace of Allah, this platform will revolutionize education in Nigeria and beyond.</p>
+            <p>By the grace of Allah, this platform will revolutionize education in Nigeria and Africa as a whole.</p>
           </div>
         </div>
       </div>
@@ -659,9 +937,9 @@
   <section class="cta-section">
     <div class="cta-content">
       <h2>Ready to Transform Your Learning?</h2>
-      <p>Join thousands of students achieving their academic goals with EduNext.</p>
+      <p>Join thousands of students achieving their academic goals with Owluminate.</p>
       <div class="cta-buttons">
-        <a href="general/signup.html" class="btn btn-primary btn-lg">Get Started Free</a>
+        <a href="general/signup-new.html" class="btn btn-primary btn-lg">Get Started Free</a>
         <a href="#features" class="btn btn-outline btn-lg">Learn More</a>
       </div>
     </div>
@@ -692,9 +970,9 @@
   <footer class="footer">
     <div class="footer-content">
       <div class="footer-section">
-        <div class="footer-logo">
-          <i class="fas fa-graduation-cap"></i>
-          <span>EduNext</span>
+                <div class="footer-logo">
+          <i class="fas fa-owl"></i>
+          <span>Owluminate</span>
         </div>
         <p>Empowering students with AI-powered learning tools and expert guidance for academic excellence.</p>
         <div class="social-links">
@@ -736,7 +1014,7 @@
     </div>
 
     <div class="footer-bottom">
-      <p>&copy; 2025 EduNext. All rights reserved.</p>
+      <p>&copy; 2025 Owluminate. All rights reserved.</p>
       <div class="footer-links">
         <a href="#">Privacy Policy</a>
         <a href="#">Terms of Service</a>
@@ -817,8 +1095,8 @@
       const authButtons = document.querySelector('.auth-buttons');
       if (authButtons) {
         authButtons.innerHTML = `
-          <a href="general/login.html" class="btn btn-outline glass-effect">Log In</a>
-          <a href="general/signup.html" class="btn btn-primary pulse-effect">Get Started Free</a>
+          <a href="general/login-new.html" class="btn btn-outline glass-effect">Log In</a>
+          <a href="general/signup-new.html" class="btn btn-primary pulse-effect">Get Started Free</a>
         `;
       }
     }
