@@ -3,10 +3,20 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>EduNext - Sign Up</title>
+  <title>Owluminate - Sign Up</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
   <link rel="stylesheet" href="modernized.css">
+  <!-- Firebase SDK -->
+  <script src="https://www.gstatic.com/firebasejs/10.1.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.1.0/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.1.0/firebase-firestore-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.1.0/firebase-analytics-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.1.0/firebase-functions-compat.js"></script>
+  <!-- Initialize Firebase -->
+  <script src="../js/firebase-config.js"></script>
+  <!-- Password validation -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/zxcvbn/4.4.2/zxcvbn.js"></script>
   <style>
     .auth-page {
       min-height: 100vh;
@@ -162,95 +172,137 @@
     <div class="auth-container">
       <div class="auth-card">
         <div class="auth-logo">
-          <i class="fas fa-graduation-cap"></i>
-          <span>EduNext-prep100</span>
+          <i class="fas fa-owl"></i>
+          <span>Owluminate</span>
         </div>
-        
         <h1 class="signup-heading">Create Your Account</h1>
-        
-        <div class="role-toggle">
-          <button class="role-btn active" onclick="showRole('student')">Student</button>
-          <button class="role-btn" onclick="showRole('teacher')">Teacher</button>
-        </div>
-        
-        <form id="student-signup-form" action="student-dashboard.html" autocomplete="off">
-          <div class="form-group">
-            <label class="form-label" for="signup-email">Email Address</label>
-            <input class="form-input" type="email" id="signup-email" name="signup-email" placeholder="Enter your email" required>
-          </div>
-          
-          <div class="form-group">
-            <label class="form-label" for="signup-grade">Grade Level</label>
-            <select class="form-select" id="signup-grade" name="signup-grade" required>
-              <option value="">Select your grade level</option>
-              <option value="grade7">Grade 7</option>
-              <option value="grade8">Grade 8</option>
-              <option value="grade9">Grade 9</option>
-              <option value="grade10">Grade 10</option>
-              <option value="grade11">Grade 11</option>
-              <option value="grade12">Grade 12</option>
-            </select>
-          </div>
-          
-          <div class="form-group">
-            <label class="form-label" for="signup-password">Password</label>
-            <input class="form-input" type="password" id="signup-password" name="signup-password" placeholder="Choose a strong password" required>
-          </div>
-          
-          <button type="submit" class="btn btn-success btn-full">Create Student Account</button>
-        </form>
-        
-        <form id="teacher-signup-form" action="teacher-dashboard.html" autocomplete="off" class="hidden">
-          <div class="form-group">
-            <label class="form-label" for="signup-email-teacher">Email Address</label>
-            <input class="form-input" type="email" id="signup-email-teacher" name="signup-email-teacher" placeholder="Enter your email" required>
-          </div>
-          
-          <div class="form-group">
-            <label class="form-label" for="signup-subject">Subject Specialization</label>
-            <select class="form-select" id="signup-subject" name="signup-subject" required>
-              <option value="">Select your subject</option>
-              <option value="mathematics">Mathematics</option>
-              <option value="physics">Physics</option>
-              <option value="chemistry">Chemistry</option>
-              <option value="biology">Biology</option>
-              <option value="english">English</option>
-              <option value="literature">Literature</option>
-              <option value="economics">Economics</option>
-              <option value="accounting">Accounting</option>
-              <option value="government">Government</option>
-              <option value="commerce">Commerce</option>
-            </select>
-          </div>
-          
-          <div class="form-group">
-            <label class="form-label" for="signup-password-teacher">Password</label>
-            <input class="form-input" type="password" id="signup-password-teacher" name="signup-password-teacher" placeholder="Choose a strong password" required>
-          </div>
-          
-          <button type="submit" class="btn btn-success btn-full">Create Teacher Account</button>
-        </form>
-        
+        <div id="firebaseui-auth-container"></div>
         <div class="signup-prompt">
-          Already have an account? <a href="login.html">Sign in</a>
+          Already have an account? <a href="login-new.html">Sign in</a>
         </div>
       </div>
     </div>
   </main>
 
+  <!-- FirebaseUI CSS -->
+  <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/6.0.2/firebaseui.css" />
+  <script src="../js/firebase-config.js"></script>
+  <!-- FirebaseUI JS -->
+  <script src="https://cdn.firebase.com/libs/firebaseui/6.0.2/firebaseui.js"></script>
   <script>
-    function showRole(role) {
-      document.getElementById('student-signup-form').classList.toggle('hidden', role !== 'student');
-      document.getElementById('teacher-signup-form').classList.toggle('hidden', role !== 'teacher');
-      
-      const buttons = document.querySelectorAll('.role-btn');
-      buttons.forEach(btn => btn.classList.remove('active'));
-      event.target.classList.add('active');
-    }
-
-    window.onload = function() {
-      showRole('student');
+    // Initialize the FirebaseUI Widget using Firebase.
+    var ui = new firebaseui.auth.AuthUI(firebase.auth());
+    var uiConfig = {
+      signInOptions: [
+        firebase.auth.EmailAuthProvider.PROVIDER_ID,
+        firebase.auth.GoogleAuthProvider.PROVIDER_ID
+      ],
+      signInSuccessUrl: 'login-new.html', // Redirect to login after signup
+      callbacks: {
+        signInSuccessWithAuthResult: function(authResult, redirectUrl) {
+          // Store user data in Firestore if new user
+          if (authResult.additionalUserInfo.isNewUser) {
+            var user = authResult.user;
+            firebase.firestore().collection('users').doc(user.uid).set({
+              email: user.email,
+              name: user.displayName || '',
+              role: 'student',
+              createdAt: firebase.firestore.FieldValue.serverTimestamp()
+            }, { merge: true });
+          }
+          // Return true to redirect
+          return true;
+        }
+      },
+      credentialHelper: firebaseui.auth.CredentialHelper.GOOGLE_YOLO
     };
+    // The start method will wait until the DOM is loaded.
+    ui.start('#firebaseui-auth-container', uiConfig);
+  </script>
+
+  <style>
+    .error-message,
+    .error-message-teacher {
+      display: none;
+      color: #dc2626;
+      background: #fee2e2;
+      try {
+        // Create user with email and password
+        const userCredential = await auth.createUserWithEmailAndPassword(
+          emailField.value,
+          passwordField.value
+        );
+
+        // Add user data to Firestore
+        const userData = {
+          name: nameField.value,
+          email: emailField.value,
+          role: 'student',
+          createdAt: firebase.firestore.FieldValue.serverTimestamp(),
+          grade: gradeField.value
+        };
+
+        await db.collection('users').doc(userCredential.user.uid).set(userData);
+
+        // Update display name
+        await userCredential.user.updateProfile({
+          displayName: nameField.value
+        });
+
+        // Store user role in localStorage
+        localStorage.setItem('userRole', 'student');
+
+        // Generate a 6-digit verification code
+        const verificationCode = Math.floor(100000 + Math.random() * 900000).toString();
+
+        // Store the verification code in Firestore
+        await db.collection('users').doc(userCredential.user.uid).update({
+          emailVerified: false,
+          verificationCode: verificationCode,
+          verificationCodeExpires: firebase.firestore.FieldValue.serverTimestamp()
+        });
+
+        // Call the Netlify function to send verification email
+        const response = await fetch('/.netlify/functions/send-verification', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            email: emailField.value,
+            code: verificationCode
+          })
+        });
+        const result = await response.json();
+        if (!response.ok) {
+          throw new Error(result.error || 'Failed to send verification email');
+        }
+
+        // Show success message
+        successDiv.textContent = 'Account created! Check your email for verification code.';
+        successDiv.style.display = 'block';
+
+        setTimeout(() => {
+          window.location.href = `verify-email.html?email=${emailField.value}&code=${verificationCode}`;
+        }, 1500);
+
+      } catch (error) {
+        // Show user-friendly error for email already in use
+        if (error.code === 'auth/email-already-in-use') {
+          errorDiv.textContent = 'This email is already registered. Please login instead.';
+        } else if (error.code === 'auth/invalid-email') {
+          errorDiv.textContent = 'Please enter a valid email address.';
+        } else if (error.code === 'auth/weak-password') {
+          errorDiv.textContent = 'Password is too weak. Please choose a stronger password.';
+        } else if (error.message && error.message.includes('already in use')) {
+          errorDiv.textContent = 'This email is already registered. Please login instead.';
+        } else {
+          errorDiv.textContent = error.message;
+        }
+        errorDiv.style.display = 'block';
+      }
+      color: var(--text-secondary);
+      font-size: 0.875rem;
+    }
+  </style>
   </script>
 </body>
 </html>

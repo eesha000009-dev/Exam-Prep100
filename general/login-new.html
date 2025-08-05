@@ -3,10 +3,17 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>EduNext - Login</title>
+  <title>Owluminate - Login</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
   <link rel="stylesheet" href="modernized.css">
+  <!-- Firebase SDK -->
+  <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
+  <!-- FirebaseUI CSS and JS -->
+  <link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/6.1.0/firebase-ui-auth.css" />
+  <script src="https://www.gstatic.com/firebasejs/ui/6.1.0/firebase-ui-auth.js"></script>
   <style>
     .auth-page {
       min-height: 100vh;
@@ -168,55 +175,135 @@
     <div class="auth-container">
       <div class="auth-card">
         <div class="auth-logo">
-          <i class="fas fa-graduation-cap"></i>
-          <span>EduNext-prep100</span>
+          <i class="fas fa-owl"></i>
+          <span>Owluminate</span>
         </div>
         
         <h1 class="login-heading">Welcome Back!</h1>
         
-        <div class="role-toggle">
-          <button class="role-btn active" onclick="setRole('student')">Student</button>
-          <button class="role-btn" onclick="setRole('teacher')">Teacher</button>
-        </div>
-        
-        <form id="loginForm" action="/login" method="POST">
-          <div class="form-group">
-            <label class="form-label" for="email">Email</label>
-            <input class="form-input" type="email" id="email" name="email" placeholder="Enter your email" required>
-          </div>
-          
-          <div class="form-group">
-            <label class="form-label" for="password">Password</label>
-            <input class="form-input" type="password" id="password" name="password" placeholder="Enter your password" required>
-          </div>
-          
-          <div class="remember-forgot">
-            <label class="remember-me">
-              <input type="checkbox" name="remember" id="remember">
-              Remember me
-            </label>
-            <a href="#" class="forgot-password">Forgot Password?</a>
-          </div>
-          
-          <button type="submit" class="btn btn-primary btn-full">
-            Sign In
-          </button>
-        </form>
-        
+        <!-- FirebaseUI Auth Container -->
+        <div id="firebaseui-auth-container"></div>
         <div class="signup-prompt">
-          Don't have an account? <a href="signup.html">Sign up</a>
+          Don't have an account? <a href="signup-new.html">Sign up</a>
         </div>
       </div>
     </div>
   </main>
 
+  <!-- Initialize Firebase -->
+  <script src="../js/firebase-config.js"></script>
+
+  <!-- Custom script must come after all Firebase scripts -->
   <script>
-    function setRole(role) {
-      const buttons = document.querySelectorAll('.role-btn');
-      buttons.forEach(btn => btn.classList.remove('active'));
-      event.target.classList.add('active');
-      document.getElementById('loginForm').setAttribute('data-role', role);
+    document.addEventListener('DOMContentLoaded', function() {
+    var ui = new firebaseui.auth.AuthUI(firebase.auth());
+    var uiConfig = {
+      signInOptions: [
+        firebase.auth.EmailAuthProvider.PROVIDER_ID,
+        firebase.auth.GoogleAuthProvider.PROVIDER_ID
+      ],
+      signInSuccessUrl: './students/student-dashboard.html', // Redirect to dashboard after login
+      callbacks: {
+        signInSuccessWithAuthResult: function(authResult, redirectUrl) {
+          // Store user data in Firestore if new user
+          if (authResult.additionalUserInfo.isNewUser) {
+            var user = authResult.user;
+            firebase.firestore().collection('users').doc(user.uid).set({
+              email: user.email,
+              name: user.displayName || '',
+              role: 'student',
+              createdAt: firebase.firestore.FieldValue.serverTimestamp(),
+              lastLogin: firebase.firestore.FieldValue.serverTimestamp()
+            }, { merge: true });
+          } else {
+            // Update last login timestamp
+            var user = authResult.user;
+            firebase.firestore().collection('users').doc(user.uid).set({
+              lastLogin: firebase.firestore.FieldValue.serverTimestamp()
+            }, { merge: true });
+          }
+          // Return true to redirect
+          return true;
+        }
+      },
+      credentialHelper: firebaseui.auth.CredentialHelper.GOOGLE_YOLO
+    };
+    ui.start('#firebaseui-auth-container', uiConfig);
+  });
+</script>
+
+  <style>
+    .error-message {
+      display: none;
+      color: #dc2626;
+      background: #fee2e2;
+      border: 1px solid #fecaca;
+      padding: 0.75rem;
+      border-radius: var(--radius-md);
+      margin-bottom: var(--spacing-md);
+      font-size: 0.875rem;
     }
-  </script>
+
+    .success-message {
+      display: none;
+      color: #059669;
+      background: #d1fae5;
+      border: 1px solid #a7f3d0;
+      padding: 0.75rem;
+      border-radius: var(--radius-md);
+      margin-bottom: var(--spacing-md);
+      font-size: 0.875rem;
+    }
+
+    .divider {
+      margin: var(--spacing-lg) 0;
+      display: flex;
+      align-items: center;
+      text-align: center;
+    }
+
+    .divider::before,
+    .divider::after {
+      content: '';
+      flex: 1;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .divider span {
+      padding: 0 1rem;
+      color: var(--text-secondary);
+      font-size: 0.875rem;
+    }
+
+    .social-auth {
+      margin-bottom: var(--spacing-lg);
+    }
+
+    .social-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      padding: 0.75rem;
+      border: 2px solid var(--border-color);
+      border-radius: var(--radius-md);
+      background: #fff;
+      color: var(--text-primary);
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.2s;
+      gap: 0.75rem;
+    }
+
+    .social-btn:hover {
+      border-color: var(--primary);
+      background: var(--light);
+    }
+
+    .social-btn img {
+      width: 24px;
+      height: 24px;
+    }
+  </style>
 </body>
 </html>

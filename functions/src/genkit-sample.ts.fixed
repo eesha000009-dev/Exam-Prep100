@@ -1,0 +1,46 @@
+import { env } from "@genkit-ai/secrets";
+import { ConfigurationParameters, VertexAIClient, Subject } from "@genkit-ai/vertexai";
+import * as functions from "firebase-functions";
+import { Request, Response } from "express";
+
+const config: ConfigurationParameters = {
+  apiEndpoint: "us-central1-aiplatform.googleapis.com",
+  credentials: {
+    client_email: env.VERTEX_AI_SERVICE_ACCOUNT_EMAIL,
+    private_key: env.VERTEX_AI_PRIVATE_KEY,
+  },
+};
+
+interface AuthRequest extends Request {
+  user?: { hasClaim: (claim: string) => boolean };
+}
+
+const vertexai = new VertexAIClient(config);
+
+export const generateStudyPlan = functions.https.onRequest(async (req: AuthRequest, res: Response) => {
+  try {
+    const { topic, duration } = req.body;
+
+    if (!topic || !duration) {
+      return res.status(400).json({ error: "Missing required parameters" });
+    }
+
+    const subject = new Subject({
+      projectId: env.VERTEX_PROJECT_ID,
+      location: "us-central1",
+    });
+
+    const prompt = `Generate a ${duration} study plan for ${topic}`;
+    const response = await subject.generateContent(prompt);
+
+    if (!response || !response.candidates || response.candidates.length === 0) {
+      return res.status(500).json({ error: "Failed to generate study plan" });
+    }
+
+    const studyPlan = response.candidates[0].content;
+    return res.json({ studyPlan });
+  } catch (error) {
+    console.error("Error generating study plan:", error);
+    return res.status(500).json({ error: "Internal server error" });
+  }
+});
