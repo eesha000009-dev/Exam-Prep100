@@ -17,8 +17,8 @@ exports.handler = async (event) => {
     host: 'smtp-relay.brevo.com',
     port: 587,
     auth: {
-      user: 'fuhadadeyemo@gmail.com', // Brevo SMTP username (your Brevo login email)
-      pass: 'xsmtpsib-78fd377550d2a0a8245bf56868eface218ac0ac476e77d62e026943dd84253d3-XgshPfBjZ1Kmz9w3' // Brevo SMTP key
+      user: process.env.SENDINBLUE_SMTP_USER,
+      pass: process.env.SENDINBLUE_SMTP_KEY
     }
   });
 

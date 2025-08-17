@@ -4,8 +4,8 @@
 
 const SibApiV3Sdk = require('@sendinblue/client');
 
-// NEVER hardcode your API key in production. Use environment variables!
-const apiKey = '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';
+// Use environment variables for API key
+const apiKey = process.env.SENDINBLUE_API_KEY;
 
 const brevo = new SibApiV3Sdk.TransactionalEmailsApi();
 brevo.setApiKey(SibApiV3Sdk.TransactionalEmailsApiApiKeys.apiKey, apiKey);

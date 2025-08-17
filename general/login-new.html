@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Owluminate - Login</title>
+  <title>JUANOVA CORTEX - Login</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
   <link rel="stylesheet" href="modernized.css">
@@ -176,7 +176,7 @@
       <div class="auth-card">
         <div class="auth-logo">
           <i class="fas fa-owl"></i>
-          <span>Owluminate</span>
+          <span>JUANOVA CORTEX</span>
         </div>
         
         <h1 class="login-heading">Welcome Back!</h1>
@@ -191,42 +191,39 @@
   </main>
 
   <!-- Initialize Firebase -->
-  <script src="../js/firebase-config.js"></script>
+  <script src="/js/firebase-config.js"></script>
 
   <!-- Custom script must come after all Firebase scripts -->
   <script>
     document.addEventListener('DOMContentLoaded', function() {
     var ui = new firebaseui.auth.AuthUI(firebase.auth());
     var uiConfig = {
+      signInFlow: 'popup',
       signInOptions: [
-        firebase.auth.EmailAuthProvider.PROVIDER_ID,
-        firebase.auth.GoogleAuthProvider.PROVIDER_ID
+        {
+          provider: firebase.auth.EmailAuthProvider.PROVIDER_ID,
+          requireDisplayName: false,
+          disableSignUp: {
+            status: true
+          }
+        }
       ],
-      signInSuccessUrl: './students/student-dashboard.html', // Redirect to dashboard after login
+      signInSuccessUrl: '/students/student-dashboard.html', // Redirect to dashboard after login
       callbacks: {
         signInSuccessWithAuthResult: function(authResult, redirectUrl) {
-          // Store user data in Firestore if new user
-          if (authResult.additionalUserInfo.isNewUser) {
-            var user = authResult.user;
-            firebase.firestore().collection('users').doc(user.uid).set({
-              email: user.email,
-              name: user.displayName || '',
-              role: 'student',
-              createdAt: firebase.firestore.FieldValue.serverTimestamp(),
-              lastLogin: firebase.firestore.FieldValue.serverTimestamp()
-            }, { merge: true });
-          } else {
-            // Update last login timestamp
-            var user = authResult.user;
-            firebase.firestore().collection('users').doc(user.uid).set({
-              lastLogin: firebase.firestore.FieldValue.serverTimestamp()
-            }, { merge: true });
-          }
-          // Return true to redirect
-          return true;
+          // Update last login timestamp
+          var user = authResult.user;
+          firebase.firestore().collection('users').doc(user.uid).set({
+            lastLogin: firebase.firestore.FieldValue.serverTimestamp()
+          }, { merge: true });
+          
+          // Redirect to the dashboard
+          window.location.assign('/students/student-dashboard.html');
+          
+          // Return false to prevent FirebaseUI from redirecting.
+          return false;
         }
-      },
-      credentialHelper: firebaseui.auth.CredentialHelper.GOOGLE_YOLO
+      }
     };
     ui.start('#firebaseui-auth-container', uiConfig);
   });

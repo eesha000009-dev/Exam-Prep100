@@ -3,18 +3,20 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Owluminate - Sign Up</title>
+  <title>JUANOVA CORTEX - Sign Up</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
   <link rel="stylesheet" href="modernized.css">
   <!-- Firebase SDK -->
-  <script src="https://www.gstatic.com/firebasejs/10.1.0/firebase-app-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/10.1.0/firebase-auth-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/10.1.0/firebase-firestore-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/10.1.0/firebase-analytics-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/10.1.0/firebase-functions-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-analytics-compat.js"></script>
+  <!-- FirebaseUI CSS and JS -->
+  <link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/6.1.0/firebase-ui-auth.css" />
+  <script src="https://www.gstatic.com/firebasejs/ui/6.1.0/firebase-ui-auth.js"></script>
   <!-- Initialize Firebase -->
-  <script src="../js/firebase-config.js"></script>
+  <script src="/js/firebase-config.js"></script>
   <!-- Password validation -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/zxcvbn/4.4.2/zxcvbn.js"></script>
   <style>
@@ -173,7 +175,7 @@
       <div class="auth-card">
         <div class="auth-logo">
           <i class="fas fa-owl"></i>
-          <span>Owluminate</span>
+          <span>JUANOVA CORTEX</span>
         </div>
         <h1 class="signup-heading">Create Your Account</h1>
         <div id="firebaseui-auth-container"></div>
@@ -184,37 +186,52 @@
     </div>
   </main>
 
-  <!-- FirebaseUI CSS -->
-  <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/6.0.2/firebaseui.css" />
-  <script src="../js/firebase-config.js"></script>
-  <!-- FirebaseUI JS -->
-  <script src="https://cdn.firebase.com/libs/firebaseui/6.0.2/firebaseui.js"></script>
+  <!-- Initialize Firebase -->
+  
   <script>
     // Initialize the FirebaseUI Widget using Firebase.
     var ui = new firebaseui.auth.AuthUI(firebase.auth());
     var uiConfig = {
       signInOptions: [
-        firebase.auth.EmailAuthProvider.PROVIDER_ID,
-        firebase.auth.GoogleAuthProvider.PROVIDER_ID
+        firebase.auth.EmailAuthProvider.PROVIDER_ID
       ],
-      signInSuccessUrl: 'login-new.html', // Redirect to login after signup
+      signInSuccessUrl: '/students/student-dashboard.html', // Redirect to dashboard after signup
       callbacks: {
         signInSuccessWithAuthResult: function(authResult, redirectUrl) {
-          // Store user data in Firestore if new user
-          if (authResult.additionalUserInfo.isNewUser) {
-            var user = authResult.user;
-            firebase.firestore().collection('users').doc(user.uid).set({
-              email: user.email,
-              name: user.displayName || '',
-              role: 'student',
-              createdAt: firebase.firestore.FieldValue.serverTimestamp()
-            }, { merge: true });
-          }
-          // Return true to redirect
-          return true;
+          var user = authResult.user;
+          var userDocRef = firebase.firestore().collection('users').doc(user.uid);
+
+          userDocRef.get().then(function(doc) {
+            if (doc.exists) {
+              // This is a returning user.
+              alert('An account with this email already exists. Signing you in.');
+              window.location.assign('/students/student-dashboard.html');
+            } else {
+              // This is a new user, create their document.
+              userDocRef.set({
+                email: user.email,
+                name: user.displayName || 'New User',
+                role: 'student',
+                createdAt: firebase.firestore.FieldValue.serverTimestamp()
+              }, { merge: true }).then(function() {
+                // After creating the document, redirect.
+                window.location.assign('/students/student-dashboard.html');
+              }).catch(function(error) {
+                console.error("Error creating user document: ", error);
+                // Fallback redirect even if Firestore write fails.
+                window.location.assign('/students/student-dashboard.html');
+              });
+            }
+          }).catch(function(error) {
+            console.error("Error checking user document:", error);
+            // Fallback redirect if the check fails.
+            window.location.assign('/students/student-dashboard.html');
+          });
+
+          // Return false because we are handling the redirect manually.
+          return false;
         }
-      },
-      credentialHelper: firebaseui.auth.CredentialHelper.GOOGLE_YOLO
+      }
     };
     // The start method will wait until the DOM is loaded.
     ui.start('#firebaseui-auth-container', uiConfig);
@@ -226,83 +243,9 @@
       display: none;
       color: #dc2626;
       background: #fee2e2;
-      try {
-        // Create user with email and password
-        const userCredential = await auth.createUserWithEmailAndPassword(
-          emailField.value,
-          passwordField.value
-        );
-
-        // Add user data to Firestore
-        const userData = {
-          name: nameField.value,
-          email: emailField.value,
-          role: 'student',
-          createdAt: firebase.firestore.FieldValue.serverTimestamp(),
-          grade: gradeField.value
-        };
-
-        await db.collection('users').doc(userCredential.user.uid).set(userData);
-
-        // Update display name
-        await userCredential.user.updateProfile({
-          displayName: nameField.value
-        });
-
-        // Store user role in localStorage
-        localStorage.setItem('userRole', 'student');
-
-        // Generate a 6-digit verification code
-        const verificationCode = Math.floor(100000 + Math.random() * 900000).toString();
-
-        // Store the verification code in Firestore
-        await db.collection('users').doc(userCredential.user.uid).update({
-          emailVerified: false,
-          verificationCode: verificationCode,
-          verificationCodeExpires: firebase.firestore.FieldValue.serverTimestamp()
-        });
-
-        // Call the Netlify function to send verification email
-        const response = await fetch('/.netlify/functions/send-verification', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            email: emailField.value,
-            code: verificationCode
-          })
-        });
-        const result = await response.json();
-        if (!response.ok) {
-          throw new Error(result.error || 'Failed to send verification email');
-        }
-
-        // Show success message
-        successDiv.textContent = 'Account created! Check your email for verification code.';
-        successDiv.style.display = 'block';
-
-        setTimeout(() => {
-          window.location.href = `verify-email.html?email=${emailField.value}&code=${verificationCode}`;
-        }, 1500);
-
-      } catch (error) {
-        // Show user-friendly error for email already in use
-        if (error.code === 'auth/email-already-in-use') {
-          errorDiv.textContent = 'This email is already registered. Please login instead.';
-        } else if (error.code === 'auth/invalid-email') {
-          errorDiv.textContent = 'Please enter a valid email address.';
-        } else if (error.code === 'auth/weak-password') {
-          errorDiv.textContent = 'Password is too weak. Please choose a stronger password.';
-        } else if (error.message && error.message.includes('already in use')) {
-          errorDiv.textContent = 'This email is already registered. Please login instead.';
-        } else {
-          errorDiv.textContent = error.message;
-        }
-        errorDiv.style.display = 'block';
-      }
       color: var(--text-secondary);
       font-size: 0.875rem;
     }
   </style>
-  </script>
 </body>
 </html>
