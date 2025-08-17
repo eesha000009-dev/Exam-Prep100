@@ -175,6 +175,10 @@
       box-shadow: 0 4px 20px rgba(0,0,0,0.15);
     }
 
+    .hidden-subject {
+      display: none;
+    }
+
     .progress-section {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -255,6 +259,10 @@
       }
     }
   </style>
+  <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
+  <script src="../js/firebase-config.js"></script>
 </head>
 <body>
   <div class="layout">
@@ -307,7 +315,9 @@
             <i class="fas fa-bell"></i>
             <span class="notification-badge">3</span>
           </button>
-          <img src="https://ui-avatars.com/api/?name=Student&background=2563eb&color=fff" alt="User" class="avatar">
+          <img src="https://ui-avatars.com/api/?name=Student&background=2563eb&color=fff" alt="User" class="avatar" id="user-avatar">
+          <span id="user-display-name" style="font-weight: 600;"></span>
+          <button id="sign-out-btn" class="btn btn-sm btn-danger" style="display: none;">Sign Out</button>
         </div>
       </div>
 
@@ -315,7 +325,7 @@
         <div class="welcome-content">
           <h1 class="welcome-title">Ready to Excel?</h1>
           <p class="welcome-subtitle">Your personalized learning journey continues. You've completed 65% of your weekly goals!</p>
-          <button class="btn btn-outline" style="border-color: white; color: white;">Continue Learning</button>
+          <button class="btn btn-outline" style="border-color: white; color: white;" onclick="document.getElementById('subjects-section').scrollIntoView({ behavior: 'smooth' });">Continue Learning</button>
         </div>
       </div>
 
@@ -345,10 +355,10 @@
         </div>
       </div>
 
-      <section class="section">
+      <section class="section" id="subjects-section">
         <div class="section-header">
           <h2 class="section-title">Your Subjects</h2>
-          <button class="btn btn-outline">View All</button>
+          <button class="btn btn-outline" id="view-all-subjects">View All</button>
         </div>
         
         <div class="subject-grid">
@@ -376,6 +386,22 @@
             <i class="fas fa-feather"></i>
             LITERATURE
           </a>
+          <a href="subjects/government.html" class="subject-card hidden-subject" style="background: var(--color-government)">
+            <i class="fas fa-landmark"></i>
+            GOVERNMENT
+          </a>
+          <a href="subjects/economics.html" class="subject-card hidden-subject" style="background: var(--color-economics)">
+            <i class="fas fa-chart-pie"></i>
+            ECONOMICS
+          </a>
+          <a href="subjects/commerce.html" class="subject-card hidden-subject" style="background: var(--color-commerce)">
+            <i class="fas fa-balance-scale"></i>
+            COMMERCE
+          </a>
+          <a href="subjects/accounting.html" class="subject-card hidden-subject" style="background: var(--color-accounting)">
+            <i class="fas fa-calculator"></i>
+            ACCOUNTING
+          </a>
         </div>
       </section>
     </main>
@@ -390,6 +416,55 @@
         if (item.getAttribute('href') === currentPath.split('/').pop()) {
           item.classList.add('active');
         }
+      });
+
+      const viewAllBtn = document.getElementById('view-all-subjects');
+      viewAllBtn.addEventListener('click', function() {
+        const hiddenSubjects = document.querySelectorAll('.hidden-subject');
+        hiddenSubjects.forEach(subject => {
+          subject.style.display = 'flex';
+        });
+        viewAllBtn.style.display = 'none';
+      });
+    });
+  </script>
+  
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const userDisplayName = document.getElementById('user-display-name');
+      const userAvatar = document.getElementById('user-avatar');
+      const signOutBtn = document.getElementById('sign-out-btn');
+
+      firebase.auth().onAuthStateChanged(function(user) {
+        if (user) {
+          // User is signed in.
+          console.log('User is signed in:', user);
+          
+          // Try to get display name, fallback to email
+          const displayName = user.displayName || user.email;
+          if (displayName) {
+            userDisplayName.textContent = `Welcome, ${displayName.split('@')[0]}`;
+            userAvatar.src = `https://ui-avatars.com/api/?name=${encodeURIComponent(displayName)}&background=2563eb&color=fff`;
+          }
+          
+          signOutBtn.style.display = 'block';
+
+        } else {
+          // No user is signed in.
+          console.log('No user signed in, redirecting to login.');
+          window.location.href = '/general/login-new.html';
+        }
+      });
+
+      signOutBtn.addEventListener('click', function() {
+        firebase.auth().signOut().then(() => {
+          // Sign-out successful.
+          console.log('User signed out successfully.');
+          window.location.href = '/general/login-new.html';
+        }).catch((error) => {
+          // An error happened.
+          console.error('Sign out error:', error);
+        });
       });
     });
   </script>
