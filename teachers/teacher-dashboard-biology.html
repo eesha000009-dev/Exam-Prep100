@@ -114,23 +114,8 @@
   </style>
 <body>
   <div class="canvas-layout">
-    <aside class="canvas-sidebar">
-      <div class="canvas-logo" title="Canvas">🖼️</div>
-      <nav>
-        <a href="teacher-dashboard.html" title="Dashboard">🏠<span class="menu-label">Dashboard</span></a>
-        <a href="sticky-notes.html" title="Sticky Notes">📝<span class="menu-label">Sticky Notes</span></a>
-        <a href="todo-list.html" title="To-Do List">✅<span class="menu-label">To-Do List</span></a>
-        <a href="timer.html" title="Timer">⏲️<span class="menu-label">Timer</span></a>
-        <a href="lesson-planner.html" title="Lesson Planner">📅<span class="menu-label">Lesson Planner</span></a>
-        <a href="quick-links.html" title="Quick Links">🔗<span class="menu-label">Quick Links</span></a>
-        <button title="Open Settings" class="settings-btn"></button>
-        <a href="motivational-quotes.html" title="Motivational Quotes">💡<span class="menu-label">Quotes</span></a>
-        <a href="teacher-sessions.html" title="Host Live Session">🎥<span class="menu-label">Host Live Session</span></a>
-      </nav>
-      <div class="canvas-footer">
-        <button title="Open Settings" class="settings-btn"></button>
-      </div>
-    </aside>
+  <!-- Shared sidebar will be injected here -->
+  <div id="teachers-sidebar-placeholder"></div>
     <div class="dashboard-container">
       <div class="dashboard-inner-container">
         <div class="syllabus-progress-box">Track your syllabus progress here.</div>
@@ -160,24 +145,9 @@
 </body>
 
   </style>
-</head>
-<!-- script moved to just before </body> -->
-<style>
-body.dark-mode {
-  background: #23272f !important;
-  color: #eaf2ff !important;
-}
-body.dark-mode .canvas-main, body.dark-mode .canvas-content, body.dark-mode .canvas-welcome, body.dark-mode .canvas-info, body.dark-mode .canvas-notifications, body.dark-mode .canvas-comingup, body.dark-mode .canvas-footerbar {
-  background: #23272f !important;
-  color: #eaf2ff !important;
-}
-body.dark-mode .canvas-sidebar {
-  background: #181c22 !important;
-}
-body.dark-mode .canvas-sidebar nav a, body.dark-mode .canvas-footerbar .social a {
-  color: #eaf2ff !important;
-}
+          <!-- Sidebar injected from shared partial -->
 body.dark-mode .canvas-sidebar nav a.active, body.dark-mode .canvas-sidebar nav a:hover {
+        <script src="load-sidebar.js"></script>
   background: #2d7ff9 !important;
   color: #fff !important;
 }

@@ -1197,10 +1197,37 @@
           </div>
         </div>
        
-        <div class="auth-buttons">
-          <a href="general/login-new.html" class="btn btn-outline glass-effect">Log In</a>
-          <a href="general/signup-new.html" class="btn btn-primary pulse-effect">Get Started Free</a>
+        <div class="auth-buttons" id="auth-buttons">
+          <a href="general/login-new.html" class="btn btn-outline glass-effect" id="login-btn">Log In</a>
+          <a href="general/signup-new.html" class="btn btn-primary pulse-effect" id="signup-btn">Get Started Free</a>
         </div>
+        <div class="auth-buttons" id="user-buttons" style="display:none;">
+          <a href="students/student-dashboard.html" class="btn btn-primary">Go to Dashboard</a>
+          <button id="signout-btn" class="btn btn-outline glass-effect">Sign Out</button>
+        </div>
+  <script type="module">
+    import { app } from './firebase-config.js';
+    import { getAuth, onAuthStateChanged, signOut } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js';
+    const auth = getAuth(app);
+    const authBtns = document.getElementById('auth-buttons');
+    const userBtns = document.getElementById('user-buttons');
+    const signOutBtn = document.getElementById('signout-btn');
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        authBtns.style.display = 'none';
+        userBtns.style.display = 'flex';
+      } else {
+        authBtns.style.display = 'flex';
+        userBtns.style.display = 'none';
+      }
+    });
+    if(signOutBtn){
+      signOutBtn.addEventListener('click', async () => {
+        await signOut(auth);
+        window.location.reload();
+      });
+    }
+  </script>
       </div>
       <button class="mobile-menu" aria-label="Menu">
         <i class="fas fa-bars"></i>
@@ -1264,6 +1291,13 @@
         <div class="hero-cta" data-aos="fade-up" data-aos-delay="400">
           <a href="general/signup-new.html" class="button button-primary">Start Learning Now</a>
           <button id="impactModalBtn" class="button button-secondary" type="button">Discover Our Impact</button>
+        </div>
+        <div class="mt-8 flex justify-center gap-4">
+          <a href="general/signup-new.html" class="btn-primary">Get Started Now</a>
+          <a href="#features" class="btn-secondary">Explore Features</a>
+        </div>
+        <div class="mt-6 text-center">
+          <a href="teachers/teacher-confirmation.html" class="teacher-link">Are you a teacher?</a>
         </div>
         <!-- Hero section intentionally left empty as requested -->
       </div>
@@ -1570,37 +1604,7 @@
     </div>
   </section>
 
-  <section class="trust-badges">
-    <div class="trust-grid">
-      <div class="relative group trust-item">
-        <div class="absolute -inset-1 bg-gradient-to-r from-[#4299e1] to-[#3182ce] rounded-lg blur opacity-25 group-hover:opacity-100 transition duration-1000 group-hover:duration-200"></div>
-        <div class="relative flex flex-col items-center">
-          <img src="https://img.icons8.com/color/48/000000/google-logo.png" alt="Google for Education Partner" />
-          <span>Google for Education Partner</span>
-        </div>
-      </div>
-      <div class="relative group trust-item">
-        <div class="absolute -inset-1 bg-gradient-to-r from-[#4299e1] to-[#3182ce] rounded-lg blur opacity-25 group-hover:opacity-100 transition duration-1000 group-hover:duration-200"></div>
-        <div class="relative flex flex-col items-center">
-          <img src="https://img.icons8.com/color/48/000000/microsoft.png" alt="Microsoft Education Partner" />
-          <span>Microsoft Education Partner</span>
-        </div>
-      </div>
-      <div class="relative group trust-item">
-        <div class="absolute -inset-1 bg-gradient-to-r from-[#4299e1] to-[#3182ce] rounded-lg blur opacity-25 group-hover:opacity-100 transition duration-1000 group-hover:duration-200"></div>
-        <div class="relative flex flex-col items-center">
-          <i class="fas fa-shield-alt"></i>
-          <span>ISO 27001 Certified</span>
-        </div>
-      </div>
-      <div class="relative group trust-item">
-        <div class="absolute -inset-1 bg-gradient-to-r from-[#4299e1] to-[#3182ce] rounded-lg blur opacity-25 group-hover:opacity-100 transition duration-1000 group-hover:duration-200"></div>
-        <div class="relative flex flex-col items-center">
-          <i class="fas fa-award"></i>
-          <span>Best EdTech Platform 2025</span>
-        </div>
-      </div>
-    </div>
+  <!-- Trust badges removed as requested -->
     </div>
   </section>
 
