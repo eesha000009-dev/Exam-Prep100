@@ -4,3 +4,8 @@ node_modules/
 .env.local
 .vscode/
 *.log
+
+# Local Netlify folder
+.netlify
+.env 
+.env 

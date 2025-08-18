@@ -1,7 +1,11 @@
 [build]
   publish = "/"
+  command = "# no build command needed"
 
 [[redirects]]
   from = "/*"
   to = "/index.html"
   status = 200
+
+[build.processing]
+  skip_processing = false

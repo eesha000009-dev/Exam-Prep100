@@ -3,21 +3,602 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>EduNext - AI-Powered Learning Platform for WAEC & JAMB Success</title>
-  <meta name="description" content="Transform your academic journey with EduNext's AI-powered learning platform. Get personalized study plans, live tutoring, and instant help for WAEC, NECO, and JAMB exams.">
+  <title>JUANOVA CORTEX - AI-Powered Learning Platform for WAEC & JAMB Success</title>
+  <meta name="description" content="Transform your academic journey with JUANOVA CORTEX's AI-powered learning platform. Get personalized study plans, live tutoring, and instant help for WAEC, NECO, and JAMB exams.">
+  <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css">
   <link rel="stylesheet" href="general/modernized.css">
   <link rel="stylesheet" href="style.css">
-  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js" defer></script>
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#3B82F6',
+            secondary: '#6B7280',
+          },
+          fontFamily: {
+            sans: ['Plus Jakarta Sans', 'sans-serif'],
+          },
+        },
+      },
+    }
+  </script>
   <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12" defer></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      AOS.init({
+        duration: 800,
+        once: true
+      });
+    });
+  </script>
   <!-- Firebase SDK -->
-  <script src="https://www.gstatic.com/firebasejs/10.1.0/firebase-app-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/10.1.0/firebase-auth-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/10.1.0/firebase-firestore-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/10.1.0/firebase-storage-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-analytics-compat.js"></script>
+  <!-- Firebase Config -->
+  <script src="js/firebase-config.js"></script>
   <style>
+    /* Hero Section Styles */
+    .hero {
+      padding: 8rem 2rem 6rem;
+      position: relative;
+      overflow: visible;
+      min-height: calc(100vh - 70px);
+      display: flex;
+      align-items: center;
+      background: linear-gradient(180deg, #f7fafc 0%, #ffffff 100%);
+      margin-top: 70px; /* Add margin to account for fixed header */
+    }
+
+    .hero-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      text-align: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    .stat-highlight {
+      font-size: 1.25rem;
+      color: #EF4444;
+      font-weight: 600;
+      margin-bottom: 1.5rem;
+      display: inline-block;
+      padding: 0.5rem 1.5rem;
+      background: rgba(239, 68, 68, 0.1);
+      border-radius: 50px;
+    }
+
+    .impact-statement {
+      font-size: 1.125rem;
+      color: #2563EB;
+      font-weight: 600;
+      margin-top: 1.5rem;
+    }
+
+    .hero-visual {
+      margin: 2rem auto;
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      max-width: 1000px;
+    }
+
+    .device-wrapper {
+      position: relative;
+      width: 100%;
+      padding: 0 1rem;
+    }
+
+    .device-screen {
+      width: 100%;
+      height: auto;
+      border-radius: 16px;
+      box-shadow: 0 20px 40px rgba(66,153,225,0.2);
+      transition: all 0.3s ease-in-out;
+      border: 1px solid rgba(66, 153, 225, 0.1);
+    }
+
+    .device-screen:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 30px 60px rgba(66,153,225,0.3);
+    }
+
+    .device-screen:hover {
+      transform: translateY(-5px);
+    }
+
+    @media (max-width: 768px) {
+      .device-wrapper {
+        max-width: 100%;
+        padding: 0 1rem;
+      }
+    }
+
+    /* Injini-style headline and mission statement */
+    .injini-headline {
+      font-size: 4.5rem;
+      font-weight: 800;
+      line-height: 1.1;
+      color: #1a202c;
+      margin-bottom: 2rem;
+      font-family: 'Plus Jakarta Sans', Arial, sans-serif;
+      letter-spacing: -1.5px;
+      padding: 2rem 0;
+      text-transform: capitalize;
+    }
+
+    .injini-subheadline {
+      font-size: 3rem;
+      font-weight: 700;
+      background: linear-gradient(135deg, #4299e1 0%, #3182ce 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-top: 1rem;
+      display: block;
+      letter-spacing: -0.5px;
+    }
+
+    .injini-mission {
+      font-size: 1.6rem;
+      color: #3182ce;
+      font-weight: 600;
+      line-height: 1.5;
+      margin: 2rem auto 3rem;
+      font-family: 'Plus Jakarta Sans', Arial, sans-serif;
+      max-width: 700px;
+      padding: 0;
+      text-align: center;
+    }
+
+    .hero-cta {
+      display: flex;
+      gap: 1.5rem;
+      justify-content: center;
+      margin: 2.5rem 0 3rem;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem 2rem;
+      font-weight: 600;
+      font-size: 1.125rem;
+      border-radius: 50px;
+      transition: all 0.3s ease;
+      text-decoration: none;
+    }
+
+    .button-primary {
+      background: linear-gradient(135deg, #3B82F6 0%, #2563EB 100%);
+      color: white;
+      box-shadow: 0 4px 20px rgba(37, 99, 235, 0.2);
+    }
+
+    .button-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 30px rgba(37, 99, 235, 0.3);
+    }
+
+    .button-secondary {
+      background: white;
+      color: #2563EB;
+      border: 2px solid #2563EB;
+    }
+
+    .button-secondary:hover {
+      background: rgba(37, 99, 235, 0.1);
+      transform: translateY(-2px);
+    }
+
+    .achievement-cards {
+      display: flex;
+      gap: 1.5rem;
+      margin: 2rem auto;
+      justify-content: center;
+      flex-wrap: wrap;
+      max-width: 1200px;
+    }
+
+    .achievement-card {
+      background: linear-gradient(135deg, #4299e1 0%, #3182ce 100%);
+      color: #fff;
+      border-radius: 16px;
+      box-shadow: 0 4px 16px rgba(66,153,225,0.15);
+      padding: 1.5rem;
+      min-width: 200px;
+      text-align: center;
+      position: relative;
+      z-index: 2;
+      border: none;
+      transform: translateY(0);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .achievement-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 12px 40px rgba(66,153,225,0.25);
+    }
+
+    /* Announcement Banner Styles */
+    .announcement-banner {
+      background: linear-gradient(135deg, #4299e1 0%, #3182ce 100%);
+      color: white;
+      padding: 0.75rem 0;
+      position: fixed;
+      top: 120px;
+      left: 0;
+      overflow: hidden;
+      width: 100%;
+      display: block;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+      z-index: 100;
+    }
+
+    .announcement-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 1rem;
+    }
+
+    .announcement-slider {
+      display: flex;
+      animation: slide 20s linear infinite;
+      width: fit-content;
+      /* Duplicate items for continuous sliding */
+    }
+
+    .announcement-item {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      white-space: nowrap;
+      padding: 0 3rem;
+      animation: fadeIn 0.5s ease-in-out;
+      font-size: 1.1rem;
+      font-weight: 500;
+    }
+
+    .announcement-item i {
+      color: #ffd700;
+      font-size: 1.2rem;
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0% {
+        transform: scale(1);
+      }
+      50% {
+        transform: scale(1.2);
+      }
+      100% {
+        transform: scale(1);
+      }
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(-10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .announcement-link {
+      color: #ffd700;
+      text-decoration: none;
+      font-weight: 600;
+      transition: color 0.3s ease;
+    }
+
+    .announcement-link:hover {
+      color: #fff;
+      text-decoration: underline;
+    }
+
+    /* Progress Card Styles */
+    /* Injini-style Achievement Card Styles */
+    .achievement-cards {
+      display: flex;
+      gap: 2.5rem;
+      margin-top: 2.5rem;
+      margin-bottom: 2.5rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .achievement-card {
+      background: linear-gradient(135deg, #4299e1 0%, #3182ce 100%);
+      color: #fff;
+      border-radius: 18px;
+      box-shadow: 0 8px 32px rgba(66,153,225,0.15);
+      padding: 2.5rem 2rem;
+      min-width: 220px;
+      text-align: center;
+      position: relative;
+      z-index: 100;
+      border: none;
+    }
+    .achievement-icon {
+      color: #fff;
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+    }
+    .achievement-info .counter {
+      color: #fff;
+      font-size: 2.5rem;
+      font-weight: 800;
+      margin: 0.5rem 0 0.5rem 0;
+    }
+    .achievement-info .percentage {
+      color: #ffd700;
+    }
+    .progress-card {
+      background: white;
+      padding: 2rem;
+      position: relative;
+      z-index: 100;
+      border-bottom: 1px solid #e2e8f0;
+    }
+
+    .progress-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 1rem 2rem;
+    }
+
+    .progress-card h2 {
+      color: #2d3748;
+      font-size: 2rem;
+      margin-bottom: 1rem;
+    }
+
+    .progress-card p {
+      color: #4a5568;
+      font-size: 1.1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .continue-btn {
+      background: #4299e1;
+      color: white;
+      border: none;
+      padding: 0.75rem 1.5rem;
+      border-radius: 0.5rem;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .continue-btn:hover {
+      background: #3182ce;
+      transform: translateY(-2px);
+    }
+
+    .progress-stats {
+      display: flex;
+      gap: 3rem;
+      margin-top: 2rem;
+    }
+
+    .stat-item {
+      flex: 1;
+    }
+
+    .stat-item h3 {
+      color: #2d3748;
+      font-size: 1.1rem;
+      margin-bottom: 1rem;
+    }
+
+    .progress-bar {
+      background: #e2e8f0;
+      height: 8px;
+      border-radius: 4px;
+      margin-bottom: 0.5rem;
+      overflow: hidden;
+    }
+
+    .progress-fill {
+      background: linear-gradient(90deg, #4299e1, #3182ce);
+      height: 100%;
+      border-radius: 4px;
+      transition: width 0.5s ease;
+    }
+
+    .stat-item p {
+      color: #4299e1;
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin: 0.5rem 0;
+    }
+
+    .stat-detail {
+      color: #718096;
+      font-size: 0.9rem;
+    }
+
+    /* Quotes Carousel Styles */
+    .quotes-carousel {
+      width: 100%;
+      max-width: 1000px;
+      margin: 3rem auto;
+      overflow: hidden;
+      position: relative;
+      padding: 2rem 0;
+      background: white;
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+      z-index: 10;
+      margin-top: -50px;
+    }
+
+    .quotes-track {
+      display: flex;
+      animation: slideQuotes 30s linear infinite;
+      width: fit-content;
+    }
+
+    .quote-card {
+      width: 400px;
+      background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+      border-radius: 15px;
+      padding: 2.5rem;
+      margin: 0 1.5rem;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+      flex-shrink: 0;
+      transition: all 0.3s ease;
+      border-left: 5px solid #4299e1;
+    }
+
+    .quote-card:hover {
+      transform: translateY(-5px) scale(1.02);
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+    }
+
+    .quote-card i {
+      color: #4299e1;
+      font-size: 2rem;
+      margin-bottom: 1.5rem;
+      display: block;
+      opacity: 0.8;
+    }
+
+    .quote-text {
+      font-size: 1.3rem;
+      color: #2d3748;
+      line-height: 1.8;
+      margin-bottom: 1.5rem;
+      font-style: italic;
+      font-weight: 500;
+    }
+
+    .quote-author {
+      color: #4299e1;
+      font-weight: 600;
+      text-align: right;
+      font-size: 1.1rem;
+      border-top: 1px solid rgba(66, 153, 225, 0.2);
+      padding-top: 1rem;
+      margin-top: 1rem;
+    }
+
+    @keyframes slideQuotes {
+      0% {
+        transform: translateX(0);
+      }
+      100% {
+        transform: translateX(calc(-100% / 2));
+      }
+    }
+
+    @keyframes slide {
+      0% {
+        transform: translateX(0);
+      }
+      100% {
+        transform: translateX(-50%);  /* Adjusted for smoother loop */
+      }
+    }
+
+    /* Navbar Styles */
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1000;
+      background: rgba(255, 255, 255, 0.95);
+      height: 120px; /* Increase height further */
+      padding: 0 30px; /* Maintain padding */
+      display: flex;
+      align-items: center; /* Center content vertically */
+      justify-content: flex-start; /* Align content to the left */
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .nav-container {
+      display: flex;
+      justify-content: flex-start; /* Align all items to the left */
+      align-items: center;
+      width: 100%;
+    }
+    .nav-links {
+      margin-left: auto; /* Push nav links to the right */
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+    }
+
+    /* Mobile Menu Styles */
+    .mobile-menu {
+      display: none;
+      background: none;
+      border: none;
+      font-size: 1.5rem;
+      color: #4299e1;
+      cursor: pointer;
+      padding: 0.5rem;
+    }
+
+    @media (max-width: 768px) {
+      .mobile-menu {
+        display: block;
+      }
+
+      .nav-links {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: white;
+        padding: 1rem;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        flex-direction: column;
+        gap: 1rem;
+      }
+
+      .nav-links.active {
+        display: flex;
+      }
+
+      .nav-item.dropdown {
+        width: 100%;
+      }
+
+      .dropdown-content {
+        position: static;
+        box-shadow: none;
+        padding: 0.5rem 0;
+      }
+
+      .auth-buttons {
+        flex-direction: column;
+        width: 100%;
+        gap: 0.5rem;
+      }
+
+      .auth-buttons a {
+        width: 100%;
+        text-align: center;
+      }
+    }
+
     .footer {
       background: #1a202c;
       color: #fff;
@@ -119,6 +700,8 @@
     .footer-links a:hover {
       color: #4299e1;
     }
+
+
 
     @media (max-width: 768px) {
       .footer-content {
@@ -226,52 +809,297 @@
       text-align: left;
       max-width: 800px;
       margin: 0 auto;
+      padding: 2rem;
+      background: rgba(255, 255, 255, 0.95);
+      border-radius: 15px;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
     }
 
-    .programmer-details h3 {
-      font-size: 2rem;
-      color: #2d3748;
-      margin-bottom: 1.5rem;
+    .info-dropdown {
       text-align: center;
+      margin: 1rem 0 2rem;
+    }
+
+    .dropdown-toggle {
+      background: #4299e1;
+      color: white;
+      border: none;
+      padding: 1rem 2rem;
+      border-radius: 8px;
+      font-size: 1.1rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .dropdown-toggle:hover {
+      background: #3182ce;
+      transform: translateY(-2px);
+    }
+
+    .dropdown-toggle i {
+      transition: transform 0.3s ease;
+    }
+
+    .dropdown-toggle.active i {
+      transform: rotate(180deg);
+    }
+
+    .profile-content {
+      display: none;
+      opacity: 0;
+      transform: translateY(-10px);
+      transition: all 0.3s ease;
+    }
+
+    .profile-content.show {
+      display: block;
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .programmer-details h3 {
+      font-size: 2.5rem;
+      color: #2d3748;
+      margin-bottom: 2rem;
+      text-align: center;
+      position: relative;
+      padding-bottom: 1rem;
+    }
+
+    .programmer-details h3:after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100px;
+      height: 4px;
+      background: linear-gradient(90deg, #4299e1, #3182ce);
+      border-radius: 2px;
     }
 
     .info-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 1rem;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+      margin-bottom: 2rem;
     }
 
     .personal-info, .contact-info {
-      margin-bottom: 2rem;
-      padding: 1rem;
-      background: rgba(255,255,255,0.8);
-      border-radius: 10px;
+      padding: 1.5rem;
+      background: #f8fafc;
+      border-radius: 12px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+      transition: transform 0.3s ease;
+    }
+
+    .personal-info:hover, .contact-info:hover {
+      transform: translateY(-5px);
+    }
+
+    .info-item {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 1rem;
+      padding: 0.5rem;
+      border-radius: 8px;
+      background: white;
+    }
+
+    .info-item i {
+      font-size: 1.2rem;
+      color: #4299e1;
+      width: 24px;
+    }
+
+    .skills-section {
+      margin-top: 2rem;
     }
 
     .skills-section h4 {
-      color: #4a5568;
-      margin: 1.5rem 0 1rem;
+      color: #2d3748;
+      font-size: 1.25rem;
+      margin: 2rem 0 1rem;
       display: flex;
       align-items: center;
+      gap: 0.75rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 2px solid #e2e8f0;
+    }
+
+    /* Modern Quote Card Slider Animation */
+    .modern-quote-slider-cards {
+      position: relative;
+      width: 100%;
+      max-width: 800px;
+      margin: 2rem auto;
+      min-height: 180px;
+    }
+    .modern-quote-card {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      max-width: 800px;
+      background: linear-gradient(135deg, #4299e1 0%, #3182ce 100%);
+      color: #fff;
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(66, 153, 225, 0.15);
+      overflow: hidden;
+      opacity: 0;
+      transform: translateX(100%);
+      transition: all 0.6s cubic-bezier(.77,.2,.25,1);
+      z-index: 1;
+      pointer-events: none;
+    }
+    .modern-quote-card.active {
+      opacity: 1;
+      transform: translateX(0);
+      z-index: 2;
+      pointer-events: auto;
+    }
+    .modern-quote-card.slide-out-left {
+      opacity: 0;
+      transform: translateX(-100%);
+      z-index: 1;
+    }
+    .modern-quote-card.slide-in-right {
+      opacity: 1;
+      transform: translateX(0);
+      z-index: 2;
+    }
+    .modern-quote-card.slide-in-left {
+      opacity: 1;
+      transform: translateX(0);
+      z-index: 2;
+    }
+    .modern-quote-card.slide-out-right {
+      opacity: 0;
+      transform: translateX(100%);
+      z-index: 1;
+    }
+    .modern-quote-content {
+      padding: 2.5rem 2rem 2rem 2rem;
+      min-height: 180px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+    .modern-quote-icon {
+      font-size: 2rem;
+      color: #fff;
+      opacity: 0.8;
+      margin-bottom: 1rem;
+    }
+    .modern-quote-text {
+      font-size: 1.3rem;
+      font-style: italic;
+      font-weight: 500;
+      margin-bottom: 1rem;
+      color: #fff;
+      text-align: center;
+    }
+    .modern-quote-author {
+      color: #ffd700;
+      font-weight: 600;
+      text-align: right;
+      font-size: 1.1rem;
+      margin-top: 1rem;
+    }
+    .modern-quote-dots {
+      display: flex;
       gap: 0.5rem;
+      justify-content: center;
+      margin-top: 1.5rem;
+    }
+    .modern-quote-dots .dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: #fff;
+      opacity: 0.5;
+      cursor: pointer;
+      transition: opacity 0.3s, transform 0.3s;
+    }
+    .modern-quote-dots .dot.active {
+      opacity: 1;
+      background: #ffd700;
+      transform: scale(1.2);
     }
 
     .skills-section ul {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+      padding: 0;
       list-style: none;
-      padding-left: 1.5rem;
     }
 
     .skills-section li {
-      margin: 0.5rem 0;
-      position: relative;
+      padding: 0.75rem 1rem;
+      background: white;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      transition: all 0.3s ease;
+    }
+
+    .skills-section li:hover {
+      transform: translateX(5px);
+      background: #f0f9ff;
     }
 
     .skills-section li:before {
       content: "•";
       color: #4299e1;
       font-weight: bold;
-      position: absolute;
-      left: -1rem;
+      font-size: 1.5rem;
+    }
+
+    .inspiration {
+      margin-top: 2.5rem;
+      text-align: center;
+      padding: 1.5rem;
+      background: linear-gradient(to right, rgba(66, 153, 225, 0.05), rgba(49, 130, 206, 0.05));
+      border-radius: 10px;
+    }
+
+    .inspiration h4 {
+      color: #2d3748;
+      font-size: 1.25rem;
+      margin-bottom: 0.75rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+    }
+
+    .inspiration h4 i {
+      color: #4299e1;
+      font-size: 1.1rem;
+    }
+
+    .role-model-content {
+      font-size: 1.1rem;
+      color: #2d3748;
+      padding: 0.75rem 1rem;
+      background: white;
+      border-radius: 6px;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+      display: inline-block;
+      min-width: 180px;
+    }
+
+    .role-model-content strong {
+      color: #4299e1;
+      font-weight: 600;
     }
 
     .mission-statement {
@@ -293,35 +1121,47 @@
         font-size: 1.5rem;
       }
     }
+
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1000;
+      background: rgba(255, 255, 255, 0.95);
+      height: 120px; /* Increase height further */
+      padding: 0 30px; /* Maintain padding */
+      display: flex;
+      align-items: center; /* Center content vertically */
+      justify-content: flex-start; /* Align content to the left */
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .nav-container {
+      display: flex;
+      justify-content: flex-start; /* Align all items to the left */
+      align-items: center;
+      width: 100%;
+    }
+    .nav-links {
+      margin-left: auto; /* Push nav links to the right */
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+    }
+
+    .logo img {
+      height: 100px; /* Magnify logo size */
+      width: auto;
+      object-fit: contain;
+    }
   </style>
 </head>
 <body>
-  <!-- Floating Action Button for Quick Access -->
-  <div class="fab-container">
-    <button class="fab-button" aria-label="Quick Actions">
-      <i class="fas fa-plus"></i>
-    </button>
-    <div class="fab-options">
-      <button class="fab-option" data-action="chat">
-        <i class="fas fa-robot"></i>
-        <span>Ask AI Tutor</span>
-      </button>
-      <button class="fab-option" data-action="practice">
-        <i class="fas fa-pencil-alt"></i>
-        <span>Quick Practice</span>
-      </button>
-      <button class="fab-option" data-action="schedule">
-        <i class="fas fa-calendar-alt"></i>
-        <span>Schedule Class</span>
-      </button>
-    </div>
-  </div>
-
   <nav class="navbar glass-effect">
     <div class="nav-container">
-      <div class="logo">
-        <i class="fas fa-graduation-cap gradient-icon"></i>
-        <span>EduNext</span>
+      <div class="logo flex items-center gap-2">
+        <img src="assets/images/Logo of JUANOVA Cortex Tutor.png" alt="JUANOVA CORTEX Logo" class="logo-img" />
       </div>
       <div class="nav-links">
         <div class="nav-item dropdown">
@@ -358,8 +1198,8 @@
         </div>
        
         <div class="auth-buttons">
-          <a href="general/login.html" class="btn btn-outline glass-effect">Log In</a>
-          <a href="general/signup.html" class="btn btn-primary pulse-effect">Get Started Free</a>
+          <a href="general/login-new.html" class="btn btn-outline glass-effect">Log In</a>
+          <a href="general/signup-new.html" class="btn btn-primary pulse-effect">Get Started Free</a>
         </div>
       </div>
       <button class="mobile-menu" aria-label="Menu">
@@ -368,174 +1208,195 @@
     </div>
   </nav>
 
-  <main>
-    <section class="hero gradient-bg">
-      <div class="hero-content" data-aos="fade-right">
-        <h1 class="hero-title">
-          Prepare for 
-          <span class="typed-text"></span>
-          <br>with 
-          <span class="gradient-text glow-effect">AI-Powered Learning</span>
-        </h1>
-        <p class="hero-subtitle">
-          Join Nigeria's most innovative learning platform. Get personalized study plans,
-          instant AI tutoring, and expert guidance for exam success.
-        </p>
-        <div class="hero-cta">
-          <a href="general/signup.html" class="btn btn-primary btn-lg scale-on-hover">
-            Start Your Free Trial
-            <i class="fas fa-arrow-right"></i>
-          </a>
-          <button class="btn btn-outline btn-lg video-trigger" data-video="intro-video">
-            <i class="fas fa-play-circle"></i>
-            Watch Demo
-          </button>
+  <!-- Announcement Banner -->
+  <div class="announcement-banner">
+    <div class="announcement-content">
+      <div class="announcement-slider">
+        <!-- First set of announcements -->
+        <div class="announcement-item">
+          <i class="fas fa-graduation-cap"></i>
+          <span>🎓 WAEC/JAMB 2026 Prep Course - Get Early Access!</span>
+          <a href="#" class="announcement-link">Join Waitlist</a>
         </div>
-        
-        <div class="achievement-cards">
-          <div class="achievement-card" data-aos="fade-up" data-aos-delay="100">
-            <div class="achievement-icon">
-              <i class="fas fa-users"></i>
-            </div>
-            <div class="achievement-info">
-              <div class="counter" data-target="50000">0</div>
-              <span>Active Students</span>
-            </div>
-          </div>
-          
-          <div class="achievement-card" data-aos="fade-up" data-aos-delay="200">
-            <div class="achievement-icon">
-              <i class="fas fa-chart-line"></i>
-            </div>
-            <div class="achievement-info">
-              <div class="counter" data-target="95">0</div>
-              <span class="percentage">% Success Rate</span>
-            </div>
-          </div>
-          
-          <div class="achievement-card" data-aos="fade-up" data-aos-delay="300">
-            <div class="achievement-icon">
-              <i class="fas fa-award"></i>
-            </div>
-            <div class="achievement-info">
-              <div class="counter" data-target="15000">0</div>
-              <span>A's Achieved</span>
-            </div>
-          </div>
+        <div class="announcement-item">
+          <i class="fas fa-gift"></i>
+          <span>🎉 Special Launch Offer - First 1000 Students Get 50% Off</span>
+          <a href="#" class="announcement-link">Claim Now</a>
         </div>
-        
-        <!-- Live Student Activity Feed -->
-        <div class="live-feed">
-          <div class="feed-header">
-            <i class="fas fa-circle pulse-dot"></i>
-            Live Activity
-          </div>
-          <div class="feed-container">
-            <!-- Dynamic content will be inserted here by JavaScript -->
-          </div>
+        <div class="announcement-item">
+          <i class="fas fa-medal"></i>
+          <span>🏆 Achieve A1 in Mathematics - Join Our Masterclass</span>
+          <a href="#" class="announcement-link">Register Free</a>
         </div>
-      </div>
-      
-      <div class="hero-visual" data-aos="fade-left">
-        <div class="3d-device">
-          <img src="https://images.unsplash.com/photo-1571260899304-425eee4c7efc?auto=format&fit=crop&w=1000&q=80" 
-               alt="AI Learning Platform" 
-               class="device-screen" />
-          <div class="floating-elements">
-            <div class="float-card achievement">
-              <i class="fas fa-trophy"></i>
-              <span>New Achievement!</span>
-            </div>
-            <div class="float-card ai-response">
-              <i class="fas fa-robot"></i>
-              <span>AI Tutor Response</span>
-            </div>
-            <div class="float-card notification">
-              <i class="fas fa-bell"></i>
-              <span>Live Class Starting</span>
-            </div>
-          </div>
-        </div>
-        
-        <!-- Interactive Demo Preview -->
-        <div class="demo-preview">
-          <div class="demo-nav">
-            <button class="demo-tab active" data-tab="ai-tutor">AI Tutor</button>
-            <button class="demo-tab" data-tab="live-class">Live Class</button>
-            <button class="demo-tab" data-tab="practice">Practice</button>
-          </div>
-          <div class="demo-content">
-            <!-- Content will be dynamically loaded -->
-          </div>
-        </div>
-      </div>
-      
-      <!-- Video Modal -->
-      <div id="video-modal" class="modal">
-        <div class="modal-content">
-          <span class="close-modal">&times;</span>
-          <video id="intro-video" controls>
-            <source src="assets/videos/platform-demo.mp4" type="video/mp4">
-            Your browser does not support the video tag.
-          </video>
+        <div class="announcement-item">
+          <i class="fas fa-robot"></i>
+          <span>🤖 Try Our New AI Study Assistant - Beta Access</span>
+          <a href="#" class="announcement-link">Get Started</a>
         </div>
       </div>
     </div>
+  </div>
+
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+  <main>
+    <section class="hero">
+      <div class="hero-content">
+        <div class="stat-highlight" data-aos="fade-down">
+          According to UNESCO, Sub-Saharan Africa has the highest rate of education exclusion in the world.
+        </div>
+        <h1 class="injini-headline" data-aos="fade-up" data-aos-delay="100">
+          Let's Change The Story Together
+        </h1>
+        <p class="injini-mission" data-aos="fade-up" data-aos-delay="200">
+          Join JUANOVA CORTEX's mission to transform African education through AI-powered learning. We're not just preparing students for exams - we're building the foundation for Africa's future leaders.
+        </p>
+        <div class="impact-statement" data-aos="fade-up" data-aos-delay="300">
+          Let's address this challenge and create a brighter future for African education.
+        </div>
+        <div class="hero-cta" data-aos="fade-up" data-aos-delay="400">
+          <a href="general/signup-new.html" class="button button-primary">Start Learning Now</a>
+          <button id="impactModalBtn" class="button button-secondary" type="button">Discover Our Impact</button>
+        </div>
+        <!-- Hero section intentionally left empty as requested -->
+      </div>
+      
+
+    </div>
   </section>
+<!-- Impact Modal -->
+<div id="impactModal" class="fixed inset-0 z-[9999] flex items-center justify-center bg-black bg-opacity-50 hidden">
+  <div class="bg-white rounded-2xl shadow-2xl max-w-lg w-full p-8 relative animate__animated animate__fadeIn max-h-[90vh] overflow-y-auto">
+    <button id="closeImpactModal" class="absolute top-4 right-4 text-gray-400 hover:text-blue-500 text-2xl font-bold">&times;</button>
+    <h2 class="text-3xl font-bold mb-4 text-blue-700">How JUANOVA CORTEX Can Transform Africa</h2>
+    <p class="mb-4 text-gray-700 text-lg">JUANOVA CORTEX is more than an exam prep platform—it's a movement to empower African youth and revolutionize education across the continent. With the right support and sponsorship, here's what JUANOVA CORTEX can offer:</p>
+    <ul class="list-disc pl-6 space-y-2 text-gray-800">
+      <li><strong>Personalized AI Tutoring:</strong> Every student gets tailored guidance, breaking barriers to quality education.</li>
+      <li><strong>Access for All:</strong> Mobile-first, offline learning ensures even remote communities can benefit.</li>
+      <li><strong>Teacher Empowerment:</strong> Tools and analytics help educators focus on what matters most—student growth.</li>
+      <li><strong>Exam Success:</strong> Practice tests, instant feedback, and smart study plans boost pass rates for WAEC, JAMB, and NECO.</li>
+      <li><strong>Leadership Development:</strong> Beyond academics, JUANOVA CORTEX nurtures future leaders with soft skills and innovation challenges.</li>
+      <li><strong>Community Impact:</strong> Scholarships, mentorship, and peer support networks foster hope and ambition.</li>
+      <li><strong>Scalable Change:</strong> With sponsorship, JUANOVA CORTEX can reach millions, closing the education gap and unlocking Africa's potential.</li>
+    </ul>
+    <div class="mt-6 text-center">
+      <span class="inline-block bg-gradient-to-r from-blue-400 to-blue-700 text-white px-4 py-2 rounded-full font-semibold shadow">Together, we can build a brighter future for Africa.</span>
+    </div>
+  </div>
+</div>
+<!-- Achievements/Stats Cards Section with Glowing Effect -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8 mt-16 max-w-5xl mx-auto px-4">
+  <!-- Card 1 -->
+  <div class="relative group">
+    <div class="absolute -inset-1 bg-gradient-to-r from-purple-600 to-pink-600 rounded-lg blur opacity-25 group-hover:opacity-100 transition duration-1000 group-hover:duration-200"></div>
+    <div class="relative px-7 py-6 bg-white ring-1 ring-gray-900/5 rounded-lg leading-none flex items-center justify-center space-x-6">
+      <div class="space-y-2">
+        <p class="text-slate-800 text-3xl font-bold">50K+</p>
+        <p class="text-slate-600">Active Students</p>
+      </div>
+    </div>
+  </div>
+  <!-- Card 2 -->
+  <div class="relative group">
+    <div class="absolute -inset-1 bg-gradient-to-r from-purple-600 to-pink-600 rounded-lg blur opacity-25 group-hover:opacity-100 transition duration-1000 group-hover:duration-200"></div>
+    <div class="relative px-7 py-6 bg-white ring-1 ring-gray-900/5 rounded-lg leading-none flex items-center justify-center space-x-6">
+      <div class="space-y-2">
+        <p class="text-slate-800 text-3xl font-bold">95%</p>
+        <p class="text-slate-600">Success Rate</p>
+      </div>
+    </div>
+  </div>
+  <!-- Card 3 -->
+  <div class="relative group">
+    <div class="absolute -inset-1 bg-gradient-to-r from-purple-600 to-pink-600 rounded-lg blur opacity-25 group-hover:opacity-100 transition duration-1000 group-hover:duration-200"></div>
+    <div class="relative px-7 py-6 bg-white ring-1 ring-gray-900/5 rounded-lg leading-none flex items-center justify-center space-x-6">
+      <div class="space-y-2">
+        <p class="text-slate-800 text-3xl font-bold">24/7</p>
+        <p class="text-slate-600">AI Support</p>
+      </div>
+    </div>
+  </div>
+</div>
 
   <section class="features" id="features">
     <div class="section-header">
-      <span class="section-tag">Why Choose EduNext?</span>
+      <span class="section-tag">Why Choose JUANOVA CORTEX?</span>
       <h2>Features that Set Us Apart</h2>
     </div>
     
     <div class="features-grid">
-      <div class="feature-card">
-        <div class="feature-icon">
-          <i class="fas fa-robot"></i>
+      <!-- Feature Card 1 -->
+      <div class="relative group feature-card">
+        <div class="absolute -inset-1 bg-gradient-to-r from-[#4299e1] to-[#3182ce] rounded-lg blur opacity-25 group-hover:opacity-100 transition duration-1000 group-hover:duration-200"></div>
+        <div class="relative">
+          <div class="feature-icon">
+            <i class="fas fa-robot"></i>
+          </div>
+          <h3>AI-Powered Tutoring</h3>
+          <p>Get instant help from our AI tutor 24/7. Ask questions, solve problems, and understand concepts better.</p>
         </div>
-        <h3>AI-Powered Tutoring</h3>
-        <p>Get instant help from our AI tutor 24/7. Ask questions, solve problems, and understand concepts better.</p>
       </div>
-      
-      <div class="feature-card">
-        <div class="feature-icon">
-          <i class="fas fa-chalkboard-teacher"></i>
+      <!-- Feature Card 2 -->
+      <div class="relative group feature-card">
+        <div class="absolute -inset-1 bg-gradient-to-r from-[#4299e1] to-[#3182ce] rounded-lg blur opacity-25 group-hover:opacity-100 transition duration-1000 group-hover:duration-200"></div>
+        <div class="relative">
+          <div class="feature-icon">
+            <i class="fas fa-chalkboard-teacher"></i>
+          </div>
+          <h3>Live Interactive Classes</h3>
+          <p>Join expert teachers in real-time sessions with interactive whiteboards and instant doubt clearing.</p>
         </div>
-        <h3>Live Interactive Classes</h3>
-        <p>Join expert teachers in real-time sessions with interactive whiteboards and instant doubt clearing.</p>
       </div>
-      
-      <div class="feature-card">
-        <div class="feature-icon">
-          <i class="fas fa-brain"></i>
+      <!-- Feature Card 3 -->
+      <div class="relative group feature-card">
+        <div class="absolute -inset-1 bg-gradient-to-r from-[#4299e1] to-[#3182ce] rounded-lg blur opacity-25 group-hover:opacity-100 transition duration-1000 group-hover:duration-200"></div>
+        <div class="relative">
+          <div class="feature-icon">
+            <i class="fas fa-brain"></i>
+          </div>
+          <h3>Smart Study Plans</h3>
+          <p>Personalized learning paths adapted to your goals, pace, and performance.</p>
         </div>
-        <h3>Smart Study Plans</h3>
-        <p>Personalized learning paths adapted to your goals, pace, and performance.</p>
       </div>
-      
-      <div class="feature-card">
-        <div class="feature-icon">
-          <i class="fas fa-chart-line"></i>
+      <!-- Feature Card 4 -->
+      <div class="relative group feature-card">
+        <div class="absolute -inset-1 bg-gradient-to-r from-[#4299e1] to-[#3182ce] rounded-lg blur opacity-25 group-hover:opacity-100 transition duration-1000 group-hover:duration-200"></div>
+        <div class="relative">
+          <div class="feature-icon">
+            <i class="fas fa-chart-line"></i>
+          </div>
+          <h3>Progress Tracking</h3>
+          <p>Detailed analytics and performance insights to help you stay on track.</p>
         </div>
-        <h3>Progress Tracking</h3>
-        <p>Detailed analytics and performance insights to help you stay on track.</p>
       </div>
-      
-      <div class="feature-card">
-        <div class="feature-icon">
-          <i class="fas fa-file-alt"></i>
+      <!-- Feature Card 5 -->
+      <div class="relative group feature-card">
+        <div class="absolute -inset-1 bg-gradient-to-r from-[#4299e1] to-[#3182ce] rounded-lg blur opacity-25 group-hover:opacity-100 transition duration-1000 group-hover:duration-200"></div>
+        <div class="relative">
+          <div class="feature-icon">
+            <i class="fas fa-file-alt"></i>
+          </div>
+          <h3>Practice Tests</h3>
+          <p>Extensive question bank with past papers and AI-generated practice questions.</p>
         </div>
-        <h3>Practice Tests</h3>
-        <p>Extensive question bank with past papers and AI-generated practice questions.</p>
       </div>
-      
-      <div class="feature-card">
-        <div class="feature-icon">
-          <i class="fas fa-mobile-alt"></i>
+      <!-- Feature Card 6 -->
+      <div class="relative group feature-card">
+        <div class="absolute -inset-1 bg-gradient-to-r from-[#4299e1] to-[#3182ce] rounded-lg blur opacity-25 group-hover:opacity-100 transition duration-1000 group-hover:duration-200"></div>
+        <div class="relative">
+          <div class="feature-icon">
+            <i class="fas fa-mobile-alt"></i>
+          </div>
+          <h3>Learn Anywhere</h3>
+          <p>Access your courses on any device, anytime. Study offline with our mobile app.</p>
         </div>
-        <h3>Learn Anywhere</h3>
-        <p>Access your courses on any device, anytime. Study offline with our mobile app.</p>
       </div>
     </div>
   </section>
@@ -547,36 +1408,45 @@
     </div>
     
     <div class="subjects-grid">
-      <a href="subjects/mathematics.html" class="subject-card">
-        <div class="subject-icon">
-          <i class="fas fa-calculator"></i>
+      <a href="subjects/mathematics.html" class="relative group subject-card">
+        <div class="absolute -inset-1 bg-gradient-to-r from-[#4299e1] to-[#3182ce] rounded-lg blur opacity-25 group-hover:opacity-100 transition duration-1000 group-hover:duration-200"></div>
+        <div class="relative">
+          <div class="subject-icon">
+            <i class="fas fa-calculator"></i>
+          </div>
+          <h3>Mathematics</h3>
+          <p>Algebra, Calculus, Statistics</p>
         </div>
-        <h3>Mathematics</h3>
-        <p>Algebra, Calculus, Statistics</p>
       </a>
-      
-      <a href="subjects/physics.html" class="subject-card">
-        <div class="subject-icon">
-          <i class="fas fa-atom"></i>
+      <a href="subjects/physics.html" class="relative group subject-card">
+        <div class="absolute -inset-1 bg-gradient-to-r from-[#4299e1] to-[#3182ce] rounded-lg blur opacity-25 group-hover:opacity-100 transition duration-1000 group-hover:duration-200"></div>
+        <div class="relative">
+          <div class="subject-icon">
+            <i class="fas fa-atom"></i>
+          </div>
+          <h3>Physics</h3>
+          <p>Mechanics, Electricity, Waves</p>
         </div>
-        <h3>Physics</h3>
-        <p>Mechanics, Electricity, Waves</p>
       </a>
-      
-      <a href="subjects/chemistry.html" class="subject-card">
-        <div class="subject-icon">
-          <i class="fas fa-flask"></i>
+      <a href="subjects/chemistry.html" class="relative group subject-card">
+        <div class="absolute -inset-1 bg-gradient-to-r from-[#4299e1] to-[#3182ce] rounded-lg blur opacity-25 group-hover:opacity-100 transition duration-1000 group-hover:duration-200"></div>
+        <div class="relative">
+          <div class="subject-icon">
+            <i class="fas fa-flask"></i>
+          </div>
+          <h3>Chemistry</h3>
+          <p>Organic, Inorganic, Physical</p>
         </div>
-        <h3>Chemistry</h3>
-        <p>Organic, Inorganic, Physical</p>
       </a>
-      
-      <a href="subjects/biology.html" class="subject-card">
-        <div class="subject-icon">
-          <i class="fas fa-dna"></i>
+      <a href="subjects/biology.html" class="relative group subject-card">
+        <div class="absolute -inset-1 bg-gradient-to-r from-[#4299e1] to-[#3182ce] rounded-lg blur opacity-25 group-hover:opacity-100 transition duration-1000 group-hover:duration-200"></div>
+        <div class="relative">
+          <div class="subject-icon">
+            <i class="fas fa-dna"></i>
+          </div>
+          <h3>Biology</h3>
+          <p>Genetics, Ecology, Physiology</p>
         </div>
-        <h3>Biology</h3>
-        <p>Genetics, Ecology, Physiology</p>
       </a>
     </div>
   </section>
@@ -584,7 +1454,7 @@
   <section class="programmer-profile" id="programmer">
     <div class="section-header">
       <span class="section-tag">Meet Our Programmer</span>
-      <h2>The Mind Behind EduNext</h2>
+      <h2>The Mind Behind JUANOVA CORTEX</h2>
     </div>
     
     <div class="programmer-content">
@@ -595,61 +1465,94 @@
         <div class="programmer-details">
           <h3>Abdlrazaq Fuhad Desmond</h3>
           
-          <div class="personal-info">
-            <div class="info-grid">
-              <p><strong>Born:</strong> October 7, 2010</p>
-              <p><strong>Age:</strong> 15</p>
-              <p><strong>Gender:</strong> Male</p>
-              <p><strong>Religion:</strong> Muslim</p>
-              <p><strong>Education:</strong> High School</p>
+          <div class="info-dropdown">
+            <button class="dropdown-toggle">
+              <i class="fas fa-bars"></i> View Profile Details
+            </button>
+          </div>
+
+          <div class="profile-content">
+            <div class="personal-info">
+              <h4><i class="fas fa-user"></i> Personal Information</h4>
+              <div class="info-grid">
+              <div class="info-item">
+                <i class="fas fa-birthday-cake"></i>
+                <span><strong>Born:</strong> October 7, 2010</span>
+              </div>
+              <div class="info-item">
+                <i class="fas fa-calendar-alt"></i>
+                <span><strong>Age:</strong> 15</span>
+              </div>
+              <div class="info-item">
+                <i class="fas fa-venus-mars"></i>
+                <span><strong>Gender:</strong> Male</span>
+              </div>
+              <div class="info-item">
+                <i class="fas fa-pray"></i>
+                <span><strong>Religion:</strong> Muslim</span>
+              </div>
+              <div class="info-item">
+                <i class="fas fa-school"></i>
+                <span><strong>Education:</strong> High School</span>
+              </div>
             </div>
           </div>
 
           <div class="contact-info">
+            <h4><i class="fas fa-address-card"></i> Contact Information</h4>
             <div class="info-grid">
-              <p><i class="fas fa-phone"></i> Phone: 08139776909</p>
-              <p><i class="fab fa-whatsapp"></i> WhatsApp: +234 8139776909</p>
+              <div class="info-item">
+                <i class="fas fa-phone"></i>
+                <span>08139776909</span>
+              </div>
+              <div class="info-item">
+                <i class="fab fa-whatsapp"></i>
+                <span>+234 8139776909</span>
+              </div>
             </div>
           </div>
 
           <div class="skills-section">
             <h4><i class="fas fa-laptop-code"></i> Technical Skills</h4>
             <ul>
-              <li>Robotics</li>
-              <li>Artificial Intelligence</li>
-              <li>Programming Languages</li>
+              <li><i class="fas fa-robot"></i> Robotics</li>
+              <li><i class="fas fa-brain"></i> Artificial Intelligence</li>
+              <li><i class="fas fa-code"></i> Programming Languages</li>
             </ul>
 
             <h4><i class="fas fa-lightbulb"></i> Entrepreneurial Skills</h4>
             <ul>
-              <li>Visionary Thinking</li>
-              <li>Solution-building</li>
-              <li>Practical and Scalable Knowledge-seeking</li>
+              <li><i class="fas fa-eye"></i> Visionary Thinking</li>
+              <li><i class="fas fa-tools"></i> Solution-building</li>
+              <li><i class="fas fa-search"></i> Practical and Scalable Knowledge-seeking</li>
             </ul>
 
             <h4><i class="fas fa-users"></i> Soft Skills</h4>
             <ul>
-              <li>Clarity in Approach</li>
-              <li>Persistence</li>
-              <li>Purpose-driven</li>
-              <li>Bold Thinking</li>
-              <li>Leadership</li>
+              <li><i class="fas fa-bullseye"></i> Clarity in Approach</li>
+              <li><i class="fas fa-clock"></i> Persistence</li>
+              <li><i class="fas fa-compass"></i> Purpose-driven</li>
+              <li><i class="fas fa-bolt"></i> Bold Thinking</li>
+              <li><i class="fas fa-crown"></i> Leadership</li>
             </ul>
 
             <h4><i class="fas fa-rocket"></i> Innovation and Problem-Solving</h4>
             <ul>
-              <li>Designing Humanoid Robots</li>
-              <li>Creating EdTech Platforms</li>
-              <li>Engineering Opportunities</li>
+              <li><i class="fas fa-microchip"></i> Designing Humanoid Robots</li>
+              <li><i class="fas fa-laptop"></i> Creating EdTech Platforms</li>
+              <li><i class="fas fa-cogs"></i> Engineering Opportunities</li>
             </ul>
           </div>
 
           <div class="inspiration">
-            <p><strong>Role Model:</strong> Elon Musk</p>
+            <h4><i class="fas fa-star"></i> Role Model</h4>
+            <div class="role-model-content">
+              <span><strong>Elon Musk</strong></span>
+            </div>
           </div>
 
           <div class="mission-statement">
-            <p>By the grace of Allah, this platform will revolutionize education in Nigeria and beyond.</p>
+            <p>By the grace of Allah, this platform will revolutionize education in Nigeria and Africa as a whole.</p>
           </div>
         </div>
       </div>
@@ -659,9 +1562,9 @@
   <section class="cta-section">
     <div class="cta-content">
       <h2>Ready to Transform Your Learning?</h2>
-      <p>Join thousands of students achieving their academic goals with EduNext.</p>
+      <p>Join thousands of students achieving their academic goals with JUANOVA CORTEX.</p>
       <div class="cta-buttons">
-        <a href="general/signup.html" class="btn btn-primary btn-lg">Get Started Free</a>
+        <a href="general/signup-new.html" class="btn btn-primary btn-lg">Get Started Free</a>
         <a href="#features" class="btn btn-outline btn-lg">Learn More</a>
       </div>
     </div>
@@ -669,21 +1572,33 @@
 
   <section class="trust-badges">
     <div class="trust-grid">
-      <div class="trust-item">
-        <img src="https://img.icons8.com/color/48/000000/google-logo.png" alt="Google for Education Partner" />
-        <span>Google for Education Partner</span>
+      <div class="relative group trust-item">
+        <div class="absolute -inset-1 bg-gradient-to-r from-[#4299e1] to-[#3182ce] rounded-lg blur opacity-25 group-hover:opacity-100 transition duration-1000 group-hover:duration-200"></div>
+        <div class="relative flex flex-col items-center">
+          <img src="https://img.icons8.com/color/48/000000/google-logo.png" alt="Google for Education Partner" />
+          <span>Google for Education Partner</span>
+        </div>
       </div>
-      <div class="trust-item">
-        <img src="https://img.icons8.com/color/48/000000/microsoft.png" alt="Microsoft Education Partner" />
-        <span>Microsoft Education Partner</span>
+      <div class="relative group trust-item">
+        <div class="absolute -inset-1 bg-gradient-to-r from-[#4299e1] to-[#3182ce] rounded-lg blur opacity-25 group-hover:opacity-100 transition duration-1000 group-hover:duration-200"></div>
+        <div class="relative flex flex-col items-center">
+          <img src="https://img.icons8.com/color/48/000000/microsoft.png" alt="Microsoft Education Partner" />
+          <span>Microsoft Education Partner</span>
+        </div>
       </div>
-      <div class="trust-item">
-        <i class="fas fa-shield-alt"></i>
-        <span>ISO 27001 Certified</span>
+      <div class="relative group trust-item">
+        <div class="absolute -inset-1 bg-gradient-to-r from-[#4299e1] to-[#3182ce] rounded-lg blur opacity-25 group-hover:opacity-100 transition duration-1000 group-hover:duration-200"></div>
+        <div class="relative flex flex-col items-center">
+          <i class="fas fa-shield-alt"></i>
+          <span>ISO 27001 Certified</span>
+        </div>
       </div>
-      <div class="trust-item">
-        <i class="fas fa-award"></i>
-        <span>Best EdTech Platform 2025</span>
+      <div class="relative group trust-item">
+        <div class="absolute -inset-1 bg-gradient-to-r from-[#4299e1] to-[#3182ce] rounded-lg blur opacity-25 group-hover:opacity-100 transition duration-1000 group-hover:duration-200"></div>
+        <div class="relative flex flex-col items-center">
+          <i class="fas fa-award"></i>
+          <span>Best EdTech Platform 2025</span>
+        </div>
       </div>
     </div>
     </div>
@@ -692,9 +1607,9 @@
   <footer class="footer">
     <div class="footer-content">
       <div class="footer-section">
-        <div class="footer-logo">
-          <i class="fas fa-graduation-cap"></i>
-          <span>EduNext</span>
+                <div class="footer-logo">
+          <i class="fas fa-owl"></i>
+          <span>JUANOVA CORTEX</span>
         </div>
         <p>Empowering students with AI-powered learning tools and expert guidance for academic excellence.</p>
         <div class="social-links">
@@ -736,7 +1651,7 @@
     </div>
 
     <div class="footer-bottom">
-      <p>&copy; 2025 EduNext. All rights reserved.</p>
+      <p>&copy; 2025 JUANOVA CORTEX. All rights reserved.</p>
       <div class="footer-links">
         <a href="#">Privacy Policy</a>
         <a href="#">Terms of Service</a>
@@ -746,6 +1661,44 @@
   </footer>
 
   <script>
+    // Initialize announcement banner, quotes carousel, and impact modal
+    document.addEventListener('DOMContentLoaded', () => {
+      // Announcement banner
+      const announcementBanner = document.querySelector('.announcement-banner');
+      if (announcementBanner) {
+        announcementBanner.style.display = 'block';
+        void announcementBanner.offsetWidth;
+      }
+
+      // Clone quote cards for infinite scroll
+      const quotesTrack = document.querySelector('.quotes-track');
+      const quoteCards = document.querySelectorAll('.quote-card');
+      if (quotesTrack && quoteCards.length > 0) {
+        quoteCards.forEach(card => {
+          const clone = card.cloneNode(true);
+          quotesTrack.appendChild(clone);
+        });
+      }
+
+      // Impact Modal logic
+      const impactModalBtn = document.getElementById('impactModalBtn');
+      const impactModal = document.getElementById('impactModal');
+      const closeImpactModal = document.getElementById('closeImpactModal');
+      if (impactModalBtn && impactModal && closeImpactModal) {
+        impactModalBtn.addEventListener('click', () => {
+          impactModal.classList.remove('hidden');
+        });
+        closeImpactModal.addEventListener('click', () => {
+          impactModal.classList.add('hidden');
+        });
+        impactModal.addEventListener('click', (e) => {
+          if (e.target === impactModal) {
+            impactModal.classList.add('hidden');
+          }
+        });
+      }
+    });
+
     // Mobile menu toggle
     const mobileMenu = document.querySelector('.mobile-menu');
     const navLinks = document.querySelector('.nav-links');
@@ -774,18 +1727,67 @@
         }
       });
     });
-  </script>
-  <!-- Firebase App (the core Firebase SDK) -->
-  <script src="https://www.gstatic.com/firebasejs/10.1.0/firebase-app-compat.js"></script>
-  <!-- Add Firebase products that you want to use -->
-  <script src="https://www.gstatic.com/firebasejs/10.1.0/firebase-auth-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/10.1.0/firebase-firestore-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/10.1.0/firebase-analytics-compat.js"></script>
-  
-  <!-- Your Firebase configuration file -->
-  <script src="./js/firebase-config.js"></script>
 
-  <script>
+    // Modernized quote slider animation
+    document.addEventListener('DOMContentLoaded', () => {
+      const cards = document.querySelectorAll('.modern-quote-card');
+      const dots = document.querySelectorAll('.modern-quote-dots .dot');
+      let currentCard = 0;
+      let isSliding = false;
+
+      function slideToCard(next, direction = 'right') {
+        if (isSliding || next === currentCard) return;
+        isSliding = true;
+        const prev = currentCard;
+        cards.forEach((card, i) => {
+          card.classList.remove('active', 'slide-in-right', 'slide-in-left', 'slide-out-left', 'slide-out-right');
+        });
+        dots.forEach(dot => dot.classList.remove('active'));
+
+        if (direction === 'right') {
+          cards[prev].classList.add('slide-out-left');
+          cards[next].classList.add('slide-in-right', 'active');
+        } else {
+          cards[prev].classList.add('slide-out-right');
+          cards[next].classList.add('slide-in-left', 'active');
+        }
+        dots[next].classList.add('active');
+        setTimeout(() => {
+          cards.forEach((card, i) => {
+            card.classList.remove('slide-in-right', 'slide-in-left', 'slide-out-left', 'slide-out-right');
+            card.classList.toggle('active', i === next);
+          });
+          isSliding = false;
+        }, 600);
+        currentCard = next;
+      }
+
+      function nextCard() {
+        let next = (currentCard + 1) % cards.length;
+        slideToCard(next, 'right');
+      }
+
+      dots.forEach((dot, i) => {
+        dot.addEventListener('click', () => {
+          if (i > currentCard) {
+            slideToCard(i, 'right');
+          } else if (i < currentCard) {
+            slideToCard(i, 'left');
+          }
+        });
+      });
+
+      setInterval(nextCard, 5000); // Change card every 5 seconds
+      // Initial state
+      cards.forEach((card, i) => {
+        card.classList.remove('active', 'slide-in-right', 'slide-in-left', 'slide-out-left', 'slide-out-right');
+        if (i === 0) {
+          card.classList.add('active');
+        }
+      });
+      dots[0].classList.add('active');
+    });
+
     // Firebase Authentication State Observer
     firebase.auth().onAuthStateChanged((user) => {
       if (user) {
@@ -817,8 +1819,8 @@
       const authButtons = document.querySelector('.auth-buttons');
       if (authButtons) {
         authButtons.innerHTML = `
-          <a href="general/login.html" class="btn btn-outline glass-effect">Log In</a>
-          <a href="general/signup.html" class="btn btn-primary pulse-effect">Get Started Free</a>
+          <a href="general/login-new.html" class="btn btn-outline glass-effect">Log In</a>
+          <a href="general/signup-new.html" class="btn btn-primary pulse-effect">Get Started Free</a>
         `;
       }
     }
@@ -833,5 +1835,7 @@
       }
     };
   </script>
+  <!-- Initialize Firebase configuration -->
+  <script src="./js/firebase-config.js"></script>
 </body>
 </html>

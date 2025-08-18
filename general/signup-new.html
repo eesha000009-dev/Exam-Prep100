@@ -3,10 +3,22 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>EduNext - Sign Up</title>
+  <title>JUANOVA CORTEX - Sign Up</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
   <link rel="stylesheet" href="modernized.css">
+  <!-- Firebase SDK -->
+  <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-analytics-compat.js"></script>
+  <!-- FirebaseUI CSS and JS -->
+  <link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/6.1.0/firebase-ui-auth.css" />
+  <script src="https://www.gstatic.com/firebasejs/ui/6.1.0/firebase-ui-auth.js"></script>
+  <!-- Initialize Firebase -->
+  <script src="/js/firebase-config.js"></script>
+  <!-- Password validation -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/zxcvbn/4.4.2/zxcvbn.js"></script>
   <style>
     .auth-page {
       min-height: 100vh;
@@ -162,95 +174,78 @@
     <div class="auth-container">
       <div class="auth-card">
         <div class="auth-logo">
-          <i class="fas fa-graduation-cap"></i>
-          <span>EduNext-prep100</span>
+          <i class="fas fa-owl"></i>
+          <span>JUANOVA CORTEX</span>
         </div>
-        
         <h1 class="signup-heading">Create Your Account</h1>
-        
-        <div class="role-toggle">
-          <button class="role-btn active" onclick="showRole('student')">Student</button>
-          <button class="role-btn" onclick="showRole('teacher')">Teacher</button>
-        </div>
-        
-        <form id="student-signup-form" action="student-dashboard.html" autocomplete="off">
-          <div class="form-group">
-            <label class="form-label" for="signup-email">Email Address</label>
-            <input class="form-input" type="email" id="signup-email" name="signup-email" placeholder="Enter your email" required>
-          </div>
-          
-          <div class="form-group">
-            <label class="form-label" for="signup-grade">Grade Level</label>
-            <select class="form-select" id="signup-grade" name="signup-grade" required>
-              <option value="">Select your grade level</option>
-              <option value="grade7">Grade 7</option>
-              <option value="grade8">Grade 8</option>
-              <option value="grade9">Grade 9</option>
-              <option value="grade10">Grade 10</option>
-              <option value="grade11">Grade 11</option>
-              <option value="grade12">Grade 12</option>
-            </select>
-          </div>
-          
-          <div class="form-group">
-            <label class="form-label" for="signup-password">Password</label>
-            <input class="form-input" type="password" id="signup-password" name="signup-password" placeholder="Choose a strong password" required>
-          </div>
-          
-          <button type="submit" class="btn btn-success btn-full">Create Student Account</button>
-        </form>
-        
-        <form id="teacher-signup-form" action="teacher-dashboard.html" autocomplete="off" class="hidden">
-          <div class="form-group">
-            <label class="form-label" for="signup-email-teacher">Email Address</label>
-            <input class="form-input" type="email" id="signup-email-teacher" name="signup-email-teacher" placeholder="Enter your email" required>
-          </div>
-          
-          <div class="form-group">
-            <label class="form-label" for="signup-subject">Subject Specialization</label>
-            <select class="form-select" id="signup-subject" name="signup-subject" required>
-              <option value="">Select your subject</option>
-              <option value="mathematics">Mathematics</option>
-              <option value="physics">Physics</option>
-              <option value="chemistry">Chemistry</option>
-              <option value="biology">Biology</option>
-              <option value="english">English</option>
-              <option value="literature">Literature</option>
-              <option value="economics">Economics</option>
-              <option value="accounting">Accounting</option>
-              <option value="government">Government</option>
-              <option value="commerce">Commerce</option>
-            </select>
-          </div>
-          
-          <div class="form-group">
-            <label class="form-label" for="signup-password-teacher">Password</label>
-            <input class="form-input" type="password" id="signup-password-teacher" name="signup-password-teacher" placeholder="Choose a strong password" required>
-          </div>
-          
-          <button type="submit" class="btn btn-success btn-full">Create Teacher Account</button>
-        </form>
-        
+        <div id="firebaseui-auth-container"></div>
         <div class="signup-prompt">
-          Already have an account? <a href="login.html">Sign in</a>
+          Already have an account? <a href="login-new.html">Sign in</a>
         </div>
       </div>
     </div>
   </main>
 
+  <!-- Initialize Firebase -->
+  
   <script>
-    function showRole(role) {
-      document.getElementById('student-signup-form').classList.toggle('hidden', role !== 'student');
-      document.getElementById('teacher-signup-form').classList.toggle('hidden', role !== 'teacher');
-      
-      const buttons = document.querySelectorAll('.role-btn');
-      buttons.forEach(btn => btn.classList.remove('active'));
-      event.target.classList.add('active');
-    }
+    // Initialize the FirebaseUI Widget using Firebase.
+    var ui = new firebaseui.auth.AuthUI(firebase.auth());
+    var uiConfig = {
+      signInOptions: [
+        firebase.auth.EmailAuthProvider.PROVIDER_ID
+      ],
+      signInSuccessUrl: '/students/student-dashboard.html', // Redirect to dashboard after signup
+      callbacks: {
+        signInSuccessWithAuthResult: function(authResult, redirectUrl) {
+          var user = authResult.user;
+          var userDocRef = firebase.firestore().collection('users').doc(user.uid);
 
-    window.onload = function() {
-      showRole('student');
+          userDocRef.get().then(function(doc) {
+            if (doc.exists) {
+              // This is a returning user.
+              alert('An account with this email already exists. Signing you in.');
+              window.location.assign('/students/student-dashboard.html');
+            } else {
+              // This is a new user, create their document.
+              userDocRef.set({
+                email: user.email,
+                name: user.displayName || 'New User',
+                role: 'student',
+                createdAt: firebase.firestore.FieldValue.serverTimestamp()
+              }, { merge: true }).then(function() {
+                // After creating the document, redirect.
+                window.location.assign('/students/student-dashboard.html');
+              }).catch(function(error) {
+                console.error("Error creating user document: ", error);
+                // Fallback redirect even if Firestore write fails.
+                window.location.assign('/students/student-dashboard.html');
+              });
+            }
+          }).catch(function(error) {
+            console.error("Error checking user document:", error);
+            // Fallback redirect if the check fails.
+            window.location.assign('/students/student-dashboard.html');
+          });
+
+          // Return false because we are handling the redirect manually.
+          return false;
+        }
+      }
     };
+    // The start method will wait until the DOM is loaded.
+    ui.start('#firebaseui-auth-container', uiConfig);
   </script>
+
+  <style>
+    .error-message,
+    .error-message-teacher {
+      display: none;
+      color: #dc2626;
+      background: #fee2e2;
+      color: var(--text-secondary);
+      font-size: 0.875rem;
+    }
+  </style>
 </body>
 </html>
