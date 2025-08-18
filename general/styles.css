@@ -22,7 +22,27 @@ body {
   align-items: stretch;
   justify-content: flex-start;
   box-sizing: border-box;
-  margin-left: 220px; /* Sidebar width */
+  margin-left: 220px; /* End of existing styles */
+
+/* Dashboard progress bars */
+.progress-bar {
+  transition: width 0.5s ease-in-out;
+}
+
+#ai-weekly-bar, #ai-mock-bar {
+  height: 100%;
+  transition: width 0.5s ease-in-out;
+}
+
+#ai-weekly-bar {
+  background-color: #3b82f6;
+  border-radius: 9999px;
+}
+
+#ai-mock-bar {
+  background-color: #facc15;
+  border-radius: 9999px;
+}
 }
 .dashboard-inner-container {
   padding: 2rem 2.5rem;

@@ -1,800 +1,942 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Practice Exams - EduNext</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <link rel="stylesheet" href="../general/modernized.css">
-  <style>
-    /* Dashboard Specific Styles */
-    .dashboard-topbar {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      margin-bottom: var(--spacing-xl);
-      padding: var(--spacing-sm) 0;
-    }
-    
-    .search-container {
-      flex: 1;
-      max-width: 480px;
-      position: relative;
-      margin-right: var(--spacing-xl);
-    }
-    
-    .search-icon {
-      position: absolute;
-      left: var(--spacing-sm);
-      top: 50%;
-      transform: translateY(-50%);
-      color: var(--text-secondary);
-      font-size: 1.1rem;
-    }
-    
-    .search-input {
-      width: 100%;
-      padding: 0.875rem var(--spacing-xl);
-      padding-left: 2.75rem;
-      border-radius: 9999px;
-      border: 2px solid var(--border-color);
-      font-size: 1rem;
-      transition: all 0.2s;
-      background: #fff;
-    }
-    
-    .search-input:focus {
-      border-color: var(--primary);
-      box-shadow: 0 0 0 3px rgba(37,99,235,0.1);
-      outline: none;
-    }
-
-    .user-info {
-      display: flex;
-      align-items: center;
-      gap: var(--spacing-md);
-    }
-
-    .level-select {
-      padding: 0.5rem 1rem;
-      border: none;
-      border-radius: 9999px;
-      font-size: 0.9rem;
-      background: rgba(37, 99, 235, 0.1);
-      color: var(--text-primary);
-      cursor: pointer;
-      transition: all 0.2s;
-    }
-    
-    .notification-btn {
-      position: relative;
-      background: none;
-      border: none;
-      color: var(--text-secondary);
-      font-size: 1.25rem;
-      cursor: pointer;
-      padding: var(--spacing-xs);
-      border-radius: var(--radius-md);
-      transition: all 0.2s;
-    }
-    
-    .notification-btn:hover {
-      color: var(--primary);
-      background: rgba(37,99,235,0.1);
-    }
-    
-    .notification-badge {
-      position: absolute;
-      top: 0;
-      right: 0;
-      background: var(--danger);
-      color: white;
-      border-radius: 50%;
-      width: 18px;
-      height: 18px;
-      font-size: 0.75rem;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .user-name {
-      background: var(--primary);
-      color: white;
-      width: 32px;
-      height: 32px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 0.9rem;
-      font-weight: 500;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Practice Exams - Prep100</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
-  <body>
-    <div class="app-container">
-      <aside class="sidebar">
-        <a href="#" class="sidebar__logo">
-          <i class="fas fa-graduation-cap"></i>
-          <span>EduNext-prep100</span>
-        </a>
-        <nav class="sidebar__menu">
-        <a href="student-dashboard.html" class="sidebar__item"><i class="fas fa-home"></i> Home</a>
-        <a href="ai-tutor-chatbot.html" class="sidebar__item"><i class="fas fa-robot"></i> AI Tutor</a>
-        <a href="study-plan.html" class="sidebar__item"><i class="fas fa-calendar-alt"></i> Study Plan</a>
-        <a href="smart-note.html" class="sidebar__item"><i class="fas fa-sticky-note"></i> Smart Notes</a>
-        <a href="video-library.html" class="sidebar__item"><i class="fas fa-video"></i> Video Library</a>
-        <a href="mock-exams.html" class="sidebar__item"><i class="fas fa-file-alt"></i> Mock Exams</a>
-        <a href="practice-exams.html" class="sidebar__item active"><i class="fas fa-pencil-alt"></i> Practice Exams</a>
-        <a href="notifications.html" class="sidebar__item"><i class="fas fa-bell"></i> Notifications</a>
-        <a href="student-live-session.html" class="sidebar__item"><i class="fas fa-chalkboard-teacher"></i> Join Live Session</a>
-        </nav>
-      </aside>
-      <main class="main-container" style="margin-left: 280px;">
-        <header class="dashboard-topbar">
-          <div class="search-container">
-            <i class="fas fa-search search-icon"></i>
-            <input type="text" class="search-input" placeholder="Search topics, subjects, or questions..." aria-label="Search topics, subjects, or questions">
-          </div>
-          <div class="user-info">
-            <select class="level-select" aria-label="Select exam level">
-              <option selected>SS 3/WAEC</option>
-              <option>SS 2</option>
-              <option>SS 1</option>
-              <option>JS 3/BECE</option>
-            </select>
-            <button class="notification-btn" onclick="window.location.href='notifications.html'" aria-label="Notifications">
-              <i class="fas fa-bell"></i>
-              <span class="notification-badge">3</span>
-            </button>
-          
-            <span class="user-name">ST</span>
-          </div>
-        </header>
-        <div class="content-wrapper">
-          <h1 class="page-title">Practice Exams</h1>
-          <div id="main-cards" class="card-grid">
-            <div class="card hoverable" onclick="showTopics()">
-              <div class="card__title">Topic-by-topic</div>
-              <div class="card__description">Practice by subject and topic</div>
+<body class="bg-gray-50">
+    <div class="flex min-h-screen">
+        <!-- Sidebar -->
+        <aside class="fixed top-0 left-0 h-screen bg-white/80 backdrop-blur-lg shadow-xl w-72 flex flex-col px-4 py-6 border-r border-gray-200 overflow-y-auto z-50">
+            <div class="sticky top-0 bg-white/95 backdrop-blur-lg z-10 py-2 mb-8">
+                <a href="#" class="flex items-center gap-3">
+                    <img src="/assets/images/Logo%20of%20JUANOVA%20Cortex%20Tutor.png" alt="Logo" class="h-16 w-16 object-contain rounded-full shadow-2xl border-4 border-blue-700">
+                    <span class="text-3xl font-extrabold text-blue-800 tracking-tight font-serif italic drop-shadow-lg">JUANOVA CORTEX</span>
+                </a>
             </div>
-            <div class="card hoverable" onclick="showYearly()">
-              <div class="card__title">Year-by-year</div>
-              <div class="card__description">Practice by year for each subject</div>
+            <nav class="flex flex-col gap-2 text-gray-700 font-medium">
+                <a href="student-dashboard.html" class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-blue-50 transition">
+                    <i class="fas fa-home"></i> Home
+                </a>
+                <a href="ai-tutor-chatbot.html" class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-blue-50 transition">
+                    <i class="fas fa-robot text-purple-500"></i> AI Tutor
+                </a>
+                <a href="study-plan.html" class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-blue-50 transition">
+                    <i class="fas fa-calendar-alt text-green-500"></i> Study Plan
+                </a>
+                <a href="smart-note.html" class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-blue-50 transition">
+                    <i class="fas fa-sticky-note text-yellow-500"></i> Smart Notes
+                </a>
+                <a href="video-library.html" class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-blue-50 transition">
+                    <i class="fas fa-video text-red-500"></i> Video Library
+                </a>
+                <a href="mock-exams.html" class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-blue-50 transition">
+                    <i class="fas fa-file-alt text-indigo-500"></i> Mock Exams
+                </a>
+                <a href="practice-exams.html" class="flex items-center gap-3 px-4 py-2 rounded-lg bg-blue-50 text-blue-600">
+                    <i class="fas fa-pencil-alt text-orange-500"></i> Practice Exams
+                </a>
+                <a href="notifications.html" class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-blue-50 transition">
+                    <i class="fas fa-bell text-pink-600"></i> Notifications
+                </a>
+                <a href="student-live-session.html" class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-blue-50 transition">
+                    <i class="fas fa-chalkboard-teacher text-blue-400"></i> Join Live Session
+                </a>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="flex-1 p-8 ml-72">
+            <!-- Top Bar -->
+            <div class="flex items-center justify-between mb-8">
+                <div class="flex-1 max-w-xl relative">
+                    <i class="fas fa-search absolute left-4 top-1/2 -translate-y-1/2 text-gray-400"></i>
+                    <input type="text" class="w-full pl-12 pr-4 py-3 rounded-full border-2 border-gray-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-100 bg-white" placeholder="Search topics, subjects, or questions...">
+                </div>
+                <div class="flex items-center gap-4">
+                    <span class="bg-blue-100 text-blue-700 px-4 py-1 rounded-full font-semibold text-sm">SS 3</span>
+                    <span class="font-semibold text-gray-700">Student</span>
+                    <div class="relative">
+                        <button class="p-2 rounded-full hover:bg-blue-100 transition">
+                            <i class="fas fa-bell text-blue-600 text-lg"></i>
+                            <span class="absolute -top-1 -right-1 bg-pink-500 text-white rounded-full w-5 h-5 flex items-center justify-center text-xs font-bold">3</span>
+                        </button>
+                    </div>
+                    <img src="../assets/images/unnamed.jpg" alt="User" class="h-10 w-10 rounded-full border-2 border-blue-500">
+                </div>
             </div>
-            <div class="card hoverable" onclick="showEssay()">
-              <div class="card__title">English Essay Writing</div>
-              <div class="card__description">Practice WAEC/NECO essay types</div>
+
+            <!-- Page Title -->
+            <h1 class="text-3xl font-bold text-gray-800 mb-6">Practice Exams</h1>
+
+            <!-- Cards Section -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="main-cards">
+                <div class="bg-white rounded-2xl p-6 shadow hover:shadow-lg transition cursor-pointer" onclick="showTopics()">
+                    <h2 class="text-xl font-bold text-gray-800 mb-2">Topic-by-topic</h2>
+                    <p class="text-gray-600">Practice by subject and topic</p>
+                </div>
+                <div class="bg-white rounded-2xl p-6 shadow hover:shadow-lg transition cursor-pointer" onclick="showYearly()">
+                    <h2 class="text-xl font-bold text-gray-800 mb-2">Year-by-year</h2>
+                    <p class="text-gray-600">Practice by year for each subject</p>
+                </div>
+                <div class="bg-white rounded-2xl p-6 shadow hover:shadow-lg transition cursor-pointer" onclick="showEssay()">
+                    <h2 class="text-xl font-bold text-gray-800 mb-2">English Essay Writing</h2>
+                    <p class="text-gray-600">Practice WAEC/NECO essay types</p>
+                </div>
             </div>
-          </div>
-          <div id="dynamic-content"></div>
-        </div>
-      </main>
+
+            <!-- Dynamic Content Section -->
+            <div id="dynamic-content" class="mt-8"></div>
+        </main>
     </div>
-  <script>
-    // Full list of Mathematics topics
-    const mathematicsTopics = [
-      "Algebra",
-      "Simple Operations On Algebraic Expression",
-      "Solution Of Linear Equations",
-      "Change Of Subject Of Formula",
-      "Quadratic Equations",
-      "Graph Of Linear and Quadratic Functions",
-      "Linear Inequalities",
-      "Algebraic Fractions",
-      "Functions and Relations",
-      "Polynomials",
-      "Progressions",
-      "Binary Operations",
-      "Geometry and Trigonometry",
-      "Angles and Intercepts on Parallel Lines",
-      "Triangles and Polygons",
-      "Circles",
-      "Construction",
-      "Coordinate Geometry of Straight Lines",
-      "Trigonometric Ratios",
-      "Angles of Elevation and Depression",
-      "Bearings and Distances",
-      "Number and Numeration",
-      "Number Bases",
-      "Indices",
-      "Logarithms",
-      "Surds",
-      "Fractions, Decimals, Percentages and Approximation",
-      "Sets",
-      "Logic",
-      "Modular Arithmetic",
-      "Positive and Negative Integers",
-      "Rational Numbers",
-      "Matrices and Determinants",
-      "Ratios, Proportions and Rates",
-      "Financial Arithmetic",
-      "Variations",
-      "Mensuration",
-      "Lengths and Perimeters",
-      "Areas",
-      "Volumes",
-      "Calculus",
-      "Differentiation",
-      "Application of differentiation",
-      "Integration",
-      "Application of Integration",
-      "Statistics",
-      "Representation of data",
-      "Measures of Location",
-      "Measures of Dispersion",
-      "Permutation and Combination",
-      "Probability."
-    ];
-    // Full list of Biology topics
-    const biologyTopics = [
-      "Science of Living Things",
-      "Classification or Organisation of Life",
-      "Cell 1 : Living Unit - Structure",
-      "Cell 2 : Properties and Functions",
-      "Basic Ecological Concepts",
-      "Functioning Ecosystem",
-      "Ecological Management",
-      "Ecology of Population",
-      "Aquatic and Terrestrial Habitat",
-      "Introduction to Micro-Organisms",
-      "Micro-Organisms and Health",
-      "Nutrition / Photosynthesis / Food substances",
-      "Feeding Mechanism / Digestive System",
-      "Transport System and Mechanism",
-      "Gaseous Exchange / Respiratory System",
-      "Sexual Reproduction: System / Behaviours",
-      "Development of New Organisms / Fruits",
-      "Regulation of the Internal Environment",
-      "Nervous Coordination",
-      "Sensory Receptors and Organs",
-      "Variations / Adaptation for Survival / Evolution",
-      "Genetics: The Science of Heredity",
-      "Excretory Systems and Mechanisms",
-      "Supporting systems and Mechanisms"
-    ];
-    // Subjects for topic-by-topic and year-by-year
-    const subjects = [
-      "MATHEMATICS", "BIOLOGY", "CHEMISTRY", "LITERATURE", "PHYSICS", "ENGLISH", "ECONOMICS", "ACCOUNTING", "GOVERNMENT", "COMMERCE"
-    ];
-    // Full list of Chemistry topics
-    const chemistryTopics = [
-      "BASIC CHEMISTRY",
-      "Chapter 1: Matter and Separation Techniques",
-      "Chapter 2: Particulate Nature of Matter",
-      "Chapter 3: Chemical Combinations",
-      "Chapter 4: Properties of Gases (Gas Laws)",
-      "Chapter 5: Properties of Solids and Liquids",
-      "Chapter 6: Acids, Bases and Salts",
-      "Chapter 7: Periodic Table",
-      "Chapter 8: Air and Air Pollution",
-      "Chapter 9: Water and Solubility Concept",
-      "Chapter 10: Mass-Volume Concepts",
-      "Chapter 11: Quantitative and Qualitative Analyses",
-      "Chapter 12: Electrodes, Electrochemical Series and Electrolysis",
-      "Chapter 13: Types of Reactions",
-      "Chapter 14: Energy and Chemical Reactions",
-      "Chapter 15: Reactions' Rates and Chemical Equilibria",
-      "Chapter 16: Shapes of Molecules and Solids",
-      "Chapter 17: Radioactivity (Nuclear Chemistry)",
-      "INORGANIC CHEMISTRY",
-      "Chapter 19: Hydrogen (Hydrides)",
-      "Chapter 20: Oxygen (Oxides - Ozone)",
-      "Chapter 21: Carbon - Carbon Compounds",
-      "Chapter 22: Nitrogen - Nitrogen Compounds",
-      "Chapter 23: Phosphorus - Phosphorus Compounds",
-      "Chapter 24: Sulphur - Sulphur Compounds",
-      "Chapter 25: Halogen Family",
-      "Chapter 26: Silicon and its Compounds",
-      "Chapter 27: Metals and their Compounds 1",
-      "Chapter 28: Transition Metals and their Compounds",
-      "ORGANIC CHEMISTRY",
-      "Chapter 30: Hydrocarbons",
-      "Chapter 31: Crude Oil",
-      "Chapter 32: Basic Concepts of Organic Chemistry",
-      "Chapter 33: Organic Chemistry 2",
-      "Chapter 34: Applied Chemistry",
-      "Chapter 35: Chemical Industry",
-      "Chapter 36: The Solar System",
-      "Chapter 37: Separation of mixtures and purification of chemical substance",
-      "Chapter 38: Definition and classification of matter",
-      "Chapter 39: Elements, compounds and mixtures",
-      "Chapter 40: Physical and chemical changes",
-      "Chapter 41: Pure and Impure substances",
-      "Chapter 42: Separation techniques/processes",
-      "Chapter 43: Chemical Combination",
-      "Chapter 44: Stoichiometry",
-      "Chapter 45: Laws of definite and multiple proportions",
-      "Chapter 46: Law of conservation of matter",
-      "Chapter 47: Gay Lussac's law of combining volumes",
-      "Chapter 48: Avogadro's law",
-      "Chapter 49: chemical symbols, formulae, equations and their uses",
-      "Chapter 50: Relative atomic mass based on 12C-12",
-      "Chapter 51: The mole concept and Avogadro's number",
-      "Chapter 52: Kinetic Theory of Matter and Gas Laws",
-      "Chapter 53: States of matter",
-      "Chapter 54: Change of States of matter",
-      "Chapter 55: Phenomena Supporting Kinetic theory-Diffusion and Osmosis",
-      "Chapter 56: Assumptions of Kinetic theory of Gases",
-      "Chapter 57: The Gas Laws: Boyle, Charles, Graham and Dalton (law of partial pressure), combined gas law",
-      "Chapter 58: Molar volume and atomicity of gases",
-      "Chapter 59: The ideal gas equation (PV = nRT)",
-      "Chapter 60: The relationship between vapour density of gases and the relative molecular mass.",
-      "Chapter 61: Atomic Structure and Bonding",
-      "Chapter 62: The concept of atoms, molecules and ions, the works of Dalton, Millikan, Rutherford, Moseley, Thompson and Bohr",
-      "Chapter 63: Atomic structure, electron configuration, atomic number, mass number and isotopes.",
-      "Chapter 64: Shapes of S and P orbitals",
-      "Chapter 65: The Periodic table and periodicity of elements",
-      "Chapter 66: The variation of the following properties: ionization energy, ionic radii, electron affinity and electronegativity",
-      "Chapter 67: Chemical bonding",
-      "Chapter 68: Van der Waals' forces.",
-      "Chapter 69: Shapes of simple molecules",
-      "Chapter 70: Nuclear Chemistry",
-      "Chapter 71: Radioactivity - Types and properties of radiations",
-      "Chapter 72: Nuclear Reactions - Natural and Artificial Radioactivity, uses and Application.",
-      "Chapter 73: Air",
-      "Chapter 74: The natural gaseous constituents and their proportion in the air",
-      "Chapter 75: Air as a mixture and some uses of the noble gas",
-      "Chapter 76: Water",
-      "Chapter 77: Water as a product of the combustion of hydrogen and its composition by volume",
-      "Chapter 78: Water as a solvent",
-      "Chapter 79: Hardness of water",
-      "Chapter 80: Treatment of water for town supply.",
-      "Chapter 81: Water of crystallization, efflorescence, deliquescence and hygroscopy",
-      "Chapter 82: Solubility",
-      "Chapter 83: Unsaturated, saturated and supersaturated solutions",
-      "Chapter 84: Definition of Solubility and Solubility curves and simple deductions",
-      "Chapter 85: Solvents for fats, oil and paints",
-      "Chapter 86: False solution (Suspensions and colloids)",
-      "Chapter 87: Simple calculations on Solubility",
-      "Chapter 88: Environmental pollution",
-      "Chapter 89: Sources and effects of pollutants",
-      "Chapter 90: Air pollution",
-      "Chapter 91: Water pollution",
-      "Chapter 92: Soil pollution",
-      "Chapter 93: Acids, Bases and Salts",
-      "Chapter 94: Definition, General characteristics, types and properties of acids, bases and salts",
-      "Chapter 95: Acids/base indicators, basicity of acids and preparation of salts",
-      "Chapter 96: Oxides and trioxocarbonate (IV) salts",
-      "Chapter 97: Qualitative comparison of the conductances of molar solutions of strong and weak acids and bases",
-      "Chapter 98: Relationship between conductance and amount of ions present, and Buffer solutions",
-      "Chapter 99: pH and pOH scale; Simple calculations",
-      "Chapter 100: Acid/base titrations.",
-      "Chapter 101: Hydrolysis of salts",
-      "Chapter 102: Oxidation and Reduction (REDOX) Reactions",
-      "Chapter 103: Oxidation in terms of the addition of oxygen or removal of hydrogen.",
-      "Chapter 104: Reduction as removal of oxygen or addition of hydrogen.",
-      "Chapter 105: Oxidation and reduction in terms of electron transfer",
-      "Chapter 106: Use of oxidation numbers in defining REDOX reactions and balancing simple equations.",
-      "Chapter 107: IUPAC nomenclature of inorganic compounds using oxidation number",
-      "Chapter 108: Tests for oxidizing and reducing agents",
-      "Chapter 109: Electrolysis",
-      "Chapter 110: Electrolytes and non-electrolytes, and Faraday's laws of electrolysis",
-      "Chapter 111: Electrolysis of dilute H2SO4, aqueous CuSO4, CuCl2 solution, dilute and concentrated NaCl solutions and fused NaCl",
-      "Chapter 112: Factors affecting discharge of ions at the electrodes",
-      "Chapter 113: Uses of electrolysis",
-      "Chapter 114: Electrochemical cells: Redox series",
-      "Chapter 115: Half-cell reactions and electrode potentials",
-      "Chapter 116: Calculations on electrolysis",
-      "Chapter 117: Corrosion as an electrolytic process",
-      "Chapter 118: Energy changes",
-      "Chapter 119: Energy changes accompanying physical and chemical changes",
-      "Chapter 120: Endothermic and exothermic reactions.",
-      "Chapter 121: Entropy as an order-disorder phenomenon",
-      "Chapter 122: Spontaneity of reactions",
-      "Chapter 123: Rates of Chemical reaction",
-      "Chapter 124: Meaning of the rate of a chemical reaction.",
-      "Chapter 125: Ways of measuring the rate of chemical reaction",
-      "Chapter 126: Factors affecting rates of reaction",
-      "Chapter 127: Arrhenius’ law and Collision theory",
-      "Chapter 128: Reaction rate curves",
-      "Chapter 129: Chemical equilibrium",
-      "Chapter 130: Definition of the following terminologies: systems, reactions and dynamic equilibrium.",
-      "Chapter 131: Properties of a system in equilibrium",
-      "Chapter 132: Factors governing the equilibrium position",
-      "Chapter 133: Le Chatelier’s principle",
-      "Chapter 134: Equilibrium constant",
-      "Chapter 135: Non-metals and their compounds",
-      "Chapter 136: Hydrogen and Hydrides",
-      "Chapter 137: Halogens: Chlorine as a representative element of the halogen",
-      "Chapter 138: Oxygen and Oxides",
-      "Chapter 139: Sulphur and its compound",
-      "Chapter 140: Nitrogen and its compounds",
-      "Chapter 141: Carbon: Allotropes, Uses and properties.",
-      "Chapter 142: Metals and their compounds",
-      "Chapter 143: General properties of metals",
-      "Chapter 144: Alkali metals e.g. sodium",
-      "Chapter 145: Alkaline-earth metals",
-      "Chapter 146: Aluminium and its compound",
-      "Chapter 147: Tin Extraction from its ores",
-      "Chapter 148: Metals of the first transition series",
-      "Chapter 149: Iron Extraction from sulphide and oxide ores",
-      "Chapter 150: Copper Extraction from sulphide and oxide ores",
-      "Chapter 151: Alloy",
-      "Chapter 152: Organic Compounds",
-      "Chapter 153: Introduction to the tetravalency of carbon",
-      "Chapter 154: Alkanes: Homologous series in relation to physical properties",
-      "Chapter 155: Alkenes: Isomerism (structural and geometric isomerism)",
-      "Chapter 156: Alkynes: Ethyne",
-      "Chapter 157: Aromatic hydrocarbons e.g. benzene - structure, properties and uses",
-      "Chapter 158: Alkanols: Primary, secondary, tertiary",
-      "Chapter 159: Alkanals and alkanones",
-      "Chapter 160: Alkanoic acids",
-      "Chapter 161: Alkanoates",
-      "Chapter 162: Amines (Alkanamines): Primary, Secondary, and tertiary",
-      "Chapter 163: Carbohydrates",
-      "Chapter 164: Proteins: Primary structures, hydrolysis and tests",
-      "Chapter 165: Enzymes and their functions",
-      "Chapter 166: Polymers: Natural and synthetic rubber",
-      "Chapter 167: Industrial Chemistry",
-      "Chapter 168: Chemical industries: Types, raw materials and relevances",
-      "Chapter 169: Economics of Industrial process",
-      "Chapter 170: Importance of industrial chemistry in Nigeria"
-    ];
-    // Full list of Literature topics
-    const literatureTopics = [
-      "DRAMA: Types (Tragedy, Comedy, Tragicomedy, Melodrama, Farce, Opera etc.), Dramatic Techniques (Characterization, Dialogue, Flashback, Mime, Costume, Music/Dance, Décor/scenery, Acts/Scenes, Soliloquy/aside, Figures of Speech etc), Interpretation of the Prescribed Texts (Theme, Plot, Socio-political context, Setting)",
-      "Chapter 1",
-      "PROSE: Types (Fiction: Novel, Novella/Novelette, Short story; Non-fiction: Biography, Autobiography, Memoir; Faction), Narrative Techniques/Devices (Point of view, Characterisation, Language), Textual Analysis (Theme, Plot, Setting, Socio-political context)",
-      "Chapter 2",
-      "POETRY: Types (Sonnet, Ode, Lyrics, Elegy, Ballad, Panegyric, Epic, Blank Verse, etc.), Poetic devices (Structure, Imagery, Sound, Diction, Persona), Appreciation (Thematic preoccupation, Socio-political relevance, Style)",
-      "Chapter 3",
-      "GENERAL LITERARY PRINCIPLES: Literary terms, Literary principles, Relationship between literary terms and principles",
-      "Chapter 4",
-      "LITERARY APPRECIATION: Unseen passages/extracts from Drama, Prose, and Poetry",
-      "Chapter 5"
-    ];
-    // Full list of Physics topics
-    const physicsTopics = [
-      "Motion",
-      "Chapter 1: Work, Energy and Power",
-      "Chapter 2: Heat Energy",
-      "Chapter 3: Electrical Energy",
-      "Chapter 4: Current Electricity",
-      "Chapter 5: Elastic Properties of Solid",
-      "Chapter 6: Vector",
-      "Chapter 7: Projectiles",
-      "Chapter 8: Equilibrium of Forces",
-      "Chapter 9: Pressure in Fluids",
-      "Chapter 10: Simple Harmonic Motion",
-      "Chapter 11: Newton's Laws of Motion",
-      "Chapter 12: Machines",
-      "Chapter 13: Heat Energy (Measurement of Temperature)",
-      "Chapter 14: Measurement of Heat Energy",
-      "Chapter 15: Gas Laws",
-      "Chapter 16: Reflection of Light Waves",
-      "Chapter 17: Waves",
-      "Chapter 18: waves",
-      "Chapter 19: sound wave",
-      "Chapter 20: Vibration in springs and pipes",
-      "Chapter 21: Refraction of Light Waves at Plane Surfaces",
-      "Chapter 22: Optical Instruments",
-      "Chapter 23: Propagation of Sound Waves",
-      "Chapter 24: Gravitational Field",
-      "Chapter 25: Electric Field (Charges)",
-      "Chapter 26: Electric Field (Current Electricity)",
-      "Chapter 27: Magnetic Field",
-      "Chapter 28: Simple Alternating Current Circuits",
-      "Chapter 29: Models of Atoms and Nuclear Physics",
-      "Chapter 30: Energy Quantitization",
-      "Chapter 31: Electrical Conduction Through Liquids and Gases",
-      "Chapter 32: Fundamentals of Electronics",
-      "Chapter 33: Electromagnetic Field",
-      "Chapter 34: Fluids at Rest and in Motion",
-      "Chapter 35: Application of Light waves",
-      "Chapter 36: Thermodynamics",
-      "Chapter 37: Heat and temperature",
-      "Chapter 38: heat transfer",
-      "Chapter 39: Heat energy",
-      "Chapter 40: Evaporation and Boiling",
-      "Chapter 41: Wave",
-      "Chapter 42: Field",
-      "Chapter 43: concept of field",
-      "Chapter 44: Gravitational Field",
-      "Chapter 45: description of field",
-      "Chapter 46: Gravitational field",
-      "Chapter 47: Electric field1",
-      "Chapter 48: magnetic field",
-      "Chapter 49: Electromagnetic field",
-      "Chapter 50: Electric field2",
-      "Chapter 51: Current Electricity",
-      "Chapter 52: Energy and power",
-      "Chapter 53: Simple A.C Circuit",
-      "Chapter 54: Light and Optics",
-      "Chapter 55: Reflection of light",
-      "Chapter 56: Refraction of light",
-      "Chapter 57: Application of lense",
-      "Chapter 58: Atomic physics",
-      "Chapter 59: Structure of the atom",
-      "Chapter 60: Laser",
-      "Chapter 61: Semi conductor",
-      "Chapter 62: structure of the nucleus",
-      "Chapter 63: Wave particle paradox",
-      "Chapter 64: Mechanics",
-      "Chapter 65: motion/force/circular motion",
-      "Chapter 66: work/energy/power",
-      "Chapter 67: Simple machine",
-      "Chapter 68: linear motion",
-      "Chapter 69: Equilibrium of forces",
-      "Chapter 70: projectile motion.",
-      "Chapter 71: equation of motion/motion under gravity",
-      "Chapter 72: momentum/impulse/newton's law of motion",
-      "Chapter 73: Simple harmonic motion",
-      "Chapter 74: friction",
-      "Chapter 75: simple structure of matter",
-      "Chapter 76: density and relative density",
-      "Chapter 77: deformation of solids",
-      "Chapter 78: scalars and vectors",
-      "Chapter 79: Fundamental and derived quantities",
-      "Chapter 80: Measurement",
-      "Chapter 81: Astrophysics",
-      "Chapter 82: Satellite and Rocket",
-      "Chapter 83"
-    ];
-    // Full list of English topics
-    const englishTopics = [
-      "English Grammar",
-      "Chapter 1: Word Classes",
-      "Chapter 2: Phrasal Verb",
-      "Chapter 3: Sentence Classification",
-      "Chapter 4: Tense and Aspect",
-      "Chapter 5: Concord",
-      "Chapter 6: Question Tag",
-      "Chapter 7: Language Registers",
-      "Chapter 8: Reported Speech",
-      "Chapter 9: Punctuation",
-      "Chapter 10: Idiomatic Expression",
-      "Chapter 11: Infinitives, Gerunds and Participles.",
-      "Chapter 12: Elements of sentence structure",
-      "Chapter 13: Antonyms, Synonyms & Homonyms",
-      "Chapter 14: Oral English",
-      "Chapter 15: The Sound System",
-      "Chapter 16: Vowels",
-      "Chapter 17: Consonants",
-      "Chapter 18: Syllable",
-      "Chapter 19: Stress",
-      "Chapter 20: Intonation",
-      "Chapter 21: The Vowel Sound: Monophthongs (Pure Vowels)",
-      "Chapter 22: The Vowel Sound: Diphthongs",
-      "Chapter 23: The Short Vowel Sounds",
-      "Chapter 24: Consonant Sounds: Plosives",
-      "Chapter 25: Consonant Sounds: Liquid and Semi-Vowel",
-      "Chapter 26: Consonant Sounds: Fricatives",
-      "Chapter 27: Consonant Sounds: Affricates and Nasals",
-      "Chapter 28: Comprehension",
-      "Chapter 29: Concept of Comprehension",
-      "Chapter 30: Topic Sentence",
-      "Chapter 31: Sentence Interpretation",
-      "Chapter 32: Grammatical Applications",
-      "Chapter 33: Writing",
-      "Chapter 34: Summary Writing",
-      "Chapter 35: The Writing Process",
-      "Chapter 36: The Spelling Rules",
-      "Chapter 37: Essay Writing: Descriptive Essay",
-      "Chapter 38: Essay Writing: Narrative Essay",
-      "Chapter 39: Essay Writing: Argumentative Essay",
-      "Chapter 40: Essay Writing: Expository Essay",
-      "Chapter 41: Informal Letter Writing",
-      "Chapter 42: Formal Letter Writing",
-      "Chapter 43: Sentence Building",
-      "Chapter 44: Clauses",
-      "Chapter 45: Phrases",
-      "Chapter 46: Morphemes and Words",
-      "Chapter 47: The concept of a Sentence",
-      "Chapter 48: The Long Vowel Sounds"
-    ];
-    // Full list of Economics topics
-    const economicsTopics = [
-      "Economics as a science",
-      "Chapter 1: Basic Concepts: Wants, Scarcity, choice, scale of preference, opportunity cost, Rationality, production, distribution, consumption.",
-      "Chapter 2: Economic problems of; What, how, and for whom to produce and efficiency of resource use.",
-      "Chapter 3: Application of PPF to solution of economic problems.",
-      "Chapter 4: Economic Systems",
-      "Chapter 5: Types; free enterprise centrally planned and mixed economies",
-      "Chapter 6: Solutions to economic problems under different systems",
-      "Chapter 7: Contemporary issues in economic systems (economic reforms e.g deregulation, banking sector consolidation, cash policy reform).",
-      "Chapter 8: Methods and Tools of Economic Analysis",
-      "Chapter 9: Scientific Approach: inductive and deductive methods, positive and normative reasoning",
-      "Chapter 10: Basic Tools: tables, charts and graphs, measures of central tendency: mean, median and mode, and their applications, measures of dispersion; variance, standard deviation, range and their applications; merits and demerits of the tools.",
-      "Chapter 11: The Theory of Demand",
-      "Chapter 12: Meaning and determinants of demand",
-      "Chapter 13: Demand schedules and curves",
-      "Chapter 14: Distinction between change in quantity demanded and change in demand.",
-      "Chapter 15: Types of demand: Composite, derived, competitive and joint demand",
-      "Chapter 16: Types, nature and determinants of elasticity and their measurement - price, income and cross elasticity of demand",
-      "Chapter 17: Importance of elasticity of demand to consumers, producers and government.",
-      "Chapter 18: The Theory of Consumer Behaviour",
-      "Chapter 19: Utility (cardinal, ordinal, total average and marginal utilities)",
-      "Chapter 20: Indifference curve and budget line.",
-      "Chapter 21: Diminishing marginal utility and the law of demand.",
-      "Chapter 22: Consumer equilibrium using the indifference curve and marginal analyses.",
-      "Chapter 23: Effects of shift in the budget line and the indifference curve.",
-      "Chapter 24: Consumer surplus and its applications.",
-      "Chapter 25: The Theory of Supply",
-      "Chapter 26: Meaning and determinants of supply",
-      "Chapter 27: Supply schedules and supply curves",
-      "Chapter 28: Distinction between change in quantity supplied and change in supply",
-      "Chapter 29: Types of Supply: Joint/complementary, competitive and composite",
-      "Chapter 30: Elasticity of Supply: determinants, measurements, nature and applications",
-      "Chapter 31: The Theory of Price Determination",
-      "Chapter 32: The concepts of market and price",
-      "Chapter 33: Functions of the price system",
-      "Chapter 34: Equilibrium price and quantity in product and factor markets",
-      "Chapter 35: Price legislation and its effects",
-      "Chapter 36: Effects of changes in supply and demand on equilibrium price and quantity.",
-      "Chapter 37: The Theory of Production",
-      "Chapter 38: Meaning and types of production",
-      "Chapter 39: Concepts of production and their interrelationships (TP, AP, MP and the law of variable proportion).",
-      "Chapter 40: Division of labour and specialization",
-      "Chapter 41: Scale of Production: Internal and external economies of scale and their implications.",
-      "Chapter 42: Production functions and returns to scale",
-      "Chapter 43: Producers' equilibrium isoquant - isocost and marginal analyses.",
-      "Chapter 44: Factors affecting productivity."
-    ];
-    // Full list of Accounting topics
-    const accountingTopics = [
-      "Nature and Significance of Accounting: Development of accounting (including branches of accounting), Objectives of bookkeeping and accounting, Users and characteristics of Accounting information, Principles, concepts and conventions of accounting (nature, significance and application), Role of accounting records and information",
-      "Chapter 1: Principles of Double Entry: Functions of source documents, Books of original entry, Accounting equation, The ledger and its classifications, Trial balance, Types and treatment of errors and uses of suspense account",
-      "Chapter 2: Ethics in Accounting: Objectives, Qualities of an Accountant",
-      "Chapter 3: Cashbook: Columnar cashbooks, Discounts, Petty cashbook and the imprest system",
-      "Chapter 4: Bank Transactions and Reconciliation Statements: Instrument of bank transactions, e-banking system, Courses of discrepancies between cashbook and bank statement, Bank reconciliation statement",
-      "Chapter 5: The Final Accounts of a Sole Trader: Income statement (Trading and profit and loss account), Statement of financial position (Balance sheet), Adjustments (provision for bad and doubtful debt, provision for discounts, provision for depreciation using straight-line and reducing balance methods, accruals and prepayments)",
-      "Chapter 6: Stock Valuation: Methods of cost determination using FIFO, LIFO and simple average, The advantages and disadvantages of the methods, The importance of stock valuation",
-      "Chapter 7: Control Accounts and Self-balancing Ledgers: Importance of control accounts, Purchases ledger control account, Sales ledger control account",
-      "Chapter 8: Incomplete Records and Single Entry: Conversion of single entry to double entry, Determination of missing figures, Preparation of final accounts from incomplete records",
-      "Chapter 9: Manufacturing Accounts: Cost classification, Cost apportionment, Preparation of manufacturing account",
-      "Chapter 10: Accounts of Not-For-Profit-Making Organizations: Objectives of Not-For-Profit-Making organizations, Receipts and payments account, Income and expenditure account, Statement of financial position (Balance sheet)",
-      "Chapter 11: Departmental Accounts: Objectives, Apportionment of expenses, Departmental trading and profit and loss account",
-      "Chapter 12: Branch Accounts: Objectives, Branch accounts in the head office books, Head office account, Reconciliation of branch and head office books",
-      "Chapter 13: Joint Venture Accounts: Objectives, Personal accounts of venturers, Memorandum Joint venture accounts",
-      "Chapter 14: Partnership Accounts: Formation of partnership, Profit and loss account, Appropriation account, Partners current and capital accounts, Treatment of goodwill, Admission/retirement of a partner, Dissolution of partnership, Conversion of a partnership to a company",
-      "Chapter 15: Introduction to Company Accounts: Formation and classification of companies, Issue of shares and debentures, Final accounts of companies, Interpretation of accounts using ratios, Distinction between capital and revenue reserves",
-      "Chapter 16: Public Sector Accounting: Comparison of cash and accrual basis of accounting, Sources of government revenue, Capital and recurrent expenditure, Consolidated revenue fund, Statement of assets and liabilities, Responsibilities and powers of Accountant General, Auditor General, Minister of Finance, Treasurer of local government, Instruments of financial regulation",
-      "Chapter 17: Information Technology in Accounting: Manual and computerized accounting processing system, Processes involved in data processing, Computer hardware and software, Advantages and disadvantages of manual and computerized accounting processing system"
-    ];
-    // Full list of Government topics
-    const governmentTopics = [
-      "Government Topics",
-      "Chapter 1: Basic Elements in Government",
-      "Chapter 2: Introduction to Government - Basic Concepts",
-      "Chapter 3: Forms of Government",
-      "Chapter 4: The Workings of Government I - Organs & Systems",
-      "Chapter 5: The Workings of Government II - Unitary, Federal & Confederal Structures",
-      "Chapter 6: Basic Principles of Government",
-      "Chapter 7: Political Ideologies",
-      "Chapter 8: Constitution",
-      "Chapter 9: Principles of a Democratic Government",
-      "Chapter 10: Processes of Legislation",
-      "Chapter 11: Day-to-Day Operation and Public Administration",
-      "Chapter 12: Citizenship",
-      "Chapter 13: Political Parties & Party Systems",
-      "Chapter 14: Franchise, Elections & The Electoral System",
-      "Chapter 15: Public Opinion & The Mass Media",
-      "Chapter 16: Pressure Groups",
-      "Chapter 17: The Civil Service",
-      "Chapter 18: Public Corporations",
-      "Chapter 19: Local Government",
-      "Chapter 20: Political and Constitutional Development in Nigeria",
-      "Chapter 21: Pre-Colonial Administration in Nigeria",
-      "Chapter 22: Colonial Administration I - British Colonial Administration",
-      "Chapter 23: Colonial Administration II - French Colonial Administration",
-      "Chapter 24: Colonial Administration III - Putting it all together...",
-      "Chapter 25: The Process of Decolonisation - Nationalism",
-      "Chapter 26: Constitutional Development in Nigeria I - Pre-Independence",
-      "Chapter 27: Constitutional Development in Nigeria II - Independence & Post-Independence",
-      "Chapter 28: Military Rule in Nigeria",
-      "Chapter 29: Nigerian Federalism",
-      "Chapter 30: Institutions of Government in Post-Independence Nigeria",
-      "Chapter 31: Political Parties in Nigeria",
-      "Chapter 32: Political Crises in Nigeria",
-      "Chapter 33: Local Government Administration in Nigeria",
-      "Chapter 34: Foreign Policy and Nigeria's Relationship with the International Community",
-      "Chapter 35: Nigeria's Foreign Policy",
-      "Chapter 36: International Organisations I - OAU, AU, ECOWAS, APPA",
-      "Chapter 37: International Organisations II- League of Nations, UNO/ UN, OPEC, The Commonwealth of Nations",
-      "Chapter 38: Social Dynamics and Classical Political Thought",
-      "Chapter 39: Conflict Resolution and Management",
-      "Chapter 40: Peace Education",
-      "Chapter 41: Leadership and Followership",
-      "Chapter 42: Classical Political Thoughts",
-      "Chapter 43"
-    ];
-    // Full list of Commerce topics
-    const commerceTopics = [
-      "Commerce: Meaning and scope, Characteristics, Functions",
-      "Chapter 1: Occupation: Meaning and importance, Types (industrial, commercial, and services), Factors that determine choice of occupation",
-      "Chapter 2: Production: Factors, characteristics, and rewards (land, labour, capital, and entrepreneur), Division of Labour and specialization, Types (primary, secondary and tertiary)",
-      "Chapter 3: Trade: Home Trade (Retail trade: Types of retailers, Functions of retailers, Factors to be considered in setting up retail trade, Trends in retailing, Advantages and disadvantages of retailers; Wholesale trade: Types of wholesalers, Functions of wholesalers, Advantages and disadvantages of wholesalers), Foreign trade (Basic issues in foreign trade, Procedures and documents used in export, import, and entreport trade, Barriers to international trade, Role of Customs and Excise Authority, Ports Authority, etc in foreign trade)",
-      "Chapter 4: Purchase and Sale of Goods: Procedure and documentation, Terms of trade, Terms of payments (Cash, Credit)",
-      "Chapter 5: Aids-to-trade: Advertising, Banking, Communication, Insurance, Tourism, Transportation, Warehousing",
-      "Chapter 6: Business Units: Forms and features, Registration of businesses, Business Mergers, Determination of choice of business units, Dissolution and liquidation, Merits and demerits",
-      "Chapter 7: Financing Business: Sources of finance, Types of capital, Calculation of forms of capital, profits, and turnover, Problems of sourcing finance, The role of Bureau de change in an economy",
-      "Chapter 8: Trade Associations: Objectives and functions of trade and manufacturer's associations, Objectives and functions of Chambers of Commerce",
-      "Chapter 9: Money: Evolution, Forms and qualities, Functions",
-      "Chapter 10: Elements of Business Management: Functions, Principles, Organizational structure, Functional areas of business, Business resources",
-      "Chapter 11: Stock Exchange: Importance and functions, Types of securities, Procedure of transactions and speculations, Second-Tier Securities Market",
-      "Chapter 12: Elements of Marketing: Importance and Functions, The marketing concept, Marketing mix, Market Segmentation, Public relations and Customer Service",
-      "Chapter 13: Legal Aspects of Business: Meaning and validity of a simple contract, Agency, Sale of Goods Act and Hire Purchase Act, Contract of employment, Government regulations of business, Consumer protection, Regulatory agencies",
-      "Chapter 14: Information and Communication Technology (ICT): Computer, Terms, Activities (e-commerce, e-banking, e-business)",
-      "Chapter 15: Business Environment and Social Responsibility: Legal, political, economic, social, cultural, technological environments, Safe products, Types and implication of pollution",
-      "Chapter 16"
-    ];
-    // Example essay types
-    const essayTypes = [
-      "Informal Letter", "Formal Letter", "Speech", "Descriptive Essay", "Narrative Essay", "Argumentative Essay", "Expository Essay"
-    ];
-    function showTopics() {
-      document.getElementById('main-cards').style.display = 'none';
-      const content = document.getElementById('dynamic-content');
-      content.innerHTML = `<h2 style='margin-bottom:1rem;'>Select a Subject</h2><div class='practice-list'>${subjects.map(sub => `<div class='practice-card' onclick='showSubjectTopics("${sub}")'><div class='practice-title'>${sub}</div></div>`).join('')}</div>`;
-    }
-    function showSubjectTopics(subject) {
-      let topics = [];
-      if(subject === "MATHEMATICS") topics = mathematicsTopics;
-      else if(subject === "BIOLOGY") topics = biologyTopics;
-      else if(subject === "CHEMISTRY") topics = chemistryTopics;
-      else if(subject === "LITERATURE") topics = literatureTopics;
-      else if(subject === "PHYSICS") topics = physicsTopics;
-      else if(subject === "ENGLISH") topics = englishTopics;
-      else if(subject === "ECONOMICS") topics = economicsTopics;
-      else if(subject === "ACCOUNTING") topics = accountingTopics;
-      else if(subject === "GOVERNMENT") topics = governmentTopics;
-      else if(subject === "COMMERCE") topics = commerceTopics;
-      if(topics.length === 0) topics = ["Topics coming soon..."];
-      document.getElementById('dynamic-content').innerHTML = `<h2 style='margin-bottom:1rem;'>${subject} Topics</h2><div class='practice-list'>${topics.map(topic => `<div class='practice-card' onclick='showQuestions(\"${subject}\", \"${topic}\")'><div class='practice-title'>${topic}</div></div>`).join('')}</div><button class='btn btn-outline' onclick='backToSubjects()' style='margin-top:2rem;'>Back</button>`;
-    }
-    function showQuestions(subject, topic) {
-      document.getElementById('dynamic-content').innerHTML = `<h2>${subject} - ${topic}</h2><div class='practice-card'>Questions from myschool.ng will appear here.</div><button class='btn btn-outline' onclick='backToTopics("${subject}")' style='margin-top:2rem;'>Back</button>`;
-    }
-    function backToSubjects() {
-      showTopics();
-    }
-    function backToTopics(subject) {
-      showSubjectTopics(subject);
-    }
-    function showYearly() {
-      document.getElementById('main-cards').style.display = 'none';
-      const content = document.getElementById('dynamic-content');
-      content.innerHTML = `<h2 style='margin-bottom:1rem;'>Select a Subject</h2><div class='practice-list'>${subjects.map(sub => `<div class='practice-card' onclick='showYears("${sub}")'><div class='practice-title'>${sub}</div></div>`).join('')}</div>`;
-    }
-    function showYears(subject) {
-      const years = [2024,2023,2022,2021,2020,2019,2018,2017,2016,2015];
-      document.getElementById('dynamic-content').innerHTML = `<h2 style='margin-bottom:1rem;'>${subject} - Select Year</h2><div class='practice-list'>${years.map(year => `<div class='practice-card' onclick='showYearQuestions("${subject}",${year})'><div class='practice-title'>${year}</div></div>`).join('')}</div><button class='btn btn-outline' onclick='backToYearSubjects()' style='margin-top:2rem;'>Back</button>`;
-    }
-    function showYearQuestions(subject, year) {
-      document.getElementById('dynamic-content').innerHTML = `<h2>${subject} - ${year}</h2><div class='practice-card'>Questions from myschool.ng for ${year} will appear here.</div><button class='btn btn-outline' onclick='backToYears("${subject}")' style='margin-top:2rem;'>Back</button>`;
-    }
-    function backToYearSubjects() {
-      showYearly();
-    }
-    function backToYears(subject) {
-      showYears(subject);
-    }
-    function showEssay() {
-      document.getElementById('main-cards').style.display = 'none';
-      const content = document.getElementById('dynamic-content');
-      content.innerHTML = `<h2 style='margin-bottom:1rem;'>Select Essay Type</h2><div class='practice-list'>${essayTypes.map(type => `<div class='practice-card' onclick='showEssayForm("${type}")'><div class='practice-title'>${type}</div></div>`).join('')}</div>`;
-    }
-    function showEssayForm(type) {
-      let formHtml = '';
-      if(type === "Informal Letter") {
-        formHtml = `<div style='display:flex;flex-direction:column;gap:1rem;'>
-          <div style='align-self:flex-end;width:220px;'><input type='text' placeholder='Address' style='width:100%;padding:8px;border-radius:6px;border:1px solid #ddd;'></div>
-          <div style='align-self:flex-end;width:120px;'><input type='text' placeholder='Date' style='width:100%;padding:8px;border-radius:6px;border:1px solid #ddd;'></div>
-          <div style='width:180px;'><input type='text' placeholder='Salutation' style='width:100%;padding:8px;border-radius:6px;border:1px solid #ddd;'></div>
-          <textarea placeholder='Write your letter here...' style='width:100%;min-height:180px;padding:12px;border-radius:8px;border:1px solid #ddd;'></textarea>
-        </div>`;
-      } else {
-        formHtml = `<textarea placeholder='Write your essay here...' style='width:100%;min-height:220px;padding:12px;border-radius:8px;border:1px solid #ddd;'></textarea>`;
-      }
-      document.getElementById('dynamic-content').innerHTML = `<h2>${type}</h2><div class='practice-card'>${formHtml}<div style='margin-top:1rem;'><button class='btn btn-primary'>Submit Essay</button></div></div><button class='btn btn-outline' onclick='showEssay()' style='margin-top:2rem;'>Back</button>`;
-    }
-    // Show main cards on page load
-    window.onload = function() {
-      document.getElementById('main-cards').style.display = 'grid';
-      document.getElementById('dynamic-content').innerHTML = '';
-    }
-  </script>
+
+    <script>
+        // Full list of Mathematics topics
+        const mathematicsTopics = [
+          "Algebra",
+          "Simple Operations On Algebraic Expression",
+          "Solution Of Linear Equations",
+          "Change Of Subject Of Formula",
+          "Quadratic Equations",
+          "Graph Of Linear and Quadratic Functions",
+          "Linear Inequalities",
+          "Algebraic Fractions",
+          "Functions and Relations",
+          "Polynomials",
+          "Progressions",
+          "Binary Operations",
+          "Geometry and Trigonometry",
+          "Angles and Intercepts on Parallel Lines",
+          "Triangles and Polygons",
+          "Circles",
+          "Construction",
+          "Coordinate Geometry of Straight Lines",
+          "Trigonometric Ratios",
+          "Angles of Elevation and Depression",
+          "Bearings and Distances",
+          "Number and Numeration",
+          "Number Bases",
+          "Indices",
+          "Logarithms",
+          "Surds",
+          "Fractions, Decimals, Percentages and Approximation",
+          "Sets",
+          "Logic",
+          "Modular Arithmetic",
+          "Positive and Negative Integers",
+          "Rational Numbers",
+          "Matrices and Determinants",
+          "Ratios, Proportions and Rates",
+          "Financial Arithmetic",
+          "Variations",
+          "Mensuration",
+          "Lengths and Perimeters",
+          "Areas",
+          "Volumes",
+          "Calculus",
+          "Differentiation",
+          "Application of differentiation",
+          "Integration",
+          "Application of Integration",
+          "Statistics",
+          "Representation of data",
+          "Measures of Location",
+          "Measures of Dispersion",
+          "Permutation and Combination",
+          "Probability."
+        ];
+        // Full list of Biology topics
+        const biologyTopics = [
+          "Science of Living Things",
+          "Classification or Organisation of Life",
+          "Cell 1 : Living Unit - Structure",
+          "Cell 2 : Properties and Functions",
+          "Basic Ecological Concepts",
+          "Functioning Ecosystem",
+          "Ecological Management",
+          "Ecology of Population",
+          "Aquatic and Terrestrial Habitat",
+          "Introduction to Micro-Organisms",
+          "Micro-Organisms and Health",
+          "Nutrition / Photosynthesis / Food substances",
+          "Feeding Mechanism / Digestive System",
+          "Transport System and Mechanism",
+          "Gaseous Exchange / Respiratory System",
+          "Sexual Reproduction: System / Behaviours",
+          "Development of New Organisms / Fruits",
+          "Regulation of the Internal Environment",
+          "Nervous Coordination",
+          "Sensory Receptors and Organs",
+          "Variations / Adaptation for Survival / Evolution",
+          "Genetics: The Science of Heredity",
+          "Excretory Systems and Mechanisms",
+          "Supporting systems and Mechanisms"
+        ];
+        // Subjects for topic-by-topic and year-by-year
+        const subjects = [
+          "MATHEMATICS", "BIOLOGY", "CHEMISTRY", "LITERATURE", "PHYSICS", "ENGLISH", "ECONOMICS", "ACCOUNTING", "GOVERNMENT", "COMMERCE"
+        ];
+        // Full list of Chemistry topics
+        const chemistryTopics = [
+          "BASIC CHEMISTRY",
+          "Chapter 1: Matter and Separation Techniques",
+          "Chapter 2: Particulate Nature of Matter",
+          "Chapter 3: Chemical Combinations",
+          "Chapter 4: Properties of Gases (Gas Laws)",
+          "Chapter 5: Properties of Solids and Liquids",
+          "Chapter 6: Acids, Bases and Salts",
+          "Chapter 7: Periodic Table",
+          "Chapter 8: Air and Air Pollution",
+          "Chapter 9: Water and Solubility Concept",
+          "Chapter 10: Mass-Volume Concepts",
+          "Chapter 11: Quantitative and Qualitative Analyses",
+          "Chapter 12: Electrodes, Electrochemical Series and Electrolysis",
+          "Chapter 13: Types of Reactions",
+          "Chapter 14: Energy and Chemical Reactions",
+          "Chapter 15: Reactions' Rates and Chemical Equilibria",
+          "Chapter 16: Shapes of Molecules and Solids",
+          "Chapter 17: Radioactivity (Nuclear Chemistry)",
+          "INORGANIC CHEMISTRY",
+          "Chapter 19: Hydrogen (Hydrides)",
+          "Chapter 20: Oxygen (Oxides - Ozone)",
+          "Chapter 21: Carbon - Carbon Compounds",
+          "Chapter 22: Nitrogen - Nitrogen Compounds",
+          "Chapter 23: Phosphorus - Phosphorus Compounds",
+          "Chapter 24: Sulphur - Sulphur Compounds",
+          "Chapter 25: Halogen Family",
+          "Chapter 26: Silicon and its Compounds",
+          "Chapter 27: Metals and their Compounds 1",
+          "Chapter 28: Transition Metals and their Compounds",
+          "ORGANIC CHEMISTRY",
+          "Chapter 30: Hydrocarbons",
+          "Chapter 31: Crude Oil",
+          "Chapter 32: Basic Concepts of Organic Chemistry",
+          "Chapter 33: Organic Chemistry 2",
+          "Chapter 34: Applied Chemistry",
+          "Chapter 35: Chemical Industry",
+          "Chapter 36: The Solar System",
+          "Chapter 37: Separation of mixtures and purification of chemical substance",
+          "Chapter 38: Definition and classification of matter",
+          "Chapter 39: Elements, compounds and mixtures",
+          "Chapter 40: Physical and chemical changes",
+          "Chapter 41: Pure and Impure substances",
+          "Chapter 42: Separation techniques/processes",
+          "Chapter 43: Chemical Combination",
+          "Chapter 44: Stoichiometry",
+          "Chapter 45: Laws of definite and multiple proportions",
+          "Chapter 46: Law of conservation of matter",
+          "Chapter 47: Gay Lussac's law of combining volumes",
+          "Chapter 48: Avogadro's law",
+          "Chapter 49: chemical symbols, formulae, equations and their uses",
+          "Chapter 50: Relative atomic mass based on 12C-12",
+          "Chapter 51: The mole concept and Avogadro's number",
+          "Chapter 52: Kinetic Theory of Matter and Gas Laws",
+          "Chapter 53: States of matter",
+          "Chapter 54: Change of States of matter",
+          "Chapter 55: Phenomena Supporting Kinetic theory-Diffusion and Osmosis",
+          "Chapter 56: Assumptions of Kinetic theory of Gases",
+          "Chapter 57: The Gas Laws: Boyle, Charles, Graham and Dalton (law of partial pressure), combined gas law",
+          "Chapter 58: Molar volume and atomicity of gases",
+          "Chapter 59: The ideal gas equation (PV = nRT)",
+          "Chapter 60: The relationship between vapour density of gases and the relative molecular mass.",
+          "Chapter 61: Atomic Structure and Bonding",
+          "Chapter 62: The concept of atoms, molecules and ions, the works of Dalton, Millikan, Rutherford, Moseley, Thompson and Bohr",
+          "Chapter 63: Atomic structure, electron configuration, atomic number, mass number and isotopes.",
+          "Chapter 64: Shapes of S and P orbitals",
+          "Chapter 65: The Periodic table and periodicity of elements",
+          "Chapter 66: The variation of the following properties: ionization energy, ionic radii, electron affinity and electronegativity",
+          "Chapter 67: Chemical bonding",
+          "Chapter 68: Van der Waals' forces.",
+          "Chapter 69: Shapes of simple molecules",
+          "Chapter 70: Nuclear Chemistry",
+          "Chapter 71: Radioactivity - Types and properties of radiations",
+          "Chapter 72: Nuclear Reactions - Natural and Artificial Radioactivity, uses and Application.",
+          "Chapter 73: Air",
+          "Chapter 74: The natural gaseous constituents and their proportion in the air",
+          "Chapter 75: Air as a mixture and some uses of the noble gas",
+          "Chapter 76: Water",
+          "Chapter 77: Water as a product of the combustion of hydrogen and its composition by volume",
+          "Chapter 78: Water as a solvent",
+          "Chapter 79: Hardness of water",
+          "Chapter 80: Treatment of water for town supply.",
+          "Chapter 81: Water of crystallization, efflorescence, deliquescence and hygroscopy",
+          "Chapter 82: Solubility",
+          "Chapter 83: Unsaturated, saturated and supersaturated solutions",
+          "Chapter 84: Definition of Solubility and Solubility curves and simple deductions",
+          "Chapter 85: Solvents for fats, oil and paints",
+          "Chapter 86: False solution (Suspensions and colloids)",
+          "Chapter 87: Simple calculations on Solubility",
+          "Chapter 88: Environmental pollution",
+          "Chapter 89: Sources and effects of pollutants",
+          "Chapter 90: Air pollution",
+          "Chapter 91: Water pollution",
+          "Chapter 92: Soil pollution",
+          "Chapter 93: Acids, Bases and Salts",
+          "Chapter 94: Definition, General characteristics, types and properties of acids, bases and salts",
+          "Chapter 95: Acids/base indicators, basicity of acids and preparation of salts",
+          "Chapter 96: Oxides and trioxocarbonate (IV) salts",
+          "Chapter 97: Qualitative comparison of the conductances of molar solutions of strong and weak acids and bases",
+          "Chapter 98: Relationship between conductance and amount of ions present, and Buffer solutions",
+          "Chapter 99: pH and pOH scale; Simple calculations",
+          "Chapter 100: Acid/base titrations.",
+          "Chapter 101: Hydrolysis of salts",
+          "Chapter 102: Oxidation and Reduction (REDOX) Reactions",
+          "Chapter 103: Oxidation in terms of the addition of oxygen or removal of hydrogen.",
+          "Chapter 104: Reduction as removal of oxygen or addition of hydrogen.",
+          "Chapter 105: Oxidation and reduction in terms of electron transfer",
+          "Chapter 106: Use of oxidation numbers in defining REDOX reactions and balancing simple equations.",
+          "Chapter 107: IUPAC nomenclature of inorganic compounds using oxidation number",
+          "Chapter 108: Tests for oxidizing and reducing agents",
+          "Chapter 109: Electrolysis",
+          "Chapter 110: Electrolytes and non-electrolytes, and Faraday's laws of electrolysis",
+          "Chapter 111: Electrolysis of dilute H2SO4, aqueous CuSO4, CuCl2 solution, dilute and concentrated NaCl solutions and fused NaCl",
+          "Chapter 112: Factors affecting discharge of ions at the electrodes",
+          "Chapter 113: Uses of electrolysis",
+          "Chapter 114: Electrochemical cells: Redox series",
+          "Chapter 115: Half-cell reactions and electrode potentials",
+          "Chapter 116: Calculations on electrolysis",
+          "Chapter 117: Corrosion as an electrolytic process",
+          "Chapter 118: Energy changes",
+          "Chapter 119: Energy changes accompanying physical and chemical changes",
+          "Chapter 120: Endothermic and exothermic reactions.",
+          "Chapter 121: Entropy as an order-disorder phenomenon",
+          "Chapter 122: Spontaneity of reactions",
+          "Chapter 123: Rates of Chemical reaction",
+          "Chapter 124: Meaning of the rate of a chemical reaction.",
+          "Chapter 125: Ways of measuring the rate of chemical reaction",
+          "Chapter 126: Factors affecting rates of reaction",
+          "Chapter 127: Arrhenius’ law and Collision theory",
+          "Chapter 128: Reaction rate curves",
+          "Chapter 129: Chemical equilibrium",
+          "Chapter 130: Definition of the following terminologies: systems, reactions and dynamic equilibrium.",
+          "Chapter 131: Properties of a system in equilibrium",
+          "Chapter 132: Factors governing the equilibrium position",
+          "Chapter 133: Le Chatelier’s principle",
+          "Chapter 134: Equilibrium constant",
+          "Chapter 135: Non-metals and their compounds",
+          "Chapter 136: Hydrogen and Hydrides",
+          "Chapter 137: Halogens: Chlorine as a representative element of the halogen",
+          "Chapter 138: Oxygen and Oxides",
+          "Chapter 139: Sulphur and its compound",
+          "Chapter 140: Nitrogen and its compounds",
+          "Chapter 141: Carbon: Allotropes, Uses and properties.",
+          "Chapter 142: Metals and their compounds",
+          "Chapter 143: General properties of metals",
+          "Chapter 144: Alkali metals e.g. sodium",
+          "Chapter 145: Alkaline-earth metals",
+          "Chapter 146: Aluminium and its compound",
+          "Chapter 147: Tin Extraction from its ores",
+          "Chapter 148: Metals of the first transition series",
+          "Chapter 149: Iron Extraction from sulphide and oxide ores",
+          "Chapter 150: Copper Extraction from sulphide and oxide ores",
+          "Chapter 151: Alloy",
+          "Chapter 152: Organic Compounds",
+          "Chapter 153: Introduction to the tetravalency of carbon",
+          "Chapter 154: Alkanes: Homologous series in relation to physical properties",
+          "Chapter 155: Alkenes: Isomerism (structural and geometric isomerism)",
+          "Chapter 156: Alkynes: Ethyne",
+          "Chapter 157: Aromatic hydrocarbons e.g. benzene - structure, properties and uses",
+          "Chapter 158: Alkanols: Primary, secondary, tertiary",
+          "Chapter 159: Alkanals and alkanones",
+          "Chapter 160: Alkanoic acids",
+          "Chapter 161: Alkanoates",
+          "Chapter 162: Amines (Alkanamines): Primary, Secondary, and tertiary",
+          "Chapter 163: Carbohydrates",
+          "Chapter 164: Proteins: Primary structures, hydrolysis and tests",
+          "Chapter 165: Enzymes and their functions",
+          "Chapter 166: Polymers: Natural and synthetic rubber",
+          "Chapter 167: Industrial Chemistry",
+          "Chapter 168: Chemical industries: Types, raw materials and relevances",
+          "Chapter 169: Economics of Industrial process",
+          "Chapter 170: Importance of industrial chemistry in Nigeria"
+        ];
+        // Full list of Literature topics
+        const literatureTopics = [
+          "DRAMA: Types (Tragedy, Comedy, Tragicomedy, Melodrama, Farce, Opera etc.), Dramatic Techniques (Characterization, Dialogue, Flashback, Mime, Costume, Music/Dance, Décor/scenery, Acts/Scenes, Soliloquy/aside, Figures of Speech etc), Interpretation of the Prescribed Texts (Theme, Plot, Socio-political context, Setting)",
+          "Chapter 1",
+          "PROSE: Types (Fiction: Novel, Novella/Novelette, Short story; Non-fiction: Biography, Autobiography, Memoir; Faction), Narrative Techniques/Devices (Point of view, Characterisation, Language), Textual Analysis (Theme, Plot, Setting, Socio-political context)",
+          "Chapter 2",
+          "POETRY: Types (Sonnet, Ode, Lyrics, Elegy, Ballad, Panegyric, Epic, Blank Verse, etc.), Poetic devices (Structure, Imagery, Sound, Diction, Persona), Appreciation (Thematic preoccupation, Socio-political relevance, Style)",
+          "Chapter 3",
+          "GENERAL LITERARY PRINCIPLES: Literary terms, Literary principles, Relationship between literary terms and principles",
+          "Chapter 4",
+          "LITERARY APPRECIATION: Unseen passages/extracts from Drama, Prose, and Poetry",
+          "Chapter 5"
+        ];
+        // Full list of Physics topics
+        const physicsTopics = [
+          "Motion",
+          "Chapter 1: Work, Energy and Power",
+          "Chapter 2: Heat Energy",
+          "Chapter 3: Electrical Energy",
+          "Chapter 4: Current Electricity",
+          "Chapter 5: Elastic Properties of Solid",
+          "Chapter 6: Vector",
+          "Chapter 7: Projectiles",
+          "Chapter 8: Equilibrium of Forces",
+          "Chapter 9: Pressure in Fluids",
+          "Chapter 10: Simple Harmonic Motion",
+          "Chapter 11: Newton's Laws of Motion",
+          "Chapter 12: Machines",
+          "Chapter 13: Heat Energy (Measurement of Temperature)",
+          "Chapter 14: Measurement of Heat Energy",
+          "Chapter 15: Gas Laws",
+          "Chapter 16: Reflection of Light Waves",
+          "Chapter 17: Waves",
+          "Chapter 18: waves",
+          "Chapter 19: sound wave",
+          "Chapter 20: Vibration in springs and pipes",
+          "Chapter 21: Refraction of Light Waves at Plane Surfaces",
+          "Chapter 22: Optical Instruments",
+          "Chapter 23: Propagation of Sound Waves",
+          "Chapter 24: Gravitational Field",
+          "Chapter 25: Electric Field (Charges)",
+          "Chapter 26: Electric Field (Current Electricity)",
+          "Chapter 27: Magnetic Field",
+          "Chapter 28: Simple Alternating Current Circuits",
+          "Chapter 29: Models of Atoms and Nuclear Physics",
+          "Chapter 30: Energy Quantitization",
+          "Chapter 31: Electrical Conduction Through Liquids and Gases",
+          "Chapter 32: Fundamentals of Electronics",
+          "Chapter 33: Electromagnetic Field",
+          "Chapter 34: Fluids at Rest and in Motion",
+          "Chapter 35: Application of Light waves",
+          "Chapter 36: Thermodynamics",
+          "Chapter 37: Heat and temperature",
+          "Chapter 38: heat transfer",
+          "Chapter 39: Heat energy",
+          "Chapter 40: Evaporation and Boiling",
+          "Chapter 41: Wave",
+          "Chapter 42: Field",
+          "Chapter 43: concept of field",
+          "Chapter 44: Gravitational Field",
+          "Chapter 45: description of field",
+          "Chapter 46: Gravitational field",
+          "Chapter 47: Electric field1",
+          "Chapter 48: magnetic field",
+          "Chapter 49: Electromagnetic field",
+          "Chapter 50: Electric field2",
+          "Chapter 51: Current Electricity",
+          "Chapter 52: Energy and power",
+          "Chapter 53: Simple A.C Circuit",
+          "Chapter 54: Light and Optics",
+          "Chapter 55: Reflection of light",
+          "Chapter 56: Refraction of light",
+          "Chapter 57: Application of lense",
+          "Chapter 58: Atomic physics",
+          "Chapter 59: Structure of the atom",
+          "Chapter 60: Laser",
+          "Chapter 61: Semi conductor",
+          "Chapter 62: structure of the nucleus",
+          "Chapter 63: Wave particle paradox",
+          "Chapter 64: Mechanics",
+          "Chapter 65: motion/force/circular motion",
+          "Chapter 66: work/energy/power",
+          "Chapter 67: Simple machine",
+          "Chapter 68: linear motion",
+          "Chapter 69: Equilibrium of forces",
+          "Chapter 70: projectile motion.",
+          "Chapter 71: equation of motion/motion under gravity",
+          "Chapter 72: momentum/impulse/newton's law of motion",
+          "Chapter 73: Simple harmonic motion",
+          "Chapter 74: friction",
+          "Chapter 75: simple structure of matter",
+          "Chapter 76: density and relative density",
+          "Chapter 77: deformation of solids",
+          "Chapter 78: scalars and vectors",
+          "Chapter 79: Fundamental and derived quantities",
+          "Chapter 80: Measurement",
+          "Chapter 81: Astrophysics",
+          "Chapter 82: Satellite and Rocket",
+          "Chapter 83"
+        ];
+        // Full list of English topics
+        const englishTopics = [
+          "English Grammar",
+          "Chapter 1: Word Classes",
+          "Chapter 2: Phrasal Verb",
+          "Chapter 3: Sentence Classification",
+          "Chapter 4: Tense and Aspect",
+          "Chapter 5: Concord",
+          "Chapter 6: Question Tag",
+          "Chapter 7: Language Registers",
+          "Chapter 8: Reported Speech",
+          "Chapter 9: Punctuation",
+          "Chapter 10: Idiomatic Expression",
+          "Chapter 11: Infinitives, Gerunds and Participles.",
+          "Chapter 12: Elements of sentence structure",
+          "Chapter 13: Antonyms, Synonyms & Homonyms",
+          "Chapter 14: Oral English",
+          "Chapter 15: The Sound System",
+          "Chapter 16: Vowels",
+          "Chapter 17: Consonants",
+          "Chapter 18: Syllable",
+          "Chapter 19: Stress",
+          "Chapter 20: Intonation",
+          "Chapter 21: The Vowel Sound: Monophthongs (Pure Vowels)",
+          "Chapter 22: The Vowel Sound: Diphthongs",
+          "Chapter 23: The Short Vowel Sounds",
+          "Chapter 24: Consonant Sounds: Plosives",
+          "Chapter 25: Consonant Sounds: Liquid and Semi-Vowel",
+          "Chapter 26: Consonant Sounds: Fricatives",
+          "Chapter 27: Consonant Sounds: Affricates and Nasals",
+          "Chapter 28: Comprehension",
+          "Chapter 29: Concept of Comprehension",
+          "Chapter 30: Topic Sentence",
+          "Chapter 31: Sentence Interpretation",
+          "Chapter 32: Grammatical Applications",
+          "Chapter 33: Writing",
+          "Chapter 34: Summary Writing",
+          "Chapter 35: The Writing Process",
+          "Chapter 36: The Spelling Rules",
+          "Chapter 37: Essay Writing: Descriptive Essay",
+          "Chapter 38: Essay Writing: Narrative Essay",
+          "Chapter 39: Essay Writing: Argumentative Essay",
+          "Chapter 40: Essay Writing: Expository Essay",
+          "Chapter 41: Informal Letter Writing",
+          "Chapter 42: Formal Letter Writing",
+          "Chapter 43: Sentence Building",
+          "Chapter 44: Clauses",
+          "Chapter 45: Phrases",
+          "Chapter 46: Morphemes and Words",
+          "Chapter 47: The concept of a Sentence",
+          "Chapter 48: The Long Vowel Sounds"
+        ];
+        // Full list of Economics topics
+        const economicsTopics = [
+          "Economics as a science",
+          "Chapter 1: Basic Concepts: Wants, Scarcity, choice, scale of preference, opportunity cost, Rationality, production, distribution, consumption.",
+          "Chapter 2: Economic problems of; What, how, and for whom to produce and efficiency of resource use.",
+          "Chapter 3: Application of PPF to solution of economic problems.",
+          "Chapter 4: Economic Systems",
+          "Chapter 5: Types; free enterprise centrally planned and mixed economies",
+          "Chapter 6: Solutions to economic problems under different systems",
+          "Chapter 7: Contemporary issues in economic systems (economic reforms e.g deregulation, banking sector consolidation, cash policy reform).",
+          "Chapter 8: Methods and Tools of Economic Analysis",
+          "Chapter 9: Scientific Approach: inductive and deductive methods, positive and normative reasoning",
+          "Chapter 10: Basic Tools: tables, charts and graphs, measures of central tendency: mean, median and mode, and their applications, measures of dispersion; variance, standard deviation, range and their applications; merits and demerits of the tools.",
+          "Chapter 11: The Theory of Demand",
+          "Chapter 12: Meaning and determinants of demand",
+          "Chapter 13: Demand schedules and curves",
+          "Chapter 14: Distinction between change in quantity demanded and change in demand.",
+          "Chapter 15: Types of demand: Composite, derived, competitive and joint demand",
+          "Chapter 16: Types, nature and determinants of elasticity and their measurement - price, income and cross elasticity of demand",
+          "Chapter 17: Importance of elasticity of demand to consumers, producers and government.",
+          "Chapter 18: The Theory of Consumer Behaviour",
+          "Chapter 19: Utility (cardinal, ordinal, total average and marginal utilities)",
+          "Chapter 20: Indifference curve and budget line.",
+          "Chapter 21: Diminishing marginal utility and the law of demand.",
+          "Chapter 22: Consumer equilibrium using the indifference curve and marginal analyses.",
+          "Chapter 23: Effects of shift in the budget line and the indifference curve.",
+          "Chapter 24: Consumer surplus and its applications.",
+          "Chapter 25: The Theory of Supply",
+          "Chapter 26: Meaning and determinants of supply",
+          "Chapter 27: Supply schedules and supply curves",
+          "Chapter 28: Distinction between change in quantity supplied and change in supply",
+          "Chapter 29: Types of Supply: Joint/complementary, competitive and composite",
+          "Chapter 30: Elasticity of Supply: determinants, measurements, nature and applications",
+          "Chapter 31: The Theory of Price Determination",
+          "Chapter 32: The concepts of market and price",
+          "Chapter 33: Functions of the price system",
+          "Chapter 34: Equilibrium price and quantity in product and factor markets",
+          "Chapter 35: Price legislation and its effects",
+          "Chapter 36: Effects of changes in supply and demand on equilibrium price and quantity.",
+          "Chapter 37: The Theory of Production",
+          "Chapter 38: Meaning and types of production",
+          "Chapter 39: Concepts of production and their interrelationships (TP, AP, MP and the law of variable proportion).",
+          "Chapter 40: Division of labour and specialization",
+          "Chapter 41: Scale of Production: Internal and external economies of scale and their implications.",
+          "Chapter 42: Production functions and returns to scale",
+          "Chapter 43: Producers' equilibrium isoquant - isocost and marginal analyses.",
+          "Chapter 44: Factors affecting productivity."
+        ];
+        // Full list of Accounting topics
+        const accountingTopics = [
+          "Nature and Significance of Accounting: Development of accounting (including branches of accounting), Objectives of bookkeeping and accounting, Users and characteristics of Accounting information, Principles, concepts and conventions of accounting (nature, significance and application), Role of accounting records and information",
+          "Chapter 1: Principles of Double Entry: Functions of source documents, Books of original entry, Accounting equation, The ledger and its classifications, Trial balance, Types and treatment of errors and uses of suspense account",
+          "Chapter 2: Ethics in Accounting: Objectives, Qualities of an Accountant",
+          "Chapter 3: Cashbook: Columnar cashbooks, Discounts, Petty cashbook and the imprest system",
+          "Chapter 4: Bank Transactions and Reconciliation Statements: Instrument of bank transactions, e-banking system, Courses of discrepancies between cashbook and bank statement, Bank reconciliation statement",
+          "Chapter 5: The Final Accounts of a Sole Trader: Income statement (Trading and profit and loss account), Statement of financial position (Balance sheet), Adjustments (provision for bad and doubtful debt, provision for discounts, provision for depreciation using straight-line and reducing balance methods, accruals and prepayments)",
+          "Chapter 6: Stock Valuation: Methods of cost determination using FIFO, LIFO and simple average, The advantages and disadvantages of the methods, The importance of stock valuation",
+          "Chapter 7: Control Accounts and Self-balancing Ledgers: Importance of control accounts, Purchases ledger control account, Sales ledger control account",
+          "Chapter 8: Incomplete Records and Single Entry: Conversion of single entry to double entry, Determination of missing figures, Preparation of final accounts from incomplete records",
+          "Chapter 9: Manufacturing Accounts: Cost classification, Cost apportionment, Preparation of manufacturing account",
+          "Chapter 10: Accounts of Not-For-Profit-Making Organizations: Objectives of Not-For-Profit-Making organizations, Receipts and payments account, Income and expenditure account, Statement of financial position (Balance sheet)",
+          "Chapter 11: Departmental Accounts: Objectives, Apportionment of expenses, Departmental trading and profit and loss account",
+          "Chapter 12: Branch Accounts: Objectives, Branch accounts in the head office books, Head office account, Reconciliation of branch and head office books",
+          "Chapter 13: Joint Venture Accounts: Objectives, Personal accounts of venturers, Memorandum Joint venture accounts",
+          "Chapter 14: Partnership Accounts: Formation of partnership, Profit and loss account, Appropriation account, Partners current and capital accounts, Treatment of goodwill, Admission/retirement of a partner, Dissolution of partnership, Conversion of a partnership to a company",
+          "Chapter 15: Introduction to Company Accounts: Formation and classification of companies, Issue of shares and debentures, Final accounts of companies, Interpretation of accounts using ratios, Distinction between capital and revenue reserves",
+          "Chapter 16: Public Sector Accounting: Comparison of cash and accrual basis of accounting, Sources of government revenue, Capital and recurrent expenditure, Consolidated revenue fund, Statement of assets and liabilities, Responsibilities and powers of Accountant General, Auditor General, Minister of Finance, Treasurer of local government, Instruments of financial regulation",
+          "Chapter 17: Information Technology in Accounting: Manual and computerized accounting processing system, Processes involved in data processing, Computer hardware and software, Advantages and disadvantages of manual and computerized accounting processing system"
+        ];
+        // Full list of Government topics
+        const governmentTopics = [
+          "Government Topics",
+          "Chapter 1: Basic Elements in Government",
+          "Chapter 2: Introduction to Government - Basic Concepts",
+          "Chapter 3: Forms of Government",
+          "Chapter 4: The Workings of Government I - Organs & Systems",
+          "Chapter 5: The Workings of Government II - Unitary, Federal & Confederal Structures",
+          "Chapter 6: Basic Principles of Government",
+          "Chapter 7: Political Ideologies",
+          "Chapter 8: Constitution",
+          "Chapter 9: Principles of a Democratic Government",
+          "Chapter 10: Processes of Legislation",
+          "Chapter 11: Day-to-Day Operation and Public Administration",
+          "Chapter 12: Citizenship",
+          "Chapter 13: Political Parties & Party Systems",
+          "Chapter 14: Franchise, Elections & The Electoral System",
+          "Chapter 15: Public Opinion & The Mass Media",
+          "Chapter 16: Pressure Groups",
+          "Chapter 17: The Civil Service",
+          "Chapter 18: Public Corporations",
+          "Chapter 19: Local Government",
+          "Chapter 20: Political and Constitutional Development in Nigeria",
+          "Chapter 21: Pre-Colonial Administration in Nigeria",
+          "Chapter 22: Colonial Administration I - British Colonial Administration",
+          "Chapter 23: Colonial Administration II - French Colonial Administration",
+          "Chapter 24: Colonial Administration III - Putting it all together...",
+          "Chapter 25: The Process of Decolonisation - Nationalism",
+          "Chapter 26: Constitutional Development in Nigeria I - Pre-Independence",
+          "Chapter 27: Constitutional Development in Nigeria II - Independence & Post-Independence",
+          "Chapter 28: Military Rule in Nigeria",
+          "Chapter 29: Nigerian Federalism",
+          "Chapter 30: Institutions of Government in Post-Independence Nigeria",
+          "Chapter 31: Political Parties in Nigeria",
+          "Chapter 32: Political Crises in Nigeria",
+          "Chapter 33: Local Government Administration in Nigeria",
+          "Chapter 34: Foreign Policy and Nigeria's Relationship with the International Community",
+          "Chapter 35: Nigeria's Foreign Policy",
+          "Chapter 36: International Organisations I - OAU, AU, ECOWAS, APPA",
+          "Chapter 37: International Organisations II- League of Nations, UNO/ UN, OPEC, The Commonwealth of Nations",
+          "Chapter 38: Social Dynamics and Classical Political Thought",
+          "Chapter 39: Conflict Resolution and Management",
+          "Chapter 40: Peace Education",
+          "Chapter 41: Leadership and Followership",
+          "Chapter 42: Classical Political Thoughts",
+          "Chapter 43"
+        ];
+        // Full list of Commerce topics
+        const commerceTopics = [
+          "Commerce: Meaning and scope, Characteristics, Functions",
+          "Chapter 1: Occupation: Meaning and importance, Types (industrial, commercial, and services), Factors that determine choice of occupation",
+          "Chapter 2: Production: Factors, characteristics, and rewards (land, labour, capital, and entrepreneur), Division of Labour and specialization, Types (primary, secondary and tertiary)",
+          "Chapter 3: Trade: Home Trade (Retail trade: Types of retailers, Functions of retailers, Factors to be considered in setting up retail trade, Trends in retailing, Advantages and disadvantages of retailers; Wholesale trade: Types of wholesalers, Functions of wholesalers, Advantages and disadvantages of wholesalers), Foreign trade (Basic issues in foreign trade, Procedures and documents used in export, import, and entreport trade, Barriers to international trade, Role of Customs and Excise Authority, Ports Authority, etc in foreign trade)",
+          "Chapter 4: Purchase and Sale of Goods: Procedure and documentation, Terms of trade, Terms of payments (Cash, Credit)",
+          "Chapter 5: Aids-to-trade: Advertising, Banking, Communication, Insurance, Tourism, Transportation, Warehousing",
+          "Chapter 6: Business Units: Forms and features, Registration of businesses, Business Mergers, Determination of choice of business units, Dissolution and liquidation, Merits and demerits",
+          "Chapter 7: Financing Business: Sources of finance, Types of capital, Calculation of forms of capital, profits, and turnover, Problems of sourcing finance, The role of Bureau de change in an economy",
+          "Chapter 8: Trade Associations: Objectives and functions of trade and manufacturer's associations, Objectives and functions of Chambers of Commerce",
+          "Chapter 9: Money: Evolution, Forms and qualities, Functions",
+          "Chapter 10: Elements of Business Management: Functions, Principles, Organizational structure, Functional areas of business, Business resources",
+          "Chapter 11: Stock Exchange: Importance and functions, Types of securities, Procedure of transactions and speculations, Second-Tier Securities Market",
+          "Chapter 12: Elements of Marketing: Importance and Functions, The marketing concept, Marketing mix, Market Segmentation, Public relations and Customer Service",
+          "Chapter 13: Legal Aspects of Business: Meaning and validity of a simple contract, Agency, Sale of Goods Act and Hire Purchase Act, Contract of employment, Government regulations of business, Consumer protection, Regulatory agencies",
+          "Chapter 14: Information and Communication Technology (ICT): Computer, Terms, Activities (e-commerce, e-banking, e-business)",
+          "Chapter 15: Business Environment and Social Responsibility: Legal, political, economic, social, cultural, technological environments, Safe products, Types and implication of pollution",
+          "Chapter 16"
+        ];
+        // Example essay types
+        const essayTypes = [
+          "Informal Letter", "Formal Letter", "Speech", "Descriptive Essay", "Narrative Essay", "Argumentative Essay", "Expository Essay"
+        ];
+        function showTopics() {
+          document.getElementById('main-cards').style.display = 'none';
+          const content = document.getElementById('dynamic-content');
+          content.innerHTML = `
+            <h2 class="text-2xl font-bold text-gray-800 mb-6">Select a Subject</h2>
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
+              ${subjects.map(sub => `
+                <button onclick='showSubjectTopics("${sub}")' class="flex flex-col items-center justify-center gap-2 p-6 rounded-2xl font-bold text-white text-lg shadow-lg bg-gradient-to-br from-blue-600 to-blue-400 hover:scale-105 transition">
+                  <i class="fas fa-book-open text-3xl"></i>
+                  <span class="mt-1">${sub}</span>
+                </button>
+              `).join('')}
+            </div>
+          `;
+        }
+
+        function showSubjectTopics(subject) {
+          document.getElementById('main-cards').style.display = 'none';
+          let topics = [];
+          if (subject === "MATHEMATICS") topics = mathematicsTopics;
+          else if (subject === "BIOLOGY") topics = biologyTopics;
+          else if (subject === "CHEMISTRY") topics = chemistryTopics;
+          else if (subject === "LITERATURE") topics = literatureTopics;
+          else if (subject === "PHYSICS") topics = physicsTopics;
+          else if (subject === "ENGLISH") topics = englishTopics;
+          else if (subject === "ECONOMICS") topics = economicsTopics;
+          else if (subject === "ACCOUNTING") topics = accountingTopics;
+          else if (subject === "GOVERNMENT") topics = governmentTopics;
+          else if (subject === "COMMERCE") topics = commerceTopics;
+          if (topics.length === 0) topics = ["Topics coming soon..."];
+
+          const content = document.getElementById('dynamic-content');
+          content.innerHTML = `
+            <div class="flex items-center justify-between mb-4">
+              <h2 class="text-2xl font-bold text-gray-800">${subject} Topics</h2>
+              <div class="flex items-center gap-2">
+                <button class="px-4 py-2 rounded-full bg-white border border-gray-200 text-gray-700 hover:bg-gray-50" onclick="showTopics()">Back</button>
+                <button class="px-4 py-2 rounded-full bg-gray-100 text-gray-700" onclick="backToMain()">Main Options</button>
+              </div>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 max-h-[60vh] overflow-auto">
+              ${topics.map(topic => `
+                <div onclick='showQuestions("${subject}", ${JSON.stringify(topic)})' class="bg-white p-4 rounded-xl shadow hover:shadow-lg cursor-pointer transition">
+                  <h3 class="text-gray-800 font-semibold">${topic}</h3>
+                </div>
+              `).join('')}
+            </div>
+          `;
+        }
+
+        /**
+         * Try to fetch questions from myschool.ng.
+         * Assumptions (if the real public API differs, update the endpoint and response mapping):
+         *  - Public JSON endpoint: https://myschool.ng/api/questions
+         *  - Query params: subject, topic, year (optional)
+         *  - Response: JSON array of { id, question, choices?, answer?, explanation?, source? }
+         *
+         * This function uses a 6s timeout and falls back gracefully when network/CORS blocks the request.
+         */
+        async function fetchQuestions({ subject, topic, year } = {}) {
+          const controller = new AbortController();
+          const timeout = setTimeout(() => controller.abort(), 6000);
+
+          // Build the query string (safe encoding)
+          const params = new URLSearchParams();
+          if (subject) params.append('subject', subject);
+          if (topic) params.append('topic', topic);
+          if (year) params.append('year', String(year));
+
+          // NOTE: Update this endpoint if myschool provides a different public API.
+          const endpoint = `https://myschool.ng/api/questions?${params.toString()}`;
+
+          try {
+            const res = await fetch(endpoint, { signal: controller.signal, cache: 'no-cache' });
+            clearTimeout(timeout);
+
+            if (!res.ok) {
+              // Non-2xx response - treat as missing API
+              throw new Error(`Remote server returned ${res.status}`);
+            }
+
+            const data = await res.json();
+
+            // Basic validation - expect an array
+            if (!Array.isArray(data)) {
+              throw new Error('Unexpected response format from questions API');
+            }
+
+            return { success: true, data };
+          } catch (err) {
+            clearTimeout(timeout);
+            // Network/CORS or other error - return failure and the error message
+            return { success: false, error: err.message || String(err) };
+          }
+        }
+
+        // Replace showQuestions to call fetchQuestions and render results
+        async function showQuestions(subject, topic, year) {
+          const content = document.getElementById('dynamic-content');
+
+          content.innerHTML = `
+            <div class="flex items-center justify-between mb-4">
+              <h2 class="text-2xl font-bold text-gray-800">${subject} — ${topic}${year ? ' — ' + year : ''}</h2>
+              <div>
+                <button class="px-4 py-2 rounded-full bg-white border border-gray-200 text-gray-700" onclick='showSubjectTopics("${subject}")'>Back</button>
+              </div>
+            </div>
+            <div id="questions-area" class="bg-white p-6 rounded-2xl shadow">
+              <div id="questions-loading" class="text-gray-600">Loading questions...</div>
+            </div>
+          `;
+
+          // Attempt to fetch from myschool.ng
+          const result = await fetchQuestions({ subject, topic, year });
+          const area = document.getElementById('questions-area');
+
+          if (!result.success) {
+            // Show helpful fallback with option to load sample data
+            area.innerHTML = `
+              <div class="text-red-600 font-medium mb-3">Could not load questions from myschool.ng: ${result.error}</div>
+              <p class="text-gray-600 mb-4">This may be due to CORS or the site not exposing a public API. You can:</p>
+              <div class="flex gap-2">
+                <button id="load-sample" class="px-4 py-2 bg-blue-600 text-white rounded-lg">Load sample questions</button>
+                <a class="px-4 py-2 rounded-lg bg-gray-100 text-gray-700" href="https://myschool.ng" target="_blank" rel="noopener">Open myschool.ng</a>
+              </div>
+            `;
+
+            document.getElementById('load-sample').addEventListener('click', () => {
+              const sample = [
+                { id: 1, question: `${topic} sample question 1`, choices: ['A','B','C','D'], answer: 'A', explanation: 'Sample explanation.' },
+                { id: 2, question: `${topic} sample question 2`, choices: ['A','B','C','D'], answer: 'B' }
+              ];
+              renderQuestions(sample, area);
+            });
+
+            return;
+          }
+
+          // If we have data, render it
+          renderQuestions(result.data, area);
+        }
+
+        // Helper to render question list into the provided container element
+        function renderQuestions(questions = [], container) {
+          if (!questions || questions.length === 0) {
+            container.innerHTML = `<div class="text-gray-600">No questions found for this selection.</div>`;
+            return;
+          }
+
+          const html = questions.map((q, idx) => {
+            const choicesHtml = Array.isArray(q.choices) && q.choices.length
+              ? `<div class="mt-2 grid grid-cols-1 sm:grid-cols-2 gap-2">${q.choices.map((c, i) => `<button class=\"text-left px-3 py-2 border rounded-md hover:bg-gray-50\" data-choice-index=\"${i}\">${String.fromCharCode(65+i)}. ${c}</button>`).join('')}</div>`
+              : '';
+
+            const explanation = q.explanation ? `<details class=\"mt-2 text-sm text-gray-600\"><summary class=\"text-gray-700 cursor-pointer\">Explanation</summary><div class=\"mt-2\">${escapeHtml(q.explanation)}</div></details>` : '';
+
+            return `
+              <div class=\"mb-4 p-4 rounded-lg border border-gray-100 shadow-sm\">
+                <div class=\"font-semibold text-gray-800\">${idx+1}. ${escapeHtml(q.question || 'Untitled question')}</div>
+                ${choicesHtml}
+                ${explanation}
+                ${q.source ? `<div class=\"mt-2 text-xs text-gray-500\">Source: ${escapeHtml(q.source)}</div>` : ''}
+              </div>
+            `;
+          }).join('');
+
+          container.innerHTML = html;
+
+          // Simple interactivity: clicking a choice highlights it and if answer exists, shows correctness
+          container.querySelectorAll('[data-choice-index]').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+              const chosen = Number(e.currentTarget.dataset.choiceIndex);
+              // find containing question index by traversing DOM
+              const questionEl = e.currentTarget.closest('[data-question-index]') || e.currentTarget.closest('.mb-4');
+              // remove previous highlights
+              const siblingChoices = e.currentTarget.parentNode.querySelectorAll('button');
+              siblingChoices.forEach(s => s.classList.remove('bg-blue-100','border-blue-300'));
+              e.currentTarget.classList.add('bg-blue-100','border-blue-300');
+            });
+          });
+        }
+
+        // Small escaping helper to prevent accidental HTML injection
+        function escapeHtml(str) {
+          if (!str) return '';
+          return String(str)
+            .replace(/&/g, '&amp;')
+            .replace(/</g, '&lt;')
+            .replace(/>/g, '&gt;')
+            .replace(/"/g, '&quot;')
+            .replace(/'/g, '&#39;');
+        }
+
+        function backToMain() {
+          document.getElementById('main-cards').style.display = 'grid';
+          document.getElementById('dynamic-content').innerHTML = '';
+        }
+
+        function showYearly() {
+          document.getElementById('main-cards').style.display = 'none';
+          const content = document.getElementById('dynamic-content');
+          content.innerHTML = `
+            <h2 class="text-2xl font-bold text-gray-800 mb-4">Select a Subject</h2>
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
+              ${subjects.map(sub => `
+                <button onclick='showYears("${sub}")' class="flex flex-col items-center justify-center gap-2 p-6 rounded-2xl font-bold text-white text-lg shadow-lg bg-gradient-to-br from-indigo-600 to-indigo-400 hover:scale-105 transition">
+                  <i class="fas fa-calendar-alt text-3xl"></i>
+                  <span class="mt-1">${sub}</span>
+                </button>
+              `).join('')}
+            </div>
+          `;
+        }
+
+        function showYears(subject) {
+          const years = [2024,2023,2022,2021,2020,2019,2018,2017,2016,2015];
+          const content = document.getElementById('dynamic-content');
+          content.innerHTML = `
+            <div class="flex items-center justify-between mb-4">
+              <h2 class="text-2xl font-bold text-gray-800">${subject} — Select Year</h2>
+              <button class="px-4 py-2 rounded-full bg-white border border-gray-200 text-gray-700" onclick='showYearly()'>Back</button>
+            </div>
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+              ${years.map(year => `
+                <div onclick='showYearQuestions("${subject}", ${year})' class="bg-white p-4 rounded-xl shadow hover:shadow-lg cursor-pointer transition text-center font-semibold text-gray-800">${year}</div>
+              `).join('')}
+            </div>
+          `;
+        }
+
+        function showYearQuestions(subject, year) {
+          const content = document.getElementById('dynamic-content');
+          content.innerHTML = `
+            <div class="flex items-center justify-between mb-4">
+              <h2 class="text-2xl font-bold text-gray-800">${subject} — ${year}</h2>
+              <button class="px-4 py-2 rounded-full bg-white border border-gray-200 text-gray-700" onclick='showYears("${subject}")'>Back</button>
+            </div>
+            <div class="bg-white p-6 rounded-2xl shadow">
+              <p class="text-gray-600">Questions from myschool.ng for <span class="font-semibold text-gray-800">${year}</span> will appear here.</p>
+            </div>
+          `;
+        }
+
+        function showEssay() {
+          document.getElementById('main-cards').style.display = 'none';
+          const content = document.getElementById('dynamic-content');
+          content.innerHTML = `
+            <h2 class="text-2xl font-bold text-gray-800 mb-4">Select Essay Type</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+              ${essayTypes.map(type => `
+                <div onclick='showEssayForm(${JSON.stringify(type)})' class="bg-white p-6 rounded-xl shadow hover:shadow-lg cursor-pointer transition">
+                  <h3 class="font-semibold text-gray-800">${type}</h3>
+                </div>
+              `).join('')}
+            </div>
+          `;
+        }
+
+        function showEssayForm(type) {
+          let formHtml = '';
+          if (type === "Informal Letter") {
+            formHtml = `
+              <div class="flex flex-col gap-4">
+                <input type="text" placeholder="Address" class="self-end w-56 p-2 border rounded-md" />
+                <input type="text" placeholder="Date" class="self-end w-40 p-2 border rounded-md" />
+                <input type="text" placeholder="Salutation" class="w-72 p-2 border rounded-md" />
+                <textarea placeholder="Write your letter here..." class="w-full min-h-[180px] p-3 border rounded-lg"></textarea>
+              </div>
+            `;
+          } else {
+            formHtml = `<textarea placeholder="Write your essay here..." class="w-full min-h-[220px] p-3 border rounded-lg"></textarea>`;
+          }
+
+          const content = document.getElementById('dynamic-content');
+          content.innerHTML = `
+            <div class="flex items-center justify-between mb-4">
+              <h2 class="text-2xl font-bold text-gray-800">${type}</h2>
+              <button class="px-4 py-2 rounded-full bg-white border border-gray-200 text-gray-700" onclick='showEssay()'>Back</button>
+            </div>
+            <div class="bg-white p-6 rounded-2xl shadow">
+              ${formHtml}
+              <div class="mt-4">
+                <button class="px-4 py-2 bg-blue-600 text-white rounded-lg">Submit Essay</button>
+              </div>
+            </div>
+          `;
+        }
+        // Show main cards on page load
+        window.onload = function() {
+          document.getElementById('main-cards').style.display = 'grid';
+          document.getElementById('dynamic-content').innerHTML = '';
+        }
+      </script>
 </body>
 </html>

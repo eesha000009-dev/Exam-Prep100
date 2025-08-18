@@ -1,138 +1,341 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Accounting - Topics</title>
-  <link rel="stylesheet" href="../styles.css" />
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
-  <style>
-    .main-content { max-width: 900px; margin: 40px auto 0 auto; background: #fff; border-radius: 16px; box-shadow: 0 2px 8px rgba(30,41,59,0.07); padding: 2.5rem 2rem 2rem 2rem; min-height: 80vh; display: flex; flex-direction: column; }
-    .back-btn { display: inline-flex; align-items: center; gap: 0.5rem; background: #f1f5f9; color: #1e293b; border: none; border-radius: 8px; padding: 0.5rem 1.2rem; font-size: 1rem; font-weight: 500; cursor: pointer; margin-bottom: 2rem; box-shadow: 0 1px 4px rgba(30,41,59,0.05); transition: background 0.2s, color 0.2s; text-decoration: none; }
-    .back-btn:hover { background: #e0e7ef; color: #1a73e8; }
-    h1 { font-size: 1.5rem; font-weight: 600; color: #1a73e8; margin-bottom: 1.5rem; }
-    .topic-list { display: flex; flex-direction: column; gap: 1.5rem; }
-    .topic-card { background: #f8fafc; border-radius: 12px; box-shadow: 0 2px 8px rgba(30,41,59,0.07); padding: 1.5rem 1rem; }
-    .topic-title { font-weight: 600; font-size: 1.1rem; color: #1a73e8; margin-bottom: 0.5rem; }
-    .topic-desc { color: #334155; margin-bottom: 0.7rem; }
-    .subtopic-list { margin-top: 0.5rem; }
-    .subtopic-item { display: flex; align-items: center; justify-content: space-between; margin-bottom: 0.5rem; }
-    .start-btn { background: #1a73e8; color: #fff; border: none; border-radius: 6px; padding: 0.3rem 1rem; font-size: 0.98rem; cursor: pointer; transition: background 0.2s; }
-    .start-btn:hover { background: #174ea6; }
-    @media (max-width: 600px) { .main-content { padding: 1rem 0.5rem; } }
-    .modal { display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100vw; height: 100vh; overflow: auto; background: rgba(30,41,59,0.18); }
-    .modal-content { background: #fff; margin: 8% auto; padding: 2rem 1.5rem; border-radius: 12px; max-width: 420px; box-shadow: 0 4px 24px rgba(30,41,59,0.13); }
-    .modal-close { float: right; font-size: 1.3rem; color: #888; cursor: pointer; }
-    .modal-close:hover { color: #1a73e8; }
-  </style>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Accounting Topic - JUANOVA CORTEX</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.9);
+            -webkit-backdrop-filter: blur(8px);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(59, 130, 246, 0.1);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 
+                       0 2px 4px -1px rgba(0, 0, 0, 0.06),
+                       0 0 0 1px rgba(255, 255, 255, 0.2) inset;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .card:hover {
+            transform: translateY(-4px) scale(1.01);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 
+                       0 10px 10px -5px rgba(0, 0, 0, 0.04),
+                       0 0 0 1px rgba(59, 130, 246, 0.2) inset,
+                       0 0 20px rgba(59, 130, 246, 0.15);
+            border-color: rgba(59, 130, 246, 0.3);
+        }
+
+        .glow-effect {
+            position: relative;
+        }
+
+        .glow-effect::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            border-radius: inherit;
+            box-shadow: 0 0 30px rgba(59, 130, 246, 0.15);
+            opacity: 0;
+            transition: opacity 0.3s;
+            z-index: -1;
+        }
+
+        .glow-effect:hover::after {
+            opacity: 1;
+        }
+
+        .section-title {
+            background: linear-gradient(135deg, #1D4ED8, #60A5FA);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-size: 2.5rem;
+            font-weight: 800;
+            text-align: center;
+            padding: 1rem 0;
+        }
+
+        .topic-progress {
+            height: 6px;
+            background: #E5E7EB;
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .topic-progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #1D4ED8, #60A5FA);
+            transition: width 0.3s ease;
+        }
+
+        .glass-effect {
+            background: rgba(255, 255, 255, 0.9);
+            -webkit-backdrop-filter: blur(8px);
+            backdrop-filter: blur(8px);
+        }
+    </style>
 </head>
-<body>
-  <main class="main-content">
-    <a href="accounting.html" class="back-btn"><i class="fas fa-arrow-left"></i> Back to Units</a>
-    <h1 id="unit-title">Accounting Topics</h1>
-    <div class="topic-list" id="topic-list"></div>
-  </main>
-  <div id="subtopic-modal" class="modal">
-    <div class="modal-content">
-      <span class="modal-close" id="close-modal">&times;</span>
-      <h2 id="modal-topic-title">Sub-Topics</h2>
-      <div id="modal-subtopics"></div>
-    </div>
-  </div>
-  <script>
-    const syllabus = {
-      principles: {
-        title: "Principles of Accounting",
-        desc: "Basic concepts, double entry, books of accounts",
-        topics: [
-          { name: "Nature and Functions of Accounting", subtopics: ["Definition and objectives", "Users of accounting information", "Branches of accounting"] },
-          { name: "Principles and Concepts", subtopics: ["Accounting concepts", "Accounting conventions", "Double entry system"] },
-          { name: "Books of Original Entry", subtopics: ["Journals", "Cash book", "Petty cash book"] }
-        ]
-      },
-      final: {
-        title: "Final Accounts",
-        desc: "Trading, profit & loss, balance sheet",
-        topics: [
-          { name: "Trading and Profit & Loss Accounts", subtopics: ["Preparation", "Adjustments", "Interpretation"] },
-          { name: "Balance Sheet", subtopics: ["Assets and liabilities", "Capital", "Presentation"] }
-        ]
-      },
-      partnership: {
-        title: "Partnership Accounts",
-        desc: "Formation, profit sharing, dissolution",
-        topics: [
-          { name: "Formation of Partnership", subtopics: ["Partnership deed", "Types of partners", "Capital accounts"] },
-          { name: "Profit Sharing and Appropriation", subtopics: ["Profit and loss appropriation", "Interest on capital", "Drawings"] },
-          { name: "Dissolution of Partnership", subtopics: ["Realization account", "Settlement of liabilities", "Distribution of assets"] }
-        ]
-      },
-      company: {
-        title: "Company Accounts",
-        desc: "Share capital, reserves, published accounts",
-        topics: [
-          { name: "Share Capital and Reserves", subtopics: ["Types of shares", "Issue of shares", "Reserves and surplus"] },
-          { name: "Published Accounts", subtopics: ["Components", "Interpretation", "Legal requirements"] }
-        ]
-      },
-      public: {
-        title: "Public Sector Accounting",
-        desc: "Government accounts, fund management",
-        topics: [
-          { name: "Government Accounting", subtopics: ["Objectives", "Sources of funds", "Control of expenditure"] },
-          { name: "Fund Management", subtopics: ["Types of funds", "Accounting for funds", "Reporting"] }
-        ]
-      }
-    };
-    const params = new URLSearchParams(window.location.search);
-    const unit = params.get('unit');
-    const unitData = syllabus[unit];
-    if (!unitData) {
-      document.getElementById('unit-title').textContent = 'Unit not found';
-      document.getElementById('topic-list').innerHTML = '<div style="color:#e53e3e">Invalid or missing unit.</div>';
-    } else {
-      document.getElementById('unit-title').textContent = unitData.title;
-      const topicList = document.getElementById('topic-list');
-      unitData.topics.forEach((topic, idx) => {
-        const card = document.createElement('div');
-        card.className = 'topic-card';
-        card.setAttribute('data-topic-idx', idx);
-        card.innerHTML = `
-          <div class="topic-title">${topic.name}</div>
-          <div class="topic-desc">Click to view sub-topics</div>
-        `;
-        card.style.cursor = 'pointer';
-        topicList.appendChild(card);
-      });
-    }
-    const modal = document.getElementById('subtopic-modal');
-    const modalTitle = document.getElementById('modal-topic-title');
-    const modalSubtopics = document.getElementById('modal-subtopics');
-    document.getElementById('topic-list').addEventListener('click', function(e) {
-      let card = e.target.closest('.topic-card');
-      if (card) {
-        const idx = card.getAttribute('data-topic-idx');
-        const topic = unitData.topics[idx];
-        modalTitle.textContent = topic.name;
-        modalSubtopics.innerHTML = topic.subtopics.map(sub =>
-          `<div class="subtopic-item">
-            <span>${sub}</span>
-            <a href="accounting-explanation.html?unit=${unit}&topic=${encodeURIComponent(topic.name)}&subtopic=${encodeURIComponent(sub)}" class="start-btn">Start Learning</a>
-          </div>`
-        ).join('');
-        modal.style.display = 'block';
-      }
-    });
-    document.addEventListener('click', function(e) {
-      if (e.target.id === 'close-modal' || e.target.classList.contains('modal')) {
-        modal.style.display = 'none';
-      }
-    });
-    window.onclick = function(event) {
-      if (event.target == modal) {
-        modal.style.display = 'none';
-      }
-    }
-  </script>
+<body class="min-h-screen bg-gradient-to-br from-blue-100 via-white to-blue-50">
+    <!-- Navigation Bar -->
+    <nav class="fixed top-0 left-0 right-0 glass-effect border-b border-blue-100 z-50">
+        <div class="container mx-auto px-4 py-3">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center gap-3">
+                    <a href="accounting.html" class="text-blue-600 hover:text-blue-800 transition">
+                        <i class="fas fa-arrow-left"></i>
+                        <span class="ml-2">Back to Accounting</span>
+                    </a>
+                </div>
+                <div class="flex items-center gap-4">
+                    <button id="prevTopic" class="px-4 py-2 rounded-lg border border-blue-600 text-blue-600 hover:bg-blue-50 transition">
+                        <i class="fas fa-chevron-left mr-2"></i>
+                        Previous
+                    </button>
+                    <button id="nextTopic" class="px-4 py-2 rounded-lg bg-blue-600 text-white hover:bg-blue-700 transition">
+                        Next
+                        <i class="fas fa-chevron-right ml-2"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container mx-auto px-4 pt-20 pb-12">
+        <!-- Topic Header -->
+        <header class="mb-12">
+            <h1 class="section-title mb-4" id="topicTitle">Loading Topics...</h1>
+            <p class="text-xl text-blue-600 font-medium text-center" id="groupDescription"></p>
+        </header>
+
+        <!-- Topics Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="topicsGrid">
+            <!-- Topics will be populated by JavaScript -->
+        </div>
+    </main>
+
+    <script>
+        // Get the group from URL parameters
+        const urlParams = new URLSearchParams(window.location.search);
+        const group = urlParams.get('unit') || 'fundamentals';
+
+        // Complete topic data structure organized by groups
+        const topicData = {
+            fundamentals: {
+                title: "Fundamentals & Ethics",
+                description: "Core concepts and professional standards in accounting",
+                topics: [
+                    {
+                        id: "nature-significance",
+                        title: "Nature and Significance",
+                        description: "Development and objectives of accounting",
+                        icon: "fas fa-book",
+                        topics: ["Development of accounting", "Objectives", "Users and characteristics", "Role of records"]
+                    },
+                    {
+                        id: "ethics",
+                        title: "Ethics in Accounting",
+                        description: "Professional ethics and qualities",
+                        icon: "fas fa-shield-alt",
+                        topics: ["Professional ethics", "Qualities of an Accountant", "Ethical reporting"]
+                    },
+                    {
+                        id: "it-accounting",
+                        title: "IT in Accounting",
+                        description: "Modern accounting technology",
+                        icon: "fas fa-laptop-code",
+                        topics: ["Computerized systems", "Data processing", "Software applications"]
+                    }
+                ]
+            },
+            "core-principles": {
+                title: "Core Accounting Principles",
+                description: "Essential double-entry and control systems",
+                topics: [
+                    {
+                        id: "double-entry",
+                        title: "Double Entry System",
+                        description: "Fundamental accounting equations",
+                        icon: "fas fa-equals",
+                        topics: ["Source documents", "Books of original entry", "The ledger", "Trial balance"]
+                    },
+                    {
+                        id: "control-accounts",
+                        title: "Control Accounts",
+                        description: "Managing business accounts",
+                        icon: "fas fa-tasks",
+                        topics: ["Purchases ledger", "Sales ledger", "Control importance"]
+                    },
+                    {
+                        id: "incomplete-records",
+                        title: "Incomplete Records",
+                        description: "Single entry conversion",
+                        icon: "fas fa-puzzle-piece",
+                        topics: ["Single to double entry", "Missing figures", "Final accounts"]
+                    }
+                ]
+            },
+            "financial-ops": {
+                title: "Financial Operations",
+                description: "Day-to-day financial management",
+                topics: [
+                    {
+                        id: "cashbook",
+                        title: "Cashbook",
+                        description: "Cash management systems",
+                        icon: "fas fa-cash-register",
+                        topics: ["Columnar cashbooks", "Discounts", "Petty cash", "Imprest system"]
+                    },
+                    {
+                        id: "bank-reconciliation",
+                        title: "Bank Transactions",
+                        description: "Banking and reconciliation",
+                        icon: "fas fa-university",
+                        topics: ["Bank instruments", "E-banking", "Reconciliation statements"]
+                    },
+                    {
+                        id: "stock-valuation",
+                        title: "Stock Valuation",
+                        description: "Inventory management methods",
+                        icon: "fas fa-boxes",
+                        topics: ["FIFO", "LIFO", "Average cost", "Stock importance"]
+                    }
+                ]
+            },
+            "business-accounting": {
+                title: "Business Accounting",
+                description: "Complete business financial management",
+                topics: [
+                    {
+                        id: "sole-trader",
+                        title: "Sole Trader Accounts",
+                        description: "Individual business accounting",
+                        icon: "fas fa-user-tie",
+                        topics: ["Income statement", "Balance sheet", "Adjustments"]
+                    },
+                    {
+                        id: "manufacturing",
+                        title: "Manufacturing Accounts",
+                        description: "Production cost accounting",
+                        icon: "fas fa-industry",
+                        topics: ["Cost classification", "Cost apportionment", "Manufacturing account"]
+                    },
+                    {
+                        id: "departmental",
+                        title: "Departmental Accounts",
+                        description: "Division-based accounting",
+                        icon: "fas fa-sitemap",
+                        topics: ["Department expenses", "Profit/loss by department"]
+                    }
+                ]
+            },
+            "advanced-structures": {
+                title: "Advanced Business Structures",
+                description: "Complex business organizations",
+                topics: [
+                    {
+                        id: "partnership",
+                        title: "Partnership Accounts",
+                        description: "Partnership management",
+                        icon: "fas fa-handshake",
+                        topics: ["Formation", "Profit sharing", "Admission/retirement", "Dissolution"]
+                    },
+                    {
+                        id: "company-accounts",
+                        title: "Company Accounts",
+                        description: "Corporate accounting",
+                        icon: "fas fa-building",
+                        topics: ["Share issue", "Final accounts", "Ratios", "Reserves"]
+                    },
+                    {
+                        id: "branch-ventures",
+                        title: "Branch & Joint Ventures",
+                        description: "Extended business operations",
+                        icon: "fas fa-code-branch",
+                        topics: ["Branch accounting", "Head office books", "Joint ventures"]
+                    }
+                ]
+            },
+            specialized: {
+                title: "Specialized Accounting",
+                description: "Non-profit and public sector accounting",
+                topics: [
+                    {
+                        id: "non-profit",
+                        title: "Not-For-Profit",
+                        description: "Non-profit organization accounting",
+                        icon: "fas fa-hand-holding-heart",
+                        topics: ["Receipts & payments", "Income & expenditure", "Special features"]
+                    },
+                    {
+                        id: "public-sector",
+                        title: "Public Sector",
+                        description: "Government accounting systems",
+                        icon: "fas fa-landmark",
+                        topics: ["Revenue sources", "Expenditure types", "Fund accounting"]
+                    }
+                ]
+            }
+        };
+
+        // Initialize the page
+        function initializePage() {
+            const groupData = topicData[group];
+            if (!groupData) {
+                console.error('Topic group not found');
+                return;
+            }
+
+            // Set header information
+            document.getElementById('topicTitle').textContent = groupData.title;
+            document.getElementById('groupDescription').textContent = groupData.description;
+
+            // Populate topics grid
+            const topicsGrid = document.getElementById('topicsGrid');
+            topicsGrid.innerHTML = groupData.topics.map(topic => `
+                <div class="card glow-effect rounded-2xl p-6 cursor-pointer" 
+                     onclick="location.href='accounting-explanation.html?unit=${group}&topic=${topic.id}'">
+                    <i class="${topic.icon} text-4xl icon-gradient mb-4"></i>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">${topic.title}</h3>
+                    <p class="text-gray-600 text-sm mb-4">${topic.description}</p>
+                    <ul class="text-sm text-gray-700 space-y-2 mb-4">
+                        ${topic.topics.map(t => `
+                            <li class="flex items-center gap-2">
+                                <i class="fas fa-check text-blue-500"></i>
+                                ${t}
+                            </li>
+                        `).join('')}
+                    </ul>
+                    <div class="mt-auto">
+                        <div class="flex items-center justify-between text-sm text-gray-500 mb-3">
+                            <span class="flex items-center gap-2">
+                                <i class="fas fa-book"></i>
+                                ${topic.topics.length} Subtopics
+                            </span>
+                            <span class="flex items-center gap-2">
+                                <i class="fas fa-clock"></i>
+                                ${Math.round(topic.topics.length * 1.5)}h
+                            </span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 0%"></div>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Initialize the page when loaded
+        document.addEventListener('DOMContentLoaded', initializePage);
+    </script>
 </body>
 </html>

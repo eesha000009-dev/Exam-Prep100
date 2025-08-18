@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Accounting - JUANOVA CORTEX</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+    <link rel="stylesheet" href="../styles/subject-common.css" />
+    <style>
+        /* Additional styles specific to accounting divisions */
+        .division-card {
+            min-height: 250px;
+        }
+        
+        .division-icon {
+            font-size: 2.5rem;
+        }
+    </style>
+</head>
+<body class="min-h-screen bg-gradient-to-br from-blue-100 via-white to-blue-50">
+    <!-- Navigation Bar -->
+    <nav class="fixed top-0 left-0 right-0 glass-effect border-b border-blue-100 z-50">
+        <div class="container mx-auto px-4 py-3">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center gap-3">
+                    <a href="../student-dashboard.html" class="text-blue-600 hover:text-blue-800 transition">
+                        <i class="fas fa-arrow-left"></i>
+                        <span class="ml-2">Back to Dashboard</span>
+                    </a>
+                </div>
+                <div class="flex items-center gap-4">
+                    <button class="px-4 py-2 rounded-lg border border-blue-600 text-blue-600 hover:bg-blue-50 transition">
+                        <i class="fas fa-search mr-2"></i>
+                        Search Topics
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container mx-auto px-4 pt-20 pb-12">
+        <!-- Subject Header -->
+        <header class="text-center mb-12">
+            <h1 class="section-title mb-4">Accounting</h1>
+            <p class="text-gray-600 max-w-2xl mx-auto">
+                Master the language of business through comprehensive lessons covering basic to advanced accounting concepts.
+            </p>
+        </header>
+
+        <!-- Progress Overview -->
+        <div class="card rounded-2xl p-6 mb-12">
+            <div class="flex items-center justify-between mb-4">
+                <h2 class="text-xl font-bold text-gray-900">Your Progress</h2>
+                <span class="text-gray-500" id="overallProgress">0% Complete</span>
+            </div>
+            <div class="progress-bar">
+                <div class="progress-fill" id="overallProgressBar" style="width: 0%"></div>
+            </div>
+        </div>
+
+        <!-- Divisions Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="divisionsContainer">
+            <!-- Divisions will be populated by JavaScript -->
+        </div>
+    </main>
+
+    <!-- Import Scripts -->
+    <script type="module">
+        import accountingDivisions from './content/divisions.js';
+        import { initializeProgress, loadProgress, updateProgressUI } from './functions/progress.js';
+
+        // Render divisions
+        function renderDivisions() {
+            const container = document.getElementById('divisionsContainer');
+            Object.values(accountingDivisions).forEach(division => {
+                const card = document.createElement('div');
+                card.className = 'card division-card rounded-2xl p-6 hover:scale-105 transition-transform cursor-pointer';
+                card.onclick = () => {
+                    window.location.href = division.index;
+                };
+                card.innerHTML = `
+                    <div class="flex flex-col h-full">
+                        <div class="mb-4">
+                            <i class="fas fa-${getDivisionIcon(division.id)} division-icon icon-gradient"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-2">${division.title}</h3>
+                        <p class="text-gray-600 mb-4 flex-grow">${division.description}</p>
+                        <div class="mt-auto">
+                            <div class="flex justify-between text-sm text-gray-500 mb-1">
+                                <span>Progress</span>
+                                <span id="progress-${division.id}">0%</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" id="progressBar-${division.id}" style="width: 0%"></div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                container.appendChild(card);
+            });
+        }
+
+        // Get appropriate icon for each division
+        function getDivisionIcon(divisionId) {
+            const icons = {
+                fundamentals: 'book',
+                financial: 'chart-line',
+                specialized: 'cogs',
+                corporate: 'building',
+                modern: 'laptop-code'
+            };
+            return icons[divisionId] || 'book';
+        }
+
+        // Initialize page
+        document.addEventListener('DOMContentLoaded', () => {
+            renderDivisions();
+            initializeProgress();
+            updateProgressUI();
+        });
+    </script>
+</body>
+</html>
