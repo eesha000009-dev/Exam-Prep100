@@ -1,12 +1,13 @@
 // Your web app's Firebase configuration
+// For client-side usage, it's okay to expose these credentials as they are restricted by Firebase Security Rules
 const firebaseConfig = {
-  apiKey: "AIzaSyBsdW-mROXR_2tLOzprSmqc2HSD-dI7bC8",
-  authDomain: "exam-prep100-61fe5.firebaseapp.com",
-  projectId: "exam-prep100-61fe5",
-  storageBucket: "exam-prep100-61fe5.firebasestorage.app",
-  messagingSenderId: "966809109167",
-  appId: "1:966809109167:web:6c83dceeb530247b7e8a5a",
-  measurementId: "G-4RZGXMVCYP"
+  apiKey: "AIzaSyCKEAsHk-Uh31U3O6Abq2E7HZQLJooa7S8",
+  authDomain: "exam-prep100-v2.firebaseapp.com",
+  projectId: "exam-prep100-v2",
+  storageBucket: "exam-prep100-v2.firebasestorage.app",
+  messagingSenderId: "197475339483",
+  appId: "1:197475339483:web:1e2b6b804a08689a4f10fe",
+  measurementId: "G-PYCY0C5XL3"
 };
 
 // Initialize Firebase
