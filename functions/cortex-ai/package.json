@@ -1,0 +1,13 @@
+{
+  "name": "cortex-ai-functions",
+  "description": "Firebase Cloud Functions for CORTEX AI (analysis, study plan, tutor, news)",
+  "main": "index.js",
+  "dependencies": {
+    "axios": "^1.6.7",
+    "firebase-admin": "^13.4.0",
+    "firebase-functions": "^4.4.1"
+  },
+  "engines": {
+    "node": "16"
+  }
+}
