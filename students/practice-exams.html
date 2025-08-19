@@ -8,9 +8,53 @@
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="bg-gray-50">
+    <!-- Mobile Header (visible on small screens) -->
+    <header class="lg:hidden fixed top-0 left-0 right-0 bg-white/95 backdrop-blur z-40 p-3 flex items-center justify-between border-b border-gray-200">
+        <div class="flex items-center gap-3">
+            <button id="mobileMenuBtn" aria-label="Open menu" class="p-2 rounded-md text-gray-700" onclick="toggleMobileSidebar()">
+                <i class="fas fa-bars text-2xl"></i>
+            </button>
+            <a href="#" class="flex items-center gap-2">
+                <img src="/assets/images/Logo%20of%20JUANOVA%20Cortex%20Tutor.png" alt="Logo" class="h-10 w-10 object-contain rounded-full border-2 border-blue-700">
+                <span class="font-semibold text-gray-800">Prep100</span>
+            </a>
+        </div>
+        <div class="flex items-center gap-3">
+            <button onclick="window.location.href='notifications.html'" class="p-2 rounded-md text-gray-700">
+                <i class="fas fa-bell"></i>
+            </button>
+            <img src="../assets/images/unnamed.jpg" alt="User" class="h-8 w-8 rounded-full border-2 border-blue-500">
+        </div>
+    </header>
+
+    <!-- Mobile Sidebar (slide-in) -->
+    <aside id="mobile-sidebar" class="fixed inset-y-0 left-0 w-72 bg-white/95 backdrop-blur-lg shadow-xl p-6 z-50 transform -translate-x-full transition-transform lg:hidden">
+        <div class="flex items-center justify-between mb-6">
+            <a href="#" class="flex items-center gap-3">
+                <img src="/assets/images/Logo%20of%20JUANOVA%20Cortex%20Tutor.png" alt="Logo" class="h-12 w-12 object-contain rounded-full border-2 border-blue-700">
+                <span class="text-lg font-bold text-blue-800">JUANOVA CORTEX</span>
+            </a>
+            <button aria-label="Close menu" class="p-2 text-gray-600" onclick="toggleMobileSidebar()"><i class="fas fa-times"></i></button>
+        </div>
+        <nav class="flex flex-col gap-2 text-gray-700 font-medium">
+            <a href="student-dashboard.html" class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-blue-50 transition"><i class="fas fa-home"></i> Home</a>
+            <a href="ai-tutor-chatbot.html" class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-blue-50 transition"><i class="fas fa-robot text-purple-500"></i> AI Tutor</a>
+            <a href="study-plan.html" class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-blue-50 transition"><i class="fas fa-calendar-alt text-green-500"></i> Study Plan</a>
+            <a href="smart-note.html" class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-blue-50 transition"><i class="fas fa-sticky-note text-yellow-500"></i> Smart Notes</a>
+            <a href="video-library.html" class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-blue-50 transition"><i class="fas fa-video text-red-500"></i> Video Library</a>
+            <a href="mock-exams.html" class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-blue-50 transition"><i class="fas fa-file-alt text-indigo-500"></i> Mock Exams</a>
+            <a href="practice-exams.html" class="flex items-center gap-3 px-3 py-2 rounded-lg bg-blue-50 text-blue-600"><i class="fas fa-pencil-alt text-orange-500"></i> Practice Exams</a>
+            <a href="notifications.html" class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-blue-50 transition"><i class="fas fa-bell text-pink-600"></i> Notifications</a>
+            <a href="student-live-session.html" class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-blue-50 transition"><i class="fas fa-chalkboard-teacher text-blue-400"></i> Join Live Session</a>
+        </nav>
+    </aside>
+
+    <!-- Backdrop for mobile sidebar -->
+    <div id="sidebar-backdrop" class="fixed inset-0 bg-black/30 hidden z-40 lg:hidden" onclick="toggleMobileSidebar()"></div>
+
     <div class="flex min-h-screen">
-        <!-- Sidebar -->
-        <aside class="fixed top-0 left-0 h-screen bg-white/80 backdrop-blur-lg shadow-xl w-72 flex flex-col px-4 py-6 border-r border-gray-200 overflow-y-auto z-50">
+        <!-- Desktop Sidebar (hidden on small screens) -->
+        <aside class="hidden lg:flex fixed top-0 left-0 h-screen bg-white/80 backdrop-blur-lg shadow-xl w-72 flex-col px-4 py-6 border-r border-gray-200 overflow-y-auto z-50">
             <div class="sticky top-0 bg-white/95 backdrop-blur-lg z-10 py-2 mb-8">
                 <a href="#" class="flex items-center gap-3">
                     <img src="/assets/images/Logo%20of%20JUANOVA%20Cortex%20Tutor.png" alt="Logo" class="h-16 w-16 object-contain rounded-full shadow-2xl border-4 border-blue-700">
@@ -18,38 +62,20 @@
                 </a>
             </div>
             <nav class="flex flex-col gap-2 text-gray-700 font-medium">
-                <a href="student-dashboard.html" class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-blue-50 transition">
-                    <i class="fas fa-home"></i> Home
-                </a>
-                <a href="ai-tutor-chatbot.html" class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-blue-50 transition">
-                    <i class="fas fa-robot text-purple-500"></i> AI Tutor
-                </a>
-                <a href="study-plan.html" class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-blue-50 transition">
-                    <i class="fas fa-calendar-alt text-green-500"></i> Study Plan
-                </a>
-                <a href="smart-note.html" class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-blue-50 transition">
-                    <i class="fas fa-sticky-note text-yellow-500"></i> Smart Notes
-                </a>
-                <a href="video-library.html" class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-blue-50 transition">
-                    <i class="fas fa-video text-red-500"></i> Video Library
-                </a>
-                <a href="mock-exams.html" class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-blue-50 transition">
-                    <i class="fas fa-file-alt text-indigo-500"></i> Mock Exams
-                </a>
-                <a href="practice-exams.html" class="flex items-center gap-3 px-4 py-2 rounded-lg bg-blue-50 text-blue-600">
-                    <i class="fas fa-pencil-alt text-orange-500"></i> Practice Exams
-                </a>
-                <a href="notifications.html" class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-blue-50 transition">
-                    <i class="fas fa-bell text-pink-600"></i> Notifications
-                </a>
-                <a href="student-live-session.html" class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-blue-50 transition">
-                    <i class="fas fa-chalkboard-teacher text-blue-400"></i> Join Live Session
-                </a>
+                <a href="student-dashboard.html" class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-blue-50 transition"><i class="fas fa-home"></i> Home</a>
+                <a href="ai-tutor-chatbot.html" class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-blue-50 transition"><i class="fas fa-robot text-purple-500"></i> AI Tutor</a>
+                <a href="study-plan.html" class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-blue-50 transition"><i class="fas fa-calendar-alt text-green-500"></i> Study Plan</a>
+                <a href="smart-note.html" class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-blue-50 transition"><i class="fas fa-sticky-note text-yellow-500"></i> Smart Notes</a>
+                <a href="video-library.html" class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-blue-50 transition"><i class="fas fa-video text-red-500"></i> Video Library</a>
+                <a href="mock-exams.html" class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-blue-50 transition"><i class="fas fa-file-alt text-indigo-500"></i> Mock Exams</a>
+                <a href="practice-exams.html" class="flex items-center gap-3 px-4 py-2 rounded-lg bg-blue-50 text-blue-600"><i class="fas fa-pencil-alt text-orange-500"></i> Practice Exams</a>
+                <a href="notifications.html" class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-blue-50 transition"><i class="fas fa-bell text-pink-600"></i> Notifications</a>
+                <a href="student-live-session.html" class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-blue-50 transition"><i class="fas fa-chalkboard-teacher text-blue-400"></i> Join Live Session</a>
             </nav>
         </aside>
 
         <!-- Main Content -->
-        <main class="flex-1 p-8 ml-72">
+        <main class="flex-1 p-8 lg:ml-72 ml-0 pt-16 lg:pt-0">
             <!-- Top Bar -->
             <div class="flex items-center justify-between mb-8">
                 <div class="flex-1 max-w-xl relative">
@@ -695,147 +721,23 @@
           `;
         }
 
-        /**
-         * Try to fetch questions from myschool.ng.
-         * Assumptions (if the real public API differs, update the endpoint and response mapping):
-         *  - Public JSON endpoint: https://myschool.ng/api/questions
-         *  - Query params: subject, topic, year (optional)
-         *  - Response: JSON array of { id, question, choices?, answer?, explanation?, source? }
-         *
-         * This function uses a 6s timeout and falls back gracefully when network/CORS blocks the request.
-         */
-        async function fetchQuestions({ subject, topic, year } = {}) {
-          const controller = new AbortController();
-          const timeout = setTimeout(() => controller.abort(), 6000);
-
-          // Build the query string (safe encoding)
-          const params = new URLSearchParams();
-          if (subject) params.append('subject', subject);
-          if (topic) params.append('topic', topic);
-          if (year) params.append('year', String(year));
-
-          // NOTE: Update this endpoint if myschool provides a different public API.
-          const endpoint = `https://myschool.ng/api/questions?${params.toString()}`;
-
-          try {
-            const res = await fetch(endpoint, { signal: controller.signal, cache: 'no-cache' });
-            clearTimeout(timeout);
-
-            if (!res.ok) {
-              // Non-2xx response - treat as missing API
-              throw new Error(`Remote server returned ${res.status}`);
-            }
-
-            const data = await res.json();
-
-            // Basic validation - expect an array
-            if (!Array.isArray(data)) {
-              throw new Error('Unexpected response format from questions API');
-            }
-
-            return { success: true, data };
-          } catch (err) {
-            clearTimeout(timeout);
-            // Network/CORS or other error - return failure and the error message
-            return { success: false, error: err.message || String(err) };
-          }
-        }
-
-        // Replace showQuestions to call fetchQuestions and render results
-        async function showQuestions(subject, topic, year) {
+        function showQuestions(subject, topic) {
           const content = document.getElementById('dynamic-content');
-
           content.innerHTML = `
             <div class="flex items-center justify-between mb-4">
-              <h2 class="text-2xl font-bold text-gray-800">${subject} — ${topic}${year ? ' — ' + year : ''}</h2>
+              <h2 class="text-2xl font-bold text-gray-800">${subject} — ${topic}</h2>
               <div>
                 <button class="px-4 py-2 rounded-full bg-white border border-gray-200 text-gray-700" onclick='showSubjectTopics("${subject}")'>Back</button>
               </div>
             </div>
-            <div id="questions-area" class="bg-white p-6 rounded-2xl shadow">
-              <div id="questions-loading" class="text-gray-600">Loading questions...</div>
+            <div class="bg-white p-6 rounded-2xl shadow">
+              <p class="text-gray-600">Questions from myschool.ng will appear here for <span class="font-semibold text-gray-800">${topic}</span>.</p>
+              <div class="mt-4 flex gap-2">
+                <button class="px-4 py-2 bg-blue-600 text-white rounded-lg">Start Practice</button>
+                <button class="px-4 py-2 bg-gray-100 text-gray-700 rounded-lg" onclick='showSubjectTopics("${subject}")'>Back to Topics</button>
+              </div>
             </div>
           `;
-
-          // Attempt to fetch from myschool.ng
-          const result = await fetchQuestions({ subject, topic, year });
-          const area = document.getElementById('questions-area');
-
-          if (!result.success) {
-            // Show helpful fallback with option to load sample data
-            area.innerHTML = `
-              <div class="text-red-600 font-medium mb-3">Could not load questions from myschool.ng: ${result.error}</div>
-              <p class="text-gray-600 mb-4">This may be due to CORS or the site not exposing a public API. You can:</p>
-              <div class="flex gap-2">
-                <button id="load-sample" class="px-4 py-2 bg-blue-600 text-white rounded-lg">Load sample questions</button>
-                <a class="px-4 py-2 rounded-lg bg-gray-100 text-gray-700" href="https://myschool.ng" target="_blank" rel="noopener">Open myschool.ng</a>
-              </div>
-            `;
-
-            document.getElementById('load-sample').addEventListener('click', () => {
-              const sample = [
-                { id: 1, question: `${topic} sample question 1`, choices: ['A','B','C','D'], answer: 'A', explanation: 'Sample explanation.' },
-                { id: 2, question: `${topic} sample question 2`, choices: ['A','B','C','D'], answer: 'B' }
-              ];
-              renderQuestions(sample, area);
-            });
-
-            return;
-          }
-
-          // If we have data, render it
-          renderQuestions(result.data, area);
-        }
-
-        // Helper to render question list into the provided container element
-        function renderQuestions(questions = [], container) {
-          if (!questions || questions.length === 0) {
-            container.innerHTML = `<div class="text-gray-600">No questions found for this selection.</div>`;
-            return;
-          }
-
-          const html = questions.map((q, idx) => {
-            const choicesHtml = Array.isArray(q.choices) && q.choices.length
-              ? `<div class="mt-2 grid grid-cols-1 sm:grid-cols-2 gap-2">${q.choices.map((c, i) => `<button class=\"text-left px-3 py-2 border rounded-md hover:bg-gray-50\" data-choice-index=\"${i}\">${String.fromCharCode(65+i)}. ${c}</button>`).join('')}</div>`
-              : '';
-
-            const explanation = q.explanation ? `<details class=\"mt-2 text-sm text-gray-600\"><summary class=\"text-gray-700 cursor-pointer\">Explanation</summary><div class=\"mt-2\">${escapeHtml(q.explanation)}</div></details>` : '';
-
-            return `
-              <div class=\"mb-4 p-4 rounded-lg border border-gray-100 shadow-sm\">
-                <div class=\"font-semibold text-gray-800\">${idx+1}. ${escapeHtml(q.question || 'Untitled question')}</div>
-                ${choicesHtml}
-                ${explanation}
-                ${q.source ? `<div class=\"mt-2 text-xs text-gray-500\">Source: ${escapeHtml(q.source)}</div>` : ''}
-              </div>
-            `;
-          }).join('');
-
-          container.innerHTML = html;
-
-          // Simple interactivity: clicking a choice highlights it and if answer exists, shows correctness
-          container.querySelectorAll('[data-choice-index]').forEach(btn => {
-            btn.addEventListener('click', (e) => {
-              const chosen = Number(e.currentTarget.dataset.choiceIndex);
-              // find containing question index by traversing DOM
-              const questionEl = e.currentTarget.closest('[data-question-index]') || e.currentTarget.closest('.mb-4');
-              // remove previous highlights
-              const siblingChoices = e.currentTarget.parentNode.querySelectorAll('button');
-              siblingChoices.forEach(s => s.classList.remove('bg-blue-100','border-blue-300'));
-              e.currentTarget.classList.add('bg-blue-100','border-blue-300');
-            });
-          });
-        }
-
-        // Small escaping helper to prevent accidental HTML injection
-        function escapeHtml(str) {
-          if (!str) return '';
-          return String(str)
-            .replace(/&/g, '&amp;')
-            .replace(/</g, '&lt;')
-            .replace(/>/g, '&gt;')
-            .replace(/"/g, '&quot;')
-            .replace(/'/g, '&#39;');
         }
 
         function backToMain() {
@@ -936,6 +838,21 @@
         window.onload = function() {
           document.getElementById('main-cards').style.display = 'grid';
           document.getElementById('dynamic-content').innerHTML = '';
+        }
+
+        // Toggle mobile sidebar
+        function toggleMobileSidebar() {
+          const sidebar = document.getElementById('mobile-sidebar');
+          const backdrop = document.getElementById('sidebar-backdrop');
+          const isOpen = !sidebar.classList.contains('-translate-x-full');
+
+          if (isOpen) {
+            sidebar.classList.add('-translate-x-full');
+            backdrop.classList.add('hidden');
+          } else {
+            sidebar.classList.remove('-translate-x-full');
+            backdrop.classList.remove('hidden');
+          }
         }
       </script>
 </body>

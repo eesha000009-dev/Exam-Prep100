@@ -10,7 +10,7 @@ try {
 // Netlify function: accepts { prompt } in POST body, responds with { text, audio?: 'data:audio/...;base64,...' }
 exports.handler = async function(event, context) {
   try {
-  const { prompt } = JSON.parse(event.body || '{}');
+    const { prompt } = JSON.parse(event.body || '{}');
     if (!prompt) return { statusCode: 400, body: JSON.stringify({ error: 'Missing prompt' }) };
 
     const GEMINI_API_KEY = process.env.GEMINI_API_KEY;
@@ -18,46 +18,25 @@ exports.handler = async function(event, context) {
 
     if (!GEMINI_API_KEY) return { statusCode: 500, body: JSON.stringify({ error: 'GEMINI_API_KEY not configured' }) };
 
-    // Helper: fetch with timeout
-    const fetchWithTimeout = async (url, opts = {}, ms = 10000) => {
-      const controller = new AbortController();
-      const id = setTimeout(() => controller.abort(), ms);
-      try {
-        const res = await fetchFn(url, { ...opts, signal: controller.signal });
-        return res;
-      } finally { clearTimeout(id); }
-    };
+    // Call Gemini (Generative Language API)
+    const geminiRes = await fetchFn(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${GEMINI_API_KEY}`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      // Use minimal supported payload
+      body: JSON.stringify({ contents: [{ parts: [{ text: prompt }] }] }),
+    });
 
-    // Call Gemini (Generative Language API) with a timeout
-    let geminiData = null;
-    try {
-      const geminiRes = await fetchWithTimeout(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${GEMINI_API_KEY}`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ contents: [{ parts: [{ text: prompt }] }] }),
-      }, 10000);
-
-      // If response is JSON, parse; otherwise capture text
-      const ct = geminiRes.headers.get('content-type') || '';
-      if (ct.includes('application/json')) {
-        geminiData = await geminiRes.json();
-      } else {
-        const txt = await geminiRes.text().catch(()=>null);
-        geminiData = txt || null;
-      }
-    } catch (gErr) {
-      console.warn('Gemini request failed or timed out', gErr && gErr.name ? gErr.name : gErr);
-      // Return an error response quickly so the client doesn't hang
-      return { statusCode: 502, body: JSON.stringify({ error: 'Gemini request failed or timed out' }) };
-    }
+    const geminiData = await geminiRes.json();
 
     // Extract best text answer with fallbacks
     let answerText = null;
     try {
-      if (typeof geminiData === 'string') answerText = geminiData;
-      else answerText = geminiData?.candidates?.[0]?.content?.parts?.[0]?.text || geminiData?.candidates?.[0]?.content?.text || geminiData?.output?.[0]?.content?.text || null;
+      answerText = geminiData?.candidates?.[0]?.content?.parts?.[0]?.text || geminiData?.candidates?.[0]?.content?.text || geminiData?.output?.[0]?.content?.text || null;
     } catch (e) { answerText = null; }
-    if (!answerText) answerText = (typeof geminiData === 'string') ? geminiData : JSON.stringify(geminiData || {});
+    if (!answerText) {
+      // fallback: stringify the response for debugging
+      answerText = (typeof geminiData === 'string') ? geminiData : JSON.stringify(geminiData);
+    }
 
     // If ElevenLabs key present, request TTS and return base64 audio
     let audioDataUrl = null;
@@ -75,12 +54,9 @@ exports.handler = async function(event, context) {
           return resp;
         };
 
-        // try TTS but with a shorter timeout to avoid function timeouts
-        let ttsRes = null;
-        try { ttsRes = await fetchWithTimeout(`https://api.elevenlabs.io/v1/text-to-speech/${encodeURIComponent(voiceId)}`, { method: 'POST', headers: { 'Content-Type': 'application/json', 'xi-api-key': ELEVEN_API_KEY }, body: JSON.stringify({ text: answerText }) }, 5000); }
-        catch(e){ console.warn('Initial TTS attempt failed/timeout', e); ttsRes = null; }
-        if (!ttsRes || !ttsRes.ok) {
-          const errText = ttsRes ? await ttsRes.text().catch(()=>null) : 'TTS timeout or no response';
+        let ttsRes = await ttsAttempt(voiceId);
+        if (!ttsRes.ok) {
+          const errText = await ttsRes.text().catch(()=>null);
           console.warn('ElevenLabs TTS error', ttsRes.status, errText);
           // If voice not found, fetch available voices and retry with first available
           if (errText && errText.includes('voice_not_found')) {
