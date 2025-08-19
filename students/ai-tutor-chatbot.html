@@ -236,14 +236,38 @@
         userInput.value=''; sendBtn.disabled=true; addMessage(q, true); setTyping(true);
         try{
           const prompt = `You are an expert tutor. Answer clearly and with examples: ${q}`;
-          const res = await fetch('/.netlify/functions/gemini',{
+          // Use the Express backend route. When developing locally run the Node server
+          // and open the server origin (e.g. http://localhost:3000) so this relative
+          // path hits the API. Using VS Code Live Server (static-only) will not
+          // forward this POST and can produce 405 responses.
+          const fetchUrl = '/api/cortex-ai/chat';
+          const res = await fetch(fetchUrl,{
             method:'POST',
             headers: {'Content-Type':'application/json'},
             body: JSON.stringify({ prompt })
           });
 
-          const data = await res.json();
-          // Serverless function returns { text, audio? }
+          if (!res.ok) {
+            // Try to surface useful server response (HTML or text) when status is not OK
+            const text = await res.text().catch(()=>'<no response body>');
+            throw new Error(`Server returned ${res.status}: ${text}`);
+          }
+
+          let data;
+          const ct = (res.headers.get('content-type') || '').toLowerCase();
+          if (ct.includes('application/json')) {
+            try {
+              data = await res.json();
+            } catch (e) {
+              throw new Error('Response JSON parsing failed');
+            }
+          } else {
+            // Non-JSON success response (fallback to plain text)
+            const text = await res.text().catch(()=>'');
+            data = { text };
+          }
+
+          // Server returns { text, audio? } or plain text in data.text
           const explanation = data?.text || data?.response || 'Sorry, I could not get an answer right now.';
           setTyping(false);
           addMessage(explanation, false);
@@ -256,7 +280,12 @@
               a.play().catch(e => { console.warn('Audio play failed', e); });
             } catch (e) { console.warn('Audio playback error', e); }
           }
-        }catch(err){ console.error(err); setTyping(false); addMessage('There was an error. Try again later.', false); }
+        } catch(err) {
+          console.error('AI request failed:', err);
+          setTyping(false);
+          // Show a clear error message to help debugging (status, body, or parse error)
+          addMessage(`Error: ${err.message}`, false);
+        }
       }
 
       const obs = new MutationObserver(()=>{ chatMessages.setAttribute('aria-busy','false'); });

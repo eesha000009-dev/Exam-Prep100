@@ -28,29 +28,9 @@ app.get('/students/news-feed', (req, res) => {
   res.sendFile(path.join(__dirname, 'students', 'news-feed-gemini.html'));
 });
 
-// Serve repository root static files (so root index.html and other top-level static
-// assets are available). This allows the main landing page (index.html) to be
-// served directly from the repo root.
-app.use(express.static(path.join(__dirname)));
-
-// Special handling for root: if an index.html exists at repo root serve it,
-// otherwise fall back to redirecting to the student dashboard.
-const fs = require('fs');
+// Special handling for root to redirect to dashboard
 app.get('/', (req, res) => {
-  const indexPath = path.join(__dirname, 'index.html');
-  if (fs.existsSync(indexPath)) {
-    return res.sendFile(indexPath);
-  }
-  return res.redirect('/students/student-dashboard');
-});
-
-// Health check endpoint used by Render and uptime monitoring.
-app.get('/health', (req, res) => {
-  res.json({
-    status: 'ok',
-    uptime: process.uptime(),
-    timestamp: new Date().toISOString()
-  });
+  res.redirect('/students/student-dashboard');
 });
 
 // Serve static directories
