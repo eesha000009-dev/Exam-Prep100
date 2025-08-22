@@ -244,7 +244,8 @@
           const res = await fetch(fetchUrl,{
             method:'POST',
             headers: {'Content-Type':'application/json'},
-            body: JSON.stringify({ prompt })
+            // routes/api.js expects { message, subject, context }
+            body: JSON.stringify({ message: q })
           });
 
           if (!res.ok) {
@@ -267,8 +268,24 @@
             data = { text };
           }
 
-          // Server returns { text, audio? } or plain text in data.text
-          const explanation = data?.text || data?.response || 'Sorry, I could not get an answer right now.';
+          // Server returns { response: <geminiData> } (or { text })
+          let explanation = '';
+          if (data?.text && typeof data.text === 'string') {
+            explanation = data.text;
+          } else if (data?.response) {
+            const resp = data.response;
+            if (typeof resp === 'string') {
+              explanation = resp;
+            } else if (typeof resp === 'object') {
+              // Try common Gemini-like shapes safely
+              explanation = (resp?.candidates && resp.candidates[0] && resp.candidates[0].content)
+                ? resp.candidates[0].content.map(p => p.text || '').join('')
+                : (resp?.output && Array.isArray(resp.output))
+                  ? resp.output.map(o => (o.content||[]).map(c=>c.text||'').join('')).join('\n')
+                  : JSON.stringify(resp).slice(0,1000);
+            }
+          }
+          if (!explanation) explanation = 'Sorry, I could not get an answer right now.';
           setTyping(false);
           addMessage(explanation, false);
           chatHistory.push({q, explanation});

@@ -128,16 +128,16 @@
         <div class="syllabus-tracker-title">Syllabus Tracker</div>
         <div class="syllabus-progress-info">Track your syllabus progress here.</div>
         <div class="syllabus-grid">
-          <a href="syllabus-mathematics.html" class="syllabus-link mathematics">MATHEMATICS</a>
-          <a href="syllabus-biology.html" class="syllabus-link biology">BIOLOGY</a>
-          <a href="syllabus-chemistry.html" class="syllabus-link chemistry">CHEMISTRY</a>
-          <a href="syllabus-literature.html" class="syllabus-link literature">LITERATURE</a>
-          <a href="syllabus-physics.html" class="syllabus-link physics">PHYSICS</a>
-          <a href="syllabus-english.html" class="syllabus-link english">ENGLISH</a>
-          <a href="syllabus-economics.html" class="syllabus-link economics">ECONOMICS</a>
-          <a href="syllabus-accounting.html" class="syllabus-link accounting">ACCOUNTING</a>
-          <a href="syllabus-government.html" class="syllabus-link government">GOVERNMENT</a>
-          <a href="syllabus-commerce.html" class="syllabus-link commerce">COMMERCE</a>
+          <a href="mathematics dashboard/syllabus-mathematics.html" class="syllabus-link mathematics">MATHEMATICS</a>
+          <a href="biology dashboard/syllabus-biology.html" class="syllabus-link biology">BIOLOGY</a>
+          <a href="chemistry dashboard/syllabus-chemistry.html" class="syllabus-link chemistry">CHEMISTRY</a>
+          <a href="literature dashboard/syllabus-literature.html" class="syllabus-link literature">LITERATURE</a>
+          <a href="physics dashboard/syllabus-physics.html" class="syllabus-link physics">PHYSICS</a>
+          <a href="english dashboard/syllabus-english.html" class="syllabus-link english">ENGLISH</a>
+          <a href="economics dashboard/syllabus-economics.html" class="syllabus-link economics">ECONOMICS</a>
+          <a href="accounting dashboard/syllabus-accounting.html" class="syllabus-link accounting">ACCOUNTING</a>
+          <a href="government dashboard/syllabus-government.html" class="syllabus-link government">GOVERNMENT</a>
+          <a href="commerce dashboard/syllabus-commerce.html" class="syllabus-link commerce">COMMERCE</a>
         </div>
       </div>
     </div>
@@ -145,24 +145,9 @@
 </body>
 
   </style>
-</head>
-<!-- script moved to just before </body> -->
-<style>
-body.dark-mode {
-  background: #23272f !important;
-  color: #eaf2ff !important;
-}
-body.dark-mode .canvas-main, body.dark-mode .canvas-content, body.dark-mode .canvas-welcome, body.dark-mode .canvas-info, body.dark-mode .canvas-notifications, body.dark-mode .canvas-comingup, body.dark-mode .canvas-footerbar {
-  background: #23272f !important;
-  color: #eaf2ff !important;
-}
-body.dark-mode .canvas-sidebar {
-  background: #181c22 !important;
-}
-body.dark-mode .canvas-sidebar nav a, body.dark-mode .canvas-footerbar .social a {
-  color: #eaf2ff !important;
-}
+          <!-- Sidebar injected from shared partial -->
 body.dark-mode .canvas-sidebar nav a.active, body.dark-mode .canvas-sidebar nav a:hover {
+        <script src="load-sidebar.js"></script>
   background: #2d7ff9 !important;
   color: #fff !important;
 }
@@ -221,16 +206,15 @@ body.dark-mode .canvas-footerbar a {
   <div class="canvas-layout">
     <aside class="canvas-sidebar">
       <div class="canvas-logo" title="Canvas">🖼️</div>
-      </nav>
-      <div class="canvas-footer">
-        <button title="Open Settings" class="settings-btn"></button>
-      </div>
-    </aside>
-        <a href="lesson-planner.html" title="Lesson Planner">📅<span class="menu-label">Lesson Planner</span></a>
-        <a href="quick-links.html" title="Quick Links">🔗<span class="menu-label">Quick Links</span></a>
+      <nav>
+        <a href="teacher-dashboard-chemistry.html" title="Dashboard">🏠<span class="menu-label">Dashboard</span></a>
+        <a href="chemistry dashboard/sticky-notes.html" title="Sticky Notes">📝<span class="menu-label">Sticky Notes</span></a>
+        <a href="chemistry dashboard/todo-list.html" title="To-Do List">✅<span class="menu-label">To-Do List</span></a>
+        <a href="chemistry dashboard/timer.html" title="Timer">⏲️<span class="menu-label">Timer</span></a>
+        <a href="chemistry dashboard/lesson-planner.html" title="Lesson Planner">📅<span class="menu-label">Lesson Planner</span></a>
+        <a href="chemistry dashboard/quick-links.html" title="Quick Links">🔗<span class="menu-label">Quick Links</span></a>
         <a href="#" id="toggle-theme-2" title="Toggle Dark/Light Mode">🌓<span class="menu-label">Theme</span></a>
-        <a href="motivational-quotes.html" title="Motivational Quotes">💡<span class="menu-label">Quotes</span></a>
-        <a href="teacher-sessions.html" title="Host Live Session">🎥<span class="menu-label">Host Live Session</span></a>
+        <a href="chemistry dashboard/chemistry-live-session.html" title="Host Live Session">🎥<span class="menu-label">Host Live Session</span></a>
       </nav>
       <div class="canvas-footer">
         <!-- Optionally add more icons or links here -->
@@ -240,7 +224,6 @@ body.dark-mode .canvas-footerbar a {
       <!-- Canvas demo content removed as requested -->
     </main>
   </div>
-  <script src="load-sidebar.js"></script>
 <script>
 // Dark mode toggle (standalone, no sidebar fetch)
 const btn = document.getElementById('toggle-theme');
