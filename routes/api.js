@@ -1,6 +1,23 @@
 const express = require('express');
 const router = express.Router();
 const fetch = require('node-fetch');
+const path = require('path');
+const fs = require('fs');
+// multer for handling multipart/form-data (file uploads)
+let multer;
+try { multer = require('multer'); } catch (e) { console.warn('multer not installed; upload endpoints will fail until multer is added to dependencies'); }
+
+// Ensure uploads directory exists
+const uploadsDir = path.join(__dirname, '..', 'uploads');
+if (!fs.existsSync(uploadsDir)) {
+  try { fs.mkdirSync(uploadsDir); } catch (err) { console.warn('Could not create uploads directory:', err.message); }
+}
+
+const storage = multer ? multer.diskStorage({
+  destination: function (req, file, cb) { cb(null, uploadsDir); },
+  filename: function (req, file, cb) { const safe = Date.now() + '-' + file.originalname.replace(/[^a-zA-Z0-9.\-_]/g,'_'); cb(null, safe); }
+}) : null;
+const upload = multer ? multer({ storage, limits: { fileSize: 50 * 1024 * 1024 } }) : null;
 
 // AI tutor endpoint
 router.post('/cortex-ai/chat', async (req, res) => {
@@ -49,6 +66,39 @@ router.get('/news', async (req, res) => {
     console.error('News API Error:', error);
     res.status(500).json({ error: 'Failed to fetch news' });
   }
+});
+
+// Upload endpoints: photos, videos, quizzes
+// POST /api/uploads/photo - field name: file
+router.post('/uploads/photo', upload ? upload.single('file') : (req,res)=>res.status(500).json({ error: 'multer not configured' }), async (req, res) => {
+  try {
+    if (!req.file) return res.status(400).json({ error: 'No file uploaded' });
+    const url = `/uploads/${req.file.filename}`;
+    return res.json({ ok: true, url, filename: req.file.filename });
+  } catch (err) { console.error('Photo upload error', err); res.status(500).json({ error: 'Upload failed' }); }
+});
+
+// POST /api/uploads/video - field name: file
+router.post('/uploads/video', upload ? upload.single('file') : (req,res)=>res.status(500).json({ error: 'multer not configured' }), async (req, res) => {
+  try {
+    if (!req.file) return res.status(400).json({ error: 'No file uploaded' });
+    const url = `/uploads/${req.file.filename}`;
+    return res.json({ ok: true, url, filename: req.file.filename });
+  } catch (err) { console.error('Video upload error', err); res.status(500).json({ error: 'Upload failed' }); }
+});
+
+// POST /api/uploads/quiz - accept JSON body describing quiz or optional file
+router.post('/uploads/quiz', async (req, res) => {
+  try {
+    // Accept either JSON quiz in body or a small file via multipart (not handled here)
+    const quiz = req.body;
+    if (!quiz || Object.keys(quiz).length === 0) return res.status(400).json({ error: 'Quiz payload required' });
+    const id = 'quiz-' + Date.now();
+    const target = path.join(uploadsDir, id + '.json');
+    fs.writeFileSync(target, JSON.stringify(quiz, null, 2));
+    const url = `/uploads/${id}.json`;
+    res.json({ ok: true, url, id });
+  } catch (err) { console.error('Quiz save error', err); res.status(500).json({ error: 'Failed to save quiz' }); }
 });
 
 // Helper function for Gemini API

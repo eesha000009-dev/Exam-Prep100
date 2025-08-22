@@ -20,8 +20,9 @@
             </a>
         </div>
         <div class="flex items-center gap-3">
-            <button onclick="window.location.href='notifications.html'" class="p-2 rounded-md text-gray-700">
+            <button onclick="window.location.href='notifications.html'" class="p-2 rounded-md text-gray-700" aria-label="Notifications">
                 <i class="fas fa-bell"></i>
+                <span class="sr-only">Notifications</span>
             </button>
             <img src="../assets/images/unnamed.jpg" alt="User" class="h-8 w-8 rounded-full border-2 border-blue-500">
         </div>
@@ -44,7 +45,6 @@
             <a href="video-library.html" class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-blue-50 transition"><i class="fas fa-video text-red-500"></i> Video Library</a>
             <a href="mock-exams.html" class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-blue-50 transition"><i class="fas fa-file-alt text-indigo-500"></i> Mock Exams</a>
             <a href="practice-exams.html" class="flex items-center gap-3 px-3 py-2 rounded-lg bg-blue-50 text-blue-600"><i class="fas fa-pencil-alt text-orange-500"></i> Practice Exams</a>
-            <a href="notifications.html" class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-blue-50 transition"><i class="fas fa-bell text-pink-600"></i> Notifications</a>
             <a href="student-live-session.html" class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-blue-50 transition"><i class="fas fa-chalkboard-teacher text-blue-400"></i> Join Live Session</a>
         </nav>
     </aside>
@@ -85,12 +85,12 @@
                 <div class="flex items-center gap-4">
                     <span class="bg-blue-100 text-blue-700 px-4 py-1 rounded-full font-semibold text-sm">SS 3</span>
                     <span class="font-semibold text-gray-700">Student</span>
-                    <div class="relative">
-                        <button class="p-2 rounded-full hover:bg-blue-100 transition">
-                            <i class="fas fa-bell text-blue-600 text-lg"></i>
-                            <span class="absolute -top-1 -right-1 bg-pink-500 text-white rounded-full w-5 h-5 flex items-center justify-center text-xs font-bold">3</span>
-                        </button>
-                    </div>
+          <div class="relative">
+            <button class="p-2 rounded-full hover:bg-blue-100 transition" aria-label="Notifications" title="Notifications">
+              <i class="fas fa-bell text-blue-600 text-lg"></i>
+              <span class="absolute -top-1 -right-1 bg-pink-500 text-white rounded-full w-5 h-5 flex items-center justify-center text-xs font-bold">3</span>
+            </button>
+          </div>
                     <img src="../assets/images/unnamed.jpg" alt="User" class="h-10 w-10 rounded-full border-2 border-blue-500">
                 </div>
             </div>
@@ -116,10 +116,191 @@
 
             <!-- Dynamic Content Section -->
             <div id="dynamic-content" class="mt-8"></div>
+
+            <!-- Quick Actions Toolbar -->
+            <div id="toolbar" class="fixed bottom-8 right-12">
+                <div class="relative group">
+                    <button id="toolsButton" onclick="toggleToolsMenu()" title="Learning Tools" aria-label="Toggle Learning Tools" class="text-purple-500 hover:text-purple-700 transition-colors p-2">
+                        <i class="fas fa-toolbox text-4xl drop-shadow-lg hover:scale-110 transform transition-transform" aria-hidden="true"></i>
+                    </button>
+
+                    <div id="toolsMenu" class="hidden absolute bottom-14 right-0 bg-white/95 backdrop-blur-sm rounded-xl shadow-2xl overflow-hidden min-w-[220px] border border-purple-100/50">
+                        <button onclick="openTool('ai-tutor')" class="w-full px-6 py-4 flex items-center gap-4 hover:bg-purple-50 transition-all text-left group">
+                            <i class="fas fa-robot text-xl text-purple-500 group-hover:scale-110 transition-transform"></i>
+                            <span class="text-gray-700 group-hover:text-purple-600 font-medium">AI Tutor</span>
+                        </button>
+                        <button onclick="openTool('smart-notes')" class="w-full px-6 py-4 flex items-center gap-4 hover:bg-yellow-50 transition-all text-left group border-t border-purple-100/30">
+                            <i class="fas fa-sticky-note text-xl text-yellow-500 group-hover:scale-110 transition-transform"></i>
+                            <span class="text-gray-700 group-hover:text-yellow-600 font-medium">Smart Notes</span>
+                        </button>
+                        <button onclick="openTool('formula')" class="w-full px-6 py-4 flex items-center gap-4 hover:bg-teal-50 transition-all text-left group border-t border-purple-100/30">
+                            <i class="fas fa-superscript text-xl text-teal-500 group-hover:scale-110 transition-transform"></i>
+                            <span class="text-gray-700 group-hover:text-teal-600 font-medium">Formula Tool</span>
+                        </button>
+                        <button onclick="openTool('dictionary')" class="w-full px-6 py-4 flex items-center gap-4 hover:bg-amber-50 transition-all text-left group border-t border-purple-100/30">
+                            <i class="fas fa-book-reader text-xl text-amber-500 group-hover:scale-110 transition-transform"></i>
+                            <span class="text-gray-700 group-hover:text-amber-600 font-medium">Dictionary</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tool Windows (Initially Hidden) -->
+            <div id="smart-notes-window" class="hidden fixed bg-white rounded-lg shadow-2xl p-4 w-80 cursor-move z-[1000]">
+                <div class="flex justify-between items-center mb-4">
+                    <h3 class="font-bold text-lg text-yellow-600">Smart Notes</h3>
+                    <button onclick="closeTool('smart-notes')" class="text-gray-500 hover:text-gray-700" title="Close Smart Notes" aria-label="Close Smart Notes">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                <textarea id="smart-notes-input" class="w-full p-2 border rounded-lg mb-2" rows="4" placeholder="Write your note..."></textarea>
+                <button onclick="saveNote()" class="w-full bg-yellow-500 text-white py-2 rounded-lg hover:bg-yellow-600">Save Note</button>
+            </div>
+
+            <div id="formula-window" class="hidden fixed bg-white rounded-lg shadow-2xl p-4 w-80 cursor-move z-[1000]">
+                <div class="flex justify-between items-center mb-4">
+                    <h3 class="font-bold text-lg text-teal-600">Formula Tool</h3>
+                    <button onclick="closeTool('formula')" class="text-gray-500 hover:text-gray-700" title="Close Formula Tool" aria-label="Close Formula Tool">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                <input type="text" id="formula-name" class="w-full p-2 border rounded-lg mb-2" placeholder="Formula Name">
+                <textarea id="formula-input" class="w-full p-2 border rounded-lg mb-2" rows="3" placeholder="Enter your formula..."></textarea>
+                <button onclick="saveFormula()" class="w-full bg-teal-600 text-white py-2 rounded-lg hover:bg-teal-700">Save Formula</button>
+            </div>
+
+            <div id="dictionary-window" class="hidden fixed bg-white rounded-lg shadow-2xl p-4 w-80 cursor-move z-[1000]">
+                <div class="flex justify-between items-center mb-4">
+                    <h3 class="font-bold text-lg text-amber-600">Dictionary</h3>
+                    <button onclick="closeTool('dictionary')" class="text-gray-500 hover:text-gray-700" title="Close Dictionary" aria-label="Close Dictionary">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                <input type="text" id="dictionary-search" class="w-full p-2 border rounded-lg mb-2" placeholder="Search word...">
+                <div id="dictionary-result" class="text-gray-600"></div>
+            </div>
         </main>
     </div>
 
     <script>
+        // Subject styles for dashboard-like cards
+        const subjectStyles = {
+          "MATHEMATICS": { gradient: 'from-blue-600 to-blue-400', icon: 'fas fa-square-root-alt' },
+          "BIOLOGY": { gradient: 'from-green-500 to-green-300', icon: 'fas fa-dna' },
+          "CHEMISTRY": { gradient: 'from-pink-500 to-pink-300', icon: 'fas fa-flask' },
+          "PHYSICS": { gradient: 'from-yellow-500 to-yellow-300', icon: 'fas fa-atom' },
+          "ENGLISH": { gradient: 'from-indigo-500 to-indigo-300', icon: 'fas fa-book' },
+          "LITERATURE": { gradient: 'from-purple-500 to-purple-300', icon: 'fas fa-feather' },
+          "GOVERNMENT": { gradient: 'from-red-500 to-red-300', icon: 'fas fa-landmark' },
+          "ECONOMICS": { gradient: 'from-teal-500 to-teal-300', icon: 'fas fa-chart-pie' },
+          "COMMERCE": { gradient: 'from-orange-500 to-orange-300', icon: 'fas fa-balance-scale' },
+          "ACCOUNTING": { gradient: 'from-gray-700 to-gray-400', icon: 'fas fa-calculator' }
+        };
+
+        // Override showTopics to render styled subject cards and include View All toggle
+        function showTopics() {
+          document.getElementById('main-cards').style.display = 'none';
+          const content = document.getElementById('dynamic-content');
+
+          content.innerHTML = `
+            <div class="flex items-center justify-between mb-6">
+              <h2 class="text-2xl font-bold text-gray-800">Select a Subject</h2>
+              <button id="view-all-subjects" class="border border-blue-500 text-blue-600 px-5 py-1.5 rounded-full font-semibold hover:bg-blue-50 transition" onclick="toggleViewAllSubjects()">View All</button>
+            </div>
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
+              ${subjects.map((sub, i) => {
+                const style = subjectStyles[sub] || { gradient: 'from-gray-400 to-gray-200', icon: 'fas fa-book' };
+                // hide additional subjects by default (after the first 5)
+                const hiddenClass = i >= 5 ? 'hidden' : '';
+                return `
+                  <button onclick='showSubjectTopics("${sub}")' class="subject-card ${hiddenClass} flex flex-col items-center justify-center gap-2 p-6 rounded-2xl font-bold text-white text-lg shadow-lg bg-gradient-to-br ${style.gradient} hover:scale-105 transition">
+                    <i class="${style.icon} text-3xl"></i>
+                    <span class="mt-1">${sub}</span>
+                  </button>
+                `;
+              }).join('')}
+            </div>
+          `;
+        }
+
+        // Toggle View All subjects
+        function toggleViewAllSubjects() {
+          const btn = document.getElementById('view-all-subjects');
+          const hiddenSubjects = document.querySelectorAll('.subject-card.hidden');
+          const anyHidden = hiddenSubjects.length > 0 && Array.from(hiddenSubjects).some(el => el.classList.contains('hidden'));
+
+          if (anyHidden) {
+            hiddenSubjects.forEach(el => el.classList.remove('hidden'));
+            btn.textContent = 'Show Less';
+          } else {
+            // re-hide after first 5
+            const allCards = document.querySelectorAll('.subject-card');
+            allCards.forEach((el, idx) => {
+              if (idx >= 5) el.classList.add('hidden');
+            });
+            btn.textContent = 'View All';
+          }
+        }
+
+        // Basic tools menu handlers (mirror of dashboard behaviour)
+        function toggleToolsMenu() {
+          const menu = document.getElementById('toolsMenu');
+          const isHidden = menu.classList.contains('hidden');
+          if (isHidden) {
+            menu.classList.remove('hidden');
+            setTimeout(() => {
+              const closeMenu = (e) => {
+                if (!menu.contains(e.target) && !e.target.closest('#toolsButton')) {
+                  menu.classList.add('hidden');
+                  document.removeEventListener('click', closeMenu);
+                }
+              };
+              document.addEventListener('click', closeMenu);
+            }, 0);
+          } else {
+            menu.classList.add('hidden');
+          }
+        }
+
+        function openTool(name) {
+          document.getElementById('toolsMenu').classList.add('hidden');
+          if (name === 'ai-tutor') {
+            window.location.href = 'ai-tutor-chatbot.html';
+            return;
+          }
+          const el = document.getElementById(`${name}-window`);
+          if (el) el.classList.remove('hidden');
+        }
+
+        function closeTool(name) {
+          const el = document.getElementById(`${name}-window`);
+          if (el) el.classList.add('hidden');
+        }
+
+        // Save smart notes/formula basic localStorage integration
+        function saveNote() {
+          const noteInput = document.getElementById('smart-notes-input');
+          if (!noteInput || !noteInput.value.trim()) return;
+          const notes = JSON.parse(localStorage.getItem('smartNotes') || '[]');
+          notes.push({ id: Date.now(), text: noteInput.value, timestamp: new Date().toISOString() });
+          localStorage.setItem('smartNotes', JSON.stringify(notes));
+          noteInput.value = '';
+          alert('Note saved');
+        }
+
+        function saveFormula() {
+          const nameInput = document.getElementById('formula-name');
+          const formulaInput = document.getElementById('formula-input');
+          if (!nameInput || !formulaInput) return;
+          if (!nameInput.value.trim() || !formulaInput.value.trim()) return;
+          const formulas = JSON.parse(localStorage.getItem('formulas') || '[]');
+          formulas.push({ id: Date.now(), name: nameInput.value, formula: formulaInput.value, timestamp: new Date().toISOString() });
+          localStorage.setItem('formulas', JSON.stringify(formulas));
+          nameInput.value = '';
+          formulaInput.value = '';
+          alert('Formula saved');
+        }
+
         // Full list of Mathematics topics
         const mathematicsTopics = [
           "Algebra",
@@ -840,18 +1021,31 @@
           document.getElementById('dynamic-content').innerHTML = '';
         }
 
-        // Toggle mobile sidebar
-        function toggleMobileSidebar() {
+        // Toggle mobile sidebar (improved accessibility)
+        function toggleMobileSidebar(forceOpen) {
           const sidebar = document.getElementById('mobile-sidebar');
           const backdrop = document.getElementById('sidebar-backdrop');
+          const btn = document.getElementById('mobileMenuBtn');
           const isOpen = !sidebar.classList.contains('-translate-x-full');
+          const willOpen = typeof forceOpen === 'boolean' ? forceOpen : !isOpen;
 
-          if (isOpen) {
-            sidebar.classList.add('-translate-x-full');
-            backdrop.classList.add('hidden');
-          } else {
+          if (willOpen) {
             sidebar.classList.remove('-translate-x-full');
             backdrop.classList.remove('hidden');
+            sidebar.setAttribute('aria-hidden', 'false');
+            if (btn) btn.setAttribute('aria-expanded', 'true');
+            // prevent background scrolling while menu is open
+            document.body.style.overflow = 'hidden';
+            // move focus into the sidebar
+            const firstInteractive = sidebar.querySelector('a, button');
+            if (firstInteractive) firstInteractive.focus();
+          } else {
+            sidebar.classList.add('-translate-x-full');
+            backdrop.classList.add('hidden');
+            sidebar.setAttribute('aria-hidden', 'true');
+            if (btn) btn.setAttribute('aria-expanded', 'false');
+            document.body.style.overflow = '';
+            if (btn) btn.focus();
           }
         }
       </script>

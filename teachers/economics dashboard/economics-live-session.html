@@ -1,0 +1,80 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Teacher Live Session — Economics</title>
+    <script src="https://8x8.vc/vpaas-magic-cookie-29d1aa3d1dd04579a28364a8dfdabc89/external_api.js" async></script>
+    <style>
+      :root{ --gap:12px; }
+      html,body{height:100%;margin:0;font-family:Inter,system-ui,Arial}
+      .container{display:flex;height:100vh;gap:var(--gap);padding:12px;box-sizing:border-box}
+      .left { flex: 1 1 0; display:flex; gap:12px; }
+      .left .main { flex: 1 1 0; background:#fff;border-radius:10px;padding:12px;box-shadow:0 6px 18px rgba(0,0,0,0.06);display:flex;flex-direction:column }
+      .left .tools { width:220px; background:#f8fafc;border-radius:10px;padding:12px;box-shadow:0 6px 18px rgba(0,0,0,0.03); }
+      .tabs { display:flex; gap:8px; align-items:center; border-bottom:1px solid #eee; padding-bottom:8px; }
+      .tab { padding:6px 10px; border-radius:6px; background:#f1f5f9; cursor:pointer; }
+      .tab.active { background:#0ea5e9; color:#fff; }
+      .tab .close { margin-left:8px; color:rgba(255,255,255,0.9); cursor:pointer; }
+      .tab-content { flex:1; overflow:auto; padding-top:12px; }
+      .right { width:520px; display:flex; flex-direction:column; gap:8px; }
+      .video-card { background:#000;border-radius:10px; flex:1; position:relative; display:flex; align-items:stretch; overflow:hidden }
+      #jitsi-target { width:100%; height:100%; }
+      .video-controls { display:flex; gap:8px; padding:6px; justify-content:flex-end; }
+      .btn { background:#0ea5e9;color:#fff;padding:8px 10px;border-radius:8px;border:none;cursor:pointer }
+      .tool-btn { display:block;width:100%;padding:10px;margin-bottom:8px;border-radius:8px;border:1px solid #e6eef6;background:#fff;cursor:pointer;text-align:left }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="left">
+        <div class="main">
+          <div style="display:flex; align-items:center; justify-content:space-between">
+            <h2 style="margin:0">Live Session — Economics</h2>
+            <div style="font-size:13px;color:#6b7280">Teacher view</div>
+          </div>
+          <div class="tabs" id="tabs"></div>
+          <div class="tab-content" id="tabContent">
+            <div id="welcomePanel">
+              <h3>Welcome</h3>
+              <p>Use the tools on the right to open content — each tool opens as a tab so you can switch between them.</p>
+            </div>
+          </div>
+        </div>
+        <aside class="tools">
+          <h3 style="margin-top:0">Tools</h3>
+          <button class="tool-btn" data-tool="sim">➕ Add Simulation</button>
+          <button class="tool-btn" data-tool="photo">🖼️ Add Photo</button>
+          <button class="tool-btn" data-tool="video">📹 Add Video</button>
+          <button class="tool-btn" data-tool="quiz">📝 Add Quiz</button>
+          <button class="tool-btn" data-tool="notes">🗒️ Lecture Notes</button>
+        </aside>
+      </div>
+      <div class="right">
+        <div class="video-card">
+          <div id="jitsi-target"></div>
+        </div>
+        <div class="video-controls">
+          <button id="fullscreenBtn" class="btn">Fullscreen Video</button>
+          <button id="popoutBtn" class="btn" style="background:#111827">Pop-out</button>
+        </div>
+      </div>
+    </div>
+    <script>
+      const tabsEl = document.getElementById('tabs');
+      const tabContent = document.getElementById('tabContent');
+      const openTabs = new Map();
+      function activateTab(key){ for (const [k,v] of openTabs.entries()){ v.tabEl.classList.toggle('active', k===key); v.panelEl.style.display = k===key ? 'block' : 'none'; } }
+      function openTool(key, title, html){ if (openTabs.has(key)) { activateTab(key); return; } const tab = document.createElement('div'); tab.className='tab active'; tab.textContent = title; const close = document.createElement('span'); close.className='close'; close.textContent='✕'; close.onclick = (e)=>{ e.stopPropagation(); closeTab(key); }; tab.appendChild(close); tab.onclick = ()=> activateTab(key); tabsEl.appendChild(tab); const panel = document.createElement('div'); panel.innerHTML = html; panel.style.display='block'; tabContent.appendChild(panel); for (const v of openTabs.values()){ v.tabEl.classList.remove('active'); v.panelEl.style.display='none'; } openTabs.set(key, { tabEl: tab, panelEl: panel }); }
+      function closeTab(key){ const obj = openTabs.get(key); if(!obj) return; obj.tabEl.remove(); obj.panelEl.remove(); openTabs.delete(key); const last = Array.from(openTabs.keys()).pop(); if (last) activateTab(last); else { document.getElementById('welcomePanel').style.display='block'; } }
+      document.querySelectorAll('.tool-btn').forEach(btn=>{ btn.addEventListener('click', ()=>{ const tool = btn.dataset.tool; if (tool==='sim') openTool('sim','Simulation', '<h3>Simulation</h3><p>Embed your interactive simulation here.</p><iframe style="width:100%;height:360px;border:1px solid #e5e7eb;border-radius:6px" srcdoc="<p>Simulation placeholder</p>"></iframe>'); if (tool==='photo') openTool('photo','Photo', '<h3>Add Photo</h3><input type="file" accept="image/*"><p class="hint">Selected photo will show here.</p>'); if (tool==='video') openTool('video','Video', '<h3>Add Video</h3><input type="file" accept="video/*"><p class="hint">Or paste a YouTube URL below:</p><input style="width:100%" placeholder="https://youtube.com/...">'); if (tool==='quiz') openTool('quiz','Quiz', '<h3>Create Quiz</h3><p>Simple quiz builder placeholder.</p>'); if (tool==='notes') openTool('notes','Notes', '<h3>Lecture Notes</h3><textarea style="width:100%;height:320px"></textarea>'); }); });
+      const fsBtn = document.getElementById('fullscreenBtn'); const jitsiTarget = document.getElementById('jitsi-target'); fsBtn.addEventListener('click', async ()=>{ try{ if (document.fullscreenElement) await document.exitFullscreen(); else await jitsiTarget.requestFullscreen(); }catch(e){ alert('Fullscreen failed: '+e.message); } });
+      document.getElementById('popoutBtn').addEventListener('click', ()=>{ window.open(location.href, '_blank', 'toolbar=0,location=0,menubar=0,width=900,height=700'); });
+      function initJitsi(){ try { const domain = '8x8.vc'; const options = { roomName: 'vpaas-magic-cookie-29d1aa3d1dd04579a28364a8dfdabc89/SampleAppEligibleBaysTermAccordingly', parentNode: document.querySelector('#jitsi-target') }; const api = new JitsiMeetExternalAPI(domain, options); console.log('Jitsi started', api); } catch (err) { console.error('Failed to start Jitsi', err); document.getElementById('jitsi-target').innerHTML = '<div style="color:#fff;padding:16px">Failed to load video. See console for details.</div>'; } }
+      (function waitForJitsi(){ if (typeof JitsiMeetExternalAPI !== 'undefined') return initJitsi(); setTimeout(waitForJitsi, 250); })();
+  </script>
+  <script src="/students/js/live-session.js"></script>
+  </body>
+</html>
+  

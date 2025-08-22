@@ -1,0 +1,381 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+            <aside class="tools">
+          <h3 class="tools-header">Class Tools</h3>
+          <button class="tool-btn" data-tool="quiz">📝 Quick Quiz</button>
+          <button class="tool-btn" data-tool="notes">📓 Lecture Notes</button>
+          <button class="tool-btn" data-tool="whiteboard">🎨 Whiteboard</button>
+          <button class="tool-btn" data-tool="media">📊 Share Media</button>
+        </aside>arset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Teacher Live Session — Accounting</title>
+    <script src="https://8x8.vc/vpaas-magic-cookie-29d1aa3d1dd04579a28364a8dfdabc89/external_api.js" async></script>
+    <style>
+      :root{ 
+        --gap: 12px;
+        --primary: #0ea5e9;
+        --success: #10b981;
+        --radius: 8px;
+        --shadow: 0 6px 18px rgba(0,0,0,0.06);
+      }
+      html,body{height:100%;margin:0;font-family:Inter,system-ui,Arial}
+      .container{display:flex;height:100vh;gap:var(--gap);padding:12px;box-sizing:border-box}
+      
+      /* Layout */
+      .left { flex: 1 1 0; display:flex; gap:12px; }
+      .left .main { flex: 1 1 0; background:#fff;border-radius:var(--radius);padding:12px;box-shadow:var(--shadow);display:flex;flex-direction:column }
+      .left .tools { width:220px; background:#f8fafc;border-radius:var(--radius);padding:12px;box-shadow:0 6px 18px rgba(0,0,0,0.03); }
+      
+      /* Common Components */
+      .header { display:flex; align-items:center; justify-content:space-between; margin-bottom:16px; }
+      .header h2 { margin:0; }
+      .subtitle { font-size:13px; color:#6b7280; }
+      .tool-content { padding: 16px 0; }
+      .input-group { display:flex; gap:8px; margin-bottom:12px; }
+      .full-width { width:100%; padding:8px; border:1px solid #e5e7eb; border-radius:var(--radius); }
+      .btn { padding:8px 16px; border:none; border-radius:var(--radius); cursor:pointer; font-weight:500; }
+      .btn.primary { background:var(--primary); color:#fff; }
+      .btn.success { background:var(--success); color:#fff; }
+      .btn.dark { background:#111827; color:#fff; }
+      .tools-header { margin-top:0; }
+      .results-panel { margin-top:16px; padding:12px; background:#f8fafc; border-radius:var(--radius); }
+      
+      /* Editor */
+      .editor-toolbar { display:flex; gap:4px; margin-bottom:8px; padding:8px; background:#f8fafc; border-radius:var(--radius); }
+      .editor-toolbar button { padding:4px 8px; background:#fff; border:1px solid #e5e7eb; border-radius:4px; cursor:pointer; }
+      .rich-editor { min-height:300px; padding:12px; border:1px solid #e5e7eb; border-radius:var(--radius); }
+      
+      /* Whiteboard */
+      .board-toolbar { display:flex; gap:8px; margin-bottom:12px; }
+      #board { border:1px solid #e5e7eb; border-radius:var(--radius); background:#fff; }
+      
+      /* Media Sharing */
+      .media-tabs { display:flex; gap:4px; margin-bottom:12px; }
+      .media-tabs button { padding:8px 16px; background:#f8fafc; border:none; border-radius:var(--radius); cursor:pointer; }
+      .media-tabs button.active { background:var(--primary); color:#fff; }
+      .preview-area { margin-top:12px; padding:12px; border:1px dashed #e5e7eb; border-radius:var(--radius); min-height:200px; }
+
+      /* Tabs */
+      .tabs { display:flex; gap:8px; align-items:center; border-bottom:1px solid #eee; padding-bottom:8px; }
+      .tab { padding:6px 10px; border-radius:6px; background:#f1f5f9; cursor:pointer; }
+      .tab.active { background:#0ea5e9; color:#fff; }
+      .tab .close { margin-left:8px; color:rgba(255,255,255,0.9); cursor:pointer; }
+
+      .tab-content { flex:1; overflow:auto; padding-top:12px; }
+
+      /* Right column (video) */
+      .right { width:520px; display:flex; flex-direction:column; gap:8px; }
+      .video-card { background:#000;border-radius:10px; flex:1; position:relative; display:flex; align-items:stretch; overflow:hidden }
+      #jitsi-target { width:100%; height:100%; }
+      .video-controls { display:flex; gap:8px; padding:6px; justify-content:flex-end; }
+      .btn { background:#0ea5e9;color:#fff;padding:8px 10px;border-radius:8px;border:none;cursor:pointer }
+      .tool-btn { display:block;width:100%;padding:10px;margin-bottom:8px;border-radius:8px;border:1px solid #e6eef6;background:#fff;cursor:pointer;text-align:left }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="left">
+        <div class="main">
+          <div class="header">
+            <h2>Live Session — Accounting</h2>
+            <div class="subtitle">Teacher view</div>
+          </div>
+          <div class="tabs" id="tabs"></div>
+          <div class="tab-content" id="tabContent">
+            <div id="welcomePanel">
+              <h3>Welcome</h3>
+              <p>Use the tools on the right to open content — each tool opens as a tab so you can switch between them.</p>
+            </div>
+          </div>
+        </div>
+
+        <aside class="tools">
+          <h3 style="margin-top:0">Tools</h3>
+          <button class="tool-btn" data-tool="photo">🖼️ Add Photo</button>
+          <button class="tool-btn" data-tool="video">� Add Video</button>
+          <button class="tool-btn" data-tool="quiz">� Add Quiz</button>
+          <button class="tool-btn" data-tool="notes">�️ Lecture Notes</button>
+          <button class="tool-btn" data-tool="poll">� Quick Poll</button>
+        </aside>
+      </div>
+
+      <div class="right">
+        <div class="video-card">
+          <div id="jitsi-target"></div>
+        </div>
+        <div class="video-controls">
+          <button id="fullscreenBtn" class="btn">Fullscreen Video</button>
+          <button id="popoutBtn" class="btn dark">Pop-out</button>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      // Tabs manager
+      const tabsEl = document.getElementById('tabs');
+      const tabContent = document.getElementById('tabContent');
+      const openTabs = new Map(); // key -> {tabEl, panelEl}
+
+      function activateTab(key){
+        for (const [k,v] of openTabs.entries()){
+          v.tabEl.classList.toggle('active', k===key);
+          v.panelEl.style.display = k===key ? 'block' : 'none';
+        }
+      }
+
+      function openTool(key, title, html){
+        if (openTabs.has(key)) { activateTab(key); return; }
+        const tab = document.createElement('div'); tab.className='tab active'; tab.textContent = title;
+        const close = document.createElement('span'); close.className='close'; close.textContent='✕';
+        close.onclick = (e)=>{ e.stopPropagation(); closeTab(key); };
+        tab.appendChild(close);
+        tab.onclick = ()=> activateTab(key);
+        tabsEl.appendChild(tab);
+
+        const panel = document.createElement('div'); panel.innerHTML = html; panel.style.display='block';
+        tabContent.appendChild(panel);
+
+  // Deactivate others
+  for (const v of openTabs.values()){ v.tabEl.classList.remove('active'); v.panelEl.style.display='none'; }
+
+  openTabs.set(key, { tabEl: tab, panelEl: panel });
+      }
+
+      function closeTab(key){
+        const obj = openTabs.get(key); if(!obj) return;
+        obj.tabEl.remove(); obj.panelEl.remove(); openTabs.delete(key);
+        // activate last tab or welcome
+        const last = Array.from(openTabs.keys()).pop();
+        if (last) activateTab(last); else { document.getElementById('welcomePanel').style.display='block'; }
+      }
+
+      // Tool button handlers
+      document.querySelectorAll('.tool-btn').forEach(btn=>{
+        btn.addEventListener('click', ()=>{
+          const tool = btn.dataset.tool;
+          
+          // Quick Quiz with MCQ and short answers
+          if (tool==='quiz') {
+            openTool('quiz', 'Quick Quiz', `
+              <div class="tool-content">
+                <h3>Quick Quiz</h3>
+                <div id="quizBuilder">
+                  <div class="input-group">
+                    <input type="text" id="quizTitle" placeholder="Quiz Title" class="full-width">
+                    <select id="quizType" class="quiz-type">
+                      <option value="mcq">Multiple Choice</option>
+                      <option value="short">Short Answer</option>
+                    </select>
+                  </div>
+                  <div id="questions"></div>
+                  <div class="actions">
+                    <button id="addQ" class="btn primary">Add Question</button>
+                    <button id="publishQuiz" class="btn success">Start Quiz</button>
+                  </div>
+                </div>
+                <div id="quizResults" class="results-panel"></div>
+              </div>
+            `);
+          }
+          
+          // Rich text notes with formatting
+          if (tool==='notes') {
+            openTool('notes', 'Lecture Notes', `
+              <div class="tool-content">
+                <h3>Lecture Notes</h3>
+                <div class="editor-toolbar">
+                  <button data-format="bold" title="Bold">B</button>
+                  <button data-format="italic" title="Italic">I</button>
+                  <button data-format="bullet" title="Bullet List">•</button>
+                </div>
+                <div id="notesEditor" class="rich-editor" contenteditable="true"></div>
+                <div class="status">Auto-saving enabled</div>
+              </div>
+            `);
+          }
+
+          // Interactive whiteboard
+          if (tool==='whiteboard') {
+            openTool('whiteboard', 'Whiteboard', `
+              <div class="tool-content">
+                <h3>Whiteboard</h3>
+                <div class="board-toolbar">
+                  <button data-tool="pen" class="active">✏️ Draw</button>
+                  <button data-tool="eraser">🧹 Erase</button>
+                  <input type="color" id="penColor" value="#000000">
+                  <button id="clearBoard">Clear All</button>
+                </div>
+                <canvas id="board" width="800" height="600"></canvas>
+              </div>
+            `);
+          }
+
+          // Media sharing (images, videos, documents)
+          if (tool==='media') {
+            openTool('media', 'Share Media', `
+              <div class="tool-content">
+                <h3>Share Media</h3>
+                <div class="media-tabs">
+                  <button data-tab="upload" class="active">Upload</button>
+                  <button data-tab="youtube">YouTube</button>
+                  <button data-tab="docs">Documents</button>
+                </div>
+                <div class="tab-panel" id="uploadPanel">
+                  <input type="file" id="mediaFile" accept="image/*,video/*" class="file-input">
+                  <div id="preview" class="preview-area"></div>
+                </div>
+                <div class="tab-panel" id="youtubePanel" style="display:none">
+                  <input type="text" id="youtubeUrl" placeholder="Paste YouTube URL" class="full-width">
+                  <button id="embedVideo" class="btn primary">Embed Video</button>
+                  <div id="videoPreview"></div>
+                </div>
+                <div class="tab-panel" id="docsPanel" style="display:none">
+                  <input type="file" accept=".pdf,.doc,.docx" class="file-input">
+                  <div class="docs-list"></div>
+                </div>
+              </div>
+            `);
+          }
+        });
+      });
+
+      // Delegate dynamic tab behaviour: listen to tab content insertion and wire handlers
+      const observer = new MutationObserver(muts=>{
+        for (const m of muts) for (const node of m.addedNodes){
+          if (!(node instanceof HTMLElement)) continue;
+          // Photo
+          const photoInput = node.querySelector('#photoInput');
+          if (photoInput){
+            const preview = node.querySelector('#photoPreview');
+            photoInput.addEventListener('change', ()=>{
+              const f = photoInput.files && photoInput.files[0];
+              if (!f) return; const url = URL.createObjectURL(f);
+              preview.innerHTML = `<img src="${url}" style="max-width:100%;border-radius:6px;box-shadow:0 6px 18px rgba(0,0,0,0.06)">`;
+            });
+          }
+
+          // Video
+          const videoInput = node.querySelector('#videoInput');
+          if (videoInput){
+            const preview = node.querySelector('#videoPreview');
+            videoInput.addEventListener('change', ()=>{
+              const f = videoInput.files && videoInput.files[0];
+              if (!f) return; const url = URL.createObjectURL(f);
+              preview.innerHTML = `<video controls src="${url}" style="max-width:100%;border-radius:6px"></video>`;
+            });
+          }
+          const embedBtn = node.querySelector('#embedYoutube');
+          if (embedBtn){
+            embedBtn.addEventListener('click', ()=>{
+              const url = node.querySelector('#youtubeUrl').value.trim();
+              const container = node.querySelector('#youtubeContainer');
+              if (!url) return; // basic parse for id
+              const m = url.match(/(v=|youtu\.be\/)([A-Za-z0-9_-]{6,})/);
+              const id = m ? m[2] : url.split('/').pop();
+              container.innerHTML = `<iframe src="https://www.youtube.com/embed/${id}" style="width:100%;height:360px;border:0;border-radius:6px" allowfullscreen></iframe>`;
+            });
+          }
+
+          // Quiz builder
+          const addQ = node.querySelector('#addQ');
+          if (addQ){
+            const questions = node.querySelector('#questions');
+            const addQuestion = (seed='')=>{
+              const qwrap = document.createElement('div'); qwrap.style.marginTop='8px';
+              qwrap.innerHTML = `<input class="qtext" placeholder="Question" style="width:100%" value="${seed}"><div style="margin-top:6px"><input class="ans" placeholder="Answer option A" style="width:49%"><input class="ans" placeholder="Answer option B" style="width:49%;margin-left:2%"></div>`;
+              questions.appendChild(qwrap);
+            };
+            addQ.addEventListener('click', ()=> addQuestion());
+            // add one by default
+            addQuestion();
+            const pub = node.querySelector('#publishQuiz');
+            if (pub) pub.addEventListener('click', ()=>{
+              const qs = [];
+              questions.querySelectorAll('.qtext').forEach((qt,i)=>{
+                const opts = []; const parent = qt.parentElement; parent.querySelectorAll('.ans').forEach(a=>opts.push(a.value||''));
+                qs.push({question: qt.value||`Q${i+1}`, options: opts});
+              });
+              // quick publish: show JSON preview (replace with server/push later)
+              alert('Quiz published — preview in console');
+              console.log('Published quiz', qs);
+            });
+          }
+
+          // Notes autosave (localStorage)
+          const notesArea = node.querySelector('#notesArea');
+          if (notesArea){
+            const key = 'live_notes_accounting';
+            const saved = localStorage.getItem(key);
+            if (saved) notesArea.value = saved;
+            let t;
+            notesArea.addEventListener('input', ()=>{
+              clearTimeout(t); t = setTimeout(()=> localStorage.setItem(key, notesArea.value), 500);
+            });
+          }
+
+          // Poll builder
+          const addOpt = node.querySelector('#addOpt');
+          if (addOpt){
+            addOpt.addEventListener('click', ()=>{
+              const container = node.querySelector('#pollOptions');
+              const inp = document.createElement('input'); inp.placeholder = `Option ${container.querySelectorAll('.opt').length+1}`; inp.className='opt'; inp.style.width='100%'; inp.style.marginTop='6px'; container.appendChild(inp);
+            });
+            const send = node.querySelector('#sendPoll');
+            if (send) send.addEventListener('click', ()=>{
+              const q = node.querySelector('#pollQuestion').value.trim();
+              const opts = Array.from(node.querySelectorAll('.opt')).map(i=>i.value.trim()).filter(Boolean);
+              if (!q || opts.length<2) { alert('Enter question and at least two options'); return; }
+              // quick preview (actual student distribution requires server/real-time)
+              const preview = node.querySelector('#pollPreview');
+              preview.innerHTML = `<strong>${q}</strong><ul>${opts.map(o=>`<li>${o} — 0 votes</li>`).join('')}</ul><div style="color:#6b7280;font-size:13px">Poll created (preview only). Use server/rtc to send to students.</div>`;
+            });
+          }
+        }
+      });
+      observer.observe(tabContent, { childList:true, subtree:true });
+
+      // Fullscreen video
+      const fsBtn = document.getElementById('fullscreenBtn');
+      const jitsiTarget = document.getElementById('jitsi-target');
+      fsBtn.addEventListener('click', async ()=>{
+        try{
+          if (document.fullscreenElement) await document.exitFullscreen();
+          else await jitsiTarget.requestFullscreen();
+        }catch(e){ alert('Fullscreen failed: '+e.message); }
+      });
+
+      // Pop-out opens standalone window with the same room
+      document.getElementById('popoutBtn').addEventListener('click', ()=>{
+        window.open(location.href, '_blank', 'toolbar=0,location=0,menubar=0,width=900,height=700');
+      });
+
+      // Initialize Jitsi once the external_api.js is available
+      function initJitsi(){
+        try {
+          const domain = '8x8.vc';
+          const options = {
+            roomName: 'vpaas-magic-cookie-29d1aa3d1dd04579a28364a8dfdabc89/SampleAppBoldOutfitsTextThrough',
+            parentNode: document.querySelector('#jitsi-target'),
+            // jwt: '...' // add if needed for premium features
+          };
+          // eslint-disable-next-line no-undef
+          const api = new JitsiMeetExternalAPI(domain, options);
+          console.log('Jitsi started', api);
+        } catch (err) {
+          console.error('Failed to start Jitsi', err);
+          document.getElementById('jitsi-target').innerHTML = '<div style="color:#fff;padding:16px">Failed to load video. See console for details.</div>';
+        }
+      }
+
+      // Retry until the API is available
+      (function waitForJitsi(){
+        if (typeof JitsiMeetExternalAPI !== 'undefined') return initJitsi();
+        setTimeout(waitForJitsi, 250);
+      })();
+  </script>
+  <script src="/students/js/live-session.js"></script>
+  </body>
+</html>
+  
