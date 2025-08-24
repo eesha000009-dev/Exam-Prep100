@@ -70,7 +70,8 @@
           <div class="absolute top-7 left-7 z-10 bg-white/20 text-white px-7 py-3 rounded-2xl backdrop-blur-md text-xl font-semibold shadow">Live Video</div>
           <div id="jitsi-target" class="w-full h-full"></div>
         </div>
-        <div class="video-controls flex.justify-end gap-6 mt-8">
+          <div class="video-controls flex.justify-end gap-6 mt-8">
+          <button id="shareScreenBtn" class="px-6 py-3 rounded-2xl bg-indigo-600 hover:bg-indigo-700 text-white shadow">Share screen</button>
           <button id="fullscreenBtn" class="px-6 py-3 rounded-2xl bg-blue-600 hover:bg-blue-700 text-white shadow">Fullscreen</button>
           <button id="popoutBtn" class="px-6 py-3 rounded-2xl bg-gray-900 hover:bg-gray-800 text-white shadow">Pop-out</button>
         </div>
@@ -280,6 +281,18 @@
       })();
   </script>
   <script src="/students/js/live-session.js"></script>
+  <script>
+    // Share screen helper: tries Jitsi API toggle, falls back to getDisplayMedia, otherwise shows instructions
+    (function(){
+      function isDisplayCaptureSupported(){ return !!(navigator.mediaDevices && navigator.mediaDevices.getDisplayMedia); }
+      async function tryJitsiToggle(){ try{ if (window.api && typeof window.api.executeCommand==='function'){ window.api.executeCommand('toggleShareScreen'); return true; } }catch(e){ console.warn('Jitsi toggle failed', e); } return false; }
+      async function handleShare(){ if (await tryJitsiToggle()) return; if (isDisplayCaptureSupported()){ try{ const s = await navigator.mediaDevices.getDisplayMedia({video:true}); // open a preview window for mobile fallback
+          const w = window.open('','_blank'); if (w){ const v = w.document.createElement('video'); v.autoplay=true; v.playsInline=true; v.srcObject = s; w.document.body.style.margin='0'; w.document.body.appendChild(v); s.getVideoTracks()[0].addEventListener('ended', ()=> w.close()); } else alert('Screen sharing started — popup blocked.'); return; } catch(e){ console.warn('getDisplayMedia failed', e); }
+      }
+      alert('Screen sharing is unsupported on this device/browser. Use Chrome on Android or the Jitsi Meet app for best results.'); }
+      const btn = document.getElementById('shareScreenBtn'); if (btn) btn.addEventListener('click', handleShare);
+    })();
+  </script>
   </body>
 </html>
   
