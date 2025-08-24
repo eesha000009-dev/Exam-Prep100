@@ -1,690 +1,244 @@
-<script type="text/javascript">
-        var gk_isXlsx = false;
-        var gk_xlsxFileLookup = {};
-        var gk_fileData = {};
-        function filledCell(cell) {
-          return cell !== '' && cell != null;
-        }
-        function loadFileData(filename) {
-        if (gk_isXlsx && gk_xlsxFileLookup[filename]) {
-            try {
-                var workbook = XLSX.read(gk_fileData[filename], { type: 'base64' });
-                var firstSheetName = workbook.SheetNames[0];
-                var worksheet = workbook.Sheets[firstSheetName];
-
-                // Convert sheet to JSON to filter blank rows
-                var jsonData = XLSX.utils.sheet_to_json(worksheet, { header: 1, blankrows: false, defval: '' });
-                // Filter out blank rows (rows where all cells are empty, null, or undefined)
-                var filteredData = jsonData.filter(row => row.some(filledCell));
-
-                // Heuristic to find the header row by ignoring rows with fewer filled cells than the next row
-                var headerRowIndex = filteredData.findIndex((row, index) =>
-                  row.filter(filledCell).length >= filteredData[index + 1]?.filter(filledCell).length
-                );
-                // Fallback
-                if (headerRowIndex === -1 || headerRowIndex > 25) {
-                  headerRowIndex = 0;
-                }
-
-                // Convert filtered JSON back to CSV
-                var csv = XLSX.utils.aoa_to_sheet(filteredData.slice(headerRowIndex)); // Create a new sheet from filtered array of arrays
-                csv = XLSX.utils.sheet_to_csv(csv, { header: 1 });
-                return csv;
-            } catch (e) {
-                console.error(e);
-                return "";
-            }
-        }
-        return gk_fileData[filename] || "";
-        }
-        </script><!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Study Plan Page</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="../general/modernized.css">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Study Plan - Prep100</title>
+  <link rel="icon" type="image/png" href="/assets/images/Logo of JUANOVA Cortex Tutor.png" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <script src="https://cdn.tailwindcss.com"></script>
   <style>
-    /* Dashboard Specific Styles */
-    .dashboard-topbar {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      margin-bottom: var(--spacing-xl);
-      padding: var(--spacing-sm) 0;
-    }
-    
-    .search-container {
-      flex: 1;
-      max-width: 480px;
-      position: relative;
-      margin-right: var(--spacing-xl);
-    }
-    
-    .search-icon {
-      position: absolute;
-      left: var(--spacing-sm);
-      top: 50%;
-      transform: translateY(-50%);
-      color: var(--text-secondary);
-      font-size: 1.1rem;
-    }
-    
-    .search-input {
-      width: 100%;
-      padding: 0.875rem var(--spacing-xl);
-      padding-left: 2.75rem;
-      border-radius: 9999px;
-      border: 2px solid var(--border-color);
-      font-size: 1rem;
-      transition: all 0.2s;
-      background: #fff;
-    }
-    
-    .search-input:focus {
-      border-color: var(--primary);
-      box-shadow: 0 0 0 3px rgba(37,99,235,0.1);
-      outline: none;
-    }
-    .user-info {
-      display: flex;
-      align-items: center;
-      gap: var(--spacing-md);
-    }
-    
-    .notification-btn {
-      position: relative;
-      background: none;
-      border: none;
-      color: var(--text-secondary);
-      font-size: 1.25rem;
-      cursor: pointer;
-      padding: var(--spacing-xs);
-      border-radius: var(--radius-md);
-      transition: all 0.2s;
-    }
-    
-    .notification-btn:hover {
-      color: var(--primary);
-      background: rgba(37,99,235,0.1);
-    }
-    
-    .notification-badge {
-      position: absolute;
-      top: 0;
-      right: 0;
-      background: var(--danger);
-      color: white;
-      border-radius: 50%;
-      width: 18px;
-      height: 18px;
-      font-size: 0.75rem;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .welcome-banner {
-      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
-      border-radius: var(--radius-xl);
-      padding: var(--spacing-xl);
-      color: white;
-      margin-bottom: var(--spacing-xl);
-      position: relative;
-      overflow: hidden;
-    }
-    
-    .main-content {
-      margin-left: 280px;
-      padding: var(--spacing-xl) var(--spacing-xxl);
-      background: var(--bg-light);
-      min-height: 100vh;
-      max-width: calc(100% - 280px);
-    }
-    /* Remove old search styles */
-    .plan-card {
-      background: white;
-      border-radius: var(--radius-lg);
-      padding: var(--spacing-lg);
-      box-shadow: var(--shadow-sm);
-      transition: all 0.2s ease;
-      margin-bottom: var(--spacing-lg);
-      border: 1px solid var(--border-color);
-    }
-    .plan-card:hover {
-      transform: translateY(-2px);
-      box-shadow: var(--shadow-md);
-      border-color: var(--primary);
-    }
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      padding: 0.75rem 1.5rem;
-      border-radius: var(--radius-lg);
-      font-size: 1rem;
-      font-weight: 500;
-      border: none;
-      background: var(--primary);
-      color: var(--white);
-      cursor: pointer;
-      transition: all 0.2s;
-      margin-right: 0.75rem;
-    }
-    .btn:hover {
-      background: var(--primary-dark);
-    }
-    .btn.cancel {
-      background: var(--text-secondary);
-    }
-    .btn.cancel:hover {
-      background: var(--text-primary);
-    }
-    .btn-margin-bottom {
-      margin-bottom: var(--spacing-lg);
-    }
-    
-    .action-buttons {
-      display: flex;
-      gap: var(--spacing-sm);
-      margin-top: var(--spacing-md);
-      flex-wrap: wrap;
-    }
-
-    .btn-warning {
-      background: var(--warning);
-      color: var(--white);
-    }
-    .btn-warning:hover {
-      background: var(--warning-dark);
-    }
-
-    .btn-secondary {
-      background: var(--secondary);
-      color: var(--white);
-    }
-    .btn-secondary:hover {
-      background: var(--secondary-dark);
-    }
-
-    .btn-danger {
-      background: var(--danger);
-      color: var(--white);
-    }
-    .btn-danger:hover {
-      background: var(--danger-dark);
-    }
-
-    .btn-success {
-      background: var(--success);
-      color: var(--white);
-    }
-    .btn-success:hover {
-      background: var(--success-dark);
-    }
-
-    .btn i {
-      margin-right: var(--spacing-xs);
-    }
-
-    /* Calendar Styles */
-    .calendar {
-      display: grid;
-      grid-template-columns: repeat(7, 1fr);
-      gap: var(--spacing-xs);
-      background: white;
-      padding: var(--spacing-lg);
-      border-radius: var(--radius-lg);
-      margin-bottom: var(--spacing-xl);
-      box-shadow: var(--shadow-sm);
-    }
-
-    .calendar-header {
-      grid-column: span 7;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: var(--spacing-md) 0;
-      margin-bottom: var(--spacing-sm);
-    }
-
-    .calendar-title {
-      font-weight: 600;
-      font-size: 1.125rem;
-      color: var(--text-primary);
-    }
-
-    .calendar-nav-btn {
-      border: none;
-      background: var(--bg-light);
-      color: var(--text-primary);
-      width: 32px;
-      height: 32px;
-      border-radius: var(--radius-full);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      transition: all 0.2s ease;
-    }
-
-    .calendar-nav-btn:hover {
-      background: var(--bg-hover);
-      color: var(--primary);
-    }
-
-    .calendar-weekday {
-      text-align: center;
-      font-weight: 500;
-      color: var(--text-muted);
-      padding: var(--spacing-xs);
-      font-size: 0.875rem;
-    }
-
-    .calendar-cell {
-      aspect-ratio: 1;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 0.875rem;
-      color: var(--text-primary);
-      border-radius: var(--radius-md);
-      cursor: pointer;
-      transition: all 0.2s ease;
-    }
-
-    .calendar-cell:hover {
-      background: var(--bg-hover);
-      transform: translateY(-1px);
-    }
-
-    .calendar-cell.event {
-      background: var(--primary-light);
-      color: var(--primary);
-      font-weight: 500;
-    }
-
-    .calendar-cell.today {
-      background: var(--primary);
-      color: white;
-      font-weight: 600;
-    }
-
-    /* Modal Styles */
-    .modal {
-      display: none;
-      position: fixed;
-      inset: 0;
-      background: rgba(0,0,0,0.5);
-      align-items: center;
-      justify-content: center;
-      z-index: 200;
-    }
-
-    .modal-content {
-      background: white;
-      padding: var(--spacing-xl);
-      border-radius: var(--radius-lg);
-      width: 100%;
-      max-width: 500px;
-      box-shadow: var(--shadow-lg);
-    }
-    /* Calendar Styles */
-    .calendar {
-      display: grid;
-      grid-template-columns: repeat(7, 1fr);
-      gap: var(--spacing-xs);
-      background: white;
-      padding: var(--spacing-md);
-      border-radius: var(--radius-lg);
-      margin-bottom: var(--spacing-xl);
-      box-shadow: 0 2px 8px rgba(30,41,59,0.07);
-    }
-    .calendar-header {
-      grid-column: span 7;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: var(--spacing-sm);
-      font-weight: 600;
-    }
-    .calendar-day {
-      text-align: center;
-      padding: 10px;
-      font-weight: bold;
-      color: #555;
-    }
-    .calendar-date {
-      text-align: center;
-      padding: 10px;
-      border-radius: 4px;
-      cursor: pointer;
-      transition: background 0.2s;
-    }
-    .calendar-date:hover {
-      background: #e0f7fa;
-    }
-    .calendar-date.active {
-      background: #38bdf8;
-      color: #fff;
-    }
-    .calendar-date.has-plan {
-      border: 2px solid #38bdf8;
-    }
-    @media (max-width: 768px) {
-      .dashboard-topbar {
-        flex-direction: column;
-        align-items: stretch;
-        gap: var(--spacing-md);
-      }
-      
-      .search-container {
-        max-width: 100%;
-        margin-right: 0;
-      }
-      
-      .welcome-banner {
-        padding: var(--spacing-lg);
-      }
-      
-      .welcome-title {
-        font-size: 1.5rem;
-      }
-      
-      .section-header {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: var(--spacing-sm);
-      }
-    }
-    .study-plan-title {
-      font-size: 2rem;
-      font-weight: 700;
-      color: var(--text-primary);
-      margin-bottom: var(--spacing-xl);
-    }
+    /* Small scoped styles only - most layout handled by Tailwind */
+    .plan-card { background: white; padding: 1rem; border-radius: .75rem; box-shadow: 0 6px 18px rgba(15,23,42,0.06);} 
+    .calendar { display: grid; grid-template-columns: repeat(7, 1fr); gap: .5rem; }
+    .calendar-cell { padding: .6rem; border-radius: .5rem; text-align:center; cursor:pointer; }
+    .calendar-cell.event { background:#eff6ff; border:1px solid #bfdbfe; }
+    .calendar-cell.today { background:#3b82f6; color:white; }
+    .modal { display:none; }
   </style>
-  <div class="layout">
-    <aside class="sidebar">
-      <a href="#" class="sidebar__logo">
-        <i class="fas fa-graduation-cap"></i>
-        <span>EduNext-prep100</span>
-      </a>
-      <nav class="sidebar__menu">
-        <a href="student-dashboard.html" class="sidebar__item">
-          <i class="fas fa-home"></i> Home
+</head>
+<body class="bg-gray-50">
+  <div class="flex min-h-screen">
+    <aside class="fixed top-0 left-0 h-screen bg-white/80 backdrop-blur-lg shadow-xl w-72 flex flex-col px-4 py-6 border-r border-gray-200 overflow-y-auto z-50">
+      <div class="sticky top-0 bg-white/95 backdrop-blur-lg z-10 py-2 mb-8">
+        <a href="#" class="flex items-center gap-3">
+          <img src="/assets/images/Logo%20of%20JUANOVA%20Cortex%20Tutor.png" alt="Logo" class="h-16 w-16 object-contain rounded-full shadow-2xl border-4 border-blue-700">
+          <span class="text-3xl font-extrabold text-blue-800 tracking-tight font-serif italic drop-shadow-lg">JUANOVA CORTEX</span>
         </a>
-        <a href="ai-tutor-chatbot.html" class="sidebar__item">
-          <i class="fas fa-robot"></i> AI Tutor
-        </a>
-        <a href="study-plan.html" class="sidebar__item active">
-          <i class="fas fa-calendar-alt"></i> Study Plan
-        </a>
-        <a href="smart-note.html" class="sidebar__item">
-          <i class="fas fa-sticky-note"></i> Smart Notes
-        </a>
-        <a href="video-library.html" class="sidebar__item">
-          <i class="fas fa-video"></i> Video Library
-        </a>
-        <a href="mock-exams.html" class="sidebar__item">
-          <i class="fas fa-file-alt"></i> Mock Exams
-        </a>
-        <a href="practice-exams.html" class="sidebar__item">
-          <i class="fas fa-pencil-alt"></i> Practice Exams
-        </a>
-        <a href="notifications.html" class="sidebar__item">
-          <i class="fas fa-bell"></i> Notifications
-        </a>
-        <a href="student-live-session.html" class="sidebar__item">
-          <i class="fas fa-chalkboard-teacher"></i> Join Live Session
-        </a>
+      </div>
+      <nav class="flex flex-col gap-2 text-gray-700 font-medium">
+        <a href="student-dashboard.html" class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-blue-50 transition"><i class="fas fa-home"></i> Home</a>
+        <a href="news-feed-gemini.html" class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-blue-50 transition"><i class="fas fa-newspaper text-pink-500"></i> News Feed</a>
+        <a href="ai-tutor-chatbot.html" class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-blue-50 transition"><i class="fas fa-robot text-purple-500"></i> AI Tutor</a>
+        <a href="all-formula.html" class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-blue-50 transition"><i class="fas fa-book-open text-teal-600"></i> All Formula</a>
+        <a href="smart-note.html" class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-blue-50 transition"><i class="fas fa-sticky-note text-yellow-500"></i> Smart Notes</a>
+        <a href="study-plan.html" class="flex items-center gap-3 px-4 py-2 rounded-lg bg-blue-50 text-blue-600"><i class="fas fa-calendar-alt text-green-500"></i> Study Plan</a>
+        <a href="video-library.html" class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-blue-50 transition"><i class="fas fa-video text-red-500"></i> Video Library</a>
+        <a href="practice-exams.html" class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-blue-50 transition"><i class="fas fa-pencil-alt text-orange-500"></i> Mock Exams</a>
+        <a href="notifications.html" class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-blue-50 transition"><i class="fas fa-bell text-pink-600"></i> Notifications</a>
+        <a href="student-live-session.html" class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-blue-50 transition"><i class="fas fa-chalkboard-teacher text-blue-400"></i> Join Live Session</a>
       </nav>
     </aside>
 
-  <!-- Main Content -->
-  <div class="main-content">
-    <div class="dashboard-topbar">
-      <div class="search-container">
-        <i class="fas fa-search search-icon"></i>
-        <input type="text" id="searchInput" class="search-input" placeholder="Search plans by subject, topic, or tags..." onkeyup="filterPlans()">
-      </div>
-      <div class="user-info">
-        <div class="badge badge-primary">SS 3/WAEC</div>
-        <button class="notification-btn">
-          <i class="fas fa-bell"></i>
-          <span class="notification-badge">3</span>
-        </button>
-        <img src="https://ui-avatars.com/api/?name=Student&background=2563eb&color=fff" alt="User" class="avatar">
-      </div>
-    </div>
-    <h1 class="study-plan-title">Study Plan Page</h1>
-    <button onclick="openModal(null)" class="btn btn-margin-bottom">Create New Plan</button>
-    <!-- Calendar -->
-    <div id="calendar" class="calendar"></div>
-    <button onclick="openModal(null)" class="btn btn-margin-bottom">Create New Plan</button>
-    <div id="plansGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"></div>
-  </div>
-
-  <!-- Modal for Creating/Editing Plans -->
-  <div id="planModal" class="modal">
-    <div class="modal-content">
-      <h2 id="modalTitle" class="text-xl font-bold mb-4"></h2>
-      <div>
-        <input type="text" id="planSubject" placeholder="Subject" class="form-input" required>
-        <input type="text" id="planTopic" placeholder="Topic" class="form-input" required>
-        <input type="date" id="planDate" class="form-input" required>
-        <input type="time" id="planTime" class="form-input" required>
-        <input type="number" id="planDuration" placeholder="Duration (minutes)" class="form-input" min="1" required>
-        <input type="text" id="planTags" placeholder="Tags (comma-separated)" class="form-input">
-        <select id="planReminder" class="form-select">
-          <option value="none">No Reminder</option>
-          <option value="15">15 Minutes Before</option>
-          <option value="30">30 Minutes Before</option>
-          <option value="60">1 Hour Before</option>
-        </select>
-        <div class="flex-row gap-sm mt-lg">
-          <button onclick="savePlan()" class="btn">Save</button>
-          <button onclick="closeModal()" class="btn cancel">Cancel</button>
+    <main class="flex-1 p-8 ml-72">
+      <div class="flex items-center justify-between mb-6">
+        <div class="flex-1 max-w-xl relative">
+          <i class="fas fa-search absolute left-4 top-1/2 -translate-y-1/2 text-gray-400"></i>
+          <input id="searchInput" aria-label="Search plans" type="text" class="w-full pl-12 pr-4 py-3 rounded-full border-2 border-gray-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-100 bg-white" placeholder="Search plans by subject, topic, or tags...">
+        </div>
+        <div class="flex items-center gap-4">
+          <span class="bg-blue-100 text-blue-700 px-4 py-1 rounded-full font-semibold text-sm">SS 3/WAEC</span>
+          <button class="p-2 rounded-full hover:bg-blue-100 transition" aria-label="Notifications" title="Notifications"><i class="fas fa-bell"></i></button>
+          <img src="https://ui-avatars.com/api/?name=Student&background=2563eb&color=fff" alt="User" class="h-10 w-10 rounded-full border-2 border-blue-500">
         </div>
       </div>
-    </div>
+
+      <div class="rounded-3xl bg-gradient-to-r from-blue-600 to-blue-400 text-white p-6 shadow mb-6 flex items-center justify-between">
+        <div>
+          <h1 class="text-2xl font-extrabold">Study Plan</h1>
+          <p class="text-blue-100 mt-1">Create and manage study plans to stay organized.</p>
+        </div>
+        <div>
+          <button id="createPlanBtn" class="bg-white text-blue-600 px-4 py-2 rounded-full font-semibold">Create Plan</button>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        <div class="lg:col-span-2">
+          <div class="mb-4">
+            <div class="flex items-center justify-between mb-2">
+              <h2 class="font-semibold text-lg">Calendar</h2>
+              <div class="flex gap-2">
+                <button id="prevMonth" class="px-3 py-1 rounded bg-white border" aria-label="Previous month"><i class="fas fa-chevron-left"></i></button>
+                <button id="nextMonth" class="px-3 py-1 rounded bg-white border" aria-label="Next month"><i class="fas fa-chevron-right"></i></button>
+              </div>
+            </div>
+            <div id="calendar" class="calendar bg-white p-4 rounded-lg shadow"></div>
+          </div>
+
+          <div>
+            <h2 class="font-semibold text-lg mb-3">Plans</h2>
+            <div id="plansGrid" class="grid grid-cols-1 md:grid-cols-2 gap-4"></div>
+          </div>
+        </div>
+
+        <aside class="bg-white p-4 rounded-lg shadow h-fit">
+          <h3 class="font-semibold mb-2">Quick Actions</h3>
+          <div class="flex flex-col gap-2">
+            <button id="importBtn" class="px-3 py-2 bg-gray-100 rounded">Import from file</button>
+            <button id="exportBtn" class="px-3 py-2 bg-gray-100 rounded">Export plans</button>
+          </div>
+        </aside>
+      </div>
+
+      <!-- Modal -->
+      <div id="planModal" class="modal fixed inset-0 bg-black/40 items-center justify-center z-50">
+        <div class="modal-content bg-white rounded-2xl p-6 max-w-md w-full">
+          <div class="flex justify-between items-center mb-4">
+            <h3 id="modalTitle" class="text-lg font-semibold">Create Plan</h3>
+            <button id="closeModalBtn" aria-label="Close" title="Close">&times;</button>
+          </div>
+          <form id="planForm" class="space-y-3">
+            <div>
+              <label for="planSubject" class="block text-sm font-medium text-gray-700">Subject</label>
+              <input id="planSubject" name="subject" required class="mt-1 block w-full border rounded px-3 py-2" placeholder="e.g. Mathematics">
+            </div>
+            <div>
+              <label for="planTopic" class="block text-sm font-medium text-gray-700">Topic</label>
+              <input id="planTopic" name="topic" required class="mt-1 block w-full border rounded px-3 py-2" placeholder="e.g. Algebra - Polynomials">
+            </div>
+            <div class="grid grid-cols-2 gap-3">
+              <div>
+                <label for="planDate" class="block text-sm font-medium text-gray-700">Date</label>
+                <input id="planDate" type="date" name="date" required class="mt-1 block w-full border rounded px-3 py-2" title="Date">
+              </div>
+              <div>
+                <label for="planTime" class="block text-sm font-medium text-gray-700">Time</label>
+                <input id="planTime" type="time" name="time" required class="mt-1 block w-full border rounded px-3 py-2" title="Time">
+              </div>
+            </div>
+            <div class="grid grid-cols-2 gap-3">
+              <div>
+                <label for="planDuration" class="block text-sm font-medium text-gray-700">Duration (min)</label>
+                <input id="planDuration" type="number" min="1" value="60" class="mt-1 block w-full border rounded px-3 py-2">
+              </div>
+              <div>
+                <label for="planReminder" class="block text-sm font-medium text-gray-700">Reminder</label>
+                <select id="planReminder" class="mt-1 block w-full border rounded px-3 py-2" title="Reminder">
+                  <option value="none">None</option>
+                  <option value="5">5 minutes before</option>
+                  <option value="15">15 minutes before</option>
+                  <option value="30">30 minutes before</option>
+                </select>
+              </div>
+            </div>
+
+            <div>
+              <label for="planTags" class="block text-sm font-medium text-gray-700">Tags (comma separated)</label>
+              <input id="planTags" class="mt-1 block w-full border rounded px-3 py-2" placeholder="e.g. math,algebra">
+            </div>
+
+            <div class="flex justify-end gap-2">
+              <button type="button" id="cancelBtn" class="px-4 py-2 rounded bg-gray-100" onclick="closeModal()">Cancel</button>
+              <button type="submit" class="px-4 py-2 rounded bg-blue-600 text-white">Save</button>
+            </div>
+          </form>
+        </div>
+      </div>
+
+    </main>
   </div>
 
   <script>
-    let plans = [
-      { id: 1, subject: "Math", topic: "Algebra", date: "2025-08-01", time: "10:00", duration: 60, tags: ["math"], reminder: "15", progress: 0 },
-      { id: 2, subject: "History", topic: "World War II", date: "2025-08-02", time: "14:00", duration: 90, tags: ["history"], reminder: "30", progress: 0 }
-    ];
+    // lightweight study-plan controller
+    let plans = JSON.parse(localStorage.getItem('plans') || '[]');
     let editingPlanId = null;
-    let currentMonth = new Date().getMonth();
-    let currentYear = new Date().getFullYear();
+    let currentDate = new Date();
 
-    function renderCalendar() {
+    function saveState(){ localStorage.setItem('plans', JSON.stringify(plans)); }
+
+    function renderCalendar(){
       const calendar = document.getElementById('calendar');
-      calendar.innerHTML = `
-        <div class="calendar-header">
-          <button class="calendar-nav-btn" onclick="prevMonth()"><i class="fas fa-chevron-left"></i></button>
-          <span class="calendar-title">${new Date(currentYear, currentMonth).toLocaleString('default', { month: 'long', year: 'numeric' })}</span>
-          <button class="calendar-nav-btn" onclick="nextMonth()"><i class="fas fa-chevron-right"></i></button>
-        </div>
-        <div class="calendar-weekday">Sun</div>
-        <div class="calendar-weekday">Mon</div>
-        <div class="calendar-weekday">Tue</div>
-        <div class="calendar-weekday">Wed</div>
-        <div class="calendar-weekday">Thu</div>
-        <div class="calendar-weekday">Fri</div>
-        <div class="calendar-weekday">Sat</div>
-      `;
-      const firstDay = new Date(currentYear, currentMonth, 1).getDay();
-      const daysInMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
-      for (let i = 0; i < firstDay; i++) {
-        calendar.innerHTML += `<div class="calendar-cell"></div>`;
-      }
-      for (let day = 1; day <= daysInMonth; day++) {
-        const dateStr = `${currentYear}-${String(currentMonth + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
-        const hasPlan = plans.some(plan => plan.date === dateStr);
-        const today = new Date();
-        const isToday = today.getDate() === day && today.getMonth() === currentMonth && today.getFullYear() === currentYear;
-        calendar.innerHTML += `<div class="calendar-cell ${hasPlan ? 'event' : ''} ${isToday ? 'today' : ''}" onclick="filterByDate('${dateStr}')">${day}</div>`;
+      calendar.innerHTML = '';
+      const firstDay = new Date(currentDate.getFullYear(), currentDate.getMonth(), 1).getDay();
+      const daysInMonth = new Date(currentDate.getFullYear(), currentDate.getMonth()+1, 0).getDate();
+      // week headers
+      ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'].forEach(d=>{ const el = document.createElement('div'); el.className='text-center font-medium text-sm'; el.textContent=d; calendar.appendChild(el); });
+      // empty slots
+      for(let i=0;i<firstDay;i++){ const cell=document.createElement('div'); calendar.appendChild(cell); }
+      for(let day=1; day<=daysInMonth; day++){
+        const dateStr = `${currentDate.getFullYear()}-${String(currentDate.getMonth()+1).padStart(2,'0')}-${String(day).padStart(2,'0')}`;
+        const has = plans.some(p=>p.date===dateStr);
+        const cell = document.createElement('div');
+        cell.className = 'calendar-cell '+(has? 'event':'');
+        if(new Date().toDateString() === new Date(currentDate.getFullYear(), currentDate.getMonth(), day).toDateString()) cell.classList.add('today');
+        cell.textContent = day;
+        cell.addEventListener('click', ()=>{ filterByDate(dateStr); });
+        calendar.appendChild(cell);
       }
     }
 
-    function prevMonth() {
-      currentMonth--;
-      if (currentMonth < 0) {
-        currentMonth = 11;
-        currentYear--;
-      }
-      renderCalendar();
-    }
-
-    function nextMonth() {
-      currentMonth++;
-      if (currentMonth > 11) {
-        currentMonth = 0;
-        currentYear++;
-      }
-      renderCalendar();
-    }
-
-    function filterByDate(date) {
-      document.getElementById('searchInput').value = '';
-      renderPlans('', date);
-    }
-
-    function renderPlans(filter = '', selectedDate = null) {
-      const grid = document.getElementById('plansGrid');
-      grid.innerHTML = '';
-      plans.filter(plan => 
-        (!selectedDate || plan.date === selectedDate) &&
-        (plan.subject.toLowerCase().includes(filter.toLowerCase()) ||
-         plan.topic.toLowerCase().includes(filter.toLowerCase()) ||
-         plan.tags.some(tag => tag.toLowerCase().includes(filter.toLowerCase())))
-      ).forEach(plan => {
-        grid.innerHTML += `
-          <div class="plan-card">
-            <h3 class="text-lg font-semibold">${plan.subject}: ${plan.topic}</h3>
-            <p class="text-gray-600">Date: ${plan.date} at ${plan.time}</p>
-            <p class="text-gray-600">Duration: ${plan.duration} min</p>
-            <p class="text-gray-600">Reminder: ${plan.reminder === 'none' ? 'None' : `${plan.reminder} min before`}</p>
-            <p class="text-gray-600">Progress: ${plan.progress}%</p>
-            <div class="action-buttons">
-              <button onclick="updateProgress(${plan.id}, ${plan.progress + 10})" class="btn btn-warning">
-                <i class="fas fa-chart-line"></i> Update Progress
-              </button>
-              <button onclick="openModal(${plan.id})" class="btn btn-secondary">
-                <i class="fas fa-edit"></i> Edit
-              </button>
-              <button onclick="deletePlan(${plan.id})" class="btn btn-danger">
-                <i class="fas fa-trash"></i> Delete
-              </button>
-              <button onclick="sharePlan(${plan.id})" class="btn btn-success">
-                <i class="fas fa-share"></i> Share
-              </button>
-            </div>
-          </div>
-        `;
+    function renderPlans(filter='', selectedDate=null){
+      const grid = document.getElementById('plansGrid'); grid.innerHTML='';
+      const list = plans.filter(plan=>{
+        if(selectedDate && plan.date!==selectedDate) return false;
+        if(!filter) return true;
+        const f = filter.toLowerCase();
+        return plan.subject.toLowerCase().includes(f) || plan.topic.toLowerCase().includes(f) || (plan.tags || []).join(',').toLowerCase().includes(f);
+      });
+      if(!list.length) grid.innerHTML = '<div class="text-gray-500">No plans found</div>';
+      list.forEach(plan=>{
+        const div = document.createElement('div'); div.className='plan-card';
+        div.innerHTML = `<h3 class="font-semibold">${plan.subject}: ${plan.topic}</h3>
+          <div class="text-sm text-gray-600">${plan.date} • ${plan.time} • ${plan.duration} min</div>
+          <div class="mt-3 flex gap-2 justify-end">
+            <button class="px-3 py-1 rounded bg-gray-100" onclick="editPlan(${plan.id})">Edit</button>
+            <button class="px-3 py-1 rounded bg-red-500 text-white" onclick="deletePlan(${plan.id})">Delete</button>
+          </div>`;
+        grid.appendChild(div);
       });
     }
 
-    function filterPlans() {
-      const val = document.getElementById('searchInput').value;
-      renderPlans(val);
-    }
+    function filterByDate(date){ document.getElementById('searchInput').value=''; renderPlans('', date); }
+    document.getElementById('searchInput').addEventListener('input', e=> renderPlans(e.target.value));
 
-    function updateProgress(id, newProgress) {
-      plans = plans.map(plan => 
-        plan.id === id ? { ...plan, progress: Math.min(newProgress, 100) } : plan
-      );
-      renderPlans();
-    }
+    document.getElementById('prevMonth').addEventListener('click', ()=>{ currentDate.setMonth(currentDate.getMonth()-1); renderCalendar(); });
+    document.getElementById('nextMonth').addEventListener('click', ()=>{ currentDate.setMonth(currentDate.getMonth()+1); renderCalendar(); });
 
-    function openModal(planId) {
-      const modal = document.getElementById('planModal');
-      const subjectInput = document.getElementById('planSubject');
-      const topicInput = document.getElementById('planTopic');
-      const dateInput = document.getElementById('planDate');
-      const timeInput = document.getElementById('planTime');
-      const durationInput = document.getElementById('planDuration');
-      const tagsInput = document.getElementById('planTags');
-      const reminderInput = document.getElementById('planReminder');
-      const modalTitle = document.getElementById('modalTitle');
+    function openModal(){ document.getElementById('planModal').style.display='flex'; }
+    function closeModal(){ document.getElementById('planModal').style.display='none'; editingPlanId=null; document.getElementById('planForm').reset(); }
 
-      if (planId) {
-        const plan = plans.find(p => p.id === planId);
-        subjectInput.value = plan.subject;
-        topicInput.value = plan.topic;
-        dateInput.value = plan.date;
-        timeInput.value = plan.time;
-        durationInput.value = plan.duration;
-        tagsInput.value = plan.tags.join(", ");
-        reminderInput.value = plan.reminder;
-        modalTitle.textContent = "Edit Plan";
-        editingPlanId = planId;
-      } else {
-        subjectInput.value = "";
-        topicInput.value = "";
-        dateInput.value = "";
-        timeInput.value = "";
-        durationInput.value = "";
-        tagsInput.value = "";
-        reminderInput.value = "none";
-        modalTitle.textContent = "Create New Plan";
-        editingPlanId = null;
-      }
-      modal.style.display = "flex";
-    }
+    document.getElementById('createPlanBtn').addEventListener('click', ()=>{ editingPlanId=null; document.getElementById('modalTitle').textContent='Create Plan'; openModal(); });
+    document.getElementById('closeModalBtn').addEventListener('click', closeModal);
 
-    function closeModal() {
-      document.getElementById('planModal').style.display = "none";
-      editingPlanId = null;
-    }
+    function editPlan(id){ const p = plans.find(x=>x.id===id); if(!p) return; editingPlanId = id; document.getElementById('modalTitle').textContent='Edit Plan'; document.getElementById('planSubject').value=p.subject; document.getElementById('planTopic').value=p.topic; document.getElementById('planDate').value=p.date; document.getElementById('planTime').value=p.time; document.getElementById('planDuration').value=p.duration; document.getElementById('planReminder').value=p.reminder||'none'; document.getElementById('planTags').value=(p.tags||[]).join(','); openModal(); }
 
-    function savePlan() {
-      const subject = document.getElementById('planSubject').value;
-      const topic = document.getElementById('planTopic').value;
+    document.getElementById('planForm').addEventListener('submit', function(e){
+      e.preventDefault();
+      const subject = document.getElementById('planSubject').value.trim();
+      const topic = document.getElementById('planTopic').value.trim();
       const date = document.getElementById('planDate').value;
       const time = document.getElementById('planTime').value;
-      const duration = document.getElementById('planDuration').value;
-      const tags = document.getElementById('planTags').value.split(",").map(tag => tag.trim());
+      const duration = parseInt(document.getElementById('planDuration').value) || 60;
       const reminder = document.getElementById('planReminder').value;
+      const tags = document.getElementById('planTags').value.split(',').map(t=>t.trim()).filter(Boolean);
+      if(!subject||!topic||!date) { alert('Please fill required fields'); return; }
+      if(editingPlanId){ plans = plans.map(p=> p.id===editingPlanId ? {...p, subject, topic, date, time, duration, reminder, tags} : p ); }
+      else { plans.push({ id: Date.now(), subject, topic, date, time, duration, reminder, tags }); }
+      saveState(); closeModal(); renderCalendar(); renderPlans();
+    });
 
-      if (!subject || !topic || !date || !time || !duration) {
-        alert("All required fields must be filled!");
-        return;
-      }
+    function deletePlan(id){ if(!confirm('Delete this plan?')) return; plans = plans.filter(p=>p.id!==id); saveState(); renderCalendar(); renderPlans(); }
 
-      if (editingPlanId) {
-        plans = plans.map(plan => 
-          plan.id === editingPlanId ? { ...plan, subject, topic, date, time, duration: parseInt(duration), tags, reminder, progress: plan.progress } : plan
-        );
-      } else {
-        const newPlan = { id: Date.now(), subject, topic, date, time, duration: parseInt(duration), tags, reminder, progress: 0 };
-        plans.push(newPlan);
-      }
-      closeModal();
-      renderPlans();
-      renderCalendar();
-    }
+    // import/export (basic)
+    document.getElementById('exportBtn').addEventListener('click', ()=>{ const blob = new Blob([JSON.stringify(plans, null, 2)], {type:'application/json'}); const url = URL.createObjectURL(blob); const a=document.createElement('a'); a.href=url; a.download='plans.json'; a.click(); URL.revokeObjectURL(url); });
+    document.getElementById('importBtn').addEventListener('click', ()=>{ alert('Import available in future updates.'); });
 
-    function deletePlan(id) {
-      if (confirm("Are you sure you want to delete this plan?")) {
-        plans = plans.filter(plan => plan.id !== id);
-        renderPlans();
-        renderCalendar();
-      }
-    }
+    // initial demo data if empty
+    if(!plans.length){ plans = [ {id:1, subject:'Mathematics', topic:'Algebra', date:new Date().toISOString().slice(0,10), time:'10:00', duration:60, reminder:'15', tags:['math']} ]; saveState(); }
 
-    function sharePlan(id) {
-      const shareLink = `${window.location.origin}/plan/${id}`;
-      alert(`Share this link: ${shareLink}`);
-    }
-
-    // Initial render
-    renderCalendar();
-    renderPlans();
+    // boot
+    renderCalendar(); renderPlans();
   </script>
 </body>
 </html>

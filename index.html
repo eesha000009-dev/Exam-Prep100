@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="/assets/images/Logo of JUANOVA Cortex Tutor.png" />
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>JUANOVA CORTEX - AI-Powered Learning Platform for WAEC & JAMB Success</title>
@@ -12,6 +14,8 @@
   <link rel="stylesheet" href="general/modernized.css">
   <link rel="stylesheet" href="style.css">
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+      <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="assets\images\Logo of JUANOVA Cortex Tutor.png" />
   <script>
     tailwind.config = {
       theme: {
@@ -677,7 +681,8 @@
     }
 
     .footer-bottom {
-      border-top: 1px solid #2d3748;
+      /* lighter, subtle divider on dark footer for better contrast */
+      border-top: 1px solid rgba(255,255,255,0.06);
       margin-top: 2rem;
       padding-top: 2rem;
       text-align: center;
@@ -1242,22 +1247,27 @@
         <!-- First set of announcements -->
         <div class="announcement-item">
           <i class="fas fa-graduation-cap"></i>
-          <span>🎓 WAEC/JAMB 2026 Prep Course - Get Early Access!</span>
-          <a href="#" class="announcement-link">Join Waitlist</a>
+          <span> 100% Free WAEC/JAMB 2026 Prep Course - Start Learning Today!</span>
+          <a href="#" class="announcement-link">Join Free</a>
         </div>
         <div class="announcement-item">
-          <i class="fas fa-gift"></i>
-          <span>🎉 Special Launch Offer - First 1000 Students Get 50% Off</span>
-          <a href="#" class="announcement-link">Claim Now</a>
+          <i class="fas fa-bolt"></i>
+          <span>AI-Powered Study Assistant - Free Acess for All Students<span>
+          <a href="#" class="announcement-link">Try Now</a>
         </div>
         <div class="announcement-item">
-          <i class="fas fa-medal"></i>
-          <span>🏆 Achieve A1 in Mathematics - Join Our Masterclass</span>
-          <a href="#" class="announcement-link">Register Free</a>
+          <i class="fas fa-lock-open"></i>
+          <span>No Fees . No Hidden Costs . Always Free </span>
+          <a href="#" class="announcement-link">Learn More</a>
         </div>
         <div class="announcement-item">
-          <i class="fas fa-robot"></i>
-          <span>🤖 Try Our New AI Study Assistant - Beta Access</span>
+          <i class="fas fa-book"></i>
+          <span>Master WAEC/JAMB with Free Lesseons, Mock Tests & Live Sessions</span>
+          <a href="#" class="announcement-link">Explore</a>
+        </div>
+          <div class="announcement-item">
+          <i class="fas fa-users"></i>
+          <span>Join Thounsands of Students Learning for Free Today</span>
           <a href="#" class="announcement-link">Get Started</a>
         </div>
       </div>
@@ -1640,7 +1650,7 @@
         <ul>
           <li>
             <i class="fas fa-envelope"></i>
-            <a href="mailto:juat@edunext.com">support@edunext.com</a>
+            <a href="mailto:juanovacortex@edtech.com">juanovacortex@edtech.com</a>
           </li>
           <li>
             <i class="fas fa-phone"></i>
@@ -1655,6 +1665,17 @@
     </div>
 
     <div class="footer-bottom">
+      <!-- Support Us Section -->
+      <div class="support-us">
+        <p class="text-sm text-gray-200">
+          <span class="font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-indigo-600 via-blue-600 to-cyan-500">JUANOVA CORTEX</span>
+          <span class="ml-2">is</span>
+          <span class="ml-2 font-semibold text-blue-600">100% free</span>
+          <span class="ml-2 text-gray-100">for students.</span>
+          <span class="hidden sm:inline ml-2">Want to help us keep it free?</span>
+          <a href="support.html" class="ml-3 inline-block px-3 py-1 rounded-full bg-blue-600 text-white text-sm font-semibold hover:bg-blue-700 transition">Support Us</a>
+        </p>
+      </div>
       <p>&copy; 2025 JUANOVA CORTEX. All rights reserved.</p>
       <div class="footer-links">
         <a href="#">Privacy Policy</a>
@@ -1839,6 +1860,21 @@
       }
     };
   </script>
+  // Profile dropdown toggle for 'View Profile Details' button
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const toggle = document.querySelector('.dropdown-toggle');
+      const content = document.querySelector('.profile-content');
+      if (toggle && content) {
+        toggle.addEventListener('click', (e) => {
+          e.preventDefault();
+          content.classList.toggle('show');
+          toggle.classList.toggle('active');
+        });
+      }
+    });
+  </script>
+
   <!-- Initialize Firebase configuration -->
   <script src="./js/firebase-config.js"></script>
 </body>

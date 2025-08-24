@@ -1,526 +1,272 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Student Live Session</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Live Sessions — Prep100</title>
+  <link rel="icon" type="image/png" href="/assets/images/Logo of JUANOVA Cortex Tutor.png" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-  <link rel="stylesheet" href="../general/modernized.css">
-      <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
   <style>
-    .sessions-container {
-      margin: 0 auto;
-      max-width: 1200px;
-      min-height: 100vh;
-      background: var(--bg-light);
-      display: flex;
-      flex-direction: column;
-      align-items: stretch;
-      padding: var(--spacing-xl) 0;
-    }
-
-    .tab-bar {
-      display: flex;
-      border-bottom: 1px solid var(--border-color);
-      background: var(--bg-white);
-      margin-bottom: var(--spacing-md);
-      border-radius: var(--radius-lg) var(--radius-lg) 0 0;
-      box-shadow: var(--shadow-sm);
-    }
-
-    .tab-btn {
-      flex: 1;
-      padding: var(--spacing-md) var(--spacing-lg);
-      font-size: 1.1rem;
-      background: none;
-      border: none;
-      border-bottom: 2px solid transparent;
-      color: var(--text-primary);
-      cursor: pointer;
-      transition: all var(--transition-base);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: var(--spacing-sm);
-    }
-
-    .tab-btn i {
-      font-size: 1.2rem;
-    }
-
-    .tab-btn:hover {
-      background: var(--bg-hover);
-    }
-
-    .tab-btn.active {
-      border-bottom: 2px solid var(--primary);
-      color: var(--primary);
-      background: var(--bg-active);
-    }
-
-    .tab-content {
-      flex: 1;
-      background: var(--bg-white);
-      border-radius: 0 0 var(--radius-lg) var(--radius-lg);
-      box-shadow: var(--shadow-sm);
-      overflow: auto;
-      padding: var(--spacing-lg);
-    }
-
-    .tab-pane {
-      display: none;
-    }
-
-    .tab-pane.active {
-      display: block;
-    }
-
-    .session-card {
-      background: var(--bg-white);
-      border-radius: var(--radius-lg);
-      padding: var(--spacing-lg);
-      margin-bottom: var(--spacing-md);
-      box-shadow: var(--shadow-sm);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      transition: transform var(--transition-base);
-      cursor: pointer;
-    }
-
-    .session-card:hover {
-      transform: translateY(-2px);
-      box-shadow: var(--shadow-md);
-    }
-
-    .session-card__info {
-      display: flex;
-      flex-direction: column;
-      gap: var(--spacing-sm);
-    }
-
-    .session-card__title {
-      font-size: 1.1rem;
-      font-weight: 600;
-      color: var(--text-primary);
-    }
-
-    .session-card__details {
-      display: flex;
-      gap: var(--spacing-md);
-      color: var(--text-secondary);
-      font-size: 0.9rem;
-    }
-
-    .session-card__status {
-      display: flex;
-      align-items: center;
-      gap: var(--spacing-sm);
-    }
-
-    .session-card__status--live {
-      color: var(--success);
-    }
-
-    .session-card__status--upcoming {
-      color: var(--warning);
-    }
-
-    .subjects-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-      gap: var(--spacing-lg);
-    }
-
-    .subject-card {
-      background: var(--bg-white);
-      border-radius: var(--radius-lg);
-      padding: var(--spacing-lg);
-      text-align: center;
-      box-shadow: var(--shadow-sm);
-      transition: transform var(--transition-base);
-      cursor: pointer;
-    }
-
-    .subject-card:hover {
-      transform: translateY(-2px);
-      box-shadow: var(--shadow-md);
-    }
-
-    .subject-card i {
-      font-size: 2rem;
-      color: var(--primary);
-      margin-bottom: var(--spacing-md);
-    }
-
-    .subject-card h3 {
-      margin-bottom: var(--spacing-sm);
-      color: var(--text-primary);
-    }
-
-    .subject-card p {
-      color: var(--text-secondary);
-      font-size: 0.9rem;
-    }
-
-    .modal {
-      display: none;
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: rgba(0, 0, 0, 0.5);
-      z-index: 1000;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .modal.active {
-      display: flex;
-    }
-
-    .modal-content {
-      background: linear-gradient(135deg, #f8fafc 60%, #e0e7ff 100%);
-      border-radius: var(--radius-xl);
-      padding: 2.5rem 2rem 2rem 2rem;
-      max-width: 420px;
-      width: 95%;
-      position: relative;
-      box-shadow: 0 8px 32px 0 rgba(60, 72, 88, 0.18), 0 1.5px 6px 0 rgba(60, 72, 88, 0.10);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      animation: modalPopIn 0.25s cubic-bezier(.4,1.7,.7,1) 1;
-    }
-
-    @keyframes modalPopIn {
-      0% { transform: scale(0.85) translateY(40px); opacity: 0; }
-      100% { transform: scale(1) translateY(0); opacity: 1; }
-    }
-
-    .modal-content h3 {
-      font-size: 1.5rem;
-      font-weight: 700;
-      color: var(--primary);
-      margin-bottom: 1.5rem;
-      text-align: center;
-      letter-spacing: 0.01em;
-    }
-
-    .modal-content .modal-actions {
-      display: flex;
-      gap: 1.2rem;
-      justify-content: center;
-      margin-top: 1.5rem;
-      width: 100%;
-    }
-
-    .modal-content .filter-btn {
-      flex: 1 1 0;
-      font-size: 1.08rem;
-      padding: 0.85rem 0;
-      border-radius: var(--radius-lg);
-      font-weight: 600;
-      box-shadow: 0 1px 4px 0 rgba(60, 72, 88, 0.07);
-      transition: background 0.18s, color 0.18s, box-shadow 0.18s;
-    }
-
-    .modal-content .filter-btn.active {
-      background: var(--primary);
-      color: var(--text-white);
-      border-color: var(--primary);
-      box-shadow: 0 2px 8px 0 rgba(60, 72, 88, 0.13);
-    }
-
-    .modal-content .filter-btn:not(.active) {
-      background: var(--bg-light);
-      color: var(--primary);
-      border-color: var(--primary);
-    }
-
-    .modal-close {
-      position: absolute;
-      top: 1.1rem;
-      right: 1.1rem;
-      background: none;
-      border: none;
-      font-size: 1.6rem;
-      cursor: pointer;
-      color: var(--text-secondary);
-      opacity: 0.7;
-      transition: opacity 0.18s;
-    }
-    .modal-close:hover {
-      opacity: 1;
-      color: var(--primary);
-    }
-
-    .filter-bar {
-      display: flex;
-      gap: var(--spacing-md);
-      margin-bottom: var(--spacing-lg);
-      flex-wrap: wrap;
-    }
-
-    .filter-btn {
-      padding: var(--spacing-sm) var(--spacing-md);
-      border-radius: var(--radius-md);
-      border: 1px solid var(--border-color);
-      background: var(--bg-white);
-      color: var(--text-secondary);
-      cursor: pointer;
-      transition: all var(--transition-base);
-    }
-
-    .filter-btn.active {
-      background: var(--primary);
-      color: var(--text-white);
-      border-color: var(--primary);
-    }
+    /* Polished, small scoped styles */
+    .tab-btn[aria-pressed="true"]{ box-shadow: 0 6px 20px rgba(59,130,246,0.12); }
+    .card-hover:hover{ transform: translateY(-4px); box-shadow: 0 12px 30px rgba(2,6,23,0.08); }
+    .slide-over { transform: translateX(100%); transition: transform .28s ease; }
+    .slide-over.open { transform: translateX(0%); }
+    .countdown { font-variant-numeric: tabular-nums; }
+    .mini-player { position: fixed; right: 20px; bottom: 20px; width: 320px; max-width: calc(100% - 40px); border-radius: 12px; box-shadow: 0 10px 30px rgba(2,6,23,0.15); }
   </style>
 </head>
-<body>
-  <div class="layout">
-    <aside class="sidebar">
-      <a href="#" class="sidebar__logo">
-        <i class="fas fa-graduation-cap"></i>
-        <span>EduNext-prep100</span>
-      </a>
-      <nav class="sidebar__menu">
-        <a href="student-dashboard.html" class="sidebar__item"><i class="fas fa-home"></i> Home</a>
-        <a href="ai-tutor-chatbot.html" class="sidebar__item"><i class="fas fa-robot"></i> AI Tutor</a>
-        <a href="study-plan.html" class="sidebar__item"><i class="fas fa-calendar-alt"></i> Study Plan</a>
-        <a href="smart-note.html" class="sidebar__item"><i class="fas fa-sticky-note"></i> Smart Notes</a>
-        <a href="video-library.html" class="sidebar__item"><i class="fas fa-video"></i> Video Library</a>
-        <a href="mock-exams.html" class="sidebar__item"><i class="fas fa-file-alt"></i> Mock Exams</a>
-        <a href="practice-exams.html" class="sidebar__item"><i class="fas fa-pencil-alt"></i> Practice Exams</a>
-        <a href="notifications.html" class="sidebar__item"><i class="fas fa-bell"></i> Notifications</a>
-        <a href="student-live-session.html" class="sidebar__item active"><i class="fas fa-chalkboard-teacher"></i> Join Live Session</a>
+<body class="bg-gray-50 text-gray-800">
+  <div class="flex min-h-screen">
+    <aside class="fixed top-0 left-0 h-screen bg-white/80 backdrop-blur-lg shadow-xl w-72 flex flex-col px-4 py-6 border-r border-gray-200 overflow-y-auto z-50">
+      <div class="sticky top-0 bg-white/95 backdrop-blur-lg z-10 py-2 mb-8">
+        <a href="#" class="flex items-center gap-3">
+          <img src="/assets/images/Logo%20of%20JUANOVA%20Cortex%20Tutor.png" alt="Logo" class="h-16 w-16 object-contain rounded-full shadow-2xl border-4 border-blue-700">
+          <span class="text-3xl font-extrabold text-blue-800 tracking-tight font-serif italic drop-shadow-lg">JUANOVA CORTEX</span>
+        </a>
+      </div>
+      <nav class="flex flex-col gap-2 text-gray-700 font-medium" aria-label="Main navigation">
+        <a href="student-dashboard.html" class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-blue-50 transition"><i class="fas fa-home"></i> Home</a>
+        <a href="news-feed-gemini.html" class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-blue-50 transition"><i class="fas fa-newspaper text-pink-500"></i> News Feed</a>
+        <a href="ai-tutor-chatbot.html" class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-blue-50 transition"><i class="fas fa-robot text-purple-500"></i> AI Tutor</a>
+        <a href="all-formula.html" class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-blue-50 transition"><i class="fas fa-book-open text-teal-600"></i> All Formula</a>
+        <a href="smart-note.html" class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-blue-50 transition"><i class="fas fa-sticky-note text-yellow-500"></i> Smart Notes</a>
+        <a href="study-plan.html" class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-blue-50 transition"><i class="fas fa-calendar-alt text-green-500"></i> Study Plan</a>
+        <a href="video-library.html" class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-blue-50 transition"><i class="fas fa-video text-red-500"></i> Video Library</a>
+        <a href="practice-exams.html" class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-blue-50 transition"><i class="fas fa-pencil-alt text-orange-500"></i> Mock Exams</a>
+        <a href="notifications.html" class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-blue-50 transition"><i class="fas fa-bell text-pink-600"></i> Notifications</a>
+        <a href="student-live-session.html" class="flex items-center gap-3 px-4 py-2 rounded-lg bg-blue-50 text-blue-600" aria-current="page"><i class="fas fa-chalkboard-teacher text-blue-400"></i> Live Sessions</a>
       </nav>
     </aside>
-    <main class="main-content">
-      <div class="sessions-container">
-          <div class="tab-bar">
-          <button id="tab-subjects" class="tab-btn active">
-            <i class="fas fa-book"></i>
-            Subjects
-          </button>
-          <button id="tab-recents" class="tab-btn">
-            <i class="fas fa-history"></i>
-            Recents
-          </button>
-          <button id="tab-upcoming" class="tab-btn">
-            <i class="fas fa-calendar"></i>
-            Upcoming
-          </button>
+
+    <main class="flex-1 p-8 ml-72">
+      <div class="flex items-center justify-between mb-6">
+        <div class="flex-1 max-w-xl relative">
+          <i class="fas fa-search absolute left-4 top-1/2 -translate-y-1/2 text-gray-400"></i>
+          <input id="globalSearch" type="search" class="w-full pl-12 pr-4 py-3 rounded-full border-2 border-gray-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-100 bg-white" placeholder="Search sessions, teachers or topics..." aria-label="Search sessions">
         </div>
-        
-        <div class="tab-content">
-          <div id="tab-content-subjects" class="tab-pane active">
-            <div class="subjects-grid">
-              <div class="subject-card" onclick="openSessionModal('physics')">
-                <i class="fas fa-atom"></i>
-                <h3>Physics</h3>
-                <p>Live Session Available</p>
-              </div>
-              <div class="subject-card" onclick="openSessionModal('chemistry')">
-                <i class="fas fa-flask"></i>
-                <h3>Chemistry</h3>
-                <p>Live Session Available</p>
-              </div>
-              <div class="subject-card" onclick="openSessionModal('mathematics')">
-                <i class="fas fa-calculator"></i>
-                <h3>Mathematics</h3>
-                <p>Live Session Available</p>
-              </div>
-              <div class="subject-card" onclick="openSessionModal('biology')">
-                <i class="fas fa-dna"></i>
-                <h3>Biology</h3>
-                <p>Live Session Available</p>
-              </div>
-              <div class="subject-card" onclick="openSessionModal('english')">
-                <i class="fas fa-book"></i>
-                <h3>English</h3>
-                <p>Live Session Available</p>
-              </div>
-              <div class="subject-card" onclick="openSessionModal('economics')">
-                <i class="fas fa-chart-line"></i>
-                <h3>Economics</h3>
-                <p>Live Session Available</p>
-              </div>
-              <div class="subject-card" onclick="openSessionModal('accounting')">
-                <i class="fas fa-balance-scale"></i>
-                <h3>Accounting</h3>
-                <p>Live Session Available</p>
-              </div>
-              <div class="subject-card" onclick="openSessionModal('commerce')">
-                <i class="fas fa-shopping-cart"></i>
-                <h3>Commerce</h3>
-                <p>Live Session Available</p>
-              </div>
-              <div class="subject-card" onclick="openSessionModal('literature')">
-                <i class="fas fa-feather-alt"></i>
-                <h3>Literature</h3>
-                <p>Live Session Available</p>
-              </div>
-              <div class="subject-card" onclick="openSessionModal('government')">
-                <i class="fas fa-landmark"></i>
-                <h3>Government</h3>
-                <p>Live Session Available</p>
-              </div>
-            </div>
-          </div>
+        <div class="flex items-center gap-4">
+          <div class="bg-blue-100 text-blue-700 px-4 py-1 rounded-full font-semibold text-sm">SS 3</div>
+          <button class="p-2 rounded-full hover:bg-gray-100 transition" aria-label="Notifications" title="Notifications"><i class="fas fa-bell"></i></button>
+          <img src="https://ui-avatars.com/api/?name=Student&background=2563eb&color=fff" alt="User avatar" class="h-10 w-10 rounded-full border-2 border-blue-500">
+        </div>
+      </div>
 
-          <div id="tab-content-recents" class="tab-pane">
-            <div class="filter-bar">
-              <button class="filter-btn active">All</button>
-              <button class="filter-btn">Physics</button>
-              <button class="filter-btn">Chemistry</button>
-              <button class="filter-btn">Mathematics</button>
-              <button class="filter-btn">Biology</button>
-            </div>
-            <div class="sessions-list">
-              <div class="session-card">
-                <div class="session-card__info">
-                  <h3 class="session-card__title">Wave Motion</h3>
-                  <div class="session-card__details">
-                    <span><i class="fas fa-book"></i> Physics</span>
-                    <span><i class="fas fa-clock"></i> 1h 30m</span>
-                  </div>
-                </div>
-                <div class="session-card__status session-card__status--live">
-                  <i class="fas fa-circle"></i>
-                  Live Now
-                </div>
-              </div>
-              
-              <div class="session-card">
-                <div class="session-card__info">
-                  <h3 class="session-card__title">Organic Chemistry</h3>
-                  <div class="session-card__details">
-                    <span><i class="fas fa-book"></i> Chemistry</span>
-                    <span><i class="fas fa-clock"></i> 2h</span>
-                  </div>
-                </div>
-                <div class="session-card__status">
-                  <i class="fas fa-check-circle"></i>
-                  Completed
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div id="tab-content-upcoming" class="tab-pane">
-            <div class="sessions-list">
-              <div class="session-card">
-                <div class="session-card__info">
-                  <h3 class="session-card__title">Calculus Integration</h3>
-                  <div class="session-card__details">
-                    <span><i class="fas fa-book"></i> Mathematics</span>
-                    <span><i class="fas fa-clock"></i> 2h</span>
-                    <span><i class="fas fa-calendar"></i> Tomorrow, 10:00 AM</span>
-                  </div>
-                </div>
-                <div class="session-card__status session-card__status--upcoming">
-                  <i class="fas fa-clock"></i>
-                  Upcoming
-                </div>
-              </div>
-
-              <div class="session-card">
-                <div class="session-card__info">
-                  <h3 class="session-card__title">Cell Biology</h3>
-                  <div class="session-card__details">
-                    <span><i class="fas fa-book"></i> Biology</span>
-                    <span><i class="fas fa-clock"></i> 1h 30m</span>
-                    <span><i class="fas fa-calendar"></i> Friday, 2:00 PM</span>
-                  </div>
-                </div>
-                <div class="session-card__status session-card__status--upcoming">
-                  <i class="fas fa-clock"></i>
-                  Upcoming
-                </div>
-              </div>
-            </div>
+      <!-- Hero: next session & actions -->
+      <section class="rounded-3xl bg-gradient-to-r from-blue-600 to-blue-400 text-white p-6 shadow mb-6 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+        <div>
+          <h1 class="text-2xl font-extrabold">Live Sessions</h1>
+          <p class="text-blue-100 mt-1">Quickly join live classes, explore upcoming schedules, or watch recordings.</p>
+          <div class="mt-3 flex items-center gap-3">
+            <div class="text-sm">Next:</div>
+            <div id="nextSessionTitle" class="font-semibold">—</div>
+            <div id="nextCountdown" class="ml-3 text-sm countdown bg-white/20 px-3 py-1 rounded">—</div>
           </div>
         </div>
+        <div class="flex items-center gap-3">
+          <button id="viewSchedule" class="bg-white text-blue-600 px-4 py-2 rounded-full font-semibold">View Schedule</button>
+          <button id="quickJoin" class="bg-green-500 px-4 py-2 rounded-full font-semibold shadow hover:bg-green-600">Join Next</button>
+        </div>
+      </section>
 
-        <div id="session-modal" class="modal">
-          <div class="modal-content">
-            <button class="modal-close" onclick="closeSessionModal()">
-              <i class="fas fa-times"></i>
-            </button>
-            <h2>Join Live Session</h2>
-            <div id="modal-session-details"></div>
+      <!-- Tabs + Filters -->
+      <div class="flex items-center justify-between mb-4 gap-4">
+        <nav class="flex items-center gap-2" role="tablist" aria-label="Session tabs">
+          <button class="tab-btn px-4 py-2 rounded-md bg-white border" role="tab" aria-selected="true" data-tab="live">Live Now</button>
+          <button class="tab-btn px-4 py-2 rounded-md bg-white border" role="tab" aria-selected="false" data-tab="upcoming">Upcoming</button>
+          <button class="tab-btn px-4 py-2 rounded-md bg-white border" role="tab" aria-selected="false" data-tab="recordings">Recordings</button>
+          <button class="tab-btn px-4 py-2 rounded-md bg-white border" role="tab" aria-selected="false" data-tab="my">My Sessions</button>
+        </nav>
+
+        <div class="flex items-center gap-2">
+          <select id="filterSubject" aria-label="Filter by subject" class="px-3 py-2 border rounded bg-white">
+            <option value="">All subjects</option>
+          </select>
+          <select id="filterMode" aria-label="Filter by mode" class="px-3 py-2 border rounded bg-white">
+            <option value="">All modes</option>
+            <option value="webinar">Webinar</option>
+            <option value="breakout">Breakout</option>
+          </select>
+        </div>
+      </div>
+
+      <div id="contentArea" class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        <!-- Main column: session lists -->
+        <section id="listColumn" class="lg:col-span-2">
+          <div id="sessionsList" class="grid grid-cols-1 gap-4"></div>
+        </section>
+
+        <!-- Right column: details / pinned info -->
+        <aside id="rightColumn" class="space-y-4">
+          <div class="p-4 bg-white rounded-lg shadow">
+            <h3 class="font-semibold">Quick Actions</h3>
+            <p class="text-sm text-gray-600">Jump between live, upcoming and recorded sessions easily.</p>
+            <div class="mt-3 flex flex-col gap-2">
+              <button id="openCalendar" class="px-3 py-2 bg-gray-100 rounded">Open Calendar</button>
+              <button id="openRecordings" class="px-3 py-2 bg-gray-100 rounded">Browse Recordings</button>
+            </div>
+          </div>
+
+          <div id="upcomingMini" class="p-4 bg-white rounded-lg shadow">
+            <h4 class="font-semibold">Soon</h4>
+            <ul id="upcomingList" class="text-sm text-gray-600 mt-2 space-y-2"></ul>
+          </div>
+        </aside>
+      </div>
+
+      <!-- Slide-over detail -->
+      <div id="slideOver" class="fixed right-0 top-0 h-full w-full md:w-1/3 bg-white shadow-lg slide-over z-50" aria-hidden="true">
+        <div class="p-6 h-full flex flex-col">
+          <div class="flex items-start justify-between">
+            <div>
+              <h2 id="detailTitle" class="text-xl font-bold">Session title</h2>
+              <div id="detailMeta" class="text-sm text-gray-600">Teacher • Subject • 1h</div>
+            </div>
+            <div class="flex items-center gap-2">
+              <button id="detailCopy" class="p-2 rounded hover:bg-gray-100" title="Copy link" aria-label="Copy link"><i class="fas fa-link"></i></button>
+              <button id="detailClose" class="p-2 rounded hover:bg-gray-100" title="Close" aria-label="Close detail"><i class="fas fa-times"></i></button>
+            </div>
+          </div>
+
+          <div id="detailBody" class="mt-4 flex-1 overflow-auto">
+            <p id="detailDescription" class="text-gray-700">Details about the session, materials, and quick actions.</p>
+            <div id="detailMaterials" class="mt-4"></div>
+          </div>
+
+          <div class="mt-4 flex gap-2">
+            <a id="detailJoin" class="ml-auto bg-green-500 px-4 py-2 rounded text-white font-semibold" role="button">Join</a>
+            <button id="detailPreview" class="px-4 py-2 rounded bg-gray-100">Preview</button>
           </div>
         </div>
       </div>
+
+      <!-- Mini-player placeholder (appears when user joins a session) -->
+      <div id="miniPlayer" class="hidden mini-player bg-white p-3 flex items-center gap-3">
+        <div class="w-12 h-8 bg-gray-200 rounded"></div>
+        <div class="flex-1 text-sm">
+          <div id="miniTitle" class="font-semibold">Live: —</div>
+          <div id="miniTeacher" class="text-xs text-gray-600">Teacher</div>
+        </div>
+        <div>
+          <button id="miniClose" class="p-2 rounded hover:bg-gray-100" aria-label="Close mini player"><i class="fas fa-times"></i></button>
+        </div>
+      </div>
+
     </main>
   </div>
-  <script>
-    document.addEventListener('DOMContentLoaded', function() {
-      // Tab switching logic
-      const tabs = document.querySelectorAll('.tab-btn');
-      const tabContents = document.querySelectorAll('.tab-pane');
-      
-      tabs.forEach(tab => {
-        tab.addEventListener('click', function() {
-          // Remove active class from all tabs and contents
-          tabs.forEach(t => t.classList.remove('active'));
-          tabContents.forEach(content => content.classList.remove('active'));
-          
-          // Add active class to clicked tab and corresponding content
-          this.classList.add('active');
-          const contentId = 'tab-content-' + this.id.split('-')[1];
-          document.getElementById(contentId).classList.add('active');
-        });
-      });
 
-      // Filter buttons logic
-      const filterBtns = document.querySelectorAll('.filter-btn');
-      filterBtns.forEach(btn => {
-        btn.addEventListener('click', function() {
-          filterBtns.forEach(b => b.classList.remove('active'));
-          this.classList.add('active');
-          // Add filter logic here
-        });
+  <script>
+    // Tiny app: sessions data, rendering and interactions
+    const sessions = [
+      { id: 101, title: 'Wave Motion', subject: 'Physics', teacher: {name:'Dr. Akpan'}, start: addMinutes(new Date(), -5).toISOString(), duration: 90, mode:'webinar', state:'live', joinUrl:'physics-live-session.html', materials:[{name:'Slides', url:'#'}], tags:['waves'] },
+      { id: 102, title: 'Calculus Integration', subject: 'Mathematics', teacher: {name:'Ms. Sanni'}, start: addMinutes(new Date(), 60).toISOString(), duration: 120, mode:'webinar', state:'scheduled', joinUrl:'mathematics-live-session.html', materials:[], tags:['calculus'] },
+      { id: 103, title: 'Organic Chemistry', subject: 'Chemistry', teacher: {name:'Dr. Ibe'}, start: addMinutes(new Date(), -180).toISOString(), duration: 120, mode:'webinar', state:'recorded', joinUrl:'chemistry-recording.html', materials:[], tags:['organic'] }
+    ];
+
+    // Utilities
+    function addMinutes(d, m){ const x=new Date(d); x.setMinutes(x.getMinutes()+m); return x; }
+    function formatTime(iso){ const d=new Date(iso); return d.toLocaleString(); }
+    function timeUntil(iso){ const diff = new Date(iso) - new Date(); return Math.max(0, Math.floor(diff/1000)); }
+
+    // Elements
+    const sessionsList = document.getElementById('sessionsList');
+    const upcomingList = document.getElementById('upcomingList');
+    const nextSessionTitle = document.getElementById('nextSessionTitle');
+    const nextCountdown = document.getElementById('nextCountdown');
+    const quickJoin = document.getElementById('quickJoin');
+
+    // Populate subject filter
+    const filterSubject = document.getElementById('filterSubject');
+    [...new Set(sessions.map(s=>s.subject))].forEach(sub=>{ const o=document.createElement('option'); o.value=sub; o.textContent=sub; filterSubject.appendChild(o); });
+
+    // Renderers
+    function renderSessions(filterTab='live'){
+      sessionsList.innerHTML='';
+      const now = new Date();
+      const list = sessions.filter(s=>{
+        if(filterSubject.value && s.subject!==filterSubject.value) return false;
+        if(filterTab==='live') return s.state==='live';
+        if(filterTab==='upcoming') return s.state==='scheduled';
+        if(filterTab==='recordings') return s.state==='recorded';
+        if(filterTab==='my') return s.isMine;
+        return true;
       });
+      if(!list.length) { sessionsList.innerHTML = '<div class="p-6 bg-white rounded-lg shadow text-gray-600">No sessions found.</div>'; return; }
+      list.forEach(s=>{
+        const card = document.createElement('div');
+        card.className = 'p-4 bg-white rounded-lg shadow flex items-center justify-between card-hover';
+        card.innerHTML = `<div class="flex items-center gap-4"><div class="w-12 h-12 flex items-center justify-center rounded-full bg-indigo-50 text-indigo-600 font-bold">${s.subject.charAt(0)}</div>
+          <div>
+            <div class="font-semibold">${escapeHtml(s.title)}</div>
+            <div class="text-sm text-gray-600">${s.subject} • ${s.teacher.name} • ${s.duration}m</div>
+          </div></div>
+          <div class="flex items-center gap-2">
+            ${s.state==='live' ? '<span class="text-green-600 font-semibold mr-2">Live</span>' : (s.state==='scheduled' ? '<span class="text-yellow-600 font-semibold mr-2">Upcoming</span>' : '<span class="text-gray-600 font-semibold mr-2">Recorded</span>')}
+            <button class="px-3 py-1 rounded bg-gray-100" data-action="detail" data-id="${s.id}">Details</button>
+            <button class="px-3 py-1 rounded bg-green-500 text-white" data-action="join" data-id="${s.id}">Join</button>
+          </div>`;
+        // detail click pivot
+        sessionsList.appendChild(card);
+      });
+    }
+
+    function renderUpcomingMini(){ upcomingList.innerHTML=''; const up = sessions.filter(s=>s.state==='scheduled').slice(0,5); up.forEach(s=>{ const li=document.createElement('li'); li.textContent = `${s.title} • ${new Date(s.start).toLocaleString()}`; upcomingList.appendChild(li); }); }
+
+    // Helpers
+    function escapeHtml(s){ return (s+'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+
+    // Tab handling
+    document.querySelectorAll('.tab-btn').forEach(btn=> btn.addEventListener('click', ()=>{
+      document.querySelectorAll('.tab-btn').forEach(b=> b.setAttribute('aria-selected','false'));
+      btn.setAttribute('aria-selected','true');
+      const tab = btn.dataset.tab;
+      renderSessions(tab);
+    }));
+
+    // Global actions
+    document.body.addEventListener('click', (e)=>{
+      const a = e.target.closest('button[data-action]');
+      if(!a) return;
+      const id = Number(a.dataset.id);
+      const action = a.dataset.action;
+      const s = sessions.find(x=>x.id===id);
+      if(action==='join' && s) joinFlow(s);
+      if(action==='detail' && s) openDetail(s);
     });
 
-    // Session modal logic
-    function openSessionModal(subject) {
-      const modal = document.getElementById('session-modal');
-      const modalDetails = document.getElementById('modal-session-details');
-      const subjectDisplay = subject.charAt(0).toUpperCase() + subject.slice(1);
-      let html = `<h3>${subjectDisplay} Live Session</h3>`;
-      html += `
-    <div class="modal-actions">
-      <button class=\"filter-btn\" onclick=\"closeSessionModal()\">Cancel</button>
-      <button class=\"filter-btn active\" onclick=\"joinSession('${subject}')\">Join Session</button>
-    </div>
-  `;
-      modalDetails.innerHTML = html;
-      modal.classList.add('active');
+    function joinFlow(s){ // open in new tab or show mini-player
+      window.open(s.joinUrl, '_blank');
+      showMiniPlayer(s);
     }
 
-    function closeSessionModal() {
-      const modal = document.getElementById('session-modal');
-      modal.classList.remove('active');
-    }
+    // Detail slide-over
+    const slideOver = document.getElementById('slideOver');
+    function openDetail(s){ document.getElementById('detailTitle').textContent = s.title; document.getElementById('detailMeta').textContent = `${s.teacher.name} • ${s.subject} • ${s.duration}m`; document.getElementById('detailDescription').textContent = `Starts: ${formatTime(s.start)}\nMode: ${s.mode}`; const mat = document.getElementById('detailMaterials'); mat.innerHTML=''; s.materials.forEach(m=>{ const a=document.createElement('a'); a.href=m.url; a.className='block text-sm text-blue-600'; a.textContent = m.name; mat.appendChild(a); }); document.getElementById('detailJoin').href = s.joinUrl; slideOver.classList.add('open'); slideOver.setAttribute('aria-hidden','false'); }
+    document.getElementById('detailClose').addEventListener('click', ()=>{ slideOver.classList.remove('open'); slideOver.setAttribute('aria-hidden','true'); });
+    document.getElementById('detailCopy').addEventListener('click', ()=>{ const url = location.origin + '/' + document.getElementById('detailJoin').getAttribute('href'); navigator.clipboard?.writeText(url); alert('Link copied'); });
 
-    function joinSession(subject, title) {
-      // Redirect to the appropriate live session page
-      window.location.href = `${subject}-live-session.html`;
-    }
+    // Mini player
+    function showMiniPlayer(s){ const mini = document.getElementById('miniPlayer'); document.getElementById('miniTitle').textContent = `Live: ${s.title}`; document.getElementById('miniTeacher').textContent = s.teacher.name; mini.classList.remove('hidden'); }
+    document.getElementById('miniClose').addEventListener('click', ()=>{ document.getElementById('miniPlayer').classList.add('hidden'); });
 
-    // Close modal when clicking outside
-    window.onclick = function(event) {
-      const modal = document.getElementById('session-modal');
-      if (event.target === modal) {
-        closeSessionModal();
-      }
-    };
+    // Quick join (next session)
+    quickJoin.addEventListener('click', ()=>{ const next = sessions.find(s=>s.state==='live') || sessions.find(s=>s.state==='scheduled'); if(next) joinFlow(next); else alert('No session to join'); });
+
+    // Countdown for next scheduled session
+    function updateNext(){ const next = sessions.filter(s=>s.state==='scheduled').sort((a,b)=> new Date(a.start)-new Date(b.start))[0]; if(!next){ nextSessionTitle.textContent='—'; nextCountdown.textContent='No upcoming'; return; } nextSessionTitle.textContent = `${next.title} • ${next.subject}`; let secs = timeUntil(next.start); nextCountdown.textContent = formatCountdown(secs); }
+    function formatCountdown(secs){ if(secs<=0) return 'Starting soon'; const h=Math.floor(secs/3600); const m=Math.floor((secs%3600)/60); const s=secs%60; return `${h}h ${m}m ${s}s`; }
+    setInterval(()=>{ sessions.forEach(s=>{ if(s.state==='scheduled' && new Date(s.start) <= new Date()){ s.state='live'; } }); renderSessions(document.querySelector('.tab-btn[aria-selected="true"]').dataset.tab || 'live'); updateNext(); renderUpcomingMini(); }, 1000);
+
+    // Filters
+    filterSubject.addEventListener('change', ()=> renderSessions(document.querySelector('.tab-btn[aria-selected="true"]').dataset.tab || 'live'));
+
+    // Keyboard shortcut: J to join first live
+    window.addEventListener('keydown', (e)=>{ if(e.key.toLowerCase()==='j'){ const live = sessions.find(s=>s.state==='live'); if(live) joinFlow(live); } });
+
+    // Boot
+    renderSessions('live'); renderUpcomingMini(); updateNext();
+
   </script>
 </body>
 </html>

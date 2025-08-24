@@ -120,4 +120,11 @@ body {
   opacity: 0.95;
 }
 
+/* Accessibility: soften dark sidebar borders used across teacher dashboards
+   This makes thin dividers less visually aggressive on dark backgrounds
+   while keeping the layout separation. Adjust if you prefer a different tint. */
+.canvas-sidebar {
+  border-right-color: rgba(255,255,255,0.06) !important;
+}
+
 
