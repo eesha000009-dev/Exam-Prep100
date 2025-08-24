@@ -11,8 +11,29 @@
     <div class="p-8 max-w-4xl mx-auto">
       <div class="bg-white p-6 rounded-lg shadow">
         <h1 class="text-2xl font-semibold mb-2">Experiments</h1>
-        <p class="text-sm text-slate-600">Placeholder page. Add experiment protocols, videos and setup instructions here.</p>
+        <p class="text-sm text-slate-600">Save and manage experiment protocols. Protocols are stored locally in your browser.</p>
+        <div class="mt-4">
+          <input id="expTitle" class="w-full rounded-md border p-2 mb-2" placeholder="Protocol title" />
+          <textarea id="expBody" class="w-full rounded-md border p-2 mb-2" rows="6" placeholder="Steps, materials, expected results..."></textarea>
+          <div class="flex gap-2">
+            <button id="saveExp" class="px-4 py-2 bg-indigo-600 text-white rounded-md">Save Protocol</button>
+            <button id="clearAll" class="px-4 py-2 border rounded-md">Clear All</button>
+          </div>
+        </div>
+        <h2 class="mt-6 font-medium">Saved Protocols</h2>
+        <div id="protocols" class="mt-3 space-y-3"></div>
       </div>
     </div>
+    <script>
+      const EXP_KEY = 'physics_experiments_v1';
+      function getExps(){ return JSON.parse(localStorage.getItem(EXP_KEY)||'[]'); }
+      function saveExps(v){ localStorage.setItem(EXP_KEY, JSON.stringify(v)); }
+      function renderExps(){ const out=document.getElementById('protocols'); out.innerHTML=''; getExps().forEach((p,i)=>{ const el=document.createElement('div'); el.className='p-3 bg-slate-50 rounded-md'; el.innerHTML = `<div class="flex justify-between"><div><strong>${escapeHtml(p.title||'Untitled')}</strong></div><div><button data-i="${i}" class="text-sm text-red-600" data-action="del">Delete</button></div></div><div class="mt-2 whitespace-pre-wrap text-sm text-slate-700">${escapeHtml(p.body)}</div>`; out.appendChild(el); }); }
+      function escapeHtml(s){ return (s||'').replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;'); }
+      document.getElementById('saveExp').addEventListener('click', ()=>{ const title=document.getElementById('expTitle').value.trim(); const body=document.getElementById('expBody').value.trim(); if(!title && !body) return alert('Add a title or content'); const arr=getExps(); arr.unshift({title,body,created:Date.now()}); saveExps(arr); document.getElementById('expTitle').value=''; document.getElementById('expBody').value=''; renderExps(); });
+      document.getElementById('clearAll').addEventListener('click', ()=>{ if(!confirm('Clear all protocols?')) return; saveExps([]); renderExps(); });
+      document.getElementById('protocols').addEventListener('click', e=>{ const b=e.target; if(b.dataset && b.dataset.action==='del'){ const i=Number(b.dataset.i); const a=getExps(); a.splice(i,1); saveExps(a); renderExps(); } });
+      renderExps();
+    </script>
   </body>
 </html>
