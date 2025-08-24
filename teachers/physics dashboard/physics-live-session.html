@@ -266,8 +266,8 @@
             parentNode: document.querySelector('#jitsi-target'),
           };
           // eslint-disable-next-line no-undef
-          const api = new JitsiMeetExternalAPI(domain, options);
-          console.log('Jitsi started', api);
+          window.api = new JitsiMeetExternalAPI(domain, options);
+          console.log('Jitsi started', window.api);
         } catch (err) {
           console.error('Failed to start Jitsi', err);
           document.getElementById('jitsi-target').innerHTML = '<div style="color:#fff;padding:16px">Failed to load video. See console for details.</div>';
