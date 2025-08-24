@@ -68,6 +68,10 @@
         <div class="video-card relative rounded-3xl overflow-hidden h-[500px] shadow-2xl bg-gradient-to-br from-gray-900 via-blue-900 to-blue-700 border border-blue-200 flex items-center justify-center">
           <div class="absolute top-7 left-7 z-10 bg-white/20 text-white px-7 py-3 rounded-2xl backdrop-blur-md text-xl font-semibold shadow">Live Video</div>
           <div id="jitsi-target" class="w-full h-full"></div>
+          <script>
+            // initialize Jitsi for commerce teacher page
+            (function waitForJitsi(){ if (typeof JitsiMeetExternalAPI !== 'undefined') { try { new JitsiMeetExternalAPI('8x8.vc', { roomName: 'vpaas-magic-cookie-29d1aa3d1dd04579a28364a8dfdabc89/SampleAppCommerceRoom', parentNode: document.querySelector('#jitsi-target') }); } catch(e){ console.error('Jitsi init failed', e); } } else setTimeout(waitForJitsi,250); })();
+          </script>
         </div>
         <div class="video-controls flex justify-end gap-6 mt-8">
           <button id="fullscreenBtn" class="px-6 py-3 rounded-2xl bg-blue-600 hover:bg-blue-700 text-white shadow">Fullscreen</button>
