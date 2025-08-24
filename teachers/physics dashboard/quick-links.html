@@ -3,38 +3,11 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>Physics — Quick Links</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Redirecting...</title>
     <link rel="icon" type="image/png" href="/assets/images/Logo of JUANOVA Cortex Tutor.png" />
+    <meta http-equiv="refresh" content="0; url=../teacher-dashboard-physics.html" />
   </head>
-  <body class="bg-slate-50 min-h-screen text-slate-800">
-    <div class="flex">
-      <aside class="w-64 p-6 bg-slate-900 text-slate-100 h-screen">
-        <div class="font-bold mb-4">Physics Tools</div>
-        <nav class="flex flex-col gap-2 text-sm">
-          <a href="../teacher-dashboard-physics.html" class="px-3 py-2 rounded-md hover:bg-slate-800">Dashboard</a>
-          <a href="quick-links.html" class="px-3 py-2 rounded-md bg-slate-800">Quick Links</a>
-          <a href="lesson-planner.html" class="px-3 py-2 rounded-md hover:bg-slate-800">Lesson Planner</a>
-        </nav>
-      </aside>
-      <main class="flex-1 p-8">
-        <div class="max-w-3xl bg-white rounded-lg shadow p-6">
-          <h1 class="text-xl font-semibold mb-3">Quick Links</h1>
-          <div class="flex gap-3 mb-4">
-            <input id="linkInput" class="flex-1 rounded-md border p-3" placeholder="Paste or type a URL..." />
-            <button id="addLinkBtn" class="px-4 py-2 bg-indigo-600 text-white rounded-md">Add</button>
-          </div>
-          <div id="linksList" class="space-y-3"></div>
-        </div>
-      </main>
-    </div>
-    <script>
-      function getLinks(){ return JSON.parse(localStorage.getItem('physics_teacher_links_v1')||'[]'); }
-      function saveLinks(l){ localStorage.setItem('physics_teacher_links_v1', JSON.stringify(l)); }
-      function render(){ const out=document.getElementById('linksList'); out.innerHTML=''; getLinks().forEach((link,i)=>{ const d=document.createElement('div'); d.className='p-3 bg-slate-50 rounded-md flex justify-between items-center'; d.innerHTML=`<a href="${link}" target="_blank" class="text-indigo-600">${link}</a><button data-i="${i}" class="text-red-600">Remove</button>`; out.appendChild(d); }); }
-      document.getElementById('addLinkBtn').addEventListener('click', ()=>{ const v=document.getElementById('linkInput').value.trim(); if(!v) return; const l=getLinks(); l.unshift(v); saveLinks(l); document.getElementById('linkInput').value=''; render(); });
-      document.getElementById('linksList').addEventListener('click', e=>{ const b=e.target; if(b.dataset && b.dataset.i!==undefined){ const i=Number(b.dataset.i); const l=getLinks(); l.splice(i,1); saveLinks(l); render(); } });
-      render();
-    </script>
+  <body>
+    <p>Redirecting to the Physics dashboard — <a href="../teacher-dashboard-physics.html">click here</a> if not redirected.</p>
   </body>
 </html>

@@ -3,41 +3,14 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>Physics — Lesson Planner</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Redirecting...</title>
     <link rel="icon" type="image/png" href="/assets/images/Logo of JUANOVA Cortex Tutor.png" />
+    <meta http-equiv="refresh" content="0; url=../teacher-dashboard-physics.html" />
   </head>
-  <body class="bg-slate-50 min-h-screen text-slate-800">
-    <div class="flex">
-      <aside class="w-64 p-6 bg-slate-900 text-slate-100 h-screen">
-        <div class="font-bold mb-4">Physics Tools</div>
-        <nav class="flex flex-col gap-2 text-sm">
-          <a href="../teacher-dashboard-physics.html" class="px-3 py-2 rounded-md hover:bg-slate-800">Dashboard</a>
-          <a href="sticky-notes.html" class="px-3 py-2 rounded-md hover:bg-slate-800">Sticky Notes</a>
-          <a href="lesson-planner.html" class="px-3 py-2 rounded-md bg-slate-800">Lesson Planner</a>
-        </nav>
-      </aside>
-
-      <main class="flex-1 p-8">
-        <div class="max-w-3xl bg-white rounded-lg shadow p-6">
-          <h1 class="text-xl font-semibold mb-3">Lesson Planner</h1>
-          <p class="text-sm text-slate-600 mb-4">Create a sequence of lessons for your unit. Plans are saved locally.</p>
-          <textarea id="lessonInput" class="w-full rounded-md border p-3 mb-3" placeholder="Describe your lesson plan..."></textarea>
-          <div class="flex gap-3 mb-4">
-            <button id="addLessonBtn" class="px-4 py-2 bg-indigo-600 text-white rounded-md">Add Lesson</button>
-            <button id="clearAll" class="px-4 py-2 border rounded-md">Clear All</button>
-          </div>
-          <ul id="plannerList" class="space-y-3"></ul>
-        </div>
-      </main>
-    </div>
-
-    <script>
-      const key = 'physics_teacher_plans_v1';
-      function getPlans(){ return JSON.parse(localStorage.getItem(key) || '[]'); }
-      function savePlans(plans){ localStorage.setItem(key, JSON.stringify(plans)); }
-      function render(){ const list = document.getElementById('plannerList'); list.innerHTML=''; getPlans().forEach((p,i)=>{ const li=document.createElement('li'); li.className='p-3 bg-slate-50 rounded-md flex justify-between items-start'; li.innerHTML = `<div><div class="font-medium">${p.title||p}</div><div class="text-xs text-slate-500">${p.note||''}</div></div><div class="flex gap-2"><button class="text-red-600 text-sm" data-idx="${i}" data-action="del">Remove</button></div>`; list.appendChild(li); }); }
-      document.getElementById('addLessonBtn').addEventListener('click', ()=>{ const v=document.getElementById('lessonInput').value.trim(); if(!v) return; const plans=getPlans(); plans.unshift(v); savePlans(plans); document.getElementById('lessonInput').value=''; render(); });
+  <body>
+    <p>Redirecting to the Physics dashboard — <a href="../teacher-dashboard-physics.html">click here</a> if not redirected.</p>
+  </body>
+</html>
       document.getElementById('clearAll').addEventListener('click', ()=>{ if(confirm('Clear all plans?')){ savePlans([]); render(); }});
       document.getElementById('plannerList').addEventListener('click', e=>{ const b=e.target; if(b.dataset && b.dataset.action==='del'){ const idx=Number(b.dataset.idx); const p=getPlans(); p.splice(idx,1); savePlans(p); render(); }});
       render();

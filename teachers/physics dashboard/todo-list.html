@@ -3,44 +3,11 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>Physics — To-do</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Redirecting...</title>
     <link rel="icon" type="image/png" href="/assets/images/Logo of JUANOVA Cortex Tutor.png" />
+    <meta http-equiv="refresh" content="0; url=../teacher-dashboard-physics.html" />
   </head>
-  <body class="bg-slate-50 min-h-screen text-slate-800">
-    <div class="flex">
-      <aside class="w-64 p-6 bg-slate-900 text-slate-100 h-screen">
-        <div class="font-bold mb-4">Physics Tools</div>
-        <nav class="flex flex-col gap-2 text-sm">
-          <a href="../teacher-dashboard-physics.html" class="px-3 py-2 rounded-md hover:bg-slate-800">Dashboard</a>
-          <a href="todo-list.html" class="px-3 py-2 rounded-md bg-slate-800">To-do</a>
-          <a href="lesson-planner.html" class="px-3 py-2 rounded-md hover:bg-slate-800">Lesson Planner</a>
-        </nav>
-        <div class="mt-auto text-xs text-slate-400">Video: <button onclick="window.showVideoModal()" class="text-indigo-400 underline">Show</button></div>
-      </aside>
-      <main class="flex-1 p-8">
-        <div class="max-w-3xl bg-white rounded-lg shadow p-6">
-          <h1 class="text-xl font-semibold mb-3">To-Do List</h1>
-          <div class="flex gap-3 mb-4">
-            <input id="todoInput" class="flex-1 rounded-md border p-3" placeholder="Add a new task..." />
-            <button id="addTodoBtn" class="px-4 py-2 bg-indigo-600 text-white rounded-md">Add</button>
-          </div>
-          <ul id="todoList" class="space-y-3"></ul>
-        </div>
-      </main>
-    </div>
-    <div id="video-modal" style="display:none;position:fixed;right:18px;bottom:18px;width:320px;height:200px;z-index:9999;background:rgba(0,0,0,0.1)"></div>
-    <script>
-      function getTodos(){ return JSON.parse(localStorage.getItem('physics_teacher_todos_v1')||'[]'); }
-      function saveTodos(t){ localStorage.setItem('physics_teacher_todos_v1', JSON.stringify(t)); }
-      function render(){ const ul=document.getElementById('todoList'); ul.innerHTML=''; getTodos().forEach((t,i)=>{ const li=document.createElement('li'); li.className='flex items-center justify-between p-3 bg-slate-50 rounded-md'; li.innerHTML=`<div class="flex items-center gap-3"><input type="checkbox" data-idx="${i}" ${t.completed?'checked':''}><div class="text-sm ${t.completed?'line-through text-slate-400':''}">${t.text}</div></div><div><button data-idx="${i}" class="text-red-600">Remove</button></div>`; ul.appendChild(li); }); }
-      document.getElementById('addTodoBtn').addEventListener('click', ()=>{ const v=document.getElementById('todoInput').value.trim(); if(!v) return; const t=getTodos(); t.unshift({text:v,completed:false}); saveTodos(t); document.getElementById('todoInput').value=''; render(); });
-      document.getElementById('todoList').addEventListener('click', e=>{ const b=e.target; if(b.dataset && b.dataset.idx!==undefined){ const idx=Number(b.dataset.idx); if(b.textContent.trim()==='Remove'){ const t=getTodos(); t.splice(idx,1); saveTodos(t); render(); } } });
-      document.getElementById('todoList').addEventListener('change', e=>{ const cb=e.target; if(cb.dataset && cb.dataset.idx!==undefined){ const idx=Number(cb.dataset.idx); const t=getTodos(); t[idx].completed = cb.checked; saveTodos(t); render(); } });
-      render();
-
-      // Video modal helper (keeps existing behavior)
-      window.showVideoModal = function(){ var modal=document.getElementById('video-modal'); modal.style.display='block'; if(!window.jitsiApi){ var container=document.createElement('div'); container.id='video-modal-jitsi'; container.style.width='100%'; container.style.height='100%'; modal.appendChild(container); window.jitsiApi = new JitsiMeetExternalAPI('8x8.vc',{ roomName: 'vpaas-magic-cookie-29d1aa3d1dd04579a28364a8dfdabc89/Prep100TeacherRoom', parentNode: container }); } };
-      window.closeVideoModal = function(){ var modal=document.getElementById('video-modal'); modal.style.display='none'; if(window.jitsiApi){ window.jitsiApi.dispose(); window.jitsiApi = null; document.getElementById('video-modal').innerHTML=''; } };
-    </script>
-   </html>
+  <body>
+    <p>Redirecting to the Physics dashboard — <a href="../teacher-dashboard-physics.html">click here</a> if not redirected.</p>
+  </body>
+</html>

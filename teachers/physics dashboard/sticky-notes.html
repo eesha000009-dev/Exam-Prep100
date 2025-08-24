@@ -3,41 +3,11 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>Physics — Sticky Notes</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Redirecting...</title>
     <link rel="icon" type="image/png" href="/assets/images/Logo of JUANOVA Cortex Tutor.png" />
+    <meta http-equiv="refresh" content="0; url=../teacher-dashboard-physics.html" />
   </head>
-  <body class="bg-slate-50 min-h-screen text-slate-800">
-    <div class="flex">
-      <aside class="w-64 p-6 bg-slate-900 text-slate-100 h-screen">
-        <div class="font-bold mb-4">Physics Tools</div>
-        <nav class="flex flex-col gap-2 text-sm">
-          <a href="../teacher-dashboard-physics.html" class="px-3 py-2 rounded-md hover:bg-slate-800">Dashboard</a>
-          <a href="sticky-notes.html" class="px-3 py-2 rounded-md bg-slate-800">Sticky Notes</a>
-          <a href="lesson-planner.html" class="px-3 py-2 rounded-md hover:bg-slate-800">Lesson Planner</a>
-        </nav>
-      </aside>
-      <main class="flex-1 p-8">
-        <div class="max-w-3xl bg-white rounded-lg shadow p-6">
-          <h1 class="text-xl font-semibold mb-3">Sticky Notes</h1>
-          <textarea id="noteInput" class="w-full rounded-md border p-3 mb-3" placeholder="Write a note..."></textarea>
-          <div class="flex gap-3 mb-4">
-            <button id="addNoteBtn" class="px-4 py-2 bg-indigo-600 text-white rounded-md">Add Note</button>
-            <button id="clearNotes" class="px-4 py-2 border rounded-md">Clear All</button>
-          </div>
-          <div id="notesList" class="grid grid-cols-1 md:grid-cols-2 gap-3"></div>
-        </div>
-      </main>
-    </div>
-    <script>
-      const key = 'physics_teacher_notes_v1';
-      function getNotes(){ return JSON.parse(localStorage.getItem(key) || '[]'); }
-      function saveNotes(n){ localStorage.setItem(key, JSON.stringify(n)); }
-      function render(){ const container=document.getElementById('notesList'); container.innerHTML=''; getNotes().forEach((note,i)=>{ const d=document.createElement('div'); d.className='p-3 bg-yellow-50 rounded shadow'; d.innerHTML=`<div class="whitespace-pre-wrap">${note}</div><div class="mt-2 text-xs text-slate-500"><button data-idx="${i}" class="text-red-600" data-action="del">Delete</button></div>`; container.appendChild(d); }); }
-      document.getElementById('addNoteBtn').addEventListener('click', ()=>{ const v=document.getElementById('noteInput').value.trim(); if(!v) return; const n=getNotes(); n.unshift(v); saveNotes(n); document.getElementById('noteInput').value=''; render(); });
-      document.getElementById('clearNotes').addEventListener('click', ()=>{ if(confirm('Clear all notes?')){ saveNotes([]); render(); }});
-      document.getElementById('notesList').addEventListener('click', e=>{ const b=e.target; if(b.dataset && b.dataset.action==='del'){ const i=Number(b.dataset.idx); const n=getNotes(); n.splice(i,1); saveNotes(n); render(); }});
-      render();
-    </script>
+  <body>
+    <p>Redirecting to the Physics dashboard — <a href="../teacher-dashboard-physics.html">click here</a> if not redirected.</p>
   </body>
 </html>
