@@ -19,6 +19,15 @@ app.use((req, res, next) => {
   next();
 });
 
+// Mount API routes (AI tutor, news, etc.)
+try {
+  const apiRouter = require(path.join(__dirname, 'routes', 'api'));
+  app.use('/api', apiRouter);
+  console.log('Mounted API router at /api');
+} catch (err) {
+  console.error('Failed to mount API router:', err);
+}
+
 // Handle both /students/student-dashboard and /students/student-dashboard.html
 app.get(['/students/student-dashboard', '/students/student-dashboard.html'], (req, res) => {
   res.sendFile(path.join(__dirname, 'students', 'student-dashboard.html'));
@@ -33,9 +42,17 @@ app.get('/', (req, res) => {
   res.redirect('/students/student-dashboard');
 });
 
+// Health endpoint
+app.get('/health', (req, res) => {
+  res.json({ status: 'ok', uptime: process.uptime(), timestamp: Date.now() });
+});
+
 // Serve static directories
 app.use('/assets', express.static(path.join(__dirname, 'assets')));
 app.use('/students', express.static(path.join(__dirname, 'students')));
+// Serve uploaded files
+const uploadsPath = path.join(__dirname, 'uploads');
+try { app.use('/uploads', express.static(uploadsPath)); } catch (e) { console.warn('Could not serve uploads directory', e.message); }
 
 // Note: news API removed during cleanup.
 

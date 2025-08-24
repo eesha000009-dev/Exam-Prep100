@@ -1,509 +1,240 @@
-<script type="text/javascript">
-        var gk_isXlsx = false;
-        var gk_xlsxFileLookup = {};
-        var gk_fileData = {};
-        function filledCell(cell) {
-          return cell !== '' && cell != null;
-        }
-        function loadFileData(filename) {
-        if (gk_isXlsx && gk_xlsxFileLookup[filename]) {
-            try {
-                var workbook = XLSX.read(gk_fileData[filename], { type: 'base64' });
-                var firstSheetName = workbook.SheetNames[0];
-                var worksheet = workbook.Sheets[firstSheetName];
-
-                // Convert sheet to JSON to filter blank rows
-                var jsonData = XLSX.utils.sheet_to_json(worksheet, { header: 1, blankrows: false, defval: '' });
-                // Filter out blank rows (rows where all cells are empty, null, or undefined)
-                var filteredData = jsonData.filter(row => row.some(filledCell));
-
-                // Heuristic to find the header row by ignoring rows with fewer filled cells than the next row
-                var headerRowIndex = filteredData.findIndex((row, index) =>
-                  row.filter(filledCell).length >= filteredData[index + 1]?.filter(filledCell).length
-                );
-                // Fallback
-                if (headerRowIndex === -1 || headerRowIndex > 25) {
-                  headerRowIndex = 0;
-                }
-
-                // Convert filtered JSON back to CSV
-                var csv = XLSX.utils.aoa_to_sheet(filteredData.slice(headerRowIndex)); // Create a new sheet from filtered array of arrays
-                csv = XLSX.utils.sheet_to_csv(csv, { header: 1 });
-                return csv;
-            } catch (e) {
-                console.error(e);
-                return "";
-            }
-        }
-        return gk_fileData[filename] || "";
-        }
-        </script><!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Smart Note Page</title>
-  
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="../general/modernized.css">
-  <style>
-    .layout {
-      display: flex;
-      min-height: 100vh;
-    }
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="/assets/images/Logo of JUANOVA Cortex Tutor.png" />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Smart Notes - Prep100</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-50">
+  <div class="flex min-h-screen">
+    <!-- Sidebar -->
+        <aside class="fixed top-0 left-0 h-screen bg-white/80 backdrop-blur-lg shadow-xl w-72 flex flex-col px-4 py-6 border-r border-gray-200 overflow-y-auto z-50">
+            <div class="sticky top-0 bg-white/95 backdrop-blur-lg z-10 py-2 mb-8">
+                <a href="#" class="flex items-center gap-3">
+                    <img src="/assets/images/Logo%20of%20JUANOVA%20Cortex%20Tutor.png" alt="Logo" class="h-16 w-16 object-contain rounded-full shadow-2xl border-4 border-blue-700">
+                    <span class="text-3xl font-extrabold text-blue-800 tracking-tight font-serif italic drop-shadow-lg">JUANOVA CORTEX</span>
+                </a>
+            </div>
+            
+            <nav class="flex flex-col gap-2 text-gray-700 font-medium">
+                <a href="student-dashboard.html" class="flex items-center gap-3 px-4 py-2 rounded-lg bg-blue-50 text-blue-600">
+                    <i class="fas fa-home"></i> Home
+                </a>
+                <a href="news-feed-gemini.html" class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-blue-50 transition">
+                    <i class="fas fa-newspaper text-pink-500"></i> News Feed
+                </a>
+                <a href="ai-tutor-chatbot.html" class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-blue-50 transition">
+                    <i class="fas fa-robot text-purple-500"></i> AI Tutor
+                </a>
+                <a href="all-formula.html" class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-blue-50 transition">
+                    <i class="fas fa-book-open text-teal-600"></i> All Formula
+                </a>
+                <a href="smart-note.html" class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-blue-50 transition">
+                    <i class="fas fa-sticky-note text-yellow-500"></i> Smart Notes
+                </a>
+                <a href="study-plan.html" class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-blue-50 transition">
+                    <i class="fas fa-calendar-alt text-green-500"></i> Study Plan
+                </a>
+                <a href="video-library.html" class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-blue-50 transition">
+                    <i class="fas fa-video text-red-500"></i> Video Library
+                </a>
+                <a href="practice-exams.html" class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-blue-50 transition">
+                    <i class="fas fa-pencil-alt text-orange-500"></i> Mock Exams
+                </a>
+                <a href="notifications.html" class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-blue-50 transition">
+                    <i class="fas fa-bell text-pink-600"></i> Notifications
+                </a>
+                <a href="student-live-session.html" class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-blue-50 transition">
+                    <i class="fas fa-chalkboard-teacher text-blue-400"></i> Join Live Session
+                </a>
+            </nav>
+        </aside>
 
-    .main-content {
-      margin-left: 280px;
-      padding: var(--spacing-xl) var(--spacing-xxl);
-      background: var(--bg-light);
-      min-height: 100vh;
-      max-width: calc(100% - 280px);
-    }
-
-    /* Using modernized.css sidebar styles */
-    .jot-edit-btn {
-      background: #2563eb;
-      color: #fff;
-      border: none;
-      border-radius: 8px;
-      padding: 0.3rem 1rem;
-      font-size: 1rem;
-      font-weight: 600;
-      cursor: pointer;
-      transition: background 0.15s;
-    }
-    .jot-edit-btn:hover {
-      background: #1e3a8a;
-    }
-    .jot-delete-btn {
-      background: #ef4444;
-      color: #fff;
-      border: none;
-      border-radius: 8px;
-      padding: 0.3rem 1rem;
-      font-size: 1rem;
-      font-weight: 600;
-      cursor: pointer;
-      transition: background 0.15s;
-    }
-    .jot-delete-btn:hover {
-      background: #b91c1c;
-    }
-    .jot-share-btn {
-      background: #22c55e;
-      color: #fff;
-      border: none;
-      border-radius: 8px;
-      padding: 0.3rem 1rem;
-      font-size: 1rem;
-      font-weight: 600;
-      cursor: pointer;
-      transition: background 0.15s;
-    }
-    .jot-share-btn:hover {
-      background: #15803d;
-    }
-    .jot-input {
-      width: 100%;
-      padding: 0.5rem 1rem;
-      margin-bottom: 1rem;
-      border-radius: 8px;
-      border: 1px solid #cbd5e1;
-      font-size: 1rem;
-    }
-    #modalTitle {
-      font-size: 1.25rem;
-      font-weight: 700;
-      margin-bottom: 1rem;
-    }
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      padding: var(--spacing-sm) var(--spacing-lg);
-      border-radius: var(--radius-lg);
-      font-size: 1rem;
-      font-weight: 500;
-      border: none;
-      cursor: pointer;
-      transition: all 0.2s;
-      gap: var(--spacing-sm);
-    }
-    
-    .btn-primary {
-      background: var(--primary);
-      color: white;
-    }
-    
-    .btn-primary:hover {
-      background: var(--primary-dark);
-    }
-
-
-    /* Main Content Styles */
-    /* Dashboard Specific Styles */
-    .dashboard-topbar {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      margin-bottom: var(--spacing-xl);
-      padding: var(--spacing-sm) 0;
-    }
-    
-    .search-container {
-      flex: 1;
-      max-width: 480px;
-      position: relative;
-      margin-right: var(--spacing-xl);
-    }
-    
-    .search-icon {
-      position: absolute;
-      left: var(--spacing-sm);
-      top: 50%;
-      transform: translateY(-50%);
-      color: var(--text-secondary);
-      font-size: 1.1rem;
-    }
-    
-    .search-input {
-      width: 100%;
-      padding: 0.875rem var(--spacing-xl);
-      padding-left: 2.75rem;
-      border-radius: 9999px;
-      border: 2px solid var(--border-color);
-      font-size: 1rem;
-      transition: all 0.2s;
-      background: white;
-    }
-    
-    .search-input:focus {
-      border-color: var(--primary);
-      box-shadow: 0 0 0 3px rgba(37,99,235,0.1);
-      outline: none;
-    }
-
-    .user-info {
-      display: flex;
-      align-items: center;
-      gap: var(--spacing-md);
-    }
-    
-    .notification-btn {
-      position: relative;
-      background: none;
-      border: none;
-      color: var(--text-secondary);
-      font-size: 1.25rem;
-      cursor: pointer;
-      padding: var(--spacing-xs);
-      border-radius: var(--radius-md);
-      transition: all 0.2s;
-    }
-    
-    .notification-btn:hover {
-      color: var(--primary);
-      background: rgba(37,99,235,0.1);
-    }
-    
-    .notification-badge {
-      position: absolute;
-      top: 0;
-      right: 0;
-      background: var(--danger);
-      color: white;
-      border-radius: 50%;
-      width: 18px;
-      height: 18px;
-      font-size: 0.75rem;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    .jot-card {
-      background: white;
-      border-radius: var(--radius-lg);
-      padding: var(--spacing-lg);
-      box-shadow: var(--shadow-sm);
-      transition: all 0.2s ease;
-      margin-bottom: var(--spacing-lg);
-      border: 1px solid var(--border-color);
-    }
-    .jot-card:hover {
-      transform: translateY(-2px);
-      box-shadow: var(--shadow-md);
-      border-color: var(--primary);
-    }
-    /* Modal Styles */
-    .modal {
-      display: none;
-      position: fixed;
-      inset: 0;
-      background: rgba(0,0,0,0.5);
-      align-items: center;
-      justify-content: center;
-      z-index: 200;
-    }
-    .modal-content {
-      background: white;
-      padding: var(--spacing-xl);
-      border-radius: var(--radius-lg);
-      width: 100%;
-      max-width: 500px;
-      box-shadow: var(--shadow-lg);
-    }
-    #jotsGrid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-      gap: var(--spacing-lg);
-      margin-top: var(--spacing-xl);
-    }
-    #modalTitle {
-      font-size: 1.25rem;
-      font-weight: 700;
-      margin-bottom: 1rem;
-    }
-    .jot-textarea {
-      width: 100%;
-      padding: 0.5rem 1rem;
-      margin-bottom: 1rem;
-      border-radius: 8px;
-      border: 1px solid #cbd5e1;
-      font-size: 1rem;
-      height: 6rem;
-      font-family: inherit;
-      resize: vertical;
-    }
-    .jot-tags-input {
-      width: 100%;
-      padding: 0.5rem 1rem;
-      margin-bottom: 1rem;
-      border-radius: 8px;
-      border: 1px solid #cbd5e1;
-      font-size: 1rem;
-    }
-    .modal-save-btn {
-      background: #2563eb;
-      color: #fff;
-      border: none;
-      border-radius: 8px;
-      padding: 0.5rem 1.5rem;
-      font-size: 1rem;
-      font-weight: 600;
-      cursor: pointer;
-      transition: background 0.15s;
-    }
-    .modal-save-btn:hover {
-      background: #1e3a8a;
-    }
-    .modal-cancel-btn {
-      background: #64748b;
-      color: #fff;
-      border: none;
-      border-radius: 8px;
-      padding: 0.5rem 1.5rem;
-      font-size: 1rem;
-      font-weight: 600;
-      cursor: pointer;
-      transition: background 0.15s;
-    }
-    .modal-cancel-btn:hover {
-      background: #334155;
-    }
-    .jot-card-btns {
-      display: flex;
-      gap: 0.5rem;
-    }
-    .modal-btns {
-      display: flex;
-      gap: 0.5rem;
-    }
-  </style>
-  <!-- Sidebar -->
-  <div class="layout">
-    <aside class="sidebar">
-      <a href="#" class="sidebar__logo">
-        <i class="fas fa-graduation-cap"></i>
-        <span>EduNext-prep100</span>
-      </a>
-      <nav class="sidebar__menu">
-        <a href="student-dashboard.html" class="sidebar__item">
-          <i class="fas fa-home"></i> Home
-        </a>
-        <a href="ai-tutor-chatbot.html" class="sidebar__item">
-          <i class="fas fa-robot"></i> AI Tutor
-        </a>
-        <a href="study-plan.html" class="sidebar__item">
-          <i class="fas fa-calendar-alt"></i> Study Plan
-        </a>
-        <a href="smart-note.html" class="sidebar__item active">
-          <i class="fas fa-sticky-note"></i> Smart Notes
-        </a>
-        <a href="video-library.html" class="sidebar__item">
-          <i class="fas fa-video"></i> Video Library
-        </a>
-        <a href="mock-exams.html" class="sidebar__item">
-          <i class="fas fa-file-alt"></i> Mock Exams
-        </a>
-        <a href="practice-exams.html" class="sidebar__item">
-          <i class="fas fa-pencil-alt"></i> Practice Exams
-        </a>
-        <a href="notifications.html" class="sidebar__item">
-          <i class="fas fa-bell"></i> Notifications
-        </a>
-        <a href="student-live-session.html" class="sidebar__item">
-          <i class="fas fa-chalkboard-teacher"></i> Join Live Session
-        </a>
-      </nav>
-    </aside>
-
-  <!-- Main Content -->
-  <div class="main-content">
-    <div class="dashboard-topbar">
-      <div class="search-container">
-        <i class="fas fa-search search-icon"></i>
-        <input type="text" id="searchInput" class="search-input" placeholder="Search notes by title, content, or tags..." onkeyup="filterJots()">
+    <!-- Main -->
+    <main class="flex-1 p-8 ml-72">
+      <!-- Top Bar -->
+      <div class="flex items-center justify-between mb-6">
+        <div class="flex-1 max-w-xl relative">
+          <i class="fas fa-search absolute left-4 top-1/2 -translate-y-1/2 text-gray-400"></i>
+          <input id="searchInput" type="text" class="w-full pl-12 pr-4 py-3 rounded-full border-2 border-gray-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-100 bg-white" placeholder="Search notes by title, content, or tags...">
+        </div>
+        <div class="flex items-center gap-4">
+          <span id="student-level" class="bg-blue-100 text-blue-700 px-4 py-1 rounded-full font-semibold text-sm">SS 3</span>
+          <span id="student-name" class="font-semibold text-gray-700">Student</span>
+          <div class="relative">
+            <button id="notifBtn" class="p-2 rounded-full hover:bg-blue-100 transition" aria-label="Notifications">
+              <i class="fas fa-bell text-blue-600 text-lg"></i>
+              <span id="notification-count" class="absolute -top-1 -right-1 bg-pink-500 text-white rounded-full w-5 h-5 flex items-center justify-center text-xs font-bold">3</span>
+            </button>
+          </div>
+          <img id="user-avatar" src="https://ui-avatars.com/api/?name=Student&background=2563eb&color=fff" alt="User" class="h-10 w-10 rounded-full border-2 border-blue-500">
+        </div>
       </div>
-      <div class="user-info">
-        <div class="badge badge-primary">SS 3/WAEC</div>
-        <button class="notification-btn">
-          <i class="fas fa-bell"></i>
-          <span class="notification-badge">3</span>
-        </button>
-        <img src="https://ui-avatars.com/api/?name=Student&background=2563eb&color=fff" alt="User" class="avatar">
-      </div>
-    </div>
 
-    <div class="section-header">
-      <h1 class="section-title">Smart Notes</h1>
-      <button onclick="openModal(null)" class="btn btn-primary">
-        <i class="fas fa-plus"></i> Create New Note
-      </button>
-    </div>
-
-    <div id="jotsGrid"></div>
-  <!-- Modal for Creating/Editing Jots -->
-  <div id="jotModal" class="modal">
-    <div class="modal-content">
-      <h2 id="modalTitle" class="section-title mb-lg"></h2>
-      <input type="text" id="jotTitle" placeholder="Title" class="form-input" required>
-      <textarea id="jotContent" placeholder="Content" class="form-textarea" required></textarea>
-      <input type="text" id="jotTags" placeholder="Tags (comma-separated)" class="form-input">
-      <div class="flex-row gap-sm mt-lg">
-        <button onclick="saveJot()" class="btn btn-primary">
-          <i class="fas fa-save"></i> Save
-        </button>
-        <button onclick="closeModal()" class="btn btn-secondary">
-          <i class="fas fa-times"></i> Cancel
-        </button>
+      <!-- Banner / Header -->
+      <div class="rounded-3xl bg-gradient-to-r from-yellow-500 to-yellow-400 text-white p-6 shadow mb-6">
+        <div class="flex items-center justify-between">
+          <div>
+            <h1 class="text-2xl font-extrabold">Smart Notes</h1>
+            <p class="text-yellow-100 mt-1">Create, organize and revisit your quick study notes.</p>
+          </div>
+          <div class="flex gap-2">
+            <button id="openCreate" class="bg-white text-yellow-600 px-4 py-2 rounded-full font-semibold hover:bg-gray-100">Create Note</button>
+            <button id="importBtn" class="bg-white/40 text-white px-4 py-2 rounded-full font-semibold hover:bg-white/30">Import</button>
+          </div>
+        </div>
       </div>
-    </div>
+
+      <!-- Notes grid -->
+      <div id="jotsGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+
+      <!-- Modal -->
+      <div id="jotModal" class="fixed inset-0 bg-black/40 hidden items-center justify-center z-50">
+        <div class="bg-white rounded-2xl w-full max-w-2xl p-6">
+          <div class="flex items-center justify-between mb-4">
+            <h2 id="modalTitle" class="text-xl font-bold">Create Note</h2>
+            <button id="closeModalBtn" class="text-gray-500 hover:text-gray-700"><i class="fas fa-times"></i></button>
+          </div>
+          <input id="jotTitle" type="text" placeholder="Title" class="w-full p-3 border rounded-lg mb-3" />
+          <textarea id="jotContent" placeholder="Content" class="w-full p-3 border rounded-lg mb-3 h-36"></textarea>
+          <input id="jotTags" type="text" placeholder="Tags (comma-separated)" class="w-full p-3 border rounded-lg mb-4" />
+          <div class="flex gap-2 justify-end">
+            <button id="saveJotBtn" class="bg-yellow-500 text-white px-4 py-2 rounded-lg font-semibold">Save</button>
+            <button id="cancelJotBtn" class="px-4 py-2 rounded-lg border" >Cancel</button>
+          </div>
+        </div>
+      </div>
+
+    </main>
   </div>
 
   <script>
+    // Preserve existing jot logic but render with Tailwind classes
     let jots = [
       { id: 1, title: "Math Notes", content: "Algebra basics...", tags: ["math"] },
       { id: 2, title: "History Jot", content: "World War II events...", tags: ["history"] }
     ];
     let editingJotId = null;
 
+    const jotsGrid = document.getElementById('jotsGrid');
+    const jotModal = document.getElementById('jotModal');
+    const modalTitle = document.getElementById('modalTitle');
+    const jotTitle = document.getElementById('jotTitle');
+    const jotContent = document.getElementById('jotContent');
+    const jotTags = document.getElementById('jotTags');
+    const searchInput = document.getElementById('searchInput');
+
     function renderJots(filter = "") {
-      const grid = document.getElementById('jotsGrid');
-      grid.innerHTML = "";
-      jots.filter(jot => 
+      jotsGrid.innerHTML = '';
+      const filtered = jots.filter(jot =>
         jot.title.toLowerCase().includes(filter.toLowerCase()) ||
         jot.content.toLowerCase().includes(filter.toLowerCase()) ||
         jot.tags.some(tag => tag.toLowerCase().includes(filter.toLowerCase()))
-      ).forEach(jot => {
-        grid.innerHTML += `
-          <div class="jot-card">
-            <h3 class="text-lg font-semibold">${jot.title}</h3>
-            <p class="text-gray-600 mt-2">${jot.content}</p>
-            <div class="text-sm text-gray-500 mt-3"><i class="fas fa-tags"></i> ${jot.tags.join(", ")}</div>
-            <div class="action-buttons">
-              <button onclick="openModal(${jot.id})" class="btn btn-secondary">
-                <i class="fas fa-edit"></i> Edit
-              </button>
-              <button onclick="deleteJot(${jot.id})" class="btn btn-danger">
-                <i class="fas fa-trash"></i> Delete
-              </button>
-              <button onclick="shareJot(${jot.id})" class="btn btn-success">
-                <i class="fas fa-share"></i> Share
-              </button>
+      );
+
+      if (filtered.length === 0) {
+        jotsGrid.innerHTML = '<div class="col-span-full text-center text-gray-500">No notes yet. Create one to get started.</div>';
+        return;
+      }
+
+      filtered.forEach(jot => {
+        const card = document.createElement('div');
+        card.className = 'bg-white rounded-2xl p-6 shadow hover:shadow-lg transition';
+        card.innerHTML = `
+          <div class="flex items-start justify-between">
+            <div>
+              <h3 class="text-lg font-bold text-gray-800">${escapeHtml(jot.title)}</h3>
+              <p class="text-gray-600 mt-2">${escapeHtml(jot.content)}</p>
+              <div class="mt-4 flex flex-wrap gap-2">
+                ${jot.tags.map(t => `<span class="text-xs bg-gray-100 text-gray-700 px-3 py-1 rounded-full">${escapeHtml(t)}</span>`).join('')}
+              </div>
+            </div>
+            <div class="flex flex-col items-end gap-2">
+              <div class="text-sm text-gray-500">ID: ${jot.id}</div>
+              <div class="flex gap-2">
+                <button class="px-3 py-1 bg-blue-50 text-blue-600 rounded-md" onclick="openModal(${jot.id})"><i class="fas fa-edit"></i></button>
+                <button class="px-3 py-1 bg-red-50 text-red-600 rounded-md" onclick="deleteJot(${jot.id})"><i class="fas fa-trash"></i></button>
+                <button class="px-3 py-1 bg-green-50 text-green-600 rounded-md" onclick="shareJot(${jot.id})"><i class="fas fa-share"></i></button>
+              </div>
             </div>
           </div>
         `;
+        jotsGrid.appendChild(card);
       });
     }
 
-    function filterJots() {
-      const val = document.getElementById('searchInput').value;
-      renderJots(val);
+    function escapeHtml(str) {
+      return String(str)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#39;');
     }
 
-    function openModal(jotId) {
-      const modal = document.getElementById('jotModal');
-      const titleInput = document.getElementById('jotTitle');
-      const contentInput = document.getElementById('jotContent');
-      const tagsInput = document.getElementById('jotTags');
-      const modalTitle = document.getElementById('modalTitle');
-
-      if (jotId) {
-        const jot = jots.find(j => j.id === jotId);
-        titleInput.value = jot.title;
-        contentInput.value = jot.content;
-        tagsInput.value = jot.tags.join(", ");
-        modalTitle.textContent = "Edit Jot";
-        editingJotId = jotId;
+    function openModal(id) {
+      if (id) {
+        const jot = jots.find(j => j.id === id);
+        jotTitle.value = jot.title;
+        jotContent.value = jot.content;
+        jotTags.value = jot.tags.join(', ');
+        editingJotId = id;
+        modalTitle.textContent = 'Edit Note';
       } else {
-        titleInput.value = "";
-        contentInput.value = "";
-        tagsInput.value = "";
-        modalTitle.textContent = "Create New Jot";
+        jotTitle.value = '';
+        jotContent.value = '';
+        jotTags.value = '';
         editingJotId = null;
+        modalTitle.textContent = 'Create Note';
       }
-      modal.style.display = "flex";
+      jotModal.classList.remove('hidden');
+      jotModal.classList.add('flex');
     }
 
     function closeModal() {
-      document.getElementById('jotModal').style.display = "none";
+      jotModal.classList.add('hidden');
+      jotModal.classList.remove('flex');
       editingJotId = null;
     }
 
     function saveJot() {
-      const title = document.getElementById('jotTitle').value;
-      const content = document.getElementById('jotContent').value;
-      const tags = document.getElementById('jotTags').value.split(",").map(tag => tag.trim());
-
+      const title = jotTitle.value.trim();
+      const content = jotContent.value.trim();
+      const tags = jotTags.value.split(',').map(t => t.trim()).filter(Boolean);
       if (!title || !content) {
-        alert("Title and content are required!");
+        alert('Title and content are required');
         return;
       }
-
       if (editingJotId) {
-        jots = jots.map(jot => 
-          jot.id === editingJotId ? { ...jot, title, content, tags } : jot
-        );
+        jots = jots.map(j => j.id === editingJotId ? { ...j, title, content, tags } : j);
       } else {
-        const newJot = { id: Date.now(), title, content, tags };
-        jots.push(newJot);
+        jots.push({ id: Date.now(), title, content, tags });
       }
       closeModal();
-      renderJots();
+      renderJots(searchInput.value || '');
     }
 
     function deleteJot(id) {
-      if (confirm("Are you sure you want to delete this jot?")) {
-        jots = jots.filter(jot => jot.id !== id);
-        renderJots();
-      }
+      if (!confirm('Delete this note?')) return;
+      jots = jots.filter(j => j.id !== id);
+      renderJots(searchInput.value || '');
     }
 
     function shareJot(id) {
-      const shareLink = `${window.location.origin}/jot/${id}`;
-      alert(`Share this link: ${shareLink}`);
+      const link = `${window.location.origin}/jot/${id}`;
+      navigator.clipboard?.writeText(link).then(() => alert('Share link copied to clipboard'), () => alert('Link: ' + link));
     }
+
+    // Event bindings
+    document.getElementById('openCreate').addEventListener('click', () => openModal(null));
+    document.getElementById('closeModalBtn').addEventListener('click', closeModal);
+    document.getElementById('cancelJotBtn').addEventListener('click', closeModal);
+    document.getElementById('saveJotBtn').addEventListener('click', saveJot);
+    searchInput.addEventListener('input', (e) => renderJots(e.target.value));
 
     // Initial render
     renderJots();
