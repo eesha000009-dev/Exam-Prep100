@@ -7,7 +7,7 @@ services:
   - type: web
     name: exam-prep100-web
     env: node
-    branch: fix/secure-credentials
+    branch: main
     buildCommand: npm install
     startCommand: node server.js
     plan: free
@@ -16,6 +16,6 @@ services:
 static_sites:
   - type: static
     name: exam-prep100-static
-    branch: fix/secure-credentials
+    branch: main
     publishPath: students
     plan: free

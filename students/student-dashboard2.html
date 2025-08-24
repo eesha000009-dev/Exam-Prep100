@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="/assets/images/Logo of JUANOVA Cortex Tutor.png" />
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Student Dashboard - EduNext</title>
@@ -58,7 +60,7 @@
         <a href="/students/video-library" class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-blue-50 transition sidebar__item">
           <i class="fas fa-video text-red-500"></i> Video Library
         </a>
-        <a href="mock-exams.html" class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-blue-50 transition sidebar__item">
+        <a href="practice-exams.html" class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-blue-50 transition sidebar__item">
           <i class="fas fa-file-alt text-indigo-500"></i> Mock Exams
         </a>
         <a href="practice-exams.html" class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-blue-50 transition sidebar__item">
@@ -296,6 +298,7 @@
             }
               
               if (!userDoc.exists()) {
+
                 // Create new student profile
                 try {
                   await setDoc(userRef, {
@@ -325,7 +328,6 @@
               const avatarUrl = userData.avatarUrl || 
                 `https://ui-avatars.com/api/?name=${encodeURIComponent(userData.name || 'Student')}&background=2563eb&color=fff`;
               setImage('user-avatar', avatarUrl);
-
               // Load activity data
               const activityRef = doc(db, 'student_activities', user.uid);
               const activityDoc = await getDoc(activityRef);

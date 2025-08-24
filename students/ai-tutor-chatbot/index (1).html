@@ -1,0 +1,300 @@
+<script type="text/javascript">
+        var gk_isXlsx = false;
+        var gk_xlsxFileLookup = {};
+        var gk_fileData = {};
+        function filledCell(cell) {
+          return cell !== '' && cell != null;
+        }
+        function loadFileData(filename) {
+        if (gk_isXlsx && gk_xlsxFileLookup[filename]) {
+            try {
+                var workbook = XLSX.read(gk_fileData[filename], { type: 'base64' });
+                var firstSheetName = workbook.SheetNames[0];
+                var worksheet = workbook.Sheets[firstSheetName];
+
+                // Convert sheet to JSON to filter blank rows
+                var jsonData = XLSX.utils.sheet_to_json(worksheet, { header: 1, blankrows: false, defval: '' });
+                // Filter out blank rows (rows where all cells are empty, null, or undefined)
+                var filteredData = jsonData.filter(row => row.some(filledCell));
+
+                // Heuristic to find the header row by ignoring rows with fewer filled cells than the next row
+                var headerRowIndex = filteredData.findIndex((row, index) =>
+                  row.filter(filledCell).length >= filteredData[index + 1]?.filter(filledCell).length
+                );
+                // Fallback
+                if (headerRowIndex === -1 || headerRowIndex > 25) {
+                  headerRowIndex = 0;
+                }
+
+                // Convert filtered JSON back to CSV
+                var csv = XLSX.utils.aoa_to_sheet(filteredData.slice(headerRowIndex)); // Create a new sheet from filtered array of arrays
+                csv = XLSX.utils.sheet_to_csv(csv, { header: 1 });
+                return csv;
+            } catch (e) {
+                console.error(e);
+                return "";
+            }
+        }
+        return gk_fileData[filename] || "";
+        }
+        </script><!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Tutor - JUANOVA CORTEX</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML" async></script>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/11.11.0/math.min.js"></script>
+    <!-- PDF.js for client-side PDF text extraction -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.7.107/pdf.min.js"></script>
+</head>
+<body class="bg-gray-50">
+    <!-- Error Toast -->
+    <div id="error-toast" class="fixed top-4 right-4 bg-red-100 border-l-4 border-red-500 text-red-700 p-4 hidden shadow-lg rounded">
+        <div class="flex items-center">
+            <i class="fas fa-exclamation-circle mr-2"></i>
+            <span id="error-message"></span>
+        </div>
+    </div>
+
+    <div class="flex min-h-screen">
+        <!-- Sidebar -->
+        <aside class="fixed top-0 left-0 h-screen bg-white/80 backdrop-blur-lg shadow-xl w-72 flex flex-col px-4 py-6 border-r border-gray-200 overflow-y-auto z-50">
+            <div class="sticky top-0 bg-white/95 backdrop-blur-lg z-10 py-2 mb-8">
+                <a href="#" class="flex items-center gap-3">
+                    <img src="/assets/images/Logo%20of%20JUANOVA%20Cortex%20Tutor.png" alt="Logo" class="h-16 w-16 object-contain rounded-full shadow-2xl border-4 border-blue-700">
+                    <span class="text-3xl font-extrabold text-blue-800 tracking-tight font-serif italic drop-shadow-lg">JUANOVA CORTEX</span>
+                </a>
+            </div>
+            
+            <nav class="flex flex-col gap-2 text-gray-700 font-medium">
+                <a href="student-dashboard.html" class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-blue-50 transition">
+                    <i class="fas fa-home"></i> Home
+                </a>
+                <a href="news-feed-gemini.html" class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-blue-50 transition">
+                    <i class="fas fa-newspaper text-pink-500"></i> News Feed
+                </a>
+                <a href="ai-tutor-chatbot.html" class="flex items-center gap-3 px-4 py-2 rounded-lg bg-blue-50 text-blue-600">
+                    <i class="fas fa-robot text-purple-500"></i> AI Tutor
+                </a>
+                <a href="smart-note.html" class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-blue-50 transition">
+                    <i class="fas fa-sticky-note text-yellow-500"></i> Smart Notes
+                </a>
+                <a href="study-plan.html" class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-blue-50 transition">
+                    <i class="fas fa-calendar-alt text-green-500"></i> Study Plan
+                </a>
+                <a href="video-library.html" class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-blue-50 transition">
+                    <i class="fas fa-video text-red-500"></i> Video Library
+                </a>
+                <a href="mock-exams.html" class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-blue-50 transition">
+                    <i class="fas fa-file-alt text-indigo-500"></i> Mock Exams
+                </a>
+                <a href="practice-exams.html" class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-blue-50 transition">
+                    <i class="fas fa-pencil-alt text-orange-500"></i> Practice Exams
+                </a>
+                <a href="notifications.html" class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-blue-50 transition">
+                    <i class="fas fa-bell text-pink-600"></i> Notifications
+                </a>
+                <a href="student-live-session.html" class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-blue-50 transition">
+                    <i class="fas fa-chalkboard-teacher text-blue-400"></i> Join Live Session
+                </a>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="flex-1 p-8 ml-72">
+            <!-- Top Bar -->
+            <div class="flex items-center justify-between mb-8">
+                <div class="flex-1 max-w-xl relative">
+                    <i class="fas fa-search absolute left-4 top-1/2 -translate-y-1/2 text-gray-400"></i>
+                    <input type="text" class="w-full pl-12 pr-4 py-3 rounded-full border-2 border-gray-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-100 bg-white" placeholder="Search topics, subjects, or resources...">
+                </div>
+                
+                <div class="flex items-center gap-4">
+                    <span id="student-level" class="bg-blue-100 text-blue-700 px-4 py-1 rounded-full font-semibold text-sm"></span>
+                    <span id="student-name" class="font-semibold text-gray-700"></span>
+                    <div class="relative">
+                        <button class="p-2 rounded-full hover:bg-blue-100 transition">
+                            <i class="fas fa-bell text-blue-600 text-lg"></i>
+                            <span id="notification-count" class="absolute -top-1 -right-1 bg-pink-500 text-white rounded-full w-5 h-5 flex items-center justify-center text-xs font-bold">0</span>
+                        </button>
+                    </div>
+                    <img id="user-avatar" src="../assets/images/unnamed.jpg" alt="User" class="h-10 w-10 rounded-full border-2 border-blue-500">
+                </div>
+            </div>
+
+            <!-- Main Chat Container -->
+            <div class="bg-white rounded-2xl shadow-lg p-6">
+
+                <!-- Chat Interface -->
+                <div id="chat-container" class="h-[calc(100vh-300px)] overflow-y-auto mb-6 space-y-6">
+                    <!-- Chat messages will be inserted here -->
+                </div>
+
+                <!-- Input Section -->
+                <div class="flex flex-col gap-4">
+                    <div class="flex items-center gap-4">
+                        <div class="flex-1 relative">
+                            <input type="text" id="user-input" 
+                                   class="w-full pl-12 pr-4 py-4 rounded-full border-2 border-gray-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-100 bg-white shadow-sm" 
+                                   placeholder="Ask a question (e.g., 'Solve x^2 + 5x + 6 = 0') or type 'calc', 'pdf', 'photo'...">
+                            <i class="fas fa-keyboard absolute left-4 top-1/2 -translate-y-1/2 text-gray-400"></i>
+                        </div>
+                        <button id="mic-btn" class="p-4 rounded-full bg-gray-100 hover:bg-gray-200 text-gray-600 transition shadow-sm" title="Record speech">
+                            <i class="fas fa-microphone"></i>
+                        </button>
+                        <button id="send-btn" class="p-4 rounded-full bg-blue-600 hover:bg-blue-700 text-white transition shadow-sm" title="Send message">
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </div>
+
+                    <!-- Attachment preview -->
+                    <div id="attachment-preview" class="mt-3"></div>
+
+                    <div class="flex flex-col gap-2 items-center">
+                        <label class="flex items-center gap-2 text-sm text-gray-600">
+                            <input type="checkbox" id="include-full-pdf" class="w-4 h-4"> Include full PDF
+                        </label>
+                        <div class="flex gap-4 justify-center">
+                            <button id="upload-image-btn" class="flex items-center gap-2 px-4 py-2 rounded-lg text-gray-600 hover:bg-gray-100 transition" title="Attach an image">
+                                <i class="fas fa-image text-green-500"></i>
+                                <span>Upload Image</span>
+                            </button>
+                            <button id="upload-pdf-btn" class="flex items-center gap-2 px-4 py-2 rounded-lg text-gray-600 hover:bg-gray-100 transition" title="Attach a PDF">
+                                <i class="fas fa-file-pdf text-red-500"></i>
+                                <span>Upload PDF</span>
+                            </button>
+                            <button id="chat-calc-btn" class="flex items-center gap-2 px-4 py-2 rounded-lg text-gray-600 hover:bg-gray-100 transition" title="Open calculator">
+                                <i class="fas fa-calculator text-blue-500"></i>
+                                <span>Calculator</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <input type="file" id="photo-input" accept="image/*" class="hidden">
+                <input type="file" id="pdf-input" accept=".pdf" class="hidden">
+                
+                <!-- Calculator Modal -->
+                <div id="calculator-modal" class="fixed inset-0 bg-black/40 flex items-center justify-center z-[10000] hidden">
+                    <div class="bg-white rounded-2xl shadow-2xl p-6 w-full max-w-xs relative">
+                        <button id="close-calculator" class="absolute top-4 right-4 text-gray-500 hover:text-gray-700 text-xl" title="Close Calculator" aria-label="Close Calculator">
+                            <i class="fas fa-times"></i>
+                        </button>
+                        <h2 class="text-xl font-bold mb-2 text-blue-700 text-center">Advanced Calculator</h2>
+                        <div id="calc-display" class="w-full bg-gray-100 rounded-lg p-3 mb-3 text-right text-2xl font-mono text-gray-800 select-all overflow-x-auto">0</div>
+                        <div class="grid grid-cols-4 gap-2 mb-2">
+                            <button class="calc-btn bg-gray-200" data-value="(">(</button>
+                            <button class="calc-btn bg-gray-200" data-value=")">)</button>
+                            <button class="calc-btn bg-gray-200" data-value="pi">π</button>
+                            <button class="calc-btn bg-gray-200" data-value="e">e</button>
+
+                            <button class="calc-btn bg-gray-200" data-value="sin(">sin</button>
+                            <button class="calc-btn bg-gray-200" data-value="cos(">cos</button>
+                            <button class="calc-btn bg-gray-200" data-value="tan(">tan</button>
+                            <button class="calc-btn bg-gray-200" data-value="^">^</button>
+
+                            <button class="calc-btn bg-gray-200" data-value="log10(">log</button>
+                            <button class="calc-btn bg-gray-200" data-value="ln(">ln</button>
+                            <button class="calc-btn bg-gray-200" data-value="sqrt(">√</button>
+                            <button class="calc-btn bg-gray-200" data-value="%">%</button>
+
+                            <button class="calc-btn bg-gray-100" data-value="7">7</button>
+                            <button class="calc-btn bg-gray-100" data-value="8">8</button>
+                            <button class="calc-btn bg-gray-100" data-value="9">9</button>
+                            <button class="calc-btn bg-blue-200" data-value="/">÷</button>
+
+                            <button class="calc-btn bg-gray-100" data-value="4">4</button>
+                            <button class="calc-btn bg-gray-100" data-value="5">5</button>
+                            <button class="calc-btn bg-gray-100" data-value="6">6</button>
+                            <button class="calc-btn bg-blue-200" data-value="*">×</button>
+
+                            <button class="calc-btn bg-gray-100" data-value="1">1</button>
+                            <button class="calc-btn bg-gray-100" data-value="2">2</button>
+                            <button class="calc-btn bg-gray-100" data-value="3">3</button>
+                            <button class="calc-btn bg-blue-200" data-value="-">−</button>
+
+                            <button class="calc-btn bg-gray-100" data-value="0">0</button>
+                            <button class="calc-btn bg-gray-100" data-value=".">.</button>
+                            <button class="calc-btn bg-yellow-200 font-bold" id="calc-clear">C</button>
+                            <button class="calc-btn bg-blue-400 text-white font-bold" id="calc-equals">=</button>
+                            <button class="calc-btn bg-blue-200" data-value="+">+</button>
+                        </div>
+                        <div id="calc-error" class="text-red-600 text-sm min-h-[1.5em] text-center"></div>
+                    </div>
+                </div>
+            </div>
+
+        </main>
+    </div>
+
+    <!-- Quick Actions Toolbar -->
+    <div id="toolbar" class="fixed bottom-8 right-12">
+        <div class="relative group">
+            <button id="toolsButton" onclick="toggleToolsMenu()" title="Learning Tools" aria-label="Toggle Learning Tools" 
+                    class="text-purple-500 hover:text-purple-700 transition-colors p-2">
+                <i class="fas fa-toolbox text-4xl drop-shadow-lg hover:scale-110 transform transition-transform" aria-hidden="true"></i>
+            </button>
+
+            <div id="toolsMenu" class="hidden absolute bottom-14 right-0 bg-white/95 backdrop-blur-sm rounded-xl shadow-2xl overflow-hidden min-w-[220px] border border-purple-100/50">
+                <!-- Calculator -->
+                <button onclick="toggleCalculator()" class="w-full px-6 py-4 flex items-center gap-4 hover:bg-blue-50 transition-all text-left group">
+                    <i class="fas fa-calculator text-xl text-blue-500 group-hover:scale-110 transition-transform"></i>
+                    <span class="text-gray-700 group-hover:text-blue-600 font-medium">Calculator</span>
+                </button>
+                
+                <!-- File Upload -->
+                <button onclick="document.getElementById('photo-input').click()" class="w-full px-6 py-4 flex items-center gap-4 hover:bg-green-50 transition-all text-left group border-t border-purple-100/30">
+                    <i class="fas fa-image text-xl text-green-500 group-hover:scale-110 transition-transform"></i>
+                    <span class="text-gray-700 group-hover:text-green-600 font-medium">Upload Image</span>
+                </button>
+                
+                <!-- PDF Upload -->
+                <button onclick="document.getElementById('pdf-input').click()" class="w-full px-6 py-4 flex items-center gap-4 hover:bg-red-50 transition-all text-left group border-t border-purple-100/30">
+                    <i class="fas fa-file-pdf text-xl text-red-500 group-hover:scale-110 transition-transform"></i>
+                    <span class="text-gray-700 group-hover:text-red-600 font-medium">Upload PDF</span>
+                </button>
+                
+                <!-- History -->
+                <button onclick="toggleHistory()" class="w-full px-6 py-4 flex items-center gap-4 hover:bg-amber-50 transition-all text-left group border-t border-purple-100/30">
+                    <i class="fas fa-history text-xl text-amber-500 group-hover:scale-110 transition-transform"></i>
+                    <span class="text-gray-700 group-hover:text-amber-600 font-medium">Chat History</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Firebase Scripts -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+        import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+        import { getFirestore } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+        import { firebaseConfig } from '../../js/firebase-config.js';
+        
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const db = getFirestore(app);
+        
+        onAuthStateChanged(auth, (user) => {
+            if (!user) {
+                window.location.replace('../general/login-new.html');
+                return;
+            }
+            
+            // Update UI with user info
+            document.getElementById('student-name').textContent = user.displayName || 'Student';
+            document.getElementById('student-level').textContent = 'SS 3';
+            if (user.photoURL) {
+                document.getElementById('user-avatar').src = user.photoURL;
+            }
+        });
+    </script>
+
+    <!-- Main Scripts -->
+    <script src="script.js"></script>
+    <script src="calculator.js"></script>
+</body>
+</html>

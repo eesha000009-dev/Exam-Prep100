@@ -1,15 +1,61 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="/assets/images/Logo of JUANOVA Cortex Tutor.png" />
+  <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Practice Exams - Prep100</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="bg-gray-50">
+    <!-- Mobile Header (visible on small screens) -->
+    <header class="lg:hidden fixed top-0 left-0 right-0 bg-white/95 backdrop-blur z-40 p-3 flex items-center justify-between border-b border-gray-200">
+        <div class="flex items-center gap-3">
+            <button id="mobileMenuBtn" aria-label="Open menu" class="p-2 rounded-md text-gray-700" onclick="toggleMobileSidebar()">
+                <i class="fas fa-bars text-2xl"></i>
+            </button>
+            <a href="#" class="flex items-center gap-2">
+                <img src="/assets/images/Logo%20of%20JUANOVA%20Cortex%20Tutor.png" alt="Logo" class="h-10 w-10 object-contain rounded-full border-2 border-blue-700">
+                <span class="font-semibold text-gray-800">Prep100</span>
+            </a>
+        </div>
+        <div class="flex items-center gap-3">
+            <button onclick="window.location.href='notifications.html'" class="p-2 rounded-md text-gray-700" aria-label="Notifications">
+                <i class="fas fa-bell"></i>
+                <span class="sr-only">Notifications</span>
+            </button>
+            <img src="../assets/images/unnamed.jpg" alt="User" class="h-8 w-8 rounded-full border-2 border-blue-500">
+        </div>
+    </header>
+
+    <!-- Mobile Sidebar (slide-in) -->
+    <aside id="mobile-sidebar" class="fixed inset-y-0 left-0 w-72 bg-white/95 backdrop-blur-lg shadow-xl p-6 z-50 transform -translate-x-full transition-transform lg:hidden">
+        <div class="flex items-center justify-between mb-6">
+            <a href="#" class="flex items-center gap-3">
+                <img src="/assets/images/Logo%20of%20JUANOVA%20Cortex%20Tutor.png" alt="Logo" class="h-12 w-12 object-contain rounded-full border-2 border-blue-700">
+                <span class="text-lg font-bold text-blue-800">JUANOVA CORTEX</span>
+            </a>
+            <button aria-label="Close menu" class="p-2 text-gray-600" onclick="toggleMobileSidebar()"><i class="fas fa-times"></i></button>
+        </div>
+        <nav class="flex flex-col gap-2 text-gray-700 font-medium">
+            <a href="student-dashboard.html" class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-blue-50 transition"><i class="fas fa-home"></i> Home</a>
+            <a href="ai-tutor-chatbot.html" class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-blue-50 transition"><i class="fas fa-robot text-purple-500"></i> AI Tutor</a>
+            <a href="study-plan.html" class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-blue-50 transition"><i class="fas fa-calendar-alt text-green-500"></i> Study Plan</a>
+            <a href="smart-note.html" class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-blue-50 transition"><i class="fas fa-sticky-note text-yellow-500"></i> Smart Notes</a>
+            <a href="video-library.html" class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-blue-50 transition"><i class="fas fa-video text-red-500"></i> Video Library</a>
+            <a href="practice-exams.html" class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-blue-50 transition"><i class="fas fa-file-alt text-indigo-500"></i> Mock Exams</a>
+            <a href="practice-exams.html" class="flex items-center gap-3 px-3 py-2 rounded-lg bg-blue-50 text-blue-600"><i class="fas fa-pencil-alt text-orange-500"></i> Practice Exams</a>
+            <a href="student-live-session.html" class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-blue-50 transition"><i class="fas fa-chalkboard-teacher text-blue-400"></i> Join Live Session</a>
+        </nav>
+    </aside>
+
+    <!-- Backdrop for mobile sidebar -->
+    <div id="sidebar-backdrop" class="fixed inset-0 bg-black/30 hidden z-40 lg:hidden" onclick="toggleMobileSidebar()"></div>
+
     <div class="flex min-h-screen">
-        <!-- Sidebar -->
+        <!-- Desktop Sidebar (hidden on small screens) -->
         <aside class="fixed top-0 left-0 h-screen bg-white/80 backdrop-blur-lg shadow-xl w-72 flex flex-col px-4 py-6 border-r border-gray-200 overflow-y-auto z-50">
             <div class="sticky top-0 bg-white/95 backdrop-blur-lg z-10 py-2 mb-8">
                 <a href="#" class="flex items-center gap-3">
@@ -17,27 +63,31 @@
                     <span class="text-3xl font-extrabold text-blue-800 tracking-tight font-serif italic drop-shadow-lg">JUANOVA CORTEX</span>
                 </a>
             </div>
+            
             <nav class="flex flex-col gap-2 text-gray-700 font-medium">
-                <a href="student-dashboard.html" class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-blue-50 transition">
+                <a href="student-dashboard.html" class="flex items-center gap-3 px-4 py-2 rounded-lg bg-blue-50 text-blue-600">
                     <i class="fas fa-home"></i> Home
+                </a>
+                <a href="news-feed-gemini.html" class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-blue-50 transition">
+                    <i class="fas fa-newspaper text-pink-500"></i> News Feed
                 </a>
                 <a href="ai-tutor-chatbot.html" class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-blue-50 transition">
                     <i class="fas fa-robot text-purple-500"></i> AI Tutor
                 </a>
-                <a href="study-plan.html" class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-blue-50 transition">
-                    <i class="fas fa-calendar-alt text-green-500"></i> Study Plan
+                <a href="all-formula.html" class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-blue-50 transition">
+                    <i class="fas fa-book-open text-teal-600"></i> All Formula
                 </a>
                 <a href="smart-note.html" class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-blue-50 transition">
                     <i class="fas fa-sticky-note text-yellow-500"></i> Smart Notes
                 </a>
+                <a href="study-plan.html" class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-blue-50 transition">
+                    <i class="fas fa-calendar-alt text-green-500"></i> Study Plan
+                </a>
                 <a href="video-library.html" class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-blue-50 transition">
                     <i class="fas fa-video text-red-500"></i> Video Library
                 </a>
-                <a href="mock-exams.html" class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-blue-50 transition">
-                    <i class="fas fa-file-alt text-indigo-500"></i> Mock Exams
-                </a>
-                <a href="practice-exams.html" class="flex items-center gap-3 px-4 py-2 rounded-lg bg-blue-50 text-blue-600">
-                    <i class="fas fa-pencil-alt text-orange-500"></i> Practice Exams
+                <a href="practice-exams.html" class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-blue-50 transition">
+                    <i class="fas fa-pencil-alt text-orange-500"></i> Mock Exams
                 </a>
                 <a href="notifications.html" class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-blue-50 transition">
                     <i class="fas fa-bell text-pink-600"></i> Notifications
@@ -49,7 +99,7 @@
         </aside>
 
         <!-- Main Content -->
-        <main class="flex-1 p-8 ml-72">
+        <main class="flex-1 p-8 lg:ml-72 ml-0 pt-16 lg:pt-0">
             <!-- Top Bar -->
             <div class="flex items-center justify-between mb-8">
                 <div class="flex-1 max-w-xl relative">
@@ -59,12 +109,12 @@
                 <div class="flex items-center gap-4">
                     <span class="bg-blue-100 text-blue-700 px-4 py-1 rounded-full font-semibold text-sm">SS 3</span>
                     <span class="font-semibold text-gray-700">Student</span>
-                    <div class="relative">
-                        <button class="p-2 rounded-full hover:bg-blue-100 transition">
-                            <i class="fas fa-bell text-blue-600 text-lg"></i>
-                            <span class="absolute -top-1 -right-1 bg-pink-500 text-white rounded-full w-5 h-5 flex items-center justify-center text-xs font-bold">3</span>
-                        </button>
-                    </div>
+          <div class="relative">
+            <button class="p-2 rounded-full hover:bg-blue-100 transition" aria-label="Notifications" title="Notifications">
+              <i class="fas fa-bell text-blue-600 text-lg"></i>
+              <span class="absolute -top-1 -right-1 bg-pink-500 text-white rounded-full w-5 h-5 flex items-center justify-center text-xs font-bold">3</span>
+            </button>
+          </div>
                     <img src="../assets/images/unnamed.jpg" alt="User" class="h-10 w-10 rounded-full border-2 border-blue-500">
                 </div>
             </div>
@@ -90,10 +140,191 @@
 
             <!-- Dynamic Content Section -->
             <div id="dynamic-content" class="mt-8"></div>
+
+            <!-- Quick Actions Toolbar -->
+            <div id="toolbar" class="fixed bottom-8 right-12">
+                <div class="relative group">
+                    <button id="toolsButton" onclick="toggleToolsMenu()" title="Learning Tools" aria-label="Toggle Learning Tools" class="text-purple-500 hover:text-purple-700 transition-colors p-2">
+                        <i class="fas fa-toolbox text-4xl drop-shadow-lg hover:scale-110 transform transition-transform" aria-hidden="true"></i>
+                    </button>
+
+                    <div id="toolsMenu" class="hidden absolute bottom-14 right-0 bg-white/95 backdrop-blur-sm rounded-xl shadow-2xl overflow-hidden min-w-[220px] border border-purple-100/50">
+                        <button onclick="openTool('ai-tutor')" class="w-full px-6 py-4 flex items-center gap-4 hover:bg-purple-50 transition-all text-left group">
+                            <i class="fas fa-robot text-xl text-purple-500 group-hover:scale-110 transition-transform"></i>
+                            <span class="text-gray-700 group-hover:text-purple-600 font-medium">AI Tutor</span>
+                        </button>
+                        <button onclick="openTool('smart-notes')" class="w-full px-6 py-4 flex items-center gap-4 hover:bg-yellow-50 transition-all text-left group border-t border-purple-100/30">
+                            <i class="fas fa-sticky-note text-xl text-yellow-500 group-hover:scale-110 transition-transform"></i>
+                            <span class="text-gray-700 group-hover:text-yellow-600 font-medium">Smart Notes</span>
+                        </button>
+                        <button onclick="openTool('formula')" class="w-full px-6 py-4 flex items-center gap-4 hover:bg-teal-50 transition-all text-left group border-t border-purple-100/30">
+                            <i class="fas fa-superscript text-xl text-teal-500 group-hover:scale-110 transition-transform"></i>
+                            <span class="text-gray-700 group-hover:text-teal-600 font-medium">Formula Tool</span>
+                        </button>
+                        <button onclick="openTool('dictionary')" class="w-full px-6 py-4 flex items-center gap-4 hover:bg-amber-50 transition-all text-left group border-t border-purple-100/30">
+                            <i class="fas fa-book-reader text-xl text-amber-500 group-hover:scale-110 transition-transform"></i>
+                            <span class="text-gray-700 group-hover:text-amber-600 font-medium">Dictionary</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tool Windows (Initially Hidden) -->
+            <div id="smart-notes-window" class="hidden fixed bg-white rounded-lg shadow-2xl p-4 w-80 cursor-move z-[1000]">
+                <div class="flex justify-between items-center mb-4">
+                    <h3 class="font-bold text-lg text-yellow-600">Smart Notes</h3>
+                    <button onclick="closeTool('smart-notes')" class="text-gray-500 hover:text-gray-700" title="Close Smart Notes" aria-label="Close Smart Notes">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                <textarea id="smart-notes-input" class="w-full p-2 border rounded-lg mb-2" rows="4" placeholder="Write your note..."></textarea>
+                <button onclick="saveNote()" class="w-full bg-yellow-500 text-white py-2 rounded-lg hover:bg-yellow-600">Save Note</button>
+            </div>
+
+            <div id="formula-window" class="hidden fixed bg-white rounded-lg shadow-2xl p-4 w-80 cursor-move z-[1000]">
+                <div class="flex justify-between items-center mb-4">
+                    <h3 class="font-bold text-lg text-teal-600">Formula Tool</h3>
+                    <button onclick="closeTool('formula')" class="text-gray-500 hover:text-gray-700" title="Close Formula Tool" aria-label="Close Formula Tool">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                <input type="text" id="formula-name" class="w-full p-2 border rounded-lg mb-2" placeholder="Formula Name">
+                <textarea id="formula-input" class="w-full p-2 border rounded-lg mb-2" rows="3" placeholder="Enter your formula..."></textarea>
+                <button onclick="saveFormula()" class="w-full bg-teal-600 text-white py-2 rounded-lg hover:bg-teal-700">Save Formula</button>
+            </div>
+
+            <div id="dictionary-window" class="hidden fixed bg-white rounded-lg shadow-2xl p-4 w-80 cursor-move z-[1000]">
+                <div class="flex justify-between items-center mb-4">
+                    <h3 class="font-bold text-lg text-amber-600">Dictionary</h3>
+                    <button onclick="closeTool('dictionary')" class="text-gray-500 hover:text-gray-700" title="Close Dictionary" aria-label="Close Dictionary">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                <input type="text" id="dictionary-search" class="w-full p-2 border rounded-lg mb-2" placeholder="Search word...">
+                <div id="dictionary-result" class="text-gray-600"></div>
+            </div>
         </main>
     </div>
 
     <script>
+        // Subject styles for dashboard-like cards
+        const subjectStyles = {
+          "MATHEMATICS": { gradient: 'from-blue-600 to-blue-400', icon: 'fas fa-square-root-alt' },
+          "BIOLOGY": { gradient: 'from-green-500 to-green-300', icon: 'fas fa-dna' },
+          "CHEMISTRY": { gradient: 'from-pink-500 to-pink-300', icon: 'fas fa-flask' },
+          "PHYSICS": { gradient: 'from-yellow-500 to-yellow-300', icon: 'fas fa-atom' },
+          "ENGLISH": { gradient: 'from-indigo-500 to-indigo-300', icon: 'fas fa-book' },
+          "LITERATURE": { gradient: 'from-purple-500 to-purple-300', icon: 'fas fa-feather' },
+          "GOVERNMENT": { gradient: 'from-red-500 to-red-300', icon: 'fas fa-landmark' },
+          "ECONOMICS": { gradient: 'from-teal-500 to-teal-300', icon: 'fas fa-chart-pie' },
+          "COMMERCE": { gradient: 'from-orange-500 to-orange-300', icon: 'fas fa-balance-scale' },
+          "ACCOUNTING": { gradient: 'from-gray-700 to-gray-400', icon: 'fas fa-calculator' }
+        };
+
+        // Override showTopics to render styled subject cards and include View All toggle
+        function showTopics() {
+          document.getElementById('main-cards').style.display = 'none';
+          const content = document.getElementById('dynamic-content');
+
+          content.innerHTML = `
+            <div class="flex items-center justify-between mb-6">
+              <h2 class="text-2xl font-bold text-gray-800">Select a Subject</h2>
+              <button id="view-all-subjects" class="border border-blue-500 text-blue-600 px-5 py-1.5 rounded-full font-semibold hover:bg-blue-50 transition" onclick="toggleViewAllSubjects()">View All</button>
+            </div>
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
+              ${subjects.map((sub, i) => {
+                const style = subjectStyles[sub] || { gradient: 'from-gray-400 to-gray-200', icon: 'fas fa-book' };
+                // hide additional subjects by default (after the first 5)
+                const hiddenClass = i >= 5 ? 'hidden' : '';
+                return `
+                  <button onclick='showSubjectTopics("${sub}")' class="subject-card ${hiddenClass} flex flex-col items-center justify-center gap-2 p-6 rounded-2xl font-bold text-white text-lg shadow-lg bg-gradient-to-br ${style.gradient} hover:scale-105 transition">
+                    <i class="${style.icon} text-3xl"></i>
+                    <span class="mt-1">${sub}</span>
+                  </button>
+                `;
+              }).join('')}
+            </div>
+          `;
+        }
+
+        // Toggle View All subjects
+        function toggleViewAllSubjects() {
+          const btn = document.getElementById('view-all-subjects');
+          const hiddenSubjects = document.querySelectorAll('.subject-card.hidden');
+          const anyHidden = hiddenSubjects.length > 0 && Array.from(hiddenSubjects).some(el => el.classList.contains('hidden'));
+
+          if (anyHidden) {
+            hiddenSubjects.forEach(el => el.classList.remove('hidden'));
+            btn.textContent = 'Show Less';
+          } else {
+            // re-hide after first 5
+            const allCards = document.querySelectorAll('.subject-card');
+            allCards.forEach((el, idx) => {
+              if (idx >= 5) el.classList.add('hidden');
+            });
+            btn.textContent = 'View All';
+          }
+        }
+
+        // Basic tools menu handlers (mirror of dashboard behaviour)
+        function toggleToolsMenu() {
+          const menu = document.getElementById('toolsMenu');
+          const isHidden = menu.classList.contains('hidden');
+          if (isHidden) {
+            menu.classList.remove('hidden');
+            setTimeout(() => {
+              const closeMenu = (e) => {
+                if (!menu.contains(e.target) && !e.target.closest('#toolsButton')) {
+                  menu.classList.add('hidden');
+                  document.removeEventListener('click', closeMenu);
+                }
+              };
+              document.addEventListener('click', closeMenu);
+            }, 0);
+          } else {
+            menu.classList.add('hidden');
+          }
+        }
+
+        function openTool(name) {
+          document.getElementById('toolsMenu').classList.add('hidden');
+          if (name === 'ai-tutor') {
+            window.location.href = 'ai-tutor-chatbot.html';
+            return;
+          }
+          const el = document.getElementById(`${name}-window`);
+          if (el) el.classList.remove('hidden');
+        }
+
+        function closeTool(name) {
+          const el = document.getElementById(`${name}-window`);
+          if (el) el.classList.add('hidden');
+        }
+
+        // Save smart notes/formula basic localStorage integration
+        function saveNote() {
+          const noteInput = document.getElementById('smart-notes-input');
+          if (!noteInput || !noteInput.value.trim()) return;
+          const notes = JSON.parse(localStorage.getItem('smartNotes') || '[]');
+          notes.push({ id: Date.now(), text: noteInput.value, timestamp: new Date().toISOString() });
+          localStorage.setItem('smartNotes', JSON.stringify(notes));
+          noteInput.value = '';
+          alert('Note saved');
+        }
+
+        function saveFormula() {
+          const nameInput = document.getElementById('formula-name');
+          const formulaInput = document.getElementById('formula-input');
+          if (!nameInput || !formulaInput) return;
+          if (!nameInput.value.trim() || !formulaInput.value.trim()) return;
+          const formulas = JSON.parse(localStorage.getItem('formulas') || '[]');
+          formulas.push({ id: Date.now(), name: nameInput.value, formula: formulaInput.value, timestamp: new Date().toISOString() });
+          localStorage.setItem('formulas', JSON.stringify(formulas));
+          nameInput.value = '';
+          formulaInput.value = '';
+          alert('Formula saved');
+        }
+
         // Full list of Mathematics topics
         const mathematicsTopics = [
           "Algebra",
@@ -695,147 +926,23 @@
           `;
         }
 
-        /**
-         * Try to fetch questions from myschool.ng.
-         * Assumptions (if the real public API differs, update the endpoint and response mapping):
-         *  - Public JSON endpoint: https://myschool.ng/api/questions
-         *  - Query params: subject, topic, year (optional)
-         *  - Response: JSON array of { id, question, choices?, answer?, explanation?, source? }
-         *
-         * This function uses a 6s timeout and falls back gracefully when network/CORS blocks the request.
-         */
-        async function fetchQuestions({ subject, topic, year } = {}) {
-          const controller = new AbortController();
-          const timeout = setTimeout(() => controller.abort(), 6000);
-
-          // Build the query string (safe encoding)
-          const params = new URLSearchParams();
-          if (subject) params.append('subject', subject);
-          if (topic) params.append('topic', topic);
-          if (year) params.append('year', String(year));
-
-          // NOTE: Update this endpoint if myschool provides a different public API.
-          const endpoint = `https://myschool.ng/api/questions?${params.toString()}`;
-
-          try {
-            const res = await fetch(endpoint, { signal: controller.signal, cache: 'no-cache' });
-            clearTimeout(timeout);
-
-            if (!res.ok) {
-              // Non-2xx response - treat as missing API
-              throw new Error(`Remote server returned ${res.status}`);
-            }
-
-            const data = await res.json();
-
-            // Basic validation - expect an array
-            if (!Array.isArray(data)) {
-              throw new Error('Unexpected response format from questions API');
-            }
-
-            return { success: true, data };
-          } catch (err) {
-            clearTimeout(timeout);
-            // Network/CORS or other error - return failure and the error message
-            return { success: false, error: err.message || String(err) };
-          }
-        }
-
-        // Replace showQuestions to call fetchQuestions and render results
-        async function showQuestions(subject, topic, year) {
+        function showQuestions(subject, topic) {
           const content = document.getElementById('dynamic-content');
-
           content.innerHTML = `
             <div class="flex items-center justify-between mb-4">
-              <h2 class="text-2xl font-bold text-gray-800">${subject} — ${topic}${year ? ' — ' + year : ''}</h2>
+              <h2 class="text-2xl font-bold text-gray-800">${subject} — ${topic}</h2>
               <div>
                 <button class="px-4 py-2 rounded-full bg-white border border-gray-200 text-gray-700" onclick='showSubjectTopics("${subject}")'>Back</button>
               </div>
             </div>
-            <div id="questions-area" class="bg-white p-6 rounded-2xl shadow">
-              <div id="questions-loading" class="text-gray-600">Loading questions...</div>
+            <div class="bg-white p-6 rounded-2xl shadow">
+              <p class="text-gray-600">Questions from myschool.ng will appear here for <span class="font-semibold text-gray-800">${topic}</span>.</p>
+              <div class="mt-4 flex gap-2">
+                <button class="px-4 py-2 bg-blue-600 text-white rounded-lg">Start Practice</button>
+                <button class="px-4 py-2 bg-gray-100 text-gray-700 rounded-lg" onclick='showSubjectTopics("${subject}")'>Back to Topics</button>
+              </div>
             </div>
           `;
-
-          // Attempt to fetch from myschool.ng
-          const result = await fetchQuestions({ subject, topic, year });
-          const area = document.getElementById('questions-area');
-
-          if (!result.success) {
-            // Show helpful fallback with option to load sample data
-            area.innerHTML = `
-              <div class="text-red-600 font-medium mb-3">Could not load questions from myschool.ng: ${result.error}</div>
-              <p class="text-gray-600 mb-4">This may be due to CORS or the site not exposing a public API. You can:</p>
-              <div class="flex gap-2">
-                <button id="load-sample" class="px-4 py-2 bg-blue-600 text-white rounded-lg">Load sample questions</button>
-                <a class="px-4 py-2 rounded-lg bg-gray-100 text-gray-700" href="https://myschool.ng" target="_blank" rel="noopener">Open myschool.ng</a>
-              </div>
-            `;
-
-            document.getElementById('load-sample').addEventListener('click', () => {
-              const sample = [
-                { id: 1, question: `${topic} sample question 1`, choices: ['A','B','C','D'], answer: 'A', explanation: 'Sample explanation.' },
-                { id: 2, question: `${topic} sample question 2`, choices: ['A','B','C','D'], answer: 'B' }
-              ];
-              renderQuestions(sample, area);
-            });
-
-            return;
-          }
-
-          // If we have data, render it
-          renderQuestions(result.data, area);
-        }
-
-        // Helper to render question list into the provided container element
-        function renderQuestions(questions = [], container) {
-          if (!questions || questions.length === 0) {
-            container.innerHTML = `<div class="text-gray-600">No questions found for this selection.</div>`;
-            return;
-          }
-
-          const html = questions.map((q, idx) => {
-            const choicesHtml = Array.isArray(q.choices) && q.choices.length
-              ? `<div class="mt-2 grid grid-cols-1 sm:grid-cols-2 gap-2">${q.choices.map((c, i) => `<button class=\"text-left px-3 py-2 border rounded-md hover:bg-gray-50\" data-choice-index=\"${i}\">${String.fromCharCode(65+i)}. ${c}</button>`).join('')}</div>`
-              : '';
-
-            const explanation = q.explanation ? `<details class=\"mt-2 text-sm text-gray-600\"><summary class=\"text-gray-700 cursor-pointer\">Explanation</summary><div class=\"mt-2\">${escapeHtml(q.explanation)}</div></details>` : '';
-
-            return `
-              <div class=\"mb-4 p-4 rounded-lg border border-gray-100 shadow-sm\">
-                <div class=\"font-semibold text-gray-800\">${idx+1}. ${escapeHtml(q.question || 'Untitled question')}</div>
-                ${choicesHtml}
-                ${explanation}
-                ${q.source ? `<div class=\"mt-2 text-xs text-gray-500\">Source: ${escapeHtml(q.source)}</div>` : ''}
-              </div>
-            `;
-          }).join('');
-
-          container.innerHTML = html;
-
-          // Simple interactivity: clicking a choice highlights it and if answer exists, shows correctness
-          container.querySelectorAll('[data-choice-index]').forEach(btn => {
-            btn.addEventListener('click', (e) => {
-              const chosen = Number(e.currentTarget.dataset.choiceIndex);
-              // find containing question index by traversing DOM
-              const questionEl = e.currentTarget.closest('[data-question-index]') || e.currentTarget.closest('.mb-4');
-              // remove previous highlights
-              const siblingChoices = e.currentTarget.parentNode.querySelectorAll('button');
-              siblingChoices.forEach(s => s.classList.remove('bg-blue-100','border-blue-300'));
-              e.currentTarget.classList.add('bg-blue-100','border-blue-300');
-            });
-          });
-        }
-
-        // Small escaping helper to prevent accidental HTML injection
-        function escapeHtml(str) {
-          if (!str) return '';
-          return String(str)
-            .replace(/&/g, '&amp;')
-            .replace(/</g, '&lt;')
-            .replace(/>/g, '&gt;')
-            .replace(/"/g, '&quot;')
-            .replace(/'/g, '&#39;');
         }
 
         function backToMain() {
@@ -936,6 +1043,34 @@
         window.onload = function() {
           document.getElementById('main-cards').style.display = 'grid';
           document.getElementById('dynamic-content').innerHTML = '';
+        }
+
+        // Toggle mobile sidebar (improved accessibility)
+        function toggleMobileSidebar(forceOpen) {
+          const sidebar = document.getElementById('mobile-sidebar');
+          const backdrop = document.getElementById('sidebar-backdrop');
+          const btn = document.getElementById('mobileMenuBtn');
+          const isOpen = !sidebar.classList.contains('-translate-x-full');
+          const willOpen = typeof forceOpen === 'boolean' ? forceOpen : !isOpen;
+
+          if (willOpen) {
+            sidebar.classList.remove('-translate-x-full');
+            backdrop.classList.remove('hidden');
+            sidebar.setAttribute('aria-hidden', 'false');
+            if (btn) btn.setAttribute('aria-expanded', 'true');
+            // prevent background scrolling while menu is open
+            document.body.style.overflow = 'hidden';
+            // move focus into the sidebar
+            const firstInteractive = sidebar.querySelector('a, button');
+            if (firstInteractive) firstInteractive.focus();
+          } else {
+            sidebar.classList.add('-translate-x-full');
+            backdrop.classList.add('hidden');
+            sidebar.setAttribute('aria-hidden', 'true');
+            if (btn) btn.setAttribute('aria-expanded', 'false');
+            document.body.style.overflow = '';
+            if (btn) btn.focus();
+          }
         }
       </script>
 </body>
