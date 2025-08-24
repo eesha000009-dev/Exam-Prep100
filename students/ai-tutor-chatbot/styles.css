@@ -1,0 +1,73 @@
+/* Custom scrollbar */
+#chat-container::-webkit-scrollbar,
+#practice-container::-webkit-scrollbar,
+#history-container::-webkit-scrollbar {
+    width: 8px;
+}
+#chat-container::-webkit-scrollbar-track,
+#practice-container::-webkit-scrollbar-track,
+#history-container::-webkit-scrollbar-track {
+    background: #e5e7eb;
+    border-radius: 4px;
+}
+#chat-container::-webkit-scrollbar-thumb,
+#practice-container::-webkit-scrollbar-thumb,
+#history-container::-webkit-scrollbar-thumb {
+    background: #3b82f6;
+    border-radius: 4px;
+}
+#chat-container::-webkit-scrollbar-thumb:hover,
+#practice-container::-webkit-scrollbar-thumb:hover,
+#history-container::-webkit-scrollbar-thumb:hover {
+    background: #2563eb;
+}
+.dark #chat-container::-webkit-scrollbar-track,
+.dark #practice-container::-webkit-scrollbar-track,
+.dark #history-container::-webkit-scrollbar-track {
+    background: #374151;
+}
+.dark #chat-container::-webkit-scrollbar-thumb,
+.dark #practice-container::-webkit-scrollbar-thumb,
+.dark #history-container::-webkit-scrollbar-thumb {
+    background: #60a5fa;
+}
+
+/* Animations */
+@keyframes fadeIn {
+    0% { opacity: 0; transform: translateY(10px); }
+    100% { opacity: 1; transform: translateY(0); }
+}
+.animate-fadeIn {
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+/* Mode sections */
+.mode-section {
+    display: none;
+}
+.mode-section.active {
+    display: block;
+}
+
+/* MathJax styling */
+.mathjax { font-size: 1.1em; }
+
+/* UI additions for updated index */
+#chat-container { padding: 1rem; }
+#chat-container .flex { margin-bottom: 0.75rem; }
+
+/* Bubble styles are applied via Tailwind classes; add small fallbacks */
+.bg-blue-50 { background-color: #ebf8ff; }
+.bg-white { background-color: #ffffff; }
+
+/* Error toast styles already mostly inlined in HTML; ensure visibility */
+#error-toast { z-index: 9999; }
+
+/* Quick toolbar */
+#toolbar button { cursor: pointer; }
+
+/* Responsive adjustments */
+@media (max-width: 800px) {
+    aside { display: none; }
+    main { margin-left: 0 !important; padding: 1rem !important; }
+}

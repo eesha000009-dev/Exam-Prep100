@@ -1,102 +1,64 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Notifications - EduNext</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <link rel="stylesheet" href="../general/modernized.css">
-  <style>
-    /* Notification specific styles */
-    .notification-list {
-      background: var(--bg-white);
-      border-radius: var(--radius-lg);
-      box-shadow: var(--shadow-sm);
-      padding: var(--spacing-xl);
-      max-width: 700px;
-      margin: 0 auto;
-    }
-    .notification { 
-      display: flex; 
-      align-items: center; 
-      gap: var(--spacing-md); 
-      padding: var(--spacing-md) 0; 
-      border-bottom: 1px solid var(--border-color); 
-    }
-    .notification:last-child { 
-      border-bottom: none; 
-    }
-    .notification .icon { 
-      font-size: 1.3rem; 
-      color: var(--primary); 
-    }
-    .notification .content { 
-      flex: 1; 
-    }
-    .notification .time { 
-      color: var(--text-secondary); 
-      font-size: 0.95rem; 
-    }
-    .notification.badge { 
-      background: var(--warning); 
-      color: var(--text-primary); 
-      border-radius: var(--radius-sm); 
-      padding: 0.2rem 0.7rem; 
-      font-size: 0.95rem; 
-      margin-left: var(--spacing-sm); 
-    }
-    .empty-message { 
-      color: var(--text-secondary); 
-      font-weight: 500; 
-    }
-  </style>
-  <div class="layout">
-    <aside class="sidebar">
-      <a href="#" class="sidebar__logo">
-        <i class="fas fa-graduation-cap"></i>
-        <span>EduNext-prep100</span>
-      </a>
-      <nav class="sidebar__menu">
-      <a href="student-dashboard.html" class="sidebar__item"><i class="fas fa-home"></i> Home</a>
-      <a href="ai-tutor-chatbot.html" class="sidebar__item active"><i class="fas fa-robot"></i> AI Tutor</a>
-      <a href="study-plan.html" class="sidebar__item"><i class="fas fa-calendar-alt"></i> Study Plan</a>
-      <a href="smart-note.html" class="sidebar__item"><i class="fas fa-sticky-note"></i> Smart Notes</a>
-      <a href="video-library.html" class="sidebar__item"><i class="fas fa-video"></i> Video Library</a>
-      <a href="mock-exams.html" class="sidebar__item"><i class="fas fa-file-alt"></i> Mock Exams</a>
-      <a href="practice-exams.html" class="sidebar__item"><i class="fas fa-pencil-alt"></i> Practice Exams</a>
-      <a href="notifications.html" class="sidebar__item"><i class="fas fa-bell"></i> Notifications</a>
-      <a href="student-live-session.html" class="sidebar__item"><i class="fas fa-chalkboard-teacher"></i> Join Live Session</a>
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="/assets/images/Logo of JUANOVA Cortex Tutor.png" />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Notifications - Prep100</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-50">
+  <div class="flex min-h-screen">
+    <aside class="fixed top-0 left-0 h-screen bg-white/80 backdrop-blur-lg shadow-xl w-72 flex flex-col px-4 py-6 border-r border-gray-200 overflow-y-auto z-50">
+      <div class="sticky top-0 bg-white/95 backdrop-blur-lg z-10 py-2 mb-8">
+        <a href="#" class="flex items-center gap-3">
+          <img src="/assets/images/Logo%20of%20JUANOVA%20Cortex%20Tutor.png" alt="Logo" class="h-16 w-16 object-contain rounded-full shadow-2xl border-4 border-blue-700">
+          <span class="text-3xl font-extrabold text-blue-800 tracking-tight font-serif italic drop-shadow-lg">JUANOVA CORTEX</span>
+        </a>
+      </div>
+      <nav class="flex flex-col gap-2 text-gray-700 font-medium">
+        <a href="student-dashboard.html" class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-blue-50 transition"><i class="fas fa-home"></i> Home</a>
+        <a href="news-feed-gemini.html" class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-blue-50 transition"><i class="fas fa-newspaper text-pink-500"></i> News Feed</a>
+        <a href="ai-tutor-chatbot.html" class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-blue-50 transition"><i class="fas fa-robot text-purple-500"></i> AI Tutor</a>
+        <a href="all-formula.html" class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-blue-50 transition"><i class="fas fa-book-open text-teal-600"></i> All Formula</a>
+        <a href="smart-note.html" class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-blue-50 transition"><i class="fas fa-sticky-note text-yellow-500"></i> Smart Notes</a>
+        <a href="study-plan.html" class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-blue-50 transition"><i class="fas fa-calendar-alt text-green-500"></i> Study Plan</a>
+        <a href="video-library.html" class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-blue-50 transition"><i class="fas fa-video text-red-500"></i> Video Library</a>
+        <a href="practice-exams.html" class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-blue-50 transition"><i class="fas fa-pencil-alt text-orange-500"></i> Mock Exams</a>
+        <a href="notifications.html" class="flex items-center gap-3 px-4 py-2 rounded-lg bg-blue-50 text-blue-600"><i class="fas fa-bell text-pink-600"></i> Notifications</a>
+        <a href="student-live-session.html" class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-blue-50 transition"><i class="fas fa-chalkboard-teacher text-blue-400"></i> Join Live Session</a>
       </nav>
     </aside>
-    <main class="main-content">
-      <header class="dashboard-topbar">
-        <div class="search-container">
-          <i class="fas fa-search search-icon"></i>
-          <input type="text" class="search-input" placeholder="Search notifications..." aria-label="Search notifications">
+
+    <main class="flex-1 p-8 ml-72">
+      <div class="flex items-center justify-between mb-6">
+        <div class="flex-1 max-w-xl relative">
+          <i class="fas fa-search absolute left-4 top-1/2 -translate-y-1/2 text-gray-400"></i>
+          <input type="text" class="w-full pl-12 pr-4 py-3 rounded-full border-2 border-gray-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-100 bg-white" placeholder="Search notifications..." aria-label="Search notifications">
         </div>
-      </header>
-      <div class="content-wrapper">
-        <h1>Notifications</h1>
-        <div class="notification-list">
-          <div class="empty-message">No notifications yet.</div>
+        <div class="flex items-center gap-4">
+          <div class="bg-blue-100 text-blue-700 px-4 py-1 rounded-full font-semibold text-sm">SS 3/WAEC</div>
+          <button class="p-2 rounded-full hover:bg-blue-100 transition" aria-label="Notifications"><i class="fas fa-bell"></i></button>
+          <img src="https://ui-avatars.com/api/?name=Student&background=2563eb&color=fff" alt="User" class="h-10 w-10 rounded-full border-2 border-blue-500">
         </div>
       </div>
+
+      <div class="rounded-3xl bg-gradient-to-r from-yellow-500 to-yellow-400 text-white p-6 shadow mb-6">
+        <div class="flex items-center justify-between">
+          <div>
+            <h1 class="text-2xl font-extrabold">Notifications</h1>
+            <p class="text-yellow-100 mt-1">Important updates and alerts for your account and sessions.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="bg-white rounded-xl p-6 shadow max-w-3xl">
+        <div class="text-gray-600">No notifications yet.</div>
+      </div>
+
     </main>
   </div>
-  <script src="session.js"></script>
-  <script>
-    const session = EduNextSession.getSession();
-    document.querySelectorAll('.user-name').forEach(el => el.textContent = session.name ? `Hi, ${session.name}` : 'Hi, Student');
-    document.querySelectorAll('.avatar').forEach(el => el.src = `https://ui-avatars.com/api/?name=${encodeURIComponent(session.name || 'Student')}&background=2563eb&color=fff&size=64`);
-    // Sidebar active highlighting
-    const sidebar = document.querySelector('.sidebar nav ul');
-    if (sidebar) {
-      sidebar.querySelectorAll('li').forEach(li => {
-        const a = li.querySelector('a');
-        if (a && window.location.pathname.endsWith(a.getAttribute('href'))) li.classList.add('active');
-        else li.classList.remove('active');
-      });
-    }
-  </script>
 </body>
 </html>
