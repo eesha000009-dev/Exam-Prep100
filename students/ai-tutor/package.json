@@ -1,0 +1,8 @@
+{
+  "name": "ai-tutor-chatbot-root",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "start-server": "node server/index.js"
+  }
+}

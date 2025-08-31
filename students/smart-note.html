@@ -1,243 +1,274 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <!-- Favicon -->
-  <link rel="icon" type="image/png" href="/assets/images/Logo of JUANOVA Cortex Tutor.png" />
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Smart Notes - Prep100</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-  <script src="https://cdn.tailwindcss.com"></script>
-</head>
-<body class="bg-gray-50">
-  <div class="flex min-h-screen">
-    <!-- Sidebar -->
-        <aside class="fixed top-0 left-0 h-screen bg-white/80 backdrop-blur-lg shadow-xl w-72 flex flex-col px-4 py-6 border-r border-gray-200 overflow-y-auto z-50">
-            <div class="sticky top-0 bg-white/95 backdrop-blur-lg z-10 py-2 mb-8">
-                <a href="#" class="flex items-center gap-3">
-                    <img src="/assets/images/Logo%20of%20JUANOVA%20Cortex%20Tutor.png" alt="Logo" class="h-16 w-16 object-contain rounded-full shadow-2xl border-4 border-blue-700">
-                    <span class="text-3xl font-extrabold text-blue-800 tracking-tight font-serif italic drop-shadow-lg">JUANOVA CORTEX</span>
-                </a>
-            </div>
-            
-            <nav class="flex flex-col gap-2 text-gray-700 font-medium">
-                <a href="student-dashboard.html" class="flex items-center gap-3 px-4 py-2 rounded-lg bg-blue-50 text-blue-600">
-                    <i class="fas fa-home"></i> Home
-                </a>
-                <a href="news-feed-gemini.html" class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-blue-50 transition">
-                    <i class="fas fa-newspaper text-pink-500"></i> News Feed
-                </a>
-                <a href="ai-tutor-chatbot.html" class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-blue-50 transition">
-                    <i class="fas fa-robot text-purple-500"></i> AI Tutor
-                </a>
-                <a href="all-formula.html" class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-blue-50 transition">
-                    <i class="fas fa-book-open text-teal-600"></i> All Formula
-                </a>
-                <a href="smart-note.html" class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-blue-50 transition">
-                    <i class="fas fa-sticky-note text-yellow-500"></i> Smart Notes
-                </a>
-                <a href="study-plan.html" class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-blue-50 transition">
-                    <i class="fas fa-calendar-alt text-green-500"></i> Study Plan
-                </a>
-                <a href="video-library.html" class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-blue-50 transition">
-                    <i class="fas fa-video text-red-500"></i> Video Library
-                </a>
-                <a href="practice-exams.html" class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-blue-50 transition">
-                    <i class="fas fa-pencil-alt text-orange-500"></i> Mock Exams
-                </a>
-                <a href="notifications.html" class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-blue-50 transition">
-                    <i class="fas fa-bell text-pink-600"></i> Notifications
-                </a>
-                <a href="student-live-session.html" class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-blue-50 transition">
-                    <i class="fas fa-chalkboard-teacher text-blue-400"></i> Join Live Session
-                </a>
-            </nav>
-        </aside>
-
-    <!-- Main -->
-    <main class="flex-1 p-8 ml-72">
-      <!-- Top Bar -->
-      <div class="flex items-center justify-between mb-6">
-        <div class="flex-1 max-w-xl relative">
-          <i class="fas fa-search absolute left-4 top-1/2 -translate-y-1/2 text-gray-400"></i>
-          <input id="searchInput" type="text" class="w-full pl-12 pr-4 py-3 rounded-full border-2 border-gray-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-100 bg-white" placeholder="Search notes by title, content, or tags...">
-        </div>
-        <div class="flex items-center gap-4">
-          <span id="student-level" class="bg-blue-100 text-blue-700 px-4 py-1 rounded-full font-semibold text-sm">SS 3</span>
-          <span id="student-name" class="font-semibold text-gray-700">Student</span>
-          <div class="relative">
-            <button id="notifBtn" class="p-2 rounded-full hover:bg-blue-100 transition" aria-label="Notifications">
-              <i class="fas fa-bell text-blue-600 text-lg"></i>
-              <span id="notification-count" class="absolute -top-1 -right-1 bg-pink-500 text-white rounded-full w-5 h-5 flex items-center justify-center text-xs font-bold">3</span>
-            </button>
-          </div>
-          <img id="user-avatar" src="https://ui-avatars.com/api/?name=Student&background=2563eb&color=fff" alt="User" class="h-10 w-10 rounded-full border-2 border-blue-500">
-        </div>
-      </div>
-
-      <!-- Banner / Header -->
-      <div class="rounded-3xl bg-gradient-to-r from-yellow-500 to-yellow-400 text-white p-6 shadow mb-6">
-        <div class="flex items-center justify-between">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Smart Notes - Prep100</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="icon" type="image/png" href="/assets/images/Logo of JUANOVA Cortex Tutor.png" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  </head>
+  <body class="bg-slate-50 text-slate-800">
+    <div class="min-h-screen flex">
+      <!-- Sidebar (canonical) -->
+  <aside id="sidebar" class="w-72 fixed left-0 top-0 h-full bg-white border-r border-slate-200 p-5 flex flex-col gap-6 transition-transform duration-200 overflow-auto z-40">
+        <div class="flex items-center gap-3">
+          <img src="/assets/images/Logo%20of%20JUANOVA%20Cortex%20Tutor.png" alt="logo" class="h-12 w-12 rounded-full shadow-sm">
           <div>
-            <h1 class="text-2xl font-extrabold">Smart Notes</h1>
-            <p class="text-yellow-100 mt-1">Create, organize and revisit your quick study notes.</p>
-          </div>
-          <div class="flex gap-2">
-            <button id="openCreate" class="bg-white text-yellow-600 px-4 py-2 rounded-full font-semibold hover:bg-gray-100">Create Note</button>
-            <button id="importBtn" class="bg-white/40 text-white px-4 py-2 rounded-full font-semibold hover:bg-white/30">Import</button>
+            <div class="text-lg font-bold text-sky-700">JUANOVA CORTEX</div>
+            <div class="text-xs text-slate-500">Student Dashboard</div>
           </div>
         </div>
-      </div>
 
-      <!-- Notes grid -->
-      <div id="jotsGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+        <nav class="flex-1 overflow-auto">
+          <ul class="space-y-1">
+            <li><a href="student-dashboard.html" class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-slate-50"><i class="fas fa-home text-sky-600"></i> Home</a></li>
+            <li><a href="news-feed-gemini.html" class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-slate-50"><i class="fas fa-newspaper text-pink-500"></i> News Feed</a></li>
+            <li><a href="ai-tutor-chatbot.html" class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-slate-50"><i class="fas fa-robot text-purple-500"></i> AI Tutor</a></li>
+            <li><a href="study-plan.html" class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-slate-50"><i class="fas fa-calendar-check text-green-500"></i> Study Plan</a></li>
+            <li><a href="all-formula.html" class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-slate-50"><i class="fas fa-book-open text-teal-600"></i> All Formula</a></li>
+            <li><a href="video-library.html" class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-slate-50"><i class="fas fa-video text-red-500"></i> Video Library</a></li>
+            <li><a href="mock-exams.html" class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-slate-50"><i class="fas fa-pencil-alt text-orange-500"></i> Mock Exams</a></li>
+            <li><a href="notifications.html" class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-slate-50"><i class="fas fa-bell text-pink-600"></i> Notifications</a></li>
+            <li><a href="student-live-session.html" class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-slate-50"><i class="fas fa-chalkboard-teacher text-blue-400"></i> Live Sessions</a></li>
+            <li><a href="smart-note.html" class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-slate-50"><i class="fas fa-sticky-note text-yellow-500"></i> Smart Notes</a></li>
+          </ul>
+        </nav>
 
-      <!-- Modal -->
-      <div id="jotModal" class="fixed inset-0 bg-black/40 hidden items-center justify-center z-50">
-        <div class="bg-white rounded-2xl w-full max-w-2xl p-6">
-          <div class="flex items-center justify-between mb-4">
-            <h2 id="modalTitle" class="text-xl font-bold">Create Note</h2>
-            <button id="closeModalBtn" class="text-gray-500 hover:text-gray-700"><i class="fas fa-times"></i></button>
-          </div>
-          <input id="jotTitle" type="text" placeholder="Title" class="w-full p-3 border rounded-lg mb-3" />
-          <textarea id="jotContent" placeholder="Content" class="w-full p-3 border rounded-lg mb-3 h-36"></textarea>
-          <input id="jotTags" type="text" placeholder="Tags (comma-separated)" class="w-full p-3 border rounded-lg mb-4" />
-          <div class="flex gap-2 justify-end">
-            <button id="saveJotBtn" class="bg-yellow-500 text-white px-4 py-2 rounded-lg font-semibold">Save</button>
-            <button id="cancelJotBtn" class="px-4 py-2 rounded-lg border" >Cancel</button>
-          </div>
-        </div>
-      </div>
-
-    </main>
-  </div>
-
-  <script>
-    // Preserve existing jot logic but render with Tailwind classes
-    let jots = [
-      { id: 1, title: "Math Notes", content: "Algebra basics...", tags: ["math"] },
-      { id: 2, title: "History Jot", content: "World War II events...", tags: ["history"] }
-    ];
-    let editingJotId = null;
-
-    const jotsGrid = document.getElementById('jotsGrid');
-    const jotModal = document.getElementById('jotModal');
-    const modalTitle = document.getElementById('modalTitle');
-    const jotTitle = document.getElementById('jotTitle');
-    const jotContent = document.getElementById('jotContent');
-    const jotTags = document.getElementById('jotTags');
-    const searchInput = document.getElementById('searchInput');
-
-    function renderJots(filter = "") {
-      jotsGrid.innerHTML = '';
-      const filtered = jots.filter(jot =>
-        jot.title.toLowerCase().includes(filter.toLowerCase()) ||
-        jot.content.toLowerCase().includes(filter.toLowerCase()) ||
-        jot.tags.some(tag => tag.toLowerCase().includes(filter.toLowerCase()))
-      );
-
-      if (filtered.length === 0) {
-        jotsGrid.innerHTML = '<div class="col-span-full text-center text-gray-500">No notes yet. Create one to get started.</div>';
-        return;
-      }
-
-      filtered.forEach(jot => {
-        const card = document.createElement('div');
-        card.className = 'bg-white rounded-2xl p-6 shadow hover:shadow-lg transition';
-        card.innerHTML = `
-          <div class="flex items-start justify-between">
+        <div class="text-sm text-slate-500">
+          <div class="mb-2">Account</div>
+          <div class="flex items-center gap-3">
+            <img id="avatar-sm" src="../assets/images/unnamed.jpg" alt="avatar" class="h-10 w-10 rounded-full border">
             <div>
-              <h3 class="text-lg font-bold text-gray-800">${escapeHtml(jot.title)}</h3>
-              <p class="text-gray-600 mt-2">${escapeHtml(jot.content)}</p>
-              <div class="mt-4 flex flex-wrap gap-2">
-                ${jot.tags.map(t => `<span class="text-xs bg-gray-100 text-gray-700 px-3 py-1 rounded-full">${escapeHtml(t)}</span>`).join('')}
-              </div>
-            </div>
-            <div class="flex flex-col items-end gap-2">
-              <div class="text-sm text-gray-500">ID: ${jot.id}</div>
-              <div class="flex gap-2">
-                <button class="px-3 py-1 bg-blue-50 text-blue-600 rounded-md" onclick="openModal(${jot.id})"><i class="fas fa-edit"></i></button>
-                <button class="px-3 py-1 bg-red-50 text-red-600 rounded-md" onclick="deleteJot(${jot.id})"><i class="fas fa-trash"></i></button>
-                <button class="px-3 py-1 bg-green-50 text-green-600 rounded-md" onclick="shareJot(${jot.id})"><i class="fas fa-share"></i></button>
-              </div>
+              <div id="userName" class="font-semibold">Student</div>
+              <div id="userLevel" class="text-xs text-slate-400"></div>
             </div>
           </div>
-        `;
-        jotsGrid.appendChild(card);
-      });
-    }
+        </div>
+      </aside>
 
-    function escapeHtml(str) {
-      return String(str)
-        .replace(/&/g, '&amp;')
-        .replace(/</g, '&lt;')
-        .replace(/>/g, '&gt;')
-        .replace(/"/g, '&quot;')
-        .replace(/'/g, '&#39;');
-    }
+      <!-- Main area -->
+      <div class="flex-1 flex flex-col ml-72">
+        <!-- Top Bar (canonical) -->
+        <header class="flex items-center justify-between p-4 bg-white border-b border-slate-200">
+          <div class="flex items-center gap-3">
+            <button id="toggleSidebar" class="p-2 rounded-md hover:bg-slate-100" title="Toggle sidebar"><i class="fas fa-bars"></i></button>
+            <div class="relative">
+              <i class="fas fa-search absolute left-3 top-1/2 -translate-y-1/2 text-slate-400"></i>
+              <input id="searchInput" type="search" placeholder="Search notes by title, content, or tags..." class="w-[520px] hidden md:inline-block pl-10 pr-4 py-2 rounded-full border border-slate-200 bg-white focus:outline-none focus:ring-2 focus:ring-sky-100">
+            </div>
+          </div>
 
-    function openModal(id) {
-      if (id) {
-        const jot = jots.find(j => j.id === id);
-        jotTitle.value = jot.title;
-        jotContent.value = jot.content;
-        jotTags.value = jot.tags.join(', ');
-        editingJotId = id;
-        modalTitle.textContent = 'Edit Note';
-      } else {
-        jotTitle.value = '';
-        jotContent.value = '';
-        jotTags.value = '';
+          <div class="flex items-center gap-4">
+            <div class="relative">
+              <button id="notifBtn" class="p-2 rounded-full hover:bg-slate-50" aria-label="Notifications"><i class="fas fa-bell text-sky-600"></i></button>
+              <span id="notifCount" class="absolute -top-1 -right-1 bg-pink-500 text-white rounded-full w-5 h-5 text-xs flex items-center justify-center">0</span>
+            </div>
+            <div class="flex items-center gap-3">
+              <div class="text-right mr-2">
+                <div id="topName" class="font-semibold">Student Name</div>
+                <div id="topLevel" class="text-xs text-slate-400">SS 3</div>
+              </div>
+              <img id="topAvatar" src="../assets/images/unnamed.jpg" alt="avatar" class="h-10 w-10 rounded-full border-2">
+            </div>
+          </div>
+  </header>
+
+  <main class="p-6 space-y-6">
+  <!-- Banner / Header -->
+  <div class="rounded-3xl bg-gradient-to-r from-yellow-500 to-yellow-400 text-white p-6 shadow mb-6">
+          <div class="flex items-center justify-between">
+            <div>
+              <h1 class="text-2xl font-extrabold">Smart Notes</h1>
+              <p class="text-yellow-100 mt-1">Create, organize and revisit your quick study notes.</p>
+            </div>
+            <div class="flex gap-2">
+              <button id="openCreate" class="bg-white text-yellow-600 px-4 py-2 rounded-full font-semibold hover:bg-gray-100">Create Note</button>
+              <button id="importBtn" class="bg-white/40 text-white px-4 py-2 rounded-full font-semibold hover:bg-white/30">Import</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Notes grid -->
+        <div id="jotsGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+
+        <!-- Modal -->
+        <div id="jotModal" class="fixed inset-0 bg-black/40 hidden items-center justify-center z-50">
+          <div class="bg-white rounded-2xl w-full max-w-2xl p-6">
+            <div class="flex items-center justify-between mb-4">
+              <h2 id="modalTitle" class="text-xl font-bold">Create Note</h2>
+              <button id="closeModalBtn" class="text-gray-500 hover:text-gray-700"><i class="fas fa-times"></i></button>
+            </div>
+            <input id="jotTitle" type="text" placeholder="Title" class="w-full p-3 border rounded-lg mb-3" />
+            <textarea id="jotContent" placeholder="Content" class="w-full p-3 border rounded-lg mb-3 h-36"></textarea>
+            <input id="jotTags" type="text" placeholder="Tags (comma-separated)" class="w-full p-3 border rounded-lg mb-4" />
+            <div class="flex gap-2 justify-end">
+              <button id="saveJotBtn" class="bg-yellow-500 text-white px-4 py-2 rounded-lg font-semibold">Save</button>
+              <button id="cancelJotBtn" class="px-4 py-2 rounded-lg border" >Cancel</button>
+            </div>
+          </div>
+        </div>
+
+        </main>
+      </div>
+    </div>
+
+    <script>
+      // Preserve existing jot logic but render with Tailwind classes
+      let jots = [
+        { id: 1, title: "Math Notes", content: "Algebra basics...", tags: ["math"] },
+        { id: 2, title: "History Jot", content: "World War II events...", tags: ["history"] }
+      ];
+      let editingJotId = null;
+
+      const jotsGrid = document.getElementById('jotsGrid');
+      const jotModal = document.getElementById('jotModal');
+      const modalTitle = document.getElementById('modalTitle');
+      const jotTitle = document.getElementById('jotTitle');
+      const jotContent = document.getElementById('jotContent');
+      const jotTags = document.getElementById('jotTags');
+      const searchInput = document.getElementById('searchInput');
+
+    // Ensure sidebar toggle works
+    (function ensureSidebarToggle(){ try{ const b=document.getElementById('toggleSidebar'); if(b && !b.dataset.hasToggle){ b.addEventListener('click', ()=> document.getElementById('sidebar').classList.toggle('-translate-x-full')); b.dataset.hasToggle='1'; } }catch(e){} })();
+
+      function renderJots(filter = "") {
+        jotsGrid.innerHTML = '';
+        const filtered = jots.filter(jot =>
+          jot.title.toLowerCase().includes(filter.toLowerCase()) ||
+          jot.content.toLowerCase().includes(filter.toLowerCase()) ||
+          jot.tags.some(tag => tag.toLowerCase().includes(filter.toLowerCase()))
+        );
+
+        if (filtered.length === 0) {
+          jotsGrid.innerHTML = '<div class="col-span-full text-center text-gray-500">No notes yet. Create one to get started.</div>';
+          return;
+        }
+
+        filtered.forEach(jot => {
+          const card = document.createElement('div');
+          card.className = 'bg-white rounded-2xl p-6 shadow hover:shadow-lg transition';
+          card.innerHTML = `
+            <div class="flex items-start justify-between">
+              <div>
+                <h3 class="text-lg font-bold text-gray-800">${escapeHtml(jot.title)}</h3>
+                <p class="text-gray-600 mt-2">${escapeHtml(jot.content)}</p>
+                <div class="mt-4 flex flex-wrap gap-2">
+                  ${jot.tags.map(t => `<span class="text-xs bg-gray-100 text-gray-700 px-3 py-1 rounded-full">${escapeHtml(t)}</span>`).join('')}
+                </div>
+              </div>
+              <div class="flex flex-col items-end gap-2">
+                <div class="text-sm text-gray-500">ID: ${jot.id}</div>
+                <div class="flex gap-2">
+                  <button class="px-3 py-1 bg-blue-50 text-blue-600 rounded-md" onclick="openModal(${jot.id})"><i class="fas fa-edit"></i></button>
+                  <button class="px-3 py-1 bg-red-50 text-red-600 rounded-md" onclick="deleteJot(${jot.id})"><i class="fas fa-trash"></i></button>
+                  <button class="px-3 py-1 bg-green-50 text-green-600 rounded-md" onclick="shareJot(${jot.id})"><i class="fas fa-share"></i></button>
+                </div>
+              </div>
+            </div>
+          `;
+          jotsGrid.appendChild(card);
+        });
+      }
+
+      function escapeHtml(str) {
+        return String(str)
+          .replace(/&/g, '&amp;')
+          .replace(/</g, '&lt;')
+          .replace(/>/g, '&gt;')
+          .replace(/"/g, '&quot;')
+          .replace(/'/g, '&#39;');
+      }
+
+      function openModal(id) {
+        if (id) {
+          const jot = jots.find(j => j.id === id);
+          jotTitle.value = jot.title;
+          jotContent.value = jot.content;
+          jotTags.value = jot.tags.join(', ');
+          editingJotId = id;
+          modalTitle.textContent = 'Edit Note';
+        } else {
+          jotTitle.value = '';
+          jotContent.value = '';
+          jotTags.value = '';
+          editingJotId = null;
+          modalTitle.textContent = 'Create Note';
+        }
+        jotModal.classList.remove('hidden');
+        jotModal.classList.add('flex');
+      }
+
+      function closeModal() {
+        jotModal.classList.add('hidden');
+        jotModal.classList.remove('flex');
         editingJotId = null;
-        modalTitle.textContent = 'Create Note';
       }
-      jotModal.classList.remove('hidden');
-      jotModal.classList.add('flex');
-    }
 
-    function closeModal() {
-      jotModal.classList.add('hidden');
-      jotModal.classList.remove('flex');
-      editingJotId = null;
-    }
-
-    function saveJot() {
-      const title = jotTitle.value.trim();
-      const content = jotContent.value.trim();
-      const tags = jotTags.value.split(',').map(t => t.trim()).filter(Boolean);
-      if (!title || !content) {
-        alert('Title and content are required');
-        return;
+      function saveJot() {
+        const title = jotTitle.value.trim();
+        const content = jotContent.value.trim();
+        const tags = jotTags.value.split(',').map(t => t.trim()).filter(Boolean);
+        if (!title || !content) {
+          alert('Title and content are required');
+          return;
+        }
+        if (editingJotId) {
+          jots = jots.map(j => j.id === editingJotId ? { ...j, title, content, tags } : j);
+        } else {
+          jots.push({ id: Date.now(), title, content, tags });
+        }
+        closeModal();
+        renderJots(searchInput.value || '');
       }
-      if (editingJotId) {
-        jots = jots.map(j => j.id === editingJotId ? { ...j, title, content, tags } : j);
-      } else {
-        jots.push({ id: Date.now(), title, content, tags });
+
+      function deleteJot(id) {
+        if (!confirm('Delete this note?')) return;
+        jots = jots.filter(j => j.id !== id);
+        renderJots(searchInput.value || '');
       }
-      closeModal();
-      renderJots(searchInput.value || '');
-    }
 
-    function deleteJot(id) {
-      if (!confirm('Delete this note?')) return;
-      jots = jots.filter(j => j.id !== id);
-      renderJots(searchInput.value || '');
-    }
+      function shareJot(id) {
+        const link = `${window.location.origin}/jot/${id}`;
+        navigator.clipboard?.writeText(link).then(() => alert('Share link copied to clipboard'), () => alert('Link: ' + link));
+      }
 
-    function shareJot(id) {
-      const link = `${window.location.origin}/jot/${id}`;
-      navigator.clipboard?.writeText(link).then(() => alert('Share link copied to clipboard'), () => alert('Link: ' + link));
-    }
+      // Event bindings
+      document.getElementById('openCreate').addEventListener('click', () => openModal(null));
+      document.getElementById('closeModalBtn').addEventListener('click', closeModal);
+      document.getElementById('cancelJotBtn').addEventListener('click', closeModal);
+      document.getElementById('saveJotBtn').addEventListener('click', saveJot);
+      searchInput.addEventListener('input', (e) => renderJots(e.target.value));
 
-    // Event bindings
-    document.getElementById('openCreate').addEventListener('click', () => openModal(null));
-    document.getElementById('closeModalBtn').addEventListener('click', closeModal);
-    document.getElementById('cancelJotBtn').addEventListener('click', closeModal);
-    document.getElementById('saveJotBtn').addEventListener('click', saveJot);
-    searchInput.addEventListener('input', (e) => renderJots(e.target.value));
+      // Initial render
+      renderJots();
+    </script>
 
-    // Initial render
-    renderJots();
-  </script>
-</body>
+    <script type="module">
+      // Personalize smart notes page via helper
+      import('./js/firebase-user-helper.js').then(({ initUserPersonalization }) => {
+        initUserPersonalization(async ({ user, helpers }) => {
+          if (!user) return;
+          const fullName = user.displayName || 'Student';
+          const name = fullName.split(' ')[0];
+          const h = document.querySelector('h1');
+          if (h) h.textContent = `${name}'s Smart Notes`;
+          const topName = document.getElementById('topName'); if (topName) topName.textContent = fullName;
+          const userName = document.getElementById('userName'); if (userName) userName.textContent = fullName;
+          const userLevel = document.getElementById('userLevel');
+          if (userLevel) {
+            const l = (user && user.profile && user.profile.level) ? user.profile.level : '';
+            userLevel.textContent = l && String(l).startsWith('SS') ? l : (l ? 'SS 3' : '');
+          }
+          const nameEl = document.getElementById('student-name');
+          if (nameEl) nameEl.textContent = fullName;
+          const avatar = document.getElementById('user-avatar');
+          if (avatar) avatar.src = user.photoURL || avatar.src;
+          const notif = document.getElementById('notification-count');
+          if (notif && helpers && helpers.getUnreadNotificationsCount) notif.textContent = String(await helpers.getUnreadNotificationsCount(user.uid));
+        });
+      }).catch(e => console.warn('firebase-user helper import failed', e));
+    </script>
+
+  </body>
 </html>

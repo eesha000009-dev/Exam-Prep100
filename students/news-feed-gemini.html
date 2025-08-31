@@ -1,167 +1,143 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <!-- Favicon -->
-  <link rel="icon" type="image/png" href="/assets/images/Logo of JUANOVA Cortex Tutor.png" />
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>EduNews Feed - WAEC, JAMB, NECO Updates</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <style>
-    body {
-      font-family: 'Inter', sans-serif;
-    }
-  </style>
-</head>
-<body class="bg-gradient-to-br from-blue-50 via-gray-50 to-blue-100 min-h-screen">
-
-  <div class="max-w-4xl mx-auto py-12 px-4">
-    <header class="text-center mb-10">
-      <h1 class="text-4xl md:text-5xl font-extrabold text-blue-800">EduNews Feed</h1>
-      <p class="mt-2 text-lg text-gray-600">Your daily source for WAEC, JAMB, NECO & University News</p>
-    </header>
-
-    <div id="news-feed-list" class="space-y-6">
-      <!-- Welcome Message -->
-      <div class="bg-white/80 backdrop-blur-sm rounded-2xl shadow-lg p-6 flex items-center gap-4 border border-blue-200">
-        <svg class="w-8 h-8 text-blue-500 flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 7v4a2 2 0 01-2 2H7a2 2 0 01-2-2V7m14 0a2 2 0 00-2-2H7a2 2 0 00-2 2m14 0V5a2 2 0 00-2-2H7a2 2 0 00-2 2v2m14 0H5"></path></svg>
-        <div>
-          <h2 class="font-bold text-xl text-blue-800 mb-1">Welcome to your News Feed!</h2>
-          <p class="text-blue-600">Stay updated with the latest announcements and information from top educational sources.</p>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>EduNews Feed — Prep100</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="icon" type="image/png" href="/assets/images/Logo of JUANOVA Cortex Tutor.png" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  </head>
+  <body class="bg-slate-50 text-slate-800">
+    <div class="min-h-screen flex">
+      <!-- Sidebar (canonical) -->
+  <aside id="sidebar" class="w-72 fixed left-0 top-0 h-full bg-white border-r border-slate-200 p-5 flex flex-col gap-6 transition-transform duration-200 overflow-auto z-40">
+        <div class="flex items-center gap-3">
+          <img src="/assets/images/Logo%20of%20JUANOVA%20Cortex%20Tutor.png" alt="logo" class="h-12 w-12 rounded-full shadow-sm">
+          <div>
+            <div class="text-lg font-bold text-sky-700">JUANOVA CORTEX</div>
+            <div class="text-xs text-slate-500">Student Dashboard</div>
+          </div>
         </div>
-      </div>
-      
-      <!-- Loading State -->
-      <div id="news-loading" class="text-center text-blue-600 py-8 flex items-center justify-center gap-3">
-        <svg class="animate-spin h-6 w-6 text-blue-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-          <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
-          <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-        </svg>
-        <span>Fetching latest educational news...</span>
+
+        <nav class="flex-1 overflow-auto">
+          <ul class="space-y-1">
+            <li><a href="student-dashboard.html" class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-slate-50"><i class="fas fa-home text-sky-600"></i> Home</a></li>
+            <li><a href="news-feed-gemini.html" class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-slate-50"><i class="fas fa-newspaper text-pink-500"></i> News Feed</a></li>
+            <li><a href="ai-tutor-chatbot.html" class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-slate-50"><i class="fas fa-robot text-purple-500"></i> AI Tutor</a></li>
+            <li><a href="study-plan.html" class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-slate-50"><i class="fas fa-calendar-check text-green-500"></i> Study Plan</a></li>
+            <li><a href="all-formula.html" class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-slate-50"><i class="fas fa-book-open text-teal-600"></i> All Formula</a></li>
+            <li><a href="video-library.html" class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-slate-50"><i class="fas fa-video text-red-500"></i> Video Library</a></li>
+            <li><a href="mock-exams.html" class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-slate-50"><i class="fas fa-pencil-alt text-orange-500"></i> Mock Exams</a></li>
+            <li><a href="notifications.html" class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-slate-50"><i class="fas fa-bell text-pink-600"></i> Notifications</a></li>
+            <li><a href="student-live-session.html" class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-slate-50"><i class="fas fa-chalkboard-teacher text-blue-400"></i> Live Sessions</a></li>
+            <li><a href="smart-note.html" class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-slate-50"><i class="fas fa-sticky-note text-yellow-500"></i> Smart Notes</a></li>
+          </ul>
+        </nav>
+
+        <div class="text-sm text-slate-500">
+          <div class="mb-2">Account</div>
+          <div class="flex items-center gap-3">
+            <img id="avatar-sm" src="../assets/images/unnamed.jpg" alt="avatar" class="h-10 w-10 rounded-full border">
+            <div>
+              <div id="userName" class="font-semibold">Student</div>
+              <div id="userLevel" class="text-xs text-slate-400"></div>
+            </div>
+          </div>
+        </div>
+      </aside>
+
+  <div class="flex-1 flex flex-col ml-72">
+        <header class="flex items-center justify-between p-4 bg-white border-b border-slate-200">
+          <div class="flex items-center gap-3">
+            <button id="toggleSidebar" class="p-2 rounded-md hover:bg-slate-100" title="Toggle sidebar"><i class="fas fa-bars"></i></button>
+            <div class="relative">
+              <input id="globalSearch" type="search" placeholder="Search subjects, topics, resources..." class="w-[520px] hidden md:inline-block pl-10 pr-4 py-2 rounded-full border border-slate-200 bg-white focus:outline-none focus:ring-2 focus:ring-sky-100">
+              <i class="fas fa-search absolute left-3 top-1/2 -translate-y-1/2 text-slate-400"></i>
+            </div>
+          </div>
+
+          <div class="flex items-center gap-4">
+            <div class="relative">
+              <button id="notifBtn" class="p-2 rounded-full hover:bg-slate-50" aria-label="Notifications"><i class="fas fa-bell text-sky-600"></i></button>
+              <span id="notifCount" class="absolute -top-1 -right-1 bg-pink-500 text-white rounded-full w-5 h-5 text-xs flex items-center justify-center">0</span>
+            </div>
+            <div class="flex items-center gap-3">
+              <div class="text-right mr-2">
+                <div id="topName" class="font-semibold">Student Name</div>
+                <div id="topLevel" class="text-xs text-slate-400">SS 3</div>
+              </div>
+              <img id="topAvatar" src="../assets/images/unnamed.jpg" alt="avatar" class="h-10 w-10 rounded-full border-2">
+            </div>
+          </div>
+        </header>
+
+        <main class="p-6 space-y-6">
+          <!-- Page content preserved -->
+          <div class="max-w-4xl mx-auto py-6 px-4">
+            <header class="text-center mb-6">
+              <h1 class="text-4xl md:text-5xl font-extrabold text-blue-800">EduNews Feed</h1>
+              <p class="mt-2 text-lg text-gray-600">Your daily source for WAEC, JAMB, NECO & University News</p>
+            </header>
+
+            <div id="news-feed-list" class="space-y-6">
+              <div class="bg-white/80 backdrop-blur-sm rounded-2xl shadow-lg p-6 flex items-center gap-4 border border-blue-200">
+                <svg class="w-8 h-8 text-blue-500 flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 7v4a2 2 0 01-2 2H7a2 2 0 01-2-2V7m14 0a2 2 0 00-2-2H7a2 2 0 00-2 2m14 0V5a2 2 0 00-2-2H7a2 2 0 00-2 2v2m14 0H5"></path></svg>
+                <div>
+                  <h2 id="newsWelcome" class="font-bold text-xl text-blue-800 mb-1">Welcome to your News Feed!</h2>
+                  <p class="text-blue-600">Stay updated with the latest announcements and information from top educational sources.</p>
+                </div>
+              </div>
+
+              <div id="news-loading" class="text-center text-blue-600 py-8 flex items-center justify-center gap-3">
+                <svg class="animate-spin h-6 w-6 text-blue-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                  <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                  <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                </svg>
+                <span>Fetching latest educational news...</span>
+              </div>
+            </div>
+          </div>
+        </main>
+
+        <link rel="stylesheet" href="./dashboard-styles.css">
       </div>
     </div>
-  </div>
 
-  <footer class="text-center py-6 mt-8 text-gray-500 text-sm">
-    <p>EduNews Feed | Powered by Public RSS Feeds</p>
-  </footer>
-
-<script>
-  // --- CONFIGURATION ---
-  // Add or remove RSS feed URLs here from your favorite educational news sites.
-  // Make sure the site has a valid RSS feed.
-  const rssFeeds = [
-    'https://www.myschoolgist.com/ng/feed/',
-    'https://schoolnewsng.com/feed/'
-    // You can add more RSS feed URLs here
-  ];
-
-  // --- UTILITY FUNCTION ---
-  // This function cleans HTML tags from the description text from RSS feeds.
-  function cleanHTML(htmlString) {
-    const parser = new DOMParser();
-    const doc = parser.parseFromString(htmlString, 'text/html');
-    let text = doc.body.textContent || "";
-    // Limit description to ~200 characters for a neat summary
-    if (text.length > 200) {
-      text = text.substring(0, 200).trim() + '...';
-    }
-    return text;
-  }
-
-  // --- CORE FUNCTION ---
-  async function fetchAllNews() {
-    const newsContainer = document.getElementById('news-feed-list');
-    const loadingIndicator = document.getElementById('news-loading');
-    const allNewsItems = [];
-
-    // Use a service to convert RSS to JSON
-    const rssToJsonService = 'https://api.rss2json.com/v1/api.json?rss_url=';
-
-    // Create a fetch promise for each RSS feed
-    const fetchPromises = rssFeeds.map(feedUrl => 
-      fetch(`${rssToJsonService}${encodeURIComponent(feedUrl)}`)
-        .then(res => {
-          if (!res.ok) {
-            throw new Error(`Failed to fetch feed: ${feedUrl}`);
-          }
-          return res.json();
-        })
-        .then(data => {
-          if (data.items) {
-            // Add the source name to each item
-            data.items.forEach(item => {
-              item.source = data.feed.title;
-            });
-            return data.items;
-          }
-          return [];
-        })
-        .catch(error => {
-          console.error(error);
-          return []; // Return empty array on error to not break the whole page
-        })
-    );
-
-    try {
-      // Wait for all fetch requests to complete
-      const results = await Promise.all(fetchPromises);
-      
-      // Flatten the array of arrays into a single news array
-      const combinedNews = results.flat();
-
-      // Sort all news items by publication date, newest first
-      combinedNews.sort((a, b) => new Date(b.pubDate) - new Date(a.pubDate));
-
-      // Remove loading indicator
-      loadingIndicator.remove();
-
-      if (combinedNews.length === 0) {
-        newsContainer.innerHTML += `<div class="bg-yellow-100 text-yellow-800 rounded-lg p-4 text-center">Could not fetch news at this time. Please check your connection or try again later.</div>`;
-        return;
-      }
-
-      // Display each news item
-      combinedNews.forEach(item => {
-        const newsCard = document.createElement('div');
-        newsCard.className = 'bg-white/90 backdrop-blur-sm rounded-2xl shadow-xl p-6 transform transition hover:scale-[1.02] duration-300';
-        
-        const formattedDate = new Date(item.pubDate).toLocaleDateString('en-US', {
-          year: 'numeric', month: 'long', day: 'numeric'
-        });
-
-        newsCard.innerHTML = `
-          <article class="space-y-3">
-            <h2 class="font-bold text-xl text-blue-800 hover:text-blue-600">
-              <a href="${item.link}" target="_blank" rel="noopener noreferrer">${item.title}</a>
-            </h2>
-            <p class="text-gray-600 text-base leading-relaxed">${cleanHTML(item.description)}</p>
-            <div class="flex flex-wrap justify-between items-center gap-4 pt-3 border-t border-gray-200">
-              <div class="text-sm text-gray-500">
-                <span>Source: <strong>${item.source}</strong></span>
-                <span class="mx-2">|</span>
-                <span>${formattedDate}</span>
-              </div>
-              <a href="${item.link}" target="_blank" rel="noopener noreferrer" class="inline-block bg-blue-600 text-white font-semibold px-4 py-2 rounded-lg text-sm hover:bg-blue-700 transition-colors">
-                Read More &rarr;
-              </a>
-            </div>
-          </article>
-        `;
-        newsContainer.appendChild(newsCard);
+    <script type="module">
+      import { initUserPersonalization } from './js/firebase-user-helper.js';
+      // small personalization via helper
+      initUserPersonalization(async ({ user, helpers }) => {
+        if (!user) return;
+        const fullName = user.displayName || 'Student';
+        const name = fullName.split(' ')[0];
+        const topNameEl = document.getElementById('topName'); if (topNameEl) topNameEl.textContent = fullName;
+        const userNameEl = document.getElementById('userName'); if (userNameEl) userNameEl.textContent = fullName;
+        const userLevelEl = document.getElementById('userLevel');
+        if (userLevelEl) {
+          const l = (user && user.profile && user.profile.level) ? user.profile.level : '';
+          userLevelEl.textContent = l && String(l).startsWith('SS') ? l : (l ? 'SS 3' : '');
+        }
+        const header = document.getElementById('newsWelcome');
+        if (header) header.textContent = `Welcome to your News Feed, ${name}!`;
+        const notifEl = document.getElementById('notifCount');
+        if (notifEl && helpers && helpers.getUnreadNotificationsCount) notifEl.textContent = String(await helpers.getUnreadNotificationsCount(user.uid));
+        if (!user.photoURL && helpers && helpers.initialsFromName) {
+          const initials = helpers.initialsFromName(user.displayName || name);
+          const url = `https://ui-avatars.com/api/?name=${encodeURIComponent(initials)}&background=2563eb&color=fff&length=2`;
+          const a = document.getElementById('avatar-sm'); if (a) a.src = url; const b = document.getElementById('topAvatar'); if (b) b.src = url;
+        } else {
+          const a = document.getElementById('avatar-sm'); if (a) a.src = user.photoURL; const b = document.getElementById('topAvatar'); if (b) b.src = user.photoURL;
+        }
       });
 
-    } catch (error) {
-      console.error('Error fetching news feeds:', error);
-      loadingIndicator.textContent = 'Failed to load news. Please try again later.';
-      loadingIndicator.className = 'text-center text-red-500 py-8';
-    }
-  }
+      // --- news fetch logic kept as-is ---
+      const rssFeeds = ['https://www.myschoolgist.com/ng/feed/','https://schoolnewsng.com/feed/'];
+      function cleanHTML(htmlString) { const parser = new DOMParser(); const doc = parser.parseFromString(htmlString, 'text/html'); let text = doc.body.textContent || ''; if (text.length > 200) text = text.substring(0,200).trim() + '...'; return text; }
+      async function fetchAllNews(){ const newsContainer=document.getElementById('news-feed-list'); const loadingIndicator=document.getElementById('news-loading'); const rssToJsonService='https://api.rss2json.com/v1/api.json?rss_url='; const fetchPromises = rssFeeds.map(feedUrl=> fetch(`${rssToJsonService}${encodeURIComponent(feedUrl)}`).then(res=> res.ok? res.json(): Promise.reject()).then(data=> data.items? data.items.map(i=> (i.source=data.feed.title,i)): []).catch(()=>[])); try{ const results = await Promise.all(fetchPromises); const combinedNews = results.flat(); combinedNews.sort((a,b)=> new Date(b.pubDate)-new Date(a.pubDate)); loadingIndicator.remove(); if(!combinedNews.length){ newsContainer.innerHTML += `<div class="bg-yellow-100 text-yellow-800 rounded-lg p-4 text-center">Could not fetch news at this time.</div>`; return; } combinedNews.forEach(item=>{ const newsCard=document.createElement('div'); newsCard.className='bg-white/90 backdrop-blur-sm rounded-2xl shadow-xl p-6 transform transition hover:scale-[1.02] duration-300'; const formattedDate=new Date(item.pubDate).toLocaleDateString('en-US',{year:'numeric',month:'long',day:'numeric'}); newsCard.innerHTML = `<article class="space-y-3"><h2 class="font-bold text-xl text-blue-800 hover:text-blue-600"><a href="${item.link}" target="_blank" rel="noopener noreferrer">${item.title}</a></h2><p class="text-gray-600 text-base leading-relaxed">${cleanHTML(item.description)}</p><div class="flex flex-wrap justify-between items-center gap-4 pt-3 border-t border-gray-200"><div class="text-sm text-gray-500">Source: <strong>${item.source}</strong><span class="mx-2">|</span>${formattedDate}</div><a href="${item.link}" target="_blank" rel="noopener noreferrer" class="inline-block bg-blue-600 text-white font-semibold px-4 py-2 rounded-lg text-sm hover:bg-blue-700 transition-colors">Read More →</a></div></article>`; newsContainer.appendChild(newsCard); }); }catch(e){ console.error(e); loadingIndicator.textContent='Failed to load news.'; loadingIndicator.className='text-center text-red-500 py-8'; } }
+      document.addEventListener('DOMContentLoaded', fetchAllNews);
 
-  // Run the function when the page loads
-  document.addEventListener('DOMContentLoaded', fetchAllNews);
-</script>
-
-</body>
-</html>
+      document.getElementById('toggleSidebar').addEventListener('click', () => document.getElementById('sidebar').classList.toggle('-translate-x-full'));
+    </script>
+  </body>
+  </html>
