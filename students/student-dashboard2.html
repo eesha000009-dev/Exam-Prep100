@@ -60,10 +60,10 @@
         <a href="/students/video-library" class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-blue-50 transition sidebar__item">
           <i class="fas fa-video text-red-500"></i> Video Library
         </a>
-        <a href="practice-exams.html" class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-blue-50 transition sidebar__item">
+  <a href="mock-exams.html" class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-blue-50 transition sidebar__item">
           <i class="fas fa-file-alt text-indigo-500"></i> Mock Exams
         </a>
-        <a href="practice-exams.html" class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-blue-50 transition sidebar__item">
+  <a href="mock-exams.html" class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-blue-50 transition sidebar__item">
           <i class="fas fa-pencil-alt text-orange-500"></i> Practice Exams
         </a>
         <a href="notifications.html" class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-blue-50 transition sidebar__item">
@@ -97,15 +97,28 @@
           <input type="text" class="w-full pl-12 pr-4 py-3 rounded-full border-2 border-gray-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-100 bg-white text-gray-700 text-base shadow-sm transition" placeholder="What would you like to learn...">
           </div>
           <div class="flex items-center gap-4">
-            <div id="user-info" class="flex items-center gap-4">
-              <span id="student-level" class="bg-blue-100 text-blue-700 px-4 py-1 rounded-full font-semibold text-sm shadow">Loading...</span>
-              <span id="student-name" class="font-semibold text-gray-700">Loading...</span>
-              <button class="relative p-2 rounded-full hover:bg-blue-100 transition">
-                <i class="fas fa-bell text-blue-600 text-lg"></i>
-                <span class="absolute -top-1 -right-1 bg-pink-500 text-white rounded-full w-5 h-5 flex items-center justify-center text-xs font-bold shadow" id="notification-count">0</span>
-              </button>
-              <img id="user-avatar" src="../assets/images/unnamed.jpg" alt="User" class="h-10 w-10 rounded-full border-2 border-blue-500 shadow">
-            </div>
+              <div class="flex items-center gap-3">
+                <button id="toggleSidebar" class="p-2 rounded-md hover:bg-slate-100" title="Toggle sidebar"><i class="fas fa-bars"></i></button>
+                <div class="relative">
+                  <i class="fas fa-search absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-lg"></i>
+                  <input id="globalSearch" type="search" class="w-full pl-12 pr-4 py-3 rounded-full border-2 border-gray-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-100 bg-white text-gray-700 text-base shadow-sm transition" placeholder="What would you like to learn...">
+                </div>
+              </div>
+              <div class="flex items-center gap-4">
+                <div class="relative">
+                  <button id="notifBtn" class="relative p-2 rounded-full hover:bg-slate-50" aria-label="Notifications"><i class="fas fa-bell text-sky-600 text-lg"></i>
+                    <span class="absolute -top-1 -right-1 bg-pink-500 text-white rounded-full w-5 h-5 flex items-center justify-center text-xs font-bold shadow" id="notification-count">0</span>
+                  </button>
+                </div>
+                <div class="flex items-center gap-3">
+                  <div class="text-right mr-2">
+                    <div id="topName" class="font-semibold">Loading...</div>
+                    <div id="topLevel" class="text-xs text-slate-400">SS 3</div>
+                  </div>
+                  <img id="topAvatar" src="../assets/images/unnamed.jpg" alt="avatar" class="h-10 w-10 rounded-full border-2 shadow">
+                </div>
+              </div>
+            <script>(function ensureSidebarToggle(){ try{ const b=document.getElementById('toggleSidebar'); if(b && !b.dataset.hasToggle){ b.addEventListener('click', ()=> document.getElementById('sidebar').classList.toggle('-translate-x-full')); b.dataset.hasToggle='1'; } }catch(e){} })();</script>
           </div>
         </div>
 

@@ -1,86 +1,136 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <!-- Favicon -->
-  <link rel="icon" type="image/png" href="/assets/images/Logo of JUANOVA Cortex Tutor.png" />
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Video Library - EduNext</title>
-  <link rel="stylesheet" href="../general/modernized.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <!DOCTYPE html>
-  <html lang="en">
   <head>
-    <!-- Favicon -->
-    <link rel="icon" type="image/png" href="/assets/images/Logo of JUANOVA Cortex Tutor.png" />
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Video Library - Prep100</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Video Library — Prep100</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="icon" type="image/png" href="/assets/images/Logo of JUANOVA Cortex Tutor.png" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="../general/modernized.css">
   </head>
-  <body class="bg-gray-50">
-    <div class="flex min-h-screen">
-      <aside class="fixed top-0 left-0 h-screen bg-white/80 backdrop-blur-lg shadow-xl w-72 flex flex-col px-4 py-6 border-r border-gray-200 overflow-y-auto z-50">
-        <div class="sticky top-0 bg-white/95 backdrop-blur-lg z-10 py-2 mb-8">
-          <a href="#" class="flex items-center gap-3">
-            <img src="/assets/images/Logo%20of%20JUANOVA%20Cortex%20Tutor.png" alt="Logo" class="h-16 w-16 object-contain rounded-full shadow-2xl border-4 border-blue-700">
-            <span class="text-3xl font-extrabold text-blue-800 tracking-tight font-serif italic drop-shadow-lg">JUANOVA CORTEX</span>
-          </a>
+  <body class="bg-slate-50 text-slate-800">
+    <div class="min-h-screen flex">
+      <!-- Sidebar -->
+  <aside id="sidebar" class="w-72 fixed left-0 top-0 h-full bg-white border-r border-slate-200 p-5 flex flex-col gap-6 transition-transform duration-200 overflow-auto z-40">
+        <div class="flex items-center gap-3">
+          <img src="/assets/images/Logo%20of%20JUANOVA%20Cortex%20Tutor.png" alt="logo" class="h-12 w-12 rounded-full shadow-sm">
+          <div>
+            <div class="text-lg font-bold text-sky-700">JUANOVA CORTEX</div>
+            <div class="text-xs text-slate-500">Student Dashboard</div>
+          </div>
         </div>
-        <nav class="flex flex-col gap-2 text-gray-700 font-medium">
-          <a href="student-dashboard.html" class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-blue-50 transition"><i class="fas fa-home"></i> Home</a>
-          <a href="news-feed-gemini.html" class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-blue-50 transition"><i class="fas fa-newspaper text-pink-500"></i> News Feed</a>
-          <a href="ai-tutor-chatbot.html" class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-blue-50 transition"><i class="fas fa-robot text-purple-500"></i> AI Tutor</a>
-          <a href="all-formula.html" class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-blue-50 transition"><i class="fas fa-book-open text-teal-600"></i> All Formula</a>
-          <a href="smart-note.html" class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-blue-50 transition"><i class="fas fa-sticky-note text-yellow-500"></i> Smart Notes</a>
-          <a href="study-plan.html" class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-blue-50 transition"><i class="fas fa-calendar-alt text-green-500"></i> Study Plan</a>
-          <a href="video-library.html" class="flex items-center gap-3 px-4 py-2 rounded-lg bg-blue-50 text-blue-600"><i class="fas fa-video text-red-500"></i> Video Library</a>
-          <a href="practice-exams.html" class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-blue-50 transition"><i class="fas fa-pencil-alt text-orange-500"></i> Mock Exams</a>
-          <a href="notifications.html" class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-blue-50 transition"><i class="fas fa-bell text-pink-600"></i> Notifications</a>
-          <a href="student-live-session.html" class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-blue-50 transition"><i class="fas fa-chalkboard-teacher text-blue-400"></i> Join Live Session</a>
+
+        <nav class="flex-1 overflow-auto">
+          <ul class="space-y-1">
+            <li><a href="student-dashboard.html" class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-slate-50"><i class="fas fa-home text-sky-600"></i> Home</a></li>
+            <li><a href="news-feed-gemini.html" class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-slate-50"><i class="fas fa-newspaper text-pink-500"></i> News Feed</a></li>
+            <li><a href="ai-tutor-chatbot.html" class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-slate-50"><i class="fas fa-robot text-purple-500"></i> AI Tutor</a></li>
+            <li><a href="study-plan.html" class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-slate-50"><i class="fas fa-calendar-check text-green-500"></i> Study Plan</a></li>
+           <li><a href="all-formula.html" class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-slate-50"><i class="fas fa-book-open text-teal-600"></i> All Formula</a></li>
+            <li><a href="video-library.html" class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-slate-50"><i class="fas fa-video text-red-500"></i> Video Library</a></li>
+            <li><a href="mock-exams.html" class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-slate-50"><i class="fas fa-pencil-alt text-orange-500"></i> Mock Exams</a></li>
+            <li><a href="notifications.html" class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-slate-50"><i class="fas fa-bell text-pink-600"></i> Notifications</a></li>
+            <li><a href="student-live-session.html" class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-slate-50"><i class="fas fa-chalkboard-teacher text-blue-400"></i> Live Sessions</a></li>
+            <li><a href="smart-note.html" class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-slate-50"><i class="fas fa-sticky-note text-yellow-500"></i> Smart Notes</a></li>
+          </ul>
         </nav>
+
+        <div class="text-sm text-slate-500">
+          <div class="mb-2">Account</div>
+          <div class="flex items-center gap-3">
+            <img id="avatar-sm" src="../assets/images/unnamed.jpg" alt="avatar" class="h-10 w-10 rounded-full border">
+              <div>
+                <div id="userName" class="font-semibold">Student</div>
+              </div>
+          </div>
+        </div>
       </aside>
-
-      <main class="flex-1 p-8 ml-72">
-        <div class="flex items-center justify-between mb-6">
-          <div class="flex-1 max-w-xl relative">
-            <i class="fas fa-search absolute left-4 top-1/2 -translate-y-1/2 text-gray-400"></i>
-            <input type="text" class="w-full pl-12 pr-4 py-3 rounded-full border-2 border-gray-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-100 bg-white" placeholder="Search for videos...">
+  <div class="flex-1 flex flex-col ml-72">
+        <header class="flex items-center justify-between p-4 bg-white border-b border-slate-200">
+          <div class="flex items-center gap-3">
+            <button id="toggleSidebar" class="p-2 rounded-md hover:bg-slate-100" title="Toggle sidebar"><i class="fas fa-bars"></i></button>
+            <div class="relative">
+              <input id="globalSearch" type="search" placeholder="Search for videos..." class="w-full max-w-[520px] pl-4 pr-4 py-2 rounded-full border border-slate-200 bg-white focus:outline-none focus:ring-2 focus:ring-sky-100">
+            </div>
           </div>
+
           <div class="flex items-center gap-4">
-            <div class="bg-blue-100 text-blue-700 px-4 py-1 rounded-full font-semibold text-sm">SS 3/WAEC</div>
-            <button class="p-2 rounded-full hover:bg-blue-100 transition"><i class="fas fa-bell"></i></button>
-            <img src="https://ui-avatars.com/api/?name=Student&background=2563eb&color=fff" alt="User" class="h-10 w-10 rounded-full border-2 border-blue-500">
-          </div>
-        </div>
-
-        <div class="rounded-3xl bg-gradient-to-r from-indigo-600 to-indigo-400 text-white p-6 shadow mb-6">
-          <div class="flex items-center justify-between">
-            <div>
-              <h1 class="text-2xl font-extrabold">Video Library</h1>
-              <p class="text-indigo-100 mt-1">Curated videos to support your lessons and revision.</p>
+            <div class="relative">
+              <button id="notifBtn" class="p-2 rounded-full hover:bg-slate-50" aria-label="Notifications"><i class="fas fa-bell text-sky-600"></i></button>
+              <span id="notifCount" class="absolute -top-1 -right-1 bg-pink-500 text-white rounded-full w-5 h-5 text-xs flex items-center justify-center">0</span>
+            </div>
+            <div class="flex items-center gap-3">
+                <div class="text-right mr-2">
+                <div id="topName" class="font-semibold">Student Name</div>
+                <div id="topLevel" class="text-xs text-slate-400">SS 3</div>
+              </div>
+              <img id="topAvatar" src="../assets/images/unnamed.jpg" alt="avatar" class="h-10 w-10 rounded-full border-2">
             </div>
           </div>
-        </div>
+        </header>
 
-        <div class="filters mb-4 flex flex-wrap gap-2">
-          <button class="px-3 py-1 rounded-full bg-blue-600 text-white">All Subjects</button>
-          <button class="px-3 py-1 rounded-full bg-white border">Mathematics</button>
-          <button class="px-3 py-1 rounded-full bg-white border">Physics</button>
-          <button class="px-3 py-1 rounded-full bg-white border">Chemistry</button>
-        </div>
-
-        <div class="video-grid">
-          <div class="empty-state text-center py-12">
-            <i class="fas fa-video text-4xl text-gray-400"></i>
-            <h3 class="mt-4 text-gray-700 text-lg">No Videos Available Yet</h3>
-            <p class="text-gray-500 max-w-md mx-auto">Videos for your selected subjects will appear here. Check back soon for new content!</p>
+        <main class="p-6 space-y-6">
+          <!-- main page controls moved into canonical header to avoid duplicate topbars -->
+          <div class="mb-6">
+            <!-- page-specific controls (kept minimal) -->
+            <div class="flex items-center justify-between">
+              <div></div>
+            </div>
           </div>
-        </div>
 
-      </main>
+          <div class="rounded-3xl bg-gradient-to-r from-indigo-600 to-indigo-400 text-white p-6 shadow mb-6">
+            <div class="flex items-center justify-between">
+              <div>
+                <h1 class="text-2xl font-extrabold">Video Library</h1>
+                <p class="text-indigo-100 mt-1">Curated videos to support your lessons and revision.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="filters mb-4 flex flex-wrap gap-2">
+            <button class="px-3 py-1 rounded-full bg-blue-600 text-white">All Subjects</button>
+            <button class="px-3 py-1 rounded-full bg-white border">Mathematics</button>
+            <button class="px-3 py-1 rounded-full bg-white border">Physics</button>
+            <button class="px-3 py-1 rounded-full bg-white border">Chemistry</button>
+          </div>
+
+          <div class="video-grid space-y-6">
+            <div class="video-wrapper relative w-full" style="padding-top:56.25%;">
+              <iframe class="absolute inset-0 w-full h-full" width="560" height="315" src="https://www.youtube-nocookie.com/embed/videoseries?si=WemiSyBGUgXINVFx&amp;list=PLSP1xX8sdp-A51bLjSESoO4_a5mVo3QYl" title="YouTube playlist" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            </div>
+            <div class="text-sm text-slate-500">Tip: Use the search above to filter by subject.</div>
+          </div>
+        </main>
+      </div>
     </div>
+
+    <script type="module">
+      // Personalize video library header and avatar
+      import('./js/firebase-user-helper.js').then(({ initUserPersonalization }) => {
+        initUserPersonalization(async ({ user, helpers }) => {
+          if (!user) return;
+          const fullName = user.displayName || 'Student';
+          const name = fullName.split(' ')[0];
+          const hero = document.querySelector('h1');
+          if (hero) hero.textContent = `${name}'s Video Library`;
+          const topName = document.getElementById('topName'); if (topName) topName.textContent = fullName;
+          const userName = document.getElementById('userName'); if (userName) userName.textContent = fullName;
+          const userLevel = document.getElementById('userLevel'); if (userLevel) { /* sidebar level removed */ }
+          const avatarSm = document.getElementById('avatar-sm'); if (avatarSm) avatarSm.src = user.photoURL || avatarSm.src;
+          const topAvatar = document.getElementById('topAvatar'); if (topAvatar) topAvatar.src = user.photoURL || topAvatar.src;
+          const topLevel = document.getElementById('topLevel'); if (topLevel) topLevel.textContent = 'SS 3';
+          const notif = document.getElementById('notifCount'); if (notif && helpers && helpers.getUnreadNotificationsCount) notif.textContent = String(await helpers.getUnreadNotificationsCount(user.uid));
+
+          // wire search box shortcut: keep videoSearch input in sync with globalSearch
+          // search box is `#globalSearch` — page-specific wiring can be added here if needed
+        });
+      }).catch(e => console.warn('firebase-user helper import failed', e));
+    </script>
+
+    <link rel="stylesheet" href="./dashboard-styles.css">
+    <script>
+      (function ensureSidebarToggle(){ try{ const b=document.getElementById('toggleSidebar'); if(b && !b.dataset.hasToggle){ b.addEventListener('click', ()=> document.getElementById('sidebar').classList.toggle('-translate-x-full')); b.dataset.hasToggle='1'; } }catch(e){} })();
+    </script>
   </body>
-  </html>
-            </div>
+</html>

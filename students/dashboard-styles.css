@@ -1,0 +1,24 @@
+/* Shared dashboard styles for students pages */
+
+/* Small slide-in animation used by modals */
+@keyframes slideIn {
+  from { transform: translateY(12px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+.animate-slide-in {
+  animation: slideIn 220ms ease-out;
+}
+
+/* Light backdrop blur helper for modern look */
+.backdrop-blur-sm {
+  backdrop-filter: blur(4px);
+}
+
+/* Draggable window cursor (used for floating tool windows) */
+.cursor-move { cursor: move; }
+
+/* Small utility to ensure consistent shadow across dashboard widgets */
+.dashboard-shadow { box-shadow: 0 8px 30px rgba(2,6,23,0.06); }
+
+/* Make sure tiny badges are perfectly centered */
+.badge-center { display:flex; align-items:center; justify-content:center; }
