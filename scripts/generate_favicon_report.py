@@ -1,7 +1,7 @@
 import os
 
 ROOT = r"c:\Users\Hp\Downloads\Exam-Prep100"
-SNIPPET = 'href="/assets/images/Logo of JUANOVA Cortex Tutor.png"'
+SNIPPET = 'href="/favicon-32x32.png"'
 report_path = os.path.join(ROOT, 'scripts', 'favicon_report.txt')
 missing = []
 all_html = []

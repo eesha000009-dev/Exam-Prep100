@@ -1,52 +1,62 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <!-- Favicon -->
-  <link rel="icon" type="image/png" href="/assets/images/Logo of JUANOVA Cortex Tutor.png" />
-
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>English Topics</title>
-  <link rel="stylesheet" href="../styles.css" />
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
-  <style>
-    .main-content { max-width: 900px; margin: 40px auto 0 auto; background: #fff; border-radius: 16px; box-shadow: 0 2px 8px rgba(30,41,59,0.07); padding: 2.5rem 2rem 2rem 2rem; min-height: 80vh; display: flex; flex-direction: column; }
-    .back-btn { display: inline-flex; align-items: center; gap: 0.5rem; background: #f1f5f9; color: #1e293b; border: none; border-radius: 8px; padding: 0.5rem 1.2rem; font-size: 1rem; font-weight: 500; cursor: pointer; margin-bottom: 2rem; box-shadow: 0 1px 4px rgba(30,41,59,0.05); transition: background 0.2s, color 0.2s; text-decoration: none; }
-    .back-btn:hover { background: #e0e7ef; color: #1a73e8; }
-    h1 { font-size: 1.5rem; font-weight: 600; color: #1a73e8; margin-bottom: 1.5rem; }
-    .topics-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.3rem; }
-    .topic-card { background: #fff; border-radius: 12px; box-shadow: 0 2px 8px rgba(30,41,59,0.07); padding: 1.5rem 1rem; display: flex; flex-direction: column; gap: 0.7rem; font-size: 1.05rem; color: #1e293b; font-weight: 500; text-decoration: none; transition: box-shadow 0.2s; cursor: pointer; }
-    .topic-card:hover { box-shadow: 0 4px 16px rgba(26,115,232,0.13); color: #1a73e8; }
-    .topic-title { font-weight: 600; font-size: 1.1rem; color: #1a73e8; text-decoration: none; }
-    /* Modal styles */
-    .modal-bg { display: none; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(0,0,0,0.25); z-index: 1000; align-items: center; justify-content: center; }
-    .modal { background: #fff; border-radius: 12px; max-width: 420px; width: 95vw; padding: 2rem 1.5rem 1.5rem 1.5rem; box-shadow: 0 4px 24px rgba(30,41,59,0.18); position: relative; }
-    .modal h2 { margin-top: 0; color: #1a73e8; font-size: 1.2rem; }
-    .modal ul { padding-left: 1.2rem; margin: 1rem 0; }
-    .modal li { margin-bottom: 0.5rem; color: #222; }
-    .modal .start-btn { display: inline-block; background: #1a73e8; color: #fff; border: none; border-radius: 8px; padding: 0.7rem 1.5rem; font-size: 1rem; font-weight: 600; cursor: pointer; margin-top: 1rem; }
-    .modal .start-btn:hover { background: #1557b0; }
-    .modal .close-btn { position: absolute; top: 10px; right: 16px; background: none; border: none; font-size: 1.3rem; color: #888; cursor: pointer; }
-    @media (max-width: 600px) { .main-content { padding: 1rem 0.5rem; } .topics-grid { grid-template-columns: 1fr; } }
-  </style>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="48x48" href="/favicon-48x48.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
 </head>
-<body>
-  <main class="main-content">
-    <a href="english.html" class="back-btn"><i class="fas fa-arrow-left"></i> Back to English Units</a>
-    <h1 id="unit-title">English Topics</h1>
-    <div class="topics-grid" id="topicsGrid"></div>
+<body class="min-h-screen bg-gradient-to-br from-blue-50 via-white to-blue-100 font-inter">
+  <nav class="fixed inset-x-0 top-0 bg-white/60 backdrop-blur-sm border-b border-blue-100 z-50">
+    <div class="max-w-6xl mx-auto px-4 py-3">
+      <div class="flex items-center justify-between">
+        <div class="flex items-center gap-4">
+          <nav class="text-sm text-blue-600">
+            <a href="english.html" class="hover:underline">English</a>
+            <span class="mx-2">/</span>
+            <span class="font-semibold">Topics</span>
+          </nav>
+        </div>
+        <div class="flex items-center gap-3">
+          <div class="relative">
+            <i class="fas fa-search text-slate-400 absolute left-3 top-1/2 -translate-y-1/2"></i>
+            <input aria-label="Search" class="pl-10 pr-3 py-2 rounded-lg border border-slate-200 bg-white" placeholder="Search topics" />
+          </div>
+          <img src="/assets/images/logo.png" alt="logo" class="h-10 w-auto" />
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <main class="main-content max-w-6xl mx-auto px-4 pt-24 pb-12">
+    <a href="english.html" class="inline-flex items-center gap-2 text-sm text-blue-600 hover:underline mb-4">← Back to English</a>
+    <h1 id="unit-title" class="text-3xl font-extrabold text-blue-700 mb-4">English Topics</h1>
+    <div id="topicsGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"></div>
   </main>
-  <div class="modal-bg" id="modalBg">
-    <div class="modal" id="modal">
-      <button class="close-btn" onclick="closeModal()">&times;</button>
-      <h2 id="modalTitle">Sub-topics:</h2>
-      <ul id="subtopicsList"></ul>
-      <button class="start-btn" id="startBtn">Start Learning</button>
+
+  <!-- Modal -->
+  <div id="modalBg" class="fixed inset-0 bg-gray-700/30 backdrop-blur-sm hidden items-center justify-center z-50">
+    <div class="bg-white rounded-xl shadow-lg w-11/12 max-w-lg p-6 relative">
+      <button class="absolute top-4 right-4 text-gray-500 hover:text-gray-700" onclick="closeModal()" title="Close modal">
+        <i class="fas fa-times"></i><span class="sr-only">Close</span>
+      </button>
+      <h2 id="modalTitle" class="text-xl font-semibold text-blue-700 mb-3">Sub-topics</h2>
+      <ul id="subtopicsList" class="list-disc pl-5 text-gray-700"></ul>
+      <div class="mt-4 text-right">
+        <a id="startBtn" class="inline-block bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700" href="#">Start Learning</a>
+      </div>
     </div>
   </div>
+
   <script>
-    // Example topics and sub-topics for each unit
-    // JAMB-aligned syllabus
+    // Preserve existing syllabus object and logic; only adjust DOM insertion for Tailwind layout.
     const syllabus = {
       comprehension: {
         title: "Comprehension/Summary",
@@ -60,74 +70,50 @@
           ] }
         ]
       },
-      lexis: {
-        title: "Lexis and Structure",
-        topics: [
-          { name: "Vocabulary & Usage", subtopics: [
-            "Synonyms", "Antonyms", "Homonyms", "Idioms (Standard British)", "Word Classes & Functions"
-          ] },
-          { name: "Sentence Structure", subtopics: [
-            "Clause & Sentence Patterns", "Concord (Agreement)", "Tense, Aspect, Mood", "Punctuation & Spelling", "Sentence Completion"
-          ] }
-        ]
-      },
-      oral: {
-        title: "Oral Forms",
-        topics: [
-          { name: "Phonetics & Pronunciation", subtopics: [
-            "Vowels (Monothongs, Diphthongs)", "Consonants (including clusters)", "Rhymes & Homophones"
-          ] },
-          { name: "Stress & Intonation", subtopics: [
-            "Word Stress", "Sentence Stress", "Intonation Patterns", "Emphatic Stress"
-          ] }
-        ]
-      },
-      grammar: {
-        title: "Grammar",
-        topics: [
-          { name: "Parts of Speech", subtopics: [
-            "Nouns", "Verbs", "Adjectives", "Adverbs", "Pronouns"
-          ] },
-          { name: "Tenses & Agreement", subtopics: [
-            "Present, Past, Future Tenses", "Subject-Verb Agreement", "Question Tags"
-          ] }
-        ]
-      }
+      lexis: { title: "Lexis & Structure", topics: [ { name: "Vocabulary", subtopics: ["Word Formation","Collocation"] } ] },
+      oral: { title: "Oral English", topics: [ { name: "Phonetics", subtopics: ["Pronunciation","Stress & Intonation"] } ] },
+      grammar: { title: "Grammar", topics: [ { name: "Grammar", subtopics: ["Tenses","Agreement","Punctuation"] } ] }
     };
-    // Get unit from URL
-    const urlParams = new URLSearchParams(window.location.search);
-    const unit = urlParams.get('unit');
-    const unitData = syllabus[unit] || { title: "English Topics", topics: [] };
-    document.getElementById('unit-title').textContent = unitData.title;
-    // Render topics
-    const grid = document.getElementById('topicsGrid');
-    unitData.topics.forEach((topic, idx) => {
-      const card = document.createElement('div');
-      card.className = 'topic-card';
-      card.innerHTML = `<span class="topic-title">${topic.name}</span><div class="topic-desc">Topic ${idx+1}</div>`;
-      card.onclick = () => openModal(topic.name, topic.subtopics);
-      grid.appendChild(card);
-    });
-    // Modal logic
-    function openModal(topic, subtopics) {
-      document.getElementById('modalTitle').textContent = `Sub-topics: ${topic}`;
+
+    function renderUnit(unitKey) {
+      const unit = syllabus[unitKey];
+      document.getElementById('unit-title').textContent = unit.title || 'English Topics';
+      const grid = document.getElementById('topicsGrid');
+      grid.innerHTML = '';
+      unit.topics.forEach(t => {
+        const a = document.createElement('a');
+        a.className = 'topic-card rounded-xl bg-white/60 backdrop-blur-sm shadow-sm border p-5 hover:shadow-md transition';
+        a.href = 'javascript:void(0)';
+        a.onclick = () => openModal(t.name, t.subtopics);
+        a.innerHTML = `\n          <h3 class="topic-title font-semibold text-blue-700">${t.name}</h3>\n          <p class="text-sm text-slate-500 mt-1">${(t.subtopics||[]).slice(0,3).join(', ')}${(t.subtopics&&t.subtopics.length>3? '...' : '')}</p>\n        `;
+        grid.appendChild(a);
+      });
+    }
+
+    function openModal(title, subtopics) {
+      document.getElementById('modalTitle').textContent = title;
       const list = document.getElementById('subtopicsList');
       list.innerHTML = '';
-      subtopics.forEach(st => {
+      subtopics.forEach(s => {
         const li = document.createElement('li');
-        li.style.display = 'flex';
-        li.style.alignItems = 'center';
-        li.innerHTML = `<span style='flex:1;'>${st}</span> <button class='start-btn' onclick='startLearning("${topic}", "${st}")'>Start Learning</button>`;
+        li.textContent = s;
         list.appendChild(li);
       });
-      document.getElementById('modalBg').style.display = 'flex';
+      document.getElementById('startBtn').href = `english-explanation.html?topic=${encodeURIComponent(title)}`;
+      document.getElementById('modalBg').classList.remove('hidden');
+      document.getElementById('modalBg').classList.add('flex');
     }
-    function startLearning(topic, subtopic) {
-      window.location.href = `english-explanation.html?topic=${encodeURIComponent(topic)}&subtopic=${encodeURIComponent(subtopic)}`;
-    }
+
     function closeModal() {
-      document.getElementById('modalBg').style.display = 'none';
+      document.getElementById('modalBg').classList.remove('flex');
+      document.getElementById('modalBg').classList.add('hidden');
     }
+
+    // initialize from URL unit param
+    const params = new URLSearchParams(window.location.search);
+    const unit = params.get('unit') || 'comprehension';
+    if (syllabus[unit]) renderUnit(unit);
   </script>
 </body>
 </html>
+

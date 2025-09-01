@@ -1,66 +1,100 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <!-- Favicon -->
-  <link rel="icon" type="image/png" href="/assets/images/Logo of JUANOVA Cortex Tutor.png" />
-  <!-- Favicon -->
-  <link rel="icon" type="image/png" href="/assets/images/Logo of JUANOVA Cortex Tutor.png" />
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Mathematics - Explanation</title>
-  <link rel="stylesheet" href="../styles.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mathematics — Topic Explanation</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="48x48" href="/favicon-48x48.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
 </head>
-<body>
-  <h1>Mathematics - Topic</h1>
-  <div class="three-column-layout">
-    <section class="column explanation">
-      <h2>Explanation</h2>
-      <p id="explanation-text">This page will display a senior secondary level explanation for the selected Mathematics topic.</p>
-    </section>
-    <section class="column video">
-      <h2>Video</h2>
-      <p id="video-text">Video placeholder for the selected Mathematics topic.</p>
-    </section>
-    <section class="column calculator">
-      <h2>Calculator</h2>
-      <p id="calculator-text">Calculator placeholder for the selected Mathematics topic.</p>
-    </section>
-  </div>
-  <style>
-    .three-column-layout {
-      display: flex;
-      gap: 2rem;
-      margin-top: 2rem;
-    }
-    .three-column-layout .column {
-      flex: 1;
-      background: #f9f9f9;
-      border-radius: 8px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.04);
-      padding: 1rem;
-      min-width: 0;
-      min-height: 500px;
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-    }
-    .three-column-layout .explanation { border-right: 2px solid #e0e0e0; }
-    .three-column-layout .video { border-right: 2px solid #e0e0e0; }
-    @media (max-width: 900px) {
-      .three-column-layout { flex-direction: column; gap: 1rem; }
-      .three-column-layout .column { border-right: none; }
-    }
-  </style>
+<body class="min-h-screen bg-gradient-to-br from-blue-50 via-white to-blue-100 font-inter">
+  <nav class="fixed inset-x-0 top-0 bg-white/60 backdrop-blur-sm border-b border-blue-100 z-50">
+    <div class="max-w-6xl mx-auto px-4 py-3">
+      <div class="flex items-center justify-between">
+        <div class="flex items-center gap-4">
+          <nav class="text-sm text-blue-600">
+            <a href="../student-dashboard.html" class="hover:underline">Dashboard</a>
+            <span class="mx-2">/</span>
+            <a href="mathematics.html" class="hover:underline">Mathematics</a>
+            <span class="mx-2">/</span>
+            <span id="nav-topic" class="font-semibold">Topic</span>
+          </nav>
+        </div>
+        <div class="flex items-center gap-3">
+          <div class="relative">
+            <i class="fas fa-search text-slate-400 absolute left-3 top-1/2 -translate-y-1/2"></i>
+            <input aria-label="Search" class="pl-10 pr-3 py-2 rounded-lg border border-slate-200 bg-white" placeholder="Search math topics" />
+          </div>
+          <img src="/assets/images/logo.png" alt="logo" class="h-10 w-auto" />
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <main class="max-w-6xl mx-auto px-4 pt-24 pb-12">
+    <header class="text-center mb-6">
+      <h1 id="main-title" class="text-3xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-blue-700 to-blue-400">Mathematics Topic</h1>
+      <p class="text-gray-600 mt-2">Learn, practice, and master mathematical concepts</p>
+    </header>
+
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+      <section class="bg-white/60 backdrop-blur-sm rounded-2xl shadow-sm border p-6">
+        <h2 class="text-xl font-semibold text-blue-700 mb-4">Explanation</h2>
+        <p id="explanation-text" class="text-slate-600">This page will display a senior secondary level explanation for the selected Mathematics topic.</p>
+      </section>
+
+      <section class="bg-white/60 backdrop-blur-sm rounded-2xl shadow-sm border p-6">
+        <h2 class="text-xl font-semibold text-blue-700 mb-4">Video</h2>
+        <div id="video-placeholder" class="aspect-video bg-slate-100 rounded-lg mb-4"></div>
+        <p id="video-text" class="text-slate-600">Video placeholder for the selected Mathematics topic.</p>
+      </section>
+
+      <section class="bg-white/60 backdrop-blur-sm rounded-2xl shadow-sm border p-6">
+        <h2 class="text-xl font-semibold text-blue-700 mb-4">Interactive Calculator</h2>
+        <div id="calculator-placeholder" class="aspect-square bg-slate-100 rounded-lg mb-4"></div>
+        <p id="calculator-text" class="text-slate-600">Calculator placeholder for the selected Mathematics topic.</p>
+      </section>
+    </div>
+  </main>
   <script>
     // Parse topic from URL and display it in all relevant places
     const params = new URLSearchParams(window.location.search);
     const topic = params.get('topic');
     if(topic) {
-      document.querySelector('h1').textContent = `Mathematics - ${topic}`;
-      document.getElementById('explanation-text').textContent = `This page will display a senior secondary level explanation for ${topic} in Mathematics.`;
-      document.getElementById('video-text').textContent = `Video placeholder for ${topic} in Mathematics.`;
-      document.getElementById('calculator-text').textContent = `Calculator placeholder for ${topic} in Mathematics.`;
+      // Update navigation breadcrumb
+      document.getElementById('nav-topic').textContent = topic;
+      
+      // Update main title
+      document.getElementById('main-title').textContent = topic;
+      
+      // Update content sections
+      document.getElementById('explanation-text').textContent = 
+        `This page will display a senior secondary level explanation for ${topic} in Mathematics.`;
+      
+      document.getElementById('video-text').textContent = 
+        `Video placeholder for ${topic} in Mathematics.`;
+      
+      document.getElementById('calculator-text').textContent = 
+        `Interactive calculator for ${topic} problems and practice.`;
     }
+
+    // Add hover effects to the placeholders
+    const placeholders = document.querySelectorAll('[id$="-placeholder"]');
+    placeholders.forEach(placeholder => {
+      placeholder.addEventListener('mouseenter', () => {
+        placeholder.classList.add('ring-2', 'ring-blue-400', 'ring-opacity-50');
+      });
+      placeholder.addEventListener('mouseleave', () => {
+        placeholder.classList.remove('ring-2', 'ring-blue-400', 'ring-opacity-50');
+      });
+    });
   </script>
 </body>
 </html>
+

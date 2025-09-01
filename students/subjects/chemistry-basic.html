@@ -1,80 +1,91 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <!-- Favicon -->
-  <link rel="icon" type="image/png" href="/assets/images/Logo of JUANOVA Cortex Tutor.png" />
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Basic Chemistry — Topics</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="48x48" href="/favicon-48x48.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+    <style>body{font-family:'Inter',sans-serif}</style>
+  </head>
+  <body class="bg-gradient-to-br from-blue-50 via-white to-blue-100 min-h-screen">
+    <nav class="fixed inset-x-0 top-0 bg-white/60 backdrop-blur-sm border-b border-blue-100 z-50">
+      <div class="max-w-6xl mx-auto px-4 py-3">
+        <div class="flex items-center justify-between">
+          <nav class="text-sm text-blue-600">
+            <a href="../student-dashboard.html" class="hover:underline">Dashboard</a>
+            <span class="mx-2">/</span>
+            <a href="chemistry.html" class="hover:underline">Chemistry</a>
+            <span class="mx-2">/</span>
+            <span class="font-semibold">Basic</span>
+          </nav>
+          <div class="flex items-center gap-4">
+            <button class="px-4 py-2 rounded-lg bg-blue-600 text-white hover:bg-blue-700 transition"><i class="fas fa-graduation-cap mr-2"></i>Track Progress</button>
+          </div>
+        </div>
+      </div>
+    </nav>
 
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Basic Chemistry</title>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
-  <style>
-    body { margin: 0; font-family: 'Inter', sans-serif; background: #f7f8fa; color: #1e293b; }
-    .main-content { max-width: 900px; margin: 40px auto 0 auto; background: #fff; border-radius: 16px; box-shadow: 0 2px 8px rgba(30,41,59,0.07); padding: 2.5rem 2rem 2rem 2rem; min-height: 80vh; display: flex; flex-direction: column; }
-    .back-btn { display: inline-flex; align-items: center; gap: 0.5rem; background: #f1f5f9; color: #1e293b; border: none; border-radius: 8px; padding: 0.5rem 1.2rem; font-size: 1rem; font-weight: 500; cursor: pointer; margin-bottom: 2rem; box-shadow: 0 1px 4px rgba(30,41,59,0.05); transition: background 0.2s, color 0.2s; text-decoration: none; }
-    .back-btn:hover { background: #e0e7ef; color: #fbbf24; }
-    h1 { font-size: 1.5rem; font-weight: 600; color: #fbbf24; margin-bottom: 1.5rem; }
-    .topic-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.3rem; }
-    .topic-card { background: #fff; border-radius: 12px; box-shadow: 0 2px 8px rgba(30,41,59,0.07); padding: 1.5rem 1rem; display: flex; flex-direction: column; gap: 0.7rem; font-size: 1.05rem; color: #1e293b; font-weight: 500; cursor: pointer; transition: box-shadow 0.2s; text-decoration: none; }
-    .topic-card:hover { box-shadow: 0 4px 16px rgba(251,191,36,0.13); color: #fbbf24; }
-    .topic-title { font-weight: 600; font-size: 1.1rem; color: #fbbf24; }
-    @media (max-width: 600px) { .main-content { padding: 1rem 0.5rem; } .topic-list { grid-template-columns: 1fr; } }
-    .modal { display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100vw; height: 100vh; background: rgba(30,41,59,0.18); align-items: center; justify-content: center; }
-    .modal-content { background: #fff; border-radius: 14px; max-width: 400px; width: 95%; padding: 2rem 1.5rem 1.5rem 1.5rem; box-shadow: 0 4px 24px rgba(30,41,59,0.13); position: relative; display: flex; flex-direction: column; gap: 1.2rem; animation: fadeIn 0.2s; }
-    .modal-close { position: absolute; top: 1rem; right: 1rem; background: none; border: none; font-size: 1.2rem; color: #64748b; cursor: pointer; }
-    .modal h2 { margin: 0 0 0.5rem 0; font-size: 1.15rem; color: #fbbf24; font-weight: 600; }
-    .subtopic-list { margin: 0 0 1rem 0; padding: 0; list-style: none; }
-    .subtopic-list li { margin-bottom: 0.7rem; display: flex; align-items: center; justify-content: space-between; gap: 0.5rem; }
-    .start-btn { background: #fbbf24; color: #fff; border: none; border-radius: 8px; padding: 0.4rem 1.1rem; font-size: 1rem; font-weight: 500; cursor: pointer; transition: background 0.2s; }
-    .start-btn:hover { background: #b45309; }
-    @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
-  </style>
-</head>
-<body>
-  <main class="main-content">
-    <a href="chemistry.html" class="back-btn"><i class="fas fa-arrow-left"></i> Back to Chemistry</a>
-    <h1>Basic Chemistry</h1>
-    <div class="topic-list">
-      <div class="topic-card" onclick="openModal('Matter and Separation Techniques')">
-        <div class="topic-title">Matter and Separation Techniques</div>
+    <main class="container mx-auto px-4 pt-20 pb-12">
+      <header class="text-center mb-8">
+        <div class="flex justify-center mb-4">
+          <img src="../../assets/images/logo.png" alt="logo" class="h-20 w-auto">
+        </div>
+        <h1 class="text-2xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-blue-700 to-blue-400">Basic Chemistry</h1>
+        <p class="text-base text-gray-700">Fundamental concepts and principles</p>
+      </header>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        <a href="chemistry-explanation.html?topic=Matter%20and%20Separation%20Techniques" class="rounded-xl bg-white/60 backdrop-blur-sm shadow-sm border p-5 hover:shadow-md transition">
+          <div class="font-bold text-blue-900">Matter and Separation Techniques</div>
+          <p class="mt-2 text-gray-600 text-sm">Elements, compounds, mixtures, and separation methods</p>
+        </a>
+        <a href="chemistry-explanation.html?topic=Particulate%20Nature%20of%20Matter" class="rounded-xl bg-white/60 backdrop-blur-sm shadow-sm border p-5 hover:shadow-md transition">
+          <div class="font-bold text-blue-900">Particulate Nature of Matter</div>
+          <p class="mt-2 text-gray-600 text-sm">Kinetic theory and states of matter</p>
+        </a>
+        <a href="chemistry-explanation.html?topic=Chemical%20Combinations" class="rounded-xl bg-white/60 backdrop-blur-sm shadow-sm border p-5 hover:shadow-md transition">
+          <div class="font-bold text-blue-900">Chemical Combinations</div>
+          <p class="mt-2 text-gray-600 text-sm">Stoichiometry and chemical laws</p>
+        </a>
+        <a href="chemistry-explanation.html?topic=Properties%20of%20Gases" class="rounded-xl bg-white/60 backdrop-blur-sm shadow-sm border p-5 hover:shadow-md transition">
+          <div class="font-bold text-blue-900">Properties of Gases</div>
+          <p class="mt-2 text-gray-600 text-sm">Gas laws and their applications</p>
+        </a>
+        <a href="chemistry-explanation.html?topic=Properties%20of%20Solids%20and%20Liquids" class="rounded-xl bg-white/60 backdrop-blur-sm shadow-sm border p-5 hover:shadow-md transition">
+          <div class="font-bold text-blue-900">Properties of Solids and Liquids</div>
+          <p class="mt-2 text-gray-600 text-sm">Structure and characteristics of matter</p>
+        </a>
+        <a href="chemistry-explanation.html?topic=Acids%2C%20Bases%20and%20Salts" class="rounded-xl bg-white/60 backdrop-blur-sm shadow-sm border p-5 hover:shadow-md transition">
+          <div class="font-bold text-blue-900">Acids, Bases and Salts</div>
+          <p class="mt-2 text-gray-600 text-sm">Properties and applications in daily life</p>
+        </a>
+        <a href="chemistry-explanation.html?topic=Periodic%20Table" class="rounded-xl bg-white/60 backdrop-blur-sm shadow-sm border p-5 hover:shadow-md transition">
+          <div class="font-bold text-blue-900">Periodic Table</div>
+          <p class="mt-2 text-gray-600 text-sm">Structure, trends, and elements</p>
+        </a>
+        <a href="chemistry-explanation.html?topic=Air%20and%20Air%20Pollution" class="rounded-xl bg-white/60 backdrop-blur-sm shadow-sm border p-5 hover:shadow-md transition">
+          <div class="font-bold text-blue-900">Air and Air Pollution</div>
+          <p class="mt-2 text-gray-600 text-sm">Composition and environmental impact</p>
+        </a>
+        <a href="chemistry-explanation.html?topic=Water%20and%20Solubility" class="rounded-xl bg-white/60 backdrop-blur-sm shadow-sm border p-5 hover:shadow-md transition">
+          <div class="font-bold text-blue-900">Water and Solubility</div>
+          <p class="mt-2 text-gray-600 text-sm">Properties and solutions</p>
+        </a>
+        <a href="chemistry-explanation.html?topic=Mass-Volume%20Concepts" class="rounded-xl bg-white/60 backdrop-blur-sm shadow-sm border p-5 hover:shadow-md transition">
+          <div class="font-bold text-blue-900">Mass-Volume Concepts</div>
+          <p class="mt-2 text-gray-600 text-sm">Quantitative analysis and relationships</p>
+        </a>
       </div>
-      <div class="topic-card" onclick="openModal('Particulate Nature of Matter')">
-        <div class="topic-title">Particulate Nature of Matter</div>
-      </div>
-      <div class="topic-card" onclick="openModal('Chemical Combinations')">
-        <div class="topic-title">Chemical Combinations</div>
-      </div>
-      <div class="topic-card" onclick="openModal('Properties of Gases (Gas Laws)')">
-        <div class="topic-title">Properties of Gases (Gas Laws)</div>
-      </div>
-      <div class="topic-card" onclick="openModal('Properties of Solids and Liquids')">
-        <div class="topic-title">Properties of Solids and Liquids</div>
-      </div>
-      <div class="topic-card" onclick="openModal('Acids, Bases and Salts')">
-        <div class="topic-title">Acids, Bases and Salts</div>
-      </div>
-      <div class="topic-card" onclick="openModal('Periodic Table')">
-        <div class="topic-title">Periodic Table</div>
-      </div>
-      <div class="topic-card" onclick="openModal('Air and Air Pollution')">
-        <div class="topic-title">Air and Air Pollution</div>
-      </div>
-      <div class="topic-card" onclick="openModal('Water and Solubility Concept')">
-        <div class="topic-title">Water and Solubility Concept</div>
-      </div>
-      <div class="topic-card" onclick="openModal('Mass-Volume Concepts')">
-        <div class="topic-title">Mass-Volume Concepts</div>
-      </div>
-    </div>
-  </main>
-  <div class="modal" id="modal">
-    <div class="modal-content">
-      <button class="modal-close" onclick="closeModal()"><i class="fas fa-times"></i></button>
-      <h2 id="modalTitle">Sub-topics:</h2>
-      <ul class="subtopic-list" id="subtopicList"></ul>
-    </div>
-  </div>
+    </main>
+  </body>
+</html>
   <script>
     const subtopics = {
       'Matter and Separation Techniques': [
@@ -169,3 +180,4 @@
   </script>
 </body>
 </html>
+

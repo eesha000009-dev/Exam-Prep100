@@ -1,59 +1,108 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <!-- Favicon -->
-  <link rel="icon" type="image/png" href="/assets/images/Logo of JUANOVA Cortex Tutor.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="48x48" href="/favicon-48x48.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="manifest" href="/site.webmanifest">
 
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Chemistry - Explanation</title>
-  <link rel="stylesheet" href="../styles.css" />
-</head>
-<body>
-  <h1>Chemistry - Topic</h1>
-  <div class="two-column-layout">
-    <section class="column explanation">
-      <h2>Explanation</h2>
-      <p id="explanation-text">This page will display a senior secondary level explanation for the selected Chemistry topic.</p>
-    </section>
-    <section class="column video">
-      <h2>Video</h2>
-      <p id="video-text">Video placeholder for the selected Chemistry topic.</p>
-    </section>
-  </div>
+  <title>Chemistry Topic - JUANOVA CORTEX</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
   <style>
-    .two-column-layout {
-      display: flex;
-      gap: 2rem;
-      margin-top: 2rem;
-    }
-    .two-column-layout .column {
-      flex: 1;
-      background: #f9f9f9;
-      border-radius: 8px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.04);
-      padding: 1rem;
-      min-width: 0;
-      min-height: 500px;
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-    }
-    .two-column-layout .explanation { border-right: 2px solid #e0e0e0; }
-    @media (max-width: 900px) {
-      .two-column-layout { flex-direction: column; gap: 1rem; }
-      .two-column-layout .column { border-right: none; }
-    }
-  </style>
-  <script>
-    // Parse topic from URL and display it in all relevant places
-    const params = new URLSearchParams(window.location.search);
-    const topic = params.get('topic');
-    if(topic) {
-      document.querySelector('h1').textContent = `Chemistry - ${topic}`;
-      document.getElementById('explanation-text').textContent = `This page will display a senior secondary level explanation for ${topic} in Chemistry.`;
-      document.getElementById('video-text').textContent = `Video placeholder for ${topic} in Chemistry.`;
-    }
-  </script>
-</body>
-</html>
+    body { font-family: 'Inter', sans-serif; }
+    .section-title { 
+      background: linear-gradient(135deg,#1D4ED8,#60A5FA); 
+      -webkit-background-clip: text;
+      background-clip: text;
+      <!DOCTYPE html>
+      <html lang="en">
+        <head>
+          <meta charset="UTF-8" />
+          <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+          <title>Chemistry Topic — Explanation</title>
+          <script src="https://cdn.tailwindcss.com"></script>
+          <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+          <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+          <link rel="icon" type="image/png" sizes="48x48" href="/favicon-48x48.png">
+          <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+          <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+          <link rel="manifest" href="/site.webmanifest">
+          <style>
+            body { font-family: 'Inter', sans-serif; }
+            .section-title { 
+              background: linear-gradient(135deg,#1D4ED8,#60A5FA); 
+              -webkit-background-clip: text;
+              background-clip: text;
+              -webkit-text-fill-color: transparent;
+              font-size: 2rem;
+              font-weight: 800;
+            }
+            .card { background: rgba(255,255,255,0.9); }
+          </style>
+        </head>
+        <body class="min-h-screen bg-gradient-to-br from-blue-50 via-white to-blue-100">
+          <nav class="fixed inset-x-0 top-0 bg-white/60 backdrop-blur-sm border-b border-blue-100 z-50">
+            <div class="max-w-6xl mx-auto px-4 py-3">
+              <div class="flex items-center justify-between">
+                <nav class="text-sm text-blue-600">
+                  <a href="../student-dashboard.html" class="hover:underline">Dashboard</a>
+                  <span class="mx-2">/</span>
+                  <a href="chemistry.html" class="hover:underline">Chemistry</a>
+                  <span class="mx-2">/</span>
+                  <span id="topic-breadcrumb" class="font-semibold">Topic Details</span>
+                </nav>
+                <div class="flex items-center gap-4">
+                  <button class="px-4 py-2 rounded-lg bg-blue-600 text-white hover:bg-blue-700 transition"><i class="fas fa-graduation-cap mr-2"></i>Track Progress</button>
+                </div>
+              </div>
+            </div>
+          </nav>
+
+          <main class="max-w-6xl mx-auto px-4 pt-20 pb-12">
+            <header class="text-center mb-8">
+              <div class="flex justify-center mb-4">
+                <img src="../../assets/images/logo.png" alt="logo" class="h-20 w-auto">
+              </div>
+              <h1 id="topic-title" class="text-3xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-blue-700 to-blue-400">Chemistry Topic</h1>
+              <p class="text-base text-gray-700">Comprehensive explanation and examples</p>
+            </header>
+
+            <div class="grid md:grid-cols-2 gap-6">
+              <article class="rounded-xl bg-white/60 backdrop-blur-sm shadow-sm border p-6">
+                <h2 class="text-xl font-semibold text-blue-900 mb-4">Explanation</h2>
+                <div class="prose max-w-none">
+                  <p id="explanation-text" class="text-gray-600">This page will display a senior secondary level explanation for the selected Chemistry topic.</p>
+                </div>
+              </article>
+
+              <aside class="rounded-xl bg-white/60 backdrop-blur-sm shadow-sm border p-6">
+                <h2 class="text-xl font-semibold text-blue-900 mb-4">Video Lesson</h2>
+                <div class="aspect-w-16 aspect-h-9 rounded-lg bg-gray-100 flex items-center justify-center">
+                  <p id="video-text" class="text-gray-500">Video content coming soon...</p>
+                </div>
+                <div class="mt-4 flex gap-4">
+                  <button class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition"><i class="fas fa-play mr-2"></i>Start Practice</button>
+                  <button class="px-4 py-2 border border-blue-600 text-blue-600 rounded-lg hover:bg-blue-50 transition"><i class="fas fa-download mr-2"></i>Download Notes</button>
+                </div>
+              </aside>
+            </div>
+          </main>
+
+          <script>
+            // Parse topic from URL and display it in all relevant places
+            const params = new URLSearchParams(window.location.search);
+            const topic = params.get('topic') || 'Chemistry Topic';
+            document.getElementById('topic-title').textContent = topic;
+            document.getElementById('topic-breadcrumb').textContent = topic;
+            document.getElementById('explanation-text').textContent = `This page will display a senior secondary level explanation for ${topic}.`;
+            document.getElementById('video-text').textContent = `Video lesson for ${topic} coming soon...`;
+          </script>
+        </body>
+      </html>
+

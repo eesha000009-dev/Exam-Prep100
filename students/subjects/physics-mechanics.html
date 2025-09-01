@@ -1,187 +1,91 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <!-- Favicon -->
-  <link rel="icon" type="image/png" href="/assets/images/Logo of JUANOVA Cortex Tutor.png" />
-
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Mechanics - Physics</title>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="48x48" href="/favicon-48x48.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/site.webmanifest">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
-  <style>
-    body { margin: 0; font-family: 'Inter', sans-serif; background: #f7f8fa; color: #1e293b; }
-    .main-content { max-width: 900px; margin: 40px auto 0 auto; background: #fff; border-radius: 16px; box-shadow: 0 2px 8px rgba(30,41,59,0.07); padding: 2.5rem 2rem 2rem 2rem; min-height: 80vh; display: flex; flex-direction: column; }
-    .back-btn { display: inline-flex; align-items: center; gap: 0.5rem; background: #f1f5f9; color: #1e293b; border: none; border-radius: 8px; padding: 0.5rem 1.2rem; font-size: 1rem; font-weight: 500; cursor: pointer; margin-bottom: 2rem; box-shadow: 0 1px 4px rgba(30,41,59,0.05); transition: background 0.2s, color 0.2s; text-decoration: none; }
-    .back-btn:hover { background: #e0e7ef; color: #1a73e8; }
-    h1 { font-size: 1.5rem; font-weight: 600; color: #1a73e8; margin-bottom: 1.5rem; }
-    .topic-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.3rem; }
-    .topic-card {
-      background: #fff;
-      border-radius: 12px;
-      box-shadow: 0 2px 8px rgba(30,41,59,0.07);
-      padding: 1.5rem;
-      display: flex;
-      flex-direction: column;
-      gap: 0.5rem;
-      color: #1e293b;
-      cursor: pointer;
-      transition: all 0.2s ease;
-      text-decoration: none;
-      border: 1px solid #e5e7eb;
-    }
-    .topic-card:hover {
-      box-shadow: 0 4px 16px rgba(26,115,232,0.13);
-      border-color: #1a73e8;
-      transform: translateY(-2px);
-    }
-    .topic-title {
-      font-weight: 600;
-      font-size: 1.1rem;
-      color: #1a73e8;
-      margin-bottom: 0.3rem;
-    }
-    .topic-desc {
-      font-size: 0.9rem;
-      color: #6b7280;
-      line-height: 1.4;
-    }
-    @media (max-width: 600px) { .main-content { padding: 1rem 0.5rem; } .topic-list { grid-template-columns: 1fr; } }
-    .modal { display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100vw; height: 100vh; background: rgba(30,41,59,0.18); align-items: center; justify-content: center; }
-    .modal-content { background: #fff; border-radius: 14px; max-width: 400px; width: 95%; padding: 2rem 1.5rem 1.5rem 1.5rem; box-shadow: 0 4px 24px rgba(30,41,59,0.13); position: relative; display: flex; flex-direction: column; gap: 1.2rem; animation: fadeIn 0.2s; }
-    .modal-close { position: absolute; top: 1rem; right: 1rem; background: none; border: none; font-size: 1.2rem; color: #64748b; cursor: pointer; }
-    .modal h2 { margin: 0 0 0.5rem 0; font-size: 1.15rem; color: #1a73e8; font-weight: 600; }
-    .subtopic-list { margin: 0 0 1rem 0; padding: 0; list-style: none; }
-    .subtopic-list li { margin-bottom: 0.7rem; display: flex; align-items: center; justify-content: space-between; gap: 0.5rem; }
-    .start-btn { background: #1a73e8; color: #fff; border: none; border-radius: 8px; padding: 0.4rem 1.1rem; font-size: 1rem; font-weight: 500; cursor: pointer; transition: background 0.2s; }
-    .start-btn:hover { background: #0b3ea8; }
-    @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
-  </style>
 </head>
-<body>
-  <main class="main-content">
-    <a href="physics.html" class="back-btn"><i class="fas fa-arrow-left"></i> Back to Physics</a>
-    <h1>Mechanics</h1>
-    <div class="topic-list">
-      <div class="topic-card" onclick="openModal('Equilibrium of Forces')">
-        <div class="topic-title">Equilibrium of Forces</div>
-        <div class="topic-desc">Study of balanced forces and stability</div>
-      </div>
-      <div class="topic-card" onclick="openModal('Work, Energy & Power')">
-        <div class="topic-title">Work, Energy & Power</div>
-        <div class="topic-desc">Energy principles and conservation laws</div>
-      </div>
-      <div class="topic-card" onclick="openModal('Motion')">
-        <div class="topic-title">Motion and Forces</div>
-        <div class="topic-desc">Laws of motion and types of forces</div>
-      </div>
-      <div class="topic-card" onclick="openModal('Friction')">
-        <div class="topic-title">Friction</div>
-        <div class="topic-desc">Static and dynamic friction, applications</div>
-      </div>
-      <div class="topic-card" onclick="openModal('Simple Machines')">
-        <div class="topic-title">Simple Machines</div>
-        <div class="topic-desc">Mechanical advantage and efficiency</div>
-      </div>
-      <div class="topic-card" onclick="openModal('Elasticity')">
-        <div class="topic-title">Elasticity</div>
-        <div class="topic-desc">Elastic properties and Hooke's law</div>
-      </div>
+<body class="min-h-screen bg-gradient-to-br from-blue-50 via-white to-blue-100 font-inter">
+  <nav class="fixed inset-x-0 top-0 bg-white/60 backdrop-blur-sm border-b border-blue-100 z-50">
+    <div class="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
+      <a href="physics.html" class="text-sm text-blue-600 hover:underline">← Back to Physics</a>
+      <img src="/assets/images/logo.png" alt="logo" class="h-10 w-auto" />
+    </div>
+  </nav>
+
+  <main class="main-content max-w-6xl mx-auto px-4 pt-24 pb-12">
+    <h1 class="text-3xl font-extrabold text-blue-700 mb-4">Mechanics</h1>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      <a href="javascript:void(0)" onclick="openModal('Equilibrium of Forces')" class="topic-card rounded-xl bg-white/60 backdrop-blur-sm shadow-sm border p-5">
+        <h3 class="font-semibold text-blue-700">Equilibrium of Forces</h3>
+        <p class="text-sm text-slate-500 mt-1">Balanced forces and stability</p>
+      </a>
+
+      <a href="javascript:void(0)" onclick="openModal('Work, Energy & Power')" class="topic-card rounded-xl bg-white/60 backdrop-blur-sm shadow-sm border p-5">
+        <h3 class="font-semibold text-blue-700">Work, Energy & Power</h3>
+        <p class="text-sm text-slate-500 mt-1">Energy principles and conservation</p>
+      </a>
+
+      <a href="javascript:void(0)" onclick="openModal('Motion')" class="topic-card rounded-xl bg-white/60 backdrop-blur-sm shadow-sm border p-5">
+        <h3 class="font-semibold text-blue-700">Motion and Forces</h3>
+        <p class="text-sm text-slate-500 mt-1">Kinematics and dynamics</p>
+      </a>
+
+      <a href="javascript:void(0)" onclick="openModal('Friction')" class="topic-card rounded-xl bg-white/60 backdrop-blur-sm shadow-sm border p-5">
+        <h3 class="font-semibold text-blue-700">Friction</h3>
+        <p class="text-sm text-slate-500 mt-1">Static & dynamic friction</p>
+      </a>
+
+      <a href="javascript:void(0)" onclick="openModal('Simple Machines')" class="topic-card rounded-xl bg-white/60 backdrop-blur-sm shadow-sm border p-5">
+        <h3 class="font-semibold text-blue-700">Simple Machines</h3>
+        <p class="text-sm text-slate-500 mt-1">Mechanical advantage and efficiency</p>
+      </a>
+
+      <a href="javascript:void(0)" onclick="openModal('Elasticity')" class="topic-card rounded-xl bg-white/60 backdrop-blur-sm shadow-sm border p-5">
+        <h3 class="font-semibold text-blue-700">Elasticity</h3>
+        <p class="text-sm text-slate-500 mt-1">Hooke's law and Young's modulus</p>
+      </a>
     </div>
   </main>
-  <div class="modal" id="modal">
-    <div class="modal-content">
-      <button class="modal-close" onclick="closeModal()"><i class="fas fa-times"></i></button>
-      <h2 id="modalTitle">Sub-topics:</h2>
-      <ul class="subtopic-list" id="subtopicList"></ul>
+
+  <!-- Modal -->
+  <div id="modal" class="fixed inset-0 bg-gray-700/30 backdrop-blur-sm hidden items-center justify-center z-50">
+    <div class="bg-white rounded-xl shadow-lg w-11/12 max-w-md p-6 relative">
+      <button class="absolute top-4 right-4 text-gray-500 hover:text-gray-700" onclick="closeModal()" title="Close modal"><i class="fas fa-times"></i><span class="sr-only">Close</span></button>
+      <h2 id="modalTitle" class="text-xl font-semibold text-blue-700 mb-3">Sub-topics:</h2>
+      <ul id="subtopicList" class="space-y-2 text-gray-700"></ul>
     </div>
   </div>
+
   <script>
     const subtopics = {
-      'Equilibrium of Forces': [
-        'Equilibrium of Particles',
-        'Triangle and Polygon of Forces',
-        'Lami\'s Theorem',
-        'Moments and Couples',
-        'Applications of Equilibrium',
-        'Center of Gravity',
-        'Stability Analysis',
-        'Equilibrium Conditions'
-      ],
-      'Work, Energy & Power': [
-        'Definition and Units',
-        'Forms of Energy',
-        'Energy Conservation',
-        'Energy Transformation',
-        'Force-Distance Curves',
-        'Energy Sources',
-        'Renewable Energy',
-        'Non-renewable Energy',
-        'Energy and Society',
-        'Dams and Energy Storage',
-        'Nuclear and Solar Energy'
-      ],
-      'Motion': [
-        'Newton\'s Laws of Motion',
-        'Types of Forces',
-        'Linear Motion',
-        'Circular Motion',
-        'Momentum and Impulse',
-        'Conservation of Momentum',
-        'Projectile Motion',
-        'Centripetal Forces'
-      ],
-      'Friction': [
-        'Static and Dynamic Friction',
-        'Coefficient of Friction',
-        'Advantages and Disadvantages',
-        'Methods of Friction Reduction',
-        'Viscosity',
-        'Terminal Velocity',
-        'Stoke\'s Law and Applications',
-        'Friction in Daily Life'
-      ],
-      'Simple Machines': [
-        'Types of Simple Machines',
-        'Mechanical Advantage',
-        'Velocity Ratio',
-        'Efficiency Calculations',
-        'Practical Applications',
-        'Combined Machines',
-        'Real-world Examples'
-      ],
-      'Elasticity': [
-        'Elastic Limit',
-        'Yield Point',
-        'Breaking Point',
-        'Hooke\'s Law',
-        'Young\'s Modulus',
-        'Spring Balance',
-        'Work Done in Springs',
-        'Work Done in Strings',
-        'Stress and Strain'
-      ]
+      'Equilibrium of Forces': ['Equilibrium of Particles', 'Triangle and Polygon of Forces', "Lami's Theorem", 'Moments and Couples'],
+      'Work, Energy & Power': ['Definition and Units', 'Forms of Energy', 'Energy Conservation', 'Energy Transformation'],
+      'Motion': ["Newton's Laws of Motion", 'Linear Motion', 'Circular Motion', 'Projectile Motion'],
+      'Friction': ['Static and Dynamic Friction', 'Coefficient of Friction', 'Viscosity', "Stoke's Law"],
+      'Simple Machines': ['Types', 'Mechanical Advantage', 'Velocity Ratio', 'Efficiency Calculations'],
+      'Elasticity': ['Elastic Limit', "Hooke's Law", "Young's Modulus", 'Stress and Strain']
     };
+
     function openModal(topic) {
-      document.getElementById('modal').style.display = 'flex';
-      document.getElementById('modalTitle').innerText = 'Sub-topics: ' + topic;
+      document.getElementById('modalTitle').textContent = topic;
       const list = document.getElementById('subtopicList');
       list.innerHTML = '';
-      subtopics[topic].forEach(sub => {
-        list.innerHTML += `<li>${sub} <button class='start-btn' onclick='startLearning(event)'>Start Learning</button></li>`;
+      (subtopics[topic]||[]).forEach(s => {
+        const li = document.createElement('li'); li.textContent = s; list.appendChild(li);
       });
+      document.getElementById('modal').classList.remove('hidden'); document.getElementById('modal').classList.add('flex');
     }
-    function closeModal() {
-      document.getElementById('modal').style.display = 'none';
-    }
-    function startLearning(e) {
-      e.stopPropagation();
-      window.location.href = 'physics-explanation.html';
-    }
-    window.onclick = function(event) {
-      const modal = document.getElementById('modal');
-      if (event.target === modal) closeModal();
-    }
+    function closeModal() { document.getElementById('modal').classList.remove('flex'); document.getElementById('modal').classList.add('hidden'); }
   </script>
 </body>
 </html>
+

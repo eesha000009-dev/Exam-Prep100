@@ -130,3 +130,4 @@ async function getGeminiResponse(prompt) {
 }
 
 module.exports = router;
+

@@ -1,230 +1,89 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <!-- Favicon -->
-  <link rel="icon" type="image/png" href="/assets/images/Logo of JUANOVA Cortex Tutor.png" />
-
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Physics Units - JAMB Syllabus</title>
-  <link rel="stylesheet" href="../styles.css" />
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
-  
-  <style>
-    .back-btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      margin: 1.5rem 0 1rem 0;
-      padding: 0.5rem 1rem;
-      background: #e0e7ef;
-      color: #1e293b;
-      border-radius: 6px;
-      text-decoration: none;
-      font-weight: 500;
-      font-size: 1rem;
-      border: none;
-      cursor: pointer;
-      transition: background 0.2s;
-    }
-    .back-btn:hover {
-      background: #cbd5e1;
-    }
-    .main {
-      max-width: 900px;
-      margin: 0 auto;
-      padding: 32px 16px 40px 16px;
-    }
-    .topbar {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      margin-bottom: 2rem;
-      gap: 1rem;
-    }
-    .topbar h1 {
-      font-size: 2rem;
-      font-weight: 700;
-      color: #1e293b;
-      margin: 0;
-    }
-    .search-box {
-      position: relative;
-      max-width: 400px;
-      width: 100%;
-    }
-    .search-box input {
-      width: 100%;
-      padding: 10px 40px 10px 16px;
-      border-radius: 999px;
-      border: 1px solid #ddd;
-      font-size: 1rem;
-      background: #fff;
-      outline: none;
-    }
-    .search-icon {
-      position: absolute;
-      right: 12px;
-      top: 50%;
-      transform: translateY(-50%);
-      color: #888;
-      font-size: 1.2rem;
-    }
-    .topics-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 28px;
-    }
-    .topic-card {
-      background: #fff;
-      border-radius: 16px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.04);
-      padding: 32px 24px 24px 24px;
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-      transition: box-shadow 0.2s;
-      min-height: 120px;
-    }
-    .topic-card:hover {
-      box-shadow: 0 4px 16px rgba(26,115,232,0.08);
-    }
-    .topic-title {
-      font-size: 1.15rem;
-      font-weight: 600;
-      margin-bottom: 8px;
-      color: #1a73e8;
-      text-decoration: none;
-    }
-    .topic-desc {
-      font-size: 0.95rem;
-      color: #555;
-    }
-    body {
-      margin: 0;
-      font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
-      background: #f7f8fa;
-      color: #222;
-    }
-    @media (max-width: 700px) {
-      .main { padding: 12px; }
-      .topbar h1 { font-size: 1.2rem; }
-      .search-box { max-width: 140px; }
-      .topics-grid { grid-template-columns: 1fr; gap: 16px; }
-      .topic-card { padding: 16px; }
-    }
-  </style>
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="48x48" href="/favicon-48x48.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Physics — Dashboard</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+<!-- dedupe: removed duplicate favicon/manifest block -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
 </head>
+<body class="min-h-screen bg-gradient-to-br from-blue-50 via-white to-blue-100 font-inter">
+  <nav class="fixed inset-x-0 top-0 bg-white/60 backdrop-blur-sm border-b border-blue-100 z-50">
+    <div class="max-w-6xl mx-auto px-4 py-3">
+      <div class="flex items-center justify-between">
+        <div class="flex items-center gap-4">
+          <nav class="text-sm text-blue-600">
+            <a href="../student-dashboard.html" class="hover:underline">Dashboard</a>
+            <span class="mx-2">/</span>
+            <span class="font-semibold">Physics</span>
+          </nav>
+        </div>
+        <div class="flex items-center gap-3">
+          <div class="relative">
+            <i class="fas fa-search text-slate-400 absolute left-3 top-1/2 -translate-y-1/2"></i>
+            <input aria-label="Search" class="pl-10 pr-3 py-2 rounded-lg border border-slate-200 bg-white" placeholder="Search physics topics" />
+          </div>
+          <img src="/assets/images/logo.png" alt="logo" class="h-10 w-auto" />
+        </div>
+      </div>
+    </div>
+  </nav>
 
-<body>
+  <main class="max-w-6xl mx-auto px-4 pt-24 pb-12">
+    <header class="text-center mb-6">
+      <h1 class="text-3xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-blue-700 to-blue-400">Physics</h1>
+      <p class="text-gray-600 mt-2">Concepts and problem solving</p>
+    </header>
 
-  <main class="main-content">
-    <a href="../student-dashboard.html" class="back-btn"><i class="fas fa-arrow-left"></i> Back to Dashboard</a>
-    <h1>Physics</h1>
-    <div class="topic-list">
-      <a class="topic-card" href="physics-mechanics.html">
-        <div class="topic-title">Unit 1: Measurements and Units</div>
-        <div class="topic-desc">Physical quantities, Units, Measurements, Errors</div>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      <a href="physics-mechanics.html" class="block rounded-xl bg-white/60 backdrop-blur-sm shadow-sm border p-5 hover:shadow-md transition group">
+        <h3 class="font-semibold text-blue-700 group-hover:text-blue-500">Unit 1: Measurements and Units</h3>
+        <p class="text-sm text-slate-500 mt-1">Physical quantities, Units, Measurements, Errors</p>
       </a>
-      <a class="topic-card" href="physics-mechanics.html">
-        <div class="topic-title">Unit 2: Motion and Energy</div>
-        <div class="topic-desc">Kinematics, Newton's Laws, Work, Energy, Power</div>
+
+      <a href="physics-mechanics.html" class="block rounded-xl bg-white/60 backdrop-blur-sm shadow-sm border p-5 hover:shadow-md transition group">
+        <h3 class="font-semibold text-blue-700 group-hover:text-blue-500">Unit 2: Motion and Energy</h3>
+        <p class="text-sm text-slate-500 mt-1">Kinematics, Newton's Laws, Work, Energy, Power</p>
       </a>
-      <a class="topic-card" href="physics-properties.html">
-        <div class="topic-title">Unit 3: Properties of Matter</div>
-        <div class="topic-desc">Elasticity, Surface Tension, Fluid Dynamics</div>
+
+      <a href="physics-properties.html" class="block rounded-xl bg-white/60 backdrop-blur-sm shadow-sm border p-5 hover:shadow-md transition group">
+        <h3 class="font-semibold text-blue-700 group-hover:text-blue-500">Unit 3: Properties of Matter</h3>
+        <p class="text-sm text-slate-500 mt-1">Elasticity, Surface Tension, Fluid Dynamics</p>
       </a>
-      <a class="topic-card" href="physics-heat.html">
-        <div class="topic-title">Unit 4: Heat and Gases</div>
-        <div class="topic-desc">Temperature, Thermal Properties, Gas Laws</div>
+
+      <a href="physics-heat.html" class="block rounded-xl bg-white/60 backdrop-blur-sm shadow-sm border p-5 hover:shadow-md transition group">
+        <h3 class="font-semibold text-blue-700 group-hover:text-blue-500">Unit 4: Heat & Thermodynamics</h3>
+        <p class="text-sm text-slate-500 mt-1">Temperature, Heat, Laws of Thermodynamics</p>
       </a>
-      <a class="topic-card" href="physics-waves.html">
-        <div class="topic-title">Unit 5: Waves and Oscillations</div>
-        <div class="topic-desc">Wave Motion, Sound, Light, Optics</div>
+
+      <a href="physics-electricity.html" class="block rounded-xl bg-white/60 backdrop-blur-sm shadow-sm border p-5 hover:shadow-md transition group">
+        <h3 class="font-semibold text-blue-700 group-hover:text-blue-500">Unit 5: Electricity & Magnetism</h3>
+        <p class="text-sm text-slate-500 mt-1">Electrostatics, Current, Magnetism, Induction</p>
       </a>
-      <a class="topic-card" href="physics-electricity.html">
-        <div class="topic-title">Unit 6: Electricity and Magnetism</div>
-        <div class="topic-desc">Electric Fields, Circuits, Electromagnetic Induction</div>
+
+      <a href="physics-waves.html" class="block rounded-xl bg-white/60 backdrop-blur-sm shadow-sm border p-5 hover:shadow-md transition group">
+        <h3 class="font-semibold text-blue-700 group-hover:text-blue-500">Unit 6: Waves & Optics</h3>
+        <p class="text-sm text-slate-500 mt-1">Wave motion, Sound, Light, Optics</p>
       </a>
-      <a class="topic-card" href="physics-modern.html">
-        <div class="topic-title">Unit 7: Modern Physics</div>
-        <div class="topic-desc">Atomic Structure, Nuclear Physics, Electronics</div>
+
+      <a href="physics-modern.html" class="block rounded-xl bg-white/60 backdrop-blur-sm shadow-sm border p-5 hover:shadow-md transition group">
+        <h3 class="font-semibold text-blue-700 group-hover:text-blue-500">Unit 7: Modern Physics</h3>
+        <p class="text-sm text-slate-500 mt-1">Atomic, Nuclear, Quantum, Lasers</p>
+      </a>
+
+      <a href="physics-astrophysics.html" class="block rounded-xl bg-white/60 backdrop-blur-sm shadow-sm border p-5 hover:shadow-md transition group">
+        <h3 class="font-semibold text-blue-700 group-hover:text-blue-500">Unit 8: Astrophysics</h3>
+        <p class="text-sm text-slate-500 mt-1">Universe, Stars, Satellites, Space</p>
       </a>
     </div>
   </main>
-  <style>
-    .main-content {
-      max-width: 900px;
-      margin: 40px auto 0 auto;
-      background: #fff;
-      border-radius: 16px;
-      box-shadow: 0 2px 8px rgba(30,41,59,0.07);
-      padding: 2.5rem 2rem 2rem 2rem;
-      min-height: 80vh;
-      display: flex;
-      flex-direction: column;
-    }
-    .back-btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      background: #f1f5f9;
-      color: #1e293b;
-      border: none;
-      border-radius: 8px;
-      padding: 0.5rem 1.2rem;
-      font-size: 1rem;
-      font-weight: 500;
-      cursor: pointer;
-      margin-bottom: 2rem;
-      box-shadow: 0 1px 4px rgba(30,41,59,0.05);
-      transition: background 0.2s, color 0.2s;
-      text-decoration: none;
-    }
-    .back-btn:hover {
-      background: #e0e7ef;
-      color: #1a73e8;
-    }
-    h1 {
-      font-size: 1.5rem;
-      font-weight: 600;
-      color: #1a73e8;
-      margin-bottom: 1.5rem;
-    }
-    .topic-list {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 1.3rem;
-    }
-    .topic-card {
-      background: #fff;
-      border-radius: 12px;
-      box-shadow: 0 2px 8px rgba(30,41,59,0.07);
-      padding: 1.5rem 1rem;
-      display: flex;
-      flex-direction: column;
-      gap: 0.7rem;
-      font-size: 1.05rem;
-      color: #1e293b;
-      font-weight: 500;
-      text-decoration: none;
-      transition: box-shadow 0.2s;
-      cursor: pointer;
-    }
-    .topic-card:hover {
-      box-shadow: 0 4px 16px rgba(26,115,232,0.13);
-      color: #1a73e8;
-    }
-    .topic-title {
-      font-weight: 600;
-      font-size: 1.1rem;
-      color: #1a73e8;
-      text-decoration: none;
-    }
-    @media (max-width: 600px) {
-      .main-content { padding: 1rem 0.5rem; }
-      .topic-list { grid-template-columns: 1fr; }
-    }
-  </style>
 </body>
 </html>
+

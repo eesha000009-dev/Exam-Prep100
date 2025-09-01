@@ -1,8 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <!-- Favicon -->
-  <link rel="icon" type="image/png" href="/assets/images/Logo of JUANOVA Cortex Tutor.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <meta name="msapplication-TileColor" content="#3B82F6">
+  <meta name="theme-color" content="#3B82F6">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>JUANOVA CORTEX - AI-Powered Learning Platform for WAEC & JAMB Success</title>
@@ -14,8 +18,7 @@
   <link rel="stylesheet" href="general/modernized.css">
   <link rel="stylesheet" href="style.css">
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-      <!-- Favicon -->
-    <link rel="icon" type="image/svg+xml" href="assets\images\Logo of JUANOVA Cortex Tutor.png" />
+  <!-- dedupe: removed duplicate favicon/manifest entries -->
   <script>
     tailwind.config = {
       theme: {
@@ -120,47 +123,203 @@
       transform: translateY(-5px);
     }
 
-    @media (max-width: 768px) {
-      .device-wrapper {
-        max-width: 100%;
-        padding: 0 1rem;
+    /* Responsive Breakpoints */
+    @media (max-width: 1024px) {
+      .achievement-cards {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1rem;
+      }
+
+      .hero {
+        padding: 6rem 1.5rem 4rem;
+      }
+
+      .injini-headline {
+        font-size: 2.4rem;
+      }
+
+      .injini-subheadline {
+        font-size: 1.2rem;
+      }
+
+      .injini-mission {
+        font-size: 1rem;
       }
     }
 
-    /* Injini-style headline and mission statement */
+    @media (max-width: 768px) {
+      .achievement-cards {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 0.75rem;
+      }
+
+      .device-wrapper {
+        max-width: 100%;
+        padding: 0 0.75rem;
+      }
+
+      .achievement-card {
+        padding: 0.75rem;
+      }
+
+      .achievement-card .counter {
+        font-size: 1.5rem;
+      }
+
+      .achievement-card .achievement-icon {
+        font-size: 1.75rem;
+      }
+
+      .injini-headline {
+        font-size: 1.6rem;
+        padding: 0.75rem 0;
+        line-height: 1.15;
+      }
+
+      .injini-subheadline {
+        font-size: 1rem;
+      }
+
+      .injini-mission {
+        font-size: 0.95rem;
+        margin: 0.9rem auto 1.25rem;
+        line-height: 1.4;
+      }
+
+      .stat-highlight {
+        font-size: 0.9rem;
+        padding: 0.4rem 1rem;
+        margin-bottom: 1rem;
+      }
+
+      .impact-statement {
+        font-size: 0.9rem;
+        margin-top: 1rem;
+      }
+
+      .hero {
+        padding: 4rem 1rem 3rem;
+      }
+
+      .button {
+        padding: 0.75rem 1.5rem;
+        font-size: 0.9rem;
+      }
+
+      .hero-cta {
+        gap: 1rem;
+        margin: 1.5rem 0 2rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .achievement-cards {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 0.75rem;
+      }
+
+      .achievement-card {
+        padding: 0.75rem;
+      }
+
+      .achievement-info .counter {
+        font-size: 1.8rem;
+      }
+    }
+
+    /* Injini-style headline and mission statement (tuned for card-sized parity) */
     .injini-headline {
-      font-size: 4.5rem;
+      font-size: 3rem; /* smaller than before, visually closer to card scale */
       font-weight: 800;
-      line-height: 1.1;
+      line-height: 1.05;
       color: #1a202c;
-      margin-bottom: 2rem;
+      margin: 0.75rem auto 1.25rem;
       font-family: 'Plus Jakarta Sans', Arial, sans-serif;
-      letter-spacing: -1.5px;
-      padding: 2rem 0;
+      letter-spacing: -0.8px;
+      padding: 1.25rem 0;
       text-transform: capitalize;
+      max-width: 900px;
+      text-align: center;
     }
 
     .injini-subheadline {
-      font-size: 3rem;
+      font-size: 1.4rem;
       font-weight: 700;
       background: linear-gradient(135deg, #4299e1 0%, #3182ce 100%);
       -webkit-background-clip: text;
+      background-clip: text;
       -webkit-text-fill-color: transparent;
-      margin-top: 1rem;
+      color: transparent;
+      margin-top: 0.5rem;
       display: block;
-      letter-spacing: -0.5px;
+      letter-spacing: -0.2px;
     }
 
     .injini-mission {
-      font-size: 1.6rem;
+      font-size: 1.05rem; /* slightly larger than card numbers but compact */
       color: #3182ce;
       font-weight: 600;
-      line-height: 1.5;
-      margin: 2rem auto 3rem;
+      line-height: 1.45;
+      margin: 0.75rem auto 1.5rem;
       font-family: 'Plus Jakarta Sans', Arial, sans-serif;
-      max-width: 700px;
-      padding: 0;
+      max-width: 880px;
+      padding: 0 0.5rem;
       text-align: center;
+    }
+
+    /* Equal-height achievement/stat cards */
+    #stats-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+      align-items: stretch; /* ensure children stretch to same height */
+    }
+
+    #stats-grid > .relative {
+      display: flex;
+      align-items: stretch;
+    }
+
+    /* Inner card container (the white card) should fill and center content */
+    #stats-grid .relative > .relative {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      height: 100%;
+      min-height: 120px; /* baseline for small devices */
+      padding: 1rem;
+    }
+
+    /* Larger min-heights on bigger screens for balanced look */
+    @media (min-width: 768px) {
+      #stats-grid .relative > .relative {
+        min-height: 140px;
+        padding: 1.25rem;
+      }
+    }
+
+    @media (min-width: 1024px) {
+      #stats-grid .relative > .relative {
+        min-height: 160px;
+        padding: 1.5rem;
+      }
+    }
+
+    /* Stronger fallback in case Tailwind or other rules override earlier styles */
+    #stats-grid > .relative,
+    #stats-grid > .relative > .relative {
+      min-height: 140px !important;
+      height: 100% !important;
+      display: flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+    }
+
+    /* Ensure spacing inside the inner card remains consistent */
+    #stats-grid > .relative > .relative {
+      padding-left: 1rem !important;
+      padding-right: 1rem !important;
     }
 
     .hero-cta {
@@ -205,12 +364,12 @@
     }
 
     .achievement-cards {
-      display: flex;
-      gap: 1.5rem;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
       margin: 2rem auto;
-      justify-content: center;
-      flex-wrap: wrap;
       max-width: 1200px;
+      padding: 0 1rem;
     }
 
     .achievement-card {
@@ -219,13 +378,16 @@
       border-radius: 16px;
       box-shadow: 0 4px 16px rgba(66,153,225,0.15);
       padding: 1.5rem;
-      min-width: 200px;
       text-align: center;
       position: relative;
       z-index: 2;
       border: none;
       transform: translateY(0);
       transition: transform 0.3s ease, box-shadow 0.3s ease;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
     }
 
     .achievement-card:hover {
@@ -253,11 +415,13 @@
       max-width: 1200px;
       margin: 0 auto;
       padding: 0 1rem;
+      display: flex;
+      align-items: center;
     }
 
     .announcement-slider {
       display: flex;
-      animation: slide 20s linear infinite;
+      animation: slide 30s linear infinite;
       width: fit-content;
       /* Duplicate items for continuous sliding */
     }
@@ -277,6 +441,28 @@
       color: #ffd700;
       font-size: 1.2rem;
       animation: pulse 2s infinite;
+    }
+
+    .announcement-close {
+      background: none;
+      border: none;
+      color: white;
+      font-size: 1.5rem;
+      cursor: pointer;
+      margin-left: auto;
+      padding: 0.5rem;
+    }
+
+    @media (max-width: 768px) {
+      .announcement-item {
+        font-size: 0.9rem;
+        padding: 0 1.5rem;
+        gap: 0.5rem;
+      }
+
+      .announcement-item i {
+        font-size: 1rem;
+      }
     }
 
     @keyframes pulse {
@@ -374,6 +560,32 @@
       color: #4a5568;
       font-size: 1.1rem;
       margin-bottom: 1.5rem;
+    }
+
+    @media (max-width: 768px) {
+      .progress-card h2 {
+        font-size: 1.5rem;
+      }
+
+      .progress-card p {
+        font-size: 0.95rem;
+      }
+
+      .progress-stats {
+        gap: 1.5rem;
+      }
+
+      .stat-item h3 {
+        font-size: 0.9rem;
+      }
+
+      .stat-item p {
+        font-size: 1.25rem;
+      }
+
+      .stat-detail {
+        font-size: 0.8rem;
+      }
     }
 
     .continue-btn {
@@ -658,14 +870,41 @@
 
     @media (max-width: 768px) {
       .footer-content {
-        grid-template-columns: 1fr;
-        gap: 2rem;
+        grid-template-columns: 2fr 1fr;
+        gap: 1.5rem;
+        padding: 0 1rem;
       }
 
       .footer-links {
-        flex-direction: column;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
         gap: 1rem;
-        align-items: center;
+        justify-items: center;
+      }
+
+      .cta-buttons {
+        display: flex;
+        flex-wrap: nowrap;
+        gap: 1rem;
+        justify-content: center;
+        padding: 0 1rem;
+      }
+
+      .button {
+        padding: 0.75rem 1.5rem;
+        font-size: 1rem;
+        white-space: nowrap;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .footer-content {
+        grid-template-columns: 3fr 2fr;
+        gap: 1rem;
+      }
+
+      .footer-links {
+        grid-template-columns: repeat(2, 1fr);
       }
     }
 
@@ -704,10 +943,11 @@
 
     .trust-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      grid-template-columns: repeat(4, 1fr);
       gap: 2rem;
       max-width: 1200px;
       margin: 0 auto;
+      padding: 0 1rem;
     }
 
     .trust-item {
@@ -716,6 +956,61 @@
       align-items: center;
       text-align: center;
       gap: 1rem;
+    }
+
+    @media (max-width: 1024px) {
+      .trust-grid {
+        grid-template-columns: repeat(4, 1fr);
+        gap: 1.5rem;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .trust-grid {
+        grid-template-columns: repeat(4, 1fr);
+        gap: 1rem;
+      }
+
+      .trust-badges {
+        padding: 2rem 1rem;
+      }
+
+      .trust-item {
+        gap: 0.5rem;
+      }
+
+      .trust-item i {
+        font-size: 1.5rem;
+      }
+
+      .trust-item span {
+        font-size: 0.85rem;
+      }
+
+      .trust-item img {
+        width: 36px;
+        height: 36px;
+      }
+
+      .cta-section {
+        padding: 3rem 1rem;
+      }
+
+      .cta-content h2 {
+        font-size: 1.75rem;
+      }
+
+      .cta-content p {
+        font-size: 1rem;
+        margin-bottom: 1.5rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .trust-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
+      }
     }
 
     .trust-item img {
@@ -971,17 +1266,65 @@
         padding: 1rem;
       }
       
-      .programmer-details h3 {
-        font-size: 1.5rem;
-      }
+    .programmer-details h3 {
+      font-size: 1.5rem;
     }
-
-    /* Remove duplicate navbar styles */
+    .programmer-profile .section-header h2 {
+      font-size: 1.5rem;
+    }
+    .programmer-profile .section-header .section-tag {
+      font-size: 0.9rem;
+    }
+    .cta-section h2 {
+      font-size: 1.5rem;
+    }
+    .cta-section p {
+      font-size: 0.9rem;
+    }
+    .footer-section h3 {
+      font-size: 1.1rem;
+    }
+    .footer-section p, .footer-section ul li a {
+      font-size: 0.9rem;
+    }
+    .footer-bottom p {
+      font-size: 0.8rem;
+    }
+    .footer-links a {
+      font-size: 0.8rem;
+    }    /* Remove duplicate navbar styles */
 
     .logo img {
       height: 100px; /* Magnify logo size */
       width: auto;
       object-fit: contain;
+    }
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+
+    @media (max-width: 768px) {
+      .features-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
+      }
+      .subjects-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .features-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
+      }
+      .subjects-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
+      }
     }
   </style>
 </head>
@@ -989,7 +1332,7 @@
   <nav class="navbar glass-effect">
     <div class="nav-container">
       <div class="logo flex items-center gap-2">
-        <img src="assets/images/Logo of JUANOVA Cortex Tutor.png" alt="JUANOVA CORTEX Logo" class="logo-img" />
+  <img src="/assets/images/logo.png" alt="JUANOVA CORTEX Logo" class="logo-img" loading="lazy" style="height:64px; width:auto; object-fit:contain;" />
       </div>
       <div class="nav-links">
         <div class="nav-item dropdown">
@@ -1093,7 +1436,34 @@
           <span>Join Thounsands of Students Learning for Free Today</span>
           <a href="#" class="announcement-link">Get Started</a>
         </div>
+        <!-- Duplicate for smooth scroll -->
+        <div class="announcement-item">
+          <i class="fas fa-graduation-cap"></i>
+          <span> 100% Free WAEC/JAMB 2026 Prep Course - Start Learning Today!</span>
+          <a href="#" class="announcement-link">Join Free</a>
+        </div>
+        <div class="announcement-item">
+          <i class="fas fa-bolt"></i>
+          <span>AI-Powered Study Assistant - Free Acess for All Students<span>
+          <a href="#" class="announcement-link">Try Now</a>
+        </div>
+        <div class="announcement-item">
+          <i class="fas fa-lock-open"></i>
+          <span>No Fees . No Hidden Costs . Always Free </span>
+          <a href="#" class="announcement-link">Learn More</a>
+        </div>
+        <div class="announcement-item">
+          <i class="fas fa-book"></i>
+          <span>Master WAEC/JAMB with Free Lesseons, Mock Tests & Live Sessions</span>
+          <a href="#" class="announcement-link">Explore</a>
+        </div>
+          <div class="announcement-item">
+          <i class="fas fa-users"></i>
+          <span>Join Thounsands of Students Learning for Free Today</span>
+          <a href="#" class="announcement-link">Get Started</a>
+        </div>
       </div>
+      <button class="announcement-close" aria-label="Close announcement">&times;</button>
     </div>
   </div>
 
@@ -1159,34 +1529,34 @@
   </div>
 </div>
 <!-- Achievements/Stats Cards Section with Glowing Effect -->
-<div class="grid grid-cols-1 md:grid-cols-3 gap-8 mt-16 max-w-5xl mx-auto px-4">
+<div id="stats-grid" class="grid grid-cols-3 md:grid-cols-3 gap-4 md:gap-8 mt-12 md:mt-16 max-w-5xl mx-auto px-4">
   <!-- Card 1 -->
   <div class="relative group">
     <div class="absolute -inset-1 bg-gradient-to-r from-purple-600 to-pink-600 rounded-lg blur opacity-25 group-hover:opacity-100 transition duration-1000 group-hover:duration-200"></div>
-    <div class="relative px-7 py-6 bg-white ring-1 ring-gray-900/5 rounded-lg leading-none flex items-center justify-center space-x-6">
-      <div class="space-y-2">
-        <p class="text-slate-800 text-3xl font-bold">50K+</p>
-        <p class="text-slate-600">Active Students</p>
+    <div class="relative px-4 py-5 md:px-7 md:py-6 bg-white ring-1 ring-gray-900/5 rounded-lg leading-none flex items-center justify-center space-x-6">
+      <div class="space-y-2 text-center">
+        <p class="text-slate-800 text-2xl md:text-3xl font-bold">50K+</p>
+        <p class="text-slate-600 text-sm md:text-base">Active Students</p>
       </div>
     </div>
   </div>
   <!-- Card 2 -->
   <div class="relative group">
     <div class="absolute -inset-1 bg-gradient-to-r from-purple-600 to-pink-600 rounded-lg blur opacity-25 group-hover:opacity-100 transition duration-1000 group-hover:duration-200"></div>
-    <div class="relative px-7 py-6 bg-white ring-1 ring-gray-900/5 rounded-lg leading-none flex items-center justify-center space-x-6">
-      <div class="space-y-2">
-        <p class="text-slate-800 text-3xl font-bold">95%</p>
-        <p class="text-slate-600">Success Rate</p>
+    <div class="relative px-4 py-5 md:px-7 md:py-6 bg-white ring-1 ring-gray-900/5 rounded-lg leading-none flex items-center justify-center space-x-6">
+      <div class="space-y-2 text-center">
+        <p class="text-slate-800 text-2xl md:text-3xl font-bold">95%</p>
+        <p class="text-slate-600 text-sm md:text-base">Success Rate</p>
       </div>
     </div>
   </div>
   <!-- Card 3 -->
   <div class="relative group">
     <div class="absolute -inset-1 bg-gradient-to-r from-purple-600 to-pink-600 rounded-lg blur opacity-25 group-hover:opacity-100 transition duration-1000 group-hover:duration-200"></div>
-    <div class="relative px-7 py-6 bg-white ring-1 ring-gray-900/5 rounded-lg leading-none flex items-center justify-center space-x-6">
-      <div class="space-y-2">
-        <p class="text-slate-800 text-3xl font-bold">24/7</p>
-        <p class="text-slate-600">AI Support</p>
+    <div class="relative px-4 py-5 md:px-7 md:py-6 bg-white ring-1 ring-gray-900/5 rounded-lg leading-none flex items-center justify-center space-x-6">
+      <div class="space-y-2 text-center">
+        <p class="text-slate-800 text-2xl md:text-3xl font-bold">24/7</p>
+        <p class="text-slate-600 text-sm md:text-base">AI Support</p>
       </div>
     </div>
   </div>
@@ -1513,9 +1883,15 @@
     document.addEventListener('DOMContentLoaded', () => {
       // Announcement banner
       const announcementBanner = document.querySelector('.announcement-banner');
+      const closeBtn = document.querySelector('.announcement-close');
       if (announcementBanner) {
         announcementBanner.style.display = 'block';
         void announcementBanner.offsetWidth;
+      }
+      if(closeBtn) {
+        closeBtn.addEventListener('click', () => {
+            announcementBanner.style.display = 'none';
+        });
       }
 
       // Clone quote cards for infinite scroll
@@ -1683,8 +2059,7 @@
       }
     };
   </script>
-  // Profile dropdown toggle for 'View Profile Details' button
-  <script>
+ <script>
     document.addEventListener('DOMContentLoaded', () => {
       const toggle = document.querySelector('.dropdown-toggle');
       const content = document.querySelector('.profile-content');
