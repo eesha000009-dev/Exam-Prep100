@@ -76,3 +76,4 @@ window.addEventListener('hashchange', handleNavigation);
 // Expose for sidebar links
 window.showVideoModal = showVideoModal;
 window.showVideoFullScreen = showVideoFullScreen;
+

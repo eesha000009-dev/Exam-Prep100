@@ -40,3 +40,4 @@ with open(out_path, 'wb') as out:
         out.write(snippet + b"\n\n")
 
 print('Wrote report to', out_path)
+

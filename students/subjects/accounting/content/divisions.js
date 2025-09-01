@@ -1,46 +1,47 @@
-const chemistryDivisions = {
+const accountingDivisions = {
     fundamentals: {
         id: 'fundamentals',
-        title: 'Foundations of Chemistry',
-        description: 'Basic principles including atomic structure, the periodic table, bonding and chemical calculations.',
+        title: 'Foundations of Accounting',
+        description: 'Basic principles including accounting concepts, the accounting cycle, and financial calculations.',
         index: './content/divisions/fundamentals/index.html',
         progress: 0
     },
-    atomicStructure: {
-    id: 'topic-cycle',
-        title: 'Atoms, Molecules & Stoichiometry',
-        description: 'Structure of the atom, isotopes, mole concept, and quantitative chemical calculations.',
-    index: './content/divisions/topic-cycle/index.html',
+    accountingCycle: {
+        id: 'topic-cycle',
+        title: 'Accounting Cycle & Transactions',
+        description: 'Structure of accounts, double-entry, journalizing, posting, and trial balance.',
+        index: './content/divisions/topic-cycle/index.html',
         progress: 0
     },
-    organicInorganic: {
+    financialStatements: {
         id: 'financial-statements',
-        title: 'Organic and Inorganic Chemistry',
-        description: 'Fundamental reactions, functional groups, periodic trends and core inorganic chemistry topics.',
+        title: 'Financial Statements & Analysis',
+        description: 'Preparation and analysis of income statement, balance sheet, and cash flow statement.',
         index: './content/divisions/financial-statements/index.html',
         progress: 0
     },
-    appliedChemistry: {
+    diverseOperations: {
         id: 'diverse-operations',
-        title: 'Applied & Industrial Chemistry',
-        description: 'Applications of chemistry in industry, environmental chemistry and laboratory techniques.',
+        title: 'Diverse Accounting Operations',
+        description: 'Applications of accounting in various sectors, including cost and management accounting.',
         index: './content/divisions/diverse-operations/index.html',
         progress: 0
     },
-    chemicalStructures: {
+    complexStructures: {
         id: 'complex-structures',
-        title: 'Chemical Structures & Bonding',
-        description: 'Detailed discussion of bond types, molecular geometry and structure-property relationships.',
+        title: 'Complex Structures & Reporting',
+        description: 'Advanced topics including consolidated accounts, partnerships, and reporting standards.',
         index: './content/divisions/complex-structures/index.html',
         progress: 0
     },
-    technology: {
+    publicSectorTech: {
         id: 'public-sector-tech',
-        title: 'Chemistry, Technology & Society',
-        description: 'Role of chemistry in technology, public health and environmental management.',
+        title: 'Accounting, Technology & Society',
+        description: 'Role of accounting in technology, public sector, and societal impact.',
         index: './content/divisions/public-sector-tech/index.html',
         progress: 0
     }
 };
 
-export default chemistryDivisions;
+export default accountingDivisions;
+

@@ -17,3 +17,4 @@ export const firebaseConfig = {
 
 // Do not initialize Firebase here; each page will import this config and initialize
 // the SDK as needed. This keeps initialization in modules and avoids duplicate inits.
+

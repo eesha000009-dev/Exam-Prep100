@@ -1,131 +1,67 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <!-- Favicon -->
-  <link rel="icon" type="image/png" href="/assets/images/Logo of JUANOVA Cortex Tutor.png" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="48x48" href="/favicon-48x48.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/site.webmanifest">
 
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Inorganic Chemistry</title>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Inorganic Chemistry - JUANOVA CORTEX</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
   <style>
-    body { margin: 0; font-family: 'Inter', sans-serif; background: #f7f8fa; color: #1e293b; }
-    .main-content { max-width: 900px; margin: 40px auto 0 auto; background: #fff; border-radius: 16px; box-shadow: 0 2px 8px rgba(30,41,59,0.07); padding: 2.5rem 2rem 2rem 2rem; min-height: 80vh; display: flex; flex-direction: column; }
-    .back-btn { display: inline-flex; align-items: center; gap: 0.5rem; background: #f1f5f9; color: #1e293b; border: none; border-radius: 8px; padding: 0.5rem 1.2rem; font-size: 1rem; font-weight: 500; cursor: pointer; margin-bottom: 2rem; box-shadow: 0 1px 4px rgba(30,41,59,0.05); transition: background 0.2s, color 0.2s; text-decoration: none; }
-    .back-btn:hover { background: #e0e7ef; color: #fbbf24; }
-    h1 { font-size: 1.5rem; font-weight: 600; color: #fbbf24; margin-bottom: 1.5rem; }
-    .topic-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.3rem; }
-    .topic-card { background: #fff; border-radius: 12px; box-shadow: 0 2px 8px rgba(30,41,59,0.07); padding: 1.5rem 1rem; display: flex; flex-direction: column; gap: 0.7rem; font-size: 1.05rem; color: #1e293b; font-weight: 500; cursor: pointer; transition: box-shadow 0.2s; text-decoration: none; }
-    .topic-card:hover { box-shadow: 0 4px 16px rgba(251,191,36,0.13); color: #fbbf24; }
-    .topic-title { font-weight: 600; font-size: 1.1rem; color: #fbbf24; }
-    @media (max-width: 600px) { .main-content { padding: 1rem 0.5rem; } .topic-list { grid-template-columns: 1fr; } }
-    .modal { display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100vw; height: 100vh; background: rgba(30,41,59,0.18); align-items: center; justify-content: center; }
-    .modal-content { background: #fff; border-radius: 14px; max-width: 400px; width: 95%; padding: 2rem 1.5rem 1.5rem 1.5rem; box-shadow: 0 4px 24px rgba(30,41,59,0.13); position: relative; display: flex; flex-direction: column; gap: 1.2rem; animation: fadeIn 0.2s; }
-    .modal-close { position: absolute; top: 1rem; right: 1rem; background: none; border: none; font-size: 1.2rem; color: #64748b; cursor: pointer; }
-    .modal h2 { margin: 0 0 0.5rem 0; font-size: 1.15rem; color: #fbbf24; font-weight: 600; }
-    .subtopic-list { margin: 0 0 1rem 0; padding: 0; list-style: none; }
-    .subtopic-list li { margin-bottom: 0.7rem; display: flex; align-items: center; justify-content: space-between; gap: 0.5rem; }
-    .start-btn { background: #fbbf24; color: #fff; border: none; border-radius: 8px; padding: 0.4rem 1.1rem; font-size: 1rem; font-weight: 500; cursor: pointer; transition: background 0.2s; }
-    .start-btn:hover { background: #b45309; }
-    @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+    body { font-family: 'Inter', sans-serif; }
+    .card { background: rgba(255,255,255,0.9); backdrop-filter: blur(8px); border: 1px solid rgba(59,130,246,0.1); border-radius: 12px; padding: 1rem; box-shadow: 0 4px 6px rgba(0,0,0,0.06); }
+    .section-title { background: linear-gradient(135deg,#1D4ED8,#60A5FA); -webkit-background-clip:text; -webkit-text-fill-color:transparent; font-size:2rem; font-weight:800 }
+    .glow-effect{position:relative}
+    .grid-container{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1rem}
+    .topic-card{background:linear-gradient(180deg,rgba(255,255,255,0.98),rgba(255,255,255,0.95));border-radius:12px;padding:18px;border:1px solid rgba(2,6,23,0.04);text-decoration:none;color:inherit}
+    .topic-title{font-weight:700;color:#1e3a8a}
   </style>
 </head>
-<body>
-  <main class="main-content">
-    <a href="chemistry.html" class="back-btn"><i class="fas fa-arrow-left"></i> Back to Chemistry</a>
-    <h1>Inorganic Chemistry</h1>
-    <div class="topic-list">
-      <div class="topic-card" onclick="openModal('Hydrogen and Hydrides')">
-        <div class="topic-title">Hydrogen and Hydrides</div>
+<body class="min-h-screen bg-gradient-to-br from-blue-100 via-white to-blue-50">
+  <nav class="fixed top-0 left-0 right-0 glass-effect border-b border-blue-100 z-50">
+    <div class="container mx-auto px-4 py-3">
+      <div class="flex items-center justify-between">
+        <div class="flex items-center gap-3">
+          <nav class="text-sm text-blue-600">
+            <a href="../student-dashboard.html" class="hover:underline">Dashboard</a>
+            <span class="mx-2">/</span>
+            <a href="chemistry.html" class="hover:underline">Chemistry</a>
+            <span class="mx-2">/</span>
+            <span class="font-semibold">Inorganic</span>
+          </nav>
+        </div>
+        <div class="flex items-center gap-4">
+          <button class="px-4 py-2 rounded-lg bg-blue-600 text-white hover:bg-blue-700 transition"><i class="fas fa-graduation-cap mr-2"></i>Track Progress</button>
+        </div>
       </div>
-      <div class="topic-card" onclick="openModal('Halogens')">
-        <div class="topic-title">Halogens</div>
+    </div>
+  </nav>
+
+  <main class="container mx-auto px-4 pt-20 pb-12">
+    <header class="text-center mb-8">
+      <div class="flex justify-center mb-4">
+        <img src="../../assets/images/logo.png" alt="logo" class="h-20 w-auto">
       </div>
-      <div class="topic-card" onclick="openModal('Oxygen and Oxides')">
-        <div class="topic-title">Oxygen and Oxides</div>
-      </div>
-      <div class="topic-card" onclick="openModal('Sulphur and its Compounds')">
-        <div class="topic-title">Sulphur and its Compounds</div>
-      </div>
-      <div class="topic-card" onclick="openModal('Nitrogen and its Compounds')">
-        <div class="topic-title">Nitrogen and its Compounds</div>
-      </div>
-      <div class="topic-card" onclick="openModal('Carbon: Allotropes, Uses and Properties')">
-        <div class="topic-title">Carbon: Allotropes, Uses and Properties</div>
-      </div>
-      <div class="topic-card" onclick="openModal('Metals and their Compounds')">
-        <div class="topic-title">Metals and their Compounds</div>
-      </div>
+      <h1 class="section-title">Inorganic Chemistry</h1>
+      <p class="text-base text-gray-700">Essential inorganic topics and exam-focused notes</p>
+    </header>
+
+    <div class="grid-container">
+      <a class="topic-card card" href="chemistry-explanation.html"><div class="topic-title">Hydrogen and Hydrides</div></a>
+      <a class="topic-card card" href="chemistry-explanation.html"><div class="topic-title">Halogens</div></a>
+      <a class="topic-card card" href="chemistry-explanation.html"><div class="topic-title">Oxygen and Oxides</div></a>
+      <a class="topic-card card" href="chemistry-explanation.html"><div class="topic-title">Sulphur and its Compounds</div></a>
+      <a class="topic-card card" href="chemistry-explanation.html"><div class="topic-title">Nitrogen and its Compounds</div></a>
+      <a class="topic-card card" href="chemistry-explanation.html"><div class="topic-title">Carbon: Allotropes, Uses and Properties</div></a>
+      <a class="topic-card card" href="chemistry-explanation.html"><div class="topic-title">Metals and their Compounds</div></a>
     </div>
   </main>
-  <div class="modal" id="modal">
-    <div class="modal-content">
-      <button class="modal-close" onclick="closeModal()"><i class="fas fa-times"></i></button>
-      <h2 id="modalTitle">Sub-topics:</h2>
-      <ul class="subtopic-list" id="subtopicList"></ul>
-    </div>
-  </div>
-  <script>
-    const subtopics = {
-      'Hydrogen and Hydrides': [
-        'Preparation and properties of hydrogen',
-        'Uses of hydrogen',
-        'Hydrides and their types'
-      ],
-      'Halogens': [
-        'Chlorine as a representative element',
-        'Properties and uses of halogens',
-        'Compounds of halogens'
-      ],
-      'Oxygen and Oxides': [
-        'Preparation and properties of oxygen',
-        'Types of oxides',
-        'Uses of oxygen and oxides'
-      ],
-      'Sulphur and its Compounds': [
-        'Preparation and properties of sulphur',
-        'Compounds of sulphur',
-        'Uses of sulphur and its compounds'
-      ],
-      'Nitrogen and its Compounds': [
-        'Preparation and properties of nitrogen',
-        'Compounds of nitrogen',
-        'Uses of nitrogen and its compounds'
-      ],
-      'Carbon: Allotropes, Uses and Properties': [
-        'Allotropes of carbon',
-        'Properties and uses of carbon',
-        'Compounds of carbon'
-      ],
-      'Metals and their Compounds': [
-        'General properties of metals',
-        'Alkali and alkaline-earth metals',
-        'Transition metals',
-        'Extraction and uses of metals',
-        'Alloys'
-      ]
-    };
-    function openModal(topic) {
-      document.getElementById('modal').style.display = 'flex';
-      document.getElementById('modalTitle').innerText = 'Sub-topics: ' + topic;
-      const list = document.getElementById('subtopicList');
-      list.innerHTML = '';
-      subtopics[topic].forEach(sub => {
-        list.innerHTML += `<li>${sub} <button class='start-btn' onclick='startLearning(event)'>Start Learning</button></li>`;
-      });
-    }
-    function closeModal() {
-      document.getElementById('modal').style.display = 'none';
-    }
-    function startLearning(e) {
-      e.stopPropagation();
-      window.location.href = 'chemistry-explanation.html';
-    }
-    window.onclick = function(event) {
-      const modal = document.getElementById('modal');
-      if (event.target === modal) closeModal();
-    }
-  </script>
 </body>
 </html>
+

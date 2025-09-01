@@ -1,117 +1,68 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <!-- Favicon -->
-  <link rel="icon" type="image/png" href="/assets/images/Logo of JUANOVA Cortex Tutor.png" />
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Chemistry — Topics</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="48x48" href="/favicon-48x48.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="manifest" href="/site.webmanifest">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+  </head>
+  <body class="min-h-screen bg-gradient-to-br from-blue-50 via-white to-blue-100 font-inter">
+    <nav class="fixed inset-x-0 top-0 bg-white/60 backdrop-blur-sm border-b border-blue-100 z-50">
+      <div class="max-w-6xl mx-auto px-4 py-3">
+        <div class="flex items-center justify-between">
+          <div class="flex items-center gap-4">
+            <nav class="text-sm text-blue-600">
+              <a href="../student-dashboard.html" class="hover:underline">Dashboard</a>
+              <span class="mx-2">/</span>
+              <span class="font-semibold">Chemistry</span>
+            </nav>
+          </div>
+          <div class="flex items-center gap-3">
+            <div class="relative">
+              <i class="fas fa-search text-slate-400 absolute left-3 top-1/2 -translate-y-1/2"></i>
+              <input aria-label="Search" class="pl-10 pr-3 py-2 rounded-lg border border-slate-200 bg-white" placeholder="Search chemistry topics" />
+            </div>
+            <img src="/assets/images/logo.png" alt="logo" class="h-10 w-auto" />
+          </div>
+        </div>
+      </div>
+    </nav>
 
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Chemistry - Topics</title>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+    <main class="max-w-6xl mx-auto px-4 pt-24 pb-12">
+      <header class="text-center mb-6">
+        <h1 class="text-3xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-blue-700 to-blue-400">Chemistry</h1>
+        <p class="text-gray-600 mt-2">Clear, exam-focused lessons and worked examples</p>
+      </header>
 
-  <style>
-    body {
-      margin: 0;
-      font-family: 'Inter', sans-serif;
-      background: #f7f8fa;
-      color: #1e293b;
-    }
-    .main-content {
-      max-width: 900px;
-      margin: 40px auto 0 auto;
-      background: #fff;
-      border-radius: 16px;
-      box-shadow: 0 2px 8px rgba(30,41,59,0.07);
-      padding: 2.5rem 2rem 2rem 2rem;
-      min-height: 80vh;
-      display: flex;
-      flex-direction: column;
-    }
-    .back-btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      background: #f1f5f9;
-      color: #1e293b;
-      border: none;
-      border-radius: 8px;
-      padding: 0.5rem 1.2rem;
-      font-size: 1rem;
-      font-weight: 500;
-      cursor: pointer;
-      margin-bottom: 2rem;
-      box-shadow: 0 1px 4px rgba(30,41,59,0.05);
-      transition: background 0.2s, color 0.2s;
-      text-decoration: none;
-    }
-    .back-btn:hover {
-      background: #e0e7ef;
-      color: #fbbf24;
-    }
-    h1 {
-      font-size: 1.5rem;
-      font-weight: 600;
-      color: #fbbf24;
-      margin-bottom: 1.5rem;
-    }
-    .topic-list {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 1.3rem;
-    }
-    .topic-card {
-      background: #fff;
-      border-radius: 12px;
-      box-shadow: 0 2px 8px rgba(30,41,59,0.07);
-      padding: 1.5rem 1rem;
-      display: flex;
-      flex-direction: column;
-      gap: 0.7rem;
-      font-size: 1.05rem;
-      color: #1e293b;
-      font-weight: 500;
-      cursor: pointer;
-      transition: box-shadow 0.2s;
-      text-decoration: none;
-    }
-    .topic-card:hover {
-      box-shadow: 0 4px 16px rgba(251,191,36,0.13);
-      color: #fbbf24;
-    }
-    .topic-title {
-      font-weight: 600;
-      font-size: 1.1rem;
-      color: #fbbf24;
-    }
-    @media (max-width: 600px) {
-      .main-content {
-        padding: 1rem 0.5rem;
-      }
-      .topic-list {
-        grid-template-columns: 1fr;
-      }
-    }
-  </style>
-</head>
-<body>
-  <main class="main-content">
-    <a href="../student-dashboard.html" class="back-btn"><i class="fas fa-arrow-left"></i> Back to Dashboard</a>
-    <h1>Chemistry</h1>
-    <div class="topic-list">
-      <a class="topic-card" href="chemistry-basic.html">
-        <div class="topic-title">Basic Chemistry</div>
-      </a>
-      <a class="topic-card" href="chemistry-inorganic.html">
-        <div class="topic-title">Inorganic Chemistry</div>
-      </a>
-      <a class="topic-card" href="chemistry-organic.html">
-        <div class="topic-title">Organic Chemistry</div>
-      </a>
-      <a class="topic-card" href="chemistry-industrial.html">
-        <div class="topic-title">Industrial Chemistry</div>
-      </a>
-    </div>
-  </main>
-</body>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <a href="chemistry-basic.html" class="block rounded-xl bg-white/60 backdrop-blur-sm shadow-sm border p-5 hover:shadow-md transition group">
+          <h3 class="font-semibold text-blue-700 group-hover:text-blue-500">Basic Chemistry</h3>
+          <p class="text-sm text-slate-500 mt-1">Foundations: atoms, molecules, reactions.</p>
+        </a>
+
+        <a href="chemistry-inorganic.html" class="block rounded-xl bg-white/60 backdrop-blur-sm shadow-sm border p-5 hover:shadow-md transition group">
+          <h3 class="font-semibold text-blue-700 group-hover:text-blue-500">Inorganic Chemistry</h3>
+          <p class="text-sm text-slate-500 mt-1">Periodic trends, bonding and compounds.</p>
+        </a>
+
+        <a href="chemistry-organic.html" class="block rounded-xl bg-white/60 backdrop-blur-sm shadow-sm border p-5 hover:shadow-md transition group">
+          <h3 class="font-semibold text-blue-700 group-hover:text-blue-500">Organic Chemistry</h3>
+          <p class="text-sm text-slate-500 mt-1">Functional groups, mechanisms, nomenclature.</p>
+        </a>
+
+        <a href="chemistry-industrial.html" class="block rounded-xl bg-white/60 backdrop-blur-sm shadow-sm border p-5 hover:shadow-md transition group">
+          <h3 class="font-semibold text-blue-700 group-hover:text-blue-500">Industrial Chemistry</h3>
+          <p class="text-sm text-slate-500 mt-1">Applications in industry and processes.</p>
+        </a>
+      </div>
+    </main>
+  </body>
 </html>
+

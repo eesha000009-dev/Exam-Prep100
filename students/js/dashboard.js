@@ -152,3 +152,4 @@ onAuthStateChanged(auth, (user) => {
   // Initialize dashboard once authenticated
   initDashboard(user);
 });
+

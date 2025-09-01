@@ -19,7 +19,7 @@ b420b11ae96519bed9c8176cef2bcb66e3cdd027 apphosting.emulator.yaml
 c289d6f1eeba1f58a8f39f9b865777956e56009d assets
 a17e79d99b33b37abe0a0131420f89fd617df14c assets/images
 14dfacfbf2d02f4cbee25685792fb41b671f3549 assets/images/20250803_181338.jpg
-324bdc048b47ca207815e7c57f74c5f250910a26 assets/images/Logo of JUANOVA Cortex Tutor.png
+324bdc048b47ca207815e7c57f74c5f250910a26 assets/images/logo.png
 c59206e848a0dc517d8d349b3dca50311d8c3b94 assets/images/g.png
 519c1d032054edb52f496c00fd114da3b6611231 assets/images/hero-platform.png
 7404f24c314281b2346b7b5a9ed5f1d5abb0a632 assets/images/l.png

@@ -1,50 +1,70 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <!-- Favicon -->
-  <link rel="icon" type="image/png" href="/assets/images/Logo of JUANOVA Cortex Tutor.png" />
-
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Government - Units</title>
-  <link rel="stylesheet" href="../styles.css" />
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
-  <style>
-    .main-content { max-width: 900px; margin: 40px auto 0 auto; background: #fff; border-radius: 16px; box-shadow: 0 2px 8px rgba(30,41,59,0.07); padding: 2.5rem 2rem 2rem 2rem; min-height: 80vh; display: flex; flex-direction: column; }
-    .back-btn { display: inline-flex; align-items: center; gap: 0.5rem; background: #f1f5f9; color: #1e293b; border: none; border-radius: 8px; padding: 0.5rem 1.2rem; font-size: 1rem; font-weight: 500; cursor: pointer; margin-bottom: 2rem; box-shadow: 0 1px 4px rgba(30,41,59,0.05); transition: background 0.2s, color 0.2s; text-decoration: none; }
-    .back-btn:hover { background: #e0e7ef; color: #1a73e8; }
-    h1 { font-size: 1.5rem; font-weight: 600; color: #1a73e8; margin-bottom: 1.5rem; }
-    .topic-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.3rem; }
-    .topic-card { background: #fff; border-radius: 12px; box-shadow: 0 2px 8px rgba(30,41,59,0.07); padding: 1.5rem 1rem; display: flex; flex-direction: column; gap: 0.7rem; font-size: 1.05rem; color: #1e293b; font-weight: 500; text-decoration: none; transition: box-shadow 0.2s; cursor: pointer; }
-    .topic-card:hover { box-shadow: 0 4px 16px rgba(26,115,232,0.13); color: #1a73e8; }
-    .topic-title { font-weight: 600; font-size: 1.1rem; color: #1a73e8; text-decoration: none; }
-    @media (max-width: 600px) { .main-content { padding: 1rem 0.5rem; } .topic-list { grid-template-columns: 1fr; } }
-  </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Government — Dashboard</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="48x48" href="/favicon-48x48.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
 </head>
-<body>
-  <main class="main-content">
-    <a href="../student-dashboard.html" class="back-btn"><i class="fas fa-arrow-left"></i> Back to Dashboard</a>
-    <h1>Government</h1>
-    <div class="topic-list">
-      <a class="topic-card" href="government-topic.html?unit=elements">
-        <div class="topic-title">Elements of Government</div>
-        <div class="topic-desc">Nature, scope, organs, types</div>
+<body class="min-h-screen bg-gradient-to-br from-blue-50 via-white to-blue-100 font-inter">
+  <nav class="fixed inset-x-0 top-0 bg-white/60 backdrop-blur-sm border-b border-blue-100 z-50">
+    <div class="max-w-6xl mx-auto px-4 py-3">
+      <div class="flex items-center justify-between">
+        <div class="flex items-center gap-4">
+          <nav class="text-sm text-blue-600">
+            <a href="../student-dashboard.html" class="hover:underline">Dashboard</a>
+            <span class="mx-2">/</span>
+            <span class="font-semibold">Government</span>
+          </nav>
+        </div>
+        <div class="flex items-center gap-3">
+          <div class="relative">
+            <i class="fas fa-search text-slate-400 absolute left-3 top-1/2 -translate-y-1/2"></i>
+            <input aria-label="Search" class="pl-10 pr-3 py-2 rounded-lg border border-slate-200 bg-white" placeholder="Search government topics" />
+          </div>
+          <img src="/assets/images/logo.png" alt="logo" class="h-10 w-auto" />
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <main class="max-w-6xl mx-auto px-4 pt-24 pb-12">
+    <header class="text-center mb-6">
+      <h1 class="text-3xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-blue-700 to-blue-400">Government</h1>
+      <p class="text-gray-600 mt-2">Understanding political systems and governance</p>
+    </header>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      <a href="government-topic.html?unit=elements" class="block rounded-xl bg-white/60 backdrop-blur-sm shadow-sm border p-5 hover:shadow-md transition group">
+        <h3 class="font-semibold text-blue-700 group-hover:text-blue-500">Elements of Government</h3>
+        <p class="text-sm text-slate-500 mt-1">Nature, scope, organs, types</p>
       </a>
-      <a class="topic-card" href="government-topic.html?unit=political">
-        <div class="topic-title">Political Development</div>
-        <div class="topic-desc">Political parties, pressure groups, elections</div>
+
+      <a href="government-topic.html?unit=political" class="block rounded-xl bg-white/60 backdrop-blur-sm shadow-sm border p-5 hover:shadow-md transition group">
+        <h3 class="font-semibold text-blue-700 group-hover:text-blue-500">Political Development</h3>
+        <p class="text-sm text-slate-500 mt-1">Political parties, pressure groups, elections</p>
       </a>
-      <a class="topic-card" href="government-topic.html?unit=institutions">
-        <div class="topic-title">Government Institutions</div>
-        <div class="topic-desc">Legislature, executive, judiciary</div>
+
+      <a href="government-topic.html?unit=institutions" class="block rounded-xl bg-white/60 backdrop-blur-sm shadow-sm border p-5 hover:shadow-md transition group">
+        <h3 class="font-semibold text-blue-700 group-hover:text-blue-500">Government Institutions</h3>
+        <p class="text-sm text-slate-500 mt-1">Legislature, executive, judiciary</p>
       </a>
-      <a class="topic-card" href="government-topic.html?unit=nigeria">
-        <div class="topic-title">Government in Nigeria</div>
-        <div class="topic-desc">Pre-colonial, colonial, post-independence</div>
+
+      <a href="government-topic.html?unit=nigeria" class="block rounded-xl bg-white/60 backdrop-blur-sm shadow-sm border p-5 hover:shadow-md transition group">
+        <h3 class="font-semibold text-blue-700 group-hover:text-blue-500">Government in Nigeria</h3>
+        <p class="text-sm text-slate-500 mt-1">Pre-colonial, colonial, post-independence</p>
       </a>
-      <a class="topic-card" href="government-topic.html?unit=international">
-        <div class="topic-title">International Relations</div>
-        <div class="topic-desc">Foreign policy, international organizations</div>
+
+      <a href="government-topic.html?unit=international" class="block rounded-xl bg-white/60 backdrop-blur-sm shadow-sm border p-5 hover:shadow-md transition group">
+        <h3 class="font-semibold text-blue-700 group-hover:text-blue-500">International Relations</h3>
+        <p class="text-sm text-slate-500 mt-1">Foreign policy, international organizations</p>
       </a>
     </div>
   </main>
@@ -119,3 +139,4 @@
   </script>
 </body>
 </html>
+

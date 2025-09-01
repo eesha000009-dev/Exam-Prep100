@@ -155,3 +155,4 @@ async function initDashboard() {
 
 // Start initialization when DOM is ready
 document.addEventListener('DOMContentLoaded', initDashboard);
+

@@ -1,212 +1,78 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <!-- Favicon -->
-  <link rel="icon" type="image/png" href="/assets/images/Logo of JUANOVA Cortex Tutor.png" />
-
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Waves & Optics - Physics</title>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="48x48" href="/favicon-48x48.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/site.webmanifest">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
-  <style>
-    body { margin: 0; font-family: 'Inter', sans-serif; background: #f7f8fa; color: #1e293b; }
-    .main-content { max-width: 900px; margin: 40px auto 0 auto; background: #fff; border-radius: 16px; box-shadow: 0 2px 8px rgba(30,41,59,0.07); padding: 2.5rem 2rem 2rem 2rem; min-height: 80vh; display: flex; flex-direction: column; }
-    .back-btn { display: inline-flex; align-items: center; gap: 0.5rem; background: #f1f5f9; color: #1e293b; border: none; border-radius: 8px; padding: 0.5rem 1.2rem; font-size: 1rem; font-weight: 500; cursor: pointer; margin-bottom: 2rem; box-shadow: 0 1px 4px rgba(30,41,59,0.05); transition: background 0.2s, color 0.2s; text-decoration: none; }
-    .back-btn:hover { background: #e0e7ef; color: #1a73e8; }
-    h1 { font-size: 1.5rem; font-weight: 600; color: #1a73e8; margin-bottom: 1.5rem; }
-    .topic-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.3rem; }
-    .topic-card {
-      background: #fff;
-      border-radius: 12px;
-      box-shadow: 0 2px 8px rgba(30,41,59,0.07);
-      padding: 1.5rem;
-      display: flex;
-      flex-direction: column;
-      gap: 0.5rem;
-      color: #1e293b;
-      cursor: pointer;
-      transition: all 0.2s ease;
-      text-decoration: none;
-      border: 1px solid #e5e7eb;
-    }
-    .topic-card:hover {
-      box-shadow: 0 4px 16px rgba(26,115,232,0.13);
-      border-color: #1a73e8;
-      transform: translateY(-2px);
-    }
-    .topic-title {
-      font-weight: 600;
-      font-size: 1.1rem;
-      color: #1a73e8;
-      margin-bottom: 0.3rem;
-    }
-    .topic-desc {
-      font-size: 0.9rem;
-      color: #6b7280;
-      line-height: 1.4;
-    }
-    @media (max-width: 600px) { .main-content { padding: 1rem 0.5rem; } .topic-list { grid-template-columns: 1fr; } }
-    .modal { display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100vw; height: 100vh; background: rgba(30,41,59,0.18); align-items: center; justify-content: center; }
-    .modal-content { background: #fff; border-radius: 14px; max-width: 400px; width: 95%; padding: 2rem 1.5rem 1.5rem 1.5rem; box-shadow: 0 4px 24px rgba(30,41,59,0.13); position: relative; display: flex; flex-direction: column; gap: 1.2rem; animation: fadeIn 0.2s; }
-    .modal-close { position: absolute; top: 1rem; right: 1rem; background: none; border: none; font-size: 1.2rem; color: #64748b; cursor: pointer; }
-    .modal h2 { margin: 0 0 0.5rem 0; font-size: 1.15rem; color: #1a73e8; font-weight: 600; }
-    .subtopic-list { margin: 0 0 1rem 0; padding: 0; list-style: none; }
-    .subtopic-list li { margin-bottom: 0.7rem; display: flex; align-items: center; justify-content: space-between; gap: 0.5rem; }
-    .start-btn { background: #1a73e8; color: #fff; border: none; border-radius: 8px; padding: 0.4rem 1.1rem; font-size: 1rem; font-weight: 500; cursor: pointer; transition: background 0.2s; }
-    .start-btn:hover { background: #0b3ea8; }
-    @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
-  </style>
 </head>
-<body>
-  <main class="main-content">
-    <a href="physics.html" class="back-btn"><i class="fas fa-arrow-left"></i> Back to Physics</a>
-    <h1>Waves & Optics</h1>
-    <div class="topic-list">
-      <div class="topic-card" onclick="openModal('Wave Motion')">
-        <div class="topic-title">Wave Motion</div>
-        <div class="topic-desc">Production, propagation, wave types</div>
-      </div>
-      <div class="topic-card" onclick="openModal('Wave Properties')">
-        <div class="topic-title">Wave Properties</div>
-        <div class="topic-desc">Reflection, refraction, interference, diffraction</div>
-      </div>
-      <div class="topic-card" onclick="openModal('Sound Waves')">
-        <div class="topic-title">Sound Waves</div>
-        <div class="topic-desc">Propagation, characteristics, applications</div>
-      </div>
-      <div class="topic-card" onclick="openModal('Light Energy')">
-        <div class="topic-title">Light Energy</div>
-        <div class="topic-desc">Sources, propagation, phenomena</div>
-      </div>
-      <div class="topic-card" onclick="openModal('Reflection')">
-        <div class="topic-title">Reflection of Light</div>
-        <div class="topic-desc">Laws, mirrors, image formation</div>
-      </div>
-      <div class="topic-card" onclick="openModal('Refraction')">
-        <div class="topic-title">Refraction of Light</div>
-        <div class="topic-desc">Laws, lenses, optical phenomena</div>
-      </div>
-      <div class="topic-card" onclick="openModal('Optical Instruments')">
-        <div class="topic-title">Optical Instruments</div>
-        <div class="topic-desc">Microscopes, telescopes, cameras</div>
-      </div>
-      <div class="topic-card" onclick="openModal('Dispersion')">
-        <div class="topic-title">Dispersion & EM Spectrum</div>
-        <div class="topic-desc">Colors, spectrum, applications</div>
-      </div>
+<body class="min-h-screen bg-gradient-to-br from-blue-50 via-white to-blue-100 font-inter">
+  <nav class="fixed inset-x-0 top-0 bg-white/60 backdrop-blur-sm border-b border-blue-100 z-50">
+    <div class="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
+      <a href="physics.html" class="text-sm text-blue-600 hover:underline">← Back to Physics</a>
+      <img src="/assets/images/logo.png" alt="logo" class="h-10 w-auto" />
+    </div>
+  </nav>
+
+  <main class="main-content max-w-6xl mx-auto px-4 pt-24 pb-12">
+    <h1 class="text-3xl font-extrabold text-blue-700 mb-4">Waves & Optics</h1>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      <a href="javascript:void(0)" onclick="openModal('Wave Motion')" class="topic-card rounded-xl bg-white/60 backdrop-blur-sm shadow-sm border p-5">
+        <h3 class="font-semibold text-blue-700">Wave Motion</h3>
+        <p class="text-sm text-slate-500 mt-1">Types of waves and properties</p>
+      </a>
+      <a href="javascript:void(0)" onclick="openModal('Sound')" class="topic-card rounded-xl bg-white/60 backdrop-blur-sm shadow-sm border p-5">
+        <h3 class="font-semibold text-blue-700">Sound</h3>
+        <p class="text-sm text-slate-500 mt-1">Wave propagation and characteristics</p>
+      </a>
+      <a href="javascript:void(0)" onclick="openModal('Light & Optics')" class="topic-card rounded-xl bg-white/60 backdrop-blur-sm shadow-sm border p-5">
+        <h3 class="font-semibold text-blue-700">Light & Optics</h3>
+        <p class="text-sm text-slate-500 mt-1">Reflection, refraction, lenses</p>
+      </a>
     </div>
   </main>
-  <div class="modal" id="modal">
-    <div class="modal-content">
-      <button class="modal-close" onclick="closeModal()"><i class="fas fa-times"></i></button>
-      <h2 id="modalTitle">Sub-topics:</h2>
-      <ul class="subtopic-list" id="subtopicList"></ul>
+
+  <!-- Modal -->
+  <div id="modal" class="fixed inset-0 bg-gray-700/30 backdrop-blur-sm hidden items-center justify-center z-50">
+    <div class="bg-white rounded-xl shadow-lg w-11/12 max-w-md p-6 relative">
+      <button class="absolute top-4 right-4 text-gray-500 hover:text-gray-700" onclick="closeModal()" title="Close modal"><i class="fas fa-times"></i><span class="sr-only">Close</span></button>
+      <h2 id="modalTitle" class="text-xl font-semibold text-blue-700 mb-3">Sub-topics</h2>
+      <ul id="subtopicList" class="space-y-2 text-gray-700"></ul>
     </div>
   </div>
+
   <script>
-    const subtopics = {
-      'Wave Motion': [
-        'Production of Waves',
-        'Wave Propagation',
-        'Energy Transfer',
-        'Particle vs Wave Motion',
-        'Wave Parameters (f, λ, v)',
-        'Phase and Wave Number',
-        'Progressive Wave Equation',
-        'Wave Classification'
-      ],
-      'Wave Properties': [
-        'Types of Waves',
-        'Mechanical vs EM Waves',
-        'Longitudinal vs Transverse',
-        'Stationary vs Progressive',
-        'Wave Examples',
-        'Superposition',
-        'Interference and Beats',
-        'Doppler Effect'
-      ],
-      'Sound Waves': [
-        'Propagation in Media',
-        'Speed in Different Media',
-        'Reflection and Echoes',
-        'Reverberation',
-        'Echo Applications',
-        'Musical Notes',
-        'Resonance',
-        'Air Column Vibrations'
-      ],
-      'Light Energy': [
-        'Natural Light Sources',
-        'Artificial Sources',
-        'Luminous Objects',
-        'Non-luminous Objects',
-        'Speed of Light',
-        'Shadow Formation',
-        'Eclipses',
-        'Pinhole Camera'
-      ],
-      'Reflection': [
-        'Laws of Reflection',
-        'Applications',
-        'Plane Mirrors',
-        'Curved Mirrors',
-        'Ray Diagrams',
-        'Mirror Formula',
-        'Linear Magnification',
-        'Real/Virtual Images'
-      ],
-      'Refraction': [
-        'Laws of Refraction',
-        'Velocity and Media',
-        'Refractive Index',
-        'Snell\'s Law',
-        'Real/Apparent Depth',
-        'Critical Angle',
-        'Total Internal Reflection',
-        'Optical Fibers'
-      ],
-      'Optical Instruments': [
-        'Microscope Principles',
-        'Telescope Design',
-        'Projectors',
-        'Camera Operation',
-        'Human Eye',
-        'Lens Power',
-        'Angular Magnification',
-        'Vision Defects'
-      ],
-      'Dispersion': [
-        'White Light Dispersion',
-        'Pure Spectrum',
-        'Color Addition',
-        'Color Subtraction',
-        'Color Filters',
-        'Rainbow Formation',
-        'EM Spectrum Types',
-        'Radiation Applications'
-      ]
+    const topics = {
+      'Wave Motion': ['Transverse & Longitudinal', 'Speed, Frequency & Wavelength', 'Superposition', 'Stationary Waves'],
+      'Sound': ['Speed of sound', 'Doppler effect', 'Resonance', 'Applications'],
+      'Light & Optics': ['Reflection', 'Refraction', 'Lenses', 'Interference & Diffraction']
     };
+
     function openModal(topic) {
-      document.getElementById('modal').style.display = 'flex';
-      document.getElementById('modalTitle').innerText = 'Sub-topics: ' + topic;
+      document.getElementById('modalTitle').textContent = topic;
       const list = document.getElementById('subtopicList');
       list.innerHTML = '';
-      subtopics[topic].forEach(sub => {
-        list.innerHTML += `<li>${sub} <button class='start-btn' onclick='startLearning(event)'>Start Learning</button></li>`;
+      topics[topic].forEach(s => {
+        const li = document.createElement('li');
+        li.textContent = s;
+        list.appendChild(li);
       });
+      document.getElementById('modal').classList.remove('hidden');
+      document.getElementById('modal').classList.add('flex');
     }
+
     function closeModal() {
-      document.getElementById('modal').style.display = 'none';
-    }
-    function startLearning(e) {
-      e.stopPropagation();
-      window.location.href = 'physics-explanation.html';
-    }
-    window.onclick = function(event) {
-      const modal = document.getElementById('modal');
-      if (event.target === modal) closeModal();
+      document.getElementById('modal').classList.remove('flex');
+      document.getElementById('modal').classList.add('hidden');
     }
   </script>
 </body>
 </html>
+

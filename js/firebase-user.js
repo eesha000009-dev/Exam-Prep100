@@ -61,3 +61,4 @@ function initialsFromName(name) {
 }
 
 export { initialsFromName };
+
