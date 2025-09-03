@@ -17,7 +17,8 @@
     <!-- Tailwind CDN for quick styling (safe for static pages) -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://8x8.vc/vpaas-magic-cookie-29d1aa3d1dd04579a28364a8dfdabc89/external_api.js"></script>
-    <style>
+  <link rel="stylesheet" href="teacher-responsive.css">
+  <style>
       /* small project-specific tweaks */
       .sidebar-width { width: 260px; }
       .brand { font-weight: 700; letter-spacing: -0.01em; }
@@ -26,25 +27,7 @@
   <body class="bg-slate-50 text-slate-800 min-h-screen">
     <div class="flex">
       <!-- Sidebar -->
-      <aside class="sidebar-width h-screen bg-slate-900 text-slate-100 p-6 flex flex-col">
-        <div class="flex items-center gap-3 mb-6">
-          <div class="w-12 h-12 bg-white rounded-lg flex items-center justify-center text-slate-900">CT</div>
-          <div>
-            <div class="brand text-lg">Cortex Tutor</div>
-            <div class="text-xs text-slate-300">Physics — Teacher</div>
-          </div>
-        </div>
-        <nav class="flex flex-col gap-2 text-sm">
-          <a href="teacher-dashboard-physics.html" class="px-3 py-2 rounded-md bg-slate-800 hover:bg-slate-700">Dashboard</a>
-          <a href="physics dashboard/physics-live-session.html" class="px-3 py-2 rounded-md hover:bg-slate-800">Live Session</a>
-          <a href="physics dashboard/experiments.html" class="px-3 py-2 rounded-md hover:bg-slate-800">Experiments</a>
-          <a href="physics dashboard/simulations.html" class="px-3 py-2 rounded-md hover:bg-slate-800">Simulations</a>
-          <a href="physics dashboard/assessments.html" class="px-3 py-2 rounded-md hover:bg-slate-800">Assessments</a>
-          <a href="physics dashboard/media-library.html" class="px-3 py-2 rounded-md hover:bg-slate-800">Media Library</a>
-          <a href="physics dashboard/syllabus-physics.html" class="px-3 py-2 rounded-md hover:bg-slate-800">Syllabus</a>
-        </nav>
-        <div class="mt-auto text-xs text-slate-400">Tip: Use the Live Session to present experiments & simulations.</div>
-      </aside>
+      <div id="teachers-sidebar-placeholder"></div>
 
       <!-- Main content -->
       <main class="flex-1 p-8">
@@ -103,7 +86,7 @@
         </section>
       </main>
     </div>
-
+<script src="load-sidebar.js"></script>
     <script>
       // Small handlers
       document.getElementById('start-live').addEventListener('click', function(){
