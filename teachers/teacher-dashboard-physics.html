@@ -17,17 +17,56 @@
     <!-- Tailwind CDN for quick styling (safe for static pages) -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://8x8.vc/vpaas-magic-cookie-29d1aa3d1dd04579a28364a8dfdabc89/external_api.js"></script>
-  <link rel="stylesheet" href="teacher-responsive.css">
-  <style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
       /* small project-specific tweaks */
       .sidebar-width { width: 260px; }
       .brand { font-weight: 700; letter-spacing: -0.01em; }
+      @media (max-width: 1024px) {
+        .sidebar-width {
+          position: fixed;
+          left: 0;
+          top: 0;
+          bottom: 0;
+          z-index: 40;
+          transform: translateX(-100%);
+          transition: transform 0.3s ease-in-out;
+        }
+        .sidebar-width.open {
+          transform: translateX(0);
+        }
+      }
     </style>
   </head>
   <body class="bg-slate-50 text-slate-800 min-h-screen">
     <div class="flex">
+      <!-- Mobile menu button -->
+      <div class="lg:hidden fixed top-4 left-4 z-50">
+        <button id="toggleSidebar" class="p-2 rounded-md bg-slate-800 text-white hover:bg-slate-700" title="Toggle sidebar" aria-label="Toggle sidebar">
+          <i class="fas fa-bars"></i>
+        </button>
+      </div>
+
       <!-- Sidebar -->
-      <div id="teachers-sidebar-placeholder"></div>
+      <aside id="sidebar" class="sidebar-width h-screen bg-slate-900 text-slate-100 p-6 flex flex-col">
+        <div class="flex items-center gap-3 mb-6">
+          <div class="w-12 h-12 bg-white rounded-lg flex items-center justify-center text-slate-900">CT</div>
+          <div>
+            <div class="brand text-lg">Cortex Tutor</div>
+            <div class="text-xs text-slate-300">Physics — Teacher</div>
+          </div>
+        </div>
+        <nav class="flex flex-col gap-2 text-sm">
+          <a href="teacher-dashboard-physics.html" class="px-3 py-2 rounded-md bg-slate-800 hover:bg-slate-700">Dashboard</a>
+          <a href="physics dashboard/physics-live-session.html" class="px-3 py-2 rounded-md hover:bg-slate-800">Live Session</a>
+          <a href="physics dashboard/experiments.html" class="px-3 py-2 rounded-md hover:bg-slate-800">Experiments</a>
+          <a href="physics dashboard/simulations.html" class="px-3 py-2 rounded-md hover:bg-slate-800">Simulations</a>
+          <a href="physics dashboard/assessments.html" class="px-3 py-2 rounded-md hover:bg-slate-800">Assessments</a>
+          <a href="physics dashboard/media-library.html" class="px-3 py-2 rounded-md hover:bg-slate-800">Media Library</a>
+          <a href="physics dashboard/syllabus-physics.html" class="px-3 py-2 rounded-md hover:bg-slate-800">Syllabus</a>
+        </nav>
+        <div class="mt-auto text-xs text-slate-400">Tip: Use the Live Session to present experiments & simulations.</div>
+      </aside>
 
       <!-- Main content -->
       <main class="flex-1 p-8">
@@ -81,13 +120,29 @@
           </div>
           <div class="bg-white rounded-lg shadow p-4">
             <h4 class="font-semibold mb-2">Resources</h4>
-            <a href="https://phet.colorado.edu/" target="_blank" class="text-indigo-600 text-sm">PhET Simulations</a>
+            <a href="https://phet.colorado.edu/" target="_blank" rel="noopener" class="text-indigo-600 text-sm">PhET Simulations</a>
           </div>
         </section>
       </main>
     </div>
-<script src="load-sidebar.js"></script>
+
     <script>
+      // Sidebar toggle functionality
+      const sidebar = document.getElementById('sidebar');
+      const toggleBtn = document.getElementById('toggleSidebar');
+      const mainContent = document.querySelector('main');
+
+      toggleBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        sidebar.classList.toggle('open');
+      });
+
+      mainContent.addEventListener('click', () => {
+        if (window.innerWidth < 1024 && sidebar.classList.contains('open')) {
+          sidebar.classList.remove('open');
+        }
+      });
+
       // Small handlers
       document.getElementById('start-live').addEventListener('click', function(){
         window.location.href = 'physics dashboard/physics-live-session.html';

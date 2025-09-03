@@ -210,12 +210,26 @@ body.dark-mode .canvas-footerbar a {
   </style>
   <div id="video-modal"></div>
   <div class="canvas-layout">
-    <div id="teachers-sidebar-placeholder"></div>
+    <aside class="canvas-sidebar">
+      <div class="canvas-logo" title="Canvas">🖼️</div>
+      <nav>
+        <a href="teacher-dashboard-accounting.html" title="Dashboard">🏠<span class="menu-label">Dashboard</span></a>
+        <a href="accounting dashboard\sticky-notes.html" title="Sticky Notes">📝<span class="menu-label">Sticky Notes</span></a>
+        <a href="accounting dashboard\todo-list.html" title="To-Do List">✅<span class="menu-label">To-Do List</span></a>
+        <a href="accounting dashboard\timer.html" title="Timer">⏲️<span class="menu-label">Timer</span></a>
+        <a href="accounting dashboard\lesson-planner.html" title="Lesson Planner">📅<span class="menu-label">Lesson Planner</span></a>
+        <a href="accounting dashboard\quick-links.html" title="Quick Links">🔗<span class="menu-label">Quick Links</span></a>
+        <a href="#" id="toggle-theme" title="Toggle Dark/Light Mode">🌓<span class="menu-label">Theme</span></a>
+        <a href="accounting dashboard\accounting-live-session.html" title="Host Live Session">🎥<span class="menu-label">Host Live Session</span></a>
+      </nav>
+      <div class="canvas-footer">
+        <!-- Optionally add more icons or links here -->
+      </div>
+    </aside>
     <main class="canvas-main">
       <!-- Canvas demo content removed as requested -->
     </main>
   </div>
-<script src="load-sidebar.js"></script>
 <script>
 // Dark mode toggle (standalone, no sidebar fetch)
 const btn = document.getElementById('toggle-theme');
