@@ -16,7 +16,7 @@
   <body class="bg-slate-50 text-slate-800">
     <div class="min-h-screen flex">
       <!-- Sidebar (canonical) -->
-  <aside id="sidebar" class="w-72 fixed left-0 top-0 h-full bg-white border-r border-slate-200 p-5 flex flex-col gap-6 transition-transform duration-200 overflow-auto z-40">
+  <aside id="sidebar" class="w-64 md:w-72 lg:w-80 fixed left-0 top-0 h-full bg-white border-r border-slate-200 p-5 flex flex-col gap-6 transition-transform duration-300 ease-in-out overflow-auto z-40 lg:translate-x-0">
         <div class="flex items-center gap-3">
           <img src="/assets/images/logo.png" alt="logo" class="h-12 w-12 rounded-full shadow-sm">
           <div>
@@ -53,11 +53,11 @@
       </aside>
 
       <!-- Main area -->
-  <div class="flex-1 flex flex-col ml-72">
+  <div id="main-content" class="flex-1 flex flex-col ml-64 md:ml-72 lg:ml-80">
         <!-- Topbar -->
         <header class="flex items-center justify-between p-4 bg-white border-b border-slate-200">
           <div class="flex items-center gap-3">
-            <button id="toggleSidebar" class="p-2 rounded-md hover:bg-slate-100" title="Toggle sidebar"><i class="fas fa-bars"></i></button>
+            <button id="toggleSidebar" class="p-2 rounded-md hover:bg-slate-100 lg:hidden" title="Toggle sidebar"><i class="fas fa-bars"></i></button>
             <div class="relative">
               <input id="globalSearch" type="search" placeholder="Search subjects, topics, resources..." class="w-[520px] hidden md:inline-block pl-10 pr-4 py-2 rounded-full border border-slate-200 bg-white focus:outline-none focus:ring-2 focus:ring-sky-100">
               <i class="fas fa-search absolute left-3 top-1/2 -translate-y-1/2 text-slate-400"></i>
@@ -423,12 +423,61 @@
       });
 
       // Sidebar toggle and quick actions
-      document.getElementById('toggleSidebar').addEventListener('click', () => {
-        document.getElementById('sidebar').classList.toggle('-translate-x-full');
-      });
-      document.getElementById('openAiChat').addEventListener('click', ()=> window.location.href='ai-tutor-chatbot.html');
-      document.getElementById('openNotes').addEventListener('click', ()=> window.location.href='smart-note.html');
+      const sidebar = document.getElementById('sidebar');
+      const mainContent = document.getElementById('main-content');
+      const toggleSidebarBtn = document.getElementById('toggleSidebar');
+      const marginClasses = ['ml-64', 'md:ml-72', 'lg:ml-80'];
 
+      toggleSidebarBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        sidebar.classList.toggle('-translate-x-full');
+        if (sidebar.classList.contains('-translate-x-full')) {
+          mainContent.classList.remove(...marginClasses);
+        } else {
+          mainContent.classList.add(...marginClasses);
+        }
+      });
+
+      mainContent.addEventListener('click', () => {
+        if (window.innerWidth < 1024 && !sidebar.classList.contains('-translate-x-full')) {
+            sidebar.classList.add('-translate-x-full');
+            mainContent.classList.remove(...marginClasses);
+        }
+      });
+
+    </script>
+  <!-- firebase-user import handled below in a safe dynamic import -->
+    <script type="module">
+      import('../js/firebase-user.js').then(({ onUserChange, getUnreadNotificationsCount, initialsFromName }) => {
+        onUserChange(async (u) => {
+          if (!u) return;
+          const displayName = (u.profile && u.profile.displayName) || u.displayName || (u.profile && (u.profile.name || u.profile.fullName)) || u.email || 'Student';
+          // set UI text
+          const setTextEl = (id, txt) => { const el = document.getElementById(id); if (el) el.textContent = txt; };
+          const setImg = (id, src) => { const el = document.getElementById(id); if (el) el.src = src; };
+          setTextEl('userName', displayName);
+          setTextEl('topName', displayName);
+          setTextEl('heroName', (displayName.split(' ')[0] || displayName));
+
+          // avatar: prefer profile.photoURL or auth photoURL, otherwise initials
+          const photo = (u.profile && u.profile.photoURL) || u.photoURL;
+          if (photo) {
+            setImg('avatar-sm', photo);
+            setImg('topAvatar', photo);
+          } else {
+            const initials = initialsFromName(displayName || 'Student');
+            const url = `https://ui-avatars.com/api/?name=${encodeURIComponent(initials)}&background=2563eb&color=fff&length=2`;
+            setImg('avatar-sm', url);
+            setImg('topAvatar', url);
+          }
+
+          // unread notifications count
+          try {
+            const count = await getUnreadNotificationsCount(u.uid);
+            setTextEl('notifCount', String(count));
+          } catch (e) { /* ignore */ }
+        });
+      }).catch(e => console.warn('firebase-user import failed', e));
     </script>
   </body>
 </html>
