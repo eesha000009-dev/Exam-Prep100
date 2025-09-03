@@ -15,7 +15,7 @@
   <body class="bg-slate-50 text-slate-800">
     <div class="min-h-screen flex">
       <!-- Sidebar (canonical) -->
-  <aside id="sidebar" class="w-72 fixed left-0 top-0 h-full bg-white border-r border-slate-200 p-5 flex flex-col gap-6 transition-transform duration-200 overflow-auto z-40">
+  <aside id="sidebar" class="w-64 md:w-72 lg:w-80 fixed left-0 top-0 h-full bg-white border-r border-slate-200 p-5 flex flex-col gap-6 transition-transform duration-300 ease-in-out overflow-auto z-40 -translate-x-full lg:translate-x-0">
         <div class="flex items-center gap-3">
           <img src="/assets/images/logo.png" alt="logo" class="h-12 w-12 rounded-full shadow-sm">
           <div>
@@ -51,10 +51,10 @@
         </div>
       </aside>
 
-  <div class="flex-1 flex flex-col ml-72">
+  <div id="main-content" class="flex-1 flex flex-col lg:ml-72">
         <header class="flex items-center justify-between p-4 bg-white border-b border-slate-200">
           <div class="flex items-center gap-3">
-            <button id="toggleSidebar" class="p-2 rounded-md hover:bg-slate-100" title="Toggle sidebar"><i class="fas fa-bars"></i></button>
+            <button id="toggleSidebar" class="p-2 rounded-md hover:bg-slate-100 lg:hidden" title="Toggle sidebar"><i class="fas fa-bars"></i></button>
             <div class="relative">
               <input id="globalSearch" type="search" placeholder="Search subjects, topics, resources..." class="w-[520px] hidden md:inline-block pl-10 pr-4 py-2 rounded-full border border-slate-200 bg-white focus:outline-none focus:ring-2 focus:ring-sky-100">
               <i class="fas fa-search absolute left-3 top-1/2 -translate-y-1/2 text-slate-400"></i>
@@ -141,7 +141,22 @@
       async function fetchAllNews(){ const newsContainer=document.getElementById('news-feed-list'); const loadingIndicator=document.getElementById('news-loading'); const rssToJsonService='https://api.rss2json.com/v1/api.json?rss_url='; const fetchPromises = rssFeeds.map(feedUrl=> fetch(`${rssToJsonService}${encodeURIComponent(feedUrl)}`).then(res=> res.ok? res.json(): Promise.reject()).then(data=> data.items? data.items.map(i=> (i.source=data.feed.title,i)): []).catch(()=>[])); try{ const results = await Promise.all(fetchPromises); const combinedNews = results.flat(); combinedNews.sort((a,b)=> new Date(b.pubDate)-new Date(a.pubDate)); loadingIndicator.remove(); if(!combinedNews.length){ newsContainer.innerHTML += `<div class="bg-yellow-100 text-yellow-800 rounded-lg p-4 text-center">Could not fetch news at this time.</div>`; return; } combinedNews.forEach(item=>{ const newsCard=document.createElement('div'); newsCard.className='bg-white/90 backdrop-blur-sm rounded-2xl shadow-xl p-6 transform transition hover:scale-[1.02] duration-300'; const formattedDate=new Date(item.pubDate).toLocaleDateString('en-US',{year:'numeric',month:'long',day:'numeric'}); newsCard.innerHTML = `<article class="space-y-3"><h2 class="font-bold text-xl text-blue-800 hover:text-blue-600"><a href="${item.link}" target="_blank" rel="noopener noreferrer">${item.title}</a></h2><p class="text-gray-600 text-base leading-relaxed">${cleanHTML(item.description)}</p><div class="flex flex-wrap justify-between items-center gap-4 pt-3 border-t border-gray-200"><div class="text-sm text-gray-500">Source: <strong>${item.source}</strong><span class="mx-2">|</span>${formattedDate}</div><a href="${item.link}" target="_blank" rel="noopener noreferrer" class="inline-block bg-blue-600 text-white font-semibold px-4 py-2 rounded-lg text-sm hover:bg-blue-700 transition-colors">Read More →</a></div></article>`; newsContainer.appendChild(newsCard); }); }catch(e){ console.error(e); loadingIndicator.textContent='Failed to load news.'; loadingIndicator.className='text-center text-red-500 py-8'; } }
       document.addEventListener('DOMContentLoaded', fetchAllNews);
 
-      document.getElementById('toggleSidebar').addEventListener('click', () => document.getElementById('sidebar').classList.toggle('-translate-x-full'));
+      const sidebar = document.getElementById('sidebar');
+      const mainContent = document.getElementById('main-content');
+      const toggleSidebarBtn = document.getElementById('toggleSidebar');
+
+      toggleSidebarBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        sidebar.classList.toggle('-translate-x-full');
+      });
+
+      mainContent.addEventListener('click', () => {
+        if (window.innerWidth < 1024 && !sidebar.classList.contains('-translate-x-full')) {
+            sidebar.classList.add('-translate-x-full');
+        }
+      });
+
+      document.addEventListener('DOMContentLoaded', fetchAllNews);
     </script>
   </body>
   </html>

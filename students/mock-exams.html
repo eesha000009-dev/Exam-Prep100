@@ -15,7 +15,7 @@
   <body class="bg-slate-50 text-slate-800">
     <div class="min-h-screen flex">
       <!-- Sidebar -->
-  <aside id="sidebar" class="w-72 fixed left-0 top-0 h-full bg-white border-r border-slate-200 p-5 flex flex-col gap-6 transition-transform duration-200 overflow-auto z-40">
+  <aside id="sidebar" class="w-64 md:w-72 lg:w-80 fixed left-0 top-0 h-full bg-white border-r border-slate-200 p-5 flex flex-col gap-6 transition-transform duration-300 ease-in-out overflow-auto z-40 -translate-x-full lg:translate-x-0">
         <div class="flex items-center gap-3">
           <img src="/assets/images/logo.png" alt="logo" class="h-12 w-12 rounded-full shadow-sm">
           <div>
@@ -51,11 +51,11 @@
         </div>
       </aside>
 
-      <div class="flex-1 flex flex-col ml-72">
+      <div id="main-content" class="flex-1 flex flex-col lg:ml-72">
         <!-- Top Bar (canonical) -->
         <header class="flex items-center justify-between p-4 bg-white border-b border-slate-200">
           <div class="flex items-center gap-3">
-            <button id="toggleSidebar" class="p-2 rounded-md hover:bg-slate-100" title="Toggle sidebar"><i class="fas fa-bars"></i></button>
+            <button id="toggleSidebar" class="p-2 rounded-md hover:bg-slate-100 lg:hidden" title="Toggle sidebar"><i class="fas fa-bars"></i></button>
             <div class="relative">
               <i class="fas fa-search absolute left-3 top-1/2 -translate-y-1/2 text-slate-400"></i>
               <input type="search" placeholder="Search mock exams, subjects, or topics..." class="w-[520px] hidden md:inline-block pl-10 pr-4 py-2 rounded-full border border-slate-200 bg-white focus:outline-none focus:ring-2 focus:ring-sky-100">
@@ -187,5 +187,21 @@
   }).catch(e => console.warn('firebase-user helper import failed', e));
 
   // Ensure sidebar toggle works
-  (function ensureSidebarToggle(){ try{ const b=document.getElementById('toggleSidebar'); if(b && !b.dataset.hasToggle){ b.addEventListener('click', ()=> document.getElementById('sidebar').classList.toggle('-translate-x-full')); b.dataset.hasToggle='1'; } }catch(e){} })();
+  (function ensureSidebarToggle(){ try{ 
+      const sidebar = document.getElementById('sidebar');
+      const mainContent = document.getElementById('main-content');
+      const b=document.getElementById('toggleSidebar'); 
+      if(b && !b.dataset.hasToggle){ 
+          b.addEventListener('click', (e)=> {
+            e.stopPropagation();
+            sidebar.classList.toggle('-translate-x-full');
+          }); 
+          mainContent.addEventListener('click', () => {
+            if (window.innerWidth < 1024 && !sidebar.classList.contains('-translate-x-full')) {
+                sidebar.classList.add('-translate-x-full');
+            }
+          });
+          b.dataset.hasToggle='1'; 
+      } 
+  }catch(e){} })();
 </script>
