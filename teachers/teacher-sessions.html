@@ -16,6 +16,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Teacher Sessions</title>
   <script src="https://8x8.vc/vpaas-magic-cookie-29d1aa3d1dd04579a28364a8dfdabc89/external_api.js" async></script>
+  <link rel="stylesheet" href="teacher-responsive.css">
   <style>
     html, body, #jaas-container {
       height: 100%;
@@ -247,23 +248,7 @@
 </head>
 <body>
   <div class="canvas-layout">
-    <aside class="canvas-sidebar">
-      <div class="canvas-logo" title="Canvas">🖼️</div>
-      <nav>
-        <a href="teacher-dashboard.html" title="Dashboard">🏠<span class="menu-label">Dashboard</span></a>
-        <a href="sticky-notes.html" title="Sticky Notes">📝<span class="menu-label">Sticky Notes</span></a>
-        <a href="todo-list.html" title="To-Do List">✅<span class="menu-label">To-Do List</span></a>
-        <a href="timer.html" title="Timer">⏲️<span class="menu-label">Timer</span></a>
-        <a href="lesson-planner.html" title="Lesson Planner">📅<span class="menu-label">Lesson Planner</span></a>
-        <a href="quick-links.html" title="Quick Links">🔗<span class="menu-label">Quick Links</span></a>
-        <a href="#" id="toggle-theme" title="Toggle Dark/Light Mode">🌓<span class="menu-label">Theme</span></a>
-        <a href="motivational-quotes.html" title="Motivational Quotes">💡<span class="menu-label">Quotes</span></a>
-        <a href="teacher-sessions.html" title="Host Live Session">🎥<span class="menu-label">Host Live Session</span></a>
-      </nav>
-      <div class="canvas-footer">
-        <button title="Open Settings" class="settings-btn"></button>
-      </div>
-    </aside>
+    <div id="teachers-sidebar-placeholder"></div>
     <div class="sessions-container">
       <!-- Session Info Form -->
       <form id="session-info-form" class="session-info-form">
@@ -317,6 +302,7 @@
       </div>
     </div>
   </div>
+  <script src="load-sidebar.js"></script>
   <script>
     // Jitsi Meet video call embed
     let jitsiApi = null;
