@@ -20,6 +20,75 @@
     .countdown { font-variant-numeric: tabular-nums; }
     .mini-player { position: fixed; right: 20px; bottom: 20px; width: 320px; max-width: calc(100% - 40px); border-radius: 12px; box-shadow: 0 10px 30px rgba(2,6,23,0.15); }
   </style>
+  
+  <!-- Preload user data -->
+  <script>
+    // Helper function to get user initials
+    function getInitials(fullName) {
+      return fullName.split(' ')
+        .slice(0, 2)
+        .map(name => name.charAt(0))
+        .join('')
+        .toUpperCase();
+    }
+
+    // Initialize user data from cache immediately
+    try {
+      const cachedUserData = localStorage.getItem('cachedUserData_current');
+      if (cachedUserData) {
+        const { data: user } = JSON.parse(cachedUserData);
+        window.preloadedUserData = user;
+        
+        // Pre-initialize user interface as soon as DOM is ready
+        document.addEventListener('DOMContentLoaded', () => {
+          if (user) {
+            const fullName = user.displayName || 'Student';
+            const name = fullName.split(' ')[0];
+            const level = (user.profile?.level || '').startsWith('SS') ? user.profile.level : 'SS 3';
+            const initials = getInitials(fullName);
+            
+            // Update heading
+            const heading = document.querySelector('h1');
+            if (heading) heading.textContent = `${name}'s Live Sessions`;
+
+            // Update sidebar elements
+            document.getElementById('userName').textContent = name;
+            document.getElementById('userLevel').textContent = level;
+            
+            // Update topbar elements
+            document.getElementById('topName').textContent = fullName;
+            document.getElementById('topLevel').textContent = level;
+            
+            // Update student info in session details
+            document.querySelectorAll('.user-fullname').forEach(el => {
+              el.textContent = fullName;
+            });
+            document.querySelectorAll('.user-firstname').forEach(el => {
+              el.textContent = name;
+            });
+            document.querySelectorAll('.user-level').forEach(el => {
+              el.textContent = level;
+            });
+            
+            // Update avatars with user photo or initials
+            const avatarUrl = user.photoURL || `https://ui-avatars.com/api/?name=${encodeURIComponent(initials)}&background=2563eb&color=fff&size=128`;
+            ['avatar-sm', 'topAvatar', 'session-avatar'].forEach(id => {
+              const avatar = document.getElementById(id);
+              if (avatar) avatar.setAttribute('src', avatarUrl);
+            });
+            
+            // Update notification count
+            if (user.unreadNotifications) {
+              const notifCount = document.getElementById('notifCount');
+              if (notifCount) notifCount.textContent = user.unreadNotifications.length;
+            }
+          }
+        });
+      }
+    } catch (err) {
+      console.error('Error pre-loading user data:', err);
+    }
+  </script>
 </head>
   <body class="bg-slate-50 text-slate-800">
     <div class="min-h-screen flex">
@@ -281,6 +350,82 @@
 
     // Mini player
     function showMiniPlayer(s){ const mini = document.getElementById('miniPlayer'); document.getElementById('miniTitle').textContent = `Live: ${s.title}`; document.getElementById('miniTeacher').textContent = s.teacher.name; mini.classList.remove('hidden'); }
+    </script>
+
+    <script src="/js/firebase-config.js"></script>
+    <script src="/js/firebase-user.js"></script>
+    <script src="/js/user-cache.js"></script>
+    <script>
+      // Listen for background updates
+      window.addEventListener('userDataUpdated', (event) => {
+        const user = event.detail;
+        if (user) {
+          const fullName = user.displayName || 'Student';
+          const name = fullName.split(' ')[0];
+          const level = (user.profile?.level || '').startsWith('SS') ? user.profile.level : 'SS 3';
+          const initials = getInitials(fullName);
+
+          // Update heading
+          const heading = document.querySelector('h1');
+          if (heading) heading.textContent = `${name}'s Live Sessions`;
+
+          // Update sidebar elements
+          const userName = document.getElementById('userName');
+          if (userName) userName.textContent = name;
+          const userLevel = document.getElementById('userLevel');
+          if (userLevel) userLevel.textContent = level;
+
+          // Update topbar elements
+          const topName = document.getElementById('topName');
+          if (topName) topName.textContent = fullName;
+          const topLevel = document.getElementById('topLevel');
+          if (topLevel) topLevel.textContent = level;
+
+          // Update student info in session details
+          document.querySelectorAll('.user-fullname').forEach(el => {
+            el.textContent = fullName;
+          });
+          document.querySelectorAll('.user-firstname').forEach(el => {
+            el.textContent = name;
+          });
+          document.querySelectorAll('.user-level').forEach(el => {
+            el.textContent = level;
+          });
+
+          // Update avatars with user photo or initials
+          const avatarUrl = user.photoURL || `https://ui-avatars.com/api/?name=${encodeURIComponent(initials)}&background=2563eb&color=fff&size=128`;
+          ['avatar-sm', 'topAvatar', 'session-avatar'].forEach(id => {
+            const avatar = document.getElementById(id);
+            if (avatar) avatar.setAttribute('src', avatarUrl);
+          });
+
+          // Update notification count
+          if (user.unreadNotifications) {
+            const notifCount = document.getElementById('notifCount');
+            if (notifCount) notifCount.textContent = user.unreadNotifications.length;
+          }
+        }
+      });
+
+      // Handle sidebar toggle
+      document.addEventListener('DOMContentLoaded', () => {
+        const toggleButton = document.getElementById('toggleSidebar');
+        const sidebar = document.getElementById('sidebar');
+        const mainContent = document.getElementById('main-content');
+
+        if (toggleButton && sidebar && mainContent) {
+          toggleButton.addEventListener('click', (e) => {
+            e.stopPropagation();
+            sidebar.classList.toggle('-translate-x-full');
+          });
+
+          mainContent.addEventListener('click', () => {
+            if (window.innerWidth < 1024 && !sidebar.classList.contains('-translate-x-full')) {
+              sidebar.classList.add('-translate-x-full');
+            }
+          });
+        }
+      });
     document.getElementById('miniClose').addEventListener('click', ()=>{ document.getElementById('miniPlayer').classList.add('hidden'); });
 
     // Quick join (next session)

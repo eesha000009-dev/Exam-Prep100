@@ -337,6 +337,11 @@ body {
 }
 
 .dropdown-content {
+  display: none; /* Hide all dropdown content */
+}
+
+/* Only show dropdowns for non-Features and non-Subjects items */
+.nav-item:not(:nth-child(1)):not(:nth-child(2)) .dropdown-content {
   position: absolute;
   top: 100%;
   left: 0;
@@ -350,7 +355,8 @@ body {
   transition: var(--transition-base);
 }
 
-.dropdown:hover .dropdown-content {
+/* Only show dropdowns for non-Features and non-Subjects items */
+.nav-item:not(:nth-child(1)):not(:nth-child(2)) .dropdown:hover .dropdown-content {
   opacity: 1;
   visibility: visible;
   transform: translateY(0);

@@ -5,12 +5,67 @@
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <title>EduNews Feed — Prep100</title>
     <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-  <link rel="icon" type="image/png" sizes="48x48" href="/favicon-48x48.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-  <link rel="manifest" href="/site.webmanifest">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="48x48" href="/favicon-48x48.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <!-- Preload user data -->
+    <script>
+      // Helper function to get user initials
+      function getInitials(fullName) {
+        return fullName.split(' ')
+          .slice(0, 2)
+          .map(name => name.charAt(0))
+          .join('')
+          .toUpperCase();
+      }
+
+      // Initialize user data from cache immediately
+      try {
+        const cachedUserData = localStorage.getItem('cachedUserData_current');
+        if (cachedUserData) {
+          const { data } = JSON.parse(cachedUserData);
+          window.preloadedUserData = data;
+          
+          // Pre-initialize user interface as soon as DOM is ready
+          document.addEventListener('DOMContentLoaded', () => {
+            if (window.preloadedUserData) {
+              const user = window.preloadedUserData;
+              const fullName = user.displayName || 'Student';
+              const name = fullName.split(' ')[0];
+              
+              // Update UI immediately
+              const elements = {
+                topName: fullName,
+                userName: fullName,
+                userLevel: (user.profile?.level || '').startsWith('SS') ? user.profile.level : 'SS 3',
+                newsWelcome: `Welcome to your News Feed, ${name}!`
+              };
+              
+              // Update text content
+              Object.keys(elements).forEach(id => {
+                const el = document.getElementById(id);
+                if (el) el.textContent = elements[id];
+              });
+              
+              // Update avatars
+              const initials = getInitials(fullName);
+              const avatarUrl = user.photoURL || 
+                `https://ui-avatars.com/api/?name=${encodeURIComponent(initials)}&background=2563eb&color=fff&size=128`;
+              ['avatar-sm', 'topAvatar'].forEach(id => {
+                const img = document.getElementById(id);
+                if (img) img.src = avatarUrl;
+              });
+            }
+          });
+        }
+      } catch (e) {
+        console.warn('Error preloading user data:', e);
+      }
+    </script>
   </head>
   <body class="bg-slate-50 text-slate-800">
     <div class="min-h-screen flex">
@@ -110,30 +165,46 @@
 
     <script type="module">
       import { initUserPersonalization } from './js/firebase-user-helper.js';
-      // small personalization via helper
-      initUserPersonalization(async ({ user, helpers }) => {
-        if (!user) return;
-        const fullName = user.displayName || 'Student';
-        const name = fullName.split(' ')[0];
-        const topNameEl = document.getElementById('topName'); if (topNameEl) topNameEl.textContent = fullName;
-        const userNameEl = document.getElementById('userName'); if (userNameEl) userNameEl.textContent = fullName;
-        const userLevelEl = document.getElementById('userLevel');
-        if (userLevelEl) {
-          const l = (user && user.profile && user.profile.level) ? user.profile.level : '';
-          userLevelEl.textContent = l && String(l).startsWith('SS') ? l : (l ? 'SS 3' : '');
-        }
-        const header = document.getElementById('newsWelcome');
-        if (header) header.textContent = `Welcome to your News Feed, ${name}!`;
-        const notifEl = document.getElementById('notifCount');
-        if (notifEl && helpers && helpers.getUnreadNotificationsCount) notifEl.textContent = String(await helpers.getUnreadNotificationsCount(user.uid));
-        if (!user.photoURL && helpers && helpers.initialsFromName) {
-          const initials = helpers.initialsFromName(user.displayName || name);
-          const url = `https://ui-avatars.com/api/?name=${encodeURIComponent(initials)}&background=2563eb&color=fff&length=2`;
-          const a = document.getElementById('avatar-sm'); if (a) a.src = url; const b = document.getElementById('topAvatar'); if (b) b.src = url;
-        } else {
-          const a = document.getElementById('avatar-sm'); if (a) a.src = user.photoURL; const b = document.getElementById('topAvatar'); if (b) b.src = user.photoURL;
-        }
-      });
+      
+      // Skip initial update if we already have preloaded data
+      if (!window.preloadedUserData) {
+        initUserPersonalization(async ({ user, helpers }) => {
+          if (!user) return;
+          
+          // Only update UI if we don't have preloaded data
+          const fullName = user.displayName || 'Student';
+          const name = fullName.split(' ')[0];
+          const level = (user.profile?.level || '').startsWith('SS') ? user.profile.level : 'SS 3';
+          const avatarUrl = user.photoURL || 
+            `https://ui-avatars.com/api/?name=${encodeURIComponent(name)}&background=2563eb&color=fff&length=2`;
+
+          // Cache for next page load
+          try {
+            localStorage.setItem('cachedUserData_current', JSON.stringify({
+              data: user,
+              timestamp: Date.now()
+            }));
+          } catch (e) {
+            console.warn('Failed to cache user data:', e);
+          }
+
+          // Only update UI if different from preloaded data
+          if (document.getElementById('userName').textContent !== fullName) {
+            document.getElementById('userName').textContent = fullName;
+            document.getElementById('topName').textContent = fullName;
+            document.getElementById('userLevel').textContent = level;
+            document.getElementById('newsWelcome').textContent = `Welcome to your News Feed, ${name}!`;
+            document.getElementById('avatar-sm').src = avatarUrl;
+            document.getElementById('topAvatar').src = avatarUrl;
+          }
+          
+          // Always update notification count as it's dynamic
+          const notifEl = document.getElementById('notifCount');
+          if (notifEl && helpers?.getUnreadNotificationsCount) {
+            notifEl.textContent = String(await helpers.getUnreadNotificationsCount(user.uid));
+          }
+        });
+      }
 
       // --- news fetch logic kept as-is ---
       const rssFeeds = ['https://www.myschoolgist.com/ng/feed/','https://schoolnewsng.com/feed/'];

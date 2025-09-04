@@ -58,6 +58,16 @@ function showDashboard() {
   if (mainContent) mainContent.style.visibility = 'visible';
 }
 
+// Cache functions
+function getCachedUserData(userId) {
+  const cached = localStorage.getItem(`userData_${userId}`);
+  return cached ? JSON.parse(cached) : null;
+}
+
+function cacheUserData(userId, userData) {
+  localStorage.setItem(`userData_${userId}`, JSON.stringify(userData));
+}
+
 // Initialize dashboard
 async function initDashboard() {
   const loadingTimeout = setTimeout(() => {
@@ -76,7 +86,14 @@ async function initDashboard() {
 
       console.log('User authenticated:', user.uid);
 
-      // Get user profile
+      // Check for cached data and display it immediately
+      const cachedData = getCachedUserData(user.uid);
+      if (cachedData) {
+        setText('student-name', cachedData.name || 'Student');
+        setText('student-level', cachedData.level || 'SS 3/WAEC');
+      }
+
+      // Get fresh user profile
       const userDoc = await getDoc(doc(db, 'students', user.uid));
       const userData = userDoc.data();
 
@@ -85,7 +102,10 @@ async function initDashboard() {
         return;
       }
 
-      // Update user info
+      // Cache the fresh data
+      cacheUserData(user.uid, userData);
+
+      // Update user info if different from cache
       setText('student-name', userData.name || 'Student');
       setText('student-level', userData.level || 'SS 3/WAEC');
       
