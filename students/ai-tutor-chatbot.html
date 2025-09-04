@@ -5,12 +5,89 @@
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <title>AI Tutor — Prep100</title>
     <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-  <link rel="icon" type="image/png" sizes="48x48" href="/favicon-48x48.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-  <link rel="manifest" href="/site.webmanifest">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="48x48" href="/favicon-48x48.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+  /* Shared AI iframe and header background color (yellow -> green gradient to match iframe) */
+  :root { --ai-bg: linear-gradient(90deg, #f0d84a 0%, #44b96b 100%); }
+      header { background: var(--ai-bg) !important; color: white; }
+      .ai-iframe-wrapper { width:100%; height:100%; min-height:560px; background: var(--ai-bg); }
+      .chat-container { min-height:560px; }
+      .ai-iframe-wrapper iframe { border:0; min-height:560px; width:100%; height:100%; }
+      /* Ensure header text contrasts on dark background */
+      header .font-semibold, header .text-xs { color: rgba(255,255,255,0.95); }
+    </style>
+    
+    <!-- Preload user data -->
+    <script>
+      // Helper function to get user initials
+      function getInitials(fullName) {
+        return fullName.split(' ')
+          .slice(0, 2)
+          .map(name => name.charAt(0))
+          .join('')
+          .toUpperCase();
+      }
+
+      // Initialize user data from cache immediately
+      try {
+        const cachedUserData = localStorage.getItem('cachedUserData_current');
+        if (cachedUserData) {
+          const { data } = JSON.parse(cachedUserData);
+          window.preloadedUserData = data;
+          
+          // Pre-initialize user interface as soon as DOM is ready
+          document.addEventListener('DOMContentLoaded', () => {
+            if (window.preloadedUserData) {
+              const user = window.preloadedUserData;
+              const fullName = user.displayName || 'Student';
+              const name = fullName.split(' ')[0];
+              const level = (user.profile?.level || '').startsWith('SS') ? user.profile.level : 'SS 3';
+              
+              // Update UI elements immediately
+              const elements = {
+                topName: fullName,
+                userName: fullName,
+                userLevel: level,
+              };
+              
+              // Update text content
+              Object.keys(elements).forEach(id => {
+                const el = document.getElementById(id);
+                if (el) el.textContent = elements[id];
+              });
+              
+              // Update badge
+              const badge = document.querySelector('.badge');
+              if (badge) badge.textContent = level;
+              
+              // Update avatars
+              const initials = getInitials(fullName);
+              const avatarUrl = user.photoURL || 
+                `https://ui-avatars.com/api/?name=${encodeURIComponent(initials)}&background=2563eb&color=fff&size=128`;
+              
+              ['avatar-sm', 'topAvatar'].forEach(id => {
+                const img = document.getElementById(id);
+                if (img) img.src = avatarUrl;
+              });
+              
+              // Update chat avatar
+              const chatAvatar = document.querySelector('.avatar');
+              if (chatAvatar) chatAvatar.src = avatarUrl;
+              
+              // Update welcome message
+              document.querySelector('.welcome-banner h1').textContent = `Ready to Learn, ${name}?`;
+            }
+          });
+        }
+      } catch (e) {
+        console.warn('Error preloading user data:', e);
+      }
+    </script>
   </head>
   <body class="bg-slate-50 text-slate-800">
     <div class="min-h-screen flex">
@@ -76,212 +153,19 @@
           </div>
         </header>
 
-        <main class="p-6 space-y-6">
-          <!-- preserved AI tutor content -->
-
-          <div class="dashboard-topbar">
-            <div class="search-container">
-              <i class="fas fa-search search-icon"></i>
-              <input type="text" class="search-input" placeholder="Search topics, lessons, or ask a question...">
-            </div>
-            <div class="user-info">
-              <div class="badge badge-primary">SS 3/WAEC</div>
-              <button class="notification-btn">
-                <i class="fas fa-bell"></i>
-                <span class="notification-badge">2</span>
-              </button>
-              <img src="" alt="User avatar" class="avatar">
-            </div>
-          </div>
-
-          <div class="welcome-banner">
-            <div class="banner-content">
-              <h1>Ready to Learn?</h1>
-              <p>Your personalized learning journey continues. Let's make every question count!</p>
-              <button class="btn-continue">Start Learning</button>
-            </div>
-          </div>
-
-          <div class="stats-grid">
-            <div class="stat-card">
-              <div class="stat-title">Questions Asked</div>
-              <div class="stat-value">24</div>
-              <div class="stat-subtitle">This Week</div>
-            </div>
-            <div class="stat-card">
-              <div class="stat-title">Understanding Score</div>
-              <div class="stat-value">78%</div>
-              <div class="stat-subtitle">Based on Responses</div>
-            </div>
-          </div>
-
-          <div class="suggestions">
-            <button class="suggestion-chip">How do I solve quadratic equations?</button>
-            <button class="suggestion-chip">Explain photosynthesis</button>
-            <button class="suggestion-chip">Help with Newton's laws</button>
-            <button class="suggestion-chip">Literary devices in poetry</button>
-          </div>
-
+          <!-- Chat iframe placed directly under topbar -->
           <div class="chat-container">
-            <div class="chat-messages" id="chatMessages">
-              <!-- AI welcome message -->
-              <div class="message ai">
-                <img src="https://ui-avatars.com/api/?name=AI&background=2563eb&color=fff" alt="AI" class="message-avatar">
-                <div class="message-content">
-                  <p>Hello! I'm your AI tutor. I'm here to help you with your studies. What would you like to learn about today?</p>
-                </div>
-              </div>
+            <div class="ai-iframe-wrapper">
+              <iframe src="https://app.edcafe.ai/chatbots/68b96ebb2a5be310497b6a0b" title="CORTEX AI" loading="lazy" sandbox="allow-scripts allow-same-origin allow-forms allow-popups"></iframe>
             </div>
-
-            <div class="input-area">
-              <input type="text" id="userInput" class="chat-input" placeholder="Type your question here..." onkeypress="if(event.key === 'Enter') askAI()">
-              <button class="mic-button" id="micButton" onclick="startVoiceInput()" title="Start voice input" aria-label="Start voice input">
-                <i class="fas fa-microphone"></i>
-              </button>
-              <button class="send-button" onclick="askAI()" title="Send message" aria-label="Send message">
-                <i class="fas fa-paper-plane"></i>
-              </button>
-            </div>
+            <noscript>
+              <div class="p-4 bg-yellow-50 border-l-4 border-yellow-400 text-yellow-700">This page requires JavaScript to load the AI tutor. Please enable JavaScript in your browser.</div>
+            </noscript>
           </div>
-    <script type="module">
-    let chatHistory = [];
-    let recognition;
 
-    // Initialize user info from session fallback
-    function initUserInfo() {
-      const session = JSON.parse(sessionStorage.getItem('eduNextSession') || '{"name":"Student"}');
-      const avatarEl = document.querySelector('.avatar');
-      if (avatarEl) avatarEl.src = `https://ui-avatars.com/api/?name=${encodeURIComponent(session.name)}&background=2563eb&color=fff`;
-    }
-    initUserInfo();
-
-    // Personalize using centralized helper
-    import('./js/firebase-user-helper.js').then(({ initUserPersonalization }) => {
-      initUserPersonalization(async ({ user, helpers }) => {
-        if (!user) return;
-        const fullName = user.displayName || 'Student';
-        const name = fullName.split(' ')[0];
-        const topNameEl = document.getElementById('topName'); if (topNameEl) topNameEl.textContent = fullName;
-        const userNameEl = document.getElementById('userName'); if (userNameEl) userNameEl.textContent = fullName;
-        const badge = document.querySelector('.badge');
-        if (badge && user.profile && user.profile.level) badge.textContent = user.profile.level;
-        const userLevelEl = document.getElementById('userLevel');
-        if (userLevelEl) {
-          const l = (user && user.profile && user.profile.level) ? user.profile.level : '';
-          userLevelEl.textContent = l && String(l).startsWith('SS') ? l : (l ? 'SS 3' : '');
-        }
-        const notifBadge = document.querySelector('.notification-badge');
-        if (notifBadge && helpers && helpers.getUnreadNotificationsCount) notifBadge.textContent = String(await helpers.getUnreadNotificationsCount(user.uid));
-        if (helpers && helpers.initialsFromName) {
-          const initials = helpers.initialsFromName(user.displayName || name);
-          const avatarEl = document.querySelector('.avatar');
-          if (avatarEl) avatarEl.src = user.photoURL || `https://ui-avatars.com/api/?name=${encodeURIComponent(initials)}&background=2563eb&color=fff&length=2`;
-        }
-      });
-    }).catch(e => console.warn('firebase-user helper import failed', e));
-
-    function addMessage(content, isUser = false) {
-      const messagesContainer = document.getElementById('chatMessages');
-      const messageDiv = document.createElement('div');
-      messageDiv.className = `message ${isUser ? 'user' : 'ai'}`;
-      
-      const avatar = document.createElement('img');
-      avatar.className = 'message-avatar';
-      avatar.src = isUser ? 
-        document.querySelector('.avatar').src :
-        'https://ui-avatars.com/api/?name=AI&background=2563eb&color=fff';
-      avatar.alt = isUser ? 'User' : 'AI';
-
-      const messageContent = document.createElement('div');
-      messageContent.className = 'message-content';
-      messageContent.textContent = content;
-
-      messageDiv.appendChild(avatar);
-      messageDiv.appendChild(messageContent);
-      messagesContainer.appendChild(messageDiv);
-      messagesContainer.scrollTop = messagesContainer.scrollHeight;
-    }
-
-    function startVoiceInput() {
-      if (!('webkitSpeechRecognition' in window)) {
-        addMessage('Voice input requires a supported browser like Chrome. Please use text or switch browsers.');
-        return;
-      }
-      try {
-        recognition = new webkitSpeechRecognition();
-        recognition.continuous = false;
-        recognition.interimResults = false;
-        recognition.lang = 'en-US';
-        recognition.onresult = (event) => {
-          const query = event.results[0][0].transcript.trim();
-          addMessage(query, true);
-          askAI(query);
-        };
-        recognition.onerror = (event) => {
-          addMessage(`Voice input failed: ${event.error}. Please try again or use text.`);
-        };
-        recognition.start();
-      } catch (error) {
-        addMessage('An error occurred with voice input. Please use text input instead.');
-      }
-    }
-
-    async function fetchWebSummary(query) {
-      const simulatedSources = [
-        `Source 1: Information on ${query} suggests...`,
-        `Source 2: Recent data indicates...`,
-        `Source 3: Another perspective highlights...`
-      ];
-      return `Summary based on available information: ${query}. Key points from various sources: ${simulatedSources.join(' ')}.`;
-    }
-
-    // Add click handlers for suggestion chips
-    document.querySelectorAll('.suggestion-chip').forEach(chip => {
-      chip.addEventListener('click', () => {
-        document.getElementById('userInput').value = chip.textContent;
-        askAI();
-      });
-    });
-
-    async function askAI(query = null) {
-      const input = document.getElementById('userInput');
-      if (!query) query = input.value.trim();
-      if (!query) return;
-      if (!input.value) addMessage(query, true); // For voice input
-      input.value = '';
-
-      try {
-        let prompt = `Provide a clear and concise answer to "${query}".`;
-        if (chatHistory.length > 0 && chatHistory.some(prev => prev.query.toLowerCase().includes(query.toLowerCase()))) {
-          prompt += ' Refer to prior discussions for context and add new details.';
-        }
-        if (query.toLowerCase().match(/richest|president|capital/i)) {
-          prompt += ' Keep it factual and summarized, using the latest available data.';
-        } else if (query.toLowerCase().includes('physics') || query.toLowerCase().includes('chemistry') || query.toLowerCase().includes('biology') || query.toLowerCase().includes('waec') || query.toLowerCase().includes('neco') || query.toLowerCase().includes('jamb')) {
-          prompt += ' Explain like a teacher with step-by-step breakdown and a simple example, tailored for exam prep.';
-        } else {
-          prompt += ' Include a brief example if it clarifies the answer.';
-        }
-
-        const response = await fetch('/.netlify/functions/gemini', {
-          method: 'POST',
-          body: JSON.stringify({ prompt }),
-        });
-        
-        const data = await response.json();
-        let explanation = data.candidates[0]?.content.parts[0].text || 'I couldn’t find a direct answer. Let me search for more information.';
-        if (explanation.includes('couldn’t fetch') || explanation.includes('try again')) {
-          const webSummary = await fetchWebSummary(query);
-          explanation = webSummary;
-        }
-        addMessage(explanation);
-        chatHistory.push({ query, explanation });
-      } catch (error) {
-        console.error('Error:', error);
-        addMessage('Sorry, there was an issue processing your request. Please try again later.');
-      }
-    }
-  </script>
+        <main class="p-6 space-y-6">
+          <!-- Page content removed; AI tutor iframe appears above -->
+        </main>
     <link rel="stylesheet" href="./dashboard-styles.css">
     <script>
       const sidebar = document.getElementById('sidebar');

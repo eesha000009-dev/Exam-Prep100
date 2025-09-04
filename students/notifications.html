@@ -11,6 +11,88 @@
 <link rel="manifest" href="/site.webmanifest">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Preload user data -->
+    <script>
+      // Helper function to get user initials
+      function getInitials(fullName) {
+        return fullName.split(' ')
+          .slice(0, 2)
+          .map(name => name.charAt(0))
+          .join('')
+          .toUpperCase();
+      }
+
+      // Initialize user data from cache immediately
+      try {
+        const cachedUserData = localStorage.getItem('cachedUserData_current');
+        if (cachedUserData) {
+          const { data: user } = JSON.parse(cachedUserData);
+          window.preloadedUserData = user;
+          
+          // Pre-initialize user interface as soon as DOM is ready
+          document.addEventListener('DOMContentLoaded', () => {
+            if (user) {
+              const fullName = user.displayName || 'Student';
+              const name = fullName.split(' ')[0];
+              const level = (user.profile?.level || '').startsWith('SS') ? user.profile.level : 'SS 3';
+              const initials = getInitials(fullName);
+              
+              // Update heading
+              const heading = document.querySelector('h1');
+              if (heading) heading.textContent = `${name}'s Notifications`;
+
+              // Update sidebar elements
+              document.getElementById('userName').textContent = name;
+              document.getElementById('userLevel').textContent = level;
+              
+              // Update topbar elements
+              document.getElementById('topName').textContent = fullName;
+              document.getElementById('topLevel').textContent = level;
+              
+              // Update avatars with user photo or initials
+              const avatarUrl = user.photoURL || `https://ui-avatars.com/api/?name=${encodeURIComponent(initials)}&background=2563eb&color=fff&size=128`;
+              ['avatar-sm', 'topAvatar'].forEach(id => {
+                const avatar = document.getElementById(id);
+                if (avatar) avatar.setAttribute('src', avatarUrl);
+              });
+              
+              // Update notification count
+              if (user.unreadNotifications) {
+                const notifCount = document.getElementById('notifCount');
+                if (notifCount) notifCount.textContent = user.unreadNotifications.length;
+              }
+            }
+          });
+          
+          // Pre-initialize user interface as soon as DOM is ready
+          document.addEventListener('DOMContentLoaded', () => {
+            if (window.preloadedUserData) {
+              const user = window.preloadedUserData;
+              const fullName = user.displayName || 'Student';
+              const name = fullName.split(' ')[0];
+              const level = (user.profile?.level || '').startsWith('SS') ? user.profile.level : 'SS 3';
+              const initials = getInitials(fullName);
+              
+              // Update sidebar UI elements
+              document.getElementById('userName').textContent = name;
+              document.getElementById('userLevel').textContent = level;
+              
+              // Update topbar UI elements
+              document.getElementById('topName').textContent = fullName;
+              document.getElementById('topLevel').textContent = level;
+              
+              // Update avatars
+              const avatarUrl = user.photoURL || `https://ui-avatars.com/api/?name=${encodeURIComponent(initials)}&background=2563eb&color=fff&size=128`;
+              document.getElementById('avatar-sm').setAttribute('src', avatarUrl);
+              document.getElementById('topAvatar').setAttribute('src', avatarUrl);
+            }
+          });
+        }
+      } catch (err) {
+        console.error('Error pre-loading user data:', err);
+      }
+    </script>
   </head>
   <body class="bg-slate-50 text-slate-800">
     <div class="min-h-screen flex">
@@ -92,50 +174,69 @@
 
       </main>
     </div>
-  </body>
-</html>
-<script type="module">
-  // Personalize notifications page using centralized helper
-  import('./js/firebase-user-helper.js').then(({ initUserPersonalization }) => {
-    initUserPersonalization(async ({ user, helpers }) => {
-      if (!user) return;
-      const fullName = user.displayName || 'Student';
-      const name = fullName.split(' ')[0];
-      const title = document.querySelector('h1');
-      if (title) title.textContent = `${name}'s Notifications`;
-      const topName = document.getElementById('topName'); if (topName) topName.textContent = fullName;
-      const userName = document.getElementById('userName'); if (userName) userName.textContent = fullName;
-      const userLevel = document.getElementById('userLevel');
-      if (userLevel) {
-        const l = (user && user.profile && user.profile.level) ? user.profile.level : '';
-        userLevel.textContent = l && String(l).startsWith('SS') ? l : (l ? 'SS 3' : '');
-      }
-      const countEl = document.getElementById('notif-total');
-      if (countEl && helpers && helpers.getUnreadNotificationsCount) countEl.textContent = String(await helpers.getUnreadNotificationsCount(user.uid));
-      const avatar = document.querySelector('img[alt="User"]');
-      if (avatar) {
-        if (user.photoURL) avatar.src = user.photoURL;
-        else if (helpers && helpers.initialsFromName) avatar.src = `https://ui-avatars.com/api/?name=${encodeURIComponent(helpers.initialsFromName(fullName))}&background=2563eb&color=fff&length=2`;
-      }
-    });
-  }).catch(e => console.warn('firebase-user helper import failed', e));
+    <script src="/js/firebase-config.js"></script>
+    <script src="/js/firebase-user.js"></script>
+    <script src="/js/user-cache.js"></script>
+    <script>
+      // Listen for background updates
+      window.addEventListener('userDataUpdated', (event) => {
+        const user = event.detail;
+        if (user) {
+          const fullName = user.displayName || 'Student';
+          const name = fullName.split(' ')[0];
+          const level = (user.profile?.level || '').startsWith('SS') ? user.profile.level : 'SS 3';
+          const initials = getInitials(fullName);
 
-  // Ensure sidebar toggle works
-  (function ensureSidebarToggle(){ try{ 
-      const sidebar = document.getElementById('sidebar');
-      const mainContent = document.getElementById('main-content');
-      const b=document.getElementById('toggleSidebar'); 
-      if(b && !b.dataset.hasToggle){ 
-          b.addEventListener('click', (e)=> {
+          // Update heading
+          const heading = document.querySelector('h1');
+          if (heading) heading.textContent = `${name}'s Notifications`;
+
+          // Update sidebar elements
+          const userName = document.getElementById('userName');
+          if (userName) userName.textContent = name;
+          const userLevel = document.getElementById('userLevel');
+          if (userLevel) userLevel.textContent = level;
+
+          // Update topbar elements
+          const topName = document.getElementById('topName');
+          if (topName) topName.textContent = fullName;
+          const topLevel = document.getElementById('topLevel');
+          if (topLevel) topLevel.textContent = level;
+
+          // Update avatars with user photo or initials
+          const avatarUrl = user.photoURL || `https://ui-avatars.com/api/?name=${encodeURIComponent(initials)}&background=2563eb&color=fff&size=128`;
+          ['avatar-sm', 'topAvatar'].forEach(id => {
+            const avatar = document.getElementById(id);
+            if (avatar) avatar.setAttribute('src', avatarUrl);
+          });
+
+          // Update notification count
+          if (user.unreadNotifications) {
+            const notifCount = document.getElementById('notifCount');
+            if (notifCount) notifCount.textContent = user.unreadNotifications.length;
+          }
+        }
+      });
+
+      // Handle sidebar toggle
+      document.addEventListener('DOMContentLoaded', () => {
+        const toggleButton = document.getElementById('toggleSidebar');
+        const sidebar = document.getElementById('sidebar');
+        const mainContent = document.getElementById('main-content');
+
+        if (toggleButton && sidebar && mainContent) {
+          toggleButton.addEventListener('click', (e) => {
             e.stopPropagation();
             sidebar.classList.toggle('-translate-x-full');
-          }); 
+          });
+
           mainContent.addEventListener('click', () => {
             if (window.innerWidth < 1024 && !sidebar.classList.contains('-translate-x-full')) {
-                sidebar.classList.add('-translate-x-full');
+              sidebar.classList.add('-translate-x-full');
             }
           });
-          b.dataset.hasToggle='1'; 
-      } 
-  }catch(e){} })();
-</script>
+        }
+      });
+    </script>
+  </body>
+</html>

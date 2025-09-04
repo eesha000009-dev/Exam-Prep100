@@ -12,6 +12,78 @@
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
 <link rel="manifest" href="/site.webmanifest">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <!-- Preload user data -->
+    <script>
+      // Helper function to get user initials
+      function getInitials(fullName) {
+        return fullName.split(' ')
+          .slice(0, 2)
+          .map(name => name.charAt(0))
+          .join('')
+          .toUpperCase();
+      }
+
+      // Initialize user data from cache immediately
+      try {
+        const cachedUserData = localStorage.getItem('cachedUserData_current');
+        if (cachedUserData) {
+          const { data: user } = JSON.parse(cachedUserData);
+          window.preloadedUserData = user;
+          
+          // Pre-initialize user interface as soon as DOM is ready
+          document.addEventListener('DOMContentLoaded', () => {
+            if (user) {
+              const fullName = user.displayName || 'Student';
+              const name = fullName.split(' ')[0];
+              const level = (user.profile?.level || '').startsWith('SS') ? user.profile.level : 'SS 3';
+              const initials = getInitials(fullName);
+              
+              // Update welcome message and heading
+              const heroName = document.getElementById('heroName');
+              if (heroName) heroName.textContent = name;
+
+              // Update sidebar elements
+              document.getElementById('userName').textContent = name;
+              document.getElementById('userLevel').textContent = level;
+              
+              // Update topbar elements
+              document.getElementById('topName').textContent = fullName;
+              document.getElementById('topLevel').textContent = level;
+              
+              // Update all user name instances
+              document.querySelectorAll('.user-fullname').forEach(el => {
+                el.textContent = fullName;
+              });
+              document.querySelectorAll('.user-firstname').forEach(el => {
+                el.textContent = name;
+              });
+              
+              // Update avatars with user photo or initials
+              const avatarUrl = user.photoURL || `https://ui-avatars.com/api/?name=${encodeURIComponent(initials)}&background=2563eb&color=fff&size=128`;
+              ['avatar-sm', 'topAvatar', 'main-avatar'].forEach(id => {
+                const avatar = document.getElementById(id);
+                if (avatar) avatar.setAttribute('src', avatarUrl);
+              });
+              
+              // Update any progress data if available
+              if (user.progress) {
+                const progressEl = document.getElementById('overall-progress');
+                if (progressEl) progressEl.textContent = `${user.progress.overall || 0}%`;
+              }
+              
+              // Update notification count
+              if (user.unreadNotifications) {
+                const notifCount = document.getElementById('notifCount');
+                if (notifCount) notifCount.textContent = user.unreadNotifications.length;
+              }
+            }
+          });
+        }
+      } catch (err) {
+        console.error('Error pre-loading user data:', err);
+      }
+    </script>
   </head>
   <body class="bg-slate-50 text-slate-800">
     <div class="min-h-screen flex">
@@ -131,7 +203,7 @@
                 <div class="text-2xl text-pink-500 mb-2"><i class="fas fa-flask"></i></div>
                 <div class="font-semibold">Chemistry</div>
               </a>
-              <a href="subjects/biology.html" class="bg-white rounded-2xl p-5 shadow hover:scale-105 transition text-center">
+              <a href="subjects/biology/index.html" class="bg-white rounded-2xl p-5 shadow hover:scale-105 transition text-center">
                 <div class="text-2xl text-green-500 mb-2"><i class="fas fa-dna"></i></div>
                 <div class="font-semibold">Biology</div>
               </a>
@@ -189,8 +261,21 @@
       import { getFirestore, doc, getDoc, collection, getDocs, query, where, addDoc, updateDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
       import { initializeAppCheck, ReCaptchaV3Provider } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app-check.js";
       import { firebaseConfig } from '../js/firebase-config.js';
+import { getGlobalUserData } from '../js/user-cache.js';
 
       const app = initializeApp(firebaseConfig);
+
+// Initialize with cached data immediately if available
+const cachedUser = getGlobalUserData();
+if (cachedUser) {
+    document.getElementById('userName').textContent = cachedUser.displayName;
+    document.getElementById('topName').textContent = cachedUser.displayName;
+    document.getElementById('heroName').textContent = cachedUser.displayName;
+    if (cachedUser.photoURL) {
+        document.getElementById('avatar-sm').src = cachedUser.photoURL;
+        document.getElementById('topAvatar').src = cachedUser.photoURL;
+    }
+}
       const auth = getAuth(app);
       const db = getFirestore(app);
 
@@ -369,32 +454,66 @@
           });
         }
 
-        // set basic profile UI
-  const displayName = u.displayName || 'Student';
-  setText('userName', displayName);
-  setText('topName', displayName);
-  setText('heroName', (displayName.split && displayName.split(' ')[0]) || displayName);
-          // prefer user photoURL, otherwise use initials avatar
-          if (u.photoURL) {
-            setImage('avatar-sm', u.photoURL);
-            setImage('topAvatar', u.photoURL);
-          } else {
-            // get initials and set ui-avatars url via helper
-            import('./js/firebase-user-helper.js').then(async ({ initialsFromName }) => {
-              try {
-                const initials = await initialsFromName(displayName);
-                const url = `https://ui-avatars.com/api/?name=${encodeURIComponent(initials)}&background=2563eb&color=fff&length=2`;
-                setImage('avatar-sm', url);
-                setImage('topAvatar', url);
-              } catch (e) {
-                setImage('avatar-sm', '../assets/images/unnamed.jpg');
-                setImage('topAvatar', '../assets/images/unnamed.jpg');
+        // Update user data via cache system
+        import('./js/user-cache.js').then(() => {
+          window.addEventListener('userDataUpdated', (event) => {
+            const user = event.detail;
+            if (user) {
+              const fullName = user.displayName || 'Student';
+              const name = fullName.split(' ')[0];
+              const level = (user.profile?.level || '').startsWith('SS') ? user.profile.level : 'SS 3';
+              const initials = getInitials(fullName);
+
+              // Update welcome message
+              const heading = document.querySelector('h1');
+              if (heading) heading.textContent = `Welcome back, ${name}!`;
+
+              // Update sidebar elements
+              document.getElementById('userName').textContent = name;
+              document.getElementById('userLevel').textContent = level;
+
+              // Update topbar elements
+              document.getElementById('topName').textContent = fullName;
+              document.getElementById('topLevel').textContent = level;
+
+              // Update hero name
+              document.getElementById('heroName').textContent = name;
+
+              // Update all user name instances
+              document.querySelectorAll('.user-fullname').forEach(el => {
+                el.textContent = fullName;
+              });
+              document.querySelectorAll('.user-firstname').forEach(el => {
+                el.textContent = name;
+              });
+
+              // Update avatars with user photo or initials
+              const avatarUrl = user.photoURL || `https://ui-avatars.com/api/?name=${encodeURIComponent(initials)}&background=2563eb&color=fff&size=128`;
+              ['avatar-sm', 'topAvatar', 'main-avatar'].forEach(id => {
+                const avatar = document.getElementById(id);
+                if (avatar) avatar.setAttribute('src', avatarUrl);
+              });
+
+              // Update progress data if available
+              if (user.progress) {
+                const weeklyProgress = document.getElementById('weeklyProgressLabel');
+                if (weeklyProgress) weeklyProgress.textContent = `${user.progress.weekly || 0}%`;
+                
+                const mockAvg = document.getElementById('mockAvgLabel');
+                if (mockAvg) mockAvg.textContent = `${user.progress.mockAvg || 0}%`;
+                
+                const streak = document.getElementById('streakLabel');
+                if (streak) streak.textContent = `${user.progress.streak || 0} days`;
               }
-            }).catch(()=>{
-              setImage('avatar-sm', '../assets/images/unnamed.jpg');
-              setImage('topAvatar', '../assets/images/unnamed.jpg');
-            });
-          }
+
+              // Update notification count
+              if (user.unreadNotifications) {
+                const notifCount = document.getElementById('notifCount');
+                if (notifCount) notifCount.textContent = user.unreadNotifications.length;
+              }
+            }
+          });
+        });
 
         try {
           // attempt to load the students/{uid} profile
@@ -405,11 +524,10 @@
           setText('streakLabel', (profile.streak || 0) + ' days');
 
           // load live lists
-          const [tasks, activities, upcoming, notifCount] = await Promise.all([
+          const [tasks, activities, upcoming] = await Promise.all([
             loadTasks(u.uid),
             loadActivities(u.uid),
-            loadUpcoming(u.uid),
-            loadNotificationCount(u.uid)
+            loadUpcoming(u.uid)
           ]);
 
           renderTasksList(tasks);
@@ -446,9 +564,32 @@
       });
 
     </script>
-  <!-- firebase-user import handled below in a safe dynamic import -->
-    <script type="module">
-      import('../js/firebase-user.js').then(({ onUserChange, getUnreadNotificationsCount, initialsFromName }) => {
+    <script src="/js/firebase-config.js"></script>
+    <script src="/js/firebase-user.js"></script>
+    <script src="/js/user-cache.js"></script>
+    <script>
+      // Handle sidebar toggle
+      document.addEventListener('DOMContentLoaded', () => {
+        const toggleButton = document.getElementById('toggleSidebar');
+        const sidebar = document.getElementById('sidebar');
+        const mainContent = document.getElementById('main-content');
+
+        if (toggleButton && sidebar && mainContent) {
+          toggleButton.addEventListener('click', (e) => {
+            e.stopPropagation();
+            sidebar.classList.toggle('-translate-x-full');
+          });
+
+          mainContent.addEventListener('click', () => {
+            if (window.innerWidth < 1024 && !sidebar.classList.contains('-translate-x-full')) {
+              sidebar.classList.add('-translate-x-full');
+            }
+          });
+        }
+      });
+    </script>
+  </body>
+</html>
         onUserChange(async (u) => {
           if (!u) return;
           const displayName = (u.profile && u.profile.displayName) || u.displayName || (u.profile && (u.profile.name || u.profile.fullName)) || u.email || 'Student';

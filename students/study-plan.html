@@ -4,11 +4,11 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Study Plan - Prep100</title>
-<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-<link rel="icon" type="image/png" sizes="48x48" href="/favicon-48x48.png">
-<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-<link rel="manifest" href="/site.webmanifest">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="48x48" href="/favicon-48x48.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="manifest" href="/site.webmanifest">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
@@ -20,6 +20,73 @@
     .calendar-cell.today { background:#3b82f6; color:white; }
     .modal { display:none; }
   </style>
+
+  <!-- Preload user data -->
+  <script>
+    // Helper function to get user initials
+    function getInitials(fullName) {
+      return fullName.split(' ')
+        .slice(0, 2)
+        .map(name => name.charAt(0))
+        .join('')
+        .toUpperCase();
+    }
+
+    // Initialize user data from cache immediately
+    try {
+      const cachedUserData = localStorage.getItem('cachedUserData_current');
+      if (cachedUserData) {
+        const { data } = JSON.parse(cachedUserData);
+        window.preloadedUserData = data;
+        
+        // Pre-initialize user interface as soon as DOM is ready
+        document.addEventListener('DOMContentLoaded', () => {
+          if (window.preloadedUserData) {
+            const user = window.preloadedUserData;
+            const fullName = user.displayName || 'Student';
+            const name = fullName.split(' ')[0];
+            const level = (user.profile?.level || '').startsWith('SS') ? user.profile.level : 'SS 3';
+            
+            // Update UI elements immediately
+            const elements = {
+              topName: fullName,
+              userName: fullName,
+              userLevel: level
+            };
+            
+            // Update text content
+            Object.keys(elements).forEach(id => {
+              const el = document.getElementById(id);
+              if (el) el.textContent = elements[id];
+            });
+            
+            // Update Study Plan title
+            const title = document.querySelector('h1');
+            if (title) title.textContent = `${name}'s Study Plan`;
+            
+            // Update avatars
+            const initials = getInitials(fullName);
+            const avatarUrl = user.photoURL || 
+              `https://ui-avatars.com/api/?name=${encodeURIComponent(initials)}&background=2563eb&color=fff&size=128`;
+            
+            ['avatar-sm', 'topAvatar'].forEach(id => {
+              const img = document.getElementById(id);
+              if (img) img.src = avatarUrl;
+            });
+            
+            // Update user avatar if exists
+            const userAvatar = document.querySelector('img[alt="User"]');
+            if (userAvatar) userAvatar.src = avatarUrl;
+            
+            // Store the name for use in plan creation
+            window.studentName = name;
+          }
+        });
+      }
+    } catch (e) {
+      console.warn('Error preloading user data:', e);
+    }
+  </script>
 </head>
   <body class="bg-slate-50 text-slate-800">
     <div class="min-h-screen flex">
@@ -273,24 +340,63 @@
 
     // boot
     renderCalendar(); renderPlans();
-    // Personalize study-plan using centralized helper
+    
+    // Personalize study-plan using centralized helper (only for background updates)
     import('./js/firebase-user-helper.js').then(({ initUserPersonalization }) => {
+      // Skip immediate updates if we have preloaded data
       initUserPersonalization(async ({ user, helpers }) => {
         if (!user) return;
+        
+        const currentName = document.getElementById('userName')?.textContent;
         const fullName = user.displayName || 'Student';
-        const name = fullName.split(' ')[0];
-        const topNameEl = document.getElementById('topName'); if (topNameEl) topNameEl.textContent = fullName;
-        const userNameEl = document.getElementById('userName'); if (userNameEl) userNameEl.textContent = fullName;
-        const userLevelEl = document.getElementById('userLevel');
-        if (userLevelEl) {
-          const l = (user && user.profile && user.profile.level) ? user.profile.level : '';
-          userLevelEl.textContent = l && String(l).startsWith('SS') ? l : (l ? 'SS 3' : '');
+        
+        // Only update if data is different from what's already displayed
+        if (currentName !== fullName) {
+          const name = fullName.split(' ')[0];
+          const level = (user.profile?.level || '').startsWith('SS') ? user.profile.level : 'SS 3';
+          
+          // Update UI elements
+          document.getElementById('topName')?.setAttribute('textContent', fullName);
+          document.getElementById('userName')?.setAttribute('textContent', fullName);
+          document.getElementById('userLevel')?.setAttribute('textContent', level);
+          
+          // Update Study Plan title
+          const title = document.querySelector('h1');
+          if (title) title.textContent = `${name}'s Study Plan`;
+          
+          // Update avatars
+          const initials = getInitials(fullName);
+          const avatarUrl = user.photoURL || 
+            `https://ui-avatars.com/api/?name=${encodeURIComponent(initials)}&background=2563eb&color=fff&size=128`;
+          
+          ['avatar-sm', 'topAvatar'].forEach(id => {
+            const img = document.getElementById(id);
+            if (img) img.src = avatarUrl;
+          });
+          
+          // Update user avatar if exists
+          const userAvatar = document.querySelector('img[alt="User"]');
+          if (userAvatar) userAvatar.src = avatarUrl;
+          
+          // Cache the fresh data
+          try {
+            localStorage.setItem('cachedUserData_current', JSON.stringify({
+              data: user,
+              timestamp: Date.now()
+            }));
+          } catch (e) {
+            console.warn('Failed to cache user data:', e);
+          }
+          
+          // Update window.studentName for plan creation
+          window.studentName = name;
         }
-        const title = document.querySelector('h1');
-        if (title) title.textContent = `${name}'s Study Plan`;
-        const avatar = document.querySelector('img[alt="User"]');
-        if (avatar) avatar.src = user.photoURL || (helpers && helpers.initialsFromName ? `https://ui-avatars.com/api/?name=${encodeURIComponent(helpers.initialsFromName(fullName))}&background=2563eb&color=fff&length=2` : avatar.src);
-        const notif = document.getElementById('notifCount'); if (notif && helpers && helpers.getUnreadNotificationsCount) notif.textContent = String(await helpers.getUnreadNotificationsCount(user.uid));
+        
+        // Always update notification count as it's dynamic
+        const notifEl = document.getElementById('notifCount');
+        if (notifEl && helpers?.getUnreadNotificationsCount) {
+          notifEl.textContent = String(await helpers.getUnreadNotificationsCount(user.uid));
+        }
       });
     }).catch(e => console.warn('firebase-user helper import failed', e));
 

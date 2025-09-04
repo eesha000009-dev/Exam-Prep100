@@ -24,19 +24,79 @@ if (firebaseConfig && firebaseConfig.recaptchaSiteKey) {
   console.warn('App Check skipped in shared module: recaptchaSiteKey missing in firebase-config.js');
 }
 
+import { getCachedUserData, cacheUserData, setGlobalUserData, getGlobalUserData } from './user-cache.js';
+
+// Pre-fetch and update user data in the background
+async function prefetchUserData(uid) {
+    try {
+        const snap = await getDoc(doc(db, 'students', uid));
+        if (snap.exists()) {
+            const profile = snap.data();
+            const userData = {
+                uid,
+                displayName: profile.name || 'Student',
+                photoURL: profile.photoURL || '',
+                profile
+            };
+            cacheUserData(uid, userData);
+            setGlobalUserData(userData);
+        }
+    } catch (e) {
+        console.warn('Background prefetch failed:', e);
+    }
+}
+
 // Lightweight helpers for pages that only need to personalize UI
 function onUserChange(handler) {
-  return onAuthStateChanged(auth, async (u) => {
-    if (!u) return handler(null);
-    let profile = {};
-    try {
-      const snap = await getDoc(doc(db, 'students', u.uid));
-      if (snap.exists()) profile = snap.data();
-    } catch (e) {
-      console.warn('Failed to load profile in shared module', e);
+    // Initialize with global data if available
+    const globalData = getGlobalUserData();
+    if (globalData) {
+        handler(globalData);
     }
-  handler({ uid: u.uid, displayName: u.displayName || u.email || 'Student', photoURL: u.photoURL || '', profile });
-  });
+
+    return onAuthStateChanged(auth, async (u) => {
+        if (!u) {
+            handler(null);
+            return;
+        }
+
+        // Try to get cached data first (now includes memory cache)
+        const cachedData = getCachedUserData(u.uid);
+        if (cachedData) {
+            handler(cachedData);
+            // Prefetch in background for next time
+            prefetchUserData(u.uid);
+            return;
+        }
+
+        // If no cache, get fresh data
+        try {
+            const snap = await getDoc(doc(db, 'students', u.uid));
+            const profile = snap.exists() ? snap.data() : {};
+            
+            const userData = {
+                uid: u.uid,
+                displayName: profile.name || u.displayName || u.email || 'Student',
+                photoURL: profile.photoURL || u.photoURL || '',
+                profile
+            };
+
+            // Update both caches
+            cacheUserData(u.uid, userData);
+            setGlobalUserData(userData);
+            
+            handler(userData);
+        } catch (e) {
+            console.warn('Failed to load profile:', e);
+            const fallbackData = {
+                uid: u.uid,
+                displayName: u.displayName || u.email || 'Student',
+                photoURL: u.photoURL || '',
+                profile: {}
+            };
+            handler(fallbackData);
+        }
+    });
 }
 
 async function getUnreadNotificationsCount(uid) {

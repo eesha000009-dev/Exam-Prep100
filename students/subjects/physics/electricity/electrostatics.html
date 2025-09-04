@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Electric Charges & Electrostatics | Physics</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Inter', sans-serif; }
+    .content-card {
+      -webkit-backdrop-filter: blur(16px);
+      backdrop-filter: blur(16px);
+      background: rgba(255, 255, 255, 0.7);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    }
+  </style>
+</head>
+<body class="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 p-6">
+  <div class="max-w-4xl mx-auto">
+    <nav class="mb-6">
+      <a href="index.html" class="text-blue-600 hover:text-blue-700">← Back to Electricity</a>
+    </nav>
+
+    <div class="content-card rounded-xl p-8">
+      <header class="mb-8">
+        <h1 class="text-2xl font-bold text-gray-800 mb-2">Electric Charges & Electrostatics</h1>
+        <p class="text-sm text-gray-600">Coulomb's law, electric field and potential — core concepts for forces between charges.</p>
+      </header>
+
+      <article class="prose max-w-none text-gray-700">
+        <h2 class="text-xl font-semibold mb-2">Coulomb's Law</h2>
+        <p>Two point charges exert force on each other proportional to the product of the charges and inversely proportional to the square of the distance between them. The magnitude is given by F = k q1 q2 / r^2.</p>
+
+        <h3 class="mt-4 font-semibold">Electric Field</h3>
+        <p>The electric field at a point is defined as the force per unit positive charge placed at that point. Field of a point charge: E = k q / r^2 (radial).</p>
+
+        <h3 class="mt-4 font-semibold">Electric Potential</h3>
+        <p>Potential (V) is the work done per unit charge to bring a small positive test charge from infinity to the point. For a point charge V = k q / r.</p>
+
+        <h3 class="mt-4 font-semibold">Worked Example</h3>
+        <p>Find the force between two charges of 2 μC and 3 μC separated by 0.5 m. Use k = 9×10^9 N·m²/C².</p>
+        <p class="italic">Solution sketch:</p>
+        <p>Compute F = k q1 q2 / r^2 = 9e9 × 2e-6 × 3e-6 / 0.5^2 ≈ 216 N (repulsive if same sign).</p>
+
+        <h3 class="mt-4 font-semibold">Applications & Notes</h3>
+        <ul class="list-disc ml-6">
+          <li>Superposition principle for multiple charges.</li>
+          <li>Fields from continuous charge distributions can be found by integration (line, surface, volume).</li>
+          <li>Equipotential surfaces are perpendicular to electric field lines.</li>
+        </ul>
+      </article>
+    </div>
+  </div>
+</body>
+</html>
