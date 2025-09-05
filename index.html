@@ -53,15 +53,86 @@
   <style>
     /* Hero Section Styles */
     .hero {
-      padding: 8rem 2rem 6rem;
+      padding: 7.5rem 1.5rem 6rem;
       position: relative;
       overflow: visible;
-      min-height: calc(100vh - 170px);
-      display: flex;
-      align-items: center;
-      background: linear-gradient(180deg, #f7fafc 0%, #ffffff 100%);
-      margin-top: 170px; /* Account for navbar (120px) + announcement (50px) */
+      min-height: calc(100vh - 160px);
+      background: linear-gradient(180deg, #fbfbfe 0%, #ffffff 100%);
+      margin-top: 160px; /* Account for navbar + announcement */
     }
+
+    /* Two-column hero grid used on desktop to match the design preview */
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 2.5rem;
+      align-items: center;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    @media (min-width: 768px) {
+      .hero-grid {
+        grid-template-columns: 1fr 520px;
+      }
+      .hero-left { text-align: left; }
+    }
+
+    .hero-left h1 { font-size: 3.25rem; line-height: 1.02; }
+    .hero-left p { font-size: 1.125rem; color: #2563EB; }
+
+    /* Right-side mockup card that resembles the floating dashboard card in the screenshots */
+    .mockup-card {
+      width: 100%;
+      max-width: 520px;
+      background: linear-gradient(180deg, #ffffff, #f7f9ff);
+      border-radius: 18px;
+      box-shadow: 0 20px 50px rgba(66, 88, 160, 0.08);
+      padding: 1.25rem;
+      border: 1px solid rgba(66, 88, 160, 0.04);
+    }
+
+  .mockup-header { display:flex; align-items:center; justify-content:space-between; gap:12px; }
+  .mockup-pill { background: linear-gradient(90deg,#eef2ff,#f0f7ff); padding:6px 10px; border-radius:999px; color:#334155; font-weight:600; font-size:0.9rem; }
+  .mockup-pill.alt { background: transparent; color: #2563EB; font-weight: 700; }
+  .mockup-card .stat { background: white; border-radius:12px; padding:10px 14px; box-shadow: 0 8px 30px rgba(66,153,225,0.06); }
+  .mockup-gap { height:14px; }
+  .mockup-row { display:flex; gap:10px; align-items:center; }
+  .mockup-progress { flex:1; }
+  .mockup-bar { height:8px; border-radius:6px; }
+  .mockup-bar.primary { background: linear-gradient(90deg,#3B82F6,#60A5FA); width:80%; }
+  .mockup-bar.secondary { height:8px; background:#e6eefb; border-radius:6px; width:60%; }
+  .mockup-right { width:90px; text-align:right; }
+  .mockup-right .muted { font-size:0.9rem; color:#6b7280; }
+  .mockup-spacer { height:10px; }
+  .mockup-strong { font-weight:700; color:#1f2937; }
+
+  /* Cortex icon sizing in chat button */
+  .cortex-icon { width:36px; height:36px; display:block; }
+
+    /* Feature cards — warmer pastel colors, rounded, elevated */
+    #features .feature-card {
+      border-radius: 16px;
+      padding: 1.5rem;
+      min-height: 220px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      box-shadow: 0 12px 30px rgba(16,24,40,0.04);
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+      background: linear-gradient(180deg, rgba(255,255,255,0.9), rgba(250,250,255,0.95));
+      border: 1px solid rgba(15,23,42,0.03);
+    }
+    #features .feature-card:hover { transform: translateY(-6px); box-shadow: 0 20px 48px rgba(16,24,40,0.08); }
+
+    /* Make feature icons slightly larger and with soft color swatches */
+    .feature-card .icon-swatch { width:56px; height:56px; border-radius:12px; display:flex; align-items:center; justify-content:center; margin-bottom:18px; }
+
+    /* Slightly narrower content column so sections read like the screenshots */
+    .container.narrow { max-width: 1100px; margin: 0 auto; }
+
+    /* Footer contrast tweak to match dark footer in screenshots */
+    .footer { background: linear-gradient(180deg,#0f1724,#111827); padding-top:4.5rem; }
 
     .hero-content {
       max-width: 1200px;
@@ -908,6 +979,29 @@
       }
     }
   </style>
+  <style>
+    /* Small added styles: Timeline, Portfolio, Pricing (keeps existing theme) */
+    .timeline { max-width: 1100px; margin: 0 auto; padding: 3.5rem 1rem; }
+    .timeline .line { position: relative; padding-left: 48px; }
+    .timeline .line::before { content: ""; position: absolute; left: 20px; top: 8px; bottom: 8px; width: 6px; background: linear-gradient(180deg,#e9d5ff,#c7d2fe); border-radius: 4px; }
+    .timeline .event { position: relative; padding-left: 42px; margin-bottom: 2.25rem; }
+    .timeline .event .dot { position: absolute; left: 12px; top: 6px; width: 14px; height: 14px; border-radius: 50%; background: #7c3aed; box-shadow: 0 8px 24px rgba(124,58,237,0.12); }
+    .timeline .event h4 { margin-bottom: 0.35rem; }
+    .timeline .event p { color: #6b7280; }
+
+    .portfolio-grid { max-width: 1100px; margin: 0 auto; padding: 3rem 1rem; display: grid; grid-template-columns: 1fr; gap: 1rem; }
+    @media (min-width: 768px) { .portfolio-grid { grid-template-columns: repeat(4, 1fr); } }
+    .portfolio-card { background: linear-gradient(180deg,#ffffff,#fbfdff); border-radius: 12px; padding: 1rem; text-align: center; box-shadow: 0 12px 30px rgba(2,6,23,0.04); transition: transform .22s ease, box-shadow .22s ease; }
+    .portfolio-card:hover { transform: translateY(-6px); box-shadow: 0 20px 48px rgba(2,6,23,0.08); }
+    .portfolio-card img { width: 100%; height: 120px; object-fit: cover; border-radius: 8px; margin-bottom: 0.75rem; }
+
+    .pricing-cards { max-width: 1100px; margin: 0 auto; padding: 3rem 1rem; display: grid; gap: 1rem; grid-template-columns: 1fr; }
+    @media (min-width: 768px) { .pricing-cards { grid-template-columns: repeat(3, 1fr); } }
+    .pricing-card { background: linear-gradient(180deg,#ffffff,#f8fbff); padding: 1.6rem; border-radius: 12px; text-align: center; box-shadow: 0 12px 30px rgba(2,6,23,0.04); border: 1px solid rgba(31,41,55,0.04); }
+    .pricing-card.highlight { transform: translateY(-8px) scale(1.02); background: linear-gradient(90deg,#6366f1,#7c3aed); color: #fff; border: none; box-shadow: 0 30px 60px rgba(99,102,241,0.14); }
+    .pricing-card .price { font-size: 2rem; font-weight: 800; margin: 1rem 0; }
+    .pricing-card .features { color: rgba(255,255,255,0.9); }
+  </style>
 </head>
 <body class="bg-gray-50 font-sans antialiased">
 
@@ -952,50 +1046,134 @@
   <main>
     <!-- Hero Section -->
     <section id="hero" class="py-24 bg-white">
-      <div class="container mx-auto px-6 text-center">
-        <div class="max-w-4xl mx-auto">
-          <!-- UNESCO Pill Statement -->
-          <div class="flex justify-center mb-16 mt-12" data-aos="fade-down">
-            <span class="bg-red-100 text-red-600 px-8 py-3 rounded-full shadow-sm text-base">According to UNESCO, Sub-Saharan Africa has the highest rate of education exclusion in the world.</span>
+      <div class="hero-grid px-6">
+        <!-- Left column: text -->
+        <div class="hero-left" data-aos="fade-up">
+          <div class="flex items-start mb-6">
+            <span class="bg-red-100 text-red-600 px-6 py-2 rounded-full shadow-sm text-sm">According to UNESCO, Sub-Saharan Africa has the highest rate of education exclusion in the world.</span>
+          </div>
+          <h1 class="text-5xl md:text-6xl font-extrabold leading-tight mb-6 text-gray-900">Let's Change The Story Together</h1>
+          <p class="text-lg md:text-xl text-blue-600 leading-relaxed mb-4">Join our mission to transform African education through AI-powered learning. We're not just preparing students for exams — we're building the foundation for Africa's future leaders.</p>
+          <p class="text-lg md:text-xl text-blue-600 leading-relaxed mb-8">Let's address this challenge and create a brighter future for African education.</p>
+
+          <div class="flex items-center gap-4 mb-6">
+            <a href="general/signup-new.html" class="button button-primary px-8 py-4">Start Learning Now</a>
+            <button id="open-impact-modal" class="button button-secondary px-8 py-4">Discover Our Impact</button>
           </div>
 
-          <!-- Main Heading -->
-          <h1 class="text-5xl md:text-6xl font-black leading-tight mb-12 text-gray-900" data-aos="fade-up">
-            Let's Change The Story Together
-          </h1>
+          <div class="flex items-center gap-4">
+            <a href="general/signup-new.html" class="inline-block py-2 px-4 bg-blue-600 text-white rounded-full text-sm font-semibold shadow-sm">Get Started Now</a>
+            <a href="#features" class="inline-block py-2 px-4 border border-blue-600 text-blue-600 rounded-full text-sm font-semibold">Explore Features</a>
+          </div>
+        </div>
 
-          <!-- Mission Statement -->
-          <p class="text-lg md:text-xl text-blue-600 leading-relaxed mb-10" data-aos="fade-up" data-aos-delay="100">
-            Join our mission to transform African education through AI-powered learning. We're not just preparing students for exams - we're building the foundation for Africa's future leaders.
-          </p>
-
-          <p class="text-lg md:text-xl text-blue-600 leading-relaxed mb-16" data-aos="fade-up" data-aos-delay="200">
-            Let's address this challenge and create a brighter future for African education.
-          </p>
-
-          <!-- Buttons Container (matches reference layout) -->
-          <div class="max-w-2xl mx-auto space-y-12" data-aos="fade-up" data-aos-delay="300">
-            <!-- Primary actions: side-by-side on md+, stacked on mobile -->
-            <div class="flex flex-col md:flex-row md:space-x-6 items-center justify-center space-y-6 md:space-y-0">
-              <a href="general/signup-new.html" class="w-64 md:w-56 py-4 text-center bg-blue-600 hover:bg-blue-700 text-white text-lg font-semibold rounded-full shadow-lg transition-transform transform hover:-translate-y-1">
-                Start Learning Now
-              </a>
-
-              <button id="open-impact-modal" class="w-64 md:w-56 py-4 text-center border-2 border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white text-lg font-semibold rounded-full transition-transform transform hover:-translate-y-1">
-                Discover Our Impact
-              </button>
+        <!-- Right column: floating mockup card -->
+        <div class="hero-right flex justify-center md:justify-end" data-aos="fade-left">
+          <div class="mockup-card">
+            <div class="mockup-header">
+              <div class="mockup-pill">Live Project Dashboard</div>
+              <div class="mockup-pill alt">98%</div>
             </div>
-
-            <!-- Secondary pill buttons centered below -->
-            <div class="flex items-center justify-center space-x-4 mb-8">
-              <a href="general/signup-new.html" class="inline-block py-2 px-4 bg-blue-600 text-white rounded-full text-sm font-semibold shadow-sm">Get Started Now</a>
-              <a href="#features" class="inline-block py-2 px-4 border border-blue-600 text-blue-600 rounded-full text-sm font-semibold">Explore Features</a>
+            <div class="mockup-gap"></div>
+            <div class="mockup-row">
+              <div class="mockup-progress">
+                <div class="mockup-bar primary"></div>
+                <div class="mockup-spacer"></div>
+                <div class="mockup-bar secondary"></div>
+              </div>
+              <div class="mockup-right">
+                <div class="mockup-strong">Progress</div>
+                <div class="muted">Active</div>
+              </div>
             </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
-            <!-- Teacher link -->
-            <div class="text-center">
-              <a href="/teachers/teacher-confirmation" class="text-blue-600 hover:text-blue-800 text-sm font-medium">Are you a teacher?</a>
-            </div>
+    <!-- Timeline / Roadmap Section -->
+    <section id="timeline" class="py-16 bg-gray-50">
+      <div class="timeline" data-aos="fade-up">
+        <div class="text-center mb-12">
+          <span class="text-primary font-semibold">ROADMAP</span>
+          <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mt-2">How JUANOVA CORTEX Works</h2>
+          <p class="text-gray-600 max-w-2xl mx-auto">A simple path from onboarding to exam success — personalized learning, practice, and progress tracking.</p>
+        </div>
+        <div class="line">
+          <div class="event">
+            <div class="dot"></div>
+            <h4 class="font-semibold">Sign up & Onboard</h4>
+            <p>Create your free account and tell us your exam and subject priorities. We craft a study plan for you.</p>
+          </div>
+          <div class="event">
+            <div class="dot"></div>
+            <h4 class="font-semibold">Personalized Practice</h4>
+            <p>Use the AI tutor for step-by-step help, take realistic mock exams, and review instant analytics.</p>
+          </div>
+          <div class="event">
+            <div class="dot"></div>
+            <h4 class="font-semibold">Live Sessions & Dashboard</h4>
+            <p>Attend live tutor sessions, track progress on your dashboard, and refine your study roadmap.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Portfolio / Examples Section -->
+    <section id="portfolio" class="py-12 bg-white">
+      <div class="portfolio-grid" data-aos="fade-up">
+        <div class="text-left md:col-span-4 mb-6">
+          <span class="text-primary font-semibold">FEATURED</span>
+          <h3 class="text-2xl font-bold text-gray-800 mt-2">Student Success Stories & Examples</h3>
+        </div>
+        <div class="portfolio-card">
+          <img src="assets/images/hero-platform.png" alt="Mockup 1" />
+          <h4 class="font-semibold">Mock Exam Interface</h4>
+          <p class="text-sm text-gray-600">Realistic timing and instant feedback.</p>
+        </div>
+        <div class="portfolio-card">
+          <img src="assets/images/practice exam .png" alt="Mockup 2" />
+          <h4 class="font-semibold">AI Tutor Conversation</h4>
+          <p class="text-sm text-gray-600">Step-by-step explanations for hard problems.</p>
+        </div>
+        <div class="portfolio-card">
+          <img src="assets/images/learning report 1.png" alt="Mockup 3" />
+          <h4 class="font-semibold">Performance Analytics</h4>
+          <p class="text-sm text-gray-600">Track gains and pinpoint weaknesses.</p>
+        </div>
+        <div class="portfolio-card">
+          <img src="assets/images/video library 1.png" alt="Mockup 4" />
+          <h4 class="font-semibold">Live Tutor Room</h4>
+          <p class="text-sm text-gray-600">Group sessions and one-on-one help.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section id="pricing" class="py-16 bg-gray-50">
+      <div class="pricing-cards" data-aos="fade-up">
+        <div class="text-center mb-8">
+          <span class="text-primary font-semibold">PLANS</span>
+          <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mt-2">Simple, transparent plans</h2>
+        </div>
+        <div class="grid md:grid-cols-3 gap-6">
+          <div class="pricing-card">
+            <h4 class="font-semibold">Free</h4>
+            <div class="price">$0 <small class="text-sm">/mo</small></div>
+            <p class="text-gray-600">Core features, AI tutor access, limited mocks.</p>
+            <div class="mt-4"><a class="button button-primary" href="/general/signup-new.html">Get Started</a></div>
+          </div>
+          <div class="pricing-card highlight">
+            <h4 class="font-semibold">Popular</h4>
+            <div class="price">$9 <small class="text-sm">/mo</small></div>
+            <p class="features">Everything in Free, plus unlimited mocks and live sessions.</p>
+            <div class="mt-4"><a class="button bg-white text-primary" href="/general/signup-new.html">Choose Plan</a></div>
+          </div>
+          <div class="pricing-card">
+            <h4 class="font-semibold">School</h4>
+            <div class="price">Contact</div>
+            <p class="text-gray-600">Institutional plans and analytics for schools.</p>
+            <div class="mt-4"><a class="button button-secondary" href="#">Contact Sales</a></div>
           </div>
         </div>
       </div>
@@ -1026,7 +1204,7 @@
 
     <!-- Features Section -->
     <section id="features" class="py-20 bg-white">
-      <div class="container mx-auto px-4">
+      <div class="container narrow mx-auto px-4" id="features-container">
         <div class="text-center max-w-3xl mx-auto mb-16">
           <span class="text-primary font-semibold">OUR FEATURES</span>
           <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mt-2 mb-4">Everything You Need to Succeed</h2>
@@ -1034,50 +1212,38 @@
         </div>
         <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           <!-- Feature 1 -->
-          <div class="bg-gray-50 p-8 rounded-2xl shadow-sm hover:shadow-xl transition-shadow duration-300" data-aos="fade-up">
-            <div class="bg-blue-100 text-primary w-16 h-16 rounded-full flex items-center justify-center mb-6">
-              <i class="fas fa-robot text-2xl"></i>
-            </div>
+          <div class="feature-card" data-aos="fade-up">
+            <div class="icon-swatch bg-blue-100 text-primary"><i class="fas fa-robot text-2xl"></i></div>
             <h3 class="text-xl font-bold text-gray-800 mb-3">AI-Powered Tutor</h3>
             <p class="text-gray-600">Get instant, step-by-step explanations for any question, 24/7. No more getting stuck on difficult concepts.</p>
           </div>
           <!-- Feature 2 -->
-          <div class="bg-gray-50 p-8 rounded-2xl shadow-sm hover:shadow-xl transition-shadow duration-300" data-aos="fade-up" data-aos-delay="100">
-            <div class="bg-green-100 text-green-600 w-16 h-16 rounded-full flex items-center justify-center mb-6">
-              <i class="fas fa-tasks text-2xl"></i>
-            </div>
+          <div class="feature-card" data-aos="fade-up" data-aos-delay="100">
+            <div class="icon-swatch bg-green-100 text-green-600"><i class="fas fa-tasks text-2xl"></i></div>
             <h3 class="text-xl font-bold text-gray-800 mb-3">Personalized Study Plans</h3>
             <p class="text-gray-600">Our AI analyzes your strengths and weaknesses to create a custom study roadmap that focuses on what you need most.</p>
           </div>
           <!-- Feature 3 -->
-          <div class="bg-gray-50 p-8 rounded-2xl shadow-sm hover:shadow-xl transition-shadow duration-300" data-aos="fade-up" data-aos-delay="200">
-            <div class="bg-purple-100 text-purple-600 w-16 h-16 rounded-full flex items-center justify-center mb-6">
-              <i class="fas fa-pencil-ruler text-2xl"></i>
-            </div>
+          <div class="feature-card" data-aos="fade-up" data-aos-delay="200">
+            <div class="icon-swatch bg-purple-100 text-purple-600"><i class="fas fa-pencil-ruler text-2xl"></i></div>
             <h3 class="text-xl font-bold text-gray-800 mb-3">Realistic Mock Exams</h3>
             <p class="text-gray-600">Practice with timed exams that mimic the format and difficulty of WAEC, NECO, and JAMB to eliminate exam-day surprises.</p>
           </div>
           <!-- Feature 4 -->
-          <div class="bg-gray-50 p-8 rounded-2xl shadow-sm hover:shadow-xl transition-shadow duration-300" data-aos="fade-up" data-aos-delay="300">
-            <div class="bg-red-100 text-red-600 w-16 h-16 rounded-full flex items-center justify-center mb-6">
-              <i class="fas fa-video text-2xl"></i>
-            </div>
+          <div class="feature-card" data-aos="fade-up" data-aos-delay="300">
+            <div class="icon-swatch bg-red-100 text-red-600"><i class="fas fa-video text-2xl"></i></div>
             <h3 class="text-xl font-bold text-gray-800 mb-3">Live Tutor Sessions</h3>
             <p class="text-gray-600">Join group sessions or book one-on-one time with expert tutors for in-depth guidance and support.</p>
           </div>
           <!-- Feature 5 -->
-          <div class="bg-gray-50 p-8 rounded-2xl shadow-sm hover:shadow-xl transition-shadow duration-300" data-aos="fade-up" data-aos-delay="400">
-            <div class="bg-yellow-100 text-yellow-600 w-16 h-16 rounded-full flex items-center justify-center mb-6">
-              <i class="fas fa-chart-line text-2xl"></i>
-            </div>
+          <div class="feature-card" data-aos="fade-up" data-aos-delay="400">
+            <div class="icon-swatch bg-yellow-100 text-yellow-600"><i class="fas fa-chart-line text-2xl"></i></div>
             <h3 class="text-xl font-bold text-gray-800 mb-3">Performance Analytics</h3>
             <p class="text-gray-600">Track your progress with detailed reports that show you where you're improving and where to focus next.</p>
           </div>
           <!-- Feature 6 -->
-          <div class="bg-gray-50 p-8 rounded-2xl shadow-sm hover:shadow-xl transition-shadow duration-300" data-aos="fade-up" data-aos-delay="500">
-            <div class="bg-indigo-100 text-indigo-600 w-16 h-16 rounded-full flex items-center justify-center mb-6">
-              <i class="fas fa-book-open text-2xl"></i>
-            </div>
+          <div class="feature-card" data-aos="fade-up" data-aos-delay="500">
+            <div class="icon-swatch bg-indigo-100 text-indigo-600"><i class="fas fa-book-open text-2xl"></i></div>
             <h3 class="text-xl font-bold text-gray-800 mb-3">Comprehensive Content Library</h3>
             <p class="text-gray-600">Access thousands of practice questions, video lessons, and study notes across all your subjects.</p>
           </div>
@@ -1446,8 +1612,8 @@
   }
 </style>
 
-<div id="cortex-ai-chat-button" role="button" aria-label="Open Cortex AI chat">
-  <img src="/assets/images/cortex-icon.svg" alt="Cortex AI" style="width:36px;height:36px;display:block;" />
+  <div id="cortex-ai-chat-button" role="button" aria-label="Open Cortex AI chat">
+  <img src="/assets/images/cortex-icon.svg" alt="Cortex AI" class="cortex-icon" />
 </div>
 <iframe 
   id="cortex-ai-chat-popup"  
@@ -1542,7 +1708,6 @@
     }
   });
 </script>
-
 
 </body>
 </html>
