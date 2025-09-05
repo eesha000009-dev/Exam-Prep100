@@ -49,7 +49,7 @@
   <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-analytics-compat.js"></script>
   <!-- Firebase Config -->
-  <script src="js/firebase-config.js"></script>
+  <script type="module" src="js/firebase-config.js"></script>
   <style>
     /* Hero Section Styles */
     .hero {
@@ -925,9 +925,9 @@
           <li><a href="#testimonials" class="hover:text-primary transition-colors">Testimonials</a></li>
           <li><a href="#faq" class="hover:text-primary transition-colors">FAQ</a></li>
         </ul>
-  <div class="hidden md:flex items-center space-x-4">
-          <a href="/general/login-new.html" class="text-primary font-semibold hover:opacity-80 transition-opacity">Log In</a>
-          <a href="/general/signup-new.html" class="button button-primary">Get Started Free</a>
+        <div class="hidden md:flex items-center space-x-4">
+          <a id="nav-login-link" href="/general/login-new.html" class="text-primary font-semibold hover:opacity-80 transition-opacity">Log In</a>
+          <a id="nav-cta-link" href="/general/signup-new.html" class="button button-primary">Get Started Free</a>
         </div>
   <button class="md:hidden" id="mobile-menu-button" aria-label="Open Menu">
           <i class="fas fa-bars text-2xl text-gray-700"></i>
@@ -943,8 +943,8 @@
         <li><a href="#faq" class="block hover:text-primary transition-colors">FAQ</a></li>
       </ul>
       <div class="mt-6 flex flex-col space-y-4">
-        <a href="/general/login-new.html" class="text-center py-2 px-4 rounded-full border border-primary text-primary font-semibold hover:bg-blue-50 transition-colors">Log In</a>
-        <a href="/general/signup-new.html" class="button button-primary text-center">Get Started Free</a>
+        <a id="mobile-login-link" href="/general/login-new.html" class="text-center py-2 px-4 rounded-full border border-primary text-primary font-semibold hover:bg-blue-50 transition-colors">Log In</a>
+        <a id="mobile-cta-link" href="/general/signup-new.html" class="button button-primary text-center">Get Started Free</a>
       </div>
     </div>
   </header>
@@ -1426,7 +1426,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 28px;
+    font-size: 0; /* using image inside */
     cursor: pointer;
     box-shadow: 0px 4px 12px rgba(0,0,0,0.3);
     z-index: 1000;
@@ -1446,7 +1446,9 @@
   }
 </style>
 
-<div id="cortex-ai-chat-button">💬</div>
+<div id="cortex-ai-chat-button" role="button" aria-label="Open Cortex AI chat">
+  <img src="/assets/images/cortex-icon.svg" alt="Cortex AI" style="width:36px;height:36px;display:block;" />
+</div>
 <iframe 
   id="cortex-ai-chat-popup"  
   src="https://app.edcafe.ai/chatbots/68ba4887cee035583b5a01f3">
@@ -1460,6 +1462,84 @@
     popup.style.display = (popup.style.display === "none" || popup.style.display === "") 
       ? "block" 
       : "none";
+  });
+</script>
+
+<!-- Firebase auth: toggle nav links when signed in -->
+<script type="module">
+  import { onAuthStateChanged, signOut } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js';
+  import { auth } from './js/firebase-config.js';
+
+  console.debug('Index: Firebase module auth imported', !!auth);
+
+  function setSignedInUI(user) {
+    console.debug('Auth state: signed in', user && user.uid);
+    const loginLink = document.getElementById('nav-login-link');
+    const ctaLink = document.getElementById('nav-cta-link');
+    if (loginLink) {
+      loginLink.textContent = 'Go to Dashboard';
+      loginLink.href = '/students/student-dashboard.html';
+    }
+    if (ctaLink) {
+      ctaLink.textContent = 'Sign out';
+      ctaLink.href = '#';
+      ctaLink.addEventListener('click', async (e) => {
+        e.preventDefault();
+        await signOut(auth);
+      });
+    }
+
+    const mLogin = document.getElementById('mobile-login-link');
+    const mCta = document.getElementById('mobile-cta-link');
+    if (mLogin) {
+      mLogin.textContent = 'Go to Dashboard';
+      mLogin.href = '/students/student-dashboard.html';
+    }
+    if (mCta) {
+      mCta.textContent = 'Sign out';
+      mCta.href = '#';
+      mCta.addEventListener('click', async (e) => {
+        e.preventDefault();
+        await signOut(auth);
+      });
+    }
+  }
+
+  function setSignedOutUI() {
+    console.debug('Auth state: signed out');
+    const loginLink = document.getElementById('nav-login-link');
+    const ctaLink = document.getElementById('nav-cta-link');
+    if (loginLink) {
+      loginLink.textContent = 'Log In';
+      loginLink.href = '/general/login-new.html';
+    }
+    if (ctaLink) {
+      const replacement = ctaLink.cloneNode(true);
+      replacement.textContent = 'Get Started Free';
+      replacement.href = '/general/signup-new.html';
+      ctaLink.replaceWith(replacement);
+    }
+
+    const mLogin = document.getElementById('mobile-login-link');
+    const mCta = document.getElementById('mobile-cta-link');
+    if (mLogin) {
+      mLogin.textContent = 'Log In';
+      mLogin.href = '/general/login-new.html';
+    }
+    if (mCta) {
+      const replacement = mCta.cloneNode(true);
+      replacement.textContent = 'Get Started Free';
+      replacement.href = '/general/signup-new.html';
+      mCta.replaceWith(replacement);
+    }
+  }
+
+  onAuthStateChanged(auth, (user) => {
+    if (user) {
+      setSignedInUI(user);
+    } else {
+      setSignedOutUI();
+    }
   });
 </script>
 

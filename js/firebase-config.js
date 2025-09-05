@@ -15,6 +15,19 @@ export const firebaseConfig = {
   recaptchaSiteKey: "6LcpRagrAAAAAGO6Kh1E_QsWP7z38jjr1EJqeg6W"
 };
 
-// Do not initialize Firebase here; each page will import this config and initialize
-// the SDK as needed. This keeps initialization in modules and avoids duplicate inits.
+// Initialize (modular) Firebase here in a safe, idempotent way and export `auth`.
+// This centralizes initialization so pages can import `auth` directly from this module
+// without duplicating initialization logic or mixing compat/modular SDKs.
+import { initializeApp, getApps } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js';
+import { getAuth } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js';
+
+let app;
+if (!getApps().length) {
+  app = initializeApp(firebaseConfig);
+} else {
+  app = getApps()[0];
+}
+
+export const appInstance = app;
+export const auth = getAuth(app);
 
