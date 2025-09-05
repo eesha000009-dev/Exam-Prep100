@@ -907,1158 +907,513 @@
         grid-template-columns: repeat(2, 1fr);
       }
     }
-
-    .cta-section {
-      background: linear-gradient(135deg, #4299e1 0%, #3182ce 100%);
-      padding: 4rem 2rem;
-      text-align: center;
-      color: white;
-    }
-
-    .cta-content {
-      max-width: 800px;
-      margin: 0 auto;
-    }
-
-    .cta-content h2 {
-      font-size: 2.5rem;
-      margin-bottom: 1rem;
-    }
-
-    .cta-content p {
-      font-size: 1.2rem;
-      margin-bottom: 2rem;
-    }
-
-    .cta-buttons {
-      display: flex;
-      gap: 1rem;
-      justify-content: center;
-    }
-
-    .trust-badges {
-      padding: 3rem 2rem;
-      background: #f8fafc;
-    }
-
-    .trust-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 2rem;
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0 1rem;
-    }
-
-    .trust-item {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      text-align: center;
-      gap: 1rem;
-    }
-
-    @media (max-width: 1024px) {
-      .trust-grid {
-        grid-template-columns: repeat(4, 1fr);
-        gap: 1.5rem;
-      }
-    }
-
-    @media (max-width: 768px) {
-      .trust-grid {
-        grid-template-columns: repeat(4, 1fr);
-        gap: 1rem;
-      }
-
-      .trust-badges {
-        padding: 2rem 1rem;
-      }
-
-      .trust-item {
-        gap: 0.5rem;
-      }
-
-      .trust-item i {
-        font-size: 1.5rem;
-      }
-
-      .trust-item span {
-        font-size: 0.85rem;
-      }
-
-      .trust-item img {
-        width: 36px;
-        height: 36px;
-      }
-
-      .cta-section {
-        padding: 3rem 1rem;
-      }
-
-      .cta-content h2 {
-        font-size: 1.75rem;
-      }
-
-      .cta-content p {
-        font-size: 1rem;
-        margin-bottom: 1.5rem;
-      }
-    }
-
-    @media (max-width: 480px) {
-      .trust-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 1rem;
-      }
-    }
-
-    .trust-item img {
-      width: 48px;
-      height: 48px;
-      object-fit: contain;
-    }
-
-    .trust-item i {
-      font-size: 2rem;
-      color: #4299e1;
-    }
-
-    .trust-item span {
-      font-weight: 500;
-      color: #2d3748;
-    }
-
-    .programmer-profile {
-      padding: 4rem 2rem;
-      background: linear-gradient(135deg, #f6f9fc 0%, #eef2f7 100%);
-    }
-
-    .programmer-card {
-      max-width: 1000px;
-      margin: 2rem auto;
-      padding: 2rem;
-      border-radius: 20px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-    }
-
-    .programmer-image img {
-      width: 200px;
-      height: 200px;
-      border-radius: 50%;
-      object-fit: cover;
-      margin: 0 auto 2rem;
-      display: block;
-      border: 5px solid #fff;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-    }
-
-    .programmer-details {
-      text-align: left;
-      max-width: 800px;
-      margin: 0 auto;
-      padding: 2rem;
-      background: rgba(255, 255, 255, 0.95);
-      border-radius: 15px;
-      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-    }
-
-    .info-dropdown {
-      text-align: center;
-      margin: 1rem 0 2rem;
-    }
-
-    .dropdown-toggle {
-      background: #4299e1;
-      color: white;
-      border: none;
-      padding: 1rem 2rem;
-      border-radius: 8px;
-      font-size: 1.1rem;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    }
-
-    .dropdown-toggle:hover {
-      background: #3182ce;
-      transform: translateY(-2px);
-    }
-
-    .dropdown-toggle i {
-      transition: transform 0.3s ease;
-    }
-
-    .dropdown-toggle.active i {
-      transform: rotate(180deg);
-    }
-
-    .profile-content {
-      display: none;
-      opacity: 0;
-      transform: translateY(-10px);
-      transition: all 0.3s ease;
-    }
-
-    .profile-content.show {
-      display: block;
-      opacity: 1;
-      transform: translateY(0);
-    }
-    .programmer-details h3 {
-      font-size: 2.5rem;
-      color: #2d3748;
-      margin-bottom: 2rem;
-      text-align: center;
-      position: relative;
-      padding-bottom: 1rem;
-    }
-
-    .programmer-details h3:after {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 100px;
-      height: 4px;
-      background: linear-gradient(90deg, #4299e1, #3182ce);
-      border-radius: 2px;
-    }
-
-    .info-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 1.5rem;
-      margin-bottom: 2rem;
-    }
-
-    .personal-info, .contact-info {
-      padding: 1.5rem;
-      background: #f8fafc;
-      border-radius: 12px;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-      transition: transform 0.3s ease;
-    }
-
-    .personal-info:hover, .contact-info:hover {
-      transform: translateY(-5px);
-    }
-
-    .info-item {
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-      margin-bottom: 1rem;
-      padding: 0.5rem;
-      border-radius: 8px;
-      background: white;
-    }
-
-    .info-item i {
-      font-size: 1.2rem;
-      color: #4299e1;
-      width: 24px;
-    }
-
-    .skills-section {
-      margin-top: 2rem;
-    }
-
-    .skills-section h4 {
-      color: #2d3748;
-      font-size: 1.25rem;
-      margin: 2rem 0 1rem;
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-      padding-bottom: 0.5rem;
-      border-bottom: 2px solid #e2e8f0;
-    }
-
-  /* modern quote slider styles removed (no matching elements in the page) */
-
-    .skills-section ul {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 1rem;
-      padding: 0;
-      list-style: none;
-    }
-
-    .skills-section li {
-      padding: 0.75rem 1rem;
-      background: white;
-      border-radius: 8px;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      transition: all 0.3s ease;
-    }
-
-    .skills-section li:hover {
-      transform: translateX(5px);
-      background: #f0f9ff;
-    }
-
-    .skills-section li:before {
-      content: "•";
-      color: #4299e1;
-      font-weight: bold;
-      font-size: 1.5rem;
-    }
-
-    .inspiration {
-      margin-top: 2.5rem;
-      text-align: center;
-      padding: 1.5rem;
-      background: linear-gradient(to right, rgba(66, 153, 225, 0.05), rgba(49, 130, 206, 0.05));
-      border-radius: 10px;
-    }
-
-    .inspiration h4 {
-      color: #2d3748;
-      font-size: 1.25rem;
-      margin-bottom: 0.75rem;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 0.5rem;
-    }
-
-    .inspiration h4 i {
-      color: #4299e1;
-      font-size: 1.1rem;
-    }
-
-    .role-model-content {
-      font-size: 1.1rem;
-      color: #2d3748;
-      padding: 0.75rem 1rem;
-      background: white;
-      border-radius: 6px;
-      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
-      display: inline-block;
-      min-width: 180px;
-    }
-
-    .role-model-content strong {
-      color: #4299e1;
-      font-weight: 600;
-    }
-
-    .mission-statement {
-      margin-top: 2rem;
-      padding: 1rem;
-      background: #4299e1;
-      color: white;
-      border-radius: 10px;
-      text-align: center;
-      font-style: italic;
-    }
-
-    @media (max-width: 768px) {
-      .programmer-card {
-        padding: 1rem;
-      }
-      
-    .programmer-details h3 {
-      font-size: 1.5rem;
-    }
-    .programmer-profile .section-header h2 {
-      font-size: 1.5rem;
-    }
-    .programmer-profile .section-header .section-tag {
-      font-size: 0.9rem;
-    }
-    .cta-section h2 {
-      font-size: 1.5rem;
-    }
-    .cta-section p {
-      font-size: 0.9rem;
-    }
-    .footer-section h3 {
-      font-size: 1.1rem;
-    }
-    .footer-section p, .footer-section ul li a {
-      font-size: 0.9rem;
-    }
-    .footer-bottom p {
-      font-size: 0.8rem;
-    }
-    .footer-links a {
-      font-size: 0.8rem;
-    }    /* Remove duplicate navbar styles */
-
-    .logo img {
-      height: 100px; /* Magnify logo size */
-      width: auto;
-      object-fit: contain;
-    }
-    .features-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1.5rem;
-    }
-
-    @media (max-width: 768px) {
-      .features-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 1rem;
-      }
-      .subjects-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 1rem;
-      }
-    }
-
-    @media (max-width: 480px) {
-      .features-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 1rem;
-      }
-      .subjects-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 1rem;
-      }
-    }
   </style>
 </head>
-<body>
-  <nav class="navbar glass-effect">
-    <div class="nav-container">
-      <div class="logo flex items-center gap-2">
-  <img src="/assets/images/logo.png" alt="JUANOVA CORTEX Logo" class="logo-img" loading="lazy" style="height:64px; width:auto; object-fit:contain;" />
-      </div>
-      <div class="nav-links">
-        <div class="nav-item dropdown">
-          <a href="#features" class="dropdown-trigger">
-            Features
-            <i class="fas fa-chevron-down"></i>
-          </a>
-          <div class="dropdown-content">
-            <a href="#ai-tutoring">
-              <i class="fas fa-robot"></i>
-              AI Tutoring
-            </a>
-            <a href="#live-classes">
-              <i class="fas fa-video"></i>
-              Live Classes
-            </a>
-            <a href="#practice-tests">
-              <i class="fas fa-file-alt"></i>
-              Practice Tests
-            </a>
-          </div>
+<body class="bg-gray-50 font-sans antialiased">
+
+  <!-- Header -->
+  <header class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-white/80 backdrop-blur-sm shadow-sm" id="navbar">
+    <div class="container mx-auto px-4">
+      <nav class="flex items-center justify-between py-4">
+        <a href="/" class="flex items-center space-x-3">
+          <img src="/assets/images/logo.png" alt="JUANOVA CORTEX Logo" class="h-10 w-10 rounded-full">
+          <span class="text-2xl font-bold text-gray-800">JUANOVA CORTEX</span>
+        </a>
+  <ul class="hidden md:flex items-center space-x-8 font-medium text-gray-600">
+          <li><a href="#features" class="hover:text-primary transition-colors">Features</a></li>
+          <li><a href="#subjects" class="hover:text-primary transition-colors">Subjects</a></li>
+          <li><a href="#testimonials" class="hover:text-primary transition-colors">Testimonials</a></li>
+          <li><a href="#faq" class="hover:text-primary transition-colors">FAQ</a></li>
+        </ul>
+  <div class="hidden md:flex items-center space-x-4">
+          <a href="/general/login-new.html" class="text-primary font-semibold hover:opacity-80 transition-opacity">Log In</a>
+          <a href="/general/signup-new.html" class="button button-primary">Get Started Free</a>
         </div>
-        <div class="nav-item dropdown">
-          <a href="#subjects" class="dropdown-trigger">
-            Subjects
-            <i class="fas fa-chevron-down"></i>
-          </a>
-          <div class="dropdown-content">
-            <a href="subjects/mathematics.html">Mathematics</a>
-            <a href="subjects/physics.html">Physics</a>
-            <a href="subjects/chemistry.html">Chemistry</a>
-            <a href="subjects/biology.html">Biology</a>
-          </div>
-        </div>
-       
-        <div class="auth-buttons" id="auth-buttons">
-          <a href="general/login-new.html" class="btn btn-outline glass-effect" id="login-btn">Log In</a>
-          <a href="general/signup-new.html" class="btn btn-primary pulse-effect" id="signup-btn">Get Started Free</a>
-        </div>
-        <div class="auth-buttons" id="user-buttons" style="display:none;">
-          <a href="students/student-dashboard.html" class="btn btn-primary">Go to Dashboard</a>
-          <button id="signout-btn" class="btn btn-outline glass-effect">Sign Out</button>
-        </div>
-  <script type="module">
-    import { app } from './firebase-config.js';
-    import { getAuth, onAuthStateChanged, signOut } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js';
-    const auth = getAuth(app);
-    const authBtns = document.getElementById('auth-buttons');
-    const userBtns = document.getElementById('user-buttons');
-    const signOutBtn = document.getElementById('signout-btn');
-    onAuthStateChanged(auth, (user) => {
-      if (user) {
-        authBtns.style.display = 'none';
-        userBtns.style.display = 'flex';
-      } else {
-        authBtns.style.display = 'flex';
-        userBtns.style.display = 'none';
-      }
-    });
-    if(signOutBtn){
-      signOutBtn.addEventListener('click', async () => {
-        await signOut(auth);
-        window.location.reload();
-      });
-    }
-  </script>
-      </div>
-      <button class="mobile-menu" aria-label="Menu">
-        <i class="fas fa-bars"></i>
-      </button>
+  <button class="md:hidden" id="mobile-menu-button" aria-label="Open Menu">
+          <i class="fas fa-bars text-2xl text-gray-700"></i>
+        </button>
+      </nav>
     </div>
-  </nav>
-
-  <!-- Announcement Banner -->
-  <div class="announcement-banner">
-    <div class="announcement-content">
-      <div class="announcement-slider">
-        <!-- First set of announcements -->
-        <div class="announcement-item">
-          <i class="fas fa-graduation-cap"></i>
-          <span> 100% Free WAEC/JAMB 2026 Prep Course - Start Learning Today!</span>
-          <a href="#" class="announcement-link">Join Free</a>
-        </div>
-        <div class="announcement-item">
-          <i class="fas fa-bolt"></i>
-          <span>AI-Powered Study Assistant - Free Acess for All Students<span>
-          <a href="#" class="announcement-link">Try Now</a>
-        </div>
-        <div class="announcement-item">
-          <i class="fas fa-lock-open"></i>
-          <span>No Fees . No Hidden Costs . Always Free </span>
-          <a href="#" class="announcement-link">Learn More</a>
-        </div>
-        <div class="announcement-item">
-          <i class="fas fa-book"></i>
-          <span>Master WAEC/JAMB with Free Lesseons, Mock Tests & Live Sessions</span>
-          <a href="#" class="announcement-link">Explore</a>
-        </div>
-          <div class="announcement-item">
-          <i class="fas fa-users"></i>
-          <span>Join Thounsands of Students Learning for Free Today</span>
-          <a href="#" class="announcement-link">Get Started</a>
-        </div>
-        <!-- Duplicate for smooth scroll -->
-        <div class="announcement-item">
-          <i class="fas fa-graduation-cap"></i>
-          <span> 100% Free WAEC/JAMB 2026 Prep Course - Start Learning Today!</span>
-          <a href="#" class="announcement-link">Join Free</a>
-        </div>
-        <div class="announcement-item">
-          <i class="fas fa-bolt"></i>
-          <span>AI-Powered Study Assistant - Free Acess for All Students<span>
-          <a href="#" class="announcement-link">Try Now</a>
-        </div>
-        <div class="announcement-item">
-          <i class="fas fa-lock-open"></i>
-          <span>No Fees . No Hidden Costs . Always Free </span>
-          <a href="#" class="announcement-link">Learn More</a>
-        </div>
-        <div class="announcement-item">
-          <i class="fas fa-book"></i>
-          <span>Master WAEC/JAMB with Free Lesseons, Mock Tests & Live Sessions</span>
-          <a href="#" class="announcement-link">Explore</a>
-        </div>
-          <div class="announcement-item">
-          <i class="fas fa-users"></i>
-          <span>Join Thounsands of Students Learning for Free Today</span>
-          <a href="#" class="announcement-link">Get Started</a>
-        </div>
-      </div>
-      <button class="announcement-close" aria-label="Close announcement">&times;</button>
-    </div>
-  </div>
-
-
-          </div>
-        </div>
+    <!-- Mobile Menu -->
+  <div id="mobile-menu" class="hidden md:hidden bg-white px-4 pb-4 border-t">
+      <ul class="space-y-4 font-medium text-gray-600 mt-4">
+        <li><a href="#features" class="block hover:text-primary transition-colors">Features</a></li>
+        <li><a href="#subjects" class="block hover:text-primary transition-colors">Subjects</a></li>
+        <li><a href="#testimonials" class="block hover:text-primary transition-colors">Testimonials</a></li>
+        <li><a href="#faq" class="block hover:text-primary transition-colors">FAQ</a></li>
+      </ul>
+      <div class="mt-6 flex flex-col space-y-4">
+        <a href="/general/login-new.html" class="text-center py-2 px-4 rounded-full border border-primary text-primary font-semibold hover:bg-blue-50 transition-colors">Log In</a>
+        <a href="/general/signup-new.html" class="button button-primary text-center">Get Started Free</a>
       </div>
     </div>
-  </div>
-
-
+  </header>
 
   <main>
-    <section class="hero">
-      <div class="hero-content">
-        <div class="stat-highlight" data-aos="fade-down">
-          According to UNESCO, Sub-Saharan Africa has the highest rate of education exclusion in the world.
-        </div>
-        <h1 class="injini-headline" data-aos="fade-up" data-aos-delay="100">
-          Let's Change The Story Together
-        </h1>
-        <p class="injini-mission" data-aos="fade-up" data-aos-delay="200">
-          Join JUANOVA CORTEX's mission to transform African education through AI-powered learning. We're not just preparing students for exams - we're building the foundation for Africa's future leaders.
-        </p>
-        <div class="impact-statement" data-aos="fade-up" data-aos-delay="300">
-          Let's address this challenge and create a brighter future for African education.
-        </div>
-        <div class="hero-cta" data-aos="fade-up" data-aos-delay="400">
-          <a href="general/signup-new.html" class="button button-primary">Start Learning Now</a>
-          <button id="impactModalBtn" class="button button-secondary" type="button">Discover Our Impact</button>
-        </div>
-        <div class="mt-8 flex justify-center gap-4">
-          <a href="general/signup-new.html" class="btn-primary">Get Started Now</a>
-          <a href="#features" class="btn-secondary">Explore Features</a>
-        </div>
-        <div class="mt-6 text-center">
-          <a href="teachers/teacher-confirmation.html" class="teacher-link">Are you a teacher?</a>
-        </div>
-        <!-- Hero section intentionally left empty as requested -->
-      </div>
-      
+    <!-- Hero Section -->
+    <section id="hero" class="py-24 bg-white">
+      <div class="container mx-auto px-6 text-center">
+        <div class="max-w-4xl mx-auto">
+          <!-- UNESCO Pill Statement -->
+          <div class="flex justify-center mb-16 mt-12" data-aos="fade-down">
+            <span class="bg-red-100 text-red-600 px-8 py-3 rounded-full shadow-sm text-base">According to UNESCO, Sub-Saharan Africa has the highest rate of education exclusion in the world.</span>
+          </div>
 
-    </div>
-  </section>
-<!-- Impact Modal -->
-<div id="impactModal" class="fixed inset-0 z-[9999] flex items-center justify-center bg-black bg-opacity-50 hidden">
-  <div class="bg-white rounded-2xl shadow-2xl max-w-lg w-full p-8 relative animate__animated animate__fadeIn max-h-[90vh] overflow-y-auto">
-    <button id="closeImpactModal" class="absolute top-4 right-4 text-gray-400 hover:text-blue-500 text-2xl font-bold">&times;</button>
-    <h2 class="text-3xl font-bold mb-4 text-blue-700">How JUANOVA CORTEX Can Transform Africa</h2>
-    <p class="mb-4 text-gray-700 text-lg">JUANOVA CORTEX is more than an exam prep platform—it's a movement to empower African youth and revolutionize education across the continent. With the right support and sponsorship, here's what JUANOVA CORTEX can offer:</p>
-    <ul class="list-disc pl-6 space-y-2 text-gray-800">
-      <li><strong>Personalized AI Tutoring:</strong> Every student gets tailored guidance, breaking barriers to quality education.</li>
-      <li><strong>Access for All:</strong> Mobile-first, offline learning ensures even remote communities can benefit.</li>
-      <li><strong>Teacher Empowerment:</strong> Tools and analytics help educators focus on what matters most—student growth.</li>
-      <li><strong>Exam Success:</strong> Practice tests, instant feedback, and smart study plans boost pass rates for WAEC, JAMB, and NECO.</li>
-      <li><strong>Leadership Development:</strong> Beyond academics, JUANOVA CORTEX nurtures future leaders with soft skills and innovation challenges.</li>
-      <li><strong>Community Impact:</strong> Scholarships, mentorship, and peer support networks foster hope and ambition.</li>
-      <li><strong>Scalable Change:</strong> With sponsorship, JUANOVA CORTEX can reach millions, closing the education gap and unlocking Africa's potential.</li>
-    </ul>
-    <div class="mt-6 text-center">
-      <span class="inline-block bg-gradient-to-r from-blue-400 to-blue-700 text-white px-4 py-2 rounded-full font-semibold shadow">Together, we can build a brighter future for Africa.</span>
-    </div>
-  </div>
-</div>
-<!-- Achievements/Stats Cards Section with Glowing Effect -->
-<div id="stats-grid" class="grid grid-cols-3 md:grid-cols-3 gap-4 md:gap-8 mt-12 md:mt-16 max-w-5xl mx-auto px-4">
-  <!-- Card 1 -->
-  <div class="relative group">
-    <div class="absolute -inset-1 bg-gradient-to-r from-purple-600 to-pink-600 rounded-lg blur opacity-25 group-hover:opacity-100 transition duration-1000 group-hover:duration-200"></div>
-    <div class="relative px-4 py-5 md:px-7 md:py-6 bg-white ring-1 ring-gray-900/5 rounded-lg leading-none flex items-center justify-center space-x-6">
-      <div class="space-y-2 text-center">
-        <p class="text-slate-800 text-2xl md:text-3xl font-bold">50K+</p>
-        <p class="text-slate-600 text-sm md:text-base">Active Students</p>
-      </div>
-    </div>
-  </div>
-  <!-- Card 2 -->
-  <div class="relative group">
-    <div class="absolute -inset-1 bg-gradient-to-r from-purple-600 to-pink-600 rounded-lg blur opacity-25 group-hover:opacity-100 transition duration-1000 group-hover:duration-200"></div>
-    <div class="relative px-4 py-5 md:px-7 md:py-6 bg-white ring-1 ring-gray-900/5 rounded-lg leading-none flex items-center justify-center space-x-6">
-      <div class="space-y-2 text-center">
-        <p class="text-slate-800 text-2xl md:text-3xl font-bold">95%</p>
-        <p class="text-slate-600 text-sm md:text-base">Success Rate</p>
-      </div>
-    </div>
-  </div>
-  <!-- Card 3 -->
-  <div class="relative group">
-    <div class="absolute -inset-1 bg-gradient-to-r from-purple-600 to-pink-600 rounded-lg blur opacity-25 group-hover:opacity-100 transition duration-1000 group-hover:duration-200"></div>
-    <div class="relative px-4 py-5 md:px-7 md:py-6 bg-white ring-1 ring-gray-900/5 rounded-lg leading-none flex items-center justify-center space-x-6">
-      <div class="space-y-2 text-center">
-        <p class="text-slate-800 text-2xl md:text-3xl font-bold">24/7</p>
-        <p class="text-slate-600 text-sm md:text-base">AI Support</p>
-      </div>
-    </div>
-  </div>
-</div>
+          <!-- Main Heading -->
+          <h1 class="text-5xl md:text-6xl font-black leading-tight mb-12 text-gray-900" data-aos="fade-up">
+            Let's Change The Story Together
+          </h1>
 
-  <section class="features" id="features">
-    <div class="section-header">
-      <span class="section-tag">Why Choose JUANOVA CORTEX?</span>
-      <h2>Features that Set Us Apart</h2>
-    </div>
-    
-    <div class="features-grid">
-      <!-- Feature Card 1 -->
-      <div class="relative group feature-card">
-        <div class="absolute -inset-1 bg-gradient-to-r from-[#4299e1] to-[#3182ce] rounded-lg blur opacity-25 group-hover:opacity-100 transition duration-1000 group-hover:duration-200"></div>
-        <div class="relative">
-          <div class="feature-icon">
-            <i class="fas fa-robot"></i>
-          </div>
-          <h3>AI-Powered Tutoring</h3>
-          <p>Get instant help from our AI tutor 24/7. Ask questions, solve problems, and understand concepts better.</p>
-        </div>
-      </div>
-      <!-- Feature Card 2 -->
-      <div class="relative group feature-card">
-        <div class="absolute -inset-1 bg-gradient-to-r from-[#4299e1] to-[#3182ce] rounded-lg blur opacity-25 group-hover:opacity-100 transition duration-1000 group-hover:duration-200"></div>
-        <div class="relative">
-          <div class="feature-icon">
-            <i class="fas fa-chalkboard-teacher"></i>
-          </div>
-          <h3>Live Interactive Classes</h3>
-          <p>Join expert teachers in real-time sessions with interactive whiteboards and instant doubt clearing.</p>
-        </div>
-      </div>
-      <!-- Feature Card 3 -->
-      <div class="relative group feature-card">
-        <div class="absolute -inset-1 bg-gradient-to-r from-[#4299e1] to-[#3182ce] rounded-lg blur opacity-25 group-hover:opacity-100 transition duration-1000 group-hover:duration-200"></div>
-        <div class="relative">
-          <div class="feature-icon">
-            <i class="fas fa-brain"></i>
-          </div>
-          <h3>Smart Study Plans</h3>
-          <p>Personalized learning paths adapted to your goals, pace, and performance.</p>
-        </div>
-      </div>
-      <!-- Feature Card 4 -->
-      <div class="relative group feature-card">
-        <div class="absolute -inset-1 bg-gradient-to-r from-[#4299e1] to-[#3182ce] rounded-lg blur opacity-25 group-hover:opacity-100 transition duration-1000 group-hover:duration-200"></div>
-        <div class="relative">
-          <div class="feature-icon">
-            <i class="fas fa-chart-line"></i>
-          </div>
-          <h3>Progress Tracking</h3>
-          <p>Detailed analytics and performance insights to help you stay on track.</p>
-        </div>
-      </div>
-      <!-- Feature Card 5 -->
-      <div class="relative group feature-card">
-        <div class="absolute -inset-1 bg-gradient-to-r from-[#4299e1] to-[#3182ce] rounded-lg blur opacity-25 group-hover:opacity-100 transition duration-1000 group-hover:duration-200"></div>
-        <div class="relative">
-          <div class="feature-icon">
-            <i class="fas fa-file-alt"></i>
-          </div>
-          <h3>Practice Tests</h3>
-          <p>Extensive question bank with past papers and AI-generated practice questions.</p>
-        </div>
-      </div>
-      <!-- Feature Card 6 -->
-      <div class="relative group feature-card">
-        <div class="absolute -inset-1 bg-gradient-to-r from-[#4299e1] to-[#3182ce] rounded-lg blur opacity-25 group-hover:opacity-100 transition duration-1000 group-hover:duration-200"></div>
-        <div class="relative">
-          <div class="feature-icon">
-            <i class="fas fa-mobile-alt"></i>
-          </div>
-          <h3>Learn Anywhere</h3>
-          <p>Access your courses on any device, anytime. Study offline with our mobile app.</p>
-        </div>
-      </div>
-    </div>
-  </section>
+          <!-- Mission Statement -->
+          <p class="text-lg md:text-xl text-blue-600 leading-relaxed mb-10" data-aos="fade-up" data-aos-delay="100">
+            Join our mission to transform African education through AI-powered learning. We're not just preparing students for exams - we're building the foundation for Africa's future leaders.
+          </p>
 
-  <section class="subjects" id="subjects">
-    <div class="section-header">
-      <span class="section-tag">Popular Subjects</span>
-      <h2>Master Your Core Subjects</h2>
-    </div>
-    
-<div class="subjects-grid">
-  <div class="relative group subject-card">
-    <div class="absolute -inset-1 bg-gradient-to-r from-[#4299e1] to-[#3182ce] rounded-lg blur opacity-25 group-hover:opacity-100 transition duration-1000 group-hover:duration-200"></div>
-    <div class="relative">
-      <div class="subject-icon">
-        <i class="fas fa-calculator"></i>
-      </div>
-      <h3>Mathematics</h3>
-      <p>Algebra, Calculus, Statistics</p>
-    </div>
-  </div>
-  <div class="relative group subject-card">
-    <div class="absolute -inset-1 bg-gradient-to-r from-[#4299e1] to-[#3182ce] rounded-lg blur opacity-25 group-hover:opacity-100 transition duration-1000 group-hover:duration-200"></div>
-    <div class="relative">
-      <div class="subject-icon">
-        <i class="fas fa-atom"></i>
-      </div>
-      <h3>Physics</h3>
-      <p>Mechanics, Electricity, Waves</p>
-    </div>
-  </div>
-  <div class="relative group subject-card">
-    <div class="absolute -inset-1 bg-gradient-to-r from-[#4299e1] to-[#3182ce] rounded-lg blur opacity-25 group-hover:opacity-100 transition duration-1000 group-hover:duration-200"></div>
-    <div class="relative">
-      <div class="subject-icon">
-        <i class="fas fa-flask"></i>
-      </div>
-  </section>
+          <p class="text-lg md:text-xl text-blue-600 leading-relaxed mb-16" data-aos="fade-up" data-aos-delay="200">
+            Let's address this challenge and create a brighter future for African education.
+          </p>
 
-  <section class="programmer-profile" id="programmer">
-    <div class="section-header">
-      <span class="section-tag">Meet Our Programmer</span>
-      <h2>The Mind Behind JUANOVA CORTEX</h2>
-    </div>
-    
-    <div class="programmer-content">
-      <div class="programmer-card glass-effect">
-        <div class="programmer-image">
-          <img src="./fuhad.jpg" alt="Abdlrazaq Fuhad Desmond">
+          <!-- Buttons Container (matches reference layout) -->
+          <div class="max-w-2xl mx-auto space-y-12" data-aos="fade-up" data-aos-delay="300">
+            <!-- Primary actions: side-by-side on md+, stacked on mobile -->
+            <div class="flex flex-col md:flex-row md:space-x-6 items-center justify-center space-y-6 md:space-y-0">
+              <a href="general/signup-new.html" class="w-64 md:w-56 py-4 text-center bg-blue-600 hover:bg-blue-700 text-white text-lg font-semibold rounded-full shadow-lg transition-transform transform hover:-translate-y-1">
+                Start Learning Now
+              </a>
+
+              <button id="open-impact-modal" class="w-64 md:w-56 py-4 text-center border-2 border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white text-lg font-semibold rounded-full transition-transform transform hover:-translate-y-1">
+                Discover Our Impact
+              </button>
+            </div>
+
+            <!-- Secondary pill buttons centered below -->
+            <div class="flex items-center justify-center space-x-4 mb-8">
+              <a href="general/signup-new.html" class="inline-block py-2 px-4 bg-blue-600 text-white rounded-full text-sm font-semibold shadow-sm">Get Started Now</a>
+              <a href="#features" class="inline-block py-2 px-4 border border-blue-600 text-blue-600 rounded-full text-sm font-semibold">Explore Features</a>
+            </div>
+
+            <!-- Teacher link -->
+            <div class="text-center">
+              <a href="/teachers/teacher-confirmation" class="text-blue-600 hover:text-blue-800 text-sm font-medium">Are you a teacher?</a>
+            </div>
+          </div>
         </div>
-        <div class="programmer-details">
-          <h3>Abdlrazaq Fuhad Desmond</h3>
-          
-          <div class="info-dropdown">
-            <button class="dropdown-toggle">
-              <i class="fas fa-bars"></i> View Profile Details
+      </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="py-16 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <div class="max-w-5xl mx-auto grid md:grid-cols-3 gap-8 text-center" data-aos="fade-up">
+                <div class="bg-white p-6 rounded-xl shadow-lg border border-gray-100 transform hover:-translate-y-2 transition-transform">
+                  <i class="fas fa-check-circle text-green-500 text-4xl mb-3"></i>
+                  <h3 class="text-3xl font-bold text-gray-800">95%</h3>
+                  <p class="text-gray-600 font-medium">Pass Rate</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-lg border border-gray-100 transform hover:-translate-y-2 transition-transform">
+                  <i class="fas fa-robot text-blue-500 text-4xl mb-3"></i>
+                  <h3 class="text-3xl font-bold text-gray-800">24/7</h3>
+                  <p class="text-gray-600 font-medium">AI-Powered Support</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-lg border border-gray-100 transform hover:-translate-y-2 transition-transform">
+                  <i class="fas fa-chalkboard-teacher text-purple-500 text-4xl mb-3"></i>
+                  <h3 class="text-3xl font-bold text-gray-800">100+</h3>
+                  <p class="text-gray-600 font-medium">Expert Tutors</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="py-20 bg-white">
+      <div class="container mx-auto px-4">
+        <div class="text-center max-w-3xl mx-auto mb-16">
+          <span class="text-primary font-semibold">OUR FEATURES</span>
+          <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mt-2 mb-4">Everything You Need to Succeed</h2>
+          <p class="text-lg text-gray-600">A complete toolkit to help you master any subject and ace your exams with confidence.</p>
+        </div>
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <!-- Feature 1 -->
+          <div class="bg-gray-50 p-8 rounded-2xl shadow-sm hover:shadow-xl transition-shadow duration-300" data-aos="fade-up">
+            <div class="bg-blue-100 text-primary w-16 h-16 rounded-full flex items-center justify-center mb-6">
+              <i class="fas fa-robot text-2xl"></i>
+            </div>
+            <h3 class="text-xl font-bold text-gray-800 mb-3">AI-Powered Tutor</h3>
+            <p class="text-gray-600">Get instant, step-by-step explanations for any question, 24/7. No more getting stuck on difficult concepts.</p>
+          </div>
+          <!-- Feature 2 -->
+          <div class="bg-gray-50 p-8 rounded-2xl shadow-sm hover:shadow-xl transition-shadow duration-300" data-aos="fade-up" data-aos-delay="100">
+            <div class="bg-green-100 text-green-600 w-16 h-16 rounded-full flex items-center justify-center mb-6">
+              <i class="fas fa-tasks text-2xl"></i>
+            </div>
+            <h3 class="text-xl font-bold text-gray-800 mb-3">Personalized Study Plans</h3>
+            <p class="text-gray-600">Our AI analyzes your strengths and weaknesses to create a custom study roadmap that focuses on what you need most.</p>
+          </div>
+          <!-- Feature 3 -->
+          <div class="bg-gray-50 p-8 rounded-2xl shadow-sm hover:shadow-xl transition-shadow duration-300" data-aos="fade-up" data-aos-delay="200">
+            <div class="bg-purple-100 text-purple-600 w-16 h-16 rounded-full flex items-center justify-center mb-6">
+              <i class="fas fa-pencil-ruler text-2xl"></i>
+            </div>
+            <h3 class="text-xl font-bold text-gray-800 mb-3">Realistic Mock Exams</h3>
+            <p class="text-gray-600">Practice with timed exams that mimic the format and difficulty of WAEC, NECO, and JAMB to eliminate exam-day surprises.</p>
+          </div>
+          <!-- Feature 4 -->
+          <div class="bg-gray-50 p-8 rounded-2xl shadow-sm hover:shadow-xl transition-shadow duration-300" data-aos="fade-up" data-aos-delay="300">
+            <div class="bg-red-100 text-red-600 w-16 h-16 rounded-full flex items-center justify-center mb-6">
+              <i class="fas fa-video text-2xl"></i>
+            </div>
+            <h3 class="text-xl font-bold text-gray-800 mb-3">Live Tutor Sessions</h3>
+            <p class="text-gray-600">Join group sessions or book one-on-one time with expert tutors for in-depth guidance and support.</p>
+          </div>
+          <!-- Feature 5 -->
+          <div class="bg-gray-50 p-8 rounded-2xl shadow-sm hover:shadow-xl transition-shadow duration-300" data-aos="fade-up" data-aos-delay="400">
+            <div class="bg-yellow-100 text-yellow-600 w-16 h-16 rounded-full flex items-center justify-center mb-6">
+              <i class="fas fa-chart-line text-2xl"></i>
+            </div>
+            <h3 class="text-xl font-bold text-gray-800 mb-3">Performance Analytics</h3>
+            <p class="text-gray-600">Track your progress with detailed reports that show you where you're improving and where to focus next.</p>
+          </div>
+          <!-- Feature 6 -->
+          <div class="bg-gray-50 p-8 rounded-2xl shadow-sm hover:shadow-xl transition-shadow duration-300" data-aos="fade-up" data-aos-delay="500">
+            <div class="bg-indigo-100 text-indigo-600 w-16 h-16 rounded-full flex items-center justify-center mb-6">
+              <i class="fas fa-book-open text-2xl"></i>
+            </div>
+            <h3 class="text-xl font-bold text-gray-800 mb-3">Comprehensive Content Library</h3>
+            <p class="text-gray-600">Access thousands of practice questions, video lessons, and study notes across all your subjects.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Subjects Section -->
+    <section id="subjects" class="py-20 bg-gray-50">
+      <div class="container mx-auto px-4">
+        <div class="text-center max-w-3xl mx-auto mb-16">
+          <span class="text-primary font-semibold">ALL SUBJECTS</span>
+          <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mt-2 mb-4">Master Your Core Subjects</h2>
+          <p class="text-lg text-gray-600">From sciences to arts, we've got you covered with expert-curated content for all your exam needs.</p>
+        </div>
+        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+          <!-- Subject Cards -->
+          <a href="students/subjects/mathematics.html" class="subject-card" data-aos="fade-up">
+            <i class="fas fa-calculator text-3xl text-white"></i>
+            <span class="font-bold text-lg mt-3">Mathematics</span>
+          </a>
+          <a href="students/subjects/english.html" class="subject-card" data-aos="fade-up" data-aos-delay="50">
+            <i class="fas fa-spell-check text-3xl text-white"></i>
+            <span class="font-bold text-lg mt-3">English</span>
+          </a>
+          <a href="students/subjects/physics.html" class="subject-card" data-aos="fade-up" data-aos-delay="100">
+            <i class="fas fa-atom text-3xl text-white"></i>
+            <span class="font-bold text-lg mt-3">Physics</span>
+          </a>
+          <a href="students/subjects/chemistry.html" class="subject-card" data-aos="fade-up" data-aos-delay="150">
+            <i class="fas fa-flask text-3xl text-white"></i>
+            <span class="font-bold text-lg mt-3">Chemistry</span>
+          </a>
+          <a href="students/subjects/biology.html" class="subject-card" data-aos="fade-up" data-aos-delay="200">
+            <i class="fas fa-dna text-3xl text-white"></i>
+            <span class="font-bold text-lg mt-3">Biology</span>
+          </a>
+          <a href="#" class="subject-card" data-aos="fade-up" data-aos-delay="250">
+            <i class="fas fa-landmark text-3xl text-white"></i>
+            <span class="font-bold text-lg mt-3">Government</span>
+          </a>
+          <a href="#" class="subject-card" data-aos="fade-up" data-aos-delay="300">
+            <i class="fas fa-chart-area text-3xl text-white"></i>
+            <span class="font-bold text-lg mt-3">Economics</span>
+          </a>
+          <a href="#" class="subject-card" data-aos="fade-up" data-aos-delay="350">
+            <i class="fas fa-book text-3xl text-white"></i>
+            <span class="font-bold text-lg mt-3">Literature</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Programmer Section -->
+    <section id="programmer" class="py-20 bg-gray-800 text-white">
+      <div class="container mx-auto px-4 text-center">
+        <h2 class="text-3xl md:text-4xl font-bold mb-4" data-aos="fade-up">Meet Our Programmer</h2>
+        <p class="text-lg text-gray-400 mb-12" data-aos="fade-up" data-aos-delay="100">The Mind Behind JUANOVA CORTEX</p>
+        <div class="flex flex-col items-center" data-aos="fade-up" data-aos-delay="200">
+          <img src="fuhad.jpg" alt="Abdlrazaq Fuhad Desmond" class="w-48 h-48 rounded-full object-cover mb-6 border-4 border-primary">
+          <h3 class="text-2xl font-semibold">Abdlrazaq Fuhad Desmond</h3>
+          <a href="#" class="mt-4 px-6 py-2 bg-primary text-white font-semibold rounded-lg hover:bg-blue-700 transition-colors">View Profile Details</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="py-20 bg-white">
+      <div class="container mx-auto px-4">
+        <div class="text-center max-w-3xl mx-auto mb-16">
+          <span class="text-primary font-semibold">TESTIMONIALS</span>
+          <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mt-2 mb-4">What Our Students Say</h2>
+          <p class="text-lg text-gray-600">Real stories from students who have transformed their grades with our platform.</p>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <!-- Testimonial 1 -->
+          <div class="bg-gray-50 p-8 rounded-xl shadow-sm" data-aos="fade-up">
+            <div class="flex items-center mb-4">
+              <img src="https://i.pravatar.cc/150?img=1" alt="Student 1" class="w-12 h-12 rounded-full mr-4">
+              <div>
+                <h4 class="font-bold text-gray-800">Chiamaka Nwosu</h4>
+                <p class="text-sm text-gray-500">SS3 Student</p>
+              </div>
+            </div>
+            <p class="text-gray-600">"The AI tutor is a game-changer. I can get help with difficult math problems at 2 AM. My confidence and my grades have skyrocketed!"</p>
+          </div>
+          <!-- Testimonial 2 -->
+          <div class="bg-gray-50 p-8 rounded-xl shadow-sm" data-aos="fade-up" data-aos-delay="100">
+            <div class="flex items-center mb-4">
+              <img src="https://i.pravatar.cc/150?img=2" alt="Student 2" class="w-12 h-12 rounded-full mr-4">
+              <div>
+                <h4 class="font-bold text-gray-800">David Adebayo</h4>
+                <p class="text-sm text-gray-500">JAMB Candidate</p>
+              </div>
+            </div>
+            <p class="text-gray-600">"I used to be so scared of the JAMB Use of English section, but the practice tests and detailed explanations made all the difference. I scored 72!"</p>
+          </div>
+          <!-- Testimonial 3 -->
+          <div class="bg-gray-50 p-8 rounded-xl shadow-sm" data-aos="fade-up" data-aos-delay="200">
+            <div class="flex items-center mb-4">
+              <img src="https://i.pravatar.cc/150?img=3" alt="Student 3" class="w-12 h-12 rounded-full mr-4">
+              <div>
+                <h4 class="font-bold text-gray-800">Fatima Bello</h4>
+                <p class="text-sm text-gray-500">WAEC Candidate</p>
+              </div>
+            </div>
+            <p class="text-gray-600">"The live classes are amazing. The teachers are so patient and they make learning fun. I finally understand chemistry!"</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section id="faq" class="py-20 bg-gray-50">
+      <div class="container mx-auto px-4">
+        <div class="text-center max-w-3xl mx-auto mb-16">
+          <span class="text-primary font-semibold">QUESTIONS?</span>
+          <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mt-2 mb-4">Frequently Asked Questions</h2>
+          <p class="text-lg text-gray-600">Have questions? We've got answers. If you can't find what you're looking for, feel free to contact us.</p>
+        </div>
+        <div class="max-w-3xl mx-auto space-y-4">
+          <div class="faq-item bg-white rounded-lg shadow-sm" data-aos="fade-up">
+            <button class="faq-question w-full text-left p-6 flex justify-between items-center">
+              <span class="text-lg font-semibold text-gray-800">What exams do you cover?</span>
+              <i class="fas fa-chevron-down transition-transform"></i>
             </button>
-          </div>
-
-          <div class="profile-content">
-            <div class="personal-info">
-              <h4><i class="fas fa-user"></i> Personal Information</h4>
-              <div class="info-grid">
-              <div class="info-item">
-                <i class="fas fa-birthday-cake"></i>
-                <span><strong>Born:</strong> October 7, 2010</span>
-              </div>
-              <div class="info-item">
-                <i class="fas fa-calendar-alt"></i>
-                <span><strong>Age:</strong> 15</span>
-              </div>
-              <div class="info-item">
-                <i class="fas fa-venus-mars"></i>
-                <span><strong>Gender:</strong> Male</span>
-              </div>
-              <div class="info-item">
-                <i class="fas fa-pray"></i>
-                <span><strong>Religion:</strong> Muslim</span>
-              </div>
-              <div class="info-item">
-                <i class="fas fa-school"></i>
-                <span><strong>Education:</strong> High School</span>
-              </div>
+            <div class="faq-answer hidden p-6 pt-0 text-gray-600">
+              <p>We primarily focus on preparing students for major Nigerian secondary school examinations, including the West African Examinations Council (WAEC), National Examinations Council (NECO), and the Joint Admissions and Matriculation Board (JAMB) exams. Our content is tailored to their specific syllabi.</p>
             </div>
           </div>
-
-          <div class="contact-info">
-            <h4><i class="fas fa-address-card"></i> Contact Information</h4>
-            <div class="info-grid">
-              <div class="info-item">
-                <i class="fas fa-phone"></i>
-                <span>08139776909</span>
-              </div>
-              <div class="info-item">
-                <i class="fab fa-whatsapp"></i>
-                <span>+234 8139776909</span>
-              </div>
+          <div class="faq-item bg-white rounded-lg shadow-sm" data-aos="fade-up">
+            <button class="faq-question w-full text-left p-6 flex justify-between items-center">
+              <span class="text-lg font-semibold text-gray-800">Is the AI Tutor available 24/7?</span>
+              <i class="fas fa-chevron-down transition-transform"></i>
+            </button>
+            <div class="faq-answer hidden p-6 pt-0 text-gray-600">
+              <p>Yes, absolutely! Our AI Tutor is designed to be your round-the-clock study partner. You can ask questions, get explanations, and work through problems anytime, day or night, without having to wait for a human tutor.</p>
             </div>
           </div>
-
-          <div class="skills-section">
-            <h4><i class="fas fa-laptop-code"></i> Technical Skills</h4>
-            <ul>
-              <li><i class="fas fa-robot"></i> Robotics</li>
-              <li><i class="fas fa-brain"></i> Artificial Intelligence</li>
-              <li><i class="fas fa-code"></i> Programming Languages</li>
-            </ul>
-
-            <h4><i class="fas fa-lightbulb"></i> Entrepreneurial Skills</h4>
-            <ul>
-              <li><i class="fas fa-eye"></i> Visionary Thinking</li>
-              <li><i class="fas fa-tools"></i> Solution-building</li>
-              <li><i class="fas fa-search"></i> Practical and Scalable Knowledge-seeking</li>
-            </ul>
-
-            <h4><i class="fas fa-users"></i> Soft Skills</h4>
-            <ul>
-              <li><i class="fas fa-bullseye"></i> Clarity in Approach</li>
-              <li><i class="fas fa-clock"></i> Persistence</li>
-              <li><i class="fas fa-compass"></i> Purpose-driven</li>
-              <li><i class="fas fa-bolt"></i> Bold Thinking</li>
-              <li><i class="fas fa-crown"></i> Leadership</li>
-            </ul>
-
-            <h4><i class="fas fa-rocket"></i> Innovation and Problem-Solving</h4>
-            <ul>
-              <li><i class="fas fa-microchip"></i> Designing Humanoid Robots</li>
-              <li><i class="fas fa-laptop"></i> Creating EdTech Platforms</li>
-              <li><i class="fas fa-cogs"></i> Engineering Opportunities</li>
-            </ul>
-          </div>
-
-          <div class="inspiration">
-            <h4><i class="fas fa-star"></i> Role Model</h4>
-            <div class="role-model-content">
-              <span><strong>Elon Musk</strong></span>
+          <div class="faq-item bg-white rounded-lg shadow-sm" data-aos="fade-up">
+            <button class="faq-question w-full text-left p-6 flex justify-between items-center">
+              <span class="text-lg font-semibold text-gray-800">Is this service really free?</span>
+              <i class="fas fa-chevron-down transition-transform"></i>
+            </button>
+            <div class="faq-answer hidden p-6 pt-0 text-gray-600">
+              <p>Yes, absolutely. Our platform is completely free for all students. We are committed to breaking down barriers to education in Africa. Our mission is to provide high-quality learning tools to everyone, regardless of their financial situation. There are no hidden costs or subscription plans.</p>
             </div>
           </div>
-
-          <div class="mission-statement">
-            <p>By the grace of Allah, this platform will revolutionize education in Nigeria and Africa as a whole.</p>
+          <div class="faq-item bg-white rounded-lg shadow-sm" data-aos="fade-up">
+            <button class="faq-question w-full text-left p-6 flex justify-between items-center">
+              <span class="text-lg font-semibold text-gray-800">Can I use this on my phone?</span>
+              <i class="fas fa-chevron-down transition-transform"></i>
+            </button>
+            <div class="faq-answer hidden p-6 pt-0 text-gray-600">
+              <p>Yes! Our platform is fully mobile-responsive, meaning you can access all features on your smartphone, tablet, or computer. Learn on the go, wherever you are.</p>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <section class="cta-section">
-    <div class="cta-content">
-      <h2>Ready to Transform Your Learning?</h2>
-      <p>Join thousands of students achieving their academic goals with JUANOVA CORTEX.</p>
-      <div class="cta-buttons">
-        <a href="general/signup-new.html" class="btn btn-primary btn-lg">Get Started Free</a>
-        <a href="#features" class="btn btn-outline btn-lg">Learn More</a>
-      </div>
-    </div>
-  </section>
-
-  <!-- Trust badges removed as requested -->
-    </div>
-  </section>
-
-  <footer class="footer">
-    <div class="footer-content">
-      <div class="footer-section">
-                <div class="footer-logo">
-          <i class="fas fa-owl"></i>
-          <span>JUANOVA CORTEX</span>
-        </div>
-        <p>Empowering students with AI-powered learning tools and expert guidance for academic excellence.</p>
-        <div class="social-links">
-          <a href="#" aria-label="Facebook" title="Follow us on Facebook">
-            <i class="fab fa-facebook"></i>
-          </a>
-          <a href="#" aria-label="Twitter" title="Follow us on Twitter">
-            <i class="fab fa-twitter"></i>
-          </a>
-          <a href="#" aria-label="Instagram" title="Follow us on Instagram">
-            <i class="fab fa-instagram"></i>
-          </a>
-          <a href="#" aria-label="LinkedIn" title="Connect with us on LinkedIn">
-            <i class="fab fa-linkedin"></i>
-          </a>
-          <a href="#" aria-label="WhatsApp" title="Contact us on WhatsApp">
-            <i class="fab fa-whatsapp"></i>
-          </a>
+    <!-- CTA Section -->
+    <section class="py-20 bg-primary text-white">
+      <div class="container mx-auto px-4 text-center">
+        <h2 class="text-3xl md:text-4xl font-bold mb-4" data-aos="fade-up">Ready to Achieve Your Best Scores?</h2>
+        <p class="text-lg md:text-xl max-w-3xl mx-auto mb-8" data-aos="fade-up" data-aos-delay="100">Join thousands of successful students and start your journey to exam excellence today. Your future is just a click away.</p>
+        <div data-aos="fade-up" data-aos-delay="200">
+          <a href="/general/signup-new.html" class="button bg-white text-primary hover:bg-gray-100 text-lg">Get Started For Free</a>
         </div>
       </div>
+    </section>
+  </main>
 
-      <div class="footer-section">
-        <h3>Contact Us</h3>
-        <ul>
-          <li>
-            <i class="fas fa-envelope"></i>
-            <a href="mailto:juanovacortex@edtech.com">juanovacortex@edtech.com</a>
-          </li>
-          <li>
-            <i class="fas fa-phone"></i>
-            <a href="tel:+2348139776909">+234 813 977 6909</a>
-          </li>
-          <li>
-            <i class="fas fa-map-marker-alt"></i>
-            Kaduna, Nigeria
-          </li>
-        </ul>
+  <!-- Footer -->
+  <footer class="bg-gray-800 text-white">
+    <div class="container mx-auto px-4 py-16">
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+        <div class="md:col-span-1">
+          <a href="/" class="flex items-center space-x-3 mb-4">
+            <img src="/assets/images/logo.png" alt="JUANOVA CORTEX Logo" class="h-10 w-10 rounded-full">
+            <span class="text-xl font-bold">JUANOVA CORTEX</span>
+          </a>
+          <p class="text-gray-400">Your AI-powered partner for academic success.</p>
+          <div class="flex space-x-4 mt-6">
+            <a href="#" class="text-gray-400 hover:text-white" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" class="text-gray-400 hover:text-white" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+            <a href="#" class="text-gray-400 hover:text-white" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="#" class="text-gray-400 hover:text-white" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+          </div>
+        </div>
+        <div>
+          <h3 class="font-bold text-lg mb-4">Quick Links</h3>
+          <ul class="space-y-2 text-gray-400">
+            <li><a href="#features" class="hover:text-white">Features</a></li>
+            <li><a href="#subjects" class="hover:text-white">Subjects</a></li>
+            <li><a href="/general/login-new.html" class="hover:text-white">Log In</a></li>
+            <li><a href="/general/signup-new.html" class="hover:text-white">Sign Up</a></li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="font-bold text-lg mb-4">Resources</h3>
+          <ul class="space-y-2 text-gray-400">
+            <li><a href="#" class="hover:text-white">Blog</a></li>
+            <li><a href="#faq" class="hover:text-white">FAQ</a></li>
+            <li><a href="#" class="hover:text-white">Help Center</a></li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="font-bold text-lg mb-4">Legal</h3>
+          <ul class="space-y-2 text-gray-400">
+            <li><a href="#" class="hover:text-white">Terms of Service</a></li>
+            <li><a href="#" class="hover:text-white">Privacy Policy</a></li>
+          </ul>
+        </div>
       </div>
-    </div>
-
-    <div class="footer-bottom">
-      <!-- Support Us Section -->
-      <div class="support-us">
-        <p class="text-sm text-gray-200">
-          <span class="font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-indigo-600 via-blue-600 to-cyan-500">JUANOVA CORTEX</span>
-          <span class="ml-2">is</span>
-          <span class="ml-2 font-semibold text-blue-600">100% free</span>
-          <span class="ml-2 text-gray-100">for students.</span>
-          <span class="hidden sm:inline ml-2">Want to help us keep it free?</span>
-          <a href="support.html" class="ml-3 inline-block px-3 py-1 rounded-full bg-blue-600 text-white text-sm font-semibold hover:bg-blue-700 transition">Support Us</a>
-        </p>
-      </div>
-      <p>&copy; 2025 JUANOVA CORTEX. All rights reserved.</p>
-      <div class="footer-links">
-        <a href="#">Privacy Policy</a>
-        <a href="#">Terms of Service</a>
-        <a href="#">Cookie Policy</a>
+      <div class="mt-12 border-t border-gray-700 pt-8 text-center text-gray-500">
+        <p>&copy; 2024 JUANOVA CORTEX. All Rights Reserved.</p>
       </div>
     </div>
   </footer>
 
+  <!-- Impact Modal -->
+    <div id="impact-modal" class="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50 hidden">
+      <div class="bg-white rounded-lg shadow-2xl p-8 max-w-2xl w-full m-4 transform transition-all" id="impact-modal-content">
+        <div class="flex justify-between items-center mb-6">
+          <h2 class="text-2xl font-bold text-gray-800">How We Can Transform Africa</h2>
+          <button id="close-impact-modal" class="text-gray-500 hover:text-gray-800 text-2xl">&times;</button>
+        </div>
+        <div class="text-gray-600 space-y-4">
+          <p>This is more than an exam prep platform—it's a movement to empower African youth and revolutionize education across the continent. With the right support, here's what we can offer:</p>
+          <ul class="list-disc list-inside space-y-2">
+            <li><strong>Personalized AI Tutoring:</strong> Every student gets tailored guidance, breaking barriers to quality education.</li>
+            <li><strong>Access for All:</strong> Mobile-first, offline learning ensures even remote communities can benefit.</li>
+            <li><strong>Teacher Empowerment:</strong> Tools and analytics help educators focus on what matters most—student growth.</li>
+            <li><strong>Exam Success:</strong> Practice tests, instant feedback, and smart study plans boost pass rates for WAEC, JAMB, and NECO.</li>
+            <li><strong>Leadership Development:</strong> Beyond academics, we nurture future leaders with soft skills and innovation challenges.</li>
+            <li><strong>Community Impact:</strong> Scholarships, mentorship, and peer support networks foster hope and ambition.</li>
+            <li><strong>Scalable Change:</strong> With sponsorship, we can reach millions, closing the education gap and unlocking Africa's potential.</li>
+          </ul>
+          <p class="font-semibold text-center pt-4">Together, we can build a brighter future for Africa.</p>
+        </div>
+      </div>
+    </div>
+
+  <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
   <script>
-    // Initialize announcement banner, quotes carousel, and impact modal
-    document.addEventListener('DOMContentLoaded', () => {
-      // Announcement banner
-      const announcementBanner = document.querySelector('.announcement-banner');
-      const closeBtn = document.querySelector('.announcement-close');
-      if (announcementBanner) {
-        announcementBanner.style.display = 'block';
-        void announcementBanner.offsetWidth;
-      }
-      if(closeBtn) {
-        closeBtn.addEventListener('click', () => {
-            announcementBanner.style.display = 'none';
-        });
-      }
-
-      // Clone quote cards for infinite scroll
-      const quotesTrack = document.querySelector('.quotes-track');
-      const quoteCards = document.querySelectorAll('.quote-card');
-      if (quotesTrack && quoteCards.length > 0) {
-        quoteCards.forEach(card => {
-          const clone = card.cloneNode(true);
-          quotesTrack.appendChild(clone);
-        });
-      }
-
-      // Impact Modal logic
-      const impactModalBtn = document.getElementById('impactModalBtn');
-      const impactModal = document.getElementById('impactModal');
-      const closeImpactModal = document.getElementById('closeImpactModal');
-      if (impactModalBtn && impactModal && closeImpactModal) {
-        impactModalBtn.addEventListener('click', () => {
-          impactModal.classList.remove('hidden');
-        });
-        closeImpactModal.addEventListener('click', () => {
-          impactModal.classList.add('hidden');
-        });
-        impactModal.addEventListener('click', (e) => {
-          if (e.target === impactModal) {
-            impactModal.classList.add('hidden');
-          }
-        });
+    // Navbar scroll effect
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 50) {
+        navbar.classList.add('shadow-md', 'bg-white/80', 'backdrop-blur-sm');
+        navbar.classList.remove('bg-transparent');
+      } else {
+        navbar.classList.remove('shadow-md', 'bg-white/80', 'backdrop-blur-sm');
+        navbar.classList.add('bg-transparent');
       }
     });
 
     // Mobile menu toggle
-    const mobileMenu = document.querySelector('.mobile-menu');
-    const navLinks = document.querySelector('.nav-links');
-    
-    mobileMenu.addEventListener('click', () => {
-      navLinks.classList.toggle('active');
+    const mobileMenuButton = document.getElementById('mobile-menu-button');
+    const mobileMenu = document.getElementById('mobile-menu');
+    mobileMenuButton.addEventListener('click', () => {
+      mobileMenu.classList.toggle('hidden');
+    });
+
+    // Impact Modal
+    const openModalBtn = document.getElementById('open-impact-modal');
+    const closeModalBtn = document.getElementById('close-impact-modal');
+    const modal = document.getElementById('impact-modal');
+    const modalContent = document.getElementById('impact-modal-content');
+
+    openModalBtn.addEventListener('click', () => {
+      modal.classList.remove('hidden');
+      document.body.classList.add('overflow-hidden');
+    });
+
+    closeModalBtn.addEventListener('click', () => {
+      modal.classList.add('hidden');
+      document.body.classList.remove('overflow-hidden');
+    });
+
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) {
+        modal.classList.add('hidden');
+        document.body.classList.remove('overflow-hidden');
+      }
+    });
+
+    // FAQ Accordion
+    const faqItems = document.querySelectorAll('.faq-item');
+    faqItems.forEach(item => {
+      const question = item.querySelector('.faq-question');
+      const answer = item.querySelector('.faq-answer');
+      const icon = question.querySelector('i');
+
+      question.addEventListener('click', () => {
+        const isVisible = !answer.classList.contains('hidden');
+        
+        // Close all other answers
+        faqItems.forEach(otherItem => {
+          if (otherItem !== item) {
+            otherItem.querySelector('.faq-answer').classList.add('hidden');
+            otherItem.querySelector('.faq-question i').classList.remove('rotate-180');
+          }
+        });
+
+        // Toggle current answer
+        answer.classList.toggle('hidden');
+        icon.classList.toggle('rotate-180');
+      });
     });
 
     // Smooth scroll for anchor links
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
       anchor.addEventListener('click', function (e) {
         e.preventDefault();
-        document.querySelector(this.getAttribute('href')).scrollIntoView({
-          behavior: 'smooth'
-        });
-      });
-    });
+        const targetId = this.getAttribute('href');
+        const targetElement = document.querySelector(targetId);
+        if (targetElement) {
+          const offset = 100; // Adjust for fixed header
+          const bodyRect = document.body.getBoundingClientRect().top;
+          const elementRect = targetElement.getBoundingClientRect().top;
+          const elementPosition = elementRect - bodyRect;
+          const offsetPosition = elementPosition - offset;
 
-    // Animation on scroll
-    window.addEventListener('scroll', () => {
-      const cards = document.querySelectorAll('.feature-card, .subject-card, .testimonial-card');
-      cards.forEach(card => {
-        const cardTop = card.getBoundingClientRect().top;
-        if (cardTop < window.innerHeight - 100) {
-          card.classList.add('animate');
-        }
-      });
-    });
-
-    // Modernized quote slider animation
-    document.addEventListener('DOMContentLoaded', () => {
-      const cards = document.querySelectorAll('.modern-quote-card');
-      const dots = document.querySelectorAll('.modern-quote-dots .dot');
-      let currentCard = 0;
-      let isSliding = false;
-
-      function slideToCard(next, direction = 'right') {
-        if (isSliding || next === currentCard) return;
-        isSliding = true;
-        const prev = currentCard;
-        cards.forEach((card, i) => {
-          card.classList.remove('active', 'slide-in-right', 'slide-in-left', 'slide-out-left', 'slide-out-right');
-        });
-        dots.forEach(dot => dot.classList.remove('active'));
-
-        if (direction === 'right') {
-          cards[prev].classList.add('slide-out-left');
-          cards[next].classList.add('slide-in-right', 'active');
-        } else {
-          cards[prev].classList.add('slide-out-right');
-          cards[next].classList.add('slide-in-left', 'active');
-        }
-        dots[next].classList.add('active');
-        setTimeout(() => {
-          cards.forEach((card, i) => {
-            card.classList.remove('slide-in-right', 'slide-in-left', 'slide-out-left', 'slide-out-right');
-            card.classList.toggle('active', i === next);
+          window.scrollTo({
+            top: offsetPosition,
+            behavior: 'smooth'
           });
-          isSliding = false;
-        }, 600);
-        currentCard = next;
-      }
-
-      function nextCard() {
-        let next = (currentCard + 1) % cards.length;
-        slideToCard(next, 'right');
-      }
-
-      dots.forEach((dot, i) => {
-        dot.addEventListener('click', () => {
-          if (i > currentCard) {
-            slideToCard(i, 'right');
-          } else if (i < currentCard) {
-            slideToCard(i, 'left');
-          }
-        });
-      });
-
-      setInterval(nextCard, 5000); // Change card every 5 seconds
-      // Initial state
-      cards.forEach((card, i) => {
-        card.classList.remove('active', 'slide-in-right', 'slide-in-left', 'slide-out-left', 'slide-out-right');
-        if (i === 0) {
-          card.classList.add('active');
         }
       });
-      dots[0].classList.add('active');
-    });
-
-    // Firebase Authentication State Observer
-    firebase.auth().onAuthStateChanged((user) => {
-      if (user) {
-        // User is signed in
-        console.log('User is signed in:', user.email);
-        // Update UI for signed in user
-        updateUIForSignedInUser(user);
-      } else {
-        // User is signed out
-        console.log('User is signed out');
-        // Update UI for signed out user
-        updateUIForSignedOutUser();
-      }
-    });
-
-    function updateUIForSignedInUser(user) {
-      // Update navigation buttons
-      const authButtons = document.querySelector('.auth-buttons');
-      if (authButtons) {
-        authButtons.innerHTML = `
-          <button class="btn btn-outline glass-effect" onclick="signOut()">Sign Out</button>
-          <a href="students/student-dashboard.html" class="btn btn-primary">Dashboard</a>
-        `;
-      }
-    }
-
-    function updateUIForSignedOutUser() {
-      // Reset navigation buttons to default state
-      const authButtons = document.querySelector('.auth-buttons');
-      if (authButtons) {
-        authButtons.innerHTML = `
-          <a href="general/login-new.html" class="btn btn-outline glass-effect">Log In</a>
-          <a href="general/signup-new.html" class="btn btn-primary pulse-effect">Get Started Free</a>
-        `;
-      }
-    }
-
-    // Sign out function
-    window.signOut = async () => {
-      try {
-        await auth.signOut();
-        window.location.href = '/';
-      } catch (error) {
-        console.error('Error signing out:', error);
-      }
-    };
-  </script>
- <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      const toggle = document.querySelector('.dropdown-toggle');
-      const content = document.querySelector('.profile-content');
-      if (toggle && content) {
-        toggle.addEventListener('click', (e) => {
-          e.preventDefault();
-          content.classList.toggle('show');
-          toggle.classList.toggle('active');
-        });
-      }
     });
   </script>
+  <!-- CORTEX AI Chatbot Widget -->
+<div id="cortex-ai-chat-widget"></div>
 
-  <!-- Initialize Firebase configuration -->
-  <script src="./js/firebase-config.js"></script>
+
 </body>
 </html>

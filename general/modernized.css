@@ -195,7 +195,8 @@ body {
 }
 
 .hidden {
-  display: none !important;
+  /* keep utility hidden behavior but avoid !important so responsive utilities can override it */
+  display: none;
 }
 
 /* Navigation Component */
