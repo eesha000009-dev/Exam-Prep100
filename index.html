@@ -1413,6 +1413,55 @@
   </script>
   <!-- CORTEX AI Chatbot Widget -->
 <div id="cortex-ai-chat-widget"></div>
+<style>
+  #cortex-ai-chat-button {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: #00e676; /* Accent green from your site */
+    color: white;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 28px;
+    cursor: pointer;
+    box-shadow: 0px 4px 12px rgba(0,0,0,0.3);
+    z-index: 1000;
+  }
+
+  #cortex-ai-chat-popup {
+    position: fixed;
+    bottom: 90px;
+    right: 20px;
+    width: 380px;
+    height: 500px;
+    border: none;
+    border-radius: 12px;
+    box-shadow: 0px 4px 16px rgba(0,0,0,0.4);
+    display: none;
+    z-index: 1000;
+  }
+</style>
+
+<div id="cortex-ai-chat-button">💬</div>
+<iframe 
+  id="cortex-ai-chat-popup"  
+  src="https://app.edcafe.ai/chatbots/68ba4887cee035583b5a01f3">
+</iframe>
+
+<script>
+  const button = document.getElementById("cortex-ai-chat-button");
+  const popup = document.getElementById("cortex-ai-chat-popup");
+
+  button.addEventListener("click", () => {
+    popup.style.display = (popup.style.display === "none" || popup.style.display === "") 
+      ? "block" 
+      : "none";
+  });
+</script>
 
 
 </body>
