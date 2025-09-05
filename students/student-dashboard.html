@@ -195,7 +195,7 @@
                 <div class="text-2xl text-sky-500 mb-2"><i class="fas fa-square-root-alt"></i></div>
                 <div class="font-semibold">Mathematics</div>
               </a>
-              <a href="subjects/physics.html" class="bg-white rounded-2xl p-5 shadow hover:scale-105 transition text-center">
+              <a href="subjects/physics/index.html" class="bg-white rounded-2xl p-5 shadow hover:scale-105 transition text-center">
                 <div class="text-2xl text-yellow-500 mb-2"><i class="fas fa-atom"></i></div>
                 <div class="font-semibold">Physics</div>
               </a>
@@ -588,37 +588,58 @@ if (cachedUser) {
         }
       });
     </script>
-  </body>
-</html>
-        onUserChange(async (u) => {
-          if (!u) return;
-          const displayName = (u.profile && u.profile.displayName) || u.displayName || (u.profile && (u.profile.name || u.profile.fullName)) || u.email || 'Student';
-          // set UI text
-          const setTextEl = (id, txt) => { const el = document.getElementById(id); if (el) el.textContent = txt; };
-          const setImg = (id, src) => { const el = document.getElementById(id); if (el) el.src = src; };
-          setTextEl('userName', displayName);
-          setTextEl('topName', displayName);
-          setTextEl('heroName', (displayName.split(' ')[0] || displayName));
 
-          // avatar: prefer profile.photoURL or auth photoURL, otherwise initials
-          const photo = (u.profile && u.profile.photoURL) || u.photoURL;
-          if (photo) {
-            setImg('avatar-sm', photo);
-            setImg('topAvatar', photo);
-          } else {
-            const initials = initialsFromName(displayName || 'Student');
-            const url = `https://ui-avatars.com/api/?name=${encodeURIComponent(initials)}&background=2563eb&color=fff&length=2`;
-            setImg('avatar-sm', url);
-            setImg('topAvatar', url);
-          }
+<style>
+  #cortex-ai-chat-button {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: #00e676; /* Accent green from your site */
+    color: white;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0; /* hide text fallback when using image */
+    cursor: pointer;
+    box-shadow: 0px 4px 12px rgba(0,0,0,0.3);
+    z-index: 1000;
+  }
 
-          // unread notifications count
-          try {
-            const count = await getUnreadNotificationsCount(u.uid);
-            setTextEl('notifCount', String(count));
-          } catch (e) { /* ignore */ }
-        });
-      }).catch(e => console.warn('firebase-user import failed', e));
-    </script>
+  #cortex-ai-chat-popup {
+    position: fixed;
+    bottom: 90px;
+    right: 20px;
+    width: 380px;
+    height: 500px;
+    border: none;
+    border-radius: 12px;
+    box-shadow: 0px 4px 16px rgba(0,0,0,0.4);
+    display: none;
+    z-index: 1000;
+  }
+</style>
+
+<div id="cortex-ai-chat-button" role="button" aria-label="Open Cortex AI chat">
+  <img src="/assets/images/cortex-icon.svg" alt="Cortex AI" style="width:36px;height:36px;display:block;" />
+</div>
+<iframe 
+  id="cortex-ai-chat-popup"  
+  src="https://app.edcafe.ai/chatbots/68b96ebb2a5be310497b6a0b">
+</iframe>
+
+<script>
+  const button = document.getElementById("cortex-ai-chat-button");
+  const popup = document.getElementById("cortex-ai-chat-popup");
+
+  button.addEventListener("click", () => {
+    popup.style.display = (popup.style.display === "none" || popup.style.display === "") 
+      ? "block" 
+      : "none";
+  });
+</script>
+
   </body>
 </html>
