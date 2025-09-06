@@ -15,6 +15,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css">
+  <link rel="stylesheet" href="https://unpkg.com/swiper@9/swiper-bundle.min.css" />
   <link rel="stylesheet" href="general/modernized.css">
   <link rel="stylesheet" href="style.css">
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
@@ -193,6 +194,14 @@
     .device-screen:hover {
       transform: translateY(-5px);
     }
+
+  /* Swiper adjustments */
+  .mySwiper { width: 100%; }
+  .swiper-slide { box-sizing: border-box; padding: 0.25rem; }
+  .carousel-video { width: 100%; border-radius: 12px; display: block; }
+  .carousel-video { object-fit: cover; }
+  .swiper-pagination-bullet { background: rgba(148,163,184,0.6); opacity: 1; }
+  .swiper-pagination-bullet-active { background: linear-gradient(90deg,#3B82F6,#60A5FA); box-shadow: 0 6px 18px rgba(59,130,246,0.18); }
 
     /* Responsive Breakpoints */
     @media (max-width: 1024px) {
@@ -980,6 +989,34 @@
     }
   </style>
   <style>
+    /* Hero Section Animations and Patterns */
+    @keyframes blob {
+      0%, 100% { transform: translate(0, 0) scale(1); }
+      25% { transform: translate(20px, -50px) scale(1.1); }
+      50% { transform: translate(-20px, 20px) scale(0.9); }
+      75% { transform: translate(-40px, -30px) scale(1.05); }
+    }
+    
+    .animate-blob {
+      animation: blob 10s infinite;
+    }
+    
+    .animation-delay-2000 {
+      animation-delay: 2s;
+    }
+    
+    .bg-grid-pattern {
+      background-size: 40px 40px;
+      background-image: 
+        linear-gradient(to right, rgba(0,0,0,0.05) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(0,0,0,0.05) 1px, transparent 1px);
+    }
+    
+    .bg-gradient-radial-dots {
+      background-image: radial-gradient(circle at center, #4F46E5 1px, transparent 1px);
+      background-size: 40px 40px;
+    }
+
     /* Small added styles: Timeline, Portfolio, Pricing (keeps existing theme) */
     .timeline { max-width: 1100px; margin: 0 auto; padding: 3.5rem 1rem; }
     .timeline .line { position: relative; padding-left: 48px; }
@@ -988,12 +1025,6 @@
     .timeline .event .dot { position: absolute; left: 12px; top: 6px; width: 14px; height: 14px; border-radius: 50%; background: #7c3aed; box-shadow: 0 8px 24px rgba(124,58,237,0.12); }
     .timeline .event h4 { margin-bottom: 0.35rem; }
     .timeline .event p { color: #6b7280; }
-
-    .portfolio-grid { max-width: 1100px; margin: 0 auto; padding: 3rem 1rem; display: grid; grid-template-columns: 1fr; gap: 1rem; }
-    @media (min-width: 768px) { .portfolio-grid { grid-template-columns: repeat(4, 1fr); } }
-    .portfolio-card { background: linear-gradient(180deg,#ffffff,#fbfdff); border-radius: 12px; padding: 1rem; text-align: center; box-shadow: 0 12px 30px rgba(2,6,23,0.04); transition: transform .22s ease, box-shadow .22s ease; }
-    .portfolio-card:hover { transform: translateY(-6px); box-shadow: 0 20px 48px rgba(2,6,23,0.08); }
-    .portfolio-card img { width: 100%; height: 120px; object-fit: cover; border-radius: 8px; margin-bottom: 0.75rem; }
 
     .pricing-cards { max-width: 1100px; margin: 0 auto; padding: 3rem 1rem; display: grid; gap: 1rem; grid-template-columns: 1fr; }
     @media (min-width: 768px) { .pricing-cards { grid-template-columns: repeat(3, 1fr); } }
@@ -1045,49 +1076,166 @@
 
   <main>
     <!-- Hero Section -->
-    <section id="hero" class="py-24 bg-white">
+    <section id="hero" class="relative min-h-screen bg-gradient-to-b from-gray-50 to-white overflow-hidden" style="padding-top: calc(90px);">
+      <div class="absolute inset-0 bg-grid-pattern opacity-[0.02] pointer-events-none"></div>
+      
+      <div class="container mx-auto px-6 sm:px-8 lg:px-12 py-12 sm:py-16">
+        <div class="grid lg:grid-cols-2 gap-8 sm:gap-12 items-center">
+          <!-- Left column: Main content -->
+          <div class="space-y-6 sm:space-y-8" data-aos="fade-up">
+            <!-- UNESCO Alert -->
+            <div class="inline-flex items-center bg-gradient-to-r from-red-50 to-red-100 border border-red-200 rounded-full py-2 px-4 mb-4 sm:mb-6">
+              <span class="flex-shrink-0 bg-red-500 rounded-full w-2 h-2 mr-2 animate-pulse"></span>
+              <span class="text-red-600 font-medium text-sm sm:text-base">UNESCO Global Education Report: According to UNESCO, Sub-Saharan Africa has the highest rate of education exclusion in the world.</span>
+            </div>
+
+            <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 leading-tight mb-4 sm:mb-6">
+              Let's Change The
+              <span class="relative block mt-2">
+                <span class="bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-indigo-600">Story Together</span>
+                <svg class="absolute bottom-0 left-0 w-full h-3 -mb-1 opacity-30" viewBox="0 0 300 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M3 9C100.015 4.01984 197.03 4.01984 294.045 9" stroke="#4F46E5" stroke-width="6" stroke-linecap="round"/>
+                </svg>
+              </span>
+            </h1>
+
+            <p class="text-xl text-gray-600 max-w-2xl mb-8">
+              Sub-Saharan Africa faces the world's highest education exclusion rate. We're transforming this challenge into an opportunity through AI-powered learning that's accessible to all. Join our mission to build Africa's future leaders.
+            </p>
+
+            <div class="flex flex-wrap gap-4 mb-12">
+              <a href="/general/signup-new.html" class="inline-flex items-center px-8 py-4 rounded-full bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-semibold hover:shadow-lg hover:scale-105 transition-all duration-300">
+                Start Learning Now
+                <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                </svg>
+              </a>
+              <button id="open-impact-modal" class="inline-flex items-center px-8 py-4 rounded-full bg-white border border-gray-200 text-gray-600 font-semibold hover:border-blue-300 hover:text-blue-600 transition-all duration-300">
+                <i class="fas fa-chart-line mr-2"></i>Discover Our Impact
+              </button>
+            </div>
+
+          <!-- Stats Grid and Teacher CTA -->
+          <div class="space-y-12">
+            <!-- Stats Grid -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 sm:gap-8">
+              <!-- Pass Rate -->
+              <div class="stat-card bg-white rounded-2xl p-6 sm:p-8 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 relative overflow-hidden group">
+                <div class="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-blue-600/10 transform -translate-x-full group-hover:translate-x-0 transition-transform duration-700"></div>
+                <div class="relative z-10">
+                  <span class="block text-4xl sm:text-5xl font-bold text-blue-600 mb-2 group-hover:scale-110 transition-transform duration-300">95%</span>
+                  <span class="text-gray-600 text-base sm:text-lg font-medium">Pass Rate</span>
+                </div>
+                <div class="absolute -bottom-6 -right-6 w-20 sm:w-24 h-20 sm:h-24 bg-blue-600/5 rounded-full group-hover:scale-150 transition-transform duration-700"></div>
+              </div>
+
+              <!-- AI Support -->
+              <div class="stat-card bg-white rounded-2xl p-6 sm:p-8 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 relative overflow-hidden group">
+                <div class="absolute inset-0 bg-gradient-to-r from-purple-500/10 to-purple-600/10 transform -translate-x-full group-hover:translate-x-0 transition-transform duration-700"></div>
+                <div class="relative z-10">
+                  <span class="block text-4xl sm:text-5xl font-bold text-purple-600 mb-2 group-hover:scale-110 transition-transform duration-300">24/7</span>
+                  <span class="text-gray-600 text-base sm:text-lg font-medium">AI-Powered Support</span>
+                </div>
+                <div class="absolute -bottom-6 -right-6 w-20 sm:w-24 h-20 sm:h-24 bg-purple-600/5 rounded-full group-hover:scale-150 transition-transform duration-700"></div>
+              </div>
+
+              <!-- Expert Tutors -->
+              <div class="stat-card bg-white rounded-2xl p-6 sm:p-8 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 relative overflow-hidden group">
+                <div class="absolute inset-0 bg-gradient-to-r from-green-500/10 to-green-600/10 transform -translate-x-full group-hover:translate-x-0 transition-transform duration-700"></div>
+                <div class="relative z-10">
+                  <span class="block text-4xl sm:text-5xl font-bold text-green-600 mb-2 group-hover:scale-110 transition-transform duration-300">100+</span>
+                  <span class="text-gray-600 text-base sm:text-lg font-medium">Expert Tutors</span>
+                </div>
+                <div class="absolute -bottom-6 -right-6 w-20 sm:w-24 h-20 sm:h-24 bg-green-600/5 rounded-full group-hover:scale-150 transition-transform duration-700"></div>
+              </div>
+            </div>
+
+            <!-- Teacher CTA -->
+            <div class="flex justify-center">
+              <a href="/teachers/teacher-confirmation.html" class="group inline-flex items-center space-x-3 text-lg text-gray-600 hover:text-blue-600 transform hover:-translate-y-1 transition-all duration-300">
+                <span class="flex items-center">
+                  <i class="fas fa-chalkboard-teacher text-blue-500 mr-2 group-hover:scale-110 transition-transform duration-300"></i>
+                  <span class="font-medium">Are you a teacher?</span>
+                </span>
+                <span class="text-blue-600 flex items-center font-medium group-hover:translate-x-1 transition-transform duration-300">
+                  Click here to get started
+                  <i class="fas fa-arrow-right ml-2 transform group-hover:translate-x-1 transition-transform duration-300"></i>
+                </span>
+              </a>
+            </div>
+          </div>
+        </div>
+
+
+          <!-- Right column: Video Carousel -->
+          <div class="relative" data-aos="fade-left">
+            <div class="relative z-10">
+              <!-- Swiper Container -->
+              <div class="swiper-container main-swiper rounded-2xl shadow-xl overflow-hidden max-h-[300px] sm:max-h-[400px] lg:max-h-[500px]">
+                <div class="swiper-wrapper h-full">
+                  <!-- Carousel Slides -->
+                  <div class="swiper-slide h-full">
+                    <div class="relative h-full overflow-hidden rounded-lg bg-gray-100">
+                      <video class="absolute inset-0 w-full h-full object-cover" autoplay loop muted playsinline>
+                        <source src="/assets/videos/student-success.mp4" type="video/mp4">
+                      </video>
+                      <div class="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent"></div>
+                      <div class="absolute bottom-4 left-4 right-4 text-white">
+                        <h3 class="text-base sm:text-lg font-semibold">Student Success Stories</h3>
+                        <p class="text-xs sm:text-sm opacity-90">See how our platform transforms learning journeys</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="swiper-slide h-full">
+                    <div class="relative h-full overflow-hidden rounded-lg bg-gray-100">
+                      <video class="absolute inset-0 w-full h-full object-cover" autoplay loop muted playsinline>
+                        <source src="/assets/videos/ai-features.mp4" type="video/mp4">
+                      </video>
+                      <div class="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent"></div>
+                      <div class="absolute bottom-4 left-4 right-4 text-white">
+                        <h3 class="text-base sm:text-lg font-semibold">AI-Powered Learning</h3>
+                        <p class="text-xs sm:text-sm opacity-90">Experience personalized education at its best</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="swiper-slide">
+                    <div class="relative pb-[56.25%] overflow-hidden rounded-lg bg-gray-100">
+                      <video class="absolute inset-0 w-full h-full object-cover" autoplay loop muted playsinline>
+                        <source src="/assets/videos/practice-exams.mp4" type="video/mp4">
+                      </video>
+                      <div class="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent"></div>
+                      <div class="absolute bottom-4 left-4 right-4 text-white">
+                        <h3 class="text-lg font-semibold">Interactive Practice</h3>
+                        <p class="text-sm opacity-90">Prepare for success with realistic exam simulations</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!-- Pagination and Navigation -->
+                <div class="swiper-pagination"></div>
+                <div class="swiper-button-next text-white after:text-2xl"></div>
+                <div class="swiper-button-prev text-white after:text-2xl"></div>
+              </div>
+            </div>
+            <!-- Decorative elements -->
+            <div class="absolute top-1/2 -right-12 w-72 h-72 bg-gradient-to-r from-blue-400 to-indigo-400 rounded-full filter blur-3xl opacity-20 animate-blob"></div>
+            <div class="absolute -bottom-12 -left-12 w-72 h-72 bg-gradient-to-r from-indigo-400 to-purple-400 rounded-full filter blur-3xl opacity-20 animate-blob animation-delay-2000"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Decorative background elements -->
+      <div class="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-4xl h-full opacity-10 pointer-events-none">
+        <div class="absolute inset-0 bg-gradient-radial-dots"></div>
+      </div>
+      </div>
+      
       <div class="hero-grid px-6">
-        <!-- Left column: text -->
+        <!-- Left column: text + stats -->
         <div class="hero-left" data-aos="fade-up">
-          <div class="flex items-start mb-6">
-            <span class="bg-red-100 text-red-600 px-6 py-2 rounded-full shadow-sm text-sm">According to UNESCO, Sub-Saharan Africa has the highest rate of education exclusion in the world.</span>
-          </div>
-          <h1 class="text-5xl md:text-6xl font-extrabold leading-tight mb-6 text-gray-900">Let's Change The Story Together</h1>
-          <p class="text-lg md:text-xl text-blue-600 leading-relaxed mb-4">Join our mission to transform African education through AI-powered learning. We're not just preparing students for exams — we're building the foundation for Africa's future leaders.</p>
-          <p class="text-lg md:text-xl text-blue-600 leading-relaxed mb-8">Let's address this challenge and create a brighter future for African education.</p>
 
-          <div class="flex items-center gap-4 mb-6">
-            <a href="general/signup-new.html" class="button button-primary px-8 py-4">Start Learning Now</a>
-            <button id="open-impact-modal" class="button button-secondary px-8 py-4">Discover Our Impact</button>
-          </div>
 
-          <div class="flex items-center gap-4">
-            <a href="general/signup-new.html" class="inline-block py-2 px-4 bg-blue-600 text-white rounded-full text-sm font-semibold shadow-sm">Get Started Now</a>
-            <a href="#features" class="inline-block py-2 px-4 border border-blue-600 text-blue-600 rounded-full text-sm font-semibold">Explore Features</a>
-          </div>
-        </div>
-
-        <!-- Right column: floating mockup card -->
-        <div class="hero-right flex justify-center md:justify-end" data-aos="fade-left">
-          <div class="mockup-card">
-            <div class="mockup-header">
-              <div class="mockup-pill">Live Project Dashboard</div>
-              <div class="mockup-pill alt">98%</div>
-            </div>
-            <div class="mockup-gap"></div>
-            <div class="mockup-row">
-              <div class="mockup-progress">
-                <div class="mockup-bar primary"></div>
-                <div class="mockup-spacer"></div>
-                <div class="mockup-bar secondary"></div>
-              </div>
-              <div class="mockup-right">
-                <div class="mockup-strong">Progress</div>
-                <div class="muted">Active</div>
-              </div>
-            </div>
-          </div>
-        </div>
+        <!-- Right column removed -->
       </div>
     </section>
 
@@ -1119,132 +1267,68 @@
       </div>
     </section>
 
-    <!-- Portfolio / Examples Section -->
-    <section id="portfolio" class="py-12 bg-white">
-      <div class="portfolio-grid" data-aos="fade-up">
-        <div class="text-left md:col-span-4 mb-6">
-          <span class="text-primary font-semibold">FEATURED</span>
-          <h3 class="text-2xl font-bold text-gray-800 mt-2">Student Success Stories & Examples</h3>
-        </div>
-        <div class="portfolio-card">
-          <img src="assets/images/hero-platform.png" alt="Mockup 1" />
-          <h4 class="font-semibold">Mock Exam Interface</h4>
-          <p class="text-sm text-gray-600">Realistic timing and instant feedback.</p>
-        </div>
-        <div class="portfolio-card">
-          <img src="assets/images/practice exam .png" alt="Mockup 2" />
-          <h4 class="font-semibold">AI Tutor Conversation</h4>
-          <p class="text-sm text-gray-600">Step-by-step explanations for hard problems.</p>
-        </div>
-        <div class="portfolio-card">
-          <img src="assets/images/learning report 1.png" alt="Mockup 3" />
-          <h4 class="font-semibold">Performance Analytics</h4>
-          <p class="text-sm text-gray-600">Track gains and pinpoint weaknesses.</p>
-        </div>
-        <div class="portfolio-card">
-          <img src="assets/images/video library 1.png" alt="Mockup 4" />
-          <h4 class="font-semibold">Live Tutor Room</h4>
-          <p class="text-sm text-gray-600">Group sessions and one-on-one help.</p>
-        </div>
-      </div>
-    </section>
+  <!-- Pricing removed per user request (site is free) -->
 
-    <!-- Pricing Section -->
-    <section id="pricing" class="py-16 bg-gray-50">
-      <div class="pricing-cards" data-aos="fade-up">
-        <div class="text-center mb-8">
-          <span class="text-primary font-semibold">PLANS</span>
-          <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mt-2">Simple, transparent plans</h2>
-        </div>
-        <div class="grid md:grid-cols-3 gap-6">
-          <div class="pricing-card">
-            <h4 class="font-semibold">Free</h4>
-            <div class="price">$0 <small class="text-sm">/mo</small></div>
-            <p class="text-gray-600">Core features, AI tutor access, limited mocks.</p>
-            <div class="mt-4"><a class="button button-primary" href="/general/signup-new.html">Get Started</a></div>
-          </div>
-          <div class="pricing-card highlight">
-            <h4 class="font-semibold">Popular</h4>
-            <div class="price">$9 <small class="text-sm">/mo</small></div>
-            <p class="features">Everything in Free, plus unlimited mocks and live sessions.</p>
-            <div class="mt-4"><a class="button bg-white text-primary" href="/general/signup-new.html">Choose Plan</a></div>
-          </div>
-          <div class="pricing-card">
-            <h4 class="font-semibold">School</h4>
-            <div class="price">Contact</div>
-            <p class="text-gray-600">Institutional plans and analytics for schools.</p>
-            <div class="mt-4"><a class="button button-secondary" href="#">Contact Sales</a></div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Stats Section -->
-    <section class="py-16 bg-gray-50">
-        <div class="container mx-auto px-4">
-            <div class="max-w-5xl mx-auto grid md:grid-cols-3 gap-8 text-center" data-aos="fade-up">
-                <div class="bg-white p-6 rounded-xl shadow-lg border border-gray-100 transform hover:-translate-y-2 transition-transform">
-                  <i class="fas fa-check-circle text-green-500 text-4xl mb-3"></i>
-                  <h3 class="text-3xl font-bold text-gray-800">95%</h3>
-                  <p class="text-gray-600 font-medium">Pass Rate</p>
-                </div>
-                <div class="bg-white p-6 rounded-xl shadow-lg border border-gray-100 transform hover:-translate-y-2 transition-transform">
-                  <i class="fas fa-robot text-blue-500 text-4xl mb-3"></i>
-                  <h3 class="text-3xl font-bold text-gray-800">24/7</h3>
-                  <p class="text-gray-600 font-medium">AI-Powered Support</p>
-                </div>
-                <div class="bg-white p-6 rounded-xl shadow-lg border border-gray-100 transform hover:-translate-y-2 transition-transform">
-                  <i class="fas fa-chalkboard-teacher text-purple-500 text-4xl mb-3"></i>
-                  <h3 class="text-3xl font-bold text-gray-800">100+</h3>
-                  <p class="text-gray-600 font-medium">Expert Tutors</p>
-                </div>
-            </div>
-        </div>
-    </section>
+  <!-- Stats moved into hero (removed duplicate section) -->
 
     <!-- Features Section -->
     <section id="features" class="py-20 bg-white">
       <div class="container narrow mx-auto px-4" id="features-container">
         <div class="text-center max-w-3xl mx-auto mb-16">
-          <span class="text-primary font-semibold">OUR FEATURES</span>
-          <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mt-2 mb-4">Everything You Need to Succeed</h2>
+          <div class="inline-flex items-center justify-center p-2 px-4 rounded-full bg-blue-100 text-blue-600 font-semibold text-sm mb-4">
+            <i class="fas fa-star mr-2"></i>
+            OUR FEATURES
+          </div>
+          <h2 class="text-3xl md:text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-indigo-600 mt-2 mb-4">Everything You Need to Succeed</h2>
           <p class="text-lg text-gray-600">A complete toolkit to help you master any subject and ace your exams with confidence.</p>
         </div>
         <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          <!-- Feature 1 -->
-          <div class="feature-card" data-aos="fade-up">
-            <div class="icon-swatch bg-blue-100 text-primary"><i class="fas fa-robot text-2xl"></i></div>
-            <h3 class="text-xl font-bold text-gray-800 mb-3">AI-Powered Tutor</h3>
+          <!-- Feature 1: AI-Powered Tutor -->
+          <div class="feature-card group p-6 bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100 hover:border-blue-200" data-aos="fade-up">
+            <div class="icon-swatch bg-blue-100 text-blue-600 w-12 h-12 rounded-lg flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+              <i class="fas fa-robot text-2xl"></i>
+            </div>
+            <h3 class="text-xl font-bold text-gray-800 mb-3 group-hover:text-blue-600 transition-colors">AI-Powered Tutor</h3>
             <p class="text-gray-600">Get instant, step-by-step explanations for any question, 24/7. No more getting stuck on difficult concepts.</p>
           </div>
-          <!-- Feature 2 -->
-          <div class="feature-card" data-aos="fade-up" data-aos-delay="100">
-            <div class="icon-swatch bg-green-100 text-green-600"><i class="fas fa-tasks text-2xl"></i></div>
-            <h3 class="text-xl font-bold text-gray-800 mb-3">Personalized Study Plans</h3>
+          <!-- Feature 2: Personalized Study Plans -->
+          <div class="feature-card group p-6 bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100 hover:border-green-200" data-aos="fade-up" data-aos-delay="100">
+            <div class="icon-swatch bg-green-100 text-green-600 w-12 h-12 rounded-lg flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+              <i class="fas fa-tasks text-2xl"></i>
+            </div>
+            <h3 class="text-xl font-bold text-gray-800 mb-3 group-hover:text-green-600 transition-colors">Personalized Study Plans</h3>
             <p class="text-gray-600">Our AI analyzes your strengths and weaknesses to create a custom study roadmap that focuses on what you need most.</p>
           </div>
-          <!-- Feature 3 -->
-          <div class="feature-card" data-aos="fade-up" data-aos-delay="200">
-            <div class="icon-swatch bg-purple-100 text-purple-600"><i class="fas fa-pencil-ruler text-2xl"></i></div>
-            <h3 class="text-xl font-bold text-gray-800 mb-3">Realistic Mock Exams</h3>
+          <!-- Feature 3: Realistic Mock Exams -->
+          <div class="feature-card group p-6 bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100 hover:border-purple-200" data-aos="fade-up" data-aos-delay="200">
+            <div class="icon-swatch bg-purple-100 text-purple-600 w-12 h-12 rounded-lg flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+              <i class="fas fa-pencil-ruler text-2xl"></i>
+            </div>
+            <h3 class="text-xl font-bold text-gray-800 mb-3 group-hover:text-purple-600 transition-colors">Realistic Mock Exams</h3>
             <p class="text-gray-600">Practice with timed exams that mimic the format and difficulty of WAEC, NECO, and JAMB to eliminate exam-day surprises.</p>
           </div>
-          <!-- Feature 4 -->
-          <div class="feature-card" data-aos="fade-up" data-aos-delay="300">
-            <div class="icon-swatch bg-red-100 text-red-600"><i class="fas fa-video text-2xl"></i></div>
-            <h3 class="text-xl font-bold text-gray-800 mb-3">Live Tutor Sessions</h3>
+          <!-- Feature 4: Live Tutor Sessions -->
+          <div class="feature-card group p-6 bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100 hover:border-red-200" data-aos="fade-up" data-aos-delay="300">
+            <div class="icon-swatch bg-red-100 text-red-600 w-12 h-12 rounded-lg flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+              <i class="fas fa-video text-2xl"></i>
+            </div>
+            <h3 class="text-xl font-bold text-gray-800 mb-3 group-hover:text-red-600 transition-colors">Live Tutor Sessions</h3>
             <p class="text-gray-600">Join group sessions or book one-on-one time with expert tutors for in-depth guidance and support.</p>
           </div>
-          <!-- Feature 5 -->
-          <div class="feature-card" data-aos="fade-up" data-aos-delay="400">
-            <div class="icon-swatch bg-yellow-100 text-yellow-600"><i class="fas fa-chart-line text-2xl"></i></div>
-            <h3 class="text-xl font-bold text-gray-800 mb-3">Performance Analytics</h3>
+          <!-- Feature 5: Performance Analytics -->
+          <div class="feature-card group p-6 bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100 hover:border-yellow-200" data-aos="fade-up" data-aos-delay="400">
+            <div class="icon-swatch bg-yellow-100 text-yellow-600 w-12 h-12 rounded-lg flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+              <i class="fas fa-chart-line text-2xl"></i>
+            </div>
+            <h3 class="text-xl font-bold text-gray-800 mb-3 group-hover:text-yellow-600 transition-colors">Performance Analytics</h3>
             <p class="text-gray-600">Track your progress with detailed reports that show you where you're improving and where to focus next.</p>
           </div>
-          <!-- Feature 6 -->
-          <div class="feature-card" data-aos="fade-up" data-aos-delay="500">
-            <div class="icon-swatch bg-indigo-100 text-indigo-600"><i class="fas fa-book-open text-2xl"></i></div>
-            <h3 class="text-xl font-bold text-gray-800 mb-3">Comprehensive Content Library</h3>
+          <!-- Feature 6: Comprehensive Content Library -->
+          <div class="feature-card group p-6 bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100 hover:border-indigo-200" data-aos="fade-up" data-aos-delay="500">
+            <div class="icon-swatch bg-indigo-100 text-indigo-600 w-12 h-12 rounded-lg flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+              <i class="fas fa-book-open text-2xl"></i>
+            </div>
+            <h3 class="text-xl font-bold text-gray-800 mb-3 group-hover:text-indigo-600 transition-colors">Comprehensive Content Library</h3>
             <p class="text-gray-600">Access thousands of practice questions, video lessons, and study notes across all your subjects.</p>
           </div>
         </div>
@@ -1252,60 +1336,213 @@
     </section>
 
     <!-- Subjects Section -->
-    <section id="subjects" class="py-20 bg-gray-50">
+    <section id="subjects" class="py-20 bg-gradient-to-b from-gray-50 to-white">
       <div class="container mx-auto px-4">
         <div class="text-center max-w-3xl mx-auto mb-16">
-          <span class="text-primary font-semibold">ALL SUBJECTS</span>
-          <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mt-2 mb-4">Master Your Core Subjects</h2>
+          <div class="inline-flex items-center justify-center p-2 px-4 rounded-full bg-indigo-100 text-indigo-600 font-semibold text-sm mb-4">
+            ALL SUBJECTS
+          </div>
+          <h2 class="text-3xl md:text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-indigo-600 to-blue-600 mt-2 mb-4">Master Your Core Subjects</h2>
           <p class="text-lg text-gray-600">From sciences to arts, we've got you covered with expert-curated content for all your exam needs.</p>
         </div>
-        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-          <!-- Subject Cards -->
-          <a href="students/subjects/mathematics.html" class="subject-card" data-aos="fade-up">
-            <i class="fas fa-calculator text-3xl text-white"></i>
-            <span class="font-bold text-lg mt-3">Mathematics</span>
-          </a>
-          <a href="students/subjects/english.html" class="subject-card" data-aos="fade-up" data-aos-delay="50">
-            <i class="fas fa-spell-check text-3xl text-white"></i>
-            <span class="font-bold text-lg mt-3">English</span>
-          </a>
-          <a href="students/subjects/physics.html" class="subject-card" data-aos="fade-up" data-aos-delay="100">
-            <i class="fas fa-atom text-3xl text-white"></i>
-            <span class="font-bold text-lg mt-3">Physics</span>
-          </a>
-          <a href="students/subjects/chemistry.html" class="subject-card" data-aos="fade-up" data-aos-delay="150">
-            <i class="fas fa-flask text-3xl text-white"></i>
-            <span class="font-bold text-lg mt-3">Chemistry</span>
-          </a>
-          <a href="students/subjects/biology.html" class="subject-card" data-aos="fade-up" data-aos-delay="200">
-            <i class="fas fa-dna text-3xl text-white"></i>
-            <span class="font-bold text-lg mt-3">Biology</span>
-          </a>
-          <a href="#" class="subject-card" data-aos="fade-up" data-aos-delay="250">
-            <i class="fas fa-landmark text-3xl text-white"></i>
-            <span class="font-bold text-lg mt-3">Government</span>
-          </a>
-          <a href="#" class="subject-card" data-aos="fade-up" data-aos-delay="300">
-            <i class="fas fa-chart-area text-3xl text-white"></i>
-            <span class="font-bold text-lg mt-3">Economics</span>
-          </a>
-          <a href="#" class="subject-card" data-aos="fade-up" data-aos-delay="350">
-            <i class="fas fa-book text-3xl text-white"></i>
-            <span class="font-bold text-lg mt-3">Literature</span>
-          </a>
+        
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-6xl mx-auto">
+          <!-- Mathematics -->
+          <div class="group relative" data-aos="fade-up">
+            <div class="bg-white p-6 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100 hover:border-indigo-200 h-full flex flex-col items-center justify-center text-center">
+              <div class="w-16 h-16 bg-indigo-100 rounded-2xl flex items-center justify-center mb-4 group-hover:bg-indigo-200 transition-colors duration-300">
+                <i class="fas fa-calculator text-2xl text-indigo-600"></i>
+              </div>
+              <h3 class="font-bold text-gray-800 mb-2">Mathematics</h3>
+              <p class="text-sm text-gray-500">Master calculations</p>
+            </div>
+          </div>
+
+          <!-- English -->
+          <div class="group relative" data-aos="fade-up" data-aos-delay="50">
+            <div class="bg-white p-6 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100 hover:border-blue-200 h-full flex flex-col items-center justify-center text-center">
+              <div class="w-16 h-16 bg-blue-100 rounded-2xl flex items-center justify-center mb-4 group-hover:bg-blue-200 transition-colors duration-300">
+                <i class="fas fa-book-open text-2xl text-blue-600"></i>
+              </div>
+              <h3 class="font-bold text-gray-800 mb-2">English</h3>
+              <p class="text-sm text-gray-500">Perfect your language</p>
+            </div>
+          </div>
+
+          <!-- Physics -->
+          <div class="group relative" data-aos="fade-up" data-aos-delay="100">
+            <div class="bg-white p-6 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100 hover:border-purple-200 h-full flex flex-col items-center justify-center text-center">
+              <div class="w-16 h-16 bg-purple-100 rounded-2xl flex items-center justify-center mb-4 group-hover:bg-purple-200 transition-colors duration-300">
+                <i class="fas fa-atom text-2xl text-purple-600"></i>
+              </div>
+              <h3 class="font-bold text-gray-800 mb-2">Physics</h3>
+              <p class="text-sm text-gray-500">Natural phenomena</p>
+            </div>
+          </div>
+
+          <!-- Chemistry -->
+          <div class="group relative" data-aos="fade-up" data-aos-delay="150">
+            <div class="bg-white p-6 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100 hover:border-green-200 h-full flex flex-col items-center justify-center text-center">
+              <div class="w-16 h-16 bg-green-100 rounded-2xl flex items-center justify-center mb-4 group-hover:bg-green-200 transition-colors duration-300">
+                <i class="fas fa-flask text-2xl text-green-600"></i>
+              </div>
+              <h3 class="font-bold text-gray-800 mb-2">Chemistry</h3>
+              <p class="text-sm text-gray-500">Matter & reactions</p>
+            </div>
+          </div>
+
+          <!-- Biology -->
+          <div class="group relative" data-aos="fade-up" data-aos-delay="200">
+            <div class="bg-white p-6 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100 hover:border-teal-200 h-full flex flex-col items-center justify-center text-center">
+              <div class="w-16 h-16 bg-teal-100 rounded-2xl flex items-center justify-center mb-4 group-hover:bg-teal-200 transition-colors duration-300">
+                <i class="fas fa-dna text-2xl text-teal-600"></i>
+              </div>
+              <h3 class="font-bold text-gray-800 mb-2">Biology</h3>
+              <p class="text-sm text-gray-500">Life sciences</p>
+            </div>
+          </div>
+
+          <!-- Government -->
+          <div class="group relative" data-aos="fade-up" data-aos-delay="250">
+            <div class="bg-white p-6 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100 hover:border-red-200 h-full flex flex-col items-center justify-center text-center">
+              <div class="w-16 h-16 bg-red-100 rounded-2xl flex items-center justify-center mb-4 group-hover:bg-red-200 transition-colors duration-300">
+                <i class="fas fa-landmark text-2xl text-red-600"></i>
+              </div>
+              <h3 class="font-bold text-gray-800 mb-2">Government</h3>
+              <p class="text-sm text-gray-500">Political systems</p>
+            </div>
+          </div>
+
+          <!-- Economics -->
+          <div class="group relative" data-aos="fade-up" data-aos-delay="300">
+            <div class="bg-white p-6 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100 hover:border-yellow-200 h-full flex flex-col items-center justify-center text-center">
+              <div class="w-16 h-16 bg-yellow-100 rounded-2xl flex items-center justify-center mb-4 group-hover:bg-yellow-200 transition-colors duration-300">
+                <i class="fas fa-chart-area text-2xl text-yellow-600"></i>
+              </div>
+              <h3 class="font-bold text-gray-800 mb-2">Economics</h3>
+              <p class="text-sm text-gray-500">Market principles</p>
+            </div>
+          </div>
+
+          <!-- Literature -->
+          <div class="group relative" data-aos="fade-up" data-aos-delay="350">
+            <div class="bg-white p-6 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100 hover:border-pink-200 h-full flex flex-col items-center justify-center text-center">
+              <div class="w-16 h-16 bg-pink-100 rounded-2xl flex items-center justify-center mb-4 group-hover:bg-pink-200 transition-colors duration-300">
+                <i class="fas fa-book text-2xl text-pink-600"></i>
+              </div>
+              <h3 class="font-bold text-gray-800 mb-2">Literature</h3>
+              <p class="text-sm text-gray-500">Literary mastery</p>
+            </div>
+          </div>
         </div>
       </div>
     </section>
 
     <!-- Programmer Section -->
-    <section id="programmer" class="py-20 bg-gray-800 text-white">
-      <div class="container mx-auto px-4 text-center">
-        <h2 class="text-3xl md:text-4xl font-bold mb-4" data-aos="fade-up">Meet Our Programmer</h2>
-        <p class="text-lg text-gray-400 mb-12" data-aos="fade-up" data-aos-delay="100">The Mind Behind JUANOVA CORTEX</p>
-        <div class="flex flex-col items-center" data-aos="fade-up" data-aos-delay="200">
-          <img src="fuhad.jpg" alt="Abdlrazaq Fuhad Desmond" class="w-48 h-48 rounded-full object-cover mb-6 border-4 border-primary">
-          <h3 class="text-2xl font-semibold">Abdlrazaq Fuhad Desmond</h3>
-          <a href="#" class="mt-4 px-6 py-2 bg-primary text-white font-semibold rounded-lg hover:bg-blue-700 transition-colors">View Profile Details</a>
+    <section id="programmer" class="py-20 bg-gradient-to-b from-gray-50 to-white">
+      <div class="container mx-auto px-4">
+        <div class="flex flex-col md:flex-row items-center justify-between max-w-7xl mx-auto gap-12">
+          <!-- Left Content -->
+          <div class="flex-1 text-left" data-aos="fade-right">
+            <div class="flex items-center gap-3 mb-6">
+              <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold">
+                Meet <span class="text-indigo-600">Our Programmer</span>
+              </h1>
+              <div class="inline-flex items-center px-3 py-1 rounded-full bg-green-100 text-green-700">
+                <span class="w-2 h-2 rounded-full bg-green-500 mr-2"></span>
+                Online Now
+              </div>
+            </div>
+            
+            <h2 class="text-2xl md:text-3xl font-bold text-gray-700 mb-8">The Mind Behind JUANOVA CORTEX</h2>
+            
+            <p class="text-lg text-gray-600 mb-6">
+              Visionary EdTech Founder & Innovation Leader dedicated to revolutionizing education in Africa through cutting-edge technology and accessible learning solutions.
+            </p>
+            
+            <p class="text-lg text-gray-600 mb-6">
+              Driven by a passion for educational transformation, I combine entrepreneurial leadership with technological expertise to create scalable platforms that democratize quality education across Nigeria and beyond.
+            </p>
+
+            <!-- Compact Bio Section -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+              <!-- Personal Info -->
+              <div class="bg-white p-4 rounded-xl shadow-sm border border-gray-100">
+                <div class="grid grid-cols-2 gap-3 text-sm">
+                  <div class="col-span-2">
+                    <p class="text-gray-600 mb-2"><i class="fas fa-user-circle mr-2 text-indigo-600"></i><span class="font-semibold">Abdlrazaq Fuhad Desmond</span></p>
+                  </div>
+                  <p class="text-gray-600"><i class="fas fa-calendar mr-2 text-blue-600"></i>Oct 7, 2010</p>
+                  <p class="text-gray-600"><i class="fas fa-user mr-2 text-green-600"></i>Age: 15</p>
+                  <p class="text-gray-600"><i class="fas fa-venus-mars mr-2 text-purple-600"></i>Male</p>
+                  <p class="text-gray-600"><i class="fas fa-pray mr-2 text-teal-600"></i>Muslim</p>
+                  <p class="text-gray-600 col-span-2"><i class="fas fa-graduation-cap mr-2 text-orange-600"></i>High School</p>
+                </div>
+              </div>
+
+              <!-- Skills Overview -->
+              <div class="bg-white p-4 rounded-xl shadow-sm border border-gray-100">
+                <div class="space-y-3">
+                  <div>
+                    <p class="font-semibold text-gray-800 mb-1 flex items-center"><i class="fas fa-microchip mr-2 text-indigo-600"></i>Technical</p>
+                    <p class="text-gray-600 text-sm">Robotics, AI, Programming</p>
+                  </div>
+                  <div>
+                    <p class="font-semibold text-gray-800 mb-1 flex items-center"><i class="fas fa-lightbulb mr-2 text-green-600"></i>Entrepreneurial</p>
+                    <p class="text-gray-600 text-sm">Visionary Thinking, Solution Building, Knowledge-seeking</p>
+                  </div>
+                  <div>
+                    <p class="font-semibold text-gray-800 mb-1 flex items-center"><i class="fas fa-users mr-2 text-blue-600"></i>Leadership</p>
+                    <p class="text-gray-600 text-sm">Clarity, Persistence, Purpose-driven, Bold Thinking</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Innovation & Prayer -->
+            <div class="bg-gradient-to-r from-indigo-500 to-blue-600 p-4 rounded-xl shadow-sm mb-8">
+              <div class="text-white mb-3">
+                <p class="font-semibold flex items-center mb-2"><i class="fas fa-rocket mr-2"></i>Innovation Focus</p>
+                <p class="text-sm opacity-90">Humanoid Robots • EdTech Platforms • Engineering</p>
+              </div>
+              <div class="flex items-center justify-between">
+                <p class="text-sm text-white opacity-90"><i class="fas fa-star mr-2"></i>Role Model: Elon Musk</p>
+                <p class="text-sm text-white italic">"By the grace of Allah, revolutionizing education"</p>
+              </div>
+            </div>
+
+            <!-- Social Links -->
+            <div class="flex gap-4">
+              <a href="#" class="inline-flex items-center justify-center w-12 h-12 rounded-full bg-gray-100 hover:bg-indigo-100 text-gray-600 hover:text-indigo-600 transition-all duration-300">
+                <i class="fab fa-github text-xl"></i>
+              </a>
+              <a href="#" class="inline-flex items-center justify-center w-12 h-12 rounded-full bg-gray-100 hover:bg-blue-100 text-gray-600 hover:text-blue-600 transition-all duration-300">
+                <i class="fab fa-linkedin-in text-xl"></i>
+              </a>
+              <a href="#" class="inline-flex items-center justify-center w-12 h-12 rounded-full bg-gray-100 hover:bg-green-100 text-gray-600 hover:text-green-600 transition-all duration-300">
+                <i class="fas fa-globe text-xl"></i>
+              </a>
+            </div>
+          </div>
+
+          <!-- Right Image -->
+          <div class="flex-1" data-aos="fade-left">
+            <div class="relative bg-gradient-to-br from-gray-100 to-white p-6 rounded-3xl shadow-xl">
+              <img src="fuhad.jpg" alt="Abdlrazaq Fuhad Desmond" class="w-full h-[500px] object-cover rounded-2xl shadow-lg">
+              
+              <!-- Status Cards -->
+              <div class="grid grid-cols-2 gap-4 mt-6">
+                <div class="bg-white/90 backdrop-blur-sm p-4 rounded-xl shadow-lg">
+                  <div class="text-2xl font-bold text-indigo-600 mb-1">Vision</div>
+                  <div class="text-gray-600 text-sm">EdTech Pioneer</div>
+                </div>
+                <div class="bg-white/90 backdrop-blur-sm p-4 rounded-xl shadow-lg">
+                  <div class="text-2xl font-bold text-green-600 mb-1">Purpose</div>
+                  <div class="text-gray-600 text-sm">Impact Driven</div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -1318,39 +1555,10 @@
           <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mt-2 mb-4">What Our Students Say</h2>
           <p class="text-lg text-gray-600">Real stories from students who have transformed their grades with our platform.</p>
         </div>
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          <!-- Testimonial 1 -->
-          <div class="bg-gray-50 p-8 rounded-xl shadow-sm" data-aos="fade-up">
-            <div class="flex items-center mb-4">
-              <img src="https://i.pravatar.cc/150?img=1" alt="Student 1" class="w-12 h-12 rounded-full mr-4">
-              <div>
-                <h4 class="font-bold text-gray-800">Chiamaka Nwosu</h4>
-                <p class="text-sm text-gray-500">SS3 Student</p>
-              </div>
-            </div>
-            <p class="text-gray-600">"The AI tutor is a game-changer. I can get help with difficult math problems at 2 AM. My confidence and my grades have skyrocketed!"</p>
-          </div>
-          <!-- Testimonial 2 -->
-          <div class="bg-gray-50 p-8 rounded-xl shadow-sm" data-aos="fade-up" data-aos-delay="100">
-            <div class="flex items-center mb-4">
-              <img src="https://i.pravatar.cc/150?img=2" alt="Student 2" class="w-12 h-12 rounded-full mr-4">
-              <div>
-                <h4 class="font-bold text-gray-800">David Adebayo</h4>
-                <p class="text-sm text-gray-500">JAMB Candidate</p>
-              </div>
-            </div>
-            <p class="text-gray-600">"I used to be so scared of the JAMB Use of English section, but the practice tests and detailed explanations made all the difference. I scored 72!"</p>
-          </div>
-          <!-- Testimonial 3 -->
-          <div class="bg-gray-50 p-8 rounded-xl shadow-sm" data-aos="fade-up" data-aos-delay="200">
-            <div class="flex items-center mb-4">
-              <img src="https://i.pravatar.cc/150?img=3" alt="Student 3" class="w-12 h-12 rounded-full mr-4">
-              <div>
-                <h4 class="font-bold text-gray-800">Fatima Bello</h4>
-                <p class="text-sm text-gray-500">WAEC Candidate</p>
-              </div>
-            </div>
-            <p class="text-gray-600">"The live classes are amazing. The teachers are so patient and they make learning fun. I finally understand chemistry!"</p>
+        <div class="flex justify-center items-center py-12">
+          <div class="text-center">
+            <i class="far fa-comment-dots text-4xl text-gray-300 mb-4"></i>
+            <p class="text-lg text-gray-500">No comments yet</p>
           </div>
         </div>
       </div>
@@ -1417,6 +1625,73 @@
     </section>
   </main>
 
+    <!-- Swiper JS -->
+    <script src="https://unpkg.com/swiper@9/swiper-bundle.min.js"></script>
+    <script>
+      // Initialize main carousel
+      (function(){
+        const mainSwiper = new Swiper('.main-swiper', {
+          loop: true,
+          speed: 1000,
+          autoplay: {
+            delay: 5000,
+            disableOnInteraction: false,
+            pauseOnMouseEnter: true
+          },
+          effect: 'fade',
+          fadeEffect: {
+            crossFade: true
+          },
+          pagination: { 
+            el: '.swiper-pagination',
+            clickable: true,
+            renderBullet: function (index, className) {
+              return '<span class="' + className + ' w-2.5 h-2.5"></span>';
+            },
+          },
+          navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+          }
+        });
+
+        // Handle video playback
+        function playActiveVideo() {
+          const videos = document.querySelectorAll('.main-swiper video');
+          videos.forEach(video => {
+            try {
+              video.pause();
+              video.currentTime = 0;
+            } catch(e){}
+          });
+
+          const activeVideo = mainSwiper.slides[mainSwiper.activeIndex].querySelector('video');
+          if (activeVideo) {
+            activeVideo.play().catch(()=>{});
+          }
+        }
+
+        // Play video when slide changes
+        mainSwiper.on('slideChange', playActiveVideo);
+        mainSwiper.on('init', playActiveVideo);
+
+        // Handle hover pause
+        const swiperEl = document.querySelector('.main-swiper');
+        if (swiperEl) {
+          swiperEl.addEventListener('mouseenter', () => {
+            mainSwiper.autoplay.stop();
+            const activeVideo = swiperEl.querySelector('.swiper-slide-active video');
+            if (activeVideo) activeVideo.pause();
+          });
+
+          swiperEl.addEventListener('mouseleave', () => {
+            mainSwiper.autoplay.start();
+            playActiveVideo();
+          });
+        }
+      })();
+    </script>
+
   <!-- Footer -->
   <footer class="bg-gray-800 text-white">
     <div class="container mx-auto px-4 py-16">
@@ -1460,33 +1735,10 @@
         </div>
       </div>
       <div class="mt-12 border-t border-gray-700 pt-8 text-center text-gray-500">
-        <p>&copy; 2024 JUANOVA CORTEX. All Rights Reserved.</p>
+        <p>&copy; 2025 JUANOVA CORTEX. All Rights Reserved.</p>
       </div>
     </div>
   </footer>
-
-  <!-- Impact Modal -->
-    <div id="impact-modal" class="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50 hidden">
-      <div class="bg-white rounded-lg shadow-2xl p-8 max-w-2xl w-full m-4 transform transition-all" id="impact-modal-content">
-        <div class="flex justify-between items-center mb-6">
-          <h2 class="text-2xl font-bold text-gray-800">How We Can Transform Africa</h2>
-          <button id="close-impact-modal" class="text-gray-500 hover:text-gray-800 text-2xl">&times;</button>
-        </div>
-        <div class="text-gray-600 space-y-4">
-          <p>This is more than an exam prep platform—it's a movement to empower African youth and revolutionize education across the continent. With the right support, here's what we can offer:</p>
-          <ul class="list-disc list-inside space-y-2">
-            <li><strong>Personalized AI Tutoring:</strong> Every student gets tailored guidance, breaking barriers to quality education.</li>
-            <li><strong>Access for All:</strong> Mobile-first, offline learning ensures even remote communities can benefit.</li>
-            <li><strong>Teacher Empowerment:</strong> Tools and analytics help educators focus on what matters most—student growth.</li>
-            <li><strong>Exam Success:</strong> Practice tests, instant feedback, and smart study plans boost pass rates for WAEC, JAMB, and NECO.</li>
-            <li><strong>Leadership Development:</strong> Beyond academics, we nurture future leaders with soft skills and innovation challenges.</li>
-            <li><strong>Community Impact:</strong> Scholarships, mentorship, and peer support networks foster hope and ambition.</li>
-            <li><strong>Scalable Change:</strong> With sponsorship, we can reach millions, closing the education gap and unlocking Africa's potential.</li>
-          </ul>
-          <p class="font-semibold text-center pt-4">Together, we can build a brighter future for Africa.</p>
-        </div>
-      </div>
-    </div>
 
   <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
   <script>
@@ -1509,28 +1761,7 @@
       mobileMenu.classList.toggle('hidden');
     });
 
-    // Impact Modal
-    const openModalBtn = document.getElementById('open-impact-modal');
-    const closeModalBtn = document.getElementById('close-impact-modal');
-    const modal = document.getElementById('impact-modal');
-    const modalContent = document.getElementById('impact-modal-content');
-
-    openModalBtn.addEventListener('click', () => {
-      modal.classList.remove('hidden');
-      document.body.classList.add('overflow-hidden');
-    });
-
-    closeModalBtn.addEventListener('click', () => {
-      modal.classList.add('hidden');
-      document.body.classList.remove('overflow-hidden');
-    });
-
-    modal.addEventListener('click', (e) => {
-      if (e.target === modal) {
-        modal.classList.add('hidden');
-        document.body.classList.remove('overflow-hidden');
-      }
-    });
+    // Modal initialization moved to the bottom of the file
 
     // FAQ Accordion
     const faqItems = document.querySelectorAll('.faq-item');
@@ -1584,18 +1815,52 @@
     position: fixed;
     bottom: 20px;
     right: 20px;
-    background: #00e676; /* Accent green from your site */
-    color: white;
-    border-radius: 50%;
-    width: 60px;
-    height: 60px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 0; /* using image inside */
+    background: transparent;
+    color: inherit;
+    border-radius: 0;
+    width: auto;
+    height: auto;
+    display: block;
+    font-size: 0;
     cursor: pointer;
-    box-shadow: 0px 4px 12px rgba(0,0,0,0.3);
+    box-shadow: none;
     z-index: 1000;
+    padding: 0;
+  }
+
+  .chat-tooltip {
+    position: fixed;
+    bottom: 100px;
+    right: 20px;
+    background: linear-gradient(135deg, #4299e1, #3182ce);
+    color: white;
+    padding: 12px 20px;
+    border-radius: 12px;
+    font-size: 15px;
+    max-width: 220px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    opacity: 0;
+    transform: translateY(10px) scale(0.95);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    pointer-events: none;
+    z-index: 999;
+  }
+
+  .chat-tooltip.show {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+
+  .chat-tooltip::after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    right: 24px;
+    width: 0;
+    height: 0;
+    border-left: 8px solid transparent;
+    border-right: 8px solid transparent;
+    border-top: 8px solid #3182ce;
   }
 
   #cortex-ai-chat-popup {
@@ -1613,8 +1878,9 @@
 </style>
 
   <div id="cortex-ai-chat-button" role="button" aria-label="Open Cortex AI chat">
-  <img src="/assets/images/cortex-icon.svg" alt="Cortex AI" class="cortex-icon" />
-</div>
+    <img src="cortex-owl-brain.svg" alt="Cortex AI" class="cortex-icon" style="width:72px;height:72px;box-shadow:0 4px 16px rgba(0,0,0,0.20);border-radius:16px;transition:transform 0.18s cubic-bezier(.4,2,.6,1),box-shadow 0.18s;cursor:pointer;" onmouseover="this.style.transform='scale(1.12)';this.style.boxShadow='0 8px 32px rgba(0,0,0,0.28)';" onmouseout="this.style.transform='scale(1)';this.style.boxShadow='0 4px 16px rgba(0,0,0,0.20)';" onmousedown="this.style.transform='scale(0.96)';" onmouseup="this.style.transform='scale(1.12)';" />
+  </div>
+  <div class="chat-tooltip">Hi there! Need help finding something? 👋</div>
 <iframe 
   id="cortex-ai-chat-popup"  
   src="https://app.edcafe.ai/chatbots/68ba4887cee035583b5a01f3">
@@ -1623,11 +1889,67 @@
 <script>
   const button = document.getElementById("cortex-ai-chat-button");
   const popup = document.getElementById("cortex-ai-chat-popup");
+  const tooltip = document.querySelector(".chat-tooltip");
+  let tooltipTimeout;
+  let isPopupOpen = false;
+
+  // Function to show tooltip with different messages
+  function showTooltip() {
+    if (!isPopupOpen) {
+      const messages = [
+        "Hi there! Need help finding something? 👋",
+        "Have questions about our platform? I'm here to help! 💬",
+        "Looking for specific features? Let me guide you! 🎯",
+        "Want to learn more about JUANOVA CORTEX? Ask me! ✨"
+      ];
+      tooltip.textContent = messages[Math.floor(Math.random() * messages.length)];
+      tooltip.classList.add("show");
+    }
+  }
+
+  function hideTooltip() {
+    tooltip.classList.remove("show");
+  }
+
+  // Show tooltip on page load after a delay
+  setTimeout(showTooltip, 2000);
+  
+  // Hide tooltip after 5 seconds
+  setTimeout(hideTooltip, 7000);
+
+  // Show random tooltip message when clicked nearby
+  document.addEventListener("click", (e) => {
+    const buttonRect = button.getBoundingClientRect();
+    const clickDistance = Math.hypot(
+      e.clientX - (buttonRect.left + buttonRect.width/2),
+      e.clientY - (buttonRect.top + buttonRect.height/2)
+    );
+    
+    // If click is within 200px of the button and popup is not open
+    if (clickDistance < 200 && !isPopupOpen) {
+      clearTimeout(tooltipTimeout);
+      showTooltip();
+      tooltipTimeout = setTimeout(hideTooltip, 4000);
+    }
+  });
 
   button.addEventListener("click", () => {
-    popup.style.display = (popup.style.display === "none" || popup.style.display === "") 
-      ? "block" 
-      : "none";
+    isPopupOpen = !isPopupOpen;
+    popup.style.display = isPopupOpen ? "block" : "none";
+    hideTooltip();
+  });
+
+  // Hide tooltip when mouse leaves the area
+  button.addEventListener("mouseleave", () => {
+    tooltipTimeout = setTimeout(hideTooltip, 1000);
+  });
+
+  // Show tooltip on hover
+  button.addEventListener("mouseenter", () => {
+    clearTimeout(tooltipTimeout);
+    if (!isPopupOpen) {
+      showTooltip();
+    }
   });
 </script>
 
@@ -1709,5 +2031,146 @@
   });
 </script>
 
+  <!-- Impact Modal -->
+  <div id="impact-modal" class="fixed inset-0 hidden items-center justify-center p-4 sm:p-8 z-50" role="dialog" aria-modal="true">
+    <div class="fixed inset-0 bg-black bg-opacity-50 transition-opacity"></div>
+    <div class="bg-white rounded-2xl shadow-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto relative z-10 transform transition-transform scale-95 opacity-0">
+      <!-- Modal header (with top-right close) -->
+      <div class="relative bg-gradient-to-r from-blue-600 to-blue-700 text-white p-8 rounded-t-2xl">
+        <h2 class="text-3xl sm:text-4xl font-bold">How We Can Transform Africa</h2>
+        <!-- Top-right close button visible inside header -->
+        <button id="close-impact-modal-top" aria-label="Close impact modal" class="absolute top-4 right-4 text-white bg-white/10 hover:bg-white/20 p-2 rounded-full transition-colors duration-200">
+          <span class="text-2xl font-bold">&times;</span>
+        </button>
+      </div>
+      
+      <!-- Modal body -->
+      <div class="p-8 space-y-6">
+        <p class="text-lg text-gray-700 mb-6">
+          This is more than an exam prep platform—it's a movement to empower African youth and revolutionize education across the continent. With the right support, here's what we can offer:
+        </p>
+        
+        <div class="space-y-4">
+          <div class="flex items-start space-x-4">
+            <div class="flex-shrink-0 w-8 h-8 bg-blue-100 rounded-lg flex items-center justify-center">
+              <i class="fas fa-robot text-blue-600"></i>
+            </div>
+            <div>
+              <h3 class="font-semibold text-lg text-gray-900">Personalized AI Tutoring</h3>
+              <p class="text-gray-700">Every student gets tailored guidance, breaking barriers to quality education.</p>
+            </div>
+          </div>
+          
+          <div class="flex items-start space-x-4">
+            <div class="flex-shrink-0 w-8 h-8 bg-purple-100 rounded-lg flex items-center justify-center">
+              <i class="fas fa-mobile-alt text-purple-600"></i>
+            </div>
+            <div>
+              <h3 class="font-semibold text-lg text-gray-900">Access for All</h3>
+              <p class="text-gray-700">Mobile-first, offline learning ensures even remote communities can benefit.</p>
+            </div>
+          </div>
+          
+          <div class="flex items-start space-x-4">
+            <div class="flex-shrink-0 w-8 h-8 bg-green-100 rounded-lg flex items-center justify-center">
+              <i class="fas fa-chalkboard-teacher text-green-600"></i>
+            </div>
+            <div>
+              <h3 class="font-semibold text-lg text-gray-900">Teacher Empowerment</h3>
+              <p class="text-gray-700">Tools and analytics help educators focus on what matters most—student growth.</p>
+            </div>
+          </div>
+          
+          <div class="flex items-start space-x-4">
+            <div class="flex-shrink-0 w-8 h-8 bg-yellow-100 rounded-lg flex items-center justify-center">
+              <i class="fas fa-graduation-cap text-yellow-600"></i>
+            </div>
+            <div>
+              <h3 class="font-semibold text-lg text-gray-900">Exam Success</h3>
+              <p class="text-gray-700">Practice tests, instant feedback, and smart study plans boost pass rates for WAEC, JAMB, and NECO.</p>
+            </div>
+          </div>
+          
+          <div class="flex items-start space-x-4">
+            <div class="flex-shrink-0 w-8 h-8 bg-red-100 rounded-lg flex items-center justify-center">
+              <i class="fas fa-users text-red-600"></i>
+            </div>
+            <div>
+              <h3 class="font-semibold text-lg text-gray-900">Leadership Development</h3>
+              <p class="text-gray-700">Beyond academics, we nurture future leaders with soft skills and innovation challenges.</p>
+            </div>
+          </div>
+          
+          <div class="flex items-start space-x-4">
+            <div class="flex-shrink-0 w-8 h-8 bg-indigo-100 rounded-lg flex items-center justify-center">
+              <i class="fas fa-hands-helping text-indigo-600"></i>
+            </div>
+            <div>
+              <h3 class="font-semibold text-lg text-gray-900">Community Impact</h3>
+              <p class="text-gray-700">Scholarships, mentorship, and peer support networks foster hope and ambition.</p>
+            </div>
+          </div>
+          
+          <div class="flex items-start space-x-4">
+            <div class="flex-shrink-0 w-8 h-8 bg-pink-100 rounded-lg flex items-center justify-center">
+              <i class="fas fa-chart-line text-pink-600"></i>
+            </div>
+            <div>
+              <h3 class="font-semibold text-lg text-gray-900">Scalable Change</h3>
+              <p class="text-gray-700">With sponsorship, we can reach millions, closing the education gap and unlocking Africa's potential.</p>
+            </div>
+          </div>
+        </div>
+        
+        <div class="mt-8 text-center">
+          <p class="text-xl font-semibold text-blue-600">Together, we can build a brighter future for Africa.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+  // Modal functionality
+  const modal = document.getElementById('impact-modal');
+  const modalContent = modal.querySelector('.bg-white');
+  const openButton = document.getElementById('open-impact-modal');
+  const closeButton = document.getElementById('close-impact-modal'); // optional older button
+
+    function openModal() {
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+      // Trigger reflow
+      modal.offsetHeight;
+      modalContent.classList.remove('scale-95', 'opacity-0');
+      modalContent.classList.add('scale-100', 'opacity-100');
+    }
+
+    function closeModal() {
+      modalContent.classList.remove('scale-100', 'opacity-100');
+      modalContent.classList.add('scale-95', 'opacity-0');
+      setTimeout(() => {
+        modal.classList.remove('flex');
+        modal.classList.add('hidden');
+      }, 300);
+    }
+
+    if (openButton) openButton.addEventListener('click', openModal);
+    if (closeButton) closeButton.addEventListener('click', closeModal);
+    // Top header close button (visible) - additionally close modal
+    const closeTop = document.getElementById('close-impact-modal-top');
+    if (closeTop) closeTop.addEventListener('click', closeModal);
+
+    // Close when clicking outside the modal content (backdrop or padding area)
+    modal.addEventListener('click', (e) => {
+      // If click is not inside the modalContent, close
+      if (!modalContent.contains(e.target)) closeModal();
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && !modal.classList.contains('hidden')) {
+        closeModal();
+      }
+    });
+  </script>
 </body>
 </html>
