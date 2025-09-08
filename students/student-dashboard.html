@@ -577,6 +577,24 @@ if (cachedUser) {
             mainContent.classList.remove(...marginClasses);
           }
         });
+
+        // Keep sidebar/main-content in sync when resizing across breakpoint
+        let lastIsDesktop = window.innerWidth >= 1024;
+        window.addEventListener('resize', () => {
+          const isDesktop = window.innerWidth >= 1024;
+          if (isDesktop !== lastIsDesktop) {
+            lastIsDesktop = isDesktop;
+            if (isDesktop) {
+              // moving to desktop: ensure sidebar visible and margins applied
+              sidebar.classList.remove('-translate-x-full');
+              mainContent.classList.add(...marginClasses);
+            } else {
+              // moving to mobile: hide sidebar and remove margins
+              sidebar.classList.add('-translate-x-full');
+              mainContent.classList.remove(...marginClasses);
+            }
+          }
+        });
       }
 
     </script>
