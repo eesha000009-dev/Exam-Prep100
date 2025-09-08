@@ -407,25 +407,56 @@
         }
       });
 
-      // Handle sidebar toggle
-      document.addEventListener('DOMContentLoaded', () => {
-        const toggleButton = document.getElementById('toggleSidebar');
+      // Sidebar toggle (consolidated)
+      (function setupSidebarToggle(){
         const sidebar = document.getElementById('sidebar');
         const mainContent = document.getElementById('main-content');
+        const toggleButton = document.getElementById('toggleSidebar');
+        const marginClasses = ['ml-64', 'md:ml-72', 'lg:ml-80'];
 
-        if (toggleButton && sidebar && mainContent) {
+        if (!sidebar || !mainContent) return;
+
+        // initial state
+        if (window.innerWidth < 1024) {
+          sidebar.classList.add('-translate-x-full');
+          mainContent.classList.remove(...marginClasses);
+        } else {
+          sidebar.classList.remove('-translate-x-full');
+          mainContent.classList.add(...marginClasses);
+        }
+
+        if (toggleButton && !toggleButton.dataset.hasToggle) {
           toggleButton.addEventListener('click', (e) => {
             e.stopPropagation();
             sidebar.classList.toggle('-translate-x-full');
+            if (sidebar.classList.contains('-translate-x-full')) mainContent.classList.remove(...marginClasses); else mainContent.classList.add(...marginClasses);
           });
-
-          mainContent.addEventListener('click', () => {
-            if (window.innerWidth < 1024 && !sidebar.classList.contains('-translate-x-full')) {
-              sidebar.classList.add('-translate-x-full');
-            }
-          });
+          toggleButton.dataset.hasToggle = '1';
         }
-      });
+
+        mainContent.addEventListener('click', () => {
+          if (window.innerWidth < 1024 && !sidebar.classList.contains('-translate-x-full')) {
+            sidebar.classList.add('-translate-x-full');
+            mainContent.classList.remove(...marginClasses);
+          }
+        });
+
+        // sync on resize
+        let lastIsDesktop = window.innerWidth >= 1024;
+        window.addEventListener('resize', () => {
+          const isDesktop = window.innerWidth >= 1024;
+          if (isDesktop !== lastIsDesktop) {
+            lastIsDesktop = isDesktop;
+            if (isDesktop) {
+              sidebar.classList.remove('-translate-x-full');
+              mainContent.classList.add(...marginClasses);
+            } else {
+              sidebar.classList.add('-translate-x-full');
+              mainContent.classList.remove(...marginClasses);
+            }
+          }
+        });
+      })();
     document.getElementById('miniClose').addEventListener('click', ()=>{ document.getElementById('miniPlayer').classList.add('hidden'); });
 
     // Quick join (next session)
@@ -475,22 +506,4 @@
     });
   }).catch(e => console.warn('firebase-user helper import failed', e));
 
-  // Ensure sidebar toggle works
-  (function ensureSidebarToggle(){ try{ 
-      const sidebar = document.getElementById('sidebar');
-      const mainContent = document.getElementById('main-content');
-      const b=document.getElementById('toggleSidebar'); 
-      if(b && !b.dataset.hasToggle){ 
-          b.addEventListener('click', (e)=> {
-            e.stopPropagation();
-            sidebar.classList.toggle('-translate-x-full');
-          }); 
-          mainContent.addEventListener('click', () => {
-            if (window.innerWidth < 1024 && !sidebar.classList.contains('-translate-x-full')) {
-                sidebar.classList.add('-translate-x-full');
-            }
-          });
-          b.dataset.hasToggle='1'; 
-      } 
-  }catch(e){} })();
-</script>
+  </script>
