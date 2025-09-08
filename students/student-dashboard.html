@@ -540,54 +540,49 @@ if (cachedUser) {
         }
       });
 
-      // Sidebar toggle and quick actions
+      // Sidebar toggle and quick actions (consolidated)
       const sidebar = document.getElementById('sidebar');
       const mainContent = document.getElementById('main-content');
       const toggleSidebarBtn = document.getElementById('toggleSidebar');
       const marginClasses = ['ml-64', 'md:ml-72', 'lg:ml-80'];
 
-      toggleSidebarBtn.addEventListener('click', (e) => {
-        e.stopPropagation();
-        sidebar.classList.toggle('-translate-x-full');
-        if (sidebar.classList.contains('-translate-x-full')) {
+      // Ensure elements exist before wiring handlers
+      if (sidebar && mainContent) {
+        // Set sensible initial state depending on viewport
+        if (window.innerWidth < 1024) {
+          sidebar.classList.add('-translate-x-full');
           mainContent.classList.remove(...marginClasses);
         } else {
+          sidebar.classList.remove('-translate-x-full');
           mainContent.classList.add(...marginClasses);
         }
-      });
 
-      mainContent.addEventListener('click', () => {
-        if (window.innerWidth < 1024 && !sidebar.classList.contains('-translate-x-full')) {
-            sidebar.classList.add('-translate-x-full');
-            mainContent.classList.remove(...marginClasses);
-        }
-      });
-
-    </script>
-  <script type="module" src="/js/firebase-config.js"></script>
-    <script src="/js/firebase-user.js"></script>
-    <script src="/js/user-cache.js"></script>
-    <script>
-      // Handle sidebar toggle
-      document.addEventListener('DOMContentLoaded', () => {
-        const toggleButton = document.getElementById('toggleSidebar');
-        const sidebar = document.getElementById('sidebar');
-        const mainContent = document.getElementById('main-content');
-
-        if (toggleButton && sidebar && mainContent) {
-          toggleButton.addEventListener('click', (e) => {
+        // Toggle handler (guarded)
+        if (toggleSidebarBtn) {
+          toggleSidebarBtn.addEventListener('click', (e) => {
             e.stopPropagation();
             sidebar.classList.toggle('-translate-x-full');
-          });
-
-          mainContent.addEventListener('click', () => {
-            if (window.innerWidth < 1024 && !sidebar.classList.contains('-translate-x-full')) {
-              sidebar.classList.add('-translate-x-full');
+            if (sidebar.classList.contains('-translate-x-full')) {
+              mainContent.classList.remove(...marginClasses);
+            } else {
+              mainContent.classList.add(...marginClasses);
             }
           });
         }
-      });
+
+        // Clicking main content on small screens should close the sidebar
+        mainContent.addEventListener('click', () => {
+          if (window.innerWidth < 1024 && !sidebar.classList.contains('-translate-x-full')) {
+            sidebar.classList.add('-translate-x-full');
+            mainContent.classList.remove(...marginClasses);
+          }
+        });
+      }
+
     </script>
+  <script type="module" src="/js/firebase-config.js"></script>
+  <script src="/js/firebase-user.js"></script>
+  <script src="/js/user-cache.js"></script>
 
 <style>
   #cortex-ai-chat-button {
