@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mathematics - Quadratic Equation</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+</head>
+<body class="bg-gray-50 font-inter">
+  <nav class="fixed inset-x-0 top-0 bg-white/80 backdrop-blur-sm border-b border-gray-200 z-50">
+    <div class="max-w-7xl mx-auto px-4 py-3">
+      <div class="flex items-center justify-between">
+        <div class="flex items-center gap-4">
+          <nav class="text-sm text-gray-600">
+            <a href="../student-dashboard.html" class="hover:underline">Dashboard</a>
+            <span class="mx-2">/</span>
+            <a href="mathematics.html" class="hover:underline">Mathematics</a>
+            <span class="mx-2">/</span>
+            <span class="font-semibold text-blue-600">Quadratic Equations</span>
+          </nav>
+        </div>
+        <div class="flex items-center gap-3">
+          <img src="/assets/images/logo.png" alt="logo" class="h-10 w-auto" />
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <main class="max-w-7xl mx-auto px-4 pt-24 pb-12">
+    <header class="text-center mb-12">
+      <h1 class="text-4xl md:text-5xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-indigo-500 pb-2">
+        Mastering Quadratic Equations
+      </h1>
+      <p class="text-gray-500 mt-2 text-lg">An interactive guide based on the WAEC syllabus.</p>
+    </header>
+
+    <div class="grid lg:grid-cols-3 gap-8">
+      <!-- Main Content -->
+      <div class="lg:col-span-2 space-y-8">
+        
+        <!-- Section 1: Solving Quadratic Equations -->
+        <div class="bg-white border border-gray-200 rounded-xl shadow-sm p-6">
+          <h2 class="text-2xl font-semibold text-gray-800 mb-4 flex items-center"><i class="fas fa-calculator text-blue-500 mr-3"></i>Solving Quadratic Equations</h2>
+          <p class="text-gray-600 mb-6">A quadratic equation is any equation that can be written as <code class="font-mono bg-gray-100 p-1 rounded text-sm">ax² + bx + c = 0</code>. "Solving" it means finding the values of 'x' that make the equation true. Let's explore the common methods.</p>
+          
+          <div class="space-y-4" id="solving-methods">
+            <!-- Accordion Item: Factorization -->
+            <div class="border border-gray-200 rounded-lg">
+              <button class="w-full flex justify-between items-center p-4 text-left font-semibold text-gray-700 hover:bg-gray-50">
+                <span>a. Solution by Factorization</span>
+                <i class="fas fa-chevron-down transition-transform"></i>
+              </button>
+              <div class="p-4 pt-0 text-gray-600 text-sm hidden">
+                <p class="mb-2"><strong>The Big Idea:</strong> Rewrite the equation as a product of two simple expressions (factors) that equal zero. If a product of two things is zero, one (or both) of them must be zero.</p>
+                <p><strong>Example:</strong> Solve <code class="font-mono bg-gray-100">x² - 5x + 6 = 0</code></p>
+                <ol class="list-decimal list-inside mt-2 space-y-1">
+                  <li><strong>Think:</strong> What two numbers multiply to give `+6` and add to give `-5`? The numbers are `-2` and `-3`.</li>
+                  <li><strong>Rewrite:</strong> Use these numbers to create two factors: <code class="font-mono bg-gray-100">(x - 2)(x - 3) = 0</code>.</li>
+                  <li><strong>Solve:</strong> Now, either <code class="font-mono bg-gray-100">x - 2 = 0</code> or <code class="font-mono bg-gray-100">x - 3 = 0</code>.</li>
+                  <li><strong>Result:</strong> The roots are <code class="font-mono bg-gray-100">x = 2</code> and <code class="font-mono bg-gray-100">x = 3</code>.</li>
+                </ol>
+              </div>
+            </div>
+            <!-- Accordion Item: Completing the Square -->
+            <div class="border border-gray-200 rounded-lg">
+              <button class="w-full flex justify-between items-center p-4 text-left font-semibold text-gray-700 hover:bg-gray-50">
+                <span>b. Solution by Completing the Square</span>
+                <i class="fas fa-chevron-down transition-transform"></i>
+              </button>
+              <div class="p-4 pt-0 text-gray-600 text-sm hidden">
+                <p class="mb-2"><strong>The Big Idea:</strong> Force one side of the equation to become a "perfect square" trinomial, like <code class="font-mono bg-gray-100">(x+p)²</code>. Think of it as adding the "missing piece" to build a perfect square.</p>
+                <p><strong>Example:</strong> Solve <code class="font-mono bg-gray-100">x² + 6x - 7 = 0</code></p>
+                <ol class="list-decimal list-inside mt-2 space-y-1">
+                  <li><strong>Isolate:</strong> Move the constant term to the other side: <code class="font-mono bg-gray-100">x² + 6x = 7</code>.</li>
+                  <li><strong>Find the "Missing Piece":</strong> Take half of the 'x' coefficient (6/2 = 3) and square it (3² = 9). This is the piece needed to "complete the square".</li>
+                  <li><strong>Add to Both Sides:</strong> Add 9 to both sides to keep the equation balanced: <code class="font-mono bg-gray-100">x² + 6x + 9 = 7 + 9</code>.</li>
+                  <li><strong>Factor and Simplify:</strong> The left side is now a perfect square: <code class="font-mono bg-gray-100">(x + 3)² = 16</code>.</li>
+                  <li><strong>Solve:</strong> Take the square root of both sides: <code class="font-mono bg-gray-100">x + 3 = ±4</code>. This gives two possibilities: <code class="font-mono bg-gray-100">x+3=4</code> (so x=1) and <code class="font-mono bg-gray-100">x+3=-4</code> (so x=-7).</li>
+                </ol>
+              </div>
+            </div>
+            <!-- Accordion Item: Formula -->
+            <div class="border border-gray-200 rounded-lg">
+              <button class="w-full flex justify-between items-center p-4 text-left font-semibold text-gray-700 hover:bg-gray-50">
+                <span>c. Solution by Formula</span>
+                <i class="fas fa-chevron-down transition-transform"></i>
+              </button>
+              <div class="p-4 pt-0 text-gray-600 text-sm hidden">
+                <p class="mb-2"><strong>The Big Idea:</strong> A universal formula that works for any quadratic equation. Just plug in the 'a', 'b', and 'c' values.</p>
+                <div class="bg-gray-100 p-2 rounded-lg text-center text-md font-mono text-gray-800 mt-2">x = [ -b ± sqrt(b² - 4ac) ] / 2a</div>
+                <div class="mt-4 bg-blue-50 border-l-4 border-blue-400 p-3">
+                  <h4 class="font-semibold">The Discriminant (b² - 4ac)</h4>
+                  <p>This part of the formula tells you the <strong>nature of the roots</strong> (i.e., how many solutions you'll get):</p>
+                  <ul class="list-disc list-inside pl-2 mt-1">
+                    <li>If it's <strong>positive</strong>, you get <strong>two different real roots</strong>.</li>
+                    <li>If it's <strong>zero</strong>, you get <strong>one repeated real root</strong>.</li>
+                    <li>If it's <strong>negative</strong>, you get <strong>two complex roots</strong> (no real solutions).</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Section 2: Forming Equations & Applications -->
+        <div class="bg-white border border-gray-200 rounded-xl shadow-sm p-6">
+          <h2 class="text-2xl font-semibold text-gray-800 mb-4 flex items-center"><i class="fas fa-cogs text-green-500 mr-3"></i>Forming & Applying Equations</h2>
+          <div class="space-y-4">
+            <div>
+              <h3 class="font-semibold text-lg text-gray-700">Forming an Equation from Given Roots</h3>
+              <p class="text-gray-600 text-sm mt-1"><strong>The Big Idea:</strong> This is factorization in reverse. If you know the roots, you can rebuild the equation.</p>
+              <p class="text-gray-600 text-sm mt-2">If the roots are <code class="font-mono bg-gray-100">α</code> and <code class="font-mono bg-gray-100">β</code>, the equation is <code class="font-mono bg-gray-100">x² - (sum of roots)x + (product of roots) = 0</code>. <br><strong>Example:</strong> If roots are 4 and -5, the Sum = -1 and the Product = -20. The equation is <code class="font-mono bg-gray-100">x² - (-1)x + (-20) = 0</code>, which simplifies to <code class="font-mono bg-gray-100">x² + x - 20 = 0</code>.</p>
+            </div>
+            <div class="pt-4 border-t">
+              <h3 class="font-semibold text-lg text-gray-700">Application in Practical Problems</h3>
+              <p class="text-gray-600 text-sm mt-1"><strong>The Big Idea:</strong> Translate a real-world word problem into a quadratic equation to solve it.</p>
+              <div class="mt-2 bg-yellow-50 border-l-4 border-yellow-400 p-3">
+                <h4 class="font-semibold">How to Translate Word Problems:</h4>
+                <ul class="list-disc list-inside pl-2 mt-1">
+                  <li><strong>Identify the unknown:</strong> Call it 'x' or another variable (like 'w' for width).</li>
+                  <li><strong>Formulate the equation:</strong> Use the information given (e.g., area = length × width) to write an equation.</li>
+                  <li><strong>Solve:</strong> Use one of the methods above to find the value of your unknown.</li>
+                  <li><strong>Check your answer:</strong> Does the solution make sense in the real world? (e.g., length cannot be negative).</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Section 3: Graphs -->
+        <div class="bg-white border border-gray-200 rounded-xl shadow-sm p-6">
+          <h2 class="text-2xl font-semibold text-gray-800 mb-4 flex items-center"><i class="fas fa-chart-line text-purple-500 mr-3"></i>Graphs of Quadratic Functions</h2>
+          <p class="text-gray-600 mb-4">Visualizing quadratic equations is a powerful way to understand them. When you plot <code class="font-mono bg-gray-100 text-sm">y = ax² + bx + c</code>, you get a special U-shaped curve.</p>
+          
+          <div class="space-y-6">
+            <div>
+              <h3 class="font-semibold text-lg text-gray-700">What is a Parabola?</h3>
+              <p class="text-gray-600 text-sm mt-1">A <strong>parabola</strong> is the name for the symmetrical, U-shaped curve created by a quadratic equation. It can open upwards (like a smile) if 'a' is positive, or downwards (like a frown) if 'a' is negative.</p>
+            </div>
+
+            <div>
+              <h3 class="font-semibold text-lg text-gray-700">Drawing the Graph (Step-by-Step)</h3>
+              <ol class="list-decimal list-inside space-y-1 text-gray-600 text-sm mt-1">
+                <li><strong>Create a Table of Values:</strong> Choose several x-values and plug them into the equation to find the corresponding y-values.</li>
+                <li><strong>Plot the Points:</strong> Mark these (x, y) coordinate pairs on your graph paper.</li>
+                <li><strong>Draw the Curve:</strong> Connect the points with a smooth, continuous curve to form your parabola.</li>
+              </ol>
+            </div>
+
+            <div>
+              <h3 class="font-semibold text-lg text-gray-700">Finding Roots from the Graph</h3>
+              <p class="text-gray-600 text-sm mt-1">The "roots" or "solutions" are simply the x-values where the parabola intersects the x-axis (the horizontal line). Think of it as where the curve hits the ground.</p>
+              <div class="mt-3 bg-gray-50 p-4 rounded-lg border">
+                <div class="mt-4">
+                  <img src="/assets/images/mathematics/quadratic-roots.svg" 
+                       alt="Graph showing different types of quadratic roots: two real roots (crosses the x-axis at two points), one real root (touches the x-axis at one point), and no real roots (doesn't cross the x-axis)"
+                       class="w-full max-w-2xl mx-auto border border-gray-200 rounded-lg">
+                </div>
+                <p class="text-xs text-gray-500 mt-2">
+                  <strong>Interactive Demo:</strong> Drag the points A and B to change the equation and see how the roots change. 
+                  The x-coordinates where the parabola crosses the x-axis are the roots.
+                </p>
+              </div>
+              <div class="bg-blue-50 p-3 rounded-lg mt-3">
+                <p class="text-sm"><strong>Key Points:</strong></p>
+                <ul class="list-disc list-inside text-sm space-y-1 mt-1">
+                  <li>A parabola can cross the x-axis 0, 1, or 2 times</li>
+                  <li>Two crossings = two real roots (most common)</li>
+                  <li>One crossing = one repeated root</li>
+                  <li>No crossing = no real roots (complex roots)</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="mt-6">
+              <h3 class="font-semibold text-lg text-gray-700">Solving a System of Equations Graphically</h3>
+              <p class="text-gray-600 text-sm mt-1">To solve a pair of equations like <code class="font-mono bg-gray-100">y = ax² + bx + c</code> (a curve) and <code class="font-mono bg-gray-100">y = mx + k</code> (a straight line), draw both on the same graph. The points where the line and the parabola cross are the solutions.</p>
+              <div class="mt-3 bg-gray-50 p-4 rounded-lg border">
+                <div class="mt-4">
+                  <img src="/assets/images/mathematics/quadratic-linear-intersection.svg" 
+                       alt="Graph showing a parabola intersecting with a straight line at two points, demonstrating the solution to a system of equations"
+                       class="w-full max-w-2xl mx-auto border border-gray-200 rounded-lg">
+                </div>
+                <p class="text-xs text-gray-500 mt-2">
+                  <strong>Interactive Demo:</strong> Drag points to modify both the parabola and the line. 
+                  The intersection points (if any) are the solutions to both equations.
+                </p>
+              </div>
+              <div class="bg-blue-50 p-3 rounded-lg mt-3">
+                <p class="text-sm"><strong>Possible Outcomes:</strong></p>
+                <ul class="list-disc list-inside text-sm space-y-1 mt-1">
+                  <li>Two intersections = two solutions</li>
+                  <li>One intersection = one solution (line touches the parabola)</li>
+                  <li>No intersections = no solutions (line doesn't meet the parabola)</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="mt-6">
+              <h3 class="font-semibold text-lg text-gray-700">Finding the Gradient with a Tangent</h3>
+              <p class="text-gray-600 text-sm mt-1">A <strong>tangent</strong> is a straight line that "just kisses" the curve at a single point without crossing through it. The slope (or gradient) of this tangent line tells you how steep the curve is at that exact point.</p>
+              <div class="mt-3 bg-gray-50 p-4 rounded-lg border">
+                <div class="mt-4">
+                  <img src="/assets/images/mathematics/quadratic-features.svg" 
+                       alt="Graph of a parabola with labeled key features: vertex, axis of symmetry, y-intercept, and direction of opening"
+                       class="w-full max-w-2xl mx-auto border border-gray-200 rounded-lg">
+                </div>
+                <p class="text-xs text-gray-500 mt-2">
+                  <strong>Interactive Demo:</strong> Move point A along the curve to see how the tangent line changes. 
+                  The slope of this line gives you the gradient of the curve at that point.
+                </p>
+              </div>
+              <div class="bg-blue-50 p-3 rounded-lg mt-3">
+                <p class="text-sm"><strong>How to Find the Gradient:</strong></p>
+                <ol class="list-decimal list-inside text-sm space-y-1 mt-1">
+                  <li>Draw the tangent line at your chosen point</li>
+                  <li>Pick two points on your tangent line (not too close together)</li>
+                  <li>Calculate the gradient using: <code class="font-mono bg-gray-100">rise ÷ run</code> or <code class="font-mono bg-gray-100">(y₂-y₁)/(x₂-x₁)</code></li>
+                </ol>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Right Sidebar -->
+      <div class="lg:col-span-1 space-y-8">
+        <!-- Interactive Solver -->
+        <div class="bg-white border border-gray-200 rounded-xl shadow-sm p-6">
+          <h3 class="text-xl font-semibold text-gray-800 mb-4">Interactive Solver</h3>
+          <p class="text-sm text-gray-500 mb-4">Enter the coefficients for <code class="font-mono">ax² + bx + c = 0</code></p>
+          <div class="grid grid-cols-3 gap-3 mb-4">
+            <div>
+              <label for="coeff-a" class="font-medium text-sm">a</label>
+              <input type="number" id="coeff-a" value="1" class="w-full mt-1 p-2 border rounded-md text-center">
+            </div>
+            <div>
+              <label for="coeff-b" class="font-medium text-sm">b</label>
+              <input type="number" id="coeff-b" value="-5" class="w-full mt-1 p-2 border rounded-md text-center">
+            </div>
+            <div>
+              <label for="coeff-c" class="font-medium text-sm">c</label>
+              <input type="number" id="coeff-c" value="6" class="w-full mt-1 p-2 border rounded-md text-center">
+            </div>
+          </div>
+          <button id="solve-btn" class="w-full bg-blue-600 text-white font-semibold py-2 rounded-md hover:bg-blue-700 transition">Solve</button>
+          <div id="solver-output" class="mt-4 pt-4 border-t">
+            <!-- Output will be rendered here -->
+          </div>
+        </div>
+        
+        <!-- Graph Visualizer -->
+        <div class="bg-white border border-gray-200 rounded-xl shadow-sm p-6">
+            <h3 class="text-xl font-semibold text-gray-800 mb-4">Graph Visualizer</h3>
+            <canvas id="quadratic-chart" height="200"></canvas>
+        </div>
+
+      </div>
+    </div>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // Accordion logic
+      const accordions = document.querySelectorAll('#solving-methods .border');
+      accordions.forEach(accordion => {
+        const button = accordion.querySelector('button');
+        const content = accordion.querySelector('div');
+        const icon = button.querySelector('i');
+
+        button.addEventListener('click', () => {
+          const isHidden = content.classList.contains('hidden');
+          // Close all others
+          accordions.forEach(otherAccordion => {
+            otherAccordion.querySelector('div').classList.add('hidden');
+            otherAccordion.querySelector('button i').classList.remove('rotate-180');
+          });
+          // Open clicked one
+          if (isHidden) {
+            content.classList.remove('hidden');
+            icon.classList.add('rotate-180');
+          }
+        });
+      });
+
+      // Interactive Solver
+      const aInput = document.getElementById('coeff-a');
+      const bInput = document.getElementById('coeff-b');
+      const cInput = document.getElementById('coeff-c');
+      const solveBtn = document.getElementById('solve-btn');
+      const outputDiv = document.getElementById('solver-output');
+      let chart;
+
+      function solveAndDraw() {
+        const a = parseFloat(aInput.value) || 0;
+        const b = parseFloat(bInput.value) || 0;
+        const c = parseFloat(cInput.value) || 0;
+
+        if (a === 0) {
+          outputDiv.innerHTML = `<p class="text-red-600 text-sm">Coefficient 'a' cannot be zero for a quadratic equation.</p>`;
+          if(chart) chart.destroy();
+          return;
+        }
+
+        const discriminant = b * b - 4 * a * c;
+        let rootsText = '';
+        let discriminantText = `<strong>Discriminant (b²-4ac):</strong> <span class="font-mono">${discriminant.toFixed(2)}</span><br>`;
+
+        if (discriminant > 0) {
+          const root1 = (-b + Math.sqrt(discriminant)) / (2 * a);
+          const root2 = (-b - Math.sqrt(discriminant)) / (2 * a);
+          rootsText = `Two distinct real roots:<br><strong>x₁ = ${root1.toFixed(3)}</strong>, <strong>x₂ = ${root2.toFixed(3)}</strong>`;
+        } else if (discriminant === 0) {
+          const root = -b / (2 * a);
+          rootsText = `One real root (repeated):<br><strong>x = ${root.toFixed(3)}</strong>`;
+        } else {
+          const realPart = (-b / (2 * a)).toFixed(3);
+          const imagPart = (Math.sqrt(-discriminant) / (2 * a)).toFixed(3);
+          rootsText = `Two complex roots:<br><strong>x₁ = ${realPart} + ${imagPart}i</strong><br><strong>x₂ = ${realPart} - ${imagPart}i</strong>`;
+        }
+        
+        outputDiv.innerHTML = `<div class="text-sm text-gray-700">${discriminantText}${rootsText}</div>`;
+        drawGraph(a, b, c);
+      }
+
+      function drawGraph(a, b, c) {
+        const ctx = document.getElementById('quadratic-chart').getContext('2d');
+        const dataPoints = [];
+        const vertexX = -b / (2 * a);
+        const range = 10;
+        const step = range / 20;
+
+        for (let i = -range/2; i <= range/2; i += step) {
+            const x = vertexX + i;
+            const y = a * x * x + b * x + c;
+            dataPoints.push({x: x, y: y});
+        }
+
+        if (chart) {
+            chart.destroy();
+        }
+
+        chart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                datasets: [{
+                    label: 'y = ax² + bx + c',
+                    data: dataPoints,
+                    borderColor: 'rgb(79, 70, 229)',
+                    backgroundColor: 'rgba(79, 70, 229, 0.2)',
+                    tension: 0.1,
+                    fill: false
+                }, {
+                    label: 'x-axis',
+                    data: [{x: dataPoints[0].x, y: 0}, {x: dataPoints[dataPoints.length-1].x, y: 0}],
+                    borderColor: 'rgb(156, 163, 175)',
+                    borderWidth: 1,
+                    pointRadius: 0,
+                    fill: false
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    x: {
+                        type: 'linear',
+                        position: 'bottom',
+                        title: { display: true, text: 'x' }
+                    },
+                    y: {
+                        title: { display: true, text: 'y' }
+                    }
+                }
+            }
+        });
+      }
+
+      solveBtn.addEventListener('click', solveAndDraw);
+      // Initial solve and draw
+      solveAndDraw();
+    });
+  </script>
+</body>
