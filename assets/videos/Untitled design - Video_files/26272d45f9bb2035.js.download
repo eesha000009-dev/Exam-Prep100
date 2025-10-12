@@ -1,0 +1,8 @@
+(self["webpackChunk_canva_web"] = self["webpackChunk_canva_web"] || []).push([[77232],{
+
+/***/ 582181:
+function(_, __, __webpack_require__) {__webpack_require__.n_x = __webpack_require__.n;const __web_req__ = __webpack_require__;__web_req__(905716);__web_req__(764820);self._456c437108d2d2713799e19380be528d = self._456c437108d2d2713799e19380be528d || {};(function(__c) {var SZz,TZz,UZz,VZz;__c.FKg=function({Of:a,yb:b,ka:c,CDd:d,errorService:e,p$h:f}){a=new QZz({Aze:b.brand.Dd?.Aze,Bze:b.brand.Dd?.Bze,GYg:a.brands.get(b.brand.id)===1});if(f){const g=new RZz(a,d,e,c);return{ihb:a,Jrm:{cul:async()=>g.cul()}}}return{ihb:a,Jrm:{}}};SZz=__webpack_require__(186901);TZz=SZz.EW;UZz=SZz.h5;VZz=SZz.sH;var RZz=class{async cul(){try{const a=await this.CDd(),{L5d:b}=await a.E2m({document:this.ka});UZz(()=>this.store.L5d=b);return b?.Aa}catch(a){this.errorService.ra(a,{Ka:"Unable to retrieve brand controls for folder",tags:new Map([["owner","BOA"]])})}}constructor(a,b,c,d){this.store=a;this.CDd=b;this.errorService=c;this.ka=d}};var QZz=class{static G(a){__c.O(a,{L5d:VZz.ref,mUa:TZz,N5d:TZz,O5d:TZz,TP:TZz,y5:TZz})}get mUa(){return this.L5d?"folder":"team"}get N5d(){return this.L5d?.N5d}get O5d(){return this.L5d?.O5d}get TP(){return this.N5d??(this.Aze&&this.GYg)}get y5(){return this.O5d??(this.Bze&&this.GYg)}constructor({Aze:a,Bze:b,GYg:c}){this.GYg=(QZz.G(this),void 0);this.Aze=a??!1;this.Bze=b??!1;this.GYg=c}};
+}).call(self, self._456c437108d2d2713799e19380be528d);}
+
+}])
+//# sourceMappingURL=sourcemaps/26272d45f9bb2035.js.map

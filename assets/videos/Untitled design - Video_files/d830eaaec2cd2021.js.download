@@ -1,0 +1,10 @@
+(self["webpackChunk_canva_web"] = self["webpackChunk_canva_web"] || []).push([[84292],{
+
+/***/ 570089:
+function(_, __, __webpack_require__) {__webpack_require__.n_x = __webpack_require__.n;const __web_req__ = __webpack_require__;__web_req__(905716);__web_req__(667484);self._456c437108d2d2713799e19380be528d = self._456c437108d2d2713799e19380be528d || {};(function(__c) {var eVw=function(a,b){a=a.state;return a?.type==="focused"?cVw(a.Qc).trim():b.Ja?.elements?dVw(b.Ja.elements).trim():""},dVw=function(a){return a.filter(b=>fVw.includes(b.type)).sort(gVw).map(hVw).join("")},hVw=function(a){switch(a.type){case "group":return dVw(a.rb.toArray());case "text":return cVw(a.text);case "shape":return __c.dk(a)?(a=a.ed.first())?cVw(a.text):"":a.ed.map(b=>cVw(b.text)).join("");default:return""}},cVw=function(a){let b="";var c=[],d="";for(var e of a.ROa)for(var f of e.Za.split(/(\n)/g))d+=
+f,f==="\n"&&(c.push({Xb:d,qda:__c.Ee.pick("block",__c.me(__c.Ee,e.attributes))}),d="");a=[];for(const g of c){c=g.qda["list-level"];d=g.qda["list-marker"];if(c&&d&&d!=="none"){for(;c>a.length;)e=a.at(-1)?.jDd,a.push({index:0,jDd:e?e+2:0});for(;c<a.length;)a.pop();a:switch(e=d,f=a[c-1].index+1,e){case "disc":case "circle":case "square":e="- ";break a;case "lower-alpha":for(e="";f>0;f=Math.floor((f-1)/26))e=String.fromCharCode((f-1)%26+97)+e;e+=". ";break a;case "decimal":case "lower-roman":e=`${f}. `;
+break a;default:throw new __c.u(e);}b+=" ".repeat(a[c-1].jDd)+e;if(d==="decimal"||d==="lower-alpha"||d==="lower-roman")a[c-1].index+=1;a.push({index:0,jDd:a[c-1].jDd+e.length})}else a.length>0&&(b+="\n",a=[]);b+=g.Xb}return b},gVw=function(a,b){return a.top<b.top?-1:a.top>b.top?1:a.left<b.left?-1:a.left>b.left?1:0},iVw=()=>({W6k:__c.rc()});var fVw=["text","shape","group"];__c.bff={dAr:function({fea:a,kc:b,selection:c}){const {$e:d,kf:e}=__c.sc(iVw);a.items.F9l={type:"single",key:"GenerateAIVoice",Vd:()=>!!d.W6k&&c.Ja?.inner?.type!=="sheet"&&eVw(b,c)!=="",label:__c.N("I2132Q"),Icon:__c.nYj,onClick:()=>d.W6k(eVw(b,c))};return e}};
+}).call(self, self._456c437108d2d2713799e19380be528d);}
+
+}])
+//# sourceMappingURL=sourcemaps/d830eaaec2cd2021.js.map

@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WAEC Science Practical Simulator</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="bg-slate-50 text-slate-800">
+    <div class="min-h-screen flex">
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-left">
+                <button class="nav-btn active" onclick="window.location.href='index.html'">
+                    <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                        <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+                        <polyline points="9,22 9,12 15,12 15,22"/>
+                    </svg>
+                    Home
+                </button>
+                <button class="nav-btn" onclick="window.location.href='physics.html'">
+                    <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                        <polygon points="13,2 3,14 12,14 11,22 21,10 12,10 13,2"/>
+                    </svg>
+                    Physics
+                </button>
+                <button class="nav-btn" onclick="window.location.href='chemistry.html'">
+                    <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                        <path d="M10 2v20M14 2v20M4 7h16M4 17h16"/>
+                    </svg>
+                    Chemistry
+                </button>
+                <button class="nav-btn">
+                    <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                        <path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4"/>
+                        <line x1="3" x2="21" y1="6" y2="6"/>
+                        <path d="M16 10a4 4 0 0 1-8 0"/>
+                    </svg>
+                    Biology
+                </button>
+            </div>
+        </div>
+    </nav>
+
+          <!-- Sidebar (canonical) -->
+  <aside id="sidebar" class="w-64 md:w-72 lg:w-80 fixed left-0 top-0 h-full bg-white border-r border-slate-200 p-5 flex flex-col gap-6 transition-transform duration-300 ease-in-out overflow-auto z-40 lg:translate-x-0">
+        <div class="flex items-center gap-3">
+          <img src="/assets/images/logo.png" alt="logo" class="h-12 w-12 rounded-full shadow-sm">
+          <div>
+            <div class="text-lg font-bold text-sky-700">JUANOVA CORTEX</div>
+            <div class="text-xs text-slate-500">Student Dashboard</div>
+          </div>
+        </div>
+
+        <nav class="flex-1 overflow-auto">
+          <ul class="space-y-1">
+            <li><a href="student-dashboard.html" class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-slate-50"><i class="fas fa-home text-sky-600"></i> Home</a></li>
+            <li><a href="news-feed-gemini.html" class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-slate-50"><i class="fas fa-newspaper text-pink-500"></i> News Feed</a></li>
+            <li><a href="ai-tutor-chatbot.html" class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-slate-50"><i class="fas fa-robot text-purple-500"></i> AI Tutor</a></li>
+            <li><a href="study-plan.html" class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-slate-50"><i class="fas fa-calendar-check text-green-500"></i> Study Plan</a></li>
+            <li><a href="all-formula.html" class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-slate-50"><i class="fas fa-book-open text-teal-600"></i> All Formula</a></li>
+            <li><a href="video-library.html" class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-slate-50"><i class="fas fa-video text-red-500"></i> Video Library</a></li>
+            <li><a href="mock-exams.html" class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-slate-50"><i class="fas fa-pencil-alt text-orange-500"></i> Mock Exams</a></li>
+            <li><a href="notifications.html" class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-slate-50"><i class="fas fa-bell text-pink-600"></i> Notifications</a></li>
+            <li><a href="student-live-session.html" class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-slate-50"><i class="fas fa-chalkboard-teacher text-blue-400"></i> Live Sessions</a></li>
+            <li><a href="smart-note.html" class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-slate-50"><i class="fas fa-sticky-note text-yellow-500"></i> Smart Notes</a></li>
+            <li><a href="waec simulator\index.html"  class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-slate-50"><i class="fas fa-microchip text-red-500"></i> Visual Lab</a></li>
+        </ul>
+        </nav>
+
+        <div class="text-sm text-slate-500">
+          <div class="mb-2">Account</div>
+          <div class="flex items-center gap-3">
+            <img id="avatar-sm" src="../assets/images/unnamed.jpg" alt="avatar" class="h-10 w-10 rounded-full border">
+            <div>
+              <div id="userName" class="font-semibold">Student</div>
+              <div id="userLevel" class="text-xs text-slate-400"></div>
+            </div>
+          </div>
+        </div>
+      </aside>
+      
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container">
+            <!-- Hero Section -->
+            <div class="hero-section">
+                <h1 class="hero-title">WAEC Science Practical Simulator</h1>
+                <p class="hero-description">
+                    Interactive simulations for West African Examinations Council (WAEC) practical sciences.
+                    Practice Physics, Chemistry, and Biology experiments in a virtual laboratory environment.
+                </p>
+            </div>
+
+            <!-- Subject Cards -->
+            <div class="subject-grid">
+                <!-- Physics Card -->
+                <div class="subject-card physics">
+                    <div class="card-header">
+                        <div class="card-icon physics-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                <polygon points="13,2 3,14 12,14 11,22 21,10 12,10 13,2"/>
+                            </svg>
+                        </div>
+                        <h3 class="card-title">Physics</h3>
+                    </div>
+                    <div class="card-content">
+                        <p class="card-description">
+                            Explore mechanics, optics, electricity, and thermal properties through interactive simulations.
+                        </p>
+                        <button class="start-btn" onclick="window.location.href='physics.html'">Start Physics Lab</button>
+                    </div>
+                </div>
+
+                <!-- Chemistry Card -->
+                <div class="subject-card chemistry">
+                    <div class="card-header">
+                        <div class="card-icon chemistry-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                <path d="M10 2v20M14 2v20M4 7h16M4 17h16"/>
+                            </svg>
+                        </div>
+                        <h3 class="card-title">Chemistry</h3>
+                    </div>
+                    <div class="card-content">
+                        <p class="card-description">
+                            Conduct virtual titrations, gas tests, and qualitative analysis in a safe digital lab.
+                        </p>
+                        <button class="start-btn" onclick="window.location.href='chemistry.html'">Start Chemistry Lab</button>
+                    </div>
+                </div>
+
+                <!-- Biology Card -->
+                <div class="subject-card biology">
+                    <div class="card-header">
+                        <div class="card-icon biology-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                <path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4"/>
+                                <line x1="3" x2="21" y1="6" y2="6"/>
+                                <path d="M16 10a4 4 0 0 1-8 0"/>
+                            </svg>
+                        </div>
+                        <h3 class="card-title">Biology</h3>
+                    </div>
+                    <div class="card-content">
+                        <p class="card-description">
+                            Perform microscopy, biochemical tests, and study living organisms safely.
+                        </p>
+                        <button class="start-btn">Start Biology Lab</button>
+                    </div>
+                </div>
+
+                <!-- Visual Lab Card -->
+                <div class="subject-card" style="border: 2px solid #6366f1; background: linear-gradient(135deg, #f0fdfa 60%, #e0e7ff 100%);">
+                    <div class="card-header">
+                        <div class="card-icon" style="background: #6366f1; color: #fff;">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                <circle cx="12" cy="12" r="10" stroke-width="2"/>
+                                <path d="M8 12h8M12 8v8" stroke-width="2"/>
+                            </svg>
+                        </div>
+                        <h3 class="card-title">Virtual Lab</h3>
+                    </div>
+                    <div class="card-content">
+                        <p class="card-description">
+                            WAEC practical examinations for Physics, Biology and Chemistry from 1988 to 2025, providing students with hands-on experience in scientific experimentation. Each simulation is designed to replicate real laboratory conditions and procedures used in actual WAEC examinations.<br><span style="color:#6366f1;font-weight:600;">(Coming Soon)</span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- About Section -->
+            <div class="about-card">
+                <div class="about-header">
+                    <div class="about-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                            <path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"/>
+                        </svg>
+                    </div>
+                    <h3 class="about-title">About WAEC Practicals</h3>
+                </div>
+                <div class="about-content">
+                    <p>
+                        This simulator covers topics from the WAEC syllabus and WAEC practical examinations for physics, Biology and Chemistry from 1988 to 2025, providing students
+                        with hands-on experience in scientific experimentation. Each simulation is designed to
+                        replicate real laboratory conditions and procedures used in actual WAEC examinations.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

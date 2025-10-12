@@ -1,0 +1,17 @@
+;// __FILE_CONTENT_FOR__:c0714aec2517f4be.js
+(self["webpackChunk_canva_web"] = self["webpackChunk_canva_web"] || []).push([[13500],{
+
+/***/ 735316:
+function(_, __, __webpack_require__) {__webpack_require__.n_x = __webpack_require__.n;const __web_req__ = __webpack_require__;__web_req__(905716);__web_req__(23200);self._456c437108d2d2713799e19380be528d = self._456c437108d2d2713799e19380be528d || {};(function(__c) {var T5h=__c.I(()=>[1,"BOLD",2,"BRIGHT",3,"MODERN",4,"CALM"],0,{Nn:0});__c.U5h=__c.G(()=>({Yb:__c.pp(1),fK:__c.pp(2),GN:__c.sp(3),Xzs:__c.sp(4)}));var V5h=__c.G(()=>({Pp:__c.D(1,__c.U5h),media:__c.D(2,__c.Bq)}));__c.W5h=__c.G(()=>({name:__c.S(1),key:__c.Va(4,T5h),style:__c.D(2,__c.t0h),jPu:__c.Sa(3,V5h)}));
+}).call(self, self._456c437108d2d2713799e19380be528d);}
+
+}])
+;// __FILE_CONTENT_FOR__:ea58326d06a72b23.js
+(self["webpackChunk_canva_web"] = self["webpackChunk_canva_web"] || []).push([[200],{
+
+/***/ 425316:
+function(_, __, __webpack_require__) {__webpack_require__.n_x = __webpack_require__.n;const __web_req__ = __webpack_require__;__web_req__(905716);self._456c437108d2d2713799e19380be528d = self._456c437108d2d2713799e19380be528d || {};(function(__c) {__c.SYh=__c.G(()=>({media:__c.Sa(1,__c.Bq),fonts:__c.Sa(2,__c.gj),Fc:__c.wp(3),Ap:__c.wp(4),embeds:__c.wp(5)}));
+}).call(self, self._456c437108d2d2713799e19380be528d);}
+
+}])
+//# sourceMappingURL=https://chunk-composing.canva.com/chunk-batch-sm/8_sourcemaps/c0714aec2517f4be.js.map+8_sourcemaps/ea58326d06a72b23.js.map

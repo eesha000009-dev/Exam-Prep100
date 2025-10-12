@@ -1,0 +1,11 @@
+(self["webpackChunk_canva_web"] = self["webpackChunk_canva_web"] || []).push([[76519],{
+
+/***/ 961853:
+function(_, __, __webpack_require__) {__webpack_require__.n_x = __webpack_require__.n;const __web_req__ = __webpack_require__;__web_req__(905716);__web_req__(764820);__web_req__(47630);self._456c437108d2d2713799e19380be528d = self._456c437108d2d2713799e19380be528d || {};(function(__c) {var Rgj;__c.Pgj=async function({actions:a,Sa:b,errorService:c,user:d,Ka:e}){if(!(a.length<0))try{await b.ORa(new __c.nt({user:d,types:a}))}catch(f){c.Oq(f,{Ka:e||"Failed to update DYNAMIC_USER actions.",extra:new Map([["action",a.map(g=>__c.Qp.serialize(g.type))]])})}};__c.Qgj=function(a,b,c){b in a.lpb||(a.lpb[b]={});c in a.lpb[b]||(a.lpb[b][c]=__c.C1f(b,c,a.X.ei?.dHa));return a.lpb[b][c]};
+Rgj=class{async CC(a,b){try{return await this.Sa.ORa(new __c.nt({user:this.userId,types:[{type:a,tags:b}]}))}catch(c){a=__c.Qp.serialize(a),this.errorService.ra(c,{Ka:`Failed to update DynamicActionType enum "${a}" -`,extra:new Map([["action",a],["tags",JSON.stringify(b)]])})}}async A$c(a,b,c){try{const d=await this.Sa.Ctc(new __c.xPg({user:this.userId,types:[{type:a,tags:b}],components:c}));return __c.z1f(a,d.actions)}catch(d){this.errorService.ra(d,{Ka:`Failed to fetch ${a}`,extra:new Map([["action",
+__c.Qp.serialize(a)]])})}}constructor(a,b,c){this.Sa=a;this.errorService=b;this.userId=c}};__c.Sgj=class{async CC(a){if(a.length)return this.Hri.CC(this.action,a)}async A$c(a,b){if(a.length)return this.Hri.A$c(this.action,a,b)}constructor(a,b,c,d){this.action=d;this.Hri=new Rgj(a,b,c)}};
+__c.Tgj=class{CC(a,b){a in this.lpb||(this.lpb[a]={});this.lpb[a][b]=b in this.lpb[a]?this.lpb[a][b]+1:1;__c.Pgj({actions:[{type:a,tags:[b]}],Sa:this.Sa,errorService:this.errorService,user:this.X.user.id,Ka:`Failed to update interaction state for ${a} with tag ${b}`})}constructor(a,b,c){this.X=a;this.errorService=b;this.Sa=c;this.lpb={}}};
+}).call(self, self._456c437108d2d2713799e19380be528d);}
+
+}])
+//# sourceMappingURL=sourcemaps/de658b9213b00ffc.js.map

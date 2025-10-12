@@ -1,0 +1,8 @@
+(self["webpackChunk_canva_web"] = self["webpackChunk_canva_web"] || []).push([[46896],{
+
+/***/ 104634:
+function(_, __, __webpack_require__) {__webpack_require__.n_x = __webpack_require__.n;const __web_req__ = __webpack_require__;__web_req__(905716);self._456c437108d2d2713799e19380be528d = self._456c437108d2d2713799e19380be528d || {};(function(__c) {__c.Paj=__c.I(()=>[1,"popular",2,"new",3,"productivity",4,"trending",5,"discover",6,"import",7,"publish",8,"photo-editing",9,"create",10,"suggested",11,"suggested-carousel",12,"suggested-variant",13,"trending-non-v2-apps",14,"featured",15,"ai-trending",16,"ai-powered-carousel",17,"ai-powered",18,"hr",19,"sales",20,"marketing",21,"creative",22,"enterprise-carousel",23,"enterprise-approved",24,"workplace-essentials",25,"bundled-apps",26,"docs-available"]);__c.Qaj=__c.I(()=>[1,"EDIT_FEATURE",2,"PUBLISH_FEATURE",3,"CONTENT_FEATURE",4,"AUTHENTICATION_FEATURE",5,"DATA_PROVIDER_FEATURE",7,"DATA_CONSUMER_FEATURE",6,"WEB_GL_FEATURE",8,"DRAG_AND_DROP_FEATURE",9,"DESIGN_INTERACTION_FEATURE",10,"FETCH_FEATURE",11,"GENERATION_FEATURE",12,"INTERACTIVE_ELEMENT_FEATURE",13,"EXPORT_FEATURE",14,"PLATFORM_FEATURE",15,"INTERNAL_FEATURE",16,"SKELETON_FEATURE"]);__c.Raj=__c.I(()=>[1,"RESPONSIVE_POSITIONING"]);
+}).call(self, self._456c437108d2d2713799e19380be528d);}
+
+}])
+//# sourceMappingURL=sourcemaps/aede27d021236efa.js.map

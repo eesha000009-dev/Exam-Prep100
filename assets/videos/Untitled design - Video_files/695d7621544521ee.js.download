@@ -1,0 +1,10 @@
+(self["webpackChunk_canva_web"] = self["webpackChunk_canva_web"] || []).push([[63307],{
+
+/***/ 100191:
+function(_, __, __webpack_require__) {__webpack_require__.n_x = __webpack_require__.n;const __web_req__ = __webpack_require__;__web_req__(905716);self._456c437108d2d2713799e19380be528d = self._456c437108d2d2713799e19380be528d || {};(function(__c) {var nij,oij;nij=async function(a){a=URL.createObjectURL(a);return __c.Hs(a)};oij=function(a,b){for(;b<a.byteLength;){if(a.getUint8(b)===33&&a.getUint8(b+1)===249){const c=a.getUint8(b+2),d=a.getUint8(b+7);if(c===4&&d===0)return b}b++}return-1};__c.pij=async function(a){return new Promise(b=>{Number.isFinite(a.duration)?b():(a.currentTime=1E101,a.addEventListener("timeupdate",()=>{a.currentTime=0;b()}))})};__c.qij=async function(a){a=URL.createObjectURL(a);return await __c.Hs(a)};
+__c.rij=async function(a){return new Promise((b,c)=>{const d=a.videoWidth,e=a.videoHeight,f=document.createElement("canvas"),g=f.getContext("2d");if(!g)throw Error("Unable to get 2d context");f.width=d;f.height=e;try{g.drawImage(a,0,0,d,e)}catch{}f.toBlob(h=>{h?b(h):c(Error())})})};
+__c.sij=class{static async uHf(a){a=await nij(a);if(a.src){var b=a.naturalWidth*a.naturalHeight;a=isNaN(b)||b<=0?!1:__c.nCa(a)}else a=!1;return a}static async C$d(a){a=await __c.ah(a);a=new DataView(a);try{if(!(a.byteLength>2&&a.getUint8(0)===71&&a.getUint8(1)===73&&a.getUint8(2)===70))return!1;const b=oij(a,13);return b>-1&&oij(a,b+8)>-1}catch(b){return!1}}async handle(a){const b=await nij(a);if(!b)throw Error("Failed to load gif");return{img:b,file:a,width:b.naturalWidth,height:b.naturalHeight}}};
+}).call(self, self._456c437108d2d2713799e19380be528d);}
+
+}])
+//# sourceMappingURL=sourcemaps/695d7621544521ee.js.map

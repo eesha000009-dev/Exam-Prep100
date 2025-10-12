@@ -1,0 +1,7 @@
+{
+  "dependencies": {
+    "drizzle-orm": "^0.44.2",
+    "sqlite": "^5.1.1",
+    "sqlite3": "^5.1.7"
+  }
+}

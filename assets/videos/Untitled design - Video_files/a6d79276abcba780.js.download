@@ -1,0 +1,8 @@
+(self["webpackChunk_canva_web"] = self["webpackChunk_canva_web"] || []).push([[20417],{
+
+/***/ 712233:
+function(_, __, __webpack_require__) {__webpack_require__.n_x = __webpack_require__.n;const __web_req__ = __webpack_require__;__web_req__(905716);__web_req__(912931);self._456c437108d2d2713799e19380be528d = self._456c437108d2d2713799e19380be528d || {};(function(__c) {var V=__c.V;__c.SIn=__c.G(()=>({id:V(1),text:__c.S(2),elementType:V(3)}));var TIn=__c.I(()=>[1,2,3]);__c.UIn=__c.G(()=>({jvh:V(1),nHg:V(2),Gzg:__c.Ua(3,TIn),text:V(4)}));__c.VIn=__c.G(()=>({type:__c.A("A?",6,"CREATE_FORM"),elements:__c.Sa(42,__c.SIn),links:__c.Sa(43,__c.UIn),prompt:V(44)}));__c.WIn=__c.G(()=>({type:__c.A("A?",2,"CREATE_QUIZ_FIXED"),elements:__c.Sa(32,__c.SIn),links:__c.Sa(33,__c.UIn)}));
+}).call(self, self._456c437108d2d2713799e19380be528d);}
+
+}])
+//# sourceMappingURL=sourcemaps/a6d79276abcba780.js.map

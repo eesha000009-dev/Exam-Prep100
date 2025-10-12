@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chemistry Lab - WAEC Science Practical Simulator</title>
+    <link rel="stylesheet" href="../src/design-system.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: var(--font-main);
+            background: var(--background);
+            color: var(--text);
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        .sim-main {
+            width: 100%;
+            max-width: 900px;
+            margin: 60px auto 40px auto;
+            padding: 0 16px;
+        }
+        .sim-card {
+            background: var(--surface);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            padding: 40px 32px 32px 32px;
+            margin: 0 auto;
+        }
+        .sim-title {
+            font-size: 2.1rem;
+            font-weight: 900;
+            color: #2563eb;
+            margin-bottom: 18px;
+            text-align: center;
+            letter-spacing: -1px;
+        }
+        .sim-description {
+            text-align: center;
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+        }
+        .subject-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 24px;
+            justify-content: center;
+        }
+        .subject-card {
+            background: var(--surface);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            padding: 28px 20px;
+            width: 320px;
+            text-align: center;
+            margin-bottom: 12px;
+            transition: box-shadow 0.2s;
+        }
+        .subject-card:hover {
+            box-shadow: 0 6px 32px 0 rgba(37,99,235,0.13);
+        }
+        .card-header {
+            margin-bottom: 12px;
+        }
+        .card-icon {
+            font-size: 2.5rem;
+            color: #2563eb;
+            margin-bottom: 8px;
+        }
+        .card-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+        .card-desc {
+            color: var(--text-secondary);
+            font-size: 1rem;
+            margin-bottom: 10px;
+        }
+        .card-btn {
+            background: #2563eb;
+            color: #fff;
+            border: none;
+            border-radius: 6px;
+            padding: 0.6rem 1.2rem;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        .card-btn:hover {
+            background: #1e40af;
+        }
+        @media (max-width: 700px) {
+            .sim-main { margin: 32px auto 24px auto; }
+            .sim-card { padding: 24px 8px 20px 8px; }
+            .subject-card { width: 98%; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar" style="background: #fff; box-shadow: var(--shadow);">
+        <div class="nav-container" style="display: flex; align-items: center; justify-content: space-between; max-width: 1100px; margin: 0 auto; padding: 0.7rem 1.2rem;">
+            <div class="nav-left" style="display: flex; gap: 0.7rem;">
+                <button class="nav-btn" onclick="window.location.href='index.html'" style="display: flex; align-items: center; gap: 0.5rem; font-weight: 600; font-size: 1.08rem; background: #f1f5f9; color: #2563eb; border: none; border-radius: 8px; padding: 0.6rem 1.3rem; transition: background 0.2s;">
+                    <span style="font-size:1.3rem;display:flex;align-items:center;">
+                        <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12L12 3l9 9"/><path d="M9 21V9h6v12"/></svg>
+                    </span>
+                    Home
+                </button>
+                <button class="nav-btn" onclick="window.location.href='physics.html'" style="display: flex; align-items: center; gap: 0.5rem; font-weight: 600; font-size: 1.08rem; background: #f1f5f9; color: #2563eb; border: none; border-radius: 8px; padding: 0.6rem 1.3rem; transition: background 0.2s;">
+                    <span style="font-size:1.3rem;display:flex;align-items:center;">
+                        <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="M11 7v4l3 3"/></svg>
+                    </span>
+                    Physics
+                </button>
+                <button class="nav-btn active" style="display: flex; align-items: center; gap: 0.5rem; font-weight: 600; font-size: 1.08rem; background: linear-gradient(90deg, #2563eb 60%, #60a5fa 100%); color: #fff; border: none; border-radius: 8px; padding: 0.6rem 1.3rem; box-shadow: 0 2px 8px #2563eb22;">
+                    <span style="font-size:1.3rem;display:flex;align-items:center;">
+                        <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="M7 11h8"/><path d="M11 7v8"/></svg>
+                    </span>
+                    Chemistry
+                </button>
+                <button class="nav-btn" disabled style="display: flex; align-items: center; gap: 0.5rem; font-weight: 600; font-size: 1.08rem; background: #f1f5f9; color: #94a3b8; border: none; border-radius: 8px; padding: 0.6rem 1.3rem; opacity:0.6;">
+                    <span style="font-size:1.3rem;display:flex;align-items:center;">
+                        <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="11" cy="11" rx="8" ry="6"/><path d="M11 5v12"/></svg>
+                    </span>
+                    Biology
+                </button>
+            </div>
+        </div>
+    </nav>
+    <main class="sim-main">
+        <div class="sim-card">
+            <h1 class="sim-title">Chemistry Lab</h1>
+            <div class="sim-description">
+                Select a Chemistry topic to begin the simulation.
+            </div>
+            <div style="text-align:center; margin-bottom: 2rem;">
+                <input type="text" id="searchInput" placeholder="Search for a topic..." style="width: 60%; max-width: 400px; padding: 0.75rem 1rem; border-radius: 8px; border: 1px solid #3b82f6; font-size: 1rem;">
+            </div>
+            <div class="subject-grid" id="subjectGrid">
+                <div class="subject-card">
+                    <div class="card-header">
+                        <img src="https://images.unsplash.com/photo-1509228468518-180dd4864904?auto=format&fit=crop&w=400&q=80" alt="Acids & Bases" style="width:64px;height:64px;border-radius:12px;object-fit:cover;margin-bottom:8px;box-shadow:0 2px 8px #2563eb22;">
+                        <div class="card-title">Acids &amp; Bases</div>
+                    </div>
+                    <div class="card-desc">Explore pH, neutralization, and titration.</div>
+                    <button class="card-btn" onclick="window.location.href='ph-scale.html'">Start</button>
+                </div>
+                <div class="subject-card">
+                    <div class="card-header">
+                        <img src="https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=400&q=80" alt="Balancing Equations" style="width:64px;height:64px;border-radius:12px;object-fit:cover;margin-bottom:8px;box-shadow:0 2px 8px #2563eb22;">
+                        <div class="card-title">Balancing Equations</div>
+                    </div>
+                    <div class="card-desc">Balance chemical equations interactively.</div>
+                    <button class="card-btn" onclick="window.location.href='balancing.html'">Start</button>
+                </div>
+                <div class="subject-card">
+                    <div class="card-header">
+                        <img src="https://images.unsplash.com/photo-1517976487492-5750f3195933?auto=format&fit=crop&w=400&q=80" alt="Concentration" style="width:64px;height:64px;border-radius:12px;object-fit:cover;margin-bottom:8px;box-shadow:0 2px 8px #2563eb22;">
+                        <div class="card-title">Concentration</div>
+                    </div>
+                    <div class="card-desc">Experiment with concentration and solutions.</div>
+                    <button class="card-btn" onclick="window.location.href='concentration.html'">Start</button>
+                </div>
+                <div class="subject-card">
+                    <div class="card-header">
+                        <img src="https://images.unsplash.com/photo-1464983953574-0892a716854b?auto=format&fit=crop&w=400&q=80" alt="Hydrogen Models" style="width:64px;height:64px;border-radius:12px;object-fit:cover;margin-bottom:8px;box-shadow:0 2px 8px #2563eb22;">
+                        <div class="card-title">Hydrogen Models</div>
+                    </div>
+                    <div class="card-desc">Explore the atomic structure and properties of hydrogen.</div>
+                    <button class="card-btn" onclick="window.location.href='hydrogen-models.html'">Start</button>
+                </div>
+                <div class="subject-card">
+                    <div class="card-header">
+                        <img src="https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=400&q=80" alt="Isotopes" style="width:64px;height:64px;border-radius:12px;object-fit:cover;margin-bottom:8px;box-shadow:0 2px 8px #2563eb22;">
+                        <div class="card-title">Isotopes</div>
+                    </div>
+                    <div class="card-desc">Experiment with isotopes and atomic mass.</div>
+                    <button class="card-btn" onclick="window.location.href='isotopes.html'">Start</button>
+                </div>
+                <div class="subject-card">
+                    <div class="card-header">
+                        <img src="https://images.unsplash.com/photo-1517976487492-5750f3195933?auto=format&fit=crop&w=400&q=80" alt="Molarity" style="width:64px;height:64px;border-radius:12px;object-fit:cover;margin-bottom:8px;box-shadow:0 2px 8px #2563eb22;">
+                        <div class="card-title">Molarity</div>
+                    </div>
+                    <div class="card-desc">Practice with solutions and concentrations.</div>
+                    <button class="card-btn" onclick="window.location.href='molarity.html'">Start</button>
+                </div>
+                <div class="subject-card">
+                    <div class="card-header">
+                        <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=400&q=80" alt="Molecule Polarity" style="width:64px;height:64px;border-radius:12px;object-fit:cover;margin-bottom:8px;box-shadow:0 2px 8px #2563eb22;">
+                        <div class="card-title">Molecule Polarity</div>
+                    </div>
+                    <div class="card-desc">Visualize and experiment with molecular polarity.</div>
+                    <button class="card-btn" onclick="window.location.href='molecule-polarity.html'">Start</button>
+                </div>
+                <div class="subject-card">
+                    <div class="card-header">
+                        <img src="https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=400&q=80" alt="pH Scale" style="width:64px;height:64px;border-radius:12px;object-fit:cover;margin-bottom:8px;box-shadow:0 2px 8px #2563eb22;">
+                        <div class="card-title">pH Scale</div>
+                    </div>
+                    <div class="card-desc">Explore acids, bases, and the pH scale interactively.</div>
+                    <button class="card-btn" onclick="window.location.href='ph-scale.html'">Start</button>
+                </div>
+                <div class="subject-card">
+                    <div class="card-header">
+                        <img src="https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=400&q=80" alt="pH Scale: Basics" style="width:64px;height:64px;border-radius:12px;object-fit:cover;margin-bottom:8px;box-shadow:0 2px 8px #2563eb22;">
+                        <div class="card-title">pH Scale: Basics</div>
+                    </div>
+                    <div class="card-desc">Learn the basics of acids, bases, and pH.</div>
+                    <button class="card-btn" onclick="window.location.href='ph-scale-basics.html'">Start</button>
+                </div>
+                <!-- ...other chemistry simulations, sorted and with images... -->
+            </div>
+        </div>
+    </main>
+    <footer class="footer" style="background: #2563eb; color: #fff; text-align: center; padding: 40px 0 22px 0; margin-top: 80px; font-size: 1.08rem; letter-spacing: 0.2px;">
+        &copy; 2025 ExamMaster NG. All rights reserved.
+    </footer>
+    <script>
+        // Simple search filter for topics
+        const searchInput = document.getElementById('searchInput');
+        const subjectGrid = document.getElementById('subjectGrid');
+        searchInput.addEventListener('input', function() {
+            const query = this.value.toLowerCase();
+            const cards = subjectGrid.querySelectorAll('.subject-card');
+            cards.forEach(card => {
+                const title = card.querySelector('.card-title').textContent.toLowerCase();
+                card.style.display = title.includes(query) ? '' : 'none';
+            });
+        });
+    </script>
+</body>
+</html>

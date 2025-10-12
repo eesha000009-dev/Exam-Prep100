@@ -1,0 +1,921 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Physics Lab - WAEC Science Practical Simulator</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-left">
+                <button class="nav-btn" onclick="window.location.href='index.html'">Home</button>
+                <button class="nav-btn active">Physics</button>
+                <button class="nav-btn" onclick="window.location.href='chemistry.html'">Chemistry</button>
+                <button class="nav-btn">Biology</button>
+            </div>
+        </div>
+    </nav>
+    <main class="main-content">
+        <div class="container">
+            <div class="hero-section">
+                <h1 class="hero-title">Physics Lab</h1>
+                <p class="hero-description">
+                    Select a Physics topic to begin the simulation.
+                </p>
+            </div>
+            <!-- Search Bar -->
+            <div style="text-align:center; margin-bottom: 2rem;">
+                <input type="text" id="searchInput" placeholder="Search for a topic..." style="width: 60%; max-width: 400px; padding: 0.75rem 1rem; border-radius: 8px; border: 1px solid #3b82f6; font-size: 1rem;">
+            </div>
+            <div class="subject-grid" id="subjectGrid">
+                <div class="subject-card physics">
+                    <div class="card-header">
+                        <div class="card-icon physics-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                <polygon points="13,2 3,14 12,14 11,22 21,10 12,10 13,2"/>
+                            </svg>
+                        </div>
+                        <h3 class="card-title">Models of the Hydrogen Atom</h3>
+                    </div>
+                    <div class="card-content">
+                        <p class="card-description">Explore the atomic structure and properties of hydrogen.</p>
+                        <button class="start-btn" data-href="https://phet.colorado.edu/sims/html/models-of-the-hydrogen-atom/latest/models-of-the-hydrogen-atom_en.html">Try Simulation</button>
+                    </div>
+                </div>
+                <div class="subject-card physics">
+                    <div class="card-header">
+                        <div class="card-icon physics-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                <polygon points="13,2 3,14 12,14 11,22 21,10 12,10 13,2"/>
+                            </svg>
+                        </div>
+                        <h3 class="card-title">Buoyancy: Basics</h3>
+                    </div>
+                    <div class="card-content">
+                        <p class="card-description">Learn the fundamentals of buoyancy and fluid mechanics.</p>
+                        <button class="start-btn" data-href="https://phet.colorado.edu/sims/html/buoyancy-basics/latest/buoyancy-basics_en.html">Try Simulation</button>
+                    </div>
+                </div>
+                <div class="subject-card physics">
+                    <div class="card-header">
+                        <div class="card-icon physics-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                <polygon points="13,2 3,14 12,14 11,22 21,10 12,10 13,2"/>
+                            </svg>
+                        </div>
+                        <h3 class="card-title">Calculus Grapher</h3>
+                    </div>
+                    <div class="card-content">
+                        <p class="card-description">Visualize and interact with calculus concepts.</p>
+                        <button class="start-btn" data-href="https://phet.colorado.edu/sims/html/calculus-grapher/latest/calculus-grapher_en.html">Try Simulation</button>
+                    </div>
+                </div>
+                <div class="subject-card physics">
+                    <div class="card-header">
+                        <div class="card-icon physics-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                <polygon points="13,2 3,14 12,14 11,22 21,10 12,10 13,2"/>
+                            </svg>
+                        </div>
+                        <h3 class="card-title">My Solar System</h3>
+                    </div>
+                    <div class="card-content">
+                        <p class="card-description">Create and explore your own solar system.</p>
+                        <button class="start-btn" data-href="https://phet.colorado.edu/sims/html/my-solar-system/latest/my-solar-system_en.html">Try Simulation</button>
+                    </div>
+                </div>
+                <div class="subject-card physics">
+                    <div class="card-header">
+                        <div class="card-icon physics-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                <polygon points="13,2 3,14 12,14 11,22 21,10 12,10 13,2"/>
+                            </svg>
+                        </div>
+                        <h3 class="card-title">Sound Waves</h3>
+                    </div>
+                    <div class="card-content">
+                        <p class="card-description">Investigate the properties of sound waves.</p>
+                        <button class="start-btn" data-href="https://phet.colorado.edu/sims/html/sound-waves/latest/sound-waves_en.html">Try Simulation</button>
+                    </div>
+                </div>
+                <div class="subject-card physics">
+                    <div class="card-header">
+                        <div class="card-icon physics-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                <polygon points="13,2 3,14 12,14 11,22 21,10 12,10 13,2"/>
+                            </svg>
+                        </div>
+                        <h3 class="card-title">Kepler's Laws</h3>
+                    </div>
+                    <div class="card-content">
+                        <p class="card-description">Explore the laws of planetary motion.</p>
+                        <button class="start-btn" data-href="https://phet.colorado.edu/sims/html/keplers-laws/latest/keplers-laws_en.html">Try Simulation</button>
+                    </div>
+                </div>
+                <div class="subject-card physics">
+                    <div class="card-header">
+                        <div class="card-icon physics-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                <polygon points="13,2 3,14 12,14 11,22 21,10 12,10 13,2"/>
+                            </svg>
+                        </div>
+                        <h3 class="card-title">Build a Nucleus</h3>
+                    </div>
+                    <div class="card-content">
+                        <p class="card-description">Construct and analyze atomic nuclei.</p>
+                        <button class="start-btn" data-href="https://phet.colorado.edu/sims/html/build-a-nucleus/latest/build-a-nucleus_en.html">Try Simulation</button>
+                    </div>
+                </div>
+                <div class="subject-card physics">
+                    <div class="card-header">
+                        <div class="card-icon physics-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                <polygon points="13,2 3,14 12,14 11,22 21,10 12,10 13,2"/>
+                            </svg>
+                        </div>
+                        <h3 class="card-title">Projectile Data Lab</h3>
+                    </div>
+                    <div class="card-content">
+                        <p class="card-description">Experiment with projectile motion and data analysis.</p>
+                        <button class="start-btn" data-href="https://phet.colorado.edu/sims/html/projectile-data-lab/latest/projectile-data-lab_en.html">Try Simulation</button>
+                    </div>
+                </div>
+                <div class="subject-card physics">
+                    <div class="card-header">
+                        <div class="card-icon physics-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                <polygon points="13,2 3,14 12,14 11,22 21,10 12,10 13,2"/>
+                            </svg>
+                        </div>
+                        <h3 class="card-title">Faraday's Electromagnetic Lab</h3>
+                    </div>
+                    <div class="card-content">
+                        <p class="card-description">Explore electromagnetic induction and Faraday's law.</p>
+                        <button class="start-btn" data-href="https://phet.colorado.edu/sims/html/faradays-electromagnetic-lab/latest/faradays-electromagnetic-lab_en.html">Try Simulation</button>
+                    </div>
+                </div>
+                <div class="subject-card physics">
+                    <div class="card-header">
+                        <div class="card-icon physics-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                <polygon points="13,2 3,14 12,14 11,22 21,10 12,10 13,2"/>
+                            </svg>
+                        </div>
+                        <h3 class="card-title">Magnets and Electromagnets</h3>
+                    </div>
+                    <div class="card-content">
+                        <p class="card-description">Investigate the properties of magnets and electromagnets.</p>
+                        <button class="start-btn" data-href="https://phet.colorado.edu/sims/html/magnets-and-electromagnets/latest/magnets-and-electromagnets_en.html">Try Simulation</button>
+                    </div>
+                </div>
+                <div class="subject-card physics">
+                    <div class="card-header">
+                        <div class="card-icon physics-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                <polygon points="13,2 3,14 12,14 11,22 21,10 12,10 13,2"/>
+                            </svg>
+                        </div>
+                        <h3 class="card-title">Generator</h3>
+                    </div>
+                    <div class="card-content">
+                        <p class="card-description">Learn about electric generators and energy conversion.</p>
+                        <button class="start-btn" data-href="https://phet.colorado.edu/sims/html/generator/latest/generator_en.html">Try Simulation</button>
+                    </div>
+                </div>
+                <div class="subject-card physics">
+                    <div class="card-header">
+                        <div class="card-icon physics-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                <polygon points="13,2 3,14 12,14 11,22 21,10 12,10 13,2"/>
+                            </svg>
+                        </div>
+                        <h3 class="card-title">Geometric Optics: Basics</h3>
+                    </div>
+                    <div class="card-content">
+                        <p class="card-description">Explore the basics of geometric optics and light propagation.</p>
+                        <button class="start-btn" data-href="https://phet.colorado.edu/sims/html/geometric-optics-basics/latest/geometric-optics-basics_en.html">Try Simulation</button>
+                    </div>
+                </div>
+                <div class="subject-card physics">
+                    <div class="card-header">
+                        <div class="card-icon physics-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                <polygon points="13,2 3,14 12,14 11,22 21,10 12,10 13,2"/>
+                            </svg>
+                        </div>
+                        <h3 class="card-title">Geometric Optics</h3>
+                    </div>
+                    <div class="card-content">
+                        <p class="card-description">Delve deeper into geometric optics and lens systems.</p>
+                        <button class="start-btn" data-href="https://phet.colorado.edu/sims/html/geometric-optics/latest/geometric-optics_en.html">Try Simulation</button>
+                    </div>
+                </div>
+                <div class="subject-card physics">
+                    <div class="card-header">
+                        <div class="card-icon physics-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                <polygon points="13,2 3,14 12,14 11,22 21,10 12,10 13,2"/>
+                            </svg>
+                        </div>
+                        <h3 class="card-title">Density</h3>
+                    </div>
+                    <div class="card-content">
+                        <p class="card-description">Understand density and its applications in physics.</p>
+                        <button class="start-btn" data-href="https://phet.colorado.edu/sims/html/density/latest/density_en.html">Try Simulation</button>
+                    </div>
+                </div>
+                <div class="subject-card physics">
+                    <div class="card-header">
+                        <div class="card-icon physics-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                <polygon points="13,2 3,14 12,14 11,22 21,10 12,10 13,2"/>
+                            </svg>
+                        </div>
+                        <h3 class="card-title">Circuit Construction Kit: AC</h3>
+                    </div>
+                    <div class="card-content">
+                        <p class="card-description">Build and analyze AC circuits with this interactive kit.</p>
+                        <button class="start-btn" data-href="https://phet.colorado.edu/sims/html/circuit-construction-kit-ac/latest/circuit-construction-kit-ac_en.html">Try Simulation</button>
+                    </div>
+                </div>
+                <div class="subject-card physics">
+                    <div class="card-header">
+                        <div class="card-icon physics-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                <polygon points="13,2 3,14 12,14 11,22 21,10 12,10 13,2"/>
+                            </svg>
+                        </div>
+                        <h3 class="card-title">Circuit Construction Kit: AC - Virtual Lab</h3>
+                    </div>
+                    <div class="card-content">
+                        <p class="card-description">Experiment with AC circuits in a virtual lab environment.</p>
+                        <button class="start-btn" data-href="https://phet.colorado.edu/sims/html/circuit-construction-kit-ac-virtual-lab/latest/circuit-construction-kit-ac-virtual-lab_en.html">Try Simulation</button>
+                    </div>
+                </div>
+                <div class="subject-card physics">
+                    <div class="card-header">
+                        <div class="card-icon physics-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                <polygon points="13,2 3,14 12,14 11,22 21,10 12,10 13,2"/>
+                            </svg>
+                        </div>
+                        <h3 class="card-title">Normal Modes</h3>
+                    </div>
+                    <div class="card-content">
+                        <p class="card-description">Explore normal modes of vibration in physical systems.</p>
+                        <button class="start-btn" data-href="https://phet.colorado.edu/sims/html/normal-modes/latest/normal-modes_en.html">Try Simulation</button>
+                    </div>
+                </div>
+                <div class="subject-card physics">
+                    <div class="card-header">
+                        <div class="card-icon physics-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                <polygon points="13,2 3,14 12,14 11,22 21,10 12,10 13,2"/>
+                            </svg>
+                        </div>
+                        <h3 class="card-title">Fourier: Making Waves</h3>
+                    </div>
+                    <div class="card-content">
+                        <p class="card-description">Create and analyze waves using Fourier's principles.</p>
+                        <button class="start-btn" data-href="https://phet.colorado.edu/sims/html/fourier-making-waves/latest/fourier-making-waves_en.html">Try Simulation</button>
+                    </div>
+                </div>
+                <div class="subject-card physics">
+                    <div class="card-header">
+                        <div class="card-icon physics-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                <polygon points="13,2 3,14 12,14 11,22 21,10 12,10 13,2"/>
+                            </svg>
+                        </div>
+                        <h3 class="card-title">Collision Lab</h3>
+                    </div>
+                    <div class="card-content">
+                        <p class="card-description">Experiment with collisions and momentum.</p>
+                        <button class="start-btn" data-href="https://phet.colorado.edu/sims/html/collision-lab/latest/collision-lab_en.html">Try Simulation</button>
+                    </div>
+                </div>
+                <div class="subject-card physics">
+                    <div class="card-header">
+                        <div class="card-icon physics-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                <polygon points="13,2 3,14 12,14 11,22 21,10 12,10 13,2"/>
+                            </svg>
+                        </div>
+                        <h3 class="card-title">Energy Skate Park</h3>
+                    </div>
+                    <div class="card-content">
+                        <p class="card-description">Explore energy conservation with skate park physics.</p>
+                        <button class="start-btn" data-href="https://phet.colorado.edu/sims/html/energy-skate-park/latest/energy-skate-park_en.html">Try Simulation</button>
+                    </div>
+                </div>
+                <div class="subject-card physics">
+                    <div class="card-header">
+                        <div class="card-icon physics-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                <polygon points="13,2 3,14 12,14 11,22 21,10 12,10 13,2"/>
+                            </svg>
+                        </div>
+                        <h3 class="card-title">Vector Addition</h3>
+                    </div>
+                    <div class="card-content">
+                        <p class="card-description">Master vector addition and its applications.</p>
+                        <button class="start-btn" data-href="https://phet.colorado.edu/sims/html/vector-addition/latest/vector-addition_en.html">Try Simulation</button>
+                    </div>
+                </div>
+                <div class="subject-card physics">
+                    <div class="card-header">
+                        <div class="card-icon physics-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                <polygon points="13,2 3,14 12,14 11,22 21,10 12,10 13,2"/>
+                            </svg>
+                        </div>
+                        <h3 class="card-title">Curve Fitting</h3>
+                    </div>
+                    <div class="card-content">
+                        <p class="card-description">Learn how to fit curves to data and analyze relationships.</p>
+                        <button class="start-btn" data-href="https://phet.colorado.edu/sims/html/curve-fitting/latest/curve-fitting_en.html">Try Simulation</button>
+                    </div>
+                </div>
+                <div class="subject-card physics">
+                    <div class="card-header">
+                        <div class="card-icon physics-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                <polygon points="13,2 3,14 12,14 11,22 21,10 12,10 13,2"/>
+                            </svg>
+                        </div>
+                        <h3 class="card-title">Gravity Force Lab: Basics</h3>
+                    </div>
+                    <div class="card-content">
+                        <p class="card-description">Explore the basics of gravitational forces.</p>
+                        <button class="start-btn" data-href="https://phet.colorado.edu/sims/html/gravity-force-lab-basics/latest/gravity-force-lab-basics_en.html">Try Simulation</button>
+                    </div>
+                </div>
+                <div class="subject-card physics">
+                    <div class="card-header">
+                        <div class="card-icon physics-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                <polygon points="13,2 3,14 12,14 11,22 21,10 12,10 13,2"/>
+                            </svg>
+                        </div>
+                        <h3 class="card-title">Waves Intro</h3>
+                    </div>
+                    <div class="card-content">
+                        <p class="card-description">Get introduced to the world of waves and their properties.</p>
+                        <button class="start-btn" data-href="https://phet.colorado.edu/sims/html/waves-intro/latest/waves-intro_en.html">Try Simulation</button>
+                    </div>
+                </div>
+                <div class="subject-card physics">
+                    <div class="card-header">
+                        <div class="card-icon physics-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                <polygon points="13,2 3,14 12,14 11,22 21,10 12,10 13,2"/>
+                            </svg>
+                        </div>
+                        <h3 class="card-title">Diffusion</h3>
+                    </div>
+                    <div class="card-content">
+                        <p class="card-description">Understand the process of diffusion and its applications.</p>
+                        <button class="start-btn" data-href="https://phet.colorado.edu/sims/html/diffusion/latest/diffusion_en.html">Try Simulation</button>
+                    </div>
+                </div>
+                <div class="subject-card physics">
+                    <div class="card-header">
+                        <div class="card-icon physics-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                <polygon points="13,2 3,14 12,14 11,22 21,10 12,10 13,2"/>
+                            </svg>
+                        </div>
+                        <h3 class="card-title">Gases Intro</h3>
+                    </div>
+                    <div class="card-content">
+                        <p class="card-description">Explore the properties and behavior of gases.</p>
+                        <button class="start-btn" data-href="https://phet.colorado.edu/sims/html/gases-intro/latest/gases-intro_en.html">Try Simulation</button>
+                    </div>
+                </div>
+                <div class="subject-card physics">
+                    <div class="card-header">
+                        <div class="card-icon physics-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                <polygon points="13,2 3,14 12,14 11,22 21,10 12,10 13,2"/>
+                            </svg>
+                        </div>
+                        <h3 class="card-title">Gas Properties</h3>
+                    </div>
+                    <div class="card-content">
+                        <p class="card-description">Learn about the properties of gases and their behavior.</p>
+                        <button class="start-btn" data-href="https://phet.colorado.edu/sims/html/gas-properties/latest/gas-properties_en.html">Try Simulation</button>
+                    </div>
+                </div>
+                <div class="subject-card physics">
+                    <div class="card-header">
+                        <div class="card-icon physics-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                <polygon points="13,2 3,14 12,14 11,22 21,10 12,10 13,2"/>
+                            </svg>
+                        </div>
+                        <h3 class="card-title">Blackbody Spectrum</h3>
+                    </div>
+                    <div class="card-content">
+                        <p class="card-description">Explore the concept of blackbody radiation and spectra.</p>
+                        <button class="start-btn" data-href="https://phet.colorado.edu/sims/html/blackbody-spectrum/latest/blackbody-spectrum_en.html">Try Simulation</button>
+                    </div>
+                </div>
+                <div class="subject-card physics">
+                    <div class="card-header">
+                        <div class="card-icon physics-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                <polygon points="13,2 3,14 12,14 11,22 21,10 12,10 13,2"/>
+                            </svg>
+                        </div>
+                        <h3 class="card-title">Masses and Springs: Basics</h3>
+                    </div>
+                    <div class="card-content">
+                        <p class="card-description">Learn the basics of mass-spring systems and harmonic motion.</p>
+                        <button class="start-btn" data-href="https://phet.colorado.edu/sims/html/masses-and-springs-basics/latest/masses-and-springs-basics_en.html">Try Simulation</button>
+                    </div>
+                </div>
+                <div class="subject-card physics">
+                    <div class="card-header">
+                        <div class="card-icon physics-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                <polygon points="13,2 3,14 12,14 11,22 21,10 12,10 13,2"/>
+                            </svg>
+                        </div>
+                        <h3 class="card-title">Energy Forms and Changes</h3>
+                    </div>
+                    <div class="card-content">
+                        <p class="card-description">Explore different forms of energy and how they change.</p>
+                        <button class="start-btn" data-href="https://phet.colorado.edu/sims/html/energy-forms-and-changes/latest/energy-forms-and-changes_en.html">Try Simulation</button>
+                    </div>
+                </div>
+                <div class="subject-card physics">
+                    <div class="card-header">
+                        <div class="card-icon physics-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                <polygon points="13,2 3,14 12,14 11,22 21,10 12,10 13,2"/>
+                            </svg>
+                        </div>
+                        <h3 class="card-title">Wave Interference</h3>
+                    </div>
+                    <div class="card-content">
+                        <p class="card-description">Investigate the phenomenon of wave interference.</p>
+                        <button class="start-btn" data-href="https://phet.colorado.edu/sims/html/wave-interference/latest/wave-interference_en.html">Try Simulation</button>
+                    </div>
+                </div>
+                <div class="subject-card physics">
+                    <div class="card-header">
+                        <div class="card-icon physics-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                <polygon points="13,2 3,14 12,14 11,22 21,10 12,10 13,2"/>
+                            </svg>
+                        </div>
+                        <h3 class="card-title">Coulomb's Law</h3>
+                    </div>
+                    <div class="card-content">
+                        <p class="card-description">Explore the principles of electrostatics and Coulomb's law.</p>
+                        <button class="start-btn" data-href="https://phet.colorado.edu/sims/html/coulombs-law/latest/coulombs-law_en.html">Try Simulation</button>
+                    </div>
+                </div>
+                <div class="subject-card physics">
+                    <div class="card-header">
+                        <div class="card-icon physics-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                <polygon points="13,2 3,14 12,14 11,22 21,10 12,10 13,2"/>
+                            </svg>
+                        </div>
+                        <h3 class="card-title">Masses and Springs</h3>
+                    </div>
+                    <div class="card-content">
+                        <p class="card-description">Dive deeper into mass-spring systems and their applications.</p>
+                        <button class="start-btn" data-href="https://phet.colorado.edu/sims/html/masses-and-springs/latest/masses-and-springs_en.html">Try Simulation</button>
+                    </div>
+                </div>
+                <div class="subject-card physics">
+                    <div class="card-header">
+                        <div class="card-icon physics-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                <polygon points="13,2 3,14 12,14 11,22 21,10 12,10 13,2"/>
+                            </svg>
+                        </div>
+                        <h3 class="card-title">Capacitor Lab: Basics</h3>
+                    </div>
+                    <div class="card-content">
+                        <p class="card-description">Learn the basics of capacitors and their behavior in circuits.</p>
+                        <button class="start-btn" data-href="https://phet.colorado.edu/sims/html/capacitor-lab-basics/latest/capacitor-lab-basics_en.html">Try Simulation</button>
+                    </div>
+                </div>
+                <div class="subject-card physics">
+                    <div class="card-header">
+                        <div class="card-icon physics-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                <polygon points="13,2 3,14 12,14 11,22 21,10 12,10 13,2"/>
+                            </svg>
+                        </div>
+                        <h3 class="card-title">Circuit Construction Kit: DC - Virtual Lab</h3>
+                    </div>
+                    <div class="card-content">
+                        <p class="card-description">Experiment with DC circuits in a virtual lab setting.</p>
+                        <button class="start-btn" data-href="https://phet.colorado.edu/sims/html/circuit-construction-kit-dc-virtual-lab/latest/circuit-construction-kit-dc-virtual-lab_en.html">Try Simulation</button>
+                    </div>
+                </div>
+                <div class="subject-card physics">
+                    <div class="card-header">
+                        <div class="card-icon physics-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                <polygon points="13,2 3,14 12,14 11,22 21,10 12,10 13,2"/>
+                            </svg>
+                        </div>
+                        <h3 class="card-title">Circuit Construction Kit: DC</h3>
+                    </div>
+                    <div class="card-content">
+                        <p class="card-description">Build and analyze DC circuits with this interactive kit.</p>
+                        <button class="start-btn" data-href="https://phet.colorado.edu/sims/html/circuit-construction-kit-dc/latest/circuit-construction-kit-dc_en.html">Try Simulation</button>
+                    </div>
+                </div>
+                <div class="subject-card physics">
+                    <div class="card-header">
+                        <div class="card-icon physics-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                <polygon points="13,2 3,14 12,14 11,22 21,10 12,10 13,2"/>
+                            </svg>
+                        </div>
+                        <h3 class="card-title">Pendulum Lab</h3>
+                    </div>
+                    <div class="card-content">
+                        <p class="card-description">Investigate the physics of pendulums and harmonic motion.</p>
+                        <button class="start-btn" data-href="https://phet.colorado.edu/sims/html/pendulum-lab/latest/pendulum-lab_en.html">Try Simulation</button>
+                    </div>
+                </div>
+                <div class="subject-card physics">
+                    <div class="card-header">
+                        <div class="card-icon physics-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                <polygon points="13,2 3,14 12,14 11,22 21,10 12,10 13,2"/>
+                            </svg>
+                        </div>
+                        <h3 class="card-title">Projectile Motion</h3>
+                    </div>
+                    <div class="card-content">
+                        <p class="card-description">Explore the principles of projectile motion and trajectories.</p>
+                        <button class="start-btn" data-href="https://phet.colorado.edu/sims/html/projectile-motion/latest/projectile-motion_en.html">Try Simulation</button>
+                    </div>
+                </div>
+                <div class="subject-card physics">
+                    <div class="card-header">
+                        <div class="card-icon physics-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                <polygon points="13,2 3,14 12,14 11,22 21,10 12,10 13,2"/>
+                            </svg>
+                        </div>
+                        <h3 class="card-title">States of Matter: Basics</h3>
+                    </div>
+                    <div class="card-content">
+                        <p class="card-description">Learn the basic principles of states of matter.</p>
+                        <button class="start-btn" data-href="https://phet.colorado.edu/sims/html/states-of-matter-basics/latest/states-of-matter-basics_en.html">Try Simulation</button>
+                    </div>
+                </div>
+                <div class="subject-card physics">
+                    <div class="card-header">
+                        <div class="card-icon physics-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                <polygon points="13,2 3,14 12,14 11,22 21,10 12,10 13,2"/>
+                            </svg>
+                        </div>
+                        <h3 class="card-title">States of Matter</h3>
+                    </div>
+                    <div class="card-content">
+                        <p class="card-description">Explore the different states of matter and their properties.</p>
+                        <button class="start-btn" data-href="https://phet.colorado.edu/sims/html/states-of-matter/latest/states-of-matter_en.html">Try Simulation</button>
+                    </div>
+                </div>
+                <div class="subject-card physics">
+                    <div class="card-header">
+                        <div class="card-icon physics-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                <polygon points="13,2 3,14 12,14 11,22 21,10 12,10 13,2"/>
+                            </svg>
+                        </div>
+                        <h3 class="card-title">Gravity and Orbits</h3>
+                    </div>
+                    <div class="card-content">
+                        <p class="card-description">Understand gravity and its role in orbital motion.</p>
+                        <button class="start-btn" data-href="https://phet.colorado.edu/sims/html/gravity-and-orbits/latest/gravity-and-orbits_en.html">Try Simulation</button>
+                    </div>
+                </div>
+                <div class="subject-card physics">
+                    <div class="card-header">
+                        <div class="card-icon physics-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                <polygon points="13,2 3,14 12,14 11,22 21,10 12,10 13,2"/>
+                            </svg>
+                        </div>
+                        <h3 class="card-title">Atomic Interactions</h3>
+                    </div>
+                    <div class="card-content">
+                        <p class="card-description">Explore the fundamental interactions between atoms.</p>
+                        <button class="start-btn" data-href="https://phet.colorado.edu/sims/html/atomic-interactions/latest/atomic-interactions_en.html">Try Simulation</button>
+                    </div>
+                </div>
+                <div class="subject-card physics">
+                    <div class="card-header">
+                        <div class="card-icon physics-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                <polygon points="13,2 3,14 12,14 11,22 21,10 12,10 13,2"/>
+                            </svg>
+                        </div>
+                        <h3 class="card-title">Energy Skate Park: Basics</h3>
+                    </div>
+                    <div class="card-content">
+                        <p class="card-description">Learn the basics of energy transformation in a skate park.</p>
+                        <button class="start-btn" data-href="https://phet.colorado.edu/sims/html/energy-skate-park-basics/latest/energy-skate-park-basics_en.html">Try Simulation</button>
+                    </div>
+                </div>
+                <div class="subject-card physics">
+                    <div class="card-header">
+                        <div class="card-icon physics-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                <polygon points="13,2 3,14 12,14 11,22 21,10 12,10 13,2"/>
+                            </svg>
+                        </div>
+                        <h3 class="card-title">Molecules and Light</h3>
+                    </div>
+                    <div class="card-content">
+                        <p class="card-description">Investigate the interaction between molecules and light.</p>
+                        <button class="start-btn" data-href="https://phet.colorado.edu/sims/html/molecules-and-light/latest/molecules-and-light_en.html">Try Simulation</button>
+                    </div>
+                </div>
+                <div class="subject-card physics">
+                    <div class="card-header">
+                        <div class="card-icon physics-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                <polygon points="13,2 3,14 12,14 11,22 21,10 12,10 13,2"/>
+                            </svg>
+                        </div>
+                        <h3 class="card-title">Hooke's Law</h3>
+                    </div>
+                    <div class="card-content">
+                        <p class="card-description">Learn about Hooke's law and elastic potential energy.</p>
+                        <button class="start-btn" data-href="https://phet.colorado.edu/sims/html/hookes-law/latest/hookes-law_en.html">Try Simulation</button>
+                    </div>
+                </div>
+                <div class="subject-card physics">
+                    <div class="card-header">
+                        <div class="card-icon physics-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                <polygon points="13,2 3,14 12,14 11,22 21,10 12,10 13,2"/>
+                            </svg>
+                        </div>
+                        <h3 class="card-title">Bending Light</h3>
+                    </div>
+                    <div class="card-content">
+                        <p class="card-description">Explore the bending of light and refraction.</p>
+                        <button class="start-btn" data-href="https://phet.colorado.edu/sims/html/bending-light/latest/bending-light_en.html">Try Simulation</button>
+                    </div>
+                </div>
+                <div class="subject-card physics">
+                    <div class="card-header">
+                        <div class="card-icon physics-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                <polygon points="13,2 3,14 12,14 11,22 21,10 12,10 13,2"/>
+                            </svg>
+                        </div>
+                        <h3 class="card-title">Rutherford Scattering</h3>
+                    </div>
+                    <div class="card-content">
+                        <p class="card-description">Investigate Rutherford scattering and nuclear structure.</p>
+                        <button class="start-btn" data-href="https://phet.colorado.edu/sims/html/rutherford-scattering/latest/rutherford-scattering_en.html">Try Simulation</button>
+                    </div>
+                </div>
+                <div class="subject-card physics">
+                    <div class="card-header">
+                        <div class="card-icon physics-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                <polygon points="13,2 3,14 12,14 11,22 21,10 12,10 13,2"/>
+                            </svg>
+                        </div>
+                        <h3 class="card-title">Charges and Fields</h3>
+                    </div>
+                    <div class="card-content">
+                        <p class="card-description">Explore electric charges and fields in this interactive lab.</p>
+                        <button class="start-btn" data-href="https://phet.colorado.edu/sims/html/charges-and-fields/latest/charges-and-fields_en.html">Try Simulation</button>
+                    </div>
+                </div>
+                <div class="subject-card physics">
+                    <div class="card-header">
+                        <div class="card-icon physics-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                <polygon points="13,2 3,14 12,14 11,22 21,10 12,10 13,2"/>
+                            </svg>
+                        </div>
+                        <h3 class="card-title">Faraday's Law</h3>
+                    </div>
+                    <div class="card-content">
+                        <p class="card-description">Learn about Faraday's law of electromagnetic induction.</p>
+                        <button class="start-btn" data-href="https://phet.colorado.edu/sims/html/faradays-law/latest/faradays-law_en.html">Try Simulation</button>
+                    </div>
+                </div>
+                <div class="subject-card physics">
+                    <div class="card-header">
+                        <div class="card-icon physics-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                <polygon points="13,2 3,14 12,14 11,22 21,10 12,10 13,2"/>
+                            </svg>
+                        </div>
+                        <h3 class="card-title">Wave on a String</h3>
+                    </div>
+                    <div class="card-content">
+                        <p class="card-description">Explore wave properties using a wave on a string model.</p>
+                        <button class="start-btn" data-href="https://phet.colorado.edu/sims/html/wave-on-a-string/latest/wave-on-a-string_en.html">Try Simulation</button>
+                    </div>
+                </div>
+                <div class="subject-card physics">
+                    <div class="card-header">
+                        <div class="card-icon physics-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                <polygon points="13,2 3,14 12,14 11,22 21,10 12,10 13,2"/>
+                            </svg>
+                        </div>
+                        <h3 class="card-title">Build an Atom</h3>
+                    </div>
+                    <div class="card-content">
+                        <p class="card-description">Construct and explore atomic models.</p>
+                        <button class="start-btn" data-href="https://phet.colorado.edu/sims/html/build-an-atom/latest/build-an-atom_en.html">Try Simulation</button>
+                    </div>
+                </div>
+                <div class="subject-card physics">
+                    <div class="card-header">
+                        <div class="card-icon physics-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                <polygon points="13,2 3,14 12,14 11,22 21,10 12,10 13,2"/>
+                            </svg>
+                        </div>
+                        <h3 class="card-title">Resistance in a Wire</h3>
+                    </div>
+                    <div class="card-content">
+                        <p class="card-description">Explore resistance and its effects in electrical circuits.</p>
+                        <button class="start-btn" data-href="https://phet.colorado.edu/sims/html/resistance-in-a-wire/latest/resistance-in-a-wire_en.html">Try Simulation</button>
+                    </div>
+                </div>
+                <div class="subject-card physics">
+                    <div class="card-header">
+                        <div class="card-icon physics-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                <polygon points="13,2 3,14 12,14 11,22 21,10 12,10 13,2"/>
+                            </svg>
+                        </div>
+                        <h3 class="card-title">Ohm's Law</h3>
+                    </div>
+                    <div class="card-content">
+                        <p class="card-description">Learn about Ohm's law and its applications in circuits.</p>
+                        <button class="start-btn" data-href="https://phet.colorado.edu/sims/html/ohms-law/latest/ohms-law_en.html">Try Simulation</button>
+                    </div>
+                </div>
+                <div class="subject-card physics">
+                    <div class="card-header">
+                        <div class="card-icon physics-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                <polygon points="13,2 3,14 12,14 11,22 21,10 12,10 13,2"/>
+                            </svg>
+                        </div>
+                        <h3 class="card-title">Balloons and Static Electricity</h3>
+                    </div>
+                    <div class="card-content">
+                        <p class="card-description">Explore static electricity and its effects.</p>
+                        <button class="start-btn" data-href="https://phet.colorado.edu/sims/html/balloons-and-static-electricity/latest/balloons-and-static-electricity_en.html">Try Simulation</button>
+                    </div>
+                </div>
+                <div class="subject-card physics">
+                    <div class="card-header">
+                        <div class="card-icon physics-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                <polygon points="13,2 3,14 12,14 11,22 21,10 12,10 13,2"/>
+                            </svg>
+                        </div>
+                        <h3 class="card-title">Gravity Force Lab</h3>
+                    </div>
+                    <div class="card-content">
+                        <p class="card-description">Experiment with gravitational forces and motion.</p>
+                        <button class="start-btn" data-href="https://phet.colorado.edu/sims/html/gravity-force-lab/latest/gravity-force-lab_en.html">Try Simulation</button>
+                    </div>
+                </div>
+                <div class="subject-card physics">
+                    <div class="card-header">
+                        <div class="card-icon physics-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                <polygon points="13,2 3,14 12,14 11,22 21,10 12,10 13,2"/>
+                            </svg>
+                        </div>
+                        <h3 class="card-title">Forces and Motion: Basics</h3>
+                    </div>
+                    <div class="card-content">
+                        <p class="card-description">Learn the basics of forces and motion.</p>
+                        <button class="start-btn" data-href="https://phet.colorado.edu/sims/html/forces-and-motion-basics/latest/forces-and-motion-basics_en.html">Try Simulation</button>
+                    </div>
+                </div>
+                <div class="subject-card physics">
+                    <div class="card-header">
+                        <div class="card-icon physics-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                <polygon points="13,2 3,14 12,14 11,22 21,10 12,10 13,2"/>
+                            </svg>
+                        </div>
+                        <h3 class="card-title">Friction</h3>
+                    </div>
+                    <div class="card-content">
+                        <p class="card-description">Explore the concept of friction and its effects on motion.</p>
+                        <button class="start-btn" data-href="https://phet.colorado.edu/sims/html/friction/latest/friction_en.html">Try Simulation</button>
+                    </div>
+                </div>
+                <div class="subject-card physics">
+                    <div class="card-header">
+                        <div class="card-icon physics-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                <polygon points="13,2 3,14 12,14 11,22 21,10 12,10 13,2"/>
+                            </svg>
+                        </div>
+                        <h3 class="card-title">Under Pressure</h3>
+                    </div>
+                    <div class="card-content">
+                        <p class="card-description">Investigate the effects of pressure in fluids.</p>
+                        <button class="start-btn" data-href="https://phet.colorado.edu/sims/html/under-pressure/latest/under-pressure_en.html">Try Simulation</button>
+                    </div>
+                </div>
+                <div class="subject-card physics">
+                    <div class="card-header">
+                        <div class="card-icon physics-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                <polygon points="13,2 3,14 12,14 11,22 21,10 12,10 13,2"/>
+                            </svg>
+                        </div>
+                        <h3 class="card-title">Balancing Act</h3>
+                    </div>
+                    <div class="card-content">
+                        <p class="card-description">Learn about balance and equilibrium in physical systems.</p>
+                        <button class="start-btn" data-href="https://phet.colorado.edu/sims/html/balancing-act/latest/balancing-act_en.html">Try Simulation</button>
+                    </div>
+                </div>
+                <div class="subject-card physics">
+                    <div class="card-header">
+                        <div class="card-icon physics-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                <polygon points="13,2 3,14 12,14 11,22 21,10 12,10 13,2"/>
+                            </svg>
+                        </div>
+                        <h3 class="card-title">Color Vision</h3>
+                    </div>
+                    <div class="card-content">
+                        <p class="card-description">Explore the science of color vision and perception.</p>
+                        <button class="start-btn" data-href="https://phet.colorado.edu/sims/html/color-vision/latest/color-vision_en.html">Try Simulation</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <!-- Modal for Ctrl+W tip -->
+    <div id="ctrlwModal" style="display:none; position:fixed; top:0; left:0; width:100vw; height:100vh; background:rgba(0,0,0,0.35); z-index:1000; align-items:center; justify-content:center;">
+        <div style="background:#e0e7ff; border:2px solid #3b82f6; border-radius:16px; padding:2rem 2.5rem; box-shadow:0 8px 32px rgba(59,130,246,0.15); text-align:center; max-width:90vw;">
+            <h2 style="color:#3b82f6; margin-bottom:1rem;">Tip</h2>
+            <p style="font-size:1.15rem; color:#333;">Press <b>Ctrl+W</b> to go to the previous page.</p>
+            <button id="continueBtn" style="margin-top:1.5rem; background:#3b82f6; color:#fff; border:none; border-radius:8px; padding:0.75rem 2rem; font-size:1rem; font-weight:600; cursor:pointer;">Continue</button>
+        </div>
+    </div>
+    <script>
+    // Search functionality
+    const searchInput = document.getElementById('searchInput');
+    const subjectGrid = document.getElementById('subjectGrid');
+    searchInput.addEventListener('input', function() {
+        const query = this.value.toLowerCase();
+        subjectGrid.querySelectorAll('.subject-card').forEach(card => {
+            const title = card.querySelector('.card-title').textContent.toLowerCase();
+            card.style.display = title.includes(query) ? '' : 'none';
+        });
+    });
+    // Modal functionality for simulation buttons
+    const modal = document.getElementById('ctrlwModal');
+    const continueBtn = document.getElementById('continueBtn');
+    let pendingHref = null;
+    document.querySelectorAll('.subject-card.physics .start-btn').forEach(btn => {
+        const href = btn.getAttribute('data-href');
+        if (href) {
+            btn.onclick = function(e) {
+                e.preventDefault();
+                pendingHref = href;
+                modal.style.display = 'flex';
+            };
+        }
+    });
+    continueBtn.onclick = function() {
+        modal.style.display = 'none';
+        if (pendingHref) {
+            window.open(pendingHref, '_blank');
+            pendingHref = null;
+        }
+    };
+    </script>
+
+    <p style="font-size:0.9rem; margin-top:0.5rem; text-align:center;">Simulation by <a href="https://phet.colorado.edu">Phet Interactive Simulations, University of Colorado Boulder</a>, licensed under CC-BY-4.0.</p>
+</body>
+</html>

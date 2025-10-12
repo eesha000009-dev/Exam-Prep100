@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WAEC Science Practical Simulator</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../src/design-system.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { background: var(--background); color: var(--text); font-family: var(--font-main); margin: 0; padding: 0; min-height: 100vh; }
+        .main-content { width: 100%; max-width: 1100px; margin: 60px auto 40px auto; padding: 0 16px; }
+        .hero-section { text-align: center; margin-bottom: 2.5rem; }
+        .hero-title { font-size: 2.5rem; font-weight: 900; color: #2563eb; margin-bottom: 10px; letter-spacing: -1px; }
+        .hero-description { color: var(--text-secondary); font-size: 1.18rem; margin-bottom: 1.5rem; }
+        .subject-grid { display: flex; flex-wrap: wrap; gap: 28px; justify-content: center; }
+        .subject-card { background: linear-gradient(135deg, #f0f9ff 60%, #e0e7ff 100%); border-radius: 18px; box-shadow: 0 4px 24px 0 rgba(37,99,235,0.10); padding: 28px 20px 22px 20px; width: 320px; text-align: center; margin-bottom: 12px; transition: box-shadow 0.2s, transform 0.2s; display: flex; flex-direction: column; justify-content: space-between; border: 1.5px solid #e0e7ff; position: relative; }
+        .subject-card:hover { box-shadow: 0 12px 40px 0 #2563eb33; transform: translateY(-4px) scale(1.025); border-color: #2563eb44; }
+        .card-header { margin-bottom: 12px; }
+        .card-icon { font-size: 2.5rem; color: #2563eb; margin-bottom: 8px; display: flex; align-items: center; justify-content: center; }
+        .card-title { font-size: 1.22rem; font-weight: 700; color: #1e40af; margin: 0; }
+        .card-description { color: var(--text-secondary); font-size: 1.04rem; margin-bottom: 10px; }
+        .start-btn { background: linear-gradient(90deg, #2563eb 60%, #60a5fa 100%); color: #fff; border: none; border-radius: 8px; padding: 0.7rem 1.3rem; font-size: 1rem; font-weight: 600; cursor: pointer; transition: background 0.2s, box-shadow 0.2s; margin-top: 0.5rem; box-shadow: 0 2px 8px #2563eb22; }
+        .start-btn:hover { background: linear-gradient(90deg, #1e40af 60%, #2563eb 100%); box-shadow: 0 4px 16px #2563eb33; }
+        .about-card { background: var(--surface); border-radius: var(--radius); box-shadow: var(--shadow); padding: 32px 24px; margin: 40px auto 0 auto; max-width: 700px; }
+        .about-header { display: flex; align-items: center; gap: 1rem; margin-bottom: 10px; }
+        .about-icon { font-size: 2rem; color: #2563eb; }
+        .about-title { font-size: 1.2rem; font-weight: 700; color: #1e40af; margin: 0; }
+        .about-content { color: var(--text-secondary); font-size: 1.04rem; }
+        .footer { background: #2563eb; color: #fff; text-align: center; padding: 40px 0 22px 0; margin-top: 80px; font-size: 1.08rem; letter-spacing: 0.2px; }
+        .footer-links { display: inline-block; margin-left: 12px; }
+        .footer-links a { color: #fff; text-decoration: none; margin: 0 10px; font-weight: 500; transition: color 0.2s; border-bottom: 2px solid transparent; padding-bottom: 2px; }
+        .footer-links a:hover { color: #facc15; border-bottom: 2px solid #facc15; }
+        @media (max-width: 900px) { .main-content { margin: 24px auto 16px auto; } }
+        @media (max-width: 700px) { .main-content { margin: 18px auto 8px auto; } .subject-card { width: 98%; } .about-card { padding: 18px 4px 12px 4px; } }
+    </style>
+</head>
+<body>
+    <!-- Back Button -->
+    <div style="position: absolute; top: 18px; left: 18px; z-index: 1000;">
+        <button onclick="window.location.href='../../client/pages/student-dashboard.html'" style="display: flex; align-items: center; gap: 0.4rem; background: #f1f5f9; color: #2563eb; border: none; border-radius: 8px; padding: 0.5rem 1.1rem; font-size: 1.05rem; font-weight: 600; box-shadow: 0 2px 8px #2563eb22; cursor: pointer; transition: background 0.2s;">
+            <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 2px;"><path d="M15 4l-7 7 7 7"/></svg>
+            Back
+        </button>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar" style="background: #fff; box-shadow: var(--shadow);">
+        <div class="nav-container" style="display: flex; align-items: center; justify-content: space-between; max-width: 1100px; margin: 0 auto; padding: 0.7rem 1.2rem;">
+            <div class="nav-left" style="display: flex; gap: 0.7rem;">
+                <button class="nav-btn active" onclick="window.location.href='index.html'" style="display: flex; align-items: center; gap: 0.5rem; font-weight: 600; font-size: 1.08rem; background: linear-gradient(90deg, #2563eb 60%, #60a5fa 100%); color: #fff; border: none; border-radius: 8px; padding: 0.6rem 1.3rem; box-shadow: 0 2px 8px #2563eb22;">
+                    <span style="font-size:1.3rem;display:flex;align-items:center;">
+                        <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12L12 3l9 9"/><path d="M9 21V9h6v12"/></svg>
+                    </span>
+                    Home
+                </button>
+                <button class="nav-btn" onclick="window.location.href='physics.html'" style="display: flex; align-items: center; gap: 0.5rem; font-weight: 600; font-size: 1.08rem; background: #f1f5f9; color: #2563eb; border: none; border-radius: 8px; padding: 0.6rem 1.3rem; transition: background 0.2s;">
+                    <span style="font-size:1.3rem;display:flex;align-items:center;">
+                        <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="M11 7v4l3 3"/></svg>
+                    </span>
+                    Physics
+                </button>
+                <button class="nav-btn" onclick="window.location.href='chemistry.html'" style="display: flex; align-items: center; gap: 0.5rem; font-weight: 600; font-size: 1.08rem; background: #f1f5f9; color: #2563eb; border: none; border-radius: 8px; padding: 0.6rem 1.3rem; transition: background 0.2s;">
+                    <span style="font-size:1.3rem;display:flex;align-items:center;">
+                        <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="M7 11h8"/><path d="M11 7v8"/></svg>
+                    </span>
+                    Chemistry
+                </button>
+                <button class="nav-btn" disabled style="display: flex; align-items: center; gap: 0.5rem; font-weight: 600; font-size: 1.08rem; background: #f1f5f9; color: #94a3b8; border: none; border-radius: 8px; padding: 0.6rem 1.3rem; opacity:0.6;">
+                    <span style="font-size:1.3rem;display:flex;align-items:center;">
+                        <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="11" cy="11" rx="8" ry="6"/><path d="M11 5v12"/></svg>
+                    </span>
+                    Biology
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container">
+            <!-- Hero Section -->
+            <div class="hero-section">
+                <h1 class="hero-title">WAEC Science Practical Simulator</h1>
+                <p class="hero-description">
+                    Interactive simulations for West African Examinations Council (WAEC) practical sciences.
+                    Practice Physics, Chemistry, and Biology experiments in a virtual laboratory environment.
+                </p>
+            </div>
+
+            <!-- Subject Cards -->
+            <div class="subject-grid">
+                <!-- Physics Card -->
+                <div class="subject-card physics">
+                    <div class="card-header">
+                        <div class="card-icon physics-icon" style="background: #e0e7ff; border-radius: 50%; width: 56px; height: 56px; margin: 0 auto 8px auto; display: flex; align-items: center; justify-content: center;">
+                            <svg width="32" height="32" viewBox="0 0 32 32" fill="none" stroke="#2563eb" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="16" cy="16" r="12" fill="#dbeafe"/>
+                                <ellipse cx="16" cy="16" rx="8" ry="3" fill="#60a5fa" fill-opacity="0.18"/>
+                                <path d="M16 8v16M8 16h16" stroke="#2563eb" stroke-width="2"/>
+                                <circle cx="16" cy="16" r="5" fill="#2563eb" fill-opacity="0.13"/>
+                                <circle cx="16" cy="16" r="2" fill="#2563eb"/>
+                            </svg>
+                        </div>
+                        <h3 class="card-title">Physics</h3>
+                    </div>
+                    <div class="card-content">
+                        <p class="card-description">
+                            Explore mechanics, optics, electricity, and thermal properties through interactive simulations.
+                        </p>
+                        <button class="start-btn" onclick="window.location.href='physics.html'">Start Physics Lab</button>
+                    </div>
+                </div>
+
+                <!-- Chemistry Card -->
+                <div class="subject-card chemistry">
+                    <div class="card-header">
+                        <div class="card-icon chemistry-icon" style="background: #e0e7ff; border-radius: 50%; width: 56px; height: 56px; margin: 0 auto 8px auto; display: flex; align-items: center; justify-content: center;">
+                            <svg width="32" height="32" viewBox="0 0 32 32" fill="none" stroke="#2563eb" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                                <ellipse cx="16" cy="24" rx="10" ry="4" fill="#fbbf24" fill-opacity="0.18"/>
+                                <rect x="10" y="8" width="12" height="12" rx="6" fill="#fbbf24" fill-opacity="0.13"/>
+                                <circle cx="16" cy="14" r="5" fill="#2563eb" fill-opacity="0.13"/>
+                                <circle cx="16" cy="14" r="2" fill="#2563eb"/>
+                                <path d="M16 19v5" stroke="#2563eb" stroke-width="2"/>
+                            </svg>
+                        </div>
+                        <h3 class="card-title">Chemistry</h3>
+                    </div>
+                    <div class="card-content">
+                        <p class="card-description">
+                            Conduct virtual titrations, gas tests, and qualitative analysis in a safe digital lab.
+                        </p>
+                        <button class="start-btn" onclick="window.location.href='chemistry.html'">Start Chemistry Lab</button>
+                    </div>
+                </div>
+
+                <!-- Biology Card -->
+                <div class="subject-card biology">
+                    <div class="card-header">
+                        <div class="card-icon biology-icon" style="background: #e0e7ff; border-radius: 50%; width: 56px; height: 56px; margin: 0 auto 8px auto; display: flex; align-items: center; justify-content: center;">
+                            <svg width="32" height="32" viewBox="0 0 32 32" fill="none" stroke="#2563eb" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                                <ellipse cx="16" cy="16" rx="12" ry="8" fill="#bbf7d0" fill-opacity="0.18"/>
+                                <ellipse cx="16" cy="16" rx="6" ry="3" fill="#34d399" fill-opacity="0.13"/>
+                                <circle cx="16" cy="16" r="2" fill="#2563eb"/>
+                                <path d="M16 8v16" stroke="#2563eb" stroke-width="2"/>
+                            </svg>
+                        </div>
+                        <h3 class="card-title">Biology</h3>
+                    </div>
+                    <div class="card-content">
+                        <p class="card-description">
+                            Perform microscopy, biochemical tests, and study living organisms safely.
+                        </p>
+                        <button class="start-btn">Start Biology Lab</button>
+                    </div>
+                </div>
+
+                <!-- Visual Lab Card -->
+                <div class="subject-card" style="border: 2px solid #6366f1; background: linear-gradient(135deg, #f0fdfa 60%, #e0e7ff 100%);">
+                    <div class="card-header">
+                        <div class="card-icon" style="background: #6366f1; color: #fff; border-radius: 50%; width: 56px; height: 56px; margin: 0 auto 8px auto; display: flex; align-items: center; justify-content: center;">
+                            <svg width="32" height="32" viewBox="0 0 32 32" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="16" cy="16" r="12" fill="#6366f1" fill-opacity="0.18"/>
+                                <path d="M10 16h12M16 10v12" stroke="#fff" stroke-width="2.2"/>
+                            </svg>
+                        </div>
+                        <h3 class="card-title">Virtual Lab</h3>
+                    </div>
+                    <div class="card-content">
+                        <p class="card-description">
+                            WAEC practical examinations for Physics, Biology and Chemistry from 1988 to 2025, providing students with hands-on experience in scientific experimentation. Each simulation is designed to replicate real laboratory conditions and procedures used in actual WAEC examinations.<br><span style="color:#6366f1;font-weight:600;">(Coming Soon)</span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- About Section -->
+            <div class="about-card">
+                <div class="about-header">
+                    <div class="about-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                            <path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"/>
+                        </svg>
+                    </div>
+                    <h3 class="about-title">About</h3>
+                </div>
+                <div class="about-content">
+                    <p>
+                        This simulator covers topics from the WAEC syllabus and WAEC practical examinations for physics, Biology and Chemistry from 1988 to 2025, providing students
+                        with hands-on experience in scientific experimentation. Each simulation is designed to
+                        replicate real laboratory conditions and procedures used in actual WAEC examinations.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <div class="footer">
+      &copy; 2025 ExamMasterNG. All rights reserved.
+      <span class="footer-links">
+        <a href="#">Contact</a>
+        <a href="#">Privacy Policy</a>
+        <a href="#">Twitter</a>
+        <a href="#">Instagram</a>
+        <a href="../src/pages/login.html">Login</a>
+      </span>
+    </div>
+</body>
+</html>

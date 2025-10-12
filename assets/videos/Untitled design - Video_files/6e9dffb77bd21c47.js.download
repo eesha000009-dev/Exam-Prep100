@@ -1,0 +1,10 @@
+(self["webpackChunk_canva_web"] = self["webpackChunk_canva_web"] || []).push([[55550],{
+
+/***/ 618368:
+function(_, __, __webpack_require__) {__webpack_require__.n_x = __webpack_require__.n;const __web_req__ = __webpack_require__;__web_req__(905716);self._456c437108d2d2713799e19380be528d = self._456c437108d2d2713799e19380be528d || {};(function(__c) {var syr=function(a){if(a==null)return"lifetime";switch(a){case 1:return"day";case 2:return"week";case 3:return"month";case 4:return"year";default:return"lifetime"}},uyr=function(a,b,c){const d=a.q8.sqa({brand:a.X.yb.brand.id,user:a.X.user.id,type:a.$Js}).then(e=>{const {quota:{limit:f=Infinity,ZMd:g,k3a:h,DSd:k,interval:l}}=e;e=a.Kkl;var n=a.WJj;if(k){const r=h>e;e={limit:r?n:e,SG:r?n-(h-e)%n:e-h}}else e={limit:f,SG:f-h};const {limit:p,SG:q}=e;return{limit:p,jU:g,k3a:h,interval:syr(l),SG:q,DSd:k}});
+c=tyr(d,c?a.Kic?.fetch:void 0);a.Kic={nyn:b,fetch:c};return Promise.resolve(a.Kic.fetch)},vyr=__webpack_require__(186901),wyr=vyr.EW,xyr=vyr.sH,yyr=vyr.XI;var tyr=__webpack_require__(536618).Sx;__c.zyr=class{static G(a){__c.O(a,{Kic:xyr.ref,Tga:wyr,sqa:yyr})}get Tga(){return this.Kic?this.Kic.fetch.case({pending:a=>a?{status:"success",response:a}:{status:"loading"},fulfilled:a=>({status:"success",response:a}),rejected:a=>({status:"error",error:a})}):{status:"uninitialized"}}sqa(){const a=this.Tb.now();return this.Kic&&this.Kic.nyn&&a-this.Kic.nyn<1E4||this.Kic?.fetch.state==="pending"?Promise.resolve(this.Kic.fetch):uyr(this,a,!0)}k6a(a){if(this.Tga.status!=="success")return!1;const b=this.Tga.response.SG;
+return this.Tga.response.DSd||b>=a}g6c(a){__c.ra(a==null||a>0,`consumedQuota must be a positive non-zero value, was "${a}".`);if(this.Tga.status==="success"&&this.Kic!=null){if(a!=null){const b=this.Tga.response;this.Kic.fetch=tyr.resolve({...b,k3a:b.k3a+a,SG:Math.max(0,b.SG-a)})}uyr(this,this.Tb.now(),a!=null)}}constructor(a,b,c,d,e,f){this.q8=a;this.X=b;this.Tb=c;this.$Js=d;this.WJj=e;this.Kkl=f;this.Kic=(__c.zyr.G(this),void 0)}};
+}).call(self, self._456c437108d2d2713799e19380be528d);}
+
+}])
+//# sourceMappingURL=sourcemaps/6e9dffb77bd21c47.js.map

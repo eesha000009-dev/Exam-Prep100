@@ -1,0 +1,12 @@
+(self["webpackChunk_canva_web"] = self["webpackChunk_canva_web"] || []).push([[70416],{
+
+/***/ 638993:
+function(_, __, __webpack_require__) {__webpack_require__.n_x = __webpack_require__.n;const __web_req__ = __webpack_require__;__web_req__(905716);self._456c437108d2d2713799e19380be528d = self._456c437108d2d2713799e19380be528d || {};(function(__c) {var iij,lij,kij,jij;__c.fij=async function(a){a=a instanceof Blob?await __c.ah(a.slice(0,8)):a.slice(0,8);return a.byteLength>=8&&(0,__c.Q5b)(new Uint8Array(a))};__c.gij=async function(a){a=a instanceof Blob?await __c.ah(a.slice(0,12)):a.slice(0,12);return a.byteLength<12?!1:(new Uint8Array(a.slice(4,12))).every((b,c)=>b==="ftypavif".charCodeAt(c))};
+__c.hij=async function(a){a=a instanceof Blob?await __c.ah(a.slice(0,12)):a.slice(0,12);if(a.byteLength<12)return!1;a=new Uint8Array(a.slice(8,12));return a[0]===87&&a[1]===69&&a[2]===66&&a[3]===80};
+__c.mij=async function(a){a=await __c.y3c(a);a=(new DOMParser).parseFromString(a,"image/svg+xml");if(a.querySelector("parsererror"))return!1;var b=a.querySelectorAll("*");a=new Set;for(const d of b){b=d.attributes;var c=d.localName;if(c==null||iij.includes(c.toLowerCase())||c==="style"&&jij.test(d.textContent||""))return!1;for(c=0;c<b.length;c++){const e=b[c],f=e.name.toLowerCase(),g=(f==="xlink:href"||f==="href")&&!e.value.startsWith("#")&&!kij.test(e.value),h=f==="style"&&jij.test(e.value);if(lij.includes(f)||
+g||h)return!1;if(f==="id"){if(a.has(e.value))return!1;a.add(e.value)}}}return!0};iij="altglyph altglyphdef altglyphitem cursor glyph glyphref missing-glyph tref animate animatemotion animatetransform discard mpath set font font-face font-face-format font-face-name font-face-src font-face-uri a foreignobject script switch".split(" ");lij="crossorigin lang media onload paint-order ping referrerpolicy rel rendering-intent requiredextensions requiredfeatures systemlanguage unicode transform-origin".split(" ");
+kij=/data:image\/[^,;]+;base64,.*/;jij=/.*(mix-blend-mode|paint-order):.*/;
+}).call(self, self._456c437108d2d2713799e19380be528d);}
+
+}])
+//# sourceMappingURL=sourcemaps/4cd57dd86285c6ee.js.map

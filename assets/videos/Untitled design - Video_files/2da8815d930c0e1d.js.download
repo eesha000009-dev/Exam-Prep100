@@ -1,0 +1,10 @@
+(self["webpackChunk_canva_web"] = self["webpackChunk_canva_web"] || []).push([[11374],{
+
+/***/ 779139:
+function(_, __, __webpack_require__) {__webpack_require__.n_x = __webpack_require__.n;const __web_req__ = __webpack_require__;__web_req__(905716);self._456c437108d2d2713799e19380be528d = self._456c437108d2d2713799e19380be528d || {};(function(__c) {var ogx=async function(a,b){try{const c=await __c.MFb(()=>{const d=a.yc.WXc(b);if(!d&&a.yc.Rka(b.video))throw Error("failed to select best video");return d});await __c.Hs(c.hDs)}catch{}},pgx=async function(a,b){const c=[];(new __c.PFb((d,e)=>{const f=d.image.ref;f&&c.push(__c.OFb(a,f,e,0));(d=d.video.ref)&&c.push(ogx(a,d))})).Rja(b.ha,b.container);await Promise.allSettled(c)},tgx=function(a,b,c=10){let d;const e=new WeakSet,f=h=>!e.has(h)&&a.document.pages.has(h),g=a.document.pages.toArray();qgx(()=>
+b.get(),async h=>{d?.abort();const k=a.Jjq();d=k;try{await rgx(k?.signal);for(const l of sgx(h,g,f,c))await pgx(a.ZIg,a.Fi.zb(l)),await rgx(k?.signal),e.add(l)}catch{}},{fireImmediately:!0})},sgx=function*(a,b,c,d=10){const e=b.indexOf(a);__c.ra(e>=0);c(a)&&(yield a);for(let f=e+1,g=0;f<b.length&&g<d;f++)c(b[f])&&(yield b[f],g++);for(let f=e-1,g=0;f>=0&&g<d;f--)c(b[f])&&(yield b[f],g++)},rgx=function(a){a?.throwIfAborted();const {promise:b,reject:c,resolve:d}=__c.Cb();let e;if("requestIdleCallback"in
+window){const f=window.requestIdleCallback(d);e=()=>window.cancelIdleCallback(f)}else{const f=setTimeout(()=>{const g=window.requestAnimationFrame(d);e=()=>window.cancelAnimationFrame(g)});e=()=>clearTimeout(f)}a?.addEventListener("abort",()=>{e();c()},{once:!0});return b},qgx=__webpack_require__(186901).mJ;var ugx=class{constructor(a,b,c){this.ZIg=a;this.document=b;this.Fi=c;this.Jjq=()=>new AbortController}};__c.QHg={wxr:function(a){const b=a.dJj;b==null||b<=0||tgx(new ugx(a.ZIg,a.document,a.Fi),a.za,b)}};
+}).call(self, self._456c437108d2d2713799e19380be528d);}
+
+}])
+//# sourceMappingURL=sourcemaps/2da8815d930c0e1d.js.map

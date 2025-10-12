@@ -1,0 +1,8 @@
+(self["webpackChunk_canva_web"] = self["webpackChunk_canva_web"] || []).push([[62779],{
+
+/***/ 918208:
+function(_, __, __webpack_require__) {__webpack_require__.n_x = __webpack_require__.n;const __web_req__ = __webpack_require__;__web_req__(905716);__web_req__(764820);__web_req__(665293);self._456c437108d2d2713799e19380be528d = self._456c437108d2d2713799e19380be528d || {};(function(__c) {var A=__c.A;var YC=__c.YC;var G=__c.G;__c.xHl=G(()=>({...YC(),metadata:A("metadata","AUDIO",9,"AUDIO"),audioId:__c.S("audioId",10)}));__c.yHl=G(()=>({...YC(),metadata:A("metadata","DESIGN_IMPORT",2,"DESIGN_IMPORT"),hXq:__c.S("encodedDocumentTitle",1),XVf:__c.Va("outputOverride",2,__c.wHl),Fui:__c.xp("isPrintDoctypesBlocked",11)}));__c.zHl=G(()=>({...YC(),metadata:A("metadata","FILE",13,"FILE"),EAf:__c.V("encodedFileName",1),fileId:__c.V("fileId",11)}));var AHl=G(()=>({mediaId:__c.S("mediaId",1),h4g:__c.sp("mediaBundleVersion",2),index:__c.pp("index",13)}));__c.BHl=G(()=>({...YC(),metadata:A("metadata","GROUPED_MEDIA",12,"GROUPED_MEDIA"),EAf:__c.V("encodedFileName",4),targets:__c.Sa("targets",14,AHl)}));__c.CHl=G(()=>({...YC(),metadata:A("metadata","VIDEO",6,"VIDEO"),videoId:__c.S("videoId",1)}));
+}).call(self, self._456c437108d2d2713799e19380be528d);}
+
+}])
+//# sourceMappingURL=sourcemaps/83c1b319cebe5b45.js.map

@@ -1,0 +1,12 @@
+(self["webpackChunk_canva_web"] = self["webpackChunk_canva_web"] || []).push([[5106],{
+
+/***/ 961720:
+function(_, __, __webpack_require__) {__webpack_require__.n_x = __webpack_require__.n;const __web_req__ = __webpack_require__;__web_req__(905716);self._456c437108d2d2713799e19380be528d = self._456c437108d2d2713799e19380be528d || {};(function(__c) {var xlj=function(a){const b=a.yfb+1;return b>=a.items.length?0:b},ylj=__webpack_require__(186901),zlj=ylj.sH,Alj=ylj.XI;__c.Blj=class{static G(a){__c.O(a,{KLf:zlj.ref,tgk:zlj.ref})}constructor(a){this.Wmd=a;this.KLf=(__c.Blj.G(this),!1);this.tgk=this.Uf=!1}};
+__c.Clj=class{static G(a){__c.O(a,{m7k:Alj,start:Alj,RJo:Alj,i3m:Alj,stop:Alj,pause:Alj})}m7k(a){a.tgk=!0}Lpk(a){return this.Rdf.Lpk(a.Wmd)}Ybr(a){return a.yfb}start(a){if(!a.Uf){a.Uf=!0;try{this.Rdf.start(a.Wmd)}catch(b){this.m7k(a)}}}RJo(a){a.KLf=a.Wmd.yfb>0;this.Rdf.reset(a.Wmd)}i3m(a){a.Wmd.Sqg=!0;a.KLf=!1}stop(a){this.Rdf.stop(a.Wmd);a.Uf=!1;a.KLf||(this.RJo(a),a.KLf&&(a.Wmd.Sqg=!1,window.setTimeout(()=>this.i3m(a),this.g9f)))}pause(a){this.Rdf.stop(a.Wmd);a.Uf=!1}get animationDuration(){return this.Rdf.animationDuration}get g9f(){return this.Rdf.g9f}constructor(a){this.Rdf=
+a;__c.Clj.G(this)}};__c.Dlj=class{static G(a){__c.O(a,{items:zlj.ref,yfb:zlj.ref,xfh:zlj.shallow})}constructor(a,b,c){this.items=(__c.Dlj.G(this),void 0);this.yfb=0;this.USl=void 0;this.Sqg=!0;this.items=a;this.xfh=Array.from({length:b??a.length});this.yfb=c??0}};
+__c.Elj=class{static G(a){__c.O(a,{start:Alj,stop:Alj,Q4f:Alj,p9n:Alj,QFi:Alj})}getDelay(a,b){return a.Sqg?b?this.startDelay:this.g9f:100}start(a,b=!0){const c=a.Sqg?()=>this.tick(a):()=>this.start(a);b=this.getDelay(a,b);a.Sqg&&this.p9n(a,xlj(a));a.USl=window.setTimeout(c,b)}reset(a){this.stop(a);this.Q4f(a,0)}Lpk(a){return a.items[a.yfb]}stop(a){window.clearTimeout(a.USl);a.USl=void 0}async tick(a){this.D2b&&this.D2b(a.yfb);const b=xlj(a);try{a.xfh[b]&&await a.xfh[b],this.Q4f(a,xlj(a)),this.start(a,
+!1)}catch{}}Q4f(a,b){a.yfb=b}p9n(a,b){a.xfh[b]||(a.xfh[b]=this.ARa(a.items[b]))}QFi(a,b){a.items=[...a.items,...b]}constructor({ARa:a,pKm:b,startDelay:c,animationDuration:d,D2b:e}){this.g9f=(__c.Elj.G(this),void 0);this.ARa=a;this.D2b=e;this.startDelay=c;this.animationDuration=d;this.g9f=b+d}};
+}).call(self, self._456c437108d2d2713799e19380be528d);}
+
+}])
+//# sourceMappingURL=sourcemaps/3d4d85a8a9b92653.js.map

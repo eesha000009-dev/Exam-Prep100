@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chemistry Lab - WAEC Science Practical Simulator</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 20px;
+        }
+        .navbar {
+            width: 100%;
+            background-color: #4CAF50;
+            padding: 10px 0;
+            margin-bottom: 20px;
+        }
+        .nav-container {
+            display: flex;
+            justify-content: center;
+        }
+        .nav-left {
+            display: flex;
+        }
+        .nav-btn {
+            background: none;
+            border: none;
+            color: white;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        .nav-btn:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+        .active {
+            font-weight: bold;
+        }
+        .main-content {
+            width: 100%;
+            max-width: 800px;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        .hero-section {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .hero-title {
+            font-size: 28px;
+            margin: 0;
+        }
+        .hero-description {
+            font-size: 18px;
+            color: #666;
+        }
+        .subject-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+        }
+        .subject-card {
+            background-color: #f9f9f9;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            overflow: hidden;
+            transition: transform 0.2s;
+        }
+        .subject-card:hover {
+            transform: translateY(-5px);
+        }
+        .card-header {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px;
+            display: flex;
+            align-items: center;
+        }
+        .card-icon {
+            width: 40px;
+            height: 40px;
+            margin-right: 10px;
+        }
+        .card-title {
+            font-size: 20px;
+            margin: 0;
+        }
+        .card-content {
+            padding: 15px;
+        }
+        .card-description {
+            font-size: 16px;
+            color: #333;
+            margin-bottom: 10px;
+        }
+        .start-btn {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        .start-btn:hover {
+            background-color: #45a049;
+        }
+        /* Search Bar */
+        #searchInput {
+            width: 60%;
+            max-width: 400px;
+            padding: 0.75rem 1rem;
+            border-radius: 8px;
+            border: 1px solid #f59e0b;
+            font-size: 1rem;
+            margin: 0 auto 2rem auto;
+            display: block;
+        }
+        /* Modal Styles */
+        #ctrlwModal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.35);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+        }
+        #ctrlwModal .modal-content {
+            background: #fffbe6;
+            border: 2px solid #f59e0b;
+            border-radius: 16px;
+            padding: 2rem 2.5rem;
+            box-shadow: 0 8px 32px rgba(245, 158, 11, 0.15);
+            text-align: center;
+            max-width: 90vw;
+        }
+        #ctrlwModal h2 {
+            color: #f59e0b;
+            margin-bottom: 1rem;
+        }
+        #ctrlwModal p {
+            font-size: 1.15rem;
+            color: #333;
+        }
+        #continueBtn {
+            margin-top: 1.5rem;
+            background: #f59e0b;
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            padding: 0.75rem 2rem;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-left">
+                <button class="nav-btn" onclick="window.location.href='index.html'">Home</button>
+                <button class="nav-btn" onclick="window.location.href='physics.html'">Physics</button>
+                <button class="nav-btn active">Chemistry</button>
+                <button class="nav-btn">Biology</button>
+            </div>
+        </div>
+    </nav>
+    <main class="main-content">
+        <div class="container">
+            <div class="hero-section">
+                <h1 class="hero-title">Chemistry Lab</h1>
+                <p class="hero-description">
+                    Select a Chemistry topic to begin the simulation.
+                </p>
+            </div>
+            <!-- Search Bar -->
+            <div style="text-align:center; margin-bottom: 2rem;">
+                <input type="text" id="searchInput" placeholder="Search for a topic..." style="width: 60%; max-width: 400px; padding: 0.75rem 1rem; border-radius: 8px; border: 1px solid #f59e0b; font-size: 1rem;">
+            </div>
+            <div class="subject-grid" id="subjectGrid">
+                <!-- Balancing Chemical Equations Card -->
+                <div class="subject-card chemistry">
+                    <div class="card-header">
+                        <div class="card-icon chemistry-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                <path d="M10 2v20M14 2v20M4 7h16M4 17h16"/>
+                            </svg>
+                        </div>
+                        <h3 class="card-title">Balancing Chemical Equations</h3>
+                    </div>
+                    <div class="card-content">
+                        <p class="card-description">
+                            Practice balancing chemical equations interactively.
+                        </p>
+                        <button class="start-btn" onclick="window.location.href='balancing.html'">Try Simulation</button>
+                    </div>
+                </div>
+                <!-- Isotopes and Atomic Mass Card -->
+                <div class="subject-card chemistry">
+                    <div class="card-header">
+                        <div class="card-icon chemistry-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                <circle cx="12" cy="12" r="10"/>
+                            </svg>
+                        </div>
+                        <h3 class="card-title">Isotopes and Atomic Mass</h3>
+                    </div>
+                    <div class="card-content">
+                        <p class="card-description">Explore isotopes and atomic mass with an interactive simulation.</p>
+                        <button class="start-btn" onclick="window.location.href='isotopes.html'">Try Simulation</button>
+                    </div>
+                </div>
+                <!-- Build a Molecule Card -->
+                <div class="subject-card chemistry">
+                    <div class="card-header">
+                        <div class="card-icon chemistry-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                <circle cx="12" cy="12" r="10"/>
+                            </svg>
+                        </div>
+                        <h3 class="card-title">Build a Molecule</h3>
+                    </div>
+                    <div class="card-content">
+                        <p class="card-description">Construct molecules and learn about their structure.</p>
+                        <button class="start-btn" onclick="window.location.href='build-molecule.html'">Try Simulation</button>
+                    </div>
+                </div>
+                <!-- Molecule Polarity Card -->
+                <div class="subject-card chemistry">
+                    <div class="card-header">
+                        <div class="card-icon chemistry-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                <circle cx="12" cy="12" r="10"/>
+                            </svg>
+                        </div>
+                        <h3 class="card-title">Molecule Polarity</h3>
+                    </div>
+                    <div class="card-content">
+                        <p class="card-description">Investigate polarity in molecules interactively.</p>
+                        <button class="start-btn" onclick="window.location.href='molecule-polarity.html'">Try Simulation</button>
+                    </div>
+                </div>
+                <!-- Build a Nucleus Card -->
+                <div class="subject-card chemistry">
+                    <div class="card-header">
+                        <div class="card-icon chemistry-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                <circle cx="12" cy="12" r="10"/>
+                            </svg>
+                        </div>
+                        <h3 class="card-title">Build a Nucleus</h3>
+                    </div>
+                    <div class="card-content">
+                        <p class="card-description">Experiment with building atomic nuclei.</p>
+                        <button class="start-btn" onclick="window.location.href='build-nucleus.html'">Try Simulation</button>
+                    </div>
+                </div>
+                <!-- Models of the Hydrogen Atom Card -->
+                <div class="subject-card chemistry">
+                    <div class="card-header">
+                        <div class="card-icon chemistry-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                <circle cx="12" cy="12" r="10"/>
+                            </svg>
+                        </div>
+                        <h3 class="card-title">Models of the Hydrogen Atom</h3>
+                    </div>
+                    <div class="card-content">
+                        <p class="card-description">Explore different models of the hydrogen atom.</p>
+                        <button class="start-btn" onclick="window.location.href='hydrogen-models.html'">Try Simulation</button>
+                    </div>
+                </div>
+                <!-- Build an Atom Card -->
+                <div class="subject-card chemistry">
+                    <div class="card-header">
+                        <div class="card-icon chemistry-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                <circle cx="12" cy="12" r="10"/>
+                            </svg>
+                        </div>
+                        <h3 class="card-title">Build an Atom</h3>
+                    </div>
+                    <div class="card-content">
+                        <p class="card-description">Build atoms and learn about their structure.</p>
+                        <button class="start-btn" onclick="window.location.href='build-atom.html'">Try Simulation</button>
+                    </div>
+                </div>
+                <!-- Balancing Chemical Equations 2 Card -->
+                <div class="subject-card chemistry">
+                    <div class="card-header">
+                        <div class="card-icon chemistry-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                <circle cx="12" cy="12" r="10"/>
+                            </svg>
+                        </div>
+                        <h3 class="card-title">Balancing Chemical Equations 2</h3>
+                    </div>
+                    <div class="card-content">
+                        <p class="card-description">Interactive balancing chemical equations simulation (PhET).</p>
+                        <button class="start-btn" onclick="window.location.href='balancing2.html'">Try Simulation</button>
+                    </div>
+                </div>
+                <!-- Concentration Card -->
+                <div class="subject-card chemistry">
+                    <div class="card-header">
+                        <div class="card-icon chemistry-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                <circle cx="12" cy="12" r="10"/>
+                            </svg>
+                        </div>
+                        <h3 class="card-title">Concentration</h3>
+                    </div>
+                    <div class="card-content">
+                        <p class="card-description">Explore concentration with this PhET simulation.</p>
+                        <button class="start-btn" onclick="window.location.href='concentration.html'">Try Simulation</button>
+                    </div>
+                </div>
+                <!-- Molarity Card -->
+                <div class="subject-card chemistry">
+                    <div class="card-header">
+                        <div class="card-icon chemistry-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                <circle cx="12" cy="12" r="10"/>
+                            </svg>
+                        </div>
+                        <h3 class="card-title">Molarity</h3>
+                    </div>
+                    <div class="card-content">
+                        <p class="card-description">Learn about molarity with this PhET simulation.</p>
+                        <button class="start-btn" onclick="window.location.href='molarity.html'">Try Simulation</button>
+                    </div>
+                </div>
+                <!-- Beer's Law Lab Card -->
+                <div class="subject-card chemistry">
+                    <div class="card-header">
+                        <div class="card-icon chemistry-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                <circle cx="12" cy="12" r="10"/>
+                            </svg>
+                        </div>
+                        <h3 class="card-title">Beer's Law Lab</h3>
+                    </div>
+                    <div class="card-content">
+                        <p class="card-description">Experiment with Beer's Law in this PhET simulation.</p>
+                        <button class="start-btn" onclick="window.location.href='beers-law-lab.html'">Try Simulation</button>
+                    </div>
+                </div>
+                <!-- pH Scale: Basics Card -->
+                <div class="subject-card chemistry">
+                    <div class="card-header">
+                        <div class="card-icon chemistry-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                <circle cx="12" cy="12" r="10"/>
+                            </svg>
+                        </div>
+                        <h3 class="card-title">pH Scale: Basics</h3>
+                    </div>
+                    <div class="card-content">
+                        <p class="card-description">Understand pH basics with this PhET simulation.</p>
+                        <button class="start-btn" onclick="window.location.href='ph-scale-basics.html'">Try Simulation</button>
+                    </div>
+                </div>
+                <!-- pH Scale Card -->
+                <div class="subject-card chemistry">
+                    <div class="card-header">
+                        <div class="card-icon chemistry-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                <circle cx="12" cy="12" r="10"/>
+                            </svg>
+                        </div>
+                        <h3 class="card-title">pH Scale</h3>
+                    </div>
+                    <div class="card-content">
+                        <p class="card-description">Explore the pH scale with this PhET simulation.</p>
+                        <button class="start-btn" onclick="window.location.href='ph-scale.html'">Try Simulation</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <!-- Modal for Ctrl+W tip -->
+    <div id="ctrlwModal" style="display:none; position:fixed; top:0; left:0; width:100vw; height:100vh; background:rgba(0,0,0,0.35); z-index:1000; align-items:center; justify-content:center;">
+        <div style="background:#fffbe6; border:2px solid #f59e0b; border-radius:16px; padding:2rem 2.5rem; box-shadow:0 8px 32px rgba(245,158,11,0.15); text-align:center; max-width:90vw;">
+            <h2 style="color:#f59e0b; margin-bottom:1rem;">Tip</h2>
+            <p style="font-size:1.15rem; color:#333;">Press <b>Ctrl+W</b> to go to the previous page.</p>
+            <button id="continueBtn" style="margin-top:1.5rem; background:#f59e0b; color:#fff; border:none; border-radius:8px; padding:0.75rem 2rem; font-size:1rem; font-weight:600; cursor:pointer;">Continue</button>
+        </div>
+    </div>
+    <script>
+        // Search functionality
+        const searchInput = document.getElementById('searchInput');
+        const subjectGrid = document.getElementById('subjectGrid');
+        searchInput.addEventListener('input', function() {
+            const query = this.value.toLowerCase();
+            subjectGrid.querySelectorAll('.subject-card').forEach(card => {
+                const title = card.querySelector('.card-title').textContent.toLowerCase();
+                card.style.display = title.includes(query) ? '' : 'none';
+            });
+        });
+        // Modal functionality for simulation buttons
+        const modal = document.getElementById('ctrlwModal');
+        const continueBtn = document.getElementById('continueBtn');
+        let pendingHref = null;
+        document.querySelectorAll('.start-btn').forEach(btn => {
+            const href = btn.getAttribute('onclick')?.match(/window.location.href='([^']+)'/);
+            if (href) {
+                btn.onclick = function(e) {
+                    e.preventDefault();
+                    pendingHref = href[1];
+                    modal.style.display = 'flex';
+                };
+            }
+        });
+        continueBtn.onclick = function() {
+            modal.style.display = 'none';
+            if (pendingHref) window.location.href = pendingHref;
+        };
+    </script>
+</body>
+</html>

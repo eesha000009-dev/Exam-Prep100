@@ -1,0 +1,8 @@
+(self["webpackChunk_canva_web"] = self["webpackChunk_canva_web"] || []).push([[62509],{
+
+/***/ 162348:
+function(_, __, __webpack_require__) {__webpack_require__.n_x = __webpack_require__.n;const __web_req__ = __webpack_require__;__web_req__(905716);self._456c437108d2d2713799e19380be528d = self._456c437108d2d2713799e19380be528d || {};(function(__c) {var dus='<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M7.063 21.005c.646 0 1.002-.235 1.524-.58l12.242-8.05c.43-.283.831-.865.921-1.222.09-.357.077-1.067-.066-1.497-1.295-3.91-5.076-6.676-9.434-6.676-5.523 0-10 4.477-10 10a9.974 9.974 0 0 0 3.244 7.373c.459.42.9.652 1.57.652Zm9.085-11.507a9.438 9.438 0 0 0-9.425 9.941A8.5 8.5 0 0 1 12.25 4.48a8.507 8.507 0 0 1 8.133 6.02 9.402 9.402 0 0 0-4.235-1.002Zm3.08 2.12A7.938 7.938 0 0 0 8.21 18.88l11.016-7.264Z" fill="currentColor"/></svg>';__c.eus=__c.Zq({medium:dus});
+}).call(self, self._456c437108d2d2713799e19380be528d);}
+
+}])
+//# sourceMappingURL=sourcemaps/4ba4a20e34ccbcfc.js.map

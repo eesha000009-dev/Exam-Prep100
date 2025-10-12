@@ -1,0 +1,9 @@
+(self["webpackChunk_canva_web"] = self["webpackChunk_canva_web"] || []).push([[25313],{
+
+/***/ 840929:
+function(_, __, __webpack_require__) {__webpack_require__.n_x = __webpack_require__.n;const __web_req__ = __webpack_require__;__web_req__(905716);self._456c437108d2d2713799e19380be528d = self._456c437108d2d2713799e19380be528d || {};(function(__c) {var A=__c.A;var G=__c.G;var DCr,ECr,FCr,GCr,HCr,ICr,JCr;__c.BCr=G(()=>({document:__c.S(1),Yf:__c.V(2)}));__c.CCr=G(()=>({}));DCr=()=>({Ph:__c.S(4),Mca:__c.V(5)});ECr=G(()=>({...DCr(),type:A("A?",1,"ADDED")}));FCr=G(()=>({...DCr(),type:A("A?",2,"MODIFIED")}));GCr=G(()=>({...DCr(),type:A("A?",3,"DELETED")}));HCr=G(()=>({...DCr(),type:A("A?",6,"SUGGESTION_ADDED")}));ICr=G(()=>({...DCr(),type:A("A?",7,"SUGGESTION_MODIFIED")}));JCr=G(()=>({...DCr(),type:A("A?",8,"SUGGESTION_DELETED")}));
+__c.KCr=__c.ab(()=>({type:[1,ECr,2,FCr,3,GCr,6,HCr,7,ICr,8,JCr]}),DCr);
+}).call(self, self._456c437108d2d2713799e19380be528d);}
+
+}])
+//# sourceMappingURL=sourcemaps/0a6ed3bd94dea8a5.js.map

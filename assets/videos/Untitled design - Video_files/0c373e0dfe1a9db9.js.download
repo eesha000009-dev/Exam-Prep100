@@ -1,0 +1,9 @@
+(self["webpackChunk_canva_web"] = self["webpackChunk_canva_web"] || []).push([[43900],{
+
+/***/ 995621:
+function(_, __, __webpack_require__) {__webpack_require__.n_x = __webpack_require__.n;const __web_req__ = __webpack_require__;__web_req__(905716);self._456c437108d2d2713799e19380be528d = self._456c437108d2d2713799e19380be528d || {};(function(__c) {__c.kgj=function(a,b){switch(a){case 1:return b.default;case 5:return{...b.default,...b.jAe};case 2:return{...b.default,...b.cqa,...b.gbc};case 3:return{...b.default,...b.cqa,...b.hbc};case 4:return{...b.default,...b.cqa,...b.v8c};default:throw new __c.u(a);}};
+__c.Pi.prototype.wnb=__c.fa(68,async function(a){__c.ra(a.brand!=null&&/^B[a-zA-Z0-9_-]{10}$/.test(a.brand));var b=__c.fh([__c.Ms,"brands",a.brand]);__c.dh(b,{v2:__c.m(a.v2)});b=__c.hh(b);const [c,{BNp:d}]=await Promise.all([this.Ea.post(b,__c.D4c.serialize(a.body),{Ra:"updatebrandapi"}),__webpack_require__.me(413985).then(()=>({BNp:__c.lgj}))]);return d.deserialize(c)});__c.PG=(a=1)=>{switch(a){case 1:case 5:return!1;case 2:case 3:case 4:return!0;default:throw new __c.u(a);}};
+}).call(self, self._456c437108d2d2713799e19380be528d);}
+
+}])
+//# sourceMappingURL=sourcemaps/0c373e0dfe1a9db9.js.map

@@ -1,0 +1,9 @@
+(self["webpackChunk_canva_web"] = self["webpackChunk_canva_web"] || []).push([[53611],{
+
+/***/ 257975:
+function(_, __, __webpack_require__) {__webpack_require__.n_x = __webpack_require__.n;const __web_req__ = __webpack_require__;__web_req__(905716);self._456c437108d2d2713799e19380be528d = self._456c437108d2d2713799e19380be528d || {};(function(__c) {var pHm,qHm;__c.oHm=function(a,b){return(new nHm(a,b)).connect()};pHm=function(a){a.T_i?.unsubscribe();a.T_i=a.Bgr().subscribe(b=>{a.subscribers.next(b)},b=>{b instanceof __c.Mob||(b instanceof __c.Oob||b instanceof __c.Ll&&400<=b.statusCode&&b.statusCode<=499?a.subscribers.error(b):a.$0f(b))},()=>{a.$0f(Error("unexpected completion of incoming server stream"))})};qHm=__webpack_require__(226260).c;var rHm=__webpack_require__(450117).B7;var sHm=__webpack_require__(997752).y;var nHm=class{connect(){if(this.stream)return this.stream;let a=this.Mr.connectionStatus;this.stream=new qHm(b=>{this.subscribers.subscribe(b)});this.Mr.QY.subscribe(b=>{switch(b){case 0:pHm(this);break;case 1:if(a===0)break;this.gag();this.rug&&(window.clearTimeout(this.rug),this.rug=void 0);break;case 2:this.rug=0;a!==0&&pHm(this);a=void 0;break;case 3:break;default:throw new __c.u(b);}});return this.stream}$0f(a){this.gag();const b=Math.pow(1.618,this.Mgq++)*1E3;b>3E5?a&&this.subscribers.error(a):
+this.rug=window.setTimeout(()=>{this.rug=void 0;pHm(this)},b)}gag(){this.T_i&&(this.T_i.unsubscribe(),this.T_i=void 0)}constructor(a,b){this.Mr=a;this.Bgr=b;this.subscribers=new rHm;this.Mgq=0;this.subscription=new sHm}};
+}).call(self, self._456c437108d2d2713799e19380be528d);}
+
+}])
+//# sourceMappingURL=sourcemaps/12f8c9c0ddbee05a.js.map

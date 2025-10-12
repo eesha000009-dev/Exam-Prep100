@@ -1,30 +1,222 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Wave Concepts | Physics</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Wave Concepts - Step-by-Step Learning</title>
   <script src="https://cdn.tailwindcss.com"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
-  <style> body{font-family:Inter, sans-serif} .content-card{-webkit-backdrop-filter:blur(16px);backdrop-filter:blur(16px);background:rgba(255,255,255,0.8);border:1px solid rgba(255,255,255,0.2);box-shadow:0 8px 32px rgba(0,0,0,0.06);} </style>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    @keyframes fade-in-up {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .animate-fade-in-up { animation: fade-in-up 0.6s ease-out forwards; }
+    .step-progress { transition: width 0.3s ease-in-out; }
+    .resource-card { transition: transform 0.2s; }
+    .resource-card:hover { transform: translateY(-4px); }
+    .step-button.active { background-color: #EFF6FF; color: #2563EB; }
+    .quiz-option.selected { border-color: #2563EB; background-color: #EFF6FF; }
+    .quiz-option.correct { border-color: #16A34A; background-color: #F0FDF4; }
+    .quiz-option.incorrect { background-color: #fff5f5; border-color: #e53e3e; }
+  </style>
 </head>
-<body class="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 p-6">
-  <div class="max-w-4xl mx-auto">
-    <nav class="mb-6"><a href="index.html" class="text-blue-600">← Back to Waves</a></nav>
-    <article class="content-card rounded-xl p-8">
-      <h1 class="text-2xl font-bold mb-2">Wave Concepts</h1>
-      <p class="text-gray-700 mb-4">Waves transfer energy without net mass transport. Key properties: wavelength (λ), frequency (f), period (T) and speed (v = fλ).</p>
-      <section class="mb-4">
-        <h2 class="font-semibold">Practice</h2>
-        <ol class="list-decimal list-inside">
-          <li>A wave has λ = 0.5 m and f = 2 Hz. Find its speed.</li>
-        </ol>
-      </section>
-      <section>
-        <h2 class="font-semibold">Solution</h2>
-        <p>v = fλ = 2 × 0.5 = 1 m/s.</p>
-      </section>
-    </article>
-  </div>
+<body class="bg-gray-50">
+  <!-- Top Navigation -->
+  <nav class="bg-white shadow-sm fixed top-0 w-full z-50">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="flex justify-between h-16">
+        <div class="flex items-center">
+          <a href="index.html" class="text-gray-600 hover:text-gray-900 mr-4" aria-label="Back to topics">
+            <i class="fas fa-arrow-left"></i>
+          </a>
+          <h1 id="topicTitle" class="text-xl font-semibold text-gray-900">Wave Concepts</h1>
+        </div>
+        <div class="flex items-center space-x-4">
+          <div class="text-sm text-gray-600">
+            Progress: <span id="progressPercent">0%</span>
+          </div>
+          <div class="w-32 h-2 bg-gray-200 rounded-full">
+            <div id="progressBar" class="step-progress h-2 bg-blue-500 rounded-full" style="width: 0%"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Main Content -->
+  <main class="pt-20 pb-24">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid md:grid-cols-12 gap-6">
+        <!-- Left Sidebar - Steps -->
+        <div class="md:col-span-3">
+          <div class="bg-white rounded-lg shadow-sm p-4 sticky top-20">
+            <h3 class="font-semibold mb-4">Learning Steps</h3>
+            <ul id="stepsList" class="space-y-2">
+              <!-- Steps will be dynamically populated by JS -->
+            </ul>
+          </div>
+        </div>
+                
+        <!-- Main Content Area -->
+        <div class="md:col-span-9">
+          <div id="stepContent" class="bg-white rounded-lg shadow-sm p-6">
+            <!-- Content is dynamically updated based on selected step -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Script -->
+  <script>
+    // Define the learning steps and content
+    window.steps = [
+      {
+        id: 'intro',
+        title: 'What are Waves?',
+        content: `
+          <div class="prose max-w-none">
+            <h2 class="text-xl font-semibold mb-4">Understanding Waves</h2>
+            <p class="text-gray-700 mb-4">Waves are disturbances that travel through a medium and transfer energy without net mass transport.</p>
+            <p class="text-gray-700 mb-4">A wave can be visualized as a repeating pattern that moves through space and time. When you throw a stone into a pond, the ripples you see are waves carrying energy across the water's surface.</p>
+          </div>
+        `
+      },
+      {
+        id: 'properties',
+        title: 'Wave Properties',
+        content: `
+          <div class="prose max-w-none">
+            <h2 class="text-xl font-semibold mb-4">Key Properties of Waves</h2>
+            <ul class="list-disc list-inside mb-4 text-gray-700">
+              <li>Wavelength (λ): Distance between repeating parts of the wave</li>
+              <li>Frequency (f): Number of waves passing a point per second</li>
+              <li>Period (T): Time for one complete wave cycle</li>
+              <li>Speed (v): How fast the wave travels; v = fλ</li>
+            </ul>
+            <p class="text-gray-700">Note: Period and frequency are related: T = 1/f</p>
+          </div>
+        `
+      },
+      {
+        id: 'practice',
+        title: 'Practice Problem',
+        content: `
+          <div class="prose max-w-none">
+            <h2 class="text-xl font-semibold mb-4">Solve this Problem</h2>
+            <div class="bg-blue-50 p-4 rounded-lg mb-4">
+              <p class="text-gray-700">A wave has wavelength (λ) = 0.5 meters and frequency (f) = 2 Hz. Calculate its speed.</p>
+            </div>
+            <div class="mt-6">
+              <h3 class="font-semibold mb-2">Solution</h3>
+              <p class="text-gray-700">Using the wave speed equation: v = fλ</p>
+              <p class="text-gray-700">v = 2 Hz × 0.5 m = 1 m/s</p>
+            </div>
+          </div>
+        `
+      },
+      {
+        id: 'quiz',
+        title: 'Quiz',
+        content: `
+          <div class="prose max-w-none">
+            <h2 class="text-xl font-semibold mb-4">Test Your Understanding</h2>
+            <div class="space-y-4">
+              <div class="quiz-question">
+                <p class="mb-2">If a wave has a frequency of 5 Hz, what is its period?</p>
+                <div class="space-y-2">
+                  <div class="quiz-option p-3 border rounded-lg cursor-pointer" data-correct="true">
+                    0.2 seconds
+                  </div>
+                  <div class="quiz-option p-3 border rounded-lg cursor-pointer">
+                    5 seconds
+                  </div>
+                  <div class="quiz-option p-3 border rounded-lg cursor-pointer">
+                    2 seconds
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        `
+      }
+    ];
+
+    // Initialize the page
+    document.addEventListener('DOMContentLoaded', () => {
+      const stepsList = document.getElementById('stepsList');
+      const stepContent = document.getElementById('stepContent');
+      const progressBar = document.getElementById('progressBar');
+      const progressPercent = document.getElementById('progressPercent');
+      let currentStep = 0;
+
+      // Create step buttons
+      steps.forEach((step, index) => {
+        const li = document.createElement('li');
+        li.innerHTML = `
+          <button class="step-button w-full text-left px-3 py-2 rounded-lg text-gray-600 hover:bg-gray-50" 
+              onclick="window.showStep(${index})">
+            ${index + 1}. ${step.title}
+          </button>
+        `;
+        stepsList.appendChild(li);
+      });
+
+      // Function to show a specific step
+      window.showStep = function(index) {
+        currentStep = index;
+                
+        // Update step buttons
+        document.querySelectorAll('.step-button').forEach((btn, i) => {
+          btn.classList.toggle('active', i === index);
+        });
+                
+        // Update content with animation
+        stepContent.style.opacity = '0';
+        setTimeout(() => {
+          stepContent.innerHTML = steps[index].content;
+          stepContent.style.opacity = '1';
+                    
+          // Initialize quiz functionality if it's a quiz step
+          if (steps[index].id === 'quiz') {
+            window.initializeQuiz();
+          }
+        }, 200);
+                
+        // Update progress
+        const progress = ((index + 1) / steps.length) * 100;
+        progressBar.style.width = `${progress}%`;
+        progressPercent.textContent = `${Math.round(progress)}%`;
+      };
+
+      // Function to initialize quiz functionality
+      window.initializeQuiz = function() {
+        document.querySelectorAll('.quiz-option').forEach(option => {
+          option.addEventListener('click', function() {
+            // Remove previous selections
+            document.querySelectorAll('.quiz-option').forEach(opt => {
+              opt.classList.remove('selected', 'correct', 'incorrect');
+            });
+                        
+            // Add selection
+            this.classList.add('selected');
+                        
+            // Check if correct
+            if (this.dataset.correct === 'true') {
+              this.classList.add('correct');
+            } else {
+              this.classList.add('incorrect');
+              // Show correct answer
+              document.querySelector('[data-correct="true"]').classList.add('correct');
+            }
+          });
+        });
+      };
+
+      // Show first step on load
+      window.showStep(0);
+    });
+  </script>
 </body>
 </html>
