@@ -30,63 +30,156 @@
           <label class="block font-semibold text-gray-700 mb-1" for="password">Password <span class="text-red-500">*</span></label>
           <input type="password" id="password" class="w-full px-4 py-3 rounded-xl border border-blue-200 focus:ring-2 focus:ring-blue-400 focus:border-blue-400 bg-blue-50/60 transition placeholder:text-gray-400" required autocomplete="current-password" placeholder="Enter your password">
         </div>
-        <button type="submit" class="w-full py-3 rounded-xl bg-gradient-to-r from-blue-500 to-blue-700 text-white font-bold text-lg shadow-xl hover:from-blue-600 hover:to-blue-800 transition-all duration-200">Log In</button>
-        <div class="text-sm text-center text-blue-500 mt-4">
-          Don't have an account? <a href="signup-new.html" class="text-blue-600 hover:underline">Sign up</a>
-        </div>
+          <button id="loginBtn" type="submit" class="w-full py-3 rounded-xl bg-gradient-to-r from-blue-500 to-blue-700 text-white font-bold text-lg shadow-xl hover:from-blue-600 hover:to-blue-800 transition-all duration-200">Log In</button>
+          <div id="loginLoader" class="flex justify-center items-center mt-4" style="display:none;">
+            <svg class="animate-spin h-6 w-6 text-blue-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+              <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+              <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8H4z"></path>
+            </svg>
+            <span class="ml-2 text-blue-600 font-medium">Logging in...</span>
+          </div>
+          <div id="loginError" class="error-message" style="display:none;"></div>
+          <div class="text-sm text-center text-blue-500 mt-4">
+            Don't have an account? <a href="signup-new.html" class="text-blue-600 hover:underline">Sign up</a>
+          </div>
       </form>
     </div>
   </main>
 
   <script type="module">
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js";
-    import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-analytics.js";
-    import { getAuth, signInWithEmailAndPassword, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
+    // Use the local Supabase client helper (already present in the repo)
+    import { config } from '../js/config.js';
+    import { initSupabase, signIn } from '../js/supabase-client.js';
 
-    import { firebaseConfig } from '../js/firebase-config.js';
-    import { initializeAppCheck, ReCaptchaV3Provider } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-app-check.js";
+    const supabase = initSupabase(config.supabase.url, config.supabase.anonKey);
 
-    const app = initializeApp(firebaseConfig);
-    const analytics = getAnalytics(app);
-    const auth = getAuth(app);
+    // Redirect if already logged in (check existing session)
+    (async () => {
+      try {
+        const { data: { user } } = await supabase.auth.getUser();
+        if (user) {
+          window.location.href = '../students/student-dashboard.html';
+        }
+      } catch (e) {
+        // ignore
+      }
+    })();
 
-    try {
-      initializeAppCheck(app, {
-        provider: new ReCaptchaV3Provider(firebaseConfig.recaptchaSiteKey),
-        isTokenAutoRefreshEnabled: true
+    // Also listen for auth state changes
+    if (supabase.auth.onAuthStateChange) {
+      supabase.auth.onAuthStateChange((event, session) => {
+        if (session && session.user) {
+          window.location.href = '../students/student-dashboard.html';
+        }
       });
-    } catch (err) {
-      console.warn('App Check not initialized:', err.message);
     }
 
-    // Redirect if already logged in
-    onAuthStateChanged(auth, (user) => {
-      if (user) {
-        window.location.href = '../students/student-dashboard.html';
-      }
-    });
+    const loginForm = document.getElementById('loginForm');
+    const loginBtn = document.getElementById('loginBtn');
+    const loginLoader = document.getElementById('loginLoader');
+    const loginError = document.getElementById('loginError');
 
-    document.getElementById('loginForm').addEventListener('submit', async function(e) {
+    loginForm.addEventListener('submit', async function(e) {
       e.preventDefault();
+      loginError.style.display = 'none';
+      loginBtn.disabled = true;
+      loginLoader.style.display = 'flex';
       const email = document.getElementById('email').value;
       const password = document.getElementById('password').value;
       try {
-        const userCredential = await signInWithEmailAndPassword(auth, email, password);
-        // Optionally check if email is verified
-        if (!userCredential.user.emailVerified) {
-          alert('Please verify your email before logging in.');
+        const res = await signIn(supabase, email, password);
+        if (res.error) {
+          const msg = res.error.message || 'Sign in failed';
+          loginError.textContent = (msg.toLowerCase().includes('invalid login credentials') || msg.toLowerCase().includes('invalid'))
+            ? 'No account found with this email or incorrect password. Please sign up or reset your password.'
+            : msg;
+          loginError.style.display = 'block';
+          loginBtn.disabled = false;
+          loginLoader.style.display = 'none';
           return;
         }
-        window.location.href = '../students/student-dashboard.html';
-      } catch (error) {
-        if (error.code === 'auth/user-not-found') {
-          alert('No account found with this email. Please sign up first.');
-          window.location.href = 'signup-new.html';
-        } else {
-          alert('Login failed: ' + error.message);
+
+        // Successful sign-in
+        // Check email verification
+        if (!res.data.user.email_confirmed_at) {
+          loginError.textContent = 'Your email is not verified. Please check your inbox for the verification link. If you did not receive it, click below to resend.';
+          loginError.style.display = 'block';
+          loginBtn.disabled = false;
+          loginLoader.style.display = 'none';
+          // Sign out to block access
+          await supabase.auth.signOut();
+          // Optionally show a resend verification link
+          showResendVerification(email);
+          return;
         }
+
+        // Load profile for redirect
+        try {
+          const { data: profile } = await supabase
+            .from('profiles')
+            .select('*')
+            .eq('id', res.data.user.id)
+            .maybeSingle();
+
+          if (profile) {
+            localStorage.setItem('userProfile', JSON.stringify({
+              id: res.data.user.id,
+              email: res.data.user.email,
+              displayName: profile.username || profile.full_name || 'Student',
+              level: profile.level || 'SS 3',
+              photoURL: profile.avatar_url,
+              progress: {
+                weekly: profile.weekly_progress || 0,
+                mockAvg: profile.mock_avg || 0,
+                streak: profile.streak || 0
+              }
+            }));
+          }
+
+          window.location.href = '../students/student-dashboard.html';
+        } catch (err) {
+          console.warn('Profile load failed:', err);
+          window.location.href = '../students/student-dashboard.html';
+        }
+      } catch (error) {
+        loginError.textContent = 'Login failed: ' + (error.message || error);
+        loginError.style.display = 'block';
+      } finally {
+        loginBtn.disabled = false;
+        loginLoader.style.display = 'none';
       }
     });
+
+    // Helper to show resend verification link
+    function showResendVerification(email) {
+      if (!loginError) return;
+      // Add a resend link if not already present
+      if (!document.getElementById('resendVerificationLink')) {
+        const resend = document.createElement('button');
+        resend.id = 'resendVerificationLink';
+        resend.className = 'mt-2 px-4 py-2 bg-blue-100 text-blue-700 rounded hover:bg-blue-200 font-semibold';
+        resend.textContent = 'Resend Verification Email';
+        resend.onclick = async function() {
+          resend.disabled = true;
+          resend.textContent = 'Sending...';
+          try {
+            // Supabase: trigger resend by calling signUp again (safe, does not create new user)
+            const { error } = await supabase.auth.signUp({ email });
+            if (error) {
+              loginError.textContent = 'Failed to resend verification email: ' + error.message;
+            } else {
+              loginError.textContent = 'Verification email sent! Please check your inbox.';
+            }
+          } catch (err) {
+            loginError.textContent = 'Error sending verification email.';
+          } finally {
+            resend.disabled = false;
+            resend.textContent = 'Resend Verification Email';
+          }
+        };
+        loginError.appendChild(resend);
+      }
+    }
   </script>
 
   <style>

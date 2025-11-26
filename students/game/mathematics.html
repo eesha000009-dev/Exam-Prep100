@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mathematics - ScienceQuest</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="css/style.css" rel="stylesheet">
+</head>
+<body class="bg-gradient-to-b from-gray-900 to-gray-800 min-h-screen text-white">
+    <nav class="bg-transparent text-white p-4">
+        <div class="container mx-auto flex justify-between items-center">
+            <div class="flex items-center space-x-6">
+                <h1 class="text-3xl font-bold tracking-wider">🔢 ScienceQuest — Mathematics</h1>
+                <div class="flex items-center space-x-3 bg-white bg-opacity-5 rounded-lg px-3 py-2">
+                    <div id="lives-container" class="text-xl"></div>
+                    <div id="life-timer" class="text-xs text-gray-300 ml-2"></div>
+                </div>
+            </div>
+
+            <div class="flex items-center space-x-6">
+                <div class="flex items-center space-x-2 bg-white bg-opacity-5 rounded-lg px-3 py-2">
+                    <span class="text-yellow-300">🏆</span>
+                    <div id="total-score" class="text-xl font-bold">0</div>
+                </div>
+                <div class="space-x-4 hidden md:flex">
+                    <a href="index.html" class="hover:text-blue-300 transition-colors">Home</a>
+                    <a href="physics.html" class="hover:text-blue-300 transition-colors">Physics</a>
+                    <a href="chemistry.html" class="hover:text-green-300 transition-colors">Chemistry</a>
+                    <a href="biology.html" class="hover:text-red-300 transition-colors">Biology</a>
+                </div>
+                <button id="music-toggle" class="text-2xl cursor-pointer" title="Right-click to adjust volume">🔊</button>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container mx-auto p-8">
+        <div class="bg-gradient-to-br from-purple-800/20 to-transparent border border-white/5 rounded-xl shadow-2xl p-8">
+            <h2 class="text-4xl font-bold text-purple-300 mb-6">Mathematics — Practice Mode</h2>
+            <div id="quiz-container">
+                <!-- Quiz content will be loaded here -->
+            </div>
+            <div class="mt-6">
+                <button id="submit-quiz" class="bg-purple-600 text-white px-6 py-2 rounded hover:bg-purple-700 hidden">Submit Quiz</button>
+                <button id="next-question" class="bg-blue-600 text-white px-6 py-2 rounded hover:bg-blue-700 hidden">Next Question</button>
+            </div>
+            <div id="result" class="mt-6 text-lg font-semibold hidden"></div>
+        </div>
+    </main>
+
+    <footer class="bg-gray-800 text-white p-4 mt-8">
+        <div class="container mx-auto text-center">
+            <p>© 2025 ScienceQuest - Educational Platform</p>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script src="js/mathematics.js"></script>
+</body>
+</html>

@@ -1,0 +1,91 @@
+// Physics Game UI Handler
+class PhysicsGameUI {
+    constructor() {
+        this.currentTopic = null;
+        this.currentExperiment = null;
+        this.setupEventListeners();
+    }
+
+    setupEventListeners() {
+        // Topic selection buttons
+        document.querySelectorAll('.topic-btn').forEach(button => {
+            button.addEventListener('click', (e) => {
+                const topic = e.target.dataset.topic;
+                const color = e.target.dataset.color;
+                const experimentName = e.target.textContent.trim();
+                this.showModeSelection(topic, color, experimentName);
+            });
+        });
+
+        // Back button
+        document.getElementById('back-btn').addEventListener('click', () => {
+            this.showTopicSelection();
+        });
+
+        // Mode selection buttons
+        document.getElementById('solo-btn').addEventListener('click', () => {
+            this.startExperiment('solo');
+        });
+
+        document.getElementById('multiplayer-btn').addEventListener('click', () => {
+            this.startExperiment('multiplayer');
+        });
+
+        document.getElementById('progress-btn').addEventListener('click', () => {
+            this.showProgress();
+        });
+    }
+
+    showModeSelection(topic, color, experimentName) {
+        this.currentTopic = topic;
+        this.currentExperiment = experimentName;
+
+        // Hide topic menu and show mode menu
+        document.getElementById('topic-menu').classList.add('hidden');
+        document.getElementById('mode-menu').classList.remove('hidden');
+
+        // Update the title color based on the topic
+        const titleElement = document.getElementById('selected-topic-title');
+        titleElement.className = `text-${color}-300`;
+        titleElement.textContent = topic.charAt(0).toUpperCase() + topic.slice(1);
+
+        // Update experiment name
+        document.getElementById('selected-experiment-name').textContent = experimentName;
+    }
+
+    showTopicSelection() {
+        // Hide mode menu and show topic menu
+        document.getElementById('mode-menu').classList.add('hidden');
+        document.getElementById('topic-menu').classList.remove('hidden');
+    }
+
+    startExperiment(mode) {
+        console.log(`Starting ${this.currentExperiment} in ${mode} mode`);
+        
+        // Initialize the physics simulation
+        if (!window.physicsGame) {
+            window.physicsGame = new PhysicsGame();
+        }
+
+        // Hide menus and show game UI
+        document.getElementById('mode-menu').classList.add('hidden');
+        document.getElementById('game-ui').classList.remove('hidden');
+
+        // Start the specific experiment
+        window.physicsGame.startExperiment(
+            this.currentTopic,
+            this.currentExperiment,
+            mode
+        );
+    }
+
+    showProgress() {
+        console.log(`Showing progress for ${this.currentExperiment}`);
+        // Implement progress tracking UI here
+    }
+}
+
+// Initialize UI when the page loads
+document.addEventListener('DOMContentLoaded', () => {
+    window.gameUI = new PhysicsGameUI();
+});

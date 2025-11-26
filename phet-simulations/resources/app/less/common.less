@@ -1,0 +1,135 @@
+// Copyright 2017-2020, University of Colorado Boulder
+
+@import 'commonVars';
+
+// misc
+
+html, body, #app, #app > div {
+  height: 100%;
+}
+
+body {
+  font-family: @default-font-family;
+  font-size: @default-font-size;
+  margin: 0;
+  min-width: 720px;
+}
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+button {
+  font-size: 1em;
+}
+
+select {
+  height: 30px;
+  font-size: 1em;
+}
+
+// text
+
+h1, h2, h3, h4, h5, p {
+  font-size: inherit;
+  font-weight: inherit;
+  margin: 0;
+}
+
+.h1, .h2, .h3, .h4, .h5, .p {
+  margin: 0;
+}
+
+.h1 {
+  font-size: 2.2em;
+  font-weight: 600;
+}
+
+.h2 {
+  font-size: 1.6em;
+  font-weight: 600;
+}
+
+.h3 {
+  font-size: 1.45em;
+  font-weight: 600;
+}
+
+.h4 {
+  font-size: 1.1em;
+  font-weight: 400;
+}
+
+// links
+
+a.default-link {
+  color: blue;
+}
+
+a .inline-link,
+a.inline-link {
+  text-decoration: underline;
+}
+
+a .floating-link,
+a.floating-link {
+  text-decoration: none;
+}
+
+a .inline-link,
+a.inline-link,
+a .floating-link,
+a.floating-link {
+  color: @gray;
+  cursor: pointer;
+  font-weight: 300;
+}
+
+a .inline-link:hover,
+a.inline-link:hover,
+a .floating-link:hover,
+a.floating-link:hover {
+  color: @pink;
+  text-decoration: underline;
+}
+
+a .inline-link:visited,
+a.inline-link:visited,
+a .floating-link:visited,
+a.floating-link:visited {
+  color: #840633;
+}
+
+// title banners
+
+.banner-container {
+  max-width: @page-max-width;
+  height: @banner-height;
+  position: relative;
+  text-align: center;
+  margin: 0 auto;
+}
+
+.banner-container::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: @banner-height;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.banner-header-container {
+  width: @banner-header-container-width;
+  height: 100%;
+  margin: 0 auto;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}

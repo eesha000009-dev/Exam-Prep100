@@ -1,0 +1,163 @@
+/* Custom styles */
+.quiz-option:hover {
+    background-color: #f3f4f6;
+    transform: scale(1.02);
+    transition: all 0.2s ease;
+}
+
+/* Dark-mode quiz option styles */
+.bg-gradient-to-br .quiz-option,
+body.bg-gradient-to-b .quiz-option,
+.quiz-option {
+    background-color: rgba(255,255,255,0.02);
+    border: 1px solid rgba(255,255,255,0.03);
+    padding: 12px;
+}
+
+.quiz-option:hover {
+    background-color: rgba(255,255,255,0.04);
+}
+
+/* Timer animation */
+@keyframes timerBar {
+    from { width: 100%; }
+    to { width: 0%; }
+}
+
+.timer-bar {
+    animation: timerBar 15s linear;
+    height: 4px;
+    background: #4f46e5;
+}
+
+/* Heart animation */
+@keyframes heartBeat {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.2); }
+    100% { transform: scale(1); }
+}
+
+.heart-beat {
+    animation: heartBeat 0.5s ease;
+}
+
+/* Score animation */
+@keyframes scorePopup {
+    0% { transform: scale(0); opacity: 0; }
+    70% { transform: scale(1.2); opacity: 0.7; }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+.score-popup {
+    animation: scorePopup 0.3s ease-out;
+}
+
+/* Card hover effects */
+.subject-card {
+    transition: all 0.3s ease;
+}
+
+.subject-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* Achievement badge styles */
+.badge {
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.badge:hover {
+    transform: rotate(360deg);
+}
+
+/* Custom radio button styles */
+input[type="radio"] {
+    accent-color: currentColor;
+}
+
+/* Progress bar */
+.progress-bar {
+    height: 10px;
+    background: rgba(255,255,255,0.06);
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.progress-fill {
+    height: 100%;
+    background: #4f46e5;
+    transition: width 0.3s ease;
+}
+
+/* Game over overlay */
+.game-over {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: fadeIn 0.5s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* Power-up animation */
+@keyframes powerUp {
+    0% { transform: scale(1); filter: brightness(1); }
+    50% { transform: scale(1.2); filter: brightness(1.5); }
+    100% { transform: scale(1); filter: brightness(1); }
+}
+
+.power-up {
+    animation: powerUp 0.5s ease;
+}
+
+/* Floating points animation */
+@keyframes floatingPoints {
+    0% { opacity: 1; transform: translate(-50%, -50%); }
+    100% { opacity: 0; transform: translate(-50%, -100%); }
+}
+
+.floating-points {
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    animation: floatingPoints 0.8s ease-out forwards;
+    pointer-events: none;
+    z-index: 1000;
+}
+
+/* Achievement Badge Animation */
+@keyframes slide-in {
+    0% {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    10% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+    90% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+    100% {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+}
+
+.badge {
+    animation: slide-in 3s ease-in-out forwards;
+    z-index: 1000;
+}

@@ -1,0 +1,240 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+
+<html>
+<head>
+  <link rel="stylesheet" href="../../css/phet-app.css"/>
+  <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css'/>
+  <title>Index of sims</title>
+</head>
+<body>
+<!--TODO: Add utils.js for all this great javascript.-->
+<!--TODO: Add our script functions under the window.phet object.-->
+
+<div id="header">
+  <div class="phet-logo expanded">
+    <img src="../../images/phet-logo-trademarked.png" alt="PhET">
+  </div>
+  </a>
+  <div class="cu-logo expanded">
+    <img src="../../images/cu_logo.png" alt="University of Colorado">
+  </div>
+</div>
+
+<!--FILTER TABS-->
+<div class="tab-buttons">
+  <div id="filterView" align="center">
+    <div class="tab-button-container" onclick=phet.showHtmlSims()>
+      <a id="showHtmlSimsButton" class="h2 tab-button selected">
+        {{HTML_BADGE}}
+        <h2 class="text">HTML5</h2>
+      </a>
+    </div>
+    <div class="tab-button-container" {{FLASH_FILTER_TAB_DISPLAY_STYLE}} onclick=phet.showFlashSims()>
+      <a id="showFlashSimsButton" class="h2 tab-button">
+        {{FLASH_BADGE}}
+        <h2 class="text">FLASH</h2>
+      </a>
+    </div>
+    <div class="tab-button-container" onclick=phet.showJavaSims()>
+      <a id="showJavaSimsButton" class="h2 tab-button">
+        {{JAVA_BADGE}}
+        <h2 class="text">JAVA</h2>
+      </a>
+    </div>
+    <div class="tab-button-container" onclick=phet.showAllSims()>
+      <a id="showAllSimsButton" class="h2 tab-button ">
+        {{HTML_BADGE}}
+        {{ALL_TAB_FLASH_BADGE}}
+        {{JAVA_BADGE}}
+        <h2 class="text">ALL</h2>
+      </a>
+    </div>
+  </div>
+</div>
+
+<!--GRID AND LIST BUTTONS-->
+<div class="toggle-view-control">
+  <div class="toggle-view-button-holder">
+    <button id="gridButton" class="selected"><i class="fa fa-th" onclick=phet.showGrid()></i></button>
+    <button id="listButton" class=""><i class="fa fa-list" onclick=phet.showList()></i></button>
+  </div>
+</div>
+
+<!--SIMS-->
+<div id="gridView" class="gridView">
+  <div id='sim-collection-html' class="collection">
+    <ul id='translated-sim-collection-html' class='sim-collection grid'>
+      {{HTML_TRANSLATED_SIMS}}
+    </ul>
+    {{HTML_UNTRANSLATED_COLLECTION}}
+  </div>
+
+  <div id='sim-collection-flash' style='display:none' class="collection">
+    <h3 id="flash-plugin-failure-message" class="h3 header" align="center" style='display: none'>Flash not
+      installed.</h3>
+    <ul id='translated-sim-collection-flash' class='sim-collection grid'>
+      {{FLASH_TRANSLATED_SIMS}}
+    </ul>
+    {{FLASH_UNTRANSLATED_COLLECTION}}
+    {{FLASH_LEGACY_COLLECTION}}
+  </div>
+
+  <div id='sim-collection-java' style='display:none' class="collection">
+    <h3 id="java-plugin-failure-message" class="h3 header" align="center" style='display: none'>Java not
+      installed.</h3>
+    <ul id='translated-sim-collection-java' class='sim-collection grid'>
+      {{JAVA_TRANSLATED_SIMS}}
+    </ul>
+    {{JAVA_UNTRANSLATED_COLLECTION}}
+  </div>
+
+  <div id='sim-collection-all' style='display:none' class="collection">
+    <ul id="translated-sim-collection-all" class='sim-collection grid'>
+      {{ALL_TRANSLATED_SIMS}}
+    </ul>
+    {{ALL_UNTRANSLATED_COLLECTION}}
+  </div>
+</div>
+
+<script>
+  window.phet = {};
+
+  // constants
+  const GRID = 'grid';
+  const LIST = 'list';
+  const SELECTED = 'selected';
+
+  // Grid and list buttons
+  const gridButton = document.getElementById( 'gridButton' );
+  const listButton = document.getElementById( 'listButton' );
+
+  // Sim type collections including their translated and untranslated variants.
+  const htmlCollection = document.getElementById( 'sim-collection-html' );
+  const flashCollection = document.getElementById( 'sim-collection-flash' );
+  const javaCollection = document.getElementById( 'sim-collection-java' );
+  const allCollection = document.getElementById( 'sim-collection-all' );
+
+  // Collections based on the translated and untranslated
+  const untranslatedHtmlCollection = document.getElementById( 'untranslated-sim-collection-html' );
+  const translatedHtmlCollection = document.getElementById( 'translated-sim-collection-html' );
+  const untranslatedFlashCollection = document.getElementById( 'untranslated-sim-collection-flash' );
+  const translatedFlashCollection = document.getElementById( 'translated-sim-collection-flash' );
+  const untranslatedJavaCollection = document.getElementById( 'untranslated-sim-collection-java' );
+  const translatedJavaCollection = document.getElementById( 'translated-sim-collection-java' );
+  const untranslatedAllCollection = document.getElementById( 'untranslated-sim-collection-all' );
+  const translatedAllCollection = document.getElementById( 'translated-sim-collection-all' );
+
+  const toggleView = ( collection, viewClass ) => {
+    collection.classList.remove( GRID, LIST );
+    collection.classList.add( viewClass );
+
+    const sims = collection.getElementsByTagName( 'a' );
+    for ( let i = 0; i < sims.length; i++ ) {
+      const sim = sims[ i ];
+
+      sim.classList.remove( GRID, LIST );
+      sim.classList.add( viewClass );
+    }
+  };
+
+  phet.showGrid = () => {
+    gridButton.className = 'selected';
+    listButton.className = '';
+
+    // Show untranslated sims if they exist
+    untranslatedHtmlCollection && toggleView( untranslatedHtmlCollection, GRID );
+    untranslatedFlashCollection && toggleView( untranslatedFlashCollection, GRID );
+    untranslatedJavaCollection && toggleView( untranslatedJavaCollection, GRID );
+    untranslatedAllCollection && toggleView( untranslatedAllCollection, GRID );
+
+    // Show translated sims.
+    toggleView( translatedHtmlCollection, GRID );
+    toggleView( translatedFlashCollection, GRID );
+    toggleView( translatedJavaCollection, GRID );
+    toggleView( translatedAllCollection, GRID );
+  };
+
+  phet.showList = () => {
+    listButton.className = 'selected';
+    gridButton.className = '';
+
+    // Show untranslated sims if they exist
+    untranslatedHtmlCollection && toggleView( untranslatedHtmlCollection, LIST );
+    untranslatedFlashCollection && toggleView( untranslatedFlashCollection, LIST );
+    untranslatedJavaCollection && toggleView( untranslatedJavaCollection, LIST );
+    untranslatedAllCollection && toggleView( untranslatedAllCollection, LIST );
+
+    // Show translated sims
+    toggleView( translatedHtmlCollection, LIST );
+    toggleView( translatedFlashCollection, LIST );
+    toggleView( translatedJavaCollection, LIST );
+    toggleView( translatedAllCollection, LIST );
+  };
+
+  /**
+   * @param {string} buttonId
+   * @param {boolean} isSelected
+   */
+  phet.toggleButtonSelectionMode = ( buttonId, isSelected ) => {
+    const simFilterButton = document.getElementById( buttonId );
+    if ( isSelected ) {
+      simFilterButton.classList.add( SELECTED );
+    }
+    else {
+      simFilterButton.classList.remove( SELECTED );
+    }
+  };
+
+  // Hide all other divs
+  phet.showAllSims = () => {
+
+    allCollection.style.display = '';
+    htmlCollection.style.display = 'none';
+    flashCollection.style.display = 'none';
+    javaCollection.style.display = 'none';
+
+    phet.toggleButtonSelectionMode( "showHtmlSimsButton", false );
+    phet.toggleButtonSelectionMode( "showFlashSimsButton", false );
+    phet.toggleButtonSelectionMode( "showJavaSimsButton", false );
+    phet.toggleButtonSelectionMode( "showAllSimsButton", true );
+  };
+
+  // Hide all other divs
+  phet.showHtmlSims = () => {
+    htmlCollection.style.display = '';
+    flashCollection.style.display = 'none';
+    javaCollection.style.display = 'none';
+    allCollection.style.display = 'none';
+
+    phet.toggleButtonSelectionMode( "showHtmlSimsButton", true );
+    phet.toggleButtonSelectionMode( "showFlashSimsButton", false );
+    phet.toggleButtonSelectionMode( "showJavaSimsButton", false );
+    phet.toggleButtonSelectionMode( "showAllSimsButton", false );
+  };
+
+  phet.showFlashSims = () => {
+    flashCollection.style.display = '';
+    htmlCollection.style.display = 'none';
+    javaCollection.style.display = 'none';
+    allCollection.style.display = 'none';
+
+    phet.toggleButtonSelectionMode( "showHtmlSimsButton", false );
+    phet.toggleButtonSelectionMode( "showFlashSimsButton", true );
+    phet.toggleButtonSelectionMode( "showJavaSimsButton", false );
+    phet.toggleButtonSelectionMode( "showAllSimsButton", false );
+  };
+
+  phet.showJavaSims = () => {
+    javaCollection.style.display = '';
+    htmlCollection.style.display = 'none';
+    flashCollection.style.display = 'none';
+    allCollection.style.display = 'none';
+
+    phet.toggleButtonSelectionMode( "showHtmlSimsButton", false );
+    phet.toggleButtonSelectionMode( "showFlashSimsButton", false );
+    phet.toggleButtonSelectionMode( "showJavaSimsButton", true );
+    phet.toggleButtonSelectionMode( "showAllSimsButton", false );
+  };
+</script>
+</body>
+</html>

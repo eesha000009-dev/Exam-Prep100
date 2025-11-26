@@ -2,27 +2,13 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
 import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
 import { getFirestore, doc, getDoc, collection, getDocs, query, where } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
-import { initializeAppCheck, ReCaptchaV3Provider } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app-check.js";
 import { firebaseConfig } from './firebase-config.js';
 
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const db = getFirestore(app);
 
-// Initialize App Check when recaptchaSiteKey is present. This mirrors the secure dashboard behavior.
-if (firebaseConfig && firebaseConfig.recaptchaSiteKey) {
-  try {
-    initializeAppCheck(app, {
-      provider: new ReCaptchaV3Provider(firebaseConfig.recaptchaSiteKey),
-      isTokenAutoRefreshEnabled: true
-    });
-    console.log('App Check initialized (shared module)');
-  } catch (err) {
-    console.warn('App Check init failed (shared):', err && err.message ? err.message : err);
-  }
-} else {
-  console.warn('App Check skipped in shared module: recaptchaSiteKey missing in firebase-config.js');
-}
+// App Check initialization is handled by the main dashboard
 
 import { getCachedUserData, cacheUserData, setGlobalUserData, getGlobalUserData } from './user-cache.js';
 

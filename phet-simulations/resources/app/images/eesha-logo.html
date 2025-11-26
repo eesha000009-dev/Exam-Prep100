@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+  .eeshpay-logo { width: 480px; transition: all 0.3s ease; }
+  .eeshpay-logo:hover { 
+    transform: translateY(-3px); 
+    filter: drop-shadow(0 6px 12px rgba(251, 191, 36, 0.3)); 
+  }
+  .arrow { 
+    stroke-dasharray: 380; 
+    stroke-dashoffset: 380; 
+    animation: draw 5s ease-out forwards; 
+  }
+  .coin { 
+    animation: spin 2s linear infinite; 
+    transform-origin: 50px 40px; 
+  }
+  @keyframes draw { to { stroke-dashoffset: 0; } }
+  @keyframes spin { to { transform: rotate(360deg); } }
+</style>
+</head>
+<body>
+
+<svg class="eeshpay-logo" viewBox="0 0 480 90" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="g1" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#0F172A"/>
+      <stop offset="100%" stop-color="#1E293B"/>
+    </linearGradient>
+    <linearGradient id="gold" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#FBBF24"/>
+      <stop offset="100%" stop-color="#F59E0B"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Spinning Coin Icon -->
+  <g class="coin">
+    <circle cx="40" cy="40" r="18" fill="none" stroke="url(#gold)" stroke-width="3"/>
+    <text x="32" y="48" font-size="16" fill="url(#gold)" font-weight="bold">₦</text>
+  </g>
+
+  <!-- Eeshapay Text -->
+  <text x="80" y="65" font-family="Arial, Helvetica, sans-serif" font-size="68" font-weight="950" fill="url(#g1)" letter-spacing="-0.5">
+    Eesha
+  </text>
+
+  <!-- Flowing Arrow -->
+  <path class="arrow" d="M 150 68 Q 260 78, 440 68 L 430 58" 
+        stroke="url(#gold)" stroke-width="4" fill="none" stroke-linecap="round"/>
+</svg>
+
+</body>
+</html>

@@ -1,0 +1,18 @@
+{
+  "name": "phet-simulations",
+  "version": "1.0.1",
+  "author": "PhET Interactive Simulations",
+  "description": "Multi-platform PhET desktop app",
+  "main": "./js/main.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/phetsims/weddell.git"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "electron-settings": "^4.0.2",
+    "electron-unhandled": "^3.0.2",
+    "jsonfile": "^6.0.1",
+    "which": "^2.0.2"
+  }
+}

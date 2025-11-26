@@ -1,0 +1,23 @@
+// Copyright 2020, University of Colorado Boulder
+@import 'commonVars';
+
+.badge-tooltip-inner {
+  background: white;
+  border: 1px solid black;
+  border-radius: 5px;
+  padding: 5px;
+  width: 200px;
+  font-weight: 300;
+}
+
+.badge-tooltip {
+  position: absolute;
+  background: transparent;
+  z-index: 100;
+}
+
+@media (max-width: @filter-page-left-collapse-breakpoint) {
+  .checkbox-tooltip {
+    z-index: 211;
+  }
+}

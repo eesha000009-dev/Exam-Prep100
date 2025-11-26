@@ -107,13 +107,21 @@
             <span class="ml-2 text-gray-700">Receive occasional product updates and announcements</span>
           </label>
         </div>
-        <button type="submit" class="w-full py-3 rounded-xl bg-gradient-to-r from-blue-500 to-blue-700 text-white font-bold text-lg shadow-xl hover:from-blue-600 hover:to-blue-800 transition-all duration-200">Sign Up</button>
+        <button type="submit" id="signupBtn" class="w-full py-3 rounded-xl bg-gradient-to-r from-blue-500 to-blue-700 text-white font-bold text-lg shadow-xl hover:from-blue-600 hover:to-blue-800 transition-all duration-200">Sign Up</button>
+        <div id="signup-loading" class="flex items-center justify-center mt-4 hidden">
+          <span class="inline-block animate-spin rounded-full h-8 w-8 border-t-2 border-b-2 border-blue-600 mr-2"></span>
+          <span class="text-blue-600 font-semibold">Creating your account…</span>
+        </div>
         <div class="text-xs text-center text-blue-500 mt-4">
           By creating an account, you agree to the <a href="#" class="text-blue-600 hover:underline">Terms of Service</a>.<br>
           For more information about JUANOVA CORTEX's privacy practices, see the <a href="#" class="text-blue-600 hover:underline">Privacy Statement</a>.<br>
           We'll occasionally send you account-related emails.
         </div>
       </form>
+      <div id="signup-verification" class="text-center mt-4" style="display:none;">
+        <span id="verification-msg" class="text-blue-600 font-semibold"></span>
+        <button id="resendVerificationBtn" class="mt-2 px-4 py-2 bg-blue-100 text-blue-700 rounded hover:bg-blue-200 font-semibold" style="display:none;">Resend Verification Email</button>
+      </div>
       <div class="text-center mt-8">
         <span class="text-gray-600">Already have an account?</span> <a href="login-new.html" class="text-blue-600 font-semibold hover:underline">Log in</a>
       </div>
@@ -148,52 +156,121 @@
       }
     });
   </script>
-  <!-- Use shared firebase-config and initialize App Check (reCAPTCHA) -->
+  <!-- Supabase sign-up flow -->
   <script type="module">
-    // ...existing code...
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js";
-    import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-analytics.js";
-    import { getAuth, createUserWithEmailAndPassword, sendEmailVerification, signOut } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
-    import { initializeAppCheck, ReCaptchaV3Provider } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-app-check.js";
-    // Import shared config (centralized, edit only in js/firebase-config.js)
-    import { firebaseConfig } from '../js/firebase-config.js';
+    import { config } from '../js/config.js';
+    import { initSupabase, signUp } from '../js/supabase-client.js';
 
-    // Initialize Firebase
-    const app = initializeApp(firebaseConfig);
-    const analytics = getAnalytics(app);
-    const auth = getAuth(app);
+    const supabase = initSupabase(config.supabase.url, config.supabase.anonKey);
 
-    // Initialize App Check with reCAPTCHA v3
-    try {
-      const appCheck = initializeAppCheck(app, {
-        provider: new ReCaptchaV3Provider(firebaseConfig.recaptchaSiteKey),
-        isTokenAutoRefreshEnabled: true
-      });
-    } catch (err) {
-      console.warn('App Check init failed (development or missing key):', err.message);
-    }
+    // Preserve existing client-side username/password validation above.
 
     document.getElementById('signupForm').addEventListener('submit', async function(e) {
       e.preventDefault();
-      
+      const signupBtn = document.getElementById('signupBtn');
+      const loadingDiv = document.getElementById('signup-loading');
+      const verificationDiv = document.getElementById('signup-verification');
+      const verificationMsgSpan = document.getElementById('verification-msg');
+      const resendBtn = document.getElementById('resendVerificationBtn');
+      signupBtn.disabled = true;
+      loadingDiv.classList.remove('hidden');
+
       const usernameError = document.getElementById('username-error').textContent;
       const passwordError = document.getElementById('password-error').textContent;
       if (usernameError || passwordError) {
         alert('Please fix the errors before submitting.');
+        signupBtn.disabled = false;
+        loadingDiv.classList.add('hidden');
         return;
       }
 
-      const email = document.getElementById('email').value;
+      const email = document.getElementById('email').value.trim();
       const password = document.getElementById('password').value;
+      const username = document.getElementById('username').value.trim();
+      const country = document.getElementById('country').value || null;
+      const emailPrefs = document.getElementById('emailPrefs').checked;
 
       try {
-        const userCredential = await createUserWithEmailAndPassword(auth, email, password);
-        const user = userCredential.user;
-        await sendEmailVerification(user);
-        alert('Registration successful! A verification email has been sent to your email address. Please verify your email before logging in.');
-        await signOut(auth);
+        // Use the helper signUp which wraps supabase.auth.signUp
+        const res = await signUp(supabase, email, password);
+        if (res.error) {
+          const msg = res.error.message || 'Sign up failed';
+          alert(msg);
+          signupBtn.disabled = false;
+          loadingDiv.classList.add('hidden');
+          return;
+        }
+
+        // res.data may contain user info or session; get user id when available
+        const user = (res.data && res.data.user) ? res.data.user : null;
+
+        // If we have a user id, try to create a profiles row (best-effort)
+        if (user && user.id) {
+          try {
+            const profile = {
+              id: user.id,
+              email: email,
+              username: username || null,
+              country: country,
+              email_prefs: emailPrefs
+            };
+            // Upsert so repeat runs won't fail (requires appropriate RLS/policies server-side)
+            const { error: profileError } = await supabase.from('profiles').upsert([profile]);
+            if (profileError) console.warn('Profile upsert warning:', profileError.message || profileError);
+          } catch (err) {
+            console.warn('Failed to upsert profile:', err.message || err);
+          }
+        }
+
+        // Show verification message and resend button
+        let verificationMsg = 'Registration successful! Please check your email for a verification link.';
+        let showResend = true;
+        if (user && user.email_confirmed_at) {
+          verificationMsg = 'Registration successful! Your email is already verified.';
+          showResend = false;
+        } else if (res.data && res.data.session && res.data.session.user && res.data.session.user.email_confirmed_at) {
+          verificationMsg = 'Registration successful! Your email is already verified.';
+          showResend = false;
+        } else if (!user) {
+          verificationMsg = 'Registration successful! (No verification email sent by Supabase. Please contact support if you do not receive a verification email.)';
+          showResend = true;
+        }
+
+        verificationDiv.style.display = 'block';
+        verificationMsgSpan.textContent = verificationMsg;
+        resendBtn.style.display = showResend ? 'inline-block' : 'none';
+        resendBtn.onclick = async function() {
+          resendBtn.disabled = true;
+          resendBtn.textContent = 'Sending...';
+          try {
+            // Supabase: trigger resend by calling signUp again (safe, does not create new user)
+            const { error } = await supabase.auth.signUp({ email });
+            if (error) {
+              verificationMsgSpan.textContent = 'Failed to resend verification email: ' + error.message;
+            } else {
+              verificationMsgSpan.textContent = 'Verification email sent! Please check your inbox.';
+            }
+          } catch (err) {
+            verificationMsgSpan.textContent = 'Error sending verification email.';
+          } finally {
+            resendBtn.disabled = false;
+            resendBtn.textContent = 'Resend Verification Email';
+          }
+        };
+
+        // Hide loader and enable button after showing message
+        loadingDiv.classList.add('hidden');
+        signupBtn.disabled = false;
+
+        // Redirect after 6 seconds
+        setTimeout(() => {
+          window.location.href = 'login-new.html';
+        }, 6000);
       } catch (error) {
-        alert('Error: ' + error.message);
+        console.error('Sign up error', error);
+        alert('Sign up failed: ' + (error.message || error));
+        signupBtn.disabled = false;
+        loadingDiv.classList.add('hidden');
       }
     });
   </script>

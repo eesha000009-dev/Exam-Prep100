@@ -1,0 +1,286 @@
+/* Copyright 2019-2020, University of Colorado Boulder */
+/**** colors ****/
+/**** fonts ****/
+/**** widths ****/
+/**** padding ****/
+/**** margins ****/
+/**** breakpoints *****/
+/**** transitions  ****/
+.h3-big-bold {
+  font-size: 20px;
+  font-weight: 600;
+}
+.filterPageList {
+  margin: 0 0 0 20px;
+  max-width: 975px;
+}
+.container.simulations {
+  background: #5a556f;
+}
+.banner-container::before {
+  background-image: url("/_m/img/banner_underwater.png");
+}
+.tab-buttons {
+  width: 100%;
+  border-bottom: 1px solid #d2d2d2;
+  text-align: center;
+}
+.tab-button-container {
+  display: inline-block;
+  min-width: 100px;
+  text-align: center;
+}
+.tab-button {
+  display: inline-block;
+  background: transparent;
+  cursor: pointer;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 400;
+  color: #6c6c6c;
+  margin: 0 8px;
+  padding: 16px 0 0px;
+  border: none;
+  border-bottom: 3px solid transparent;
+  transition: 0.2s;
+  text-decoration: none;
+}
+.tab-button:hover,
+.tab-button:focus {
+  color: black;
+  transition: 0.2s;
+}
+.tab-button:focus {
+  transition: 0.2s;
+  outline: 2px solid grey;
+}
+.tab-button:active {
+  outline: none;
+}
+.tab-button.selected {
+  color: black;
+  border-color: #e01e5a;
+  transition: 0.2s;
+}
+#selected-page {
+  width: 100%;
+}
+#filter-page {
+  max-width: 1300px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+#filter-page-left,
+#filter-page-right {
+  display: inline-block;
+  float: left;
+}
+#browse-page {
+  margin: 20px;
+}
+.eggplantButton button {
+  border: 1px solid rgb(82, 23, 100);
+  background: transparent;
+  color: rgb(82, 23, 100);
+  cursor: pointer;
+  font-size: 16px;
+  margin: 10px;
+  padding: 10px;
+}
+.eggplantButton button img {
+  height: 16px;
+  margin-left: 10px;
+  vertical-align: bottom;
+  transform: rotate(45deg);
+  filter: invert(9%) sepia(62%) saturate(4061%) hue-rotate(277deg) brightness(102%) contrast(94%);
+}
+.eggplantButton button:hover {
+  border: 1px solid rgb(82, 23, 100);
+  color: white;
+  background: rgb(82, 23, 100);
+}
+.eggplantButton button:hover img {
+  filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(314deg) brightness(105%) contrast(101%);
+}
+.show-filters button,
+.collapsed-filter-control-header button {
+  border: 1px solid rgb(82, 23, 100);
+  background: transparent;
+  color: rgb(82, 23, 100);
+  cursor: pointer;
+  font-size: 16px;
+  margin: 10px;
+  padding: 10px;
+}
+.show-filters button img,
+.collapsed-filter-control-header button img {
+  height: 16px;
+  margin-left: 10px;
+  vertical-align: bottom;
+  transform: rotate(45deg);
+  filter: invert(9%) sepia(62%) saturate(4061%) hue-rotate(277deg) brightness(102%) contrast(94%);
+}
+.show-filters button:hover,
+.collapsed-filter-control-header button:hover {
+  border: 1px solid rgb(82, 23, 100);
+  color: white;
+  background: rgb(82, 23, 100);
+}
+.show-filters button:hover img,
+.collapsed-filter-control-header button:hover img {
+  filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(314deg) brightness(105%) contrast(101%);
+}
+.clear-filters button {
+  border: 1px solid rgb(82, 23, 100);
+  background: transparent;
+  color: rgb(82, 23, 100);
+  cursor: pointer;
+  font-size: 16px;
+  margin: 10px;
+  padding: 10px;
+}
+.clear-filters button img {
+  height: 16px;
+  margin-left: 10px;
+  vertical-align: bottom;
+  transform: rotate(45deg);
+  filter: invert(9%) sepia(62%) saturate(4061%) hue-rotate(277deg) brightness(102%) contrast(94%);
+}
+.clear-filters button:hover {
+  border: 1px solid rgb(82, 23, 100);
+  color: white;
+  background: rgb(82, 23, 100);
+}
+.clear-filters button:hover img {
+  filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(314deg) brightness(105%) contrast(101%);
+}
+.clear-filters button {
+  margin: 16px auto;
+  display: block;
+}
+.breadcrumbs {
+  margin-left: 20px;
+}
+.breadcrumbs button {
+  border: 1px solid rgb(82, 23, 100);
+  background: transparent;
+  color: rgb(82, 23, 100);
+  cursor: pointer;
+  font-size: 16px;
+  margin: 10px;
+  padding: 10px;
+}
+.breadcrumbs button img {
+  height: 16px;
+  margin-left: 10px;
+  vertical-align: bottom;
+  transform: rotate(45deg);
+  filter: invert(9%) sepia(62%) saturate(4061%) hue-rotate(277deg) brightness(102%) contrast(94%);
+}
+.breadcrumbs button:hover {
+  border: 1px solid rgb(82, 23, 100);
+  color: white;
+  background: rgb(82, 23, 100);
+}
+.breadcrumbs button:hover img {
+  filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(314deg) brightness(105%) contrast(101%);
+}
+.breadcrumbs li {
+  display: inline;
+}
+.breadcrumbs button {
+  margin: 10px 10px 10px 0;
+  background: #f7f4f9;
+  padding: 5px 10px;
+  font-size: 14px;
+}
+@media (max-width: 796px) {
+  body.filter-visible {
+    overflow: hidden;
+  }
+  #filter-page .toggle-view-control .toggle-view-button-holder .dropdown-holder {
+    display: none;
+  }
+  #filter-page .filter-toggle {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  #filter-page .filter-toggle.show-filters button {
+    margin-left: 0;
+  }
+  #filter-page .filter-toggle.show-filters .sort-dropdown {
+    margin-right: 5px;
+  }
+  #filter-page .collapsed-filter-control-header {
+    background: #f7f4f9;
+    color: rgb(82, 23, 100);
+    text-align: center;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 20px;
+    position: fixed;
+    width: 100vw;
+    box-sizing: border-box;
+    z-index: 20;
+  }
+  #filter-page .collapsed-filter-control-header h1 {
+    display: inline-block;
+    font-weight: lighter;
+    margin: 10px 0;
+  }
+  #filter-page .collapsed-filter-control-header .hide-filters-button {
+    margin-right: 0;
+  }
+  #filter-page #filter-page-left {
+    position: fixed;
+    top: 0;
+    z-index: 210;
+    background: white;
+    width: 100vw;
+    height: 100vh;
+    overflow-y: auto;
+    box-sizing: border-box;
+    left: -100vw;
+    transition: left 0.5s;
+  }
+  #filter-page #filter-page-left #filter-control {
+    padding: 0 20px;
+    margin-top: 64px;
+  }
+  #filter-page #filter-page-right {
+    width: 100%;
+  }
+  #filter-page #filter-page-right .breadcrumbs {
+    margin-left: 0;
+    margin-top: 10px;
+  }
+  #filter-page.filter-visible #filter-page-left {
+    left: 0;
+    transition: left 0.5s;
+  }
+}
+@media (min-width: 797px) {
+  .show-filters,
+  .collapsed-filter-control-header {
+    display: none;
+  }
+  #filter-page-left {
+    width: 240px;
+    padding-right: 10px;
+  }
+  #filter-page-right {
+    min-width: 505px;
+    width: calc(100% - 251px);
+  }
+}
+.verticalSeparator {
+  border-left: thick solid #fff00f;
+}
+.header {
+  padding:0 12px 0 12px;
+}
+.simLists{
+  align:"center";
+  rules:"rows";
+  /*padding: 0 40px 0 0px;*/
+}

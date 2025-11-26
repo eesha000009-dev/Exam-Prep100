@@ -1,0 +1,208 @@
+/* Copyright 2019-2020, University of Colorado Boulder */
+/**** colors ****/
+/**** fonts ****/
+/**** widths ****/
+/**** padding ****/
+/**** margins ****/
+/**** breakpoints *****/
+/**** transitions  ****/
+.h3-big-bold {
+  font-size: 20px;
+  font-weight: 600;
+}
+.filterPageList {
+  margin: 0 0 0 20px;
+  max-width: 975px;
+}
+.smallTileScaling {
+  transform: scale(0.75);
+  transform-origin: left top;
+  margin: 0;
+}
+.smallLiScaling {
+  height: 170.25px;
+  width: 159px;
+  margin: 15px 2px;
+}
+.film-strip .sim-collection li {
+  height: 170.25px;
+  width: 159px;
+  margin: 15px 2px;
+  margin: 20px 10px;
+}
+.film-strip .sim-collection li:first-child {
+  margin-left: 20px;
+}
+.film-strip .sim-collection li:last-child {
+  padding-right: 35px;
+}
+@media (max-width: 503px) {
+  .grid.sim-collection li {
+    height: 170.25px;
+    width: 159px;
+    margin: 15px 2px;
+  }
+}
+.tile {
+  display: flex;
+  flex-direction: column;
+  text-decoration: none;
+  color: black;
+  overflow: hidden;
+}
+.tile.grid,
+.tile.strip {
+  border: 1px solid #d2d2d2;
+  border-radius: 10px;
+  width: 210px;
+}
+@media (max-width: 796px) {
+  .tile.grid,
+  .tile.strip {
+    margin: 20px 10px;
+  }
+}
+@media (min-width: 797px) {
+  .tile.grid,
+  .tile.strip {
+    margin: 20px;
+  }
+}
+.tile.grid .a11y-badges,
+.tile.strip .a11y-badges {
+  border-left: 1px solid #d2d2d2;
+}
+.tile.grid .information,
+.tile.strip .information {
+  border-top: 1px solid #d2d2d2;
+  height: 85px;
+}
+.tile.grid .thumbnail,
+.tile.strip .thumbnail {
+  width: 210px;
+  height: 140px;
+}
+.tile.list {
+  border-bottom: 1px solid #d2d2d2;
+  width: 100%;
+  box-sizing: border-box;
+  margin: 0 0 0 20px;
+  max-width: 975px;
+}
+li:last-child .tile.list {
+  border-bottom: none;
+}
+.tile.list .a11y-badges {
+  border-right: 1px solid #d2d2d2;
+  margin-right: 3px;
+  padding-right: 3px;
+}
+.tile.list .information {
+  height: auto;
+  flex-direction: row;
+  padding: 10px 3px;
+  align-items: center;
+}
+.tile.list .information .icons {
+  flex-direction: row-reverse;
+}
+.tile.list .information .icons .badge-holder {
+  height: 20px;
+}
+.tile.list .information .icons .a11y-badges {
+  flex-direction: row-reverse;
+}
+.tile.strip {
+  transform: scale(0.75);
+  transform-origin: left top;
+  margin: 0;
+}
+@media (max-width: 503px) {
+  .tile.grid {
+    transform: scale(0.75);
+    transform-origin: left top;
+    margin: 0;
+  }
+}
+.tile .information {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: start;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0 10px 10px;
+}
+.tile .information .title-holder {
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+.tile .information .icons {
+  display: flex;
+}
+.tile .information .icons .a11y-badges {
+  display: flex;
+  margin-left: 7px;
+}
+.tile .information .icons .a11y-badges .badge-holder {
+  padding-left: 7px;
+}
+.tile .information .icons .badge {
+  height: 20px;
+  width: 20px;
+}
+.tile .information .title-holder {
+  display: flex;
+  flex-grow: 1;
+  align-items: center;
+}
+.tile .information .title-holder .title {
+  font-size: 1em;
+  margin: 20;
+  font-weight: normal;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.tile:hover,
+.tile:focus {
+  box-shadow: 0 0 6px 2px #d2d2d2;
+}
+.tile:hover .title,
+.tile:focus .title {
+  color: #e01e5a;
+}
+.tile .image-holder {
+  position: relative;
+}
+.tile .image-holder .new-ribbon {
+  position: absolute;
+  height: 51px;
+  width: 45px;
+  top: 0;
+  right: 0;
+}
+.tile .thumbnail {
+  display: block;
+}
+.tile .thumbnail.placeholder {
+  position: absolute;
+  z-index: -1;
+}
+.tile .thumbnail.opaque {
+  opacity: 1;
+  transition: 0.3s opacity;
+}
+.tile .thumbnail.transparent {
+  opacity: 0;
+  transition: 0.3s opacity;
+}
+.sim-collection{
+  list-style-type: none;
+}
+.grid{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}

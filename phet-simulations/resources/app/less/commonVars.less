@@ -1,0 +1,71 @@
+/* Copyright 2019-2020, University of Colorado Boulder */
+
+/**** colors ****/
+@white: #ffffff;
+@pink: #e01e5a;
+@phet-blue: #6acef5;
+@gray: #6c6c6c;
+@lightgray: #d2d2d2;
+@lightblue: #d4f4f9;
+@eggplantRGB: 82, 23, 100;
+@eggplant: rgb(@eggplantRGB);
+@lightEggplant: #f7f4f9;
+@transparentEggplant: rgba(@eggplantRGB, 0.05);
+
+// color filters, generated with https://codepen.io/sosuke/pen/Pjoqqp
+@blackToEggplantFilter: invert(9%) sepia(62%) saturate(4061%) hue-rotate(277deg) brightness(102%) contrast(94%);
+@blackToWhiteFilter: invert(100%) sepia(0%) saturate(0%) hue-rotate(314deg) brightness(105%) contrast(101%);
+
+/**** fonts ****/
+@default-font-family: 'Roboto', sans-serif;
+@default-font-size: 16px;
+
+/**** widths ****/
+@page-max-width: 1300px;
+@text-max-width: 800px;
+@divider-line-width: 1px;
+// WARNING: when changing this value, also update the breakpoint being used in filterPanel.render()
+@filter-control-width: 240px;
+@badgeSize: 20px;
+
+/**** padding ****/
+@page-padding-x: 20px;
+@expand-collapse-button-padding-right: 3px;
+
+/**** margins ****/
+@simulation-tile-margin: 20px;
+@filter-page-right-left-margin: @simulation-tile-margin;
+
+/**** breakpoints *****/
+@breakpoint: 910px;
+
+// note: @filter-page-left-collapse-breakpoint should stay in sync with the isScreenNarrow function value in common.js
+@filter-control-padding-right: 10px;
+// This variable is the width of all content on the wider version of the filter page, excluding the grid/list view
+@filter-page-wide-width-factor: @filter-control-width + @filter-control-padding-right + @divider-line-width;
+@filter-page-right-min-width: 505px;
+@filter-page-left-collapse-breakpoint: @filter-page-wide-width-factor + @filter-page-right-min-width + @page-padding-x + @page-padding-x;
+
+@filter-page-phone-portrait-breakpoint: 503px;
+
+/**** transitions  ****/
+@short-transition: 0.2s;
+
+// for title banners
+@banner-height: 170px;
+@banner-header-container-width: 300px;
+
+// for hero images
+@teachers-text-max-width: 460px;
+@a11y-text-max-width: 385px;
+@slide-text-padding: 100px;
+
+// focus outline
+@default-focus-outline: 2px solid grey;
+
+// file paths
+@imgRoot: "/_m/img";
+
+.filterPageList {
+  margin: 0 auto;
+}

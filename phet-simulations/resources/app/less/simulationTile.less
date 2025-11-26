@@ -1,0 +1,230 @@
+// Copyright 2020, University of Colorado Boulder
+@import 'commonVars';
+
+@simulationTileWidth: 210px;
+@simulationThumbnailHeight: 140px;
+@informationPadding: 10px;
+@informationHeight: 85px;
+@a11yBadgeSeparator: 1px solid @lightgray;
+
+@stripScaleFactor: 0.75;
+
+@media (max-width: @filter-page-phone-portrait-breakpoint) {
+  .grid.sim-collection li {
+    margin: 15px 2px;
+  }
+}
+
+.disabled {
+  .tile:hover, .tile:focus {
+    box-shadow: none;
+    cursor: default;
+  }
+  .information {
+    .title-holder {
+      .title {
+        color: black;
+      }
+    }
+  }
+}
+
+.java-disabled {
+  .java {
+    &.tile:hover, &.tile:focus {
+      box-shadow: none;
+      cursor: default;
+    }
+    .information {
+      .title-holder {
+        .title {
+          color: black;
+        }
+      }
+    }
+  }
+}
+
+.flash-disabled {
+  .flash {
+    &.tile:hover, &.tile:focus {
+      box-shadow: none;
+      cursor: default;
+    }
+    .information {
+      .title-holder {
+        .title {
+          color: black;
+        }
+      }
+    }
+  }
+}
+
+.tile {
+  display: flex;
+  flex-direction: column;
+  text-decoration: none;
+  color: black;
+  overflow: hidden;
+
+  &.grid,
+  &.strip {
+    border: 1px solid @lightgray;
+    border-radius: 10px;
+    width: @simulationTileWidth;
+
+    @media (max-width: @filter-page-left-collapse-breakpoint) {
+      margin: @simulation-tile-margin 10px;
+    }
+
+    @media (min-width: @filter-page-left-collapse-breakpoint + 1) {
+      margin: @simulation-tile-margin;
+    }
+
+    .a11y-badges {
+      border-left: @a11yBadgeSeparator;
+    }
+
+    .information {
+      border-top: 1px solid @lightgray;
+      height: @informationHeight;
+    }
+
+    .thumbnail {
+      display: block;
+      width: @simulationTileWidth;
+      height: @simulationThumbnailHeight;
+    }
+  }
+
+  &.list {
+    border-bottom: 1px solid @lightgray;
+    width: calc(100% - @filter-page-right-left-margin);
+    box-sizing: border-box;
+    .filterPageList();
+
+    li:last-child & {
+      border-bottom: none;
+    }
+
+    .thumbnail {
+      display: none;
+    }
+
+    .a11y-badges {
+      border-right: @a11yBadgeSeparator;
+      margin-right: 3px;
+      padding-right: 3px;
+    }
+
+    .information {
+      height: auto;
+      flex-direction: row;
+      padding: @informationPadding 3px;
+      align-items: center;
+
+      .icons {
+        flex-direction: row-reverse;
+
+        .badge-holder {
+          height: @badgeSize;
+        }
+
+        .a11y-badges {
+          flex-direction: row-reverse;
+        }
+      }
+    }
+  }
+
+  .information {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: start;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 0 @informationPadding @informationPadding;
+
+    .title-holder {
+      padding-top: @informationPadding / 2;
+      padding-bottom: @informationPadding / 2;
+    }
+
+    .icons {
+      display: flex;
+
+      .a11y-badges {
+        display: flex;
+        margin-left: 7px;
+
+        .badge-holder {
+          padding-left: 7px;
+        }
+      }
+
+      .badge {
+        height: @badgeSize;
+        width: @badgeSize;
+      }
+    }
+
+    .title-holder {
+      display: flex;
+      flex-grow: 1;
+      align-items: center;
+
+      .title {
+        font-size: 1em;
+        margin: 0;
+        font-weight: normal;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+      }
+    }
+  }
+
+  &:hover,
+  &:focus {
+    box-shadow: 0 0 6px 2px @lightgray;
+
+    .title {
+      color: @pink;
+    }
+  }
+
+  .image-holder {
+    position: relative;
+
+    .new-ribbon {
+      position: absolute;
+      height: 51px;
+      width: 45px;
+      top: 0;
+      right: 0;
+    }
+  }
+
+  .thumbnail {
+
+    &.placeholder {
+      position: absolute;
+      z-index: -1;
+    }
+
+    &.opaque {
+      opacity: 1;
+      transition: .3s opacity;
+    }
+
+    &.transparent {
+      opacity: 0;
+      transition: .3s opacity;
+    }
+  }
+
+}
+

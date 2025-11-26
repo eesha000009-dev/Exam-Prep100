@@ -1,418 +1,489 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Study Plan - Prep100</title>
-  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-  <link rel="icon" type="image/png" sizes="48x48" href="/favicon-48x48.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-  <link rel="manifest" href="/site.webmanifest">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI-Powered Study Plan — JAMB │ WAEC │ NECO</title>
   <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   <style>
-    /* Small scoped styles only - most layout handled by Tailwind */
-    .plan-card { background: white; padding: 1rem; border-radius: .75rem; box-shadow: 0 6px 18px rgba(15,23,42,0.06);} 
-    .calendar { display: grid; grid-template-columns: repeat(7, 1fr); gap: .5rem; }
-    .calendar-cell { padding: .6rem; border-radius: .5rem; text-align:center; cursor:pointer; }
-    .calendar-cell.event { background:#eff6ff; border:1px solid #bfdbfe; }
-    .calendar-cell.today { background:#3b82f6; color:white; }
-    .modal { display:none; }
+    .step { display: none; }
+    .step.active { display: block; }
+    .checkbox-label {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      font-size: 1.125rem;
+      cursor: pointer;
+      padding: 0.75rem;
+      border-radius: 0.5rem;
+      transition: background-color .2s ease;
+    }
+    .checkbox-label:hover { background-color: #f8fafc; }
   </style>
-
-  <!-- Preload user data -->
-  <script>
-    // Helper function to get user initials
-    function getInitials(fullName) {
-      return fullName.split(' ')
-        .slice(0, 2)
-        .map(name => name.charAt(0))
-        .join('')
-        .toUpperCase();
-    }
-
-    // Initialize user data from cache immediately
-    try {
-      const cachedUserData = localStorage.getItem('cachedUserData_current');
-      if (cachedUserData) {
-        const { data } = JSON.parse(cachedUserData);
-        window.preloadedUserData = data;
-        
-        // Pre-initialize user interface as soon as DOM is ready
-        document.addEventListener('DOMContentLoaded', () => {
-          if (window.preloadedUserData) {
-            const user = window.preloadedUserData;
-            const fullName = user.displayName || 'Student';
-            const name = fullName.split(' ')[0];
-            const level = (user.profile?.level || '').startsWith('SS') ? user.profile.level : 'SS 3';
-            
-            // Update UI elements immediately
-            const elements = {
-              topName: fullName,
-              userName: fullName,
-              userLevel: level
-            };
-            
-            // Update text content
-            Object.keys(elements).forEach(id => {
-              const el = document.getElementById(id);
-              if (el) el.textContent = elements[id];
-            });
-            
-            // Update Study Plan title
-            const title = document.querySelector('h1');
-            if (title) title.textContent = `${name}'s Study Plan`;
-            
-            // Update avatars
-            const initials = getInitials(fullName);
-            const avatarUrl = user.photoURL || 
-              `https://ui-avatars.com/api/?name=${encodeURIComponent(initials)}&background=2563eb&color=fff&size=128`;
-            
-            ['avatar-sm', 'topAvatar'].forEach(id => {
-              const img = document.getElementById(id);
-              if (img) img.src = avatarUrl;
-            });
-            
-            // Update user avatar if exists
-            const userAvatar = document.querySelector('img[alt="User"]');
-            if (userAvatar) userAvatar.src = avatarUrl;
-            
-            // Store the name for use in plan creation
-            window.studentName = name;
-          }
-        });
-      }
-    } catch (e) {
-      console.warn('Error preloading user data:', e);
-    }
-  </script>
 </head>
-  <body class="bg-slate-50 text-slate-800">
-    <div class="min-h-screen flex">
-      <!-- Sidebar (canonical) -->
-  <aside id="sidebar" class="w-64 md:w-72 lg:w-80 fixed left-0 top-0 h-full bg-white border-r border-slate-200 p-5 flex flex-col gap-6 transition-transform duration-300 ease-in-out overflow-auto z-40 -translate-x-full lg:translate-x-0">
-        <div class="flex items-center gap-3">
-          <img src="/assets/images/logo.png" alt="logo" class="h-12 w-12 rounded-full shadow-sm">
-          <div>
-            <div class="text-lg font-bold text-sky-700">JUANOVA CORTEX</div>
-            <div class="text-xs text-slate-500">Student Dashboard</div>
-          </div>
+<body class="bg-gradient-to-br from-blue-50 to-indigo-100 min-h-screen py-8">
+    <aside id="sidebar" class="w-64 md:w-72 lg:w-80 fixed left-0 top-0 h-full bg-white border-r border-slate-200 p-5 flex flex-col gap-6 overflow-auto z-40">
+      <div class="flex items-center gap-3"><img src="/assets/images/logo.png" alt="logo" class="h-12 w-12 rounded-full shadow-sm"><div><div class="text-lg font-bold text-sky-700">JUANOVA CORTEX</div><div class="text-xs text-slate-500">Student Dashboard</div></div></div>
+      <nav class="flex-1 overflow-auto"><ul class="space-y-1">
+        <li><a href="student-dashboard.html" class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-slate-50"><i class="fas fa-home text-sky-600"></i> Home</a></li>
+        <li><a href="news-feed-gemini.html" class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-slate-50"><i class="fas fa-newspaper text-pink-500"></i> News Feed</a></li>
+        <li><a href="notes.html" class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-slate-50"><i class="fas fa-note-sticky text-yellow-500"></i> Study Notes</a></li>
+        <li><a href="textbooks.html" class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-slate-50"><i class="fas fa-book text-indigo-500"></i> Textbooks</a></li>
+        <li><a href="formula-bank.html" class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-slate-50"><i class="fas fa-book-open text-teal-600"></i> All Formula</a></li>
+        <li><a href="study-plan.html" class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-slate-50"><i class="fas fa-calendar-check text-green-500"></i> Study Plan</a></li>
+        <li><a href="video-library.html" class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-slate-50"><i class="fas fa-photo-video text-cyan-600"></i> Video Library</a></li>
+        <li><a href="digital-library.html" class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-slate-50"><i class="fas fa-book text-indigo-500"></i> Digital Library</a></li>
+        <li><a href="game.html" class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-slate-50"><i class="fas fa-puzzle-piece text-purple-500"></i> Game</a></li>
+        <li><a href="mock-exams.html" class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-slate-50"><i class="fas fa-pencil-alt text-orange-500"></i> Mock Exams</a></li>
+        <li><a href="notifications.html" class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-slate-50"><i class="fas fa-bell text-pink-600"></i> Notifications</a></li>
+        <li><a href="student-live-session.html" class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-slate-50"><i class="fas fa-chalkboard-teacher text-blue-400"></i> Live Sessions</a></li>
+        <li><a href="Nobel-laureate.html" class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-slate-50 bg-sky-50"><i class="fas fa-award text-yellow-600"></i> Nobel Laureate</a></li>
+      </ul></nav>
+      <div class="text-sm text-slate-500 border-t pt-4"><div class="mb-2">Account</div><div class="flex items-center gap-3"><img id="avatar-sm" src="../assets/images/unnamed.jpg" alt="avatar" class="h-10 w-10 rounded-full border"><div><div id="userName" class="font-semibold">Student</div><div id="userLevel" class="text-xs text-slate-400"></div></div></div></div>
+    </aside>
+  <div class="container mx-auto max-w-5xl px-4 ml-64 md:ml-72 lg:ml-80">
+    <div class="flex items-center justify-between mb-6">
+      <div></div>
+      <div class="flex items-center gap-3">
+        <div class="text-right mr-2 hidden sm:block">
+          <div id="topName" class="font-semibold text-slate-700">Student</div>
+          <div id="topLevel" class="text-xs text-slate-500"></div>
         </div>
-
-        <nav class="flex-1 overflow-auto">
-          <ul class="space-y-1">
-            <li><a href="student-dashboard.html" class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-slate-50"><i class="fas fa-home text-sky-600"></i> Home</a></li>
-            <li><a href="news-feed-gemini.html" class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-slate-50"><i class="fas fa-newspaper text-pink-500"></i> News Feed</a></li>
-            <li><a href="ai-tutor-chatbot.html" class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-slate-50"><i class="fas fa-robot text-purple-500"></i> AI Tutor</a></li>
-            <li><a href="study-plan.html" class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-slate-50"><i class="fas fa-calendar-check text-green-500"></i> Study Plan</a></li>
-            <li><a href="all-formula.html" class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-slate-50"><i class="fas fa-book-open text-teal-600"></i> All Formula</a></li>
-            <li><a href="video-library.html" class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-slate-50"><i class="fas fa-video text-red-500"></i> Video Library</a></li>
-            <li><a href="mock-exams.html" class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-slate-50"><i class="fas fa-pencil-alt text-orange-500"></i> Mock Exams</a></li>
-            <li><a href="notifications.html" class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-slate-50"><i class="fas fa-bell text-pink-600"></i> Notifications</a></li>
-            <li><a href="student-live-session.html" class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-slate-50"><i class="fas fa-chalkboard-teacher text-blue-400"></i> Live Sessions</a></li>
-            <li><a href="smart-note.html" class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-slate-50"><i class="fas fa-sticky-note text-yellow-500"></i> Smart Notes</a></li>
-          </ul>
-        </nav>
-
-        <div class="text-sm text-slate-500">
-          <div class="mb-2">Account</div>
-          <div class="flex items-center gap-3">
-            <img id="avatar-sm" src="../assets/images/unnamed.jpg" alt="avatar" class="h-10 w-10 rounded-full border">
-            <div>
-              <div id="userName" class="font-semibold">Student</div>
-              <div id="userLevel" class="text-xs text-slate-400"></div>
-            </div>
-          </div>
-        </div>
-      </aside>
-
-  <div id="main-content" class="flex-1 flex flex-col lg:ml-72">
-    <header class="flex items-center justify-between p-4 bg-white border-b border-slate-200">
-          <div class="flex items-center gap-3">
-            <button id="toggleSidebar" class="p-2 rounded-md hover:bg-slate-100 lg:hidden" title="Toggle sidebar"><i class="fas fa-bars"></i></button>
-            <div class="relative">
-              <i class="fas fa-search absolute left-3 top-1/2 -translate-y-1/2 text-slate-400"></i>
-              <input id="searchInput" aria-label="Search plans" type="search" placeholder="Search plans by subject, topic, or tags..." class="w-[520px] hidden md:inline-block pl-10 pr-4 py-2 rounded-full border border-slate-200 bg-white focus:outline-none focus:ring-2 focus:ring-sky-100">
-            </div>
-          </div>
-
-          <div class="flex items-center gap-4">
-            <div class="relative">
-              <button id="notifBtn" class="p-2 rounded-full hover:bg-slate-50" aria-label="Notifications"><i class="fas fa-bell text-sky-600"></i></button>
-              <span id="notifCount" class="absolute -top-1 -right-1 bg-pink-500 text-white rounded-full w-5 h-5 text-xs flex items-center justify-center">0</span>
-            </div>
-            <div class="flex items-center gap-3">
-              <div class="text-right mr-2">
-                <div id="topName" class="font-semibold">Student Name</div>
-                <div id="topLevel" class="text-xs text-slate-400">SS 3</div>
-              </div>
-              <img id="topAvatar" src="../assets/images/unnamed.jpg" alt="avatar" class="h-10 w-10 rounded-full border-2">
-            </div>
-          </div>
-        </header>
-
-        <main class="p-6 space-y-6">
-      <div class="rounded-3xl bg-gradient-to-r from-blue-600 to-blue-400 text-white p-6 shadow mb-6 flex items-center justify-between">
-        <div>
-          <h1 class="text-2xl font-extrabold">Study Plan</h1>
-          <p class="text-blue-100 mt-1">Create and manage study plans to stay organized.</p>
-        </div>
-        <div>
-          <button id="createPlanBtn" class="bg-white text-blue-600 px-4 py-2 rounded-full font-semibold">Create Plan</button>
-        </div>
-      </div>
-
-      <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        <div class="lg:col-span-2">
-          <div class="mb-4">
-            <div class="flex items-center justify-between mb-2">
-              <h2 class="font-semibold text-lg">Calendar</h2>
-              <div class="flex gap-2">
-                <button id="prevMonth" class="px-3 py-1 rounded bg-white border" aria-label="Previous month"><i class="fas fa-chevron-left"></i></button>
-                <button id="nextMonth" class="px-3 py-1 rounded bg-white border" aria-label="Next month"><i class="fas fa-chevron-right"></i></button>
-              </div>
-            </div>
-            <div id="calendar" class="calendar bg-white p-4 rounded-lg shadow"></div>
-          </div>
-
-          <div>
-            <h2 class="font-semibold text-lg mb-3">Plans</h2>
-            <div id="plansGrid" class="grid grid-cols-1 md:grid-cols-2 gap-4"></div>
-          </div>
-        </div>
-
-        <aside class="bg-white p-4 rounded-lg shadow h-fit">
-          <h3 class="font-semibold mb-2">Quick Actions</h3>
-          <div class="flex flex-col gap-2">
-            <button id="importBtn" class="px-3 py-2 bg-gray-100 rounded">Import from file</button>
-            <button id="exportBtn" class="px-3 py-2 bg-gray-100 rounded">Export plans</button>
-          </div>
-        </aside>
-      </div>
-
-      <!-- Modal -->
-      <div id="planModal" class="modal fixed inset-0 bg-black/40 items-center justify-center z-50">
-        <div class="modal-content bg-white rounded-2xl p-6 max-w-md w-full">
-          <div class="flex justify-between items-center mb-4">
-            <h3 id="modalTitle" class="text-lg font-semibold">Create Plan</h3>
-            <button id="closeModalBtn" aria-label="Close" title="Close">&times;</button>
-          </div>
-          <form id="planForm" class="space-y-3">
-            <div>
-              <label for="planSubject" class="block text-sm font-medium text-gray-700">Subject</label>
-              <input id="planSubject" name="subject" required class="mt-1 block w-full border rounded px-3 py-2" placeholder="e.g. Mathematics">
-            </div>
-            <div>
-              <label for="planTopic" class="block text-sm font-medium text-gray-700">Topic</label>
-              <input id="planTopic" name="topic" required class="mt-1 block w-full border rounded px-3 py-2" placeholder="e.g. Algebra - Polynomials">
-            </div>
-            <div class="grid grid-cols-2 gap-3">
-              <div>
-                <label for="planDate" class="block text-sm font-medium text-gray-700">Date</label>
-                <input id="planDate" type="date" name="date" required class="mt-1 block w-full border rounded px-3 py-2" title="Date">
-              </div>
-              <div>
-                <label for="planTime" class="block text-sm font-medium text-gray-700">Time</label>
-                <input id="planTime" type="time" name="time" required class="mt-1 block w-full border rounded px-3 py-2" title="Time">
-              </div>
-            </div>
-            <div class="grid grid-cols-2 gap-3">
-              <div>
-                <label for="planDuration" class="block text-sm font-medium text-gray-700">Duration (min)</label>
-                <input id="planDuration" type="number" min="1" value="60" class="mt-1 block w-full border rounded px-3 py-2">
-              </div>
-              <div>
-                <label for="planReminder" class="block text-sm font-medium text-gray-700">Reminder</label>
-                <select id="planReminder" class="mt-1 block w-full border rounded px-3 py-2" title="Reminder">
-                  <option value="none">None</option>
-                  <option value="5">5 minutes before</option>
-                  <option value="15">15 minutes before</option>
-                  <option value="30">30 minutes before</option>
-                </select>
-              </div>
-            </div>
-
-            <div>
-              <label for="planTags" class="block text-sm font-medium text-gray-700">Tags (comma separated)</label>
-              <input id="planTags" class="mt-1 block w-full border rounded px-3 py-2" placeholder="e.g. math,algebra">
-            </div>
-
-            <div class="flex justify-end gap-2">
-              <button type="button" id="cancelBtn" class="px-4 py-2 rounded bg-gray-100" onclick="closeModal()">Cancel</button>
-              <button type="submit" class="px-4 py-2 rounded bg-blue-600 text-white">Save</button>
-            </div>
-          </form>
-        </div>
-      </div>
-
-        </main>
+        <img id="topAvatar" src="../assets/images/unnamed.jpg" alt="avatar" class="h-10 w-10 rounded-full border">
       </div>
     </div>
+    <h1 class="text-4xl font-bold text-center text-indigo-800 mb-10">
+      AI-Powered Study Plan Generator<br>
+      <span class="text-2xl font-normal text-gray-700">JAMB • WAEC • NECO</span>
+    </h1>
+
+    <!-- ==== CREATE PLAN ==== -->
+    <div id="createPlanSection" class="bg-white rounded-2xl shadow-xl p-8 max-w-3xl mx-auto">
+      <h2 class="text-3xl font-bold text-indigo-700 mb-8 text-center">Create Your Personalized Study Plan</h2>
+
+      <form id="studyPlanForm" class="space-y-12">
+        <!-- Step 1 – Exam -->
+        <div id="step-1" class="step active">
+          <label class="block text-xl font-medium text-gray-800 mb-6">Which exam are you preparing for?</label>
+          <div class="space-y-4 max-w-md mx-auto">
+            <label class="checkbox-label"><input type="radio" name="exam" value="JAMB" class="w-6 h-6 text-indigo-600" required> JAMB (UTME)</label>
+            <label class="checkbox-label"><input type="radio" name="exam" value="WAEC" class="w-6 h-6 text-indigo-600"> WAEC</label>
+            <label class="checkbox-label"><input type="radio" name="exam" value="NECO" class="w-6 h-6 text-indigo-600"> NECO</label>
+          </div>
+          <div class="text-center mt-10">
+            <button type="button" class="next-btn bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3 px-8 rounded-full shadow-lg transition">Next →</button>
+          </div>
+        </div>
+
+        <!-- Step 2 – Time to Exam -->
+        <div id="step-2" class="step">
+          <label class="block text-xl font-medium text-gray-800 mb-6">How long do you have until the exam?</label>
+          <select name="timeToExam" class="w-full p-4 text-lg border-2 border-gray-300 rounded-xl focus:border-indigo-500 focus:outline-none" required></select>
+          <div class="flex justify-between mt-10">
+            <button type="button" class="prev-btn bg-gray-500 hover:bg-gray-600 text-white font-bold py-3 px-8 rounded-full shadow-lg transition">← Previous</button>
+            <button type="button" class="next-btn bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3 px-8 rounded-full shadow-lg transition" disabled>Next →</button>
+          </div>
+        </div>
+
+        <!-- Step 3 – Learner Type -->
+        <div id="step-3" class="step">
+          <label class="block text-xl font-medium text-gray-800 mb-6">What type of learner are you?</label>
+          <div class="space-y-4 max-w-md mx-auto">
+            <label class="checkbox-label"><input type="radio" name="learner" value="Fast" class="w-6 h-6 text-indigo-600" required> Fast learner</label>
+            <label class="checkbox-label"><input type="radio" name="learner" value="Average" class="w-6 h-6 text-indigo-600"> Average learner</label>
+            <label class="checkbox-label"><input type="radio" name="learner" value="Slow" class="w-6 h-6 text-indigo-600"> Slow learner</label>
+          </div>
+          <div class="flex justify-between mt-10">
+            <button type="button" class="prev-btn bg-gray-500 hover:bg-gray-600 text-white font-bold py-3 px-8 rounded-full shadow-lg transition">← Previous</button>
+            <button type="button" class="next-btn bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3 px-8 rounded-full shadow-lg transition" disabled>Next →</button>
+          </div>
+        </div>
+
+        <!-- Step 4 – Daily Study Time -->
+        <div id="step-4" class="step">
+          <label class="block text-xl font-medium text-gray-800 mb-6">How many hours can you study per day?</label>
+          <select name="dailyTime" class="w-full p-4 text-lg border-2 border-gray-300 rounded-xl focus:border-indigo-500 focus:outline-none" required>
+            <option value="<2">Less than 2 hours</option>
+            <option value="2-4">2–4 hours</option>
+            <option value="5-7" selected>5–7 hours</option>
+            <option value="8-10">8–10 hours</option>
+            <option value=">10">More than 10 hours</option>
+            <option value="always">Always free</option>
+          </select>
+          <div class="flex justify-between mt-10">
+            <button type="button" class="prev-btn bg-gray-500 hover:bg-gray-600 text-white font-bold py-3 px-8 rounded-full shadow-lg transition">← Previous</button>
+            <button type="button" class="next-btn bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3 px-8 rounded-full shadow-lg transition" disabled>Next →</button>
+          </div>
+        </div>
+
+        <!-- Step 5 – Subjects -->
+        <div id="step-5" class="step">
+          <div id="subjectsContainer" class="space-y-8"></div>
+          <div class="flex justify-between mt-10">
+            <button type="button" class="prev-btn bg-gray-500 hover:bg-gray-600 text-white font-bold py-3 px-8 rounded-full shadow-lg transition">← Previous</button>
+            <button type="button" id="createPlanBtn" class="bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-12 rounded-full shadow-lg transition">Generate AI Plan</button>
+          </div>
+        </div>
+      </form>
+    </div>
+
+    <!-- ==== PLAN VIEW ==== -->
+    <div id="planViewSection" class="hidden mt-10">
+      <div class="bg-white rounded-2xl shadow-xl p-8">
+        <div class="flex justify-between items-center mb-8">
+          <h2 class="text-3xl font-bold text-indigo-700">Your Day-by-Day Study Plan</h2>
+          <button id="newPlanBtn" class="bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-6 rounded-full">Create New Plan</button>
+        </div>
+        <div id="progressBar" class="text-xl font-semibold text-indigo-700 mb-6"></div>
+        <div id="planContainer" class="space-y-6"></div>
+      </div>
+    </div>
+  </div>
 
   <script>
-    // lightweight study-plan controller
-    let plans = JSON.parse(localStorage.getItem('plans') || '[]');
-    let editingPlanId = null;
-    let currentDate = new Date();
+    // ================== GEMINI SETUP ==================
+    const GEMINI_API_KEY = 'AIzaSyCTGS3B2ZfPRlLDDV5vFp62rwgrxWRIW8I';
+    let genAI = null;
 
-    function saveState(){ localStorage.setItem('plans', JSON.stringify(plans)); }
+    async function loadGemini() {
+      return new Promise((res, rej) => {
+        const s = document.createElement('script');
+        s.src = 'https://ai.google.dev/gemini-api/gemini.js';
+        s.onload = () => { genAI = new GoogleGenerativeAI(GEMINI_API_KEY); res(); };
+        s.onerror = rej;
+        document.head.appendChild(s);
+      });
+    }
 
-    function renderCalendar(){
-      const calendar = document.getElementById('calendar');
-      calendar.innerHTML = '';
-      const firstDay = new Date(currentDate.getFullYear(), currentDate.getMonth(), 1).getDay();
-      const daysInMonth = new Date(currentDate.getFullYear(), currentDate.getMonth()+1, 0).getDate();
-      // week headers
-      ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'].forEach(d=>{ const el = document.createElement('div'); el.className='text-center font-medium text-sm'; el.textContent=d; calendar.appendChild(el); });
-      // empty slots
-      for(let i=0;i<firstDay;i++){ const cell=document.createElement('div'); calendar.appendChild(cell); }
-      for(let day=1; day<=daysInMonth; day++){
-        const dateStr = `${currentDate.getFullYear()}-${String(currentDate.getMonth()+1).padStart(2,'0')}-${String(day).padStart(2,'0')}`;
-        const has = plans.some(p=>p.date===dateStr);
-        const cell = document.createElement('div');
-        cell.className = 'calendar-cell '+(has? 'event':'');
-        if(new Date().toDateString() === new Date(currentDate.getFullYear(), currentDate.getMonth(), day).toDateString()) cell.classList.add('today');
-        cell.textContent = day;
-        cell.addEventListener('click', ()=>{ filterByDate(dateStr); });
-        calendar.appendChild(cell);
+    // ================== DATA ==================
+    const allSubjects = ["Use of English","English Language","Mathematics","Physics","Chemistry","Biology","Literature in English","Government","Economics","Commerce","Geography","Agricultural Science","Further Mathematics","Civic Education","Christian Religious Studies","Islamic Studies","History","Accounting","French","Yoruba","Igbo","Hausa","Technical Drawing","Food & Nutrition","Visual Art"];
+
+    // ================== STATE ==================
+    let currentStep = 0;
+    const steps = document.querySelectorAll('.step');
+
+    // ================== INIT ==================
+    async function init() {
+      try { await loadGemini(); console.log('Gemini ready'); }
+      catch (e) { console.error(e); alert('Gemini SDK failed – using fallback plan.'); }
+
+      populateTimeSelect();
+      attachDelegatedListeners();
+      enableDisableNextBtn();   // initial state
+    }
+
+    // ---- Populate time select (runs before listeners) ----
+    function populateTimeSelect() {
+      const sel = document.querySelector('select[name="timeToExam"]');
+      let html = '';
+      for (let i = 1; i <= 24; i++) html += `<option value="${i}">${i} month${i>1?'s':''}</option>`;
+      html += `<option value="24+">More than 24 months</option>`;
+      sel.innerHTML = html;
+    }
+
+    // ---- Delegated listeners (works for dynamic content) ----
+    function attachDelegatedListeners() {
+      document.addEventListener('click', e => {
+        if (e.target.matches('.next-btn')) handleNext();
+        if (e.target.matches('.prev-btn')) handlePrev();
+        if (e.target.id === 'createPlanBtn') generateAIPlan();
+        if (e.target.id === 'newPlanBtn') if (confirm('Delete current plan?')) { localStorage.removeItem('studyPlan'); location.reload(); }
+      });
+
+      // enable/disable Next button when inputs change
+      document.addEventListener('change', enableDisableNextBtn);
+    }
+
+    // ---- Validation & navigation ----
+    function handleNext() {
+      if (!validateCurrentStep()) return;
+      steps[currentStep].classList.remove('active');
+      currentStep++;
+      steps[currentStep].classList.add('active');
+      if (currentStep === 4) generateSubjectsSelection(); // step 5
+      enableDisableNextBtn();
+    }
+
+    function handlePrev() {
+      steps[currentStep].classList.remove('active');
+      currentStep--;
+      steps[currentStep].classList.add('active');
+      enableDisableNextBtn();
+    }
+
+    function validateCurrentStep() {
+      const step = steps[currentStep];
+      // radio groups
+      if (step.querySelector('input[type="radio"][name]')) {
+        const checked = step.querySelector('input[type="radio"]:checked');
+        if (!checked) { alert('Please select an option.'); return false; }
+      }
+      // select elements
+      if (step.querySelector('select')) {
+        const sel = step.querySelector('select');
+        if (!sel.value) { alert('Please choose a value.'); return false; }
+      }
+      // subjects step (handled in generateAIPlan)
+      return true;
+    }
+
+    function enableDisableNextBtn() {
+      const btn = steps[currentStep].querySelector('.next-btn');
+      if (!btn) return;
+      const valid = validateCurrentStep();
+      btn.disabled = !valid;
+      btn.classList.toggle('opacity-50', !valid);
+    }
+
+    // ---- Subjects UI ----
+    function generateSubjectsSelection() {
+      const exam = document.querySelector('input[name="exam"]:checked').value;
+      const container = document.getElementById('subjectsContainer');
+      let html = '';
+
+      if (exam === 'JAMB') {
+        html += `<h3 class="text-2xl font-bold text-indigo-700 mb-6">Select 3 more subjects (Use of English is compulsory)</h3>
+                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-3xl mx-auto">
+                 <label class="checkbox-label"><input type="checkbox" name="subject" value="Use of English" checked disabled class="w-6 h-6"> Use of English (Compulsory)</label>`;
+        allSubjects.filter(s => s !== "Use of English").forEach(s => {
+          html += `<label class="checkbox-label"><input type="checkbox" name="subject" value="${s}" class="w-6 h-6"> ${s}</label>`;
+        });
+      } else {
+        html += `<h3 class="text-2xl font-bold text-indigo-700 mb-6">Select your 9 subjects</h3>
+                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-3xl mx-auto">`;
+        allSubjects.forEach(s => {
+          const name = s === "Use of English" ? "English Language" : s;
+          html += `<label class="checkbox-label"><input type="checkbox" name="subject" value="${s}" class="w-6 h-6"> ${name}</label>`;
+        });
+      }
+      html += `</div>`;
+      container.innerHTML = html;
+    }
+
+    // ---- AI PLAN ----
+    async function generateAIPlan() {
+      if (!validateCurrentStep()) return;
+
+      const exam = document.querySelector('input[name="exam"]:checked').value;
+      const months = document.querySelector('select[name="timeToExam"]').value;
+      const learner = document.querySelector('input[name="learner"]:checked').value;
+      const daily = document.querySelector('select[name="dailyTime"]').value;
+      const selected = Array.from(document.querySelectorAll('input[name="subject"]:checked')).map(cb => cb.value);
+
+      // JAMB: English compulsory + 3 more
+      if (exam === 'JAMB' && selected.length !== 4) { alert('Select exactly 3 additional subjects for JAMB'); return; }
+      // WAEC/NECO: 9 subjects
+      if (exam !== 'JAMB' && selected.length !== 9) { alert('Select exactly 9 subjects for WAEC/NECO'); return; }
+
+      const btn = document.getElementById('createPlanBtn');
+      const orig = btn.innerHTML;
+      btn.disabled = true;
+      btn.innerHTML = `<span class="inline-block animate-spin rounded-full h-6 w-6 border-t-2 border-r-2 border-white mr-3"></span>AI is working…`;
+
+      try {
+        const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
+        const prompt = `Generate a **day-by-day** JSON study plan for ${exam}.
+Subjects: ${selected.join(', ')}.
+Time until exam: ${months} months.
+Learner: ${learner}.
+Daily hours: ${daily}.
+
+Rules:
+- List 8-15 key topics per subject (standard ${exam} syllabus).
+- Respect prerequisites (e.g., Indices before Dimensions).
+- If NECO and ≤2 months → 1-2 week crash plan.
+- Return **only** JSON: { "days": [{ "day":1, "date":"YYYY-MM-DD", "tasks":[{ "topic":"...", "subject":"...", "hours":3.5, "completed":false }] }] }`;
+
+        const result = await model.generateContent(prompt);
+        const txt = (await result.response).text();
+
+        let planJson;
+        try { planJson = JSON.parse(txt); }
+        catch { console.warn('Gemini did not return clean JSON → fallback'); planJson = fallbackPlan(exam, months, learner, daily, selected); }
+
+        // Normalise dates
+        const today = new Date('2025-11-15'); // current date per prompt
+        planJson.days.forEach((d, i) => {
+          const dt = new Date(today);
+          dt.setDate(today.getDate() + i);
+          d.date = dt.toISOString().split('T')[0];
+        });
+
+        const plan = { exam, months, learner, daily, subjects: selected, ...planJson, created: new Date().toISOString() };
+        localStorage.setItem('studyPlan', JSON.stringify(plan));
+
+        document.getElementById('createPlanSection').classList.add('hidden');
+        document.getElementById('planViewSection').classList.remove('hidden');
+        renderPlan();
+      } catch (err) {
+        console.error(err);
+        alert('AI call failed – using smart fallback.');
+        const plan = fallbackPlan(exam, months, learner, daily, selected);
+        localStorage.setItem('studyPlan', JSON.stringify(plan));
+        document.getElementById('createPlanSection').classList.add('hidden');
+        document.getElementById('planViewSection').classList.remove('hidden');
+        renderPlan();
+      } finally {
+        btn.innerHTML = orig;
+        btn.disabled = false;
       }
     }
 
-    function renderPlans(filter='', selectedDate=null){
-      const grid = document.getElementById('plansGrid'); grid.innerHTML='';
-      const list = plans.filter(plan=>{
-        if(selectedDate && plan.date!==selectedDate) return false;
-        if(!filter) return true;
-        const f = filter.toLowerCase();
-        return plan.subject.toLowerCase().includes(f) || plan.topic.toLowerCase().includes(f) || (plan.tags || []).join(',').toLowerCase().includes(f);
+    // ---- Fallback (same logic as before) ----
+    function fallbackPlan(exam, months, learner, daily, subjects) {
+      const mult = { Fast:0.6, Average:1, Slow:1.8 };
+      const hrs = { "<2":1.5, "2-4":3.5, "5-7":6, "8-10":9, ">10":11, "always":12 };
+      const dailyHrs = hrs[daily];
+      let days = months === '24+' ? 730 : parseInt(months) * 30.5;
+      if (exam === 'NECO' && parseInt(months) <= 2) days = 14;
+
+      const syllabi = {
+        "Use of English": ["Comprehension","Lexis","Essay","Oral","Registers","Synonyms","Sentence"],
+        "Mathematics": ["Bases","Fractions","Indices","Surds","Sets","Polynomials","Quadratics","Inequalities","Series","Variation","Logic","Matrices","Geometry","Trig","Mensuration","Stats","Bearing","Calculus"],
+        "Physics": ["Matter","Quantities","Motion","Projectiles","Laws","Work","Heat","Waves","Sound","Light","Lenses","Electrostatics","Current","Magnetism","Nuclear"],
+        "Chemistry": ["Atom","Bonding","Stoichiometry","States","Energy","Acids","Redox","Organic","Environmental","Industrial"],
+        "Biology": ["Cell","Variety","Organisation","Tissues","Nutrition","Transport","Respiration","Excretion","Control","Reproduction","Ecology"]
+      };
+
+      const deps = [
+        {s:"Physics",t:"Dimensions",ps:"Mathematics",pt:"Indices"},
+        {s:"Physics",t:"Motion",ps:"Mathematics",pt:"Indices"},
+        {s:"Physics",t:"Projectiles",ps:"Mathematics",pt:"Trig"},
+        {s:"Chemistry",t:"Stoichiometry",ps:"Mathematics",pt:"Fractions"}
+      ];
+
+      const topics = [];
+      subjects.forEach(sub => {
+        const key = sub.includes('English') ? 'Use of English' : sub;
+        const list = syllabi[key] || Array.from({length:12},(_,i)=>`Topic ${i+1}`);
+        list.forEach(t => topics.push({subject:sub, topic:t, base:4.5+Math.random()*1.5}));
       });
-      if(!list.length) grid.innerHTML = '<div class="text-gray-500">No plans found</div>';
-      list.forEach(plan=>{
-        const div = document.createElement('div'); div.className='plan-card';
-        div.innerHTML = `<h3 class="font-semibold">${plan.subject}: ${plan.topic}</h3>
-          <div class="text-sm text-gray-600">${plan.date} • ${plan.time} • ${plan.duration} min</div>
-          <div class="mt-3 flex gap-2 justify-end">
-            <button class="px-3 py-1 rounded bg-gray-100" onclick="editPlan(${plan.id})">Edit</button>
-            <button class="px-3 py-1 rounded bg-red-500 text-white" onclick="deletePlan(${plan.id})">Delete</button>
-          </div>`;
-        grid.appendChild(div);
+
+      // simple topo sort
+      const adj = {}, indeg = {}, idMap = {};
+      topics.forEach(t => {
+        const id = `${t.subject.replace(/\W/g,'_')}__${t.topic.replace(/\W/g,'_')}`;
+        adj[id]=[]; indeg[id]=0; idMap[id]=t;
       });
+      deps.forEach(d=> {
+        if (!subjects.includes(d.s) || !subjects.includes(d.ps)) return;
+        const tid = `${d.s.replace(/\W/g,'_')}__${d.t.replace(/\W/g,'_')}`;
+        const pid = `${d.ps.replace(/\W/g,'_')}__${d.pt.replace(/\W/g,'_')}`;
+        if (adj[pid] && adj[tid]) { adj[pid].push(tid); indeg[tid]++; }
+      });
+
+      const q = Object.keys(indeg).filter(id=>indeg[id]===0);
+      const ordered = [];
+      while (q.length) {
+        const id = q.shift(); ordered.push(id);
+        (adj[id]||[]).forEach(n=>{ indeg[n]--; if(indeg[n]===0) q.push(n); });
+      }
+      ordered.push(...Object.keys(indeg).filter(id=>!ordered.includes(id)));
+
+      const seq = ordered.map(id=>idMap[id]);
+      seq.forEach(t=> t.hours = t.base * mult[learner]);
+
+      // pack into days
+      const planDays = [];
+      let curH = 0, dayIdx = 0, curDate = new Date('2025-11-15');
+      seq.forEach(t=> {
+        if (curH + t.hours > dailyHrs + 1 && planDays.length) { dayIdx++; curH=0; curDate = new Date(curDate); curDate.setDate(curDate.getDate()+1); }
+        if (!planDays[dayIdx]) planDays[dayIdx] = {day:dayIdx+1, date:curDate.toISOString().split('T')[0], tasks:[], hours:0};
+        planDays[dayIdx].tasks.push({topic:t.topic, subject:t.subject, hours:t.hours.toFixed(1), completed:false});
+        planDays[dayIdx].hours = (planDays[dayIdx].hours*10 + t.hours*10)/10;
+        curH += t.hours;
+      });
+
+      return {exam, months, learner, daily, subjects, days:planDays};
     }
 
-    function filterByDate(date){ document.getElementById('searchInput').value=''; renderPlans('', date); }
-    document.getElementById('searchInput').addEventListener('input', e=> renderPlans(e.target.value));
+    // ---- Render plan ----
+    function renderPlan() {
+      const raw = localStorage.getItem('studyPlan');
+      if (!raw) return;
+      const plan = JSON.parse(raw);
+      const cont = document.getElementById('planContainer');
+      cont.innerHTML = '';
+      let total=0, done=0;
 
-    document.getElementById('prevMonth').addEventListener('click', ()=>{ currentDate.setMonth(currentDate.getMonth()-1); renderCalendar(); });
-    document.getElementById('nextMonth').addEventListener('click', ()=>{ currentDate.setMonth(currentDate.getMonth()+1); renderCalendar(); });
+      plan.days.forEach((d, di) => {
+        const today = new Date('2025-11-15').toDateString() === new Date(d.date).toDateString();
+        const div = document.createElement('div');
+        div.className = `p-6 rounded-xl shadow-lg ${today?'ring-4 ring-yellow-400 bg-yellow-50':'bg-gray-50'}`;
+        let html = `<div class="flex justify-between items-center mb-4">
+          <h3 class="text-2xl font-bold ${today?'text-yellow-600':'text-indigo-700'}">Day ${d.day} — ${d.date}</h3>
+          <span class="bg-gray-200 px-4 py-1 rounded-full text-sm">${d.hours.toFixed(1)} hrs</span>
+        </div><ul class="space-y-3">`;
+        d.tasks.forEach((t, ti) => {
+          total++;
+          if (t.completed) done++;
+          html += `<li class="flex items-center space-x-3 text-lg">
+            <input type="checkbox" class="complete-task w-6 h-6 text-green-600 rounded" data-day="${di}" data-task="${ti}" ${t.completed?'checked':''}>
+            <span class="${t.completed?'line-through text-gray-500':''}">${t.topic} — <i>${t.subject}</i> (~${t.hours} hrs)</span>
+          </li>`;
+        });
+        html += `</ul>`;
+        div.innerHTML = html;
+        cont.appendChild(div);
+      });
+      document.getElementById('progressBar').textContent = `Progress: ${done}/${total} (${Math.round(done/total*100)}%)`;
+    }
 
-    function openModal(){ document.getElementById('planModal').style.display='flex'; }
-    function closeModal(){ document.getElementById('planModal').style.display='none'; editingPlanId=null; document.getElementById('planForm').reset(); }
-
-    document.getElementById('createPlanBtn').addEventListener('click', ()=>{ editingPlanId=null; document.getElementById('modalTitle').textContent='Create Plan'; openModal(); });
-    document.getElementById('closeModalBtn').addEventListener('click', closeModal);
-
-    function editPlan(id){ const p = plans.find(x=>x.id===id); if(!p) return; editingPlanId = id; document.getElementById('modalTitle').textContent='Edit Plan'; document.getElementById('planSubject').value=p.subject; document.getElementById('planTopic').value=p.topic; document.getElementById('planDate').value=p.date; document.getElementById('planTime').value=p.time; document.getElementById('planDuration').value=p.duration; document.getElementById('planReminder').value=p.reminder||'none'; document.getElementById('planTags').value=(p.tags||[]).join(','); openModal(); }
-
-    document.getElementById('planForm').addEventListener('submit', function(e){
-      e.preventDefault();
-      const subject = document.getElementById('planSubject').value.trim();
-      const topic = document.getElementById('planTopic').value.trim();
-      const date = document.getElementById('planDate').value;
-      const time = document.getElementById('planTime').value;
-      const duration = parseInt(document.getElementById('planDuration').value) || 60;
-      const reminder = document.getElementById('planReminder').value;
-      const tags = document.getElementById('planTags').value.split(',').map(t=>t.trim()).filter(Boolean);
-      if(!subject||!topic||!date) { alert('Please fill required fields'); return; }
-      if(editingPlanId){ plans = plans.map(p=> p.id===editingPlanId ? {...p, subject, topic, date, time, duration, reminder, tags} : p ); }
-      else { plans.push({ id: Date.now(), subject, topic, date, time, duration, reminder, tags }); }
-      saveState(); closeModal(); renderCalendar(); renderPlans();
+    // task completion
+    document.addEventListener('change', e => {
+      if (e.target.classList.contains('complete-task')) {
+        const plan = JSON.parse(localStorage.getItem('studyPlan'));
+        const [d, t] = [e.target.dataset.day, e.target.dataset.task];
+        plan.days[d].tasks[t].completed = e.target.checked;
+        localStorage.setItem('studyPlan', JSON.stringify(plan));
+        renderPlan();
+      }
     });
 
-    function deletePlan(id){ if(!confirm('Delete this plan?')) return; plans = plans.filter(p=>p.id!==id); saveState(); renderCalendar(); renderPlans(); }
+    // load existing plan
+    if (localStorage.getItem('studyPlan')) {
+      document.getElementById('createPlanSection').classList.add('hidden');
+      document.getElementById('planViewSection').classList.remove('hidden');
+      renderPlan();
+    }
 
-    // import/export (basic)
-    document.getElementById('exportBtn').addEventListener('click', ()=>{ const blob = new Blob([JSON.stringify(plans, null, 2)], {type:'application/json'}); const url = URL.createObjectURL(blob); const a=document.createElement('a'); a.href=url; a.download='plans.json'; a.click(); URL.revokeObjectURL(url); });
-    document.getElementById('importBtn').addEventListener('click', ()=>{ alert('Import available in future updates.'); });
+    // start
+    init();
+  </script>
 
-    // initial demo data if empty
-    if(!plans.length){ plans = [ {id:1, subject:'Mathematics', topic:'Algebra', date:new Date().toISOString().slice(0,10), time:'10:00', duration:60, reminder:'15', tags:['math']} ]; saveState(); }
+  <!-- Personalization: apply cached/preloaded user data immediately -->
+  <script>
+    (function applyPreloaded() {
+      function getData() {
+        if (window.preloadedUserData) return window.preloadedUserData;
+        try { const raw = localStorage.getItem('cachedUserData_current'); if (raw) { const parsed = JSON.parse(raw); if (parsed.data) return parsed.data; return parsed; } } catch (e) {}
+        try { const raw2 = localStorage.getItem('userProfile') || localStorage.getItem('userData') || localStorage.getItem('user'); if (raw2) return JSON.parse(raw2); } catch (e) {}
+        return null;
+      }
 
-    // boot
-    renderCalendar(); renderPlans();
-    
-    // Personalize study-plan using centralized helper (only for background updates)
-    import('./js/firebase-user-helper.js').then(({ initUserPersonalization }) => {
-      // Skip immediate updates if we have preloaded data
-      initUserPersonalization(async ({ user, helpers }) => {
-        if (!user) return;
-        
-        const currentName = document.getElementById('userName')?.textContent;
-        const fullName = user.displayName || 'Student';
-        
-        // Only update if data is different from what's already displayed
-        if (currentName !== fullName) {
-          const name = fullName.split(' ')[0];
-          const level = (user.profile?.level || '').startsWith('SS') ? user.profile.level : 'SS 3';
-          
-          // Update UI elements
-          document.getElementById('topName')?.setAttribute('textContent', fullName);
-          document.getElementById('userName')?.setAttribute('textContent', fullName);
-          document.getElementById('userLevel')?.setAttribute('textContent', level);
-          
-          // Update Study Plan title
-          const title = document.querySelector('h1');
-          if (title) title.textContent = `${name}'s Study Plan`;
-          
-          // Update avatars
-          const initials = getInitials(fullName);
-          const avatarUrl = user.photoURL || 
-            `https://ui-avatars.com/api/?name=${encodeURIComponent(initials)}&background=2563eb&color=fff&size=128`;
-          
-          ['avatar-sm', 'topAvatar'].forEach(id => {
-            const img = document.getElementById(id);
-            if (img) img.src = avatarUrl;
-          });
-          
-          // Update user avatar if exists
-          const userAvatar = document.querySelector('img[alt="User"]');
-          if (userAvatar) userAvatar.src = avatarUrl;
-          
-          // Cache the fresh data
-          try {
-            localStorage.setItem('cachedUserData_current', JSON.stringify({
-              data: user,
-              timestamp: Date.now()
-            }));
-          } catch (e) {
-            console.warn('Failed to cache user data:', e);
-          }
-          
-          // Update window.studentName for plan creation
-          window.studentName = name;
-        }
-        
-        // Always update notification count as it's dynamic
-        const notifEl = document.getElementById('notifCount');
-        if (notifEl && helpers?.getUnreadNotificationsCount) {
-          notifEl.textContent = String(await helpers.getUnreadNotificationsCount(user.uid));
-        }
-      });
-    }).catch(e => console.warn('firebase-user helper import failed', e));
+      function applyUser(u) {
+        if (!u) return;
+        try {
+          const displayName = u.displayName || u.full_name || u.name || (u.email || '').split('@')[0] || 'Student';
+          const shortName = String(displayName).split(' ')[0] || displayName;
+          const avatar = u.photoURL || u.avatar_url || (u.profile && u.profile.avatar_url) || `https://ui-avatars.com/api/?name=${encodeURIComponent(shortName)}&background=2563eb&color=fff&size=128`;
+          const userNameEl = document.getElementById('userName'); if (userNameEl) userNameEl.textContent = shortName;
+          const topNameEl = document.getElementById('topName'); if (topNameEl) topNameEl.textContent = displayName;
+          const avatarSm = document.getElementById('avatar-sm'); if (avatarSm) avatarSm.src = avatar;
+          const topAvatar = document.getElementById('topAvatar'); if (topAvatar) topAvatar.src = avatar;
+          if (u.level) { const userLevelEl = document.getElementById('userLevel'); if (userLevelEl) userLevelEl.textContent = u.level; const topLevelEl = document.getElementById('topLevel'); if (topLevelEl) topLevelEl.textContent = u.level; }
+        } catch (err) { console.debug('study-plan applyUser error', err); }
+      }
 
-    // Ensure sidebar toggle works even if page previously missed the handler
-    (function ensureSidebarToggle(){
-      try{ const btn = document.getElementById('toggleSidebar'); if(btn && !btn.dataset.hasToggle){ btn.addEventListener('click', (e) => {
-        e.stopPropagation();
-        document.getElementById('sidebar').classList.toggle('-translate-x-full')
-      }); btn.dataset.hasToggle = '1'; } }catch(e){}
+      try {
+        const u = getData();
+        console.debug('study-plan applyPreloaded: found user', u);
+        applyUser(u);
+      } catch (err) { console.debug('study-plan applyPreloaded error', err); }
+      // Also listen for updates from other parts of the app
+      window.addEventListener('userDataUpdated', (e) => { applyUser(e?.detail || getData()); });
     })();
-    document.getElementById('main-content').addEventListener('click', () => {
-      const sidebar = document.getElementById('sidebar');
-      if (!sidebar.classList.contains('-translate-x-full')) {
-        sidebar.classList.add('-translate-x-full');
-      }
-    });
   </script>
 </body>
 </html>

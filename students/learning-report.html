@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Learning Report - EduNext</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    body { margin: 0; font-family: 'Inter', Arial, sans-serif; background: #f3f6fa; color: #222; }
+    .layout { display: flex; min-height: 100vh; }
+    .sidebar { width: 250px; background: #1a202c; color: #fff; padding: 32px 0 24px 0; }
+    .sidebar nav ul { list-style: none; padding: 0; margin: 0; }
+    .sidebar nav ul li { display: flex; align-items: center; gap: 16px; padding: 14px 32px; font-size: 1.08rem; border-radius: 8px; margin-bottom: 6px; cursor: pointer; transition: background 0.15s; opacity: 0.85; }
+    
+    .report-container {
+      flex: 1;
+      padding: 2rem;
+      overflow-y: auto;
+    }
+
+    .report-header {
+      background: #fff;
+      padding: 2rem;
+      border-radius: 12px;
+      margin-bottom: 2rem;
+      box-shadow: 0 4px 6px rgba(30,58,138,0.04);
+    }
+
+    .report-header h1 {
+      color: #1e3a8a;
+      font-size: 1.8rem;
+      margin: 0 0 1rem 0;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+    }
+
+    .stat-card {
+      background: #fff;
+      padding: 1.5rem;
+      border-radius: 12px;
+      box-shadow: 0 4px 6px rgba(30,58,138,0.04);
+    }
+
+    .stat-value {
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: #1e3a8a;
+      margin: 0.5rem 0;
+    }
+
+    .progress-section {
+      background: #fff;
+      padding: 2rem;
+      border-radius: 12px;
+      margin-bottom: 2rem;
+    }
+
+    .progress-bar {
+      height: 8px;
+      background: #e5e7eb;
+      border-radius: 4px;
+      overflow: hidden;
+      margin: 0.5rem 0 1.5rem 0;
+    }
+
+    .progress-fill {
+      height: 100%;
+      transition: width 0.3s ease;
+    }
+
+    .subject-row {
+      margin-bottom: 1.5rem;
+    }
+
+    .subject-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 0.5rem;
+    }
+
+    .subject-name {
+      font-weight: 600;
+      color: #1e3a8a;
+    }
+
+    .progress-value {
+      color: #4b5563;
+      font-size: 0.9rem;
+    }
+
+    /* Subject-specific colors */
+    .math .progress-fill { background: #ef767a; }
+    .physics .progress-fill { background: #6a89cc; }
+    .chemistry .progress-fill { background: #f59e42; }
+    .biology .progress-fill { background: #43bfa0; }
+
+    .trends-section {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+    }
+
+    .trend-card {
+      background: #fff;
+      padding: 1.5rem;
+      border-radius: 12px;
+      box-shadow: 0 4px 6px rgba(30,58,138,0.04);
+    }
+
+    .trend-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1rem;
+    }
+
+    .trend-title {
+      font-weight: 600;
+      color: #1e3a8a;
+    }
+
+    .trend-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 20px;
+      background: #e5edff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #2563eb;
+    }
+    .sidebar nav ul li.active, .sidebar nav ul li:hover { background: #2d3748; opacity: 1; }
+    .sidebar nav ul li a {
+      color: inherit;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      width: 100%;
+      height: 100%;
+      font-weight: 500;
+      border-radius: 8px;
+      transition: background 0.15s, color 0.15s;
+      padding: 0;
+    }
+    .sidebar nav ul li.active a,
+    .sidebar nav ul li a:hover {
+      background: #2d3748;
+      color: #fff;
+      opacity: 1;
+      box-shadow: 0 2px 8px rgba(30,58,138,0.10);
+      text-shadow: 0 1px 2px rgba(0,0,0,0.08);
+    }
+    .sidebar nav ul li a:active {
+      background: #2563eb;
+      color: #fff;
+    }
+    .sidebar nav ul li a i {
+      font-size: 1.3rem;
+      width: 28px;
+      text-align: center;
+      transition: color 0.15s;
+    }
+    .sidebar nav ul li.active a i,
+    .sidebar nav ul li a:hover i {
+      color: #f7b731;
+      text-shadow: 0 1px 2px rgba(0,0,0,0.10);
+    }
+    .sidebar nav ul li a span {
+      flex: 1;
+      text-align: left;
+      letter-spacing: 0.01em;
+    }
+    .main-content { flex: 1; padding: 2.5rem 2rem 2rem 2rem; }
+    h1 { font-size: 1.5rem; color: #1e3a8a; margin-bottom: 1.5rem; }
+    .report-section { background: #fff; border-radius: 12px; box-shadow: 0 2px 12px rgba(30,58,138,0.07); padding: 2rem; margin-bottom: 2rem; }
+    .charts { display: flex; gap: 2rem; flex-wrap: wrap; }
+    .chart { flex: 1; min-width: 260px; }
+    .badges { display: flex; gap: 1rem; flex-wrap: wrap; }
+    .badge { background: #2563eb; color: #fff; border-radius: 8px; padding: 0.7rem 1.2rem; font-weight: 600; font-size: 1rem; }
+    .streak { color: #ef767a; font-weight: bold; font-size: 1.1rem; margin-top: 1.2rem; }
+    .download-btn { margin-top: 1.5rem; padding: 0.7rem 1.7rem; border-radius: 8px; border: none; background: #2563eb; color: #fff; font-weight: 600; font-size: 1rem; cursor: pointer; }
+    .download-btn:hover { background: #1e3a8a; }
+    
+    /* Subject progress classes */
+    .math .progress-fill.p75 { width: 75%; }
+    .physics .progress-fill.p60 { width: 60%; }
+    .chemistry .progress-fill.p85 { width: 85%; }
+    .biology .progress-fill.p70 { width: 70%; }
+  </style>
+</head>
+<body>
+  <div class="layout">
+      <!-- Sidebar injected by sidebar-fragment.js -->
+
+    <main class="report-container">
+      <div class="report-header">
+        <h1>Learning Report</h1>
+        <p>Your progress dashboard and performance analytics</p>
+      </div>
+
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="trend-header">
+            <span class="trend-title">Study Hours</span>
+            <div class="trend-icon">
+              <i class="fas fa-clock"></i>
+            </div>
+          </div>
+          <div class="stat-value">12.5h</div>
+          <div class="trend-up">+15% this week</div>
+        </div>
+        <div class="stat-card">
+          <div class="trend-header">
+            <span class="trend-title">Topics Mastered</span>
+            <div class="trend-icon">
+              <i class="fas fa-check-circle"></i>
+            </div>
+          </div>
+          <div class="stat-value">24</div>
+          <div class="trend-up">+8 new</div>
+        </div>
+        <div class="stat-card">
+          <div class="trend-header">
+            <span class="trend-title">Quiz Average</span>
+            <div class="trend-icon">
+              <i class="fas fa-star"></i>
+            </div>
+          </div>
+          <div class="stat-value">82%</div>
+          <div class="trend-up">+5% improvement</div>
+        </div>
+      </div>
+
+      <div class="progress-section">
+        <h2>Subject Progress</h2>
+        
+        <div class="subject-row math">
+          <div class="subject-header">
+            <span class="subject-name">Mathematics</span>
+            <span class="progress-value">75%</span>
+          </div>
+          <div class="progress-bar">
+            <div class="progress-fill p75"></div>
+          </div>
+        </div>
+
+        <div class="subject-row physics">
+          <div class="subject-header">
+            <span class="subject-name">Physics</span>
+            <span class="progress-value">60%</span>
+          </div>
+          <div class="progress-bar">
+            <div class="progress-fill p60"></div>
+          </div>
+        </div>
+
+        <div class="subject-row chemistry">
+          <div class="subject-header">
+            <span class="subject-name">Chemistry</span>
+            <span class="progress-value">85%</span>
+          </div>
+          <div class="progress-bar">
+            <div class="progress-fill p85"></div>
+          </div>
+        </div>
+
+        <div class="subject-row biology">
+          <div class="subject-header">
+            <span class="subject-name">Biology</span>
+            <span class="progress-value">70%</span>
+          </div>
+          <div class="progress-bar">
+            <div class="progress-fill p70"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="trends-section">
+        <div class="trend-card">
+          <div class="trend-header">
+            <span class="trend-title">Study Time Distribution</span>
+            <div class="trend-icon">
+              <i class="fas fa-chart-pie"></i>
+            </div>
+          </div>
+          <div class="trend-content">
+            <div>Video Lessons: 4.5h</div>
+            <div>Practice Tests: 3.2h</div>
+            <div>Live Sessions: 2.8h</div>
+            <div>Reading: 2.0h</div>
+          </div>
+        </div>
+        <div class="trend-card">
+          <div class="trend-header">
+            <span class="trend-title">Recent Achievements</span>
+            <div class="trend-icon">
+              <i class="fas fa-trophy"></i>
+            </div>
+          </div>
+          <div class="trend-content">
+            <div>Perfect Score: Chemistry Quiz</div>
+            <div>5-Day Study Streak</div>
+            <div>Completed Physics Module</div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+  <script src="session.js"></script>
+  <script type="module" src="../js/user-cache.js"></script>
+  <script>
+    EduNextSession.requireRole('student', 'login.html');
+    const session = EduNextSession.getSession();
+    document.querySelectorAll('.user-name').forEach(el => el.textContent = session.name ? `Hi, ${session.name}` : 'Hi, Student');
+    document.querySelectorAll('.avatar').forEach(el => el.src = `https://ui-avatars.com/api/?name=${encodeURIComponent(session.name || 'Student')}&background=2563eb&color=fff&size=64`);
+
+    // Sidebar active highlighting  
+    const sidebar = document.querySelector('.sidebar nav ul');
+    if (sidebar) {
+      sidebar.querySelectorAll('li').forEach(li => {
+        const a = li.querySelector('a');
+        if (a && window.location.pathname.endsWith(a.getAttribute('href'))) li.classList.add('active');
+        else li.classList.remove('active');
+      });
+    }
+
+    // Load and display learning report data
+    async function loadLearningReport() {
+      try {
+        // TODO: Replace with actual API call
+        const reportData = {
+          studyHours: 12.5,
+          topicsMastered: 24,
+          quizAverage: 82,
+          studyTimeDistribution: {
+            videoLessons: 4.5,
+            practiceTests: 3.2,
+            liveSessions: 2.8,
+            reading: 2.0
+          },
+          subjectProgress: {
+            mathematics: 75,
+            physics: 60,
+            chemistry: 85, 
+            biology: 70
+          },
+          achievements: [
+            'Perfect Score: Chemistry Quiz',
+            '5-Day Study Streak',
+            'Completed Physics Module'
+          ]
+        };
+
+        // Update stats
+        document.querySelector('.stats-grid .stat-value').textContent = reportData.studyHours + 'h';
+        document.querySelectorAll('.stats-grid .stat-value')[1].textContent = reportData.topicsMastered;
+        document.querySelectorAll('.stats-grid .stat-value')[2].textContent = reportData.quizAverage + '%';
+
+        // Update study time distribution
+        const timeDistribution = document.querySelector('.trends-section .trend-content');
+        timeDistribution.innerHTML = `
+          <div>Video Lessons: ${reportData.studyTimeDistribution.videoLessons}h</div>
+          <div>Practice Tests: ${reportData.studyTimeDistribution.practiceTests}h</div>
+          <div>Live Sessions: ${reportData.studyTimeDistribution.liveSessions}h</div>
+          <div>Reading: ${reportData.studyTimeDistribution.reading}h</div>
+        `;
+
+        // Update achievements
+        const achievements = document.querySelectorAll('.trends-section .trend-content')[1];
+        achievements.innerHTML = reportData.achievements.map(achievement => 
+          `<div>${achievement}</div>`
+        ).join('');
+
+      } catch (error) {
+        console.error('Error loading learning report:', error);
+      }
+    }
+
+    // Load data when page loads
+    loadLearningReport();
+  </script>
+  <script type="module" src="./js/sidebar-fragment.js"></script>
+</body>
+</html>

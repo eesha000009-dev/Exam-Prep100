@@ -1,0 +1,51 @@
+@import 'commonVars';
+
+.sort-dropdown {
+  margin: 0 10px 0 0;
+}
+
+.toggle-view-control {
+  .selected,
+  button:hover {
+    color: black;
+  }
+  button:focus{
+    outline: none;
+  }
+
+  button {
+    color: @gray;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 18px;
+    padding: 7px;
+  }
+
+
+  .toggle-view-button-holder {
+    display: flex;
+
+    .dropdown-holder {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+    }
+  }
+
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 16px 20px 0 0;
+}
+
+//@media (max-width: @filter-page-left-collapse-breakpoint) {
+//
+//}
+
+@media (min-width: @filter-page-left-collapse-breakpoint + 1) {
+  .toggle-view-control {
+    .filterPageList()
+  }
+}

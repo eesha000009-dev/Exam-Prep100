@@ -1,131 +1,118 @@
+here is it
 <!doctype html>
 <html lang="en">
   <head>
-
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <title>Student Dashboard — Secure</title>
     <script src="https://cdn.tailwindcss.com"></script>
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-<link rel="icon" type="image/png" sizes="48x48" href="/favicon-48x48.png">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="48x48" href="/favicon-32x32.png">
 <link rel="manifest" href="/site.webmanifest">
-    <link rel="stylesheet<div id="cortex-ai-chat-button" role="button" aria-label="Open Cortex AI chat">
-  <img src="/cortex-owl-brain.svg" alt="Cortex AI" class="cortex-icon" style="width:72px;height:72px;background:white;box-shadow:0 4px 16px rgba(0,0,0,0.20);border-radius:16px;padding:12px;transition:transform 0.18s cubic-bezier(.4,2,.6,1),box-shadow 0.18s;cursor:pointer;" onmouseover="this.style.transform='scale(1.12)';this.style.boxShadow='0 8px 32px rgba(0,0,0,0.28)';" onmouseout="this.style.transform='scale(1)';this.style.boxShadow='0 4px 16px rgba(0,0,0,0.20)';" onmousedown="this.style.transform='scale(0.96)';" onmouseup="this.style.transform='scale(1.12)';" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<style>
+  #sidebar {
+    transition: transform 0.3s ease-in-out;
+  }
+  #sidebar.hide { transform: translateX(-100%); }
+  @media (min-width: 1024px) {
+    #sidebar { transform: translateX(0) !important; }
+  }
+</style>
     
-    <!-- Preload user data -->
-    <script>
-      // Helper function to get user initials
+    <!-- Preload user data (use centralized cache module if available) -->
+    <script type="module">
+          // Only allow access for logged-in teachers
+    if (!window.EduNextSession || !EduNextSession.isTeacher()) {
+        window.location.href = '../login-new.html';
+        return;
+    }
+      import { getGlobalUserData } from '../js/user-cache.js';
+
+      // Helper: returns initials safely
       function getInitials(fullName) {
-        return fullName.split(' ')
-          .slice(0, 2)
-          .map(name => name.charAt(0))
-          .join('')
-          .toUpperCase();
+        try {
+          return String(fullName || '').split(' ').slice(0, 2).map(n => n.charAt(0)).join('').toUpperCase();
+        } catch (e) { return '' }
       }
 
-      // Initialize user data from cache immediately
-      try {
-        const cachedUserData = localStorage.getItem('cachedUserData_current');
-        if (cachedUserData) {
-          const { data: user } = JSON.parse(cachedUserData);
-          window.preloadedUserData = user;
-          
-          // Pre-initialize user interface as soon as DOM is ready
-          document.addEventListener('DOMContentLoaded', () => {
-            if (user) {
-              const fullName = user.displayName || 'Student';
-              const name = fullName.split(' ')[0];
-              const level = (user.profile?.level || '').startsWith('SS') ? user.profile.level : 'SS 3';
-              const initials = getInitials(fullName);
-              
-              // Update welcome message and heading
-              const heroName = document.getElementById('heroName');
-              if (heroName) heroName.textContent = name;
+      // Normalize a cached entry into a plain user object
+      function normalizeCachedEntry(entry) {
+        if (!entry) return null;
+        // If it's already a user object (has uid or displayName), return it
+        if (entry.uid || entry.displayName || entry.email) return entry;
+        // If it looks like the { data, timestamp } wrapper used by cacheUserData
+        if (entry.data) return entry.data;
+        return null;
+      }
 
-              // Update sidebar elements
-              document.getElementById('userName').textContent = name;
-              document.getElementById('userLevel').textContent = level;
-              
-              // Update topbar elements
-              document.getElementById('topName').textContent = fullName;
-              document.getElementById('topLevel').textContent = level;
-              
-              // Update all user name instances
-              document.querySelectorAll('.user-fullname').forEach(el => {
-                el.textContent = fullName;
-              });
-              document.querySelectorAll('.user-firstname').forEach(el => {
-                el.textContent = name;
-              });
-              
-              // Update avatars with user photo or initials
-              const avatarUrl = user.photoURL || `https://ui-avatars.com/api/?name=${encodeURIComponent(initials)}&background=2563eb&color=fff&size=128`;
-              ['avatar-sm', 'topAvatar', 'main-avatar'].forEach(id => {
-                const avatar = document.getElementById(id);
-                if (avatar) avatar.setAttribute('src', avatarUrl);
-              });
-              
-              // Update any progress data if available
-              if (user.progress) {
-                const progressEl = document.getElementById('overall-progress');
-                if (progressEl) progressEl.textContent = `${user.progress.overall || 0}%`;
+      // Apply preloaded user to the UI (safe checks)
+      function applyPreloadedUser(user) {
+        if (!user) return;
+        const fullName = user.displayName || 'Student';
+        const name = fullName.split(' ')[0];
+        const level = (user.profile?.level || '').startsWith('SS') ? user.profile.level : 'SS 3';
+        const initials = getInitials(fullName);
+
+        const heroName = document.getElementById('heroName'); if (heroName) heroName.textContent = name;
+        const userNameEl = document.getElementById('userName'); if (userNameEl) userNameEl.textContent = name;
+        const userLevelEl = document.getElementById('userLevel'); if (userLevelEl) userLevelEl.textContent = level;
+        const topName = document.getElementById('topName'); if (topName) topName.textContent = fullName;
+        const topLevel = document.getElementById('topLevel'); if (topLevel) topLevel.textContent = level;
+
+        document.querySelectorAll('.user-fullname').forEach(el => { el.textContent = fullName; });
+        document.querySelectorAll('.user-firstname').forEach(el => { el.textContent = name; });
+
+        const avatarUrl = user.photoURL || `https://ui-avatars.com/api/?name=${encodeURIComponent(initials)}&background=2563eb&color=fff&size=128`;
+        ['avatar-sm','topAvatar','main-avatar'].forEach(id => { const a = document.getElementById(id); if (a) a.src = avatarUrl; });
+
+        if (user.progress) {
+          const weekly = document.getElementById('weeklyProgressLabel'); if (weekly) weekly.textContent = `${user.progress.weekly || 0}%`;
+          const mockAvg = document.getElementById('mockAvgLabel'); if (mockAvg) mockAvg.textContent = `${user.progress.mockAvg || 0}%`;
+          const streak = document.getElementById('streakLabel'); if (streak) streak.textContent = `${user.progress.streak || 0} days`;
+        }
+        if (user.unreadNotifications) {
+          const notifCount = document.getElementById('notifCount'); if (notifCount) notifCount.textContent = String(user.unreadNotifications.length || 0);
+        }
+      }
+
+      // Try module-based global cache first (fast)
+      try {
+        const global = getGlobalUserData();
+        if (global) {
+          window.preloadedUserData = global;
+          // DOMContentLoaded might already have fired; apply immediately and also on ready
+          if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', () => applyPreloadedUser(global));
+          else applyPreloadedUser(global);
+        } else {
+          // Fallback: some pages set a legacy cachedUserData_current key directly in localStorage
+          const raw = localStorage.getItem('cachedUserData_current');
+          if (raw) {
+            try {
+              const parsed = JSON.parse(raw);
+              const user = normalizeCachedEntry(parsed);
+              if (user) {
+                window.preloadedUserData = user;
+                if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', () => applyPreloadedUser(user));
+                else applyPreloadedUser(user);
               }
-              
-              // Update notification count
-              if (user.unreadNotifications) {
-                const notifCount = document.getElementById('notifCount');
-                if (notifCount) notifCount.textContent = user.unreadNotifications.length;
-              }
+            } catch (e) {
+              console.warn('Could not parse legacy cachedUserData_current', e);
             }
-          });
+          }
         }
       } catch (err) {
-        console.error('Error pre-loading user data:', err);
+        // Keep silent but log to console for debugging
+        console.debug('Preload cache check failed', err);
       }
     </script>
   </head>
   <body class="bg-slate-50 text-slate-800">
     <div class="min-h-screen flex">
-      <!-- Sidebar (canonical) -->
-  <aside id="sidebar" class="w-64 md:w-72 lg:w-80 fixed left-0 top-0 h-full bg-white border-r border-slate-200 p-5 flex flex-col gap-6 transition-transform duration-300 ease-in-out overflow-auto z-40 lg:translate-x-0">
-        <div class="flex items-center gap-3">
-          <img src="/assets/images/logo.png" alt="logo" class="h-12 w-12 rounded-full shadow-sm">
-          <div>
-            <div class="text-lg font-bold text-sky-700">JUANOVA CORTEX</div>
-            <div class="text-xs text-slate-500">Student Dashboard</div>
-          </div>
-        </div>
 
-        <nav class="flex-1 overflow-auto">
-          <ul class="space-y-1">
-            <li><a href="student-dashboard.html" class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-slate-50"><i class="fas fa-home text-sky-600"></i> Home</a></li>
-            <li><a href="news-feed-gemini.html" class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-slate-50"><i class="fas fa-newspaper text-pink-500"></i> News Feed</a></li>
-            <li><a href="ai-tutor-chatbot.html" class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-slate-50"><i class="fas fa-robot text-purple-500"></i> AI Tutor</a></li>
-            <li><a href="study-plan.html" class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-slate-50"><i class="fas fa-calendar-check text-green-500"></i> Study Plan</a></li>
-            <li><a href="all-formula.html" class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-slate-50"><i class="fas fa-book-open text-teal-600"></i> All Formula</a></li>
-            <li><a href="../PhysicsQuest/PhysicsQuest/client/index.html"  class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-slate-50"><i class="fas fa-video text-red-500"></i> Game</a></li>
-            <li><a href="video-library.html"  class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-slate-50"><i class="fas fa-video text-red-500"></i> Video Library</a></li>
-            <li><a href="mock-exams.html" class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-slate-50"><i class="fas fa-pencil-alt text-orange-500"></i> Mock Exams</a></li>
-            <li><a href="notifications.html" class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-slate-50"><i class="fas fa-bell text-pink-600"></i> Notifications</a></li>
-            <li><a href="student-live-session.html" class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-slate-50"><i class="fas fa-chalkboard-teacher text-blue-400"></i> Live Sessions</a></li>
-            <li><a href="smart-note.html" class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-slate-50"><i class="fas fa-sticky-note text-yellow-500"></i> Smart Notes</a></li>
-        </ul>
-        </nav>
-
-        <div class="text-sm text-slate-500">
-          <div class="mb-2">Account</div>
-          <div class="flex items-center gap-3">
-            <img id="avatar-sm" src="../assets/images/unnamed.jpg" alt="avatar" class="h-10 w-10 rounded-full border">
-            <div>
-              <div id="userName" class="font-semibold">Student</div>
-              <div id="userLevel" class="text-xs text-slate-400"></div>
-            </div>
-          </div>
-        </div>
-      </aside>
+      <!-- Sidebar injected by sidebar-fragment.js -->
 
       <!-- Main area -->
   <div id="main-content" class="flex-1 flex flex-col ml-64 md:ml-72 lg:ml-80">
@@ -194,7 +181,7 @@
             </div>
 
             <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
-              <a href="subjects/mathematics.html" class="bg-white rounded-2xl p-5 shadow hover:scale-105 transition text-center">
+              <a href="subjects/mathematics/index.html" class="bg-white rounded-2xl p-5 shadow hover:scale-105 transition text-center">
                 <div class="text-2xl text-sky-500 mb-2"><i class="fas fa-square-root-alt"></i></div>
                 <div class="font-semibold">Mathematics</div>
               </a>
@@ -205,6 +192,10 @@
               <a href="subjects/chemistry/index.html" class="bg-white rounded-2xl p-5 shadow hover:scale-105 transition text-center">
                 <div class="text-2xl text-pink-500 mb-2"><i class="fas fa-flask"></i></div>
                 <div class="font-semibold">Chemistry</div>
+              </a>
+              <a href="../phet-simulations/resources/app/resources/new phet/homepage_aa.html" class="bg-white rounded-2xl p-5 shadow hover:scale-105 transition text-center">
+                <div class="text-2xl text-sky-500 mb-2"><i class="fas fa-square-root-alt"></i></div>
+                <div class="font-semibold">Practical</div>
               </a>
               <a href="subjects/biology/index.html" class="bg-white rounded-2xl p-5 shadow hover:scale-105 transition text-center">
                 <div class="text-2xl text-green-500 mb-2"><i class="fas fa-dna"></i></div>
@@ -249,46 +240,40 @@
       </div>
     </div>
 
-    <link rel="stylesheet" href="./dashboard/-styles.css">
+    <link rel="stylesheet" href="dashboard-styles.css">
 
     <script type="module">
-      // Firebase wiring, App Check and live Firestore reads for per-user data
-      import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
-      import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
-      import { getFirestore, doc, getDoc, collection, getDocs, query, where, addDoc, updateDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
-      import { initializeAppCheck, ReCaptchaV3Provider } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app-check.js";
-      import { firebaseConfig } from '../js/firebase-config.js';
-import { getGlobalUserData } from '../js/user-cache.js';
+  import { config } from '../js/config.js';
+  import { initSupabase } from '../js/supabase-client.js';
+  // These modules are located in the students/js folder relative to this page
+  import { initializeUserProfile, updateUserProfile, getRecentActivities, recordActivity } from './js/supabase-user.js';
+  import { handleSignup, syncUserData } from './js/supabase-signup.js';
+  import { getGlobalUserData } from '../js/user-cache.js';
 
-      const app = initializeApp(firebaseConfig);
+      const supabase = initSupabase(config.supabase.url, config.supabase.anonKey);
+      // Expose client globally so non-module handlers can re-check server state
+      try { window.supabase = supabase; } catch (e) { /* ignore in strict envs */ }
 
-// Initialize with cached data immediately if available
-const cachedUser = getGlobalUserData();
-if (cachedUser) {
-    document.getElementById('userName').textContent = cachedUser.displayName;
-    document.getElementById('topName').textContent = cachedUser.displayName;
-    document.getElementById('heroName').textContent = cachedUser.displayName;
-    if (cachedUser.photoURL) {
-        document.getElementById('avatar-sm').src = cachedUser.photoURL;
-        document.getElementById('topAvatar').src = cachedUser.photoURL;
-    }
-}
-      const auth = getAuth(app);
-      const db = getFirestore(app);
-
-      // Initialize App Check only if recaptchaSiteKey is present in config
-      if (firebaseConfig && firebaseConfig.recaptchaSiteKey) {
-        try {
-          initializeAppCheck(app, {
-            provider: new ReCaptchaV3Provider(firebaseConfig.recaptchaSiteKey),
-            isTokenAutoRefreshEnabled: true
-          });
-          console.log('App Check initialized');
-        } catch (err) {
-          console.warn('App Check initialization failed:', err && err.message ? err.message : err);
+      // Load cached profile data if available
+      try {
+        const cachedProfile = JSON.parse(localStorage.getItem('userProfile'));
+        if (cachedProfile) {
+          // Apply cached data for instant UI update
+          setText('userName', cachedProfile.displayName);
+          setText('topName', cachedProfile.displayName);
+          setText('heroName', cachedProfile.displayName);
+          if (cachedProfile.photoURL) {
+            setImage('avatar-sm', cachedProfile.photoURL);
+            setImage('topAvatar', cachedProfile.photoURL);
+          }
+          if (cachedProfile.progress) {
+            setText('weeklyProgressLabel', `${cachedProfile.progress.weekly || 0}%`);
+            setText('mockAvgLabel', `${cachedProfile.progress.mockAvg || 0}%`);
+            setText('streakLabel', `${cachedProfile.progress.streak || 0} days`);
+          }
         }
-      } else {
-        console.warn('App Check skipped: firebaseConfig.recaptchaSiteKey missing. Add your reCAPTCHA v3 site key to js/firebase-config.js to enable App Check.');
+      } catch (err) {
+        console.warn('Failed to load cached profile:', err);
       }
 
       // Small helpers
@@ -333,74 +318,239 @@ if (cachedUser) {
   // Track current signed-in user id for writes
   let currentUid = null;
 
-  // Firestore loaders
-      async function loadTasks(uid) {
+  // Supabase data loaders
+      async function loadTasks(userId) {
         try {
-          const snap = await getDocs(collection(db, 'students', uid, 'tasks'));
-          return snap.docs.map(d => ({ id: d.id, ...d.data() }));
+          const { data: tasks, error } = await supabase
+            .from('tasks')
+            .select('*')
+            .eq('user_id', userId)
+            .order('created_at', { ascending: false });
+          if (error) throw error;
+          return tasks || [];
         } catch (e) { console.warn('loadTasks failed', e); return []; }
       }
 
-      async function loadActivities(uid) {
+      async function loadActivities(userId) {
         try {
-          const snap = await getDocs(collection(db, 'students', uid, 'activities'));
-          return snap.docs.map(d => ({ id: d.id, ...d.data() }));
+          const { data: activities, error } = await supabase
+            .from('activities')
+            .select('*')
+            .eq('user_id', userId)
+            .order('created_at', { ascending: false })
+            .limit(10);
+          if (error) throw error;
+          return activities || [];
         } catch (e) { console.warn('loadActivities failed', e); return []; }
       }
 
-      async function loadUpcoming(uid) {
+      async function loadUpcoming(userId) {
         try {
-          // primary: per-user subcollection
-          let snap = await getDocs(collection(db, 'students', uid, 'upcomingSessions'));
-          if (snap.size) return snap.docs.map(d => ({ id: d.id, ...d.data() }));
-          // fallback: global sessions collection filtered by userId
-          const q = query(collection(db, 'sessions'), where('userId', '==', uid));
-          snap = await getDocs(q);
-          return snap.docs.map(d => ({ id: d.id, ...d.data() }));
+          const { data: sessions, error } = await supabase
+            .from('sessions')
+            .select('*')
+            .eq('user_id', userId)
+            .gt('start_time', new Date().toISOString())
+            .order('start_time', { ascending: true })
+            .limit(5);
+          if (error) throw error;
+          return sessions || [];
         } catch (e) { console.warn('loadUpcoming failed', e); return []; }
       }
 
-      async function loadNotificationCount(uid) {
+      async function loadNotificationCount(userId) {
         try {
-          const q = query(collection(db, 'notifications'), where('userId', '==', uid), where('read', '==', false));
-          const snap = await getDocs(q);
-          return snap.size;
+          const { count, error } = await supabase
+            .from('notifications')
+            .select('*', { count: 'exact', head: true })
+            .eq('user_id', userId)
+            .eq('read', false);
+          if (error) throw error;
+          return count || 0;
         } catch (e) { console.warn('loadNotificationCount failed', e); return 0; }
       }
 
-      // Task create/update flows
-      async function addTaskForUser(uid, { title, due }) {
-        if (!uid) throw new Error('Not authenticated');
+      // Task create/update flows with Supabase
+      async function addTaskForUser(userId, { title, due }) {
+        if (!userId) throw new Error('Not authenticated');
         if (!title || typeof title !== 'string' || title.trim().length < 3) throw new Error('Task title must be at least 3 characters');
         const payload = {
+          user_id: userId,
           title: title.trim(),
-          due: due ? String(due) : '',
+          due: due ? String(due) : null,
           done: false,
-          createdAt: serverTimestamp()
+          created_at: new Date().toISOString()
         };
-        const ref = await addDoc(collection(db, 'students', uid, 'tasks'), payload);
-        return { id: ref.id, ...payload };
+        const { data, error } = await supabase
+          .from('tasks')
+          .insert([payload])
+          .select()
+          .single();
+        if (error) throw error;
+        return data;
       }
 
-      async function markAllTasksComplete(uid) {
-        if (!uid) throw new Error('Not authenticated');
-        const tasks = await loadTasks(uid);
-        await Promise.all(tasks.map(t => updateDoc(doc(db, 'students', uid, 'tasks', t.id), { done: true, completedAt: serverTimestamp() }).catch(e => console.warn('update failed', e))));
+      async function markAllTasksComplete(userId) {
+        if (!userId) throw new Error('Not authenticated');
+        const { error } = await supabase
+          .from('tasks')
+          .update({ 
+            done: true,
+            completed_at: new Date().toISOString()
+          })
+          .eq('user_id', userId)
+          .eq('done', false);
+        if (error) throw error;
       }
 
-      async function updateTaskDone(uid, taskId, done) {
-        if (!uid) throw new Error('Not authenticated');
-        await updateDoc(doc(db, 'students', uid, 'tasks', taskId), { done: !!done, completedAt: done ? serverTimestamp() : null }).catch(e => console.warn('updateTaskDone failed', e));
+      async function updateTaskDone(userId, taskId, done) {
+        if (!userId) throw new Error('Not authenticated');
+        const { error } = await supabase
+          .from('tasks')
+          .update({ 
+            done: !!done,
+            completed_at: done ? new Date().toISOString() : null
+          })
+          .eq('id', taskId)
+          .eq('user_id', userId); // Ensure user owns task
+        if (error) throw error;
       }
 
-      // Auth state handling: when user logs in, load their personal data
-      onAuthStateChanged(auth, async (u) => {
-        if (!u) {
-          // Not authenticated — show limited view
-          setText('heroMsg', 'Please sign in to see your personalized dashboard.');
+      // Handle Supabase auth state and session
+      supabase.auth.onAuthStateChange(async (event, session) => {
+        if (!session || !session.user) {
+          // Not authenticated — redirect to login
+          window.location.href = '../general/login-new.html';
           return;
         }
-        currentUid = u.uid;
+
+        // Verify email confirmation
+        if (!session.user.email_confirmed_at) {
+          alert('Please verify your email first. Check your inbox for the verification link.');
+          await supabase.auth.signOut();
+          window.location.href = '../general/login-new.html';
+          return;
+        }
+
+        // Use the shared sync helper to fetch profile, activities and notification count
+        try {
+          const synced = await syncUserData(session.user);
+          const profile = synced?.profile || null;
+
+          if (!profile) {
+            console.warn('No profile found for user');
+            setText('heroMsg', 'Welcome! Please complete your profile setup.');
+          }
+
+          const displayName = profile?.username || profile?.full_name || session.user.email?.split('@')[0] || 'Student';
+          setText('userName', displayName);
+          setText('topName', displayName);
+          setText('heroName', displayName);
+          if (profile?.avatar_url) {
+            setImage('avatar-sm', profile.avatar_url);
+            setImage('topAvatar', profile.avatar_url);
+          }
+
+          if (profile?.level) {
+            setText('userLevel', profile.level);
+            setText('topLevel', profile.level);
+          }
+
+          currentUid = session.user.id;
+
+            // ---- Enforce study plan existence ----
+            async function checkStudyPlanExistsAndPrompt() {
+              try {
+                // If user already has a local cached plan, skip server check
+                if (localStorage.getItem('studyPlan')) {
+                  console.debug('[study-plan modal] Found localStorage studyPlan, skipping modal.');
+                  return false;
+                }
+
+                // Attempt to resolve the profile row for the authenticated user
+                let profileId = currentUid;
+                try {
+                  const profRes = await supabase
+                    .from('profiles')
+                    .select('id')
+                    .eq('id', currentUid)
+                    .limit(1)
+                    .maybeSingle();
+                  console.debug('[study-plan modal] Profile lookup result:', profRes);
+                  if (profRes && (profRes.data || profRes.error === null)) {
+                    if (profRes.data && profRes.data.id) profileId = profRes.data.id;
+                  } else if (profRes && profRes.id) {
+                    profileId = profRes.id || profileId;
+                  }
+                } catch (pfErr) {
+                  console.debug('[study-plan modal] Profile lookup failed (falling back to auth id)', pfErr);
+                }
+
+                // Now check study_plans using the resolved profileId
+                let plans = null;
+                let planErr = null;
+                try {
+                  const res = await supabase
+                    .from('study_plans')
+                    .select('id')
+                    .eq('student_id', profileId)
+                    .limit(1);
+                  plans = res.data; planErr = res.error;
+                  console.debug('[study-plan modal] study_plans query result:', plans, planErr);
+                } catch (e) { planErr = e; }
+
+                // If no result, try alternate column name 'user_id' as fallback
+                if ((!plans || plans.length === 0) && !planErr) {
+                  try {
+                    const res2 = await supabase
+                      .from('study_plans')
+                      .select('id')
+                      .eq('user_id', profileId)
+                      .limit(1);
+                    plans = res2.data; planErr = res2.error;
+                    console.debug('[study-plan modal] study_plans (user_id) query result:', plans, planErr);
+                  } catch (e) { planErr = e; }
+                }
+
+                if (planErr) {
+                  console.warn('[study-plan modal] study plan lookup failed', planErr);
+                  return false; // don't block on lookup errors
+                }
+
+                const exists = Array.isArray(plans) && plans.length > 0;
+                console.debug('[study-plan modal] Plan exists?', exists);
+                if (!exists) {
+                  // show modal to force creation
+                  const modal = document.getElementById('planRequiredModal');
+                  if (modal) {
+                    modal.classList.remove('hidden');
+                    console.debug('[study-plan modal] Modal shown.');
+                  } else {
+                    console.warn('[study-plan modal] Modal element not found in DOM.');
+                  }
+                  // prevent interactions by hiding main content from assistive tech
+                  const main = document.getElementById('main-content'); if (main) main.setAttribute('aria-hidden', 'true');
+                  return false;
+                }
+                return true;
+              } catch (e) {
+                console.warn('[study-plan modal] checkStudyPlanExistsAndPrompt error', e);
+                return false;
+              }
+            }
+
+            // run the check (do not await blocking other inits)
+            checkStudyPlanExistsAndPrompt();
+
+          // Render activities from sync result if provided
+          if (Array.isArray(synced.activities)) renderActivity(synced.activities);
+          if (Array.isArray(synced.upcoming)) renderUpcoming(synced.upcoming);
+          if (typeof synced.unreadNotifications !== 'undefined') setText('notifCount', String(synced.unreadNotifications));
+        } catch (syncErr) {
+          console.warn('Failed to sync user data using syncUserData():', syncErr);
+          // Fallback: leave existing behavior below to load pieces individually
+          currentUid = session.user.id;
+        }
         // Wire task UI events that require auth
         const addBtn = document.getElementById('addTaskBtn');
         if (addBtn) {
@@ -513,30 +663,26 @@ if (cachedUser) {
         });
 
         try {
-          // attempt to load the students/{uid} profile
-          const userDocSnap = await getDoc(doc(db, 'students', u.uid));
-          const profile = userDocSnap.exists() ? userDocSnap.data() : {};
-          setText('weeklyProgressLabel', (profile.weeklyProgress || 0) + '%');
-          setText('mockAvgLabel', (profile.mockAvg || 0) + '%');
-          setText('streakLabel', (profile.streak || 0) + ' days');
+          // Optional: update local profile cache using profile APIs
+          // If you want to update the profile object from session metadata, you can call initializeUserProfile/updateUserProfile here.
 
-          // load live lists
+          // load live lists (use currentUid set above)
           const [tasks, activities, upcoming] = await Promise.all([
-            loadTasks(u.uid),
-            loadActivities(u.uid),
-            loadUpcoming(u.uid)
+            loadTasks(currentUid),
+            loadActivities(currentUid),
+            loadUpcoming(currentUid)
           ]);
 
           renderTasksList(tasks);
           renderActivity(activities);
           renderUpcoming(upcoming);
-          setText('notifCount', notifCount.toString());
+
+          // notification count was set earlier from syncUserData when available
         } catch (err) {
           console.error('Error loading user data:', err);
           showError('Failed to load your dashboard data.');
         }
       });
-
       // Sidebar toggle and quick actions (consolidated)
       const sidebar = document.getElementById('sidebar');
       const mainContent = document.getElementById('main-content');
@@ -595,9 +741,9 @@ if (cachedUser) {
       }
 
     </script>
-  <script type="module" src="/js/firebase-config.js"></script>
-  <script src="/js/firebase-user.js"></script>
-  <script src="/js/user-cache.js"></script>
+
+  <script type="module" src="../js/user-cache.js"></script>
+  <script type="module" src="./js/sidebar-fragment.js"></script>
 
 <style>
   #cortex-ai-chat-button {
@@ -628,23 +774,101 @@ if (cachedUser) {
 </style>
 
 <div id="cortex-ai-chat-button" role="button" aria-label="Open Cortex AI chat">
-  <img src="/cortex-owl-brain.svg" alt="Cortex AI" class="cortex-icon" style="width:72px;height:72px;box-shadow:0 4px 16px rgba(0,0,0,0.20);border-radius:16px;transition:transform 0.18s cubic-bezier(.4,2,.6,1),box-shadow 0.18s;cursor:pointer;" onmouseover="this.style.transform='scale(1.12)';this.style.boxShadow='0 8px 32px rgba(0,0,0,0.28)';" onmouseout="this.style.transform='scale(1)';this.style.boxShadow='0 4px 16px rgba(0,0,0,0.20)';" onmousedown="this.style.transform='scale(0.96)';" onmouseup="this.style.transform='scale(1.12)';" />
+  <img src="../cortex-owl-brain.svg" alt="Cortex AI" class="cortex-icon" style="width:72px;height:72px;box-shadow:0 4px 16px rgba(0,0,0,0.20);border-radius:16px;transition:transform 0.18s cubic-bezier(.4,2,.6,1),box-shadow 0.18s;cursor:pointer;" onmouseover="this.style.transform='scale(1.12)';this.style.boxShadow='0 8px 32px rgba(0,0,0,0.28)';" onmouseout="this.style.transform='scale(1)';this.style.boxShadow='0 4px 16px rgba(0,0,0,0.20)';" onmousedown="this.style.transform='scale(0.96)';" onmouseup="this.style.transform='scale(1.12)';" />
 </div>
 <iframe 
   id="cortex-ai-chat-popup"  
   src="https://app.edcafe.ai/chatbots/68b96ebb2a5be310497b6a0b">
 </iframe>
 
-<script>
-  const button = document.getElementById("cortex-ai-chat-button");
-  const popup = document.getElementById("cortex-ai-chat-popup");
 
+  </script>
+  <script type="module" src="../js/user-cache.js"></script>
+  <script type="module" src="./js/sidebar-fragment.js"></script>
+
+  <!-- Study Plan Required Modal -->
+  <div id="planRequiredModal" class="hidden fixed inset-0 bg-black/50 z-50 flex items-center justify-center px-4">
+    <div class="bg-white rounded-xl shadow-lg max-w-xl w-full p-6 text-center">
+      <h3 class="text-2xl font-bold mb-2">Create Your Study Plan</h3>
+      <p class="mb-4 text-slate-600">We couldn't find a saved study plan for your account. Please create a personalized study plan before you continue using the platform.</p>
+      <div class="flex justify-center gap-3">
+        <button id="goCreatePlanBtn" class="px-5 py-2 bg-indigo-600 text-white rounded-full">Create Plan Now</button>
+        <button id="recheckPlanBtn" class="px-5 py-2 border rounded-full">I already created one</button>
+      </div>
+      <p class="text-xs text-slate-400 mt-3">You can also open the study plan generator and import an existing plan.</p>
+    </div>
+  </div>
+
+  <script>
+    // Modal button handlers
+    document.addEventListener('click', (e) => {
+      if (e.target && e.target.id === 'goCreatePlanBtn') {
+        // Navigate to the study plan page where the user can create/import a plan
+        window.location.href = 'study-plan.html';
+      }
+      if (e.target && e.target.id === 'recheckPlanBtn') {
+        // Re-run server check and hide modal if plan now exists
+        (async function(){
+          try {
+            const main = document.getElementById('main-content');
+            const modal = document.getElementById('planRequiredModal');
+            if (!window.supabase || !window.supabase.auth) return;
+            const session = await window.supabase.auth.getSession();
+            const uid = session?.data?.session?.user?.id || null;
+            if (!uid) return;
+
+            // Resolve profile id first (profiles.id) then check study_plans.student_id
+            let profileId = uid;
+            try {
+              const profRes = await window.supabase
+                .from('profiles')
+                .select('id')
+                .eq('id', uid)
+                .limit(1)
+                .maybeSingle();
+              if (profRes && profRes.data && profRes.data.id) profileId = profRes.data.id;
+            } catch (pfErr) { console.debug('recheck: profile lookup failed', pfErr); }
+
+            let plans = null; let err = null;
+            try {
+              const res = await window.supabase
+                .from('study_plans')
+                .select('id')
+                .eq('student_id', profileId)
+                .limit(1);
+              plans = res.data; err = res.error;
+            } catch (e) { err = e; }
+            if ((!plans || plans.length === 0) && !err) {
+              try {
+                const res2 = await window.supabase
+                  .from('study_plans')
+                  .select('id')
+                  .eq('user_id', profileId)
+                  .limit(1);
+                plans = res2.data; err = res2.error;
+              } catch (e) { err = e; }
+            }
+
+            if (err) { console.warn('recheck study plan failed', err); return; }
+            if (Array.isArray(plans) && plans.length > 0) {
+              if (modal) modal.classList.add('hidden');
+              if (main) main.removeAttribute('aria-hidden');
+            } else {
+              alert('No study plan found yet. Please create one.');
+            }
+          } catch (err) { console.warn('recheckPlanBtn error', err); }
+        })();
+      }
+    });
+  </script>
+<script>
   button.addEventListener("click", () => {
     popup.style.display = (popup.style.display === "none" || popup.style.display === "") 
       ? "block" 
       : "none";
   });
 </script>
+<script>
 
   </body>
 </html>

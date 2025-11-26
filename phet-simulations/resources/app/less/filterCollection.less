@@ -1,0 +1,260 @@
+/* Copyright 2020, University of Colorado Boulder */
+@import 'commonVars';
+
+.sim-collection {
+  list-style-type: none;
+}
+
+.collection {
+  width: 1800px;
+}
+
+.no-results-message-holder {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+
+  .h4 {
+    margin: 20px;
+    width: 300px;
+    text-align: center;
+    font-weight: 200;
+  }
+
+  img {
+    height: 155px;
+    width: 170px;
+    margin-top: 10px;
+  }
+}
+
+.grid {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  max-width: 1800px;
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+
+  li {
+    width: 100%;
+  }
+}
+
+.gridView {
+  display: flex;
+  justify-content: center;
+}
+
+.header-container {
+  margin-left: @filter-page-right-left-margin;
+}
+
+.header {
+  margin-top: 18px;
+}
+
+.p.untranslated-text {
+  margin: 1em 0;
+}
+
+@disabled-opacity: 0.50;
+@disabled-background-color: #f7f7f7;
+
+// @private Used as a variable
+.overlay {
+  content: '';
+  position: absolute;
+  background: @disabled-background-color;
+  opacity: @disabled-opacity;
+  cursor: default;
+}
+
+.disabled {
+
+  .tile::before {
+    .overlay();
+    z-index: 10;
+    border-radius: 6px;
+  }
+
+  .grid {
+    .thumbnail {
+      filter: grayscale(0.75);
+    }
+
+    .tile::before {
+      width: 214px;
+      height: 228px;
+    }
+  }
+
+  .list {
+    .tile::before {
+      width: calc(100% - @filter-page-right-left-margin + 4px);
+      height: 54px;
+    }
+  }
+
+  .badge-holder {
+    z-index: 11;
+  }
+
+  .badge-holder::before {
+    .overlay();
+    z-index: 12;
+    width: @badgeSize;
+    height: @badgeSize;
+  }
+}
+
+.java-disabled {
+  .java.tile::before {
+    .overlay();
+    z-index: 10;
+    border-radius: 6px;
+  }
+
+  .grid {
+    &.java {
+      .thumbnail {
+        filter: grayscale(0.75);
+      }
+
+      &.tile::before {
+        width: 214px;
+        height: 228px;
+      }
+    }
+  }
+
+  .list {
+    &.java.tile::before {
+      width: calc(100% - @filter-page-right-left-margin + 4px);
+      height: 54px;
+    }
+  }
+
+  .java .badge-holder {
+    z-index: 11;
+  }
+
+  .java .badge-holder::before {
+    .overlay();
+    z-index: 12;
+    width: @badgeSize;
+    height: @badgeSize;
+  }
+}
+
+.flash-disabled {
+  .flash.tile::before {
+    .overlay();
+    z-index: 10;
+    border-radius: 6px;
+  }
+
+  .grid {
+    &.flash {
+      .thumbnail {
+        filter: grayscale(0.75);
+      }
+
+      &.tile::before {
+        width: 214px;
+        height: 228px;
+      }
+    }
+  }
+
+  .list {
+    &.flash.tile::before {
+      width: calc(100% - @filter-page-right-left-margin + 4px);
+      height: 54px;
+    }
+  }
+
+  .flash .badge-holder {
+    z-index: 11;
+  }
+
+  .flash .badge-holder::before {
+    .overlay();
+    z-index: 12;
+    width: @badgeSize;
+    height: @badgeSize;
+  }
+}
+
+.untranslated {
+
+  .overlay {
+    content: '';
+    position: absolute;
+    background: white;
+    opacity: 0.35;
+  }
+
+  .tile::before {
+    .overlay();
+    z-index: 10;
+    border-radius: 6px;
+
+    .grid&,
+    .strip& {
+      width: 210px;
+      height: 224px;
+    }
+
+    .list& {
+      width: calc(100% - @filter-page-wide-width-factor - @filter-page-right-left-margin * 2);
+      height: 49px;
+    }
+  }
+
+  .badge-holder {
+    z-index: 11;
+  }
+
+  .badge-holder::before {
+    .overlay();
+    z-index: 12;
+    width: @badgeSize;
+    height: @badgeSize;
+  }
+}
+
+// Single column grid
+@media (max-width: 365px) {
+  .grid {
+    justify-content: space-evenly;
+  }
+}
+
+// Restricted "mobile" view, 2 columns that should stick to the edges
+@media (min-width: 366px) and (max-width: 410px) {
+  .grid {
+    justify-content: space-between;
+  }
+}
+
+// "Mobile" view, evenly space
+@media (min-width: 411px) and (max-width: @filter-page-left-collapse-breakpoint) {
+  .grid {
+    justify-content: space-evenly;
+  }
+}
+
+// "Desktop" view, center items
+@media (min-width: @filter-page-left-collapse-breakpoint + 1) {
+  .grid {
+    justify-content: center;
+  }
+}

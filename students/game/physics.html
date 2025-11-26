@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Physics Learning Game</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdn.socket.io/4.5.4/socket.io.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/cannon.js/0.6.2/cannon.min.js"></script>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+</head>
+<body class="bg-gradient-to-b from-gray-900 to-gray-800 min-h-screen text-white">
+    <nav class="bg-transparent text-white p-4">
+        <div class="container mx-auto flex justify-between items-center">
+            <div class="flex items-center space-x-6">
+                <h1 class="text-3xl font-bold tracking-wider">🚀 ScienceQuest — Physics</h1>
+                <div class="flex items-center space-x-3 bg-white bg-opacity-5 rounded-lg px-3 py-2">
+                    <div id="lives-container" class="text-xl"></div>
+                    <div id="life-timer" class="text-xs text-gray-300 ml-2"></div>
+                </div>
+            </div>
+
+            <div class="flex items-center space-x-6">
+                <div class="flex items-center space-x-2 bg-white bg-opacity-5 rounded-lg px-3 py-2">
+                    <span class="text-yellow-300">🏆</span>
+                    <div id="total-score" class="text-xl font-bold">0</div>
+                </div>
+                <div class="space-x-4 hidden md:flex">
+                    <a href="index.html" class="hover:text-blue-300 transition-colors">Home</a>
+                    <a href="chemistry.html" class="hover:text-green-300 transition-colors">Chemistry</a>
+                    <a href="biology.html" class="hover:text-red-300 transition-colors">Biology</a>
+                    <a href="mathematics.html" class="hover:text-purple-300 transition-colors">Mathematics</a>
+                </div>
+                <button id="music-toggle" class="text-2xl cursor-pointer" title="Right-click to adjust volume">🔊</button>
+            </div>
+        </div>
+    </nav>
+
+    <div id="game-container" class="w-full h-screen fixed top-0 left-0 -z-10"></div>
+    <div id="game-ui" class="fixed top-0 left-0 w-full h-full pointer-events-none hidden">
+        <div class="absolute top-4 left-4 bg-black/50 text-white p-4 rounded-lg pointer-events-auto">
+            <div id="player-stats">
+                Score: <span id="score">0</span>
+            </div>
+        </div>
+        <div id="multiplayer-stats" class="absolute top-4 right-4 bg-black/50 text-white p-4 rounded-lg pointer-events-auto hidden">
+            <h3 class="font-bold mb-2">Players</h3>
+            <ul id="players-list"></ul>
+        </div>
+    </div>
+    
+    <div class="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center">
+        <!-- Main Topic Selection Menu -->
+        <div id="topic-menu" class="bg-gray-900/80 p-8 rounded-xl backdrop-blur-sm">
+            <h2 class="text-4xl font-bold text-blue-300 mb-6">🚀 ScienceQuest — Physics</h2>
+            <p class="text-gray-300 mb-8">Master WAEC & IGCSE Physics through Interactive Gameplay</p>
+            
+            <div class="grid grid-cols-1 gap-4 min-w-[300px]">
+                <button class="topic-btn w-full bg-blue-600 text-white px-8 py-4 rounded-lg text-xl hover:bg-blue-700 transition-colors" data-topic="mechanics">
+                    Mechanics
+                </button>
+                <button class="topic-btn w-full bg-green-600 text-white px-8 py-4 rounded-lg text-xl hover:bg-green-700 transition-colors" data-topic="waves">
+                    Waves
+                </button>
+                <button class="topic-btn w-full bg-yellow-600 text-white px-8 py-4 rounded-lg text-xl hover:bg-yellow-700 transition-colors" data-topic="electricity">
+                    Electricity
+                </button>
+                <button class="topic-btn w-full bg-red-600 text-white px-8 py-4 rounded-lg text-xl hover:bg-red-700 transition-colors" data-topic="thermodynamics">
+                    Thermodynamics
+                </button>
+            </div>
+        </div>
+
+        <!-- Mode Selection Menu (Initially Hidden) -->
+        <div id="mode-menu" class="bg-gray-900/80 p-8 rounded-xl backdrop-blur-sm hidden">
+            <h2 class="text-4xl font-bold mb-6">
+                <span id="selected-topic-title" class="text-blue-300">Select Mode</span>
+            </h2>
+
+            <div class="space-y-4 min-w-[300px]">
+                <button id="solo-btn" class="w-full bg-blue-600 text-white px-8 py-4 rounded-lg text-xl hover:bg-blue-700 transition-colors flex items-center justify-center gap-3">
+                    <span class="material-icons">person</span>
+                    Solo Practice
+                </button>
+                <button id="multiplayer-btn" class="w-full bg-purple-600 text-white px-8 py-4 rounded-lg text-xl hover:bg-purple-700 transition-colors flex items-center justify-center gap-3">
+                    <span class="material-icons">groups</span>
+                    Multiplayer
+                </button>
+                <button id="progress-btn" class="w-full bg-green-600 text-white px-8 py-4 rounded-lg text-xl hover:bg-green-700 transition-colors flex items-center justify-center gap-3">
+                    <span class="material-icons">analytics</span>
+                    Progress
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div id="game-ui" class="fixed top-0 left-0 w-full h-full pointer-events-none hidden">
+        <div class="absolute top-4 left-4 bg-black/50 text-white p-4 rounded-lg pointer-events-auto">
+            <div id="player-stats">
+                Score: <span id="score">0</span>
+            </div>
+        </div>
+        <div id="players-list" class="absolute top-4 right-4 bg-black/50 text-white p-4 rounded-lg pointer-events-auto">
+            <h3>Players</h3>
+            <ul id="players"></ul>
+        </div>
+    </div>
+
+    <footer class="bg-gray-800 text-white p-4 mt-8">
+        <div class="container mx-auto text-center">
+            <p>© 2025 ScienceQuest - Educational Platform</p>
+        </div>
+    </footer>
+
+    <script src="js/physics-ui.js"></script>
+    <script src="js/physics-simulation.js"></script>
+    <script src="js/physics-experiments.js"></script>
+</body>
+</html>

@@ -1,0 +1,6 @@
+owner: phetsims
+repo: weddell
+provider: github
+updaterCacheDirName: phet-simulations-updater
+publisherName:
+  - University Of Colorado at Boulder - Code Signing

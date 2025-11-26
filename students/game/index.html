@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ScienceQuest - The Ultimate Science Game</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="css/style.css" rel="stylesheet">
+</head>
+<body class="bg-gradient-to-b from-gray-900 to-gray-800 min-h-screen">
+    <nav class="bg-blue-600 text-white p-4 shadow-lg">
+        <div class="container mx-auto flex justify-between items-center">
+            <div class="flex items-center space-x-8">
+                <h1 class="text-3xl font-bold tracking-wider">🚀 ScienceQuest</h1>
+                <div class="flex flex-col items-center bg-white bg-opacity-10 rounded-lg px-4 py-2">
+                    <div id="lives-container" class="fixed top-4 left-4"></div>
+                    <div id="life-timer" class="fixed top-14 left-4 text-sm text-gray-600"></div>
+                </div>
+            </div>
+            <div class="flex items-center space-x-6">
+                <div class="flex items-center space-x-2 bg-white bg-opacity-10 rounded-lg px-4 py-2">
+                    <span class="text-yellow-300">🏆</span>
+                    <div id="total-score" class="text-2xl font-bold">0</div>
+                </div>
+                <div class="space-x-4">
+                    <a href="physics.html" class="hover:text-blue-200 transition-colors">Physics</a>
+                    <a href="chemistry.html" class="hover:text-green-200 transition-colors">Chemistry</a>
+                    <a href="biology.html" class="hover:text-red-200 transition-colors">Biology</a>
+                    <a href="mathematics.html" class="hover:text-purple-200 transition-colors">Mathematics</a>
+                </div>
+                <button id="music-toggle" class="fixed top-4 right-4 text-2xl cursor-pointer">🔈</button>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container mx-auto p-8">
+        <!-- Game Instructions -->
+        <div class="text-white text-center mb-12">
+            <h2 class="text-4xl font-bold mb-4">Welcome to ScienceQuest!</h2>
+            <p class="text-xl mb-8">Test your knowledge, earn points, unlock achievements, and become a science master!</p>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-3xl mx-auto mb-12">
+                <div class="bg-blue-600 bg-opacity-20 p-4 rounded-lg">
+                    <div class="text-3xl mb-2">❤️</div>
+                    <div class="font-bold">3 Lives</div>
+                    <div class="text-sm opacity-75">Don't run out!</div>
+                </div>
+                <div class="bg-blue-600 bg-opacity-20 p-4 rounded-lg">
+                    <div class="text-3xl mb-2">⏰</div>
+                    <div class="font-bold">Beat the Timer</div>
+                    <div class="text-sm opacity-75">Answer quickly for bonus points</div>
+                </div>
+                <div class="bg-blue-600 bg-opacity-20 p-4 rounded-lg">
+                    <div class="text-3xl mb-2">🎯</div>
+                    <div class="font-bold">Streak Bonus</div>
+                    <div class="text-sm opacity-75">Get more points for consecutive correct answers</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <!-- Physics Card -->
+            <div class="subject-card bg-gradient-to-br from-blue-500 to-blue-700 rounded-lg shadow-lg p-6 text-white transform hover:-translate-y-2 transition-all duration-300">
+                <div class="text-4xl mb-4">⚡</div>
+                <h2 class="text-2xl font-bold mb-4">Physics</h2>
+                <p class="text-blue-100 mb-4">Master the fundamental laws that govern our universe.</p>
+                <a href="physics.html" class="inline-block bg-white text-blue-600 px-6 py-2 rounded-full hover:bg-blue-100 transition-colors">Play Now →</a>
+            </div>
+
+            <!-- Chemistry Card -->
+            <div class="subject-card bg-gradient-to-br from-green-500 to-green-700 rounded-lg shadow-lg p-6 text-white transform hover:-translate-y-2 transition-all duration-300">
+                <div class="text-4xl mb-4">🧪</div>
+                <h2 class="text-2xl font-bold mb-4">Chemistry</h2>
+                <p class="text-green-100 mb-4">Mix elements and unlock the secrets of matter.</p>
+                <a href="chemistry.html" class="inline-block bg-white text-green-600 px-6 py-2 rounded-full hover:bg-green-100 transition-colors">Play Now →</a>
+            </div>
+
+            <!-- Biology Card -->
+            <div class="subject-card bg-gradient-to-br from-red-500 to-red-700 rounded-lg shadow-lg p-6 text-white transform hover:-translate-y-2 transition-all duration-300">
+                <div class="text-4xl mb-4">🧬</div>
+                <h2 class="text-2xl font-bold mb-4">Biology</h2>
+                <p class="text-red-100 mb-4">Explore the amazing world of living organisms.</p>
+                <a href="biology.html" class="inline-block bg-white text-red-600 px-6 py-2 rounded-full hover:bg-red-100 transition-colors">Play Now →</a>
+            </div>
+
+            <!-- Mathematics Card -->
+            <div class="subject-card bg-gradient-to-br from-purple-500 to-purple-700 rounded-lg shadow-lg p-6 text-white transform hover:-translate-y-2 transition-all duration-300">
+                <div class="text-4xl mb-4">🔢</div>
+                <h2 class="text-2xl font-bold mb-4">Mathematics</h2>
+                <p class="text-purple-100 mb-4">Challenge yourself with numbers and patterns.</p>
+                <a href="mathematics.html" class="inline-block bg-white text-purple-600 px-6 py-2 rounded-full hover:bg-purple-100 transition-colors">Play Now →</a>
+            </div>
+        </div>
+
+        <!-- Achievements Section -->
+        <div class="mt-12 bg-white bg-opacity-10 rounded-lg p-6">
+            <h3 class="text-2xl font-bold text-white mb-6">🏆 Achievements</h3>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4" id="achievements">
+                <!-- Achievements will be loaded dynamically -->
+            </div>
+        </div>
+    </main>
+
+    <footer class="bg-gray-900 text-white p-4 mt-8">
+        <div class="container mx-auto text-center">
+            <p>© 2025 ScienceQuest - The Ultimate Science Game</p>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script>
+        // Display achievements
+        document.addEventListener('DOMContentLoaded', function() {
+            const achievements = {
+                'Beginner': { score: 1000, icon: '🌟', description: 'Score 1,000 points' },
+                'Intermediate': { score: 5000, icon: '🏆', description: 'Score 5,000 points' },
+                'Expert': { score: 10000, icon: '👑', description: 'Score 10,000 points' },
+                'Master': { score: 20000, icon: '🎓', description: 'Score 20,000 points' }
+            };
+
+            const achievementsContainer = document.getElementById('achievements');
+            const unlockedAchievements = JSON.parse(localStorage.getItem('achievements')) || {};
+
+            for (const [name, data] of Object.entries(achievements)) {
+                const isUnlocked = unlockedAchievements[name];
+                const achievementDiv = document.createElement('div');
+                achievementDiv.className = `achievement p-4 rounded-lg text-center ${isUnlocked ? 'bg-blue-600' : 'bg-gray-700'} transition-all duration-300`;
+                achievementDiv.innerHTML = `
+                    <div class="text-3xl mb-2 ${isUnlocked ? '' : 'opacity-50'}">${data.icon}</div>
+                    <div class="font-bold text-white">${name}</div>
+                    <div class="text-sm ${isUnlocked ? 'text-blue-200' : 'text-gray-400'}">${data.description}</div>
+                `;
+                achievementsContainer.appendChild(achievementDiv);
+            }
+        });
+    </script>
+</body>
+</html>

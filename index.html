@@ -77,13 +77,7 @@
       });
     });
   </script>
-  <!-- Firebase SDK -->
-  <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-analytics-compat.js"></script>
-  <!-- Firebase Config -->
-  <script type="module" src="js/firebase-config.js"></script>
+  <!-- Firebase SDK removed (migrated to Supabase) -->
   <style>
     /* Hero Section Styles */
     .hero {
@@ -1074,7 +1068,7 @@
     <div class="container mx-auto px-4">
       <nav class="flex items-center justify-between py-4">
         <a href="/" class="flex items-center space-x-3">
-          <img src="/assets/images/logo.png" alt="JUANOVA CORTEX Logo" class="h-10 w-10 rounded-full">
+          <img src="/assets/images/logo latest.png" alt="JUANOVA CORTEX Logo" class="h-10 w-10 rounded-full">
           <span class="text-2xl font-bold text-gray-800">JUANOVA CORTEX</span>
         </a>
   <ul class="hidden md:flex items-center space-x-8 font-medium text-gray-600">
@@ -1984,15 +1978,26 @@
   });
 </script>
 
-<!-- Firebase auth: toggle nav links when signed in -->
+<!-- Auth: toggle nav links when signed in (Supabase) -->
 <script type="module">
-  import { onAuthStateChanged, signOut } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js';
-  import { auth } from './js/firebase-config.js';
+  import { config } from '/js/config.js';
+  import { initSupabase, signOut as supaSignOut } from '/js/supabase-client.js';
 
-  console.debug('Index: Firebase module auth imported', !!auth);
+  let supabase = null;
+
+  try {
+    if (config && config.supabase && config.supabase.url && config.supabase.anonKey) {
+      supabase = initSupabase(config.supabase.url, config.supabase.anonKey);
+      console.debug('Index: Supabase initialized');
+    } else {
+      console.debug('Index: Supabase config not found (config.supabase missing)');
+    }
+  } catch (err) {
+    console.warn('Index: Supabase init error', err);
+  }
 
   function setSignedInUI(user) {
-    console.debug('Auth state: signed in', user && user.uid);
+    console.debug('Auth state: signed in', user && (user.id || user.id));
     const loginLink = document.getElementById('nav-login-link');
     const ctaLink = document.getElementById('nav-cta-link');
     if (loginLink) {
@@ -2004,7 +2009,8 @@
       ctaLink.href = '#';
       ctaLink.addEventListener('click', async (e) => {
         e.preventDefault();
-        await signOut(auth);
+        if (supabase) await supaSignOut(supabase);
+        else console.warn('Supabase client not initialised - cannot sign out');
       });
     }
 
@@ -2019,7 +2025,8 @@
       mCta.href = '#';
       mCta.addEventListener('click', async (e) => {
         e.preventDefault();
-        await signOut(auth);
+        if (supabase) await supaSignOut(supabase);
+        else console.warn('Supabase client not initialised - cannot sign out');
       });
     }
   }
@@ -2053,13 +2060,28 @@
     }
   }
 
-  onAuthStateChanged(auth, (user) => {
-    if (user) {
-      setSignedInUI(user);
-    } else {
-      setSignedOutUI();
-    }
-  });
+  if (supabase && supabase.auth && supabase.auth.onAuthStateChange) {
+    // Listen for auth changes
+    supabase.auth.onAuthStateChange((event, session) => {
+      if (session && session.user) {
+        setSignedInUI(session.user);
+      } else {
+        setSignedOutUI();
+      }
+    });
+
+    // Check current session on load
+    supabase.auth.getSession().then(({ data }) => {
+      if (data && data.session && data.session.user) {
+        setSignedInUI(data.session.user);
+      } else {
+        setSignedOutUI();
+      }
+    }).catch(() => setSignedOutUI());
+  } else {
+    // Default to signed-out UI if Supabase not configured
+    setSignedOutUI();
+  }
 </script>
 
   <!-- Impact Modal -->

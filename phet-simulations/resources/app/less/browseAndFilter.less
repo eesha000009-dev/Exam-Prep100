@@ -1,0 +1,313 @@
+// Copyright 2019-2020, University of Colorado Boulder
+@import './commonVars';
+
+@cave-purple: #5a556f;
+
+#header {
+  z-index: 10;
+  align-self: flex-start;
+  padding: 12px 18px;
+}
+
+@separator-border: 1px solid #BBBBBB;
+@separator-margin: 15px;
+@phet-logo-height: 66px;
+@cu-logo-height: 54px;
+
+.phet-logo,
+.cu-logo {
+  display: inline-block;
+  vertical-align: top;
+}
+
+.phet-logo {
+  height: @phet-logo-height;
+  margin-right: 13px;
+
+  img {
+    height: @phet-logo-height;
+  }
+}
+
+.cu-logo {
+  border-left: @separator-border;
+  padding-left: @separator-margin;
+  margin-top: 13px;
+  height: @cu-logo-height;
+  padding-top: 0;
+  padding-bottom: 0;
+
+  img {
+    height: @cu-logo-height;
+  }
+}
+
+.container.simulations {
+  background: @cave-purple;
+}
+
+#browse-and-filter-page .banner-container::before {
+  background-image: url("@{imgRoot}/banner_underwater.png");
+}
+
+.tab-buttons {
+  width: 100%;
+  border-bottom: @divider-line-width solid @lightgray;
+  text-align: center;
+}
+
+.tab-button-container {
+  display: inline-block;
+  min-width: 100px;
+  text-align: center;
+}
+
+.tab-button {
+  display: inline-block;
+  background: transparent;
+  cursor: pointer;
+  font-family: @default-font-family;
+  font-weight: 400;
+  color: @gray;
+  opacity: 0.6;
+  margin: 0 20px;
+  padding: 16px 0 10px;
+  border: none;
+  border-bottom: 3px solid transparent;
+  transition: @short-transition;
+  text-decoration: none;
+  &.all-tab-button {
+    padding: 21px 0 16px;
+  }
+  .all-icon {
+    display: flex;
+    .badge-holder {
+      display: block;
+      margin: 0 2px;
+    }
+  }
+  .badge-holder {
+    display: inline-block;
+    .badge {
+      width: 20px;
+      height: 20px;
+    }
+  }
+
+  .text {
+    display: inline-block;
+  }
+}
+
+.tab-button:hover,
+.tab-button:focus {
+  color: black;
+  opacity: 1.0;
+  transition: @short-transition;
+}
+
+.tab-button:focus {
+  transition: @short-transition;
+  outline: @default-focus-outline;
+}
+
+.tab-button:active {
+  outline: none;
+}
+
+.tab-button.selected {
+  color: black;
+  opacity: 1.0;
+  border-color: @pink;
+  transition: @short-transition;
+}
+
+#selected-page {
+  width: 100%;
+}
+
+#filter-page {
+  max-width: @page-max-width;
+  margin: 0 auto;
+  padding: 0 @page-padding-x;
+}
+
+#filter-page-left,
+#filter-page-right {
+  display: inline-block;
+  float: left;
+}
+
+#browse-page {
+  margin: 20px;
+}
+
+.eggplantButton {
+  button {
+    border: 1px solid @eggplant;
+    background: transparent;
+    color: @eggplant;
+    cursor: pointer;
+    font-size: 16px;
+    margin: 10px;
+    padding: 10px;
+
+    img {
+      height: 16px;
+      margin-left: 10px;
+      vertical-align: bottom;
+      transform: rotate(45deg);
+      filter: @blackToEggplantFilter;
+    }
+  }
+
+  button:hover {
+    border: 1px solid @eggplant;
+    color: white;
+    background: @eggplant;
+
+    img {
+      filter: @blackToWhiteFilter;
+    }
+  }
+}
+
+.show-filters,
+.collapsed-filter-control-header {
+  .eggplantButton();
+}
+
+.clear-filters {
+  .eggplantButton();
+
+  button {
+    margin: 16px auto;
+    display: block;
+  }
+}
+
+@breadcrumbs-button-margin: 10px;
+
+.breadcrumbs {
+  .eggplantButton();
+
+  margin-left: @filter-page-right-left-margin;
+
+  li {
+    display: inline;
+  }
+
+  button {
+    margin: @breadcrumbs-button-margin @breadcrumbs-button-margin @breadcrumbs-button-margin 0;
+    background: @lightEggplant;
+    padding: 5px 10px;
+    font-size: 14px;
+  }
+}
+
+@media (max-width: @filter-page-left-collapse-breakpoint) {
+  @filter-open-transition: left .5s;
+  @filter-header-font-size: 24px;
+  @filter-header-padding: 20px;
+  @filter-left-collapsed-padding: 0 @filter-header-padding;
+
+  body.filter-visible {
+    overflow: hidden;
+  }
+
+  #filter-page {
+    .toggle-view-control .toggle-view-button-holder .dropdown-holder {
+      display: none;
+    }
+
+    .filter-toggle {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      &.show-filters button {
+        margin-left: 0;
+      }
+
+      &.show-filters .sort-dropdown {
+        margin-right: 5px;
+      }
+    }
+
+    .collapsed-filter-control-header {
+      background: @lightEggplant;
+      color: @eggplant;
+      text-align: center;
+      display: flex;
+      justify-content: space-between;
+      padding: @filter-left-collapsed-padding;
+      position: fixed;
+      width: 100vw;
+      box-sizing: border-box;
+      z-index: 20;
+
+      .h1 {
+        display: inline-block;
+        font-weight: lighter;
+        margin: 10px 0;
+      }
+
+      .hide-filters-button {
+        margin-right: 0;
+      }
+    }
+
+    #filter-page-left {
+      position: fixed;
+      top: 0;
+      z-index: 210;
+      background: white;
+      width: 100vw;
+      height: 100vh;
+      overflow-y: auto;
+      box-sizing: border-box;
+
+      #filter-control {
+        padding: @filter-left-collapsed-padding;
+        padding-bottom: 80px;
+        margin-top: @filter-header-font-size + 2 * @filter-header-padding;
+      }
+
+      left: -100vw;
+      transition: @filter-open-transition;
+    }
+
+    #filter-page-right {
+      width: 100%;
+
+      .breadcrumbs {
+        margin-left: 0;
+        margin-top: @breadcrumbs-button-margin;
+      }
+    }
+  }
+
+  #filter-page.filter-visible {
+    #filter-page-left {
+      left: 0;
+      transition: @filter-open-transition;
+    }
+  }
+}
+
+@media (min-width: @filter-page-left-collapse-breakpoint + 1px) {
+  .show-filters,
+  .collapsed-filter-control-header {
+    display: none;
+  }
+
+  #filter-page-left {
+    width: @filter-control-width;
+    padding-right: @filter-control-padding-right;
+  }
+
+  #filter-page-right {
+    min-width: @filter-page-right-min-width;
+    width: calc(100% ~"-" @filter-page-wide-width-factor);
+  }
+}

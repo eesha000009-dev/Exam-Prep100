@@ -1,0 +1,111 @@
+// Copyright 2020, University of Colorado Boulder
+@import 'commonVars';
+
+.rtl {
+
+  #filter-page-left,
+  #filter-page-right {
+    float: right;
+  }
+
+  #filter-page-left {
+    padding-right: 0;
+    padding-left: 10px;
+  }
+
+  .group-checkbox-content {
+    padding-right: 4px;
+  }
+
+  [role="checkbox"] {
+    padding: 3px 1.4em 3px 0;
+
+    &::before,
+    &::after {
+      right: -7px;
+    }
+
+    &[aria-checked="mixed"]::after {
+      transform: translate(-150%, -50%) rotateZ(45deg);
+    }
+
+    &[aria-checked="true"]::after {
+      transform: translateY(-65%) translateX(-220%) rotate(45deg);
+    }
+
+    &:focus::before {
+      right: -13px;
+    }
+  }
+
+  ul.checkboxes.inset {
+    padding-left: 0;
+    padding-right: 1.4em;
+  }
+
+  .sort-dropdown {
+    margin: 0 0 0 10px;
+  }
+
+  .breadcrumbs {
+    margin-left: 0;
+    margin-right: 20px;
+
+    button {
+      margin: 10px 0 10px 10px;
+
+      img {
+        margin: 0 10px 0 0;
+      }
+    }
+  }
+
+
+  @media (min-width: 797px) {
+    .toggle-view-control {
+      margin: 0 20px 0 0px;
+    }
+  }
+
+  .tile {
+    &.grid,
+    &.strip {
+      .information .icons .a11y-badges {
+        margin-left: 0;
+        margin-right: 7px;
+        border-left: none;
+        border-right: 1px solid @lightgray;
+
+        .badge-holder {
+          padding-left: 0;
+          padding-right: 7px;
+        }
+      }
+    }
+
+    &.list {
+      margin: 0 19px 0 0;
+
+      .information .icons .a11y-badges {
+        margin-right: 0;
+        margin-left: 7px;
+        border-right: none;
+        border-left: 1px solid @lightgray;
+
+        .badge-holder {
+          padding-right: 0;
+          padding-left: 7px;
+        }
+      }
+    }
+  }
+
+  .subject-container .h3 {
+    padding: 0 0 0 10px;
+  }
+
+  .badge-tooltip-inner {
+    position: absolute;
+    left: 0;
+  }
+}
