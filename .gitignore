@@ -11,3 +11,14 @@ node_modules/
 .env 
 uploads/
 node_modules
+
+# Large binary files
+*.exe
+*.pdf
+*.zip
+*.mp4
+assets/videos/
+students/textbook/
+students/My Books/
+phet-simulations/
+students/mongodb-windows-x86_64-*.zip

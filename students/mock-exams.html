@@ -11,6 +11,14 @@
     #sidebar.hide { transform: translateX(-100%); }
     @media (min-width: 1024px) { #sidebar { transform: translateX(0) !important; } }
   </style>
+  <script>
+    window.SUPABASE_URL = 'https://kruwfhzfqieuiuhqlutt.supabase.co';
+    window.SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImtydXdmaHpmcWlldWl1aHFsdXR0Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjIxOTk0OTAsImV4cCI6MjA3Nzc3NTQ5MH0.XD3-PDjDtKwCVsBILYgVrHF7Yc9tHkzpvpN2b7ojvB4';
+  </script>
+  <script src="../js/supabase-bootstrap.js"></script>
+  <script type="module">
+    import '../js/personalize-page.js';
+  </script>
 </head>
 <body class="bg-slate-50 text-slate-800">
   <div class="min-h-screen flex">
@@ -311,22 +319,8 @@
       }
 
       function getUserData() {
-        // Try global preloaded
+        // Prefer freshly dispatched/preloaded data. Avoid legacy localStorage fallbacks.
         if (window.preloadedUserData) return window.preloadedUserData;
-        // Try legacy cache
-        try {
-          const cachedCurrent = localStorage.getItem('cachedUserData_current');
-          if (cachedCurrent) {
-            const parsed = JSON.parse(cachedCurrent);
-            if (parsed.data) return parsed.data;
-            return parsed;
-          }
-        } catch {}
-        // Try userData
-        try {
-          const cached = localStorage.getItem('userData');
-          if (cached) return JSON.parse(cached);
-        } catch {}
         return null;
       }
 

@@ -90,6 +90,25 @@ function mountSidebar() {
 
   // If a global preloaded user exists, apply it
   if (window.preloadedUserData) tryApply(window.preloadedUserData);
+  else {
+    // Also check common localStorage keys used by login/signup flows
+    try {
+      const rawProfile = localStorage.getItem('userProfile') || localStorage.getItem('user');
+      if (rawProfile) {
+        const parsed = JSON.parse(rawProfile);
+        if (parsed) tryApply(parsed);
+      } else {
+        const legacy = localStorage.getItem('cachedUserData_current');
+        if (legacy) {
+          try {
+            const p = JSON.parse(legacy);
+            const user = p && p.data ? p.data : p;
+            if (user) tryApply(user);
+          } catch (e) { /* ignore */ }
+        }
+      }
+    } catch (e) { /* ignore parsing errors */ }
+  }
 
   // Listen for common signals
   window.addEventListener('studentPageReady', (ev) => { tryApply(ev.detail.profile || ev.detail.user); });

@@ -16,6 +16,9 @@
     #sidebar.hide { transform: translateX(-100%); }
     @media (min-width: 1024px) { #sidebar { transform: translateX(0) !important; } }
   </style>
+    <script type="module">
+      import '../js/personalize-page.js';
+    </script>
       <!-- Preload user data -->
     <!-- Preload user data (use centralized cache module if available) -->
     <script type="module">
@@ -101,6 +104,7 @@
     <!-- User data and sidebar imports -->
     <script type="module" src="../js/user-cache.js"></script>
     <script type="module" src="./js/sidebar-fragment.js"></script>
+    <script src="../js/personalize-fallback.js"></script>
   </head>
   <body class="bg-slate-50 text-slate-800">
     <div class="min-h-screen flex">

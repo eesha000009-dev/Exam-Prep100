@@ -1,7 +1,7 @@
 // student-page-shared.js
 // Shared functionality for student pages using Supabase
 
-import { initSupabase } from '../../js/supabase-client.js';
+import { initSupabase, getSupabase, onAuthStateChange } from '../../js/supabase-client.js';
 import { getGlobalUserData } from '../../js/user-cache.js';
 import { initializeUserProfile, getRecentActivities } from './supabase-user.js';
 import { syncUserData } from './supabase-signup.js';
@@ -29,12 +29,14 @@ export function normalizeCachedEntry(entry) {
 export function initializeSupabase() {
   const SUPABASE_URL = window.SUPABASE_URL || 'https://kruwfhzfqieuiuhqlutt.supabase.co';
   const SUPABASE_ANON_KEY = window.SUPABASE_ANON_KEY || 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImtydXdmaHpmcWlldWl1aHFsdXR0Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjIxOTk0OTAsImV4cCI6MjA3Nzc3NTQ5MH0.XD3-PDjDtKwCVsBILYgVrHF7Yc9tHkzpvpN2b7ojvB4';
-  return initSupabase(SUPABASE_URL, SUPABASE_ANON_KEY);
+  // Only initialize config values; actual client is created lazily via `getSupabase()`.
+  initSupabase(SUPABASE_URL, SUPABASE_ANON_KEY);
 }
 
 // Load tasks for the current user
 export async function loadUserTasks(userId) {
-  const supabase = initializeSupabase();
+  const supabase = await getSupabase();
+  if (!supabase) return [];
   try {
     const { data: tasks, error } = await supabase
       .from('tasks')
@@ -51,7 +53,8 @@ export async function loadUserTasks(userId) {
 
 // Load recent activities
 export async function loadUserActivities(userId, limit = 10) {
-  const supabase = initializeSupabase();
+  const supabase = await getSupabase();
+  if (!supabase) return [];
   try {
     const { data: activities, error } = await supabase
       .from('activities')
@@ -69,7 +72,8 @@ export async function loadUserActivities(userId, limit = 10) {
 
 // Load upcoming sessions
 export async function loadUpcomingSessions(userId, limit = 5) {
-  const supabase = initializeSupabase();
+  const supabase = await getSupabase();
+  if (!supabase) return [];
   try {
     const { data: sessions, error } = await supabase
       .from('sessions')
@@ -88,7 +92,8 @@ export async function loadUpcomingSessions(userId, limit = 5) {
 
 // Get unread notification count
 export async function getUnreadNotificationCount(userId) {
-  const supabase = initializeSupabase();
+  const supabase = await getSupabase();
+  if (!supabase) return 0;
   try {
     const { count, error } = await supabase
       .from('notifications')
@@ -160,7 +165,8 @@ export function applyUserDataToUI(user) {
 
 // Initialize a student page with Supabase auth and data loading
 export function initializeStudentPage() {
-  const supabase = initializeSupabase();
+  // Initialize config values for the lazy client
+  initializeSupabase();
 
   // Try to load cached user data first
   try {
@@ -196,9 +202,23 @@ export function initializeStudentPage() {
     console.debug('Preload cache check failed', err);
   }
 
-  // Set up auth state monitoring
-  supabase.auth.onAuthStateChange(async (event, session) => {
+  // Set up auth state monitoring via the safe wrapper
+  onAuthStateChange(async (event, session) => {
+    // If we couldn't register the listener (client unavailable), onAuthStateChange may return null.
+    // The wrapper will log a warning; attempt a one-time check instead.
     if (!session || !session.user) {
+      // Try to fetch current session if client is available
+      const supabase = await getSupabase();
+      if (supabase && supabase.auth && supabase.auth.getSession) {
+        try {
+          const res = await supabase.auth.getSession();
+          session = res?.data?.session || null;
+        } catch (e) { /* ignore */ }
+      }
+    }
+
+    if (!session || !session.user) {
+      // No active session — redirect to login
       window.location.href = '../general/login-new.html';
       return;
     }
@@ -206,7 +226,8 @@ export function initializeStudentPage() {
     // Verify email confirmation
     if (!session.user.email_confirmed_at) {
       alert('Please verify your email first. Check your inbox for the verification link.');
-      await supabase.auth.signOut();
+      const supabase = await getSupabase();
+      if (supabase && supabase.auth && supabase.auth.signOut) await supabase.auth.signOut();
       window.location.href = '../general/login-new.html';
       return;
     }

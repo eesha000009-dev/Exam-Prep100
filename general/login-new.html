@@ -49,30 +49,56 @@
   <script type="module">
     // Use the local Supabase client helper (already present in the repo)
     import { config } from '../js/config.js';
-    import { initSupabase, signIn } from '../js/supabase-client.js';
+    import { initSupabase, signIn, getUser, onAuthStateChange, signOut, getSupabase } from '../js/supabase-client.js';
 
-    const supabase = initSupabase(config.supabase.url, config.supabase.anonKey);
+    // Attempt to record init (this records keys for lazy loader)
+    initSupabase(config.supabase.url, config.supabase.anonKey);
+    // Diagnostic: show init state in a small debug panel (visible only when ?debug=1)
+    (function maybeShowInitDebug() {
+      try {
+        const params = new URLSearchParams(window.location.search);
+        if (!params.has('debug')) return;
+        const panel = document.createElement('div');
+        panel.id = 'supabase-debug-panel';
+        panel.style.position = 'fixed';
+        panel.style.right = '12px';
+        panel.style.bottom = '12px';
+        panel.style.zIndex = '9999';
+        panel.style.background = 'white';
+        panel.style.border = '1px solid #e2e8f0';
+        panel.style.padding = '12px';
+        panel.style.boxShadow = '0 8px 20px rgba(2,6,23,0.08)';
+        panel.style.maxWidth = '360px';
+        panel.innerHTML = '<strong>Supabase debug</strong><div id="sup-debug-content" style="margin-top:8px;font-size:13px;color:#111"></div>';
+        document.body.appendChild(panel);
+        const content = document.getElementById('sup-debug-content');
+        content.textContent = (window.__supabaseClient ? 'Supabase client ready' : 'Supabase client NOT created (init returned null)');
+        window.__SUPABASE_DEBUG = { panel, content };
+      } catch (e) { console.warn('debug panel failed', e); }
+    })();
 
     // Redirect if already logged in (check existing session)
     (async () => {
       try {
-        const { data: { user } } = await supabase.auth.getUser();
-        if (user) {
-          window.location.href = '../students/student-dashboard.html';
-        }
+        const res = await getUser();
+        const user = res && res.data && res.data.user ? res.data.user : null;
+        if (user) window.location.href = '/students/student-dashboard.html';
       } catch (e) {
-        // ignore
+        console.warn('getUser failed during redirect check', e);
       }
     })();
 
-    // Also listen for auth state changes
-    if (supabase.auth.onAuthStateChange) {
-      supabase.auth.onAuthStateChange((event, session) => {
-        if (session && session.user) {
-          window.location.href = '../students/student-dashboard.html';
-        }
-      });
-    }
+    // Listen for auth state changes using wrapper helper
+    (async () => {
+      try {
+        const sub = await onAuthStateChange((event, session) => {
+          if (session && session.user) window.location.href = '/students/student-dashboard.html';
+        });
+        if (!sub) console.debug('onAuthStateChange not registered (client unavailable)');
+      } catch (e) {
+        console.warn('onAuthStateChange registration failed', e);
+      }
+    })();
 
     const loginForm = document.getElementById('loginForm');
     const loginBtn = document.getElementById('loginBtn');
@@ -87,7 +113,10 @@
       const email = document.getElementById('email').value;
       const password = document.getElementById('password').value;
       try {
-        const res = await signIn(supabase, email, password);
+      const res = await signIn(null, email, password);
+        // Helpful debug output to inspect the exact Supabase response shape in the browser console
+        console.debug('signIn response', res);
+      if (window.__SUPABASE_DEBUG && window.__SUPABASE_DEBUG.content) window.__SUPABASE_DEBUG.content.textContent += '\n' + JSON.stringify({ signIn: !!res, error: !!res?.error });
         if (res.error) {
           const msg = res.error.message || 'Sign in failed';
           loginError.textContent = (msg.toLowerCase().includes('invalid login credentials') || msg.toLowerCase().includes('invalid'))
@@ -107,19 +136,20 @@
           loginBtn.disabled = false;
           loginLoader.style.display = 'none';
           // Sign out to block access
-          await supabase.auth.signOut();
+          await signOut();
           // Optionally show a resend verification link
           showResendVerification(email);
           return;
         }
 
-        // Load profile for redirect
-        try {
-          const { data: profile } = await supabase
-            .from('profiles')
-            .select('*')
-            .eq('id', res.data.user.id)
-            .maybeSingle();
+          // Load profile for redirect
+          try {
+          const client = await getSupabase();
+            const { data: profile } = client ? await client
+              .from('profiles')
+              .select('*')
+              .eq('id', res.data.user.id)
+              .maybeSingle() : { data: null };
 
           if (profile) {
             localStorage.setItem('userProfile', JSON.stringify({
@@ -136,10 +166,15 @@
             }));
           }
 
-          window.location.href = '../students/student-dashboard.html';
+          // Dispatch userDataUpdated so other open pages can pick up personalization immediately
+          try { window.dispatchEvent(new CustomEvent('userDataUpdated', { detail: JSON.parse(localStorage.getItem('userProfile') || 'null') })); } catch(e){console.debug('dispatch userDataUpdated failed', e)}
+
+          // Use absolute path to avoid edge cases with relative paths
+          window.location.href = '/students/student-dashboard.html';
         } catch (err) {
           console.warn('Profile load failed:', err);
-          window.location.href = '../students/student-dashboard.html';
+          // Still attempt absolute redirect as a fallback
+          window.location.href = '/students/student-dashboard.html';
         }
       } catch (error) {
         loginError.textContent = 'Login failed: ' + (error.message || error);
@@ -164,7 +199,8 @@
           resend.textContent = 'Sending...';
           try {
             // Supabase: trigger resend by calling signUp again (safe, does not create new user)
-            const { error } = await supabase.auth.signUp({ email });
+            const client = await getSupabase();
+            const { error } = client ? await client.auth.signUp({ email }) : { error: new Error('Supabase client not available') };
             if (error) {
               loginError.textContent = 'Failed to resend verification email: ' + error.message;
             } else {

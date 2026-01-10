@@ -162,6 +162,29 @@
     import { initSupabase, signUp } from '../js/supabase-client.js';
 
     const supabase = initSupabase(config.supabase.url, config.supabase.anonKey);
+    // Debug panel when ?debug=1
+    (function maybeShowInitDebug() {
+      try {
+        const params = new URLSearchParams(window.location.search);
+        if (!params.has('debug')) return;
+        const panel = document.createElement('div');
+        panel.id = 'supabase-debug-panel';
+        panel.style.position = 'fixed';
+        panel.style.right = '12px';
+        panel.style.bottom = '12px';
+        panel.style.zIndex = '9999';
+        panel.style.background = 'white';
+        panel.style.border = '1px solid #e2e8f0';
+        panel.style.padding = '12px';
+        panel.style.boxShadow = '0 8px 20px rgba(2,6,23,0.08)';
+        panel.style.maxWidth = '360px';
+        panel.innerHTML = '<strong>Supabase debug</strong><div id="sup-debug-content" style="margin-top:8px;font-size:13px;color:#111"></div>';
+        document.body.appendChild(panel);
+        const content = document.getElementById('sup-debug-content');
+        content.textContent = supabase ? 'Supabase client ready' : 'Supabase client NOT created (init returned null)';
+        window.__SUPABASE_DEBUG = { panel, content };
+      } catch (e) { console.warn('debug panel failed', e); }
+    })();
 
     // Preserve existing client-side username/password validation above.
 
@@ -193,6 +216,8 @@
       try {
         // Use the helper signUp which wraps supabase.auth.signUp
         const res = await signUp(supabase, email, password);
+        // Log full response for debugging (inspect structure in browser console)
+        console.debug('signUp response', res);
         if (res.error) {
           const msg = res.error.message || 'Sign up failed';
           alert(msg);
@@ -215,10 +240,28 @@
               email_prefs: emailPrefs
             };
             // Upsert so repeat runs won't fail (requires appropriate RLS/policies server-side)
-            const { error: profileError } = await supabase.from('profiles').upsert([profile]);
-            if (profileError) console.warn('Profile upsert warning:', profileError.message || profileError);
+            const { data: upsertData, error: profileError } = await supabase.from('profiles').upsert([profile]).select();
+            // Debug output for upsert
+            console.debug('profiles.upsert result', { upsertData, profileError });
+            if (profileError) {
+              console.warn('Profile upsert failed:', profileError);
+              // Surface this in the verification UI so it's visible during debugging
+              if (verificationDiv && verificationMsgSpan) {
+                verificationDiv.style.display = 'block';
+                verificationMsgSpan.textContent = 'Warning: profile row was not created: ' + (profileError.message || JSON.stringify(profileError));
+                // show resend button in case user needs to trigger verification flow
+                if (resendBtn) resendBtn.style.display = 'inline-block';
+              }
+            } else {
+              console.log('Profile upsert succeeded:', upsertData);
+            }
           } catch (err) {
             console.warn('Failed to upsert profile:', err.message || err);
+            if (verificationDiv && verificationMsgSpan) {
+              verificationDiv.style.display = 'block';
+              verificationMsgSpan.textContent = 'Error creating profile: ' + (err.message || err);
+              if (resendBtn) resendBtn.style.display = 'inline-block';
+            }
           }
         }
 
@@ -262,9 +305,12 @@
         loadingDiv.classList.add('hidden');
         signupBtn.disabled = false;
 
-        // Redirect after 6 seconds
+        // Dispatch update so any open pages can pick up the new profile immediately
+        try { window.dispatchEvent(new CustomEvent('userDataUpdated', { detail: JSON.parse(localStorage.getItem('userProfile') || 'null') })); } catch(e){console.debug('dispatch userDataUpdated failed', e)}
+
+        // Redirect after 6 seconds (use absolute path to be explicit)
         setTimeout(() => {
-          window.location.href = 'login-new.html';
+          window.location.href = '/general/login-new.html';
         }, 6000);
       } catch (error) {
         console.error('Sign up error', error);
