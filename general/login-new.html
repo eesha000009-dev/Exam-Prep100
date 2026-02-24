@@ -113,15 +113,36 @@
       const email = document.getElementById('email').value;
       const password = document.getElementById('password').value;
       try {
-      const res = await signIn(null, email, password);
+      // Make sure Supabase client is available before attempting sign-in
+      const client = await getSupabase();
+      if (!client) {
+        loginError.textContent = 'Authentication service unavailable. Check SUPABASE_URL and SUPABASE_ANON_KEY in js/config.js or network connectivity.';
+        loginError.style.display = 'block';
+        loginBtn.disabled = false;
+        loginLoader.style.display = 'none';
+        return;
+      }
+
+      const res = await signIn(client, email, password);
         // Helpful debug output to inspect the exact Supabase response shape in the browser console
         console.debug('signIn response', res);
       if (window.__SUPABASE_DEBUG && window.__SUPABASE_DEBUG.content) window.__SUPABASE_DEBUG.content.textContent += '\n' + JSON.stringify({ signIn: !!res, error: !!res?.error });
         if (res.error) {
           const msg = res.error.message || 'Sign in failed';
-          loginError.textContent = (msg.toLowerCase().includes('invalid login credentials') || msg.toLowerCase().includes('invalid'))
-            ? 'No account found with this email or incorrect password. Please sign up or reset your password.'
+          // Provide more actionable text when Supabase reports user not found
+          loginError.textContent = (msg.toLowerCase().includes('invalid login credentials') || msg.toLowerCase().includes('invalid') || msg.toLowerCase().includes('user not found'))
+            ? 'No account found with this email or incorrect password. Please sign up, verify your email, or reset your password.'
             : msg;
+          // Add debug details to help diagnose mismatched projects or keys
+          try {
+            const debug = document.createElement('div');
+            debug.style.fontSize = '12px';
+            debug.style.marginTop = '6px';
+            debug.style.color = '#1e293b';
+            const url = (window.SUPABASE_URL || (typeof config !== 'undefined' && config.supabase && config.supabase.url)) || 'unknown';
+            debug.textContent = 'Supabase URL: ' + url;
+            loginError.appendChild(debug);
+          } catch(e){/* ignore */}
           loginError.style.display = 'block';
           loginBtn.disabled = false;
           loginLoader.style.display = 'none';

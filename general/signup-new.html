@@ -159,7 +159,7 @@
   <!-- Supabase sign-up flow -->
   <script type="module">
     import { config } from '../js/config.js';
-    import { initSupabase, signUp } from '../js/supabase-client.js';
+    import { initSupabase, signUp, getSupabase } from '../js/supabase-client.js';
 
     const supabase = initSupabase(config.supabase.url, config.supabase.anonKey);
     // Debug panel when ?debug=1
@@ -214,8 +214,17 @@
       const emailPrefs = document.getElementById('emailPrefs').checked;
 
       try {
+        // Ensure Supabase client is available before attempting sign-up
+        const client = await getSupabase();
+        if (!client) {
+          alert('Authentication service unavailable. Check SUPABASE_URL and SUPABASE_ANON_KEY in js/config.js or network connectivity.');
+          signupBtn.disabled = false;
+          loadingDiv.classList.add('hidden');
+          return;
+        }
+
         // Use the helper signUp which wraps supabase.auth.signUp
-        const res = await signUp(supabase, email, password);
+        const res = await signUp(client, email, password);
         // Log full response for debugging (inspect structure in browser console)
         console.debug('signUp response', res);
         if (res.error) {
@@ -275,8 +284,17 @@
           verificationMsg = 'Registration successful! Your email is already verified.';
           showResend = false;
         } else if (!user) {
-          verificationMsg = 'Registration successful! (No verification email sent by Supabase. Please contact support if you do not receive a verification email.)';
+          verificationMsg = 'Registration successful! (No verification email sent by Supabase.)';
           showResend = true;
+          // Provide actionable advice about email delivery
+          if (verificationDiv && verificationMsgSpan) {
+            verificationMsgSpan.textContent = verificationMsg + ' If you don\'t receive an email, ensure SMTP is configured in your Supabase project (Dashboard → Authentication → Settings → SMTP).';
+            const doc = document.createElement('div');
+            doc.style.fontSize = '12px';
+            doc.style.marginTop = '6px';
+            doc.innerHTML = 'See <a href="https://supabase.com/docs/guides/auth#email" target="_blank" rel="noopener">Supabase email setup docs</a> for SMTP configuration.';
+            verificationDiv.appendChild(doc);
+          }
         }
 
         verificationDiv.style.display = 'block';
