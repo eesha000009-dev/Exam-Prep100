@@ -11,57 +11,32 @@
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
   <style>
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(-10px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-    @keyframes slideUp {
-      from { transform: translateY(20px); opacity: 0; }
-      to { transform: translateY(0); opacity: 1; }
-    }
-    @keyframes shake {
-      0%, 100% { transform: translateX(0); }
-      25% { transform: translateX(-5px); }
-      75% { transform: translateX(5px); }
-    }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes slideUp { from { transform: translateY(20px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+    @keyframes shake { 0%, 100% { transform: translateX(0); } 25% { transform: translateX(-5px); } 75% { transform: translateX(5px); } }
     .animate-fade-in { animation: fadeIn 0.3s ease-out; }
     .animate-slide-up { animation: slideUp 0.3s ease-out; }
     .animate-shake { animation: shake 0.5s ease-in-out; }
     .font-serif { font-family: 'Playfair Display', serif; }
-    
     ::-webkit-scrollbar { width: 6px; }
     ::-webkit-scrollbar-track { background: #f1f5f9; }
     ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 3px; }
-    ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
-    
     #sidebar { transition: transform 0.3s ease-in-out; }
     #sidebar.hide { transform: translateX(-100%); }
-    @media (min-width: 768px) {
-      #sidebar { transform: translateX(0) !important; }
-    }
-    
-    .dark { --bg-primary: #0f172a; --bg-secondary: #1e293b; --text-primary: #f1f5f9; --text-secondary: #94a3b8; }
-    
+    @media (min-width: 768px) { #sidebar { transform: translateX(0) !important; } }
     .quiz-option { transition: all 0.2s ease; }
-    .quiz-option:hover:not(.selected):not(.correct):not(.wrong) { 
-      background: #f0f9ff; 
-      border-color: #0ea5e9; 
-    }
+    .quiz-option:hover:not(.selected):not(.correct):not(.wrong) { background: #f0f9ff; border-color: #0ea5e9; }
     .quiz-option.selected { background: #0ea5e9; color: white; border-color: #0ea5e9; }
     .quiz-option.correct { background: #10b981; color: white; border-color: #10b981; }
     .quiz-option.wrong { background: #ef4444; color: white; border-color: #ef4444; }
-    
-    /* Prevent scrolling when quiz is open */
     body.quiz-active { overflow: hidden; }
   </style>
 </head>
 <body class="bg-slate-50 text-slate-800 font-sans">
   
   <div class="flex h-screen overflow-hidden">
-    
     <!-- Sidebar -->
     <aside id="sidebar" class="hide md:translate-x-0 fixed md:relative z-40 w-72 h-full bg-white border-r border-slate-200 flex flex-col shadow-lg md:shadow-none">
-      <!-- Header -->
       <div class="bg-gradient-to-r from-sky-600 to-sky-500 text-white p-6">
         <div class="flex items-center gap-3 mb-2">
           <div class="w-10 h-10 bg-white/20 rounded-xl flex items-center justify-center">
@@ -74,7 +49,6 @@
         </div>
       </div>
       
-      <!-- Reading Stats -->
       <div class="p-4 bg-sky-50 border-b border-slate-100">
         <h3 class="text-xs font-bold text-slate-500 uppercase tracking-wider mb-3">Reading Progress</h3>
         <div class="grid grid-cols-2 gap-3">
@@ -98,9 +72,7 @@
         </div>
       </div>
       
-      <!-- Navigation -->
       <nav class="flex-1 overflow-y-auto p-4 space-y-6">
-        <!-- Bookmarks -->
         <div>
           <h3 class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-3 flex items-center gap-2">
             <i class="fas fa-bookmark text-sky-500"></i> Bookmarks
@@ -109,8 +81,6 @@
             <p class="text-sm text-slate-400 italic">No bookmarks yet</p>
           </div>
         </div>
-        
-        <!-- Notes -->
         <div>
           <h3 class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-3 flex items-center gap-2">
             <i class="fas fa-sticky-note text-sky-500"></i> Notes
@@ -119,8 +89,6 @@
             <p class="text-sm text-slate-400 italic">No notes yet</p>
           </div>
         </div>
-        
-        <!-- Vocabulary -->
         <div>
           <h3 class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-3 flex items-center gap-2">
             <i class="fas fa-spell-check text-sky-500"></i> Vocabulary
@@ -131,7 +99,6 @@
         </div>
       </nav>
       
-      <!-- Footer -->
       <div class="p-4 border-t border-slate-100">
         <a href="student-dashboard.html" id="backToDashboard" class="flex items-center gap-2 text-sm text-slate-500 hover:text-sky-600 transition">
           <i class="fas fa-arrow-left"></i> Back to Dashboard
@@ -141,9 +108,7 @@
     
     <!-- Main Content -->
     <main class="flex-1 flex flex-col min-w-0">
-      <!-- Header -->
       <header class="bg-white border-b border-slate-200 px-4 py-3 flex items-center justify-between gap-4 flex-wrap">
-        <!-- Left -->
         <div class="flex items-center gap-2">
           <button id="sidebarToggle" class="p-2 rounded-lg hover:bg-slate-100 md:hidden transition" title="Toggle sidebar">
             <i class="fas fa-bars text-slate-600"></i>
@@ -153,7 +118,6 @@
           </button>
         </div>
         
-        <!-- Center - Page Navigation -->
         <div class="flex items-center gap-2">
           <button id="prevBtn" class="p-2 px-3 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-600 transition disabled:opacity-50">
             <i class="fas fa-chevron-left"></i>
@@ -168,7 +132,6 @@
           </button>
         </div>
         
-        <!-- Right - Actions -->
         <div class="flex items-center gap-2">
           <button id="bookmarkBtn" class="p-2 px-4 rounded-lg bg-slate-100 hover:bg-sky-100 hover:text-sky-600 text-slate-600 transition flex items-center gap-2" title="Bookmark page">
             <i class="fas fa-bookmark"></i>
@@ -185,12 +148,10 @@
         </div>
       </header>
       
-      <!-- Progress Bar -->
       <div class="h-1 bg-slate-100">
         <div id="progressFill" class="h-full bg-gradient-to-r from-sky-500 to-sky-400 transition-all duration-300" style="width: 0%"></div>
       </div>
       
-      <!-- Reading Progress Info -->
       <div class="bg-gradient-to-r from-sky-50 to-white px-4 py-2 border-b border-slate-100">
         <div class="flex items-center justify-between text-sm">
           <span class="text-slate-500">
@@ -201,7 +162,6 @@
         </div>
       </div>
       
-      <!-- PDF Canvas -->
       <div class="flex-1 overflow-auto bg-gradient-to-b from-slate-100 to-slate-50 p-4 md:p-8">
         <div class="flex justify-center">
           <canvas id="pdfCanvas" class="max-w-full h-auto bg-white rounded-xl shadow-2xl"></canvas>
@@ -210,7 +170,6 @@
     </main>
   </div>
   
-  <!-- Overlay for mobile sidebar -->
   <div id="overlay" class="fixed inset-0 bg-slate-900/50 z-30 hidden md:hidden" onclick="toggleSidebar()"></div>
   
   <!-- Note Modal -->
@@ -233,44 +192,14 @@
           <label class="block text-sm font-medium text-slate-700 mb-2">Content</label>
           <textarea id="noteContent" rows="4" placeholder="Write your note..." class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-sky-500 focus:ring-2 focus:ring-sky-100 outline-none transition resize-none"></textarea>
         </div>
-        <button onclick="saveNote()" class="w-full py-3 bg-gradient-to-r from-sky-500 to-sky-600 hover:from-sky-600 hover:to-sky-700 text-white font-semibold rounded-xl transition">
-          Save Note
-        </button>
+        <button onclick="saveNote()" class="w-full py-3 bg-gradient-to-r from-sky-500 to-sky-600 hover:from-sky-600 hover:to-sky-700 text-white font-semibold rounded-xl transition">Save Note</button>
       </div>
     </div>
   </div>
   
-  <!-- Vocabulary Modal -->
-  <div id="vocabModal" class="fixed inset-0 bg-slate-900/50 z-50 hidden items-center justify-center p-4">
-    <div class="bg-white rounded-2xl shadow-2xl w-full max-w-md animate-slide-up">
-      <div class="p-6 border-b border-slate-100">
-        <div class="flex items-center justify-between">
-          <h2 class="font-serif text-xl font-bold text-slate-800">Add Vocabulary</h2>
-          <button onclick="closeModal('vocabModal')" class="p-2 hover:bg-slate-100 rounded-lg transition">
-            <i class="fas fa-times text-slate-400"></i>
-          </button>
-        </div>
-      </div>
-      <div class="p-6 space-y-4">
-        <div>
-          <label class="block text-sm font-medium text-slate-700 mb-2">Word</label>
-          <input type="text" id="vocabWord" placeholder="Enter word..." class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-sky-500 focus:ring-2 focus:ring-sky-100 outline-none transition">
-        </div>
-        <div>
-          <label class="block text-sm font-medium text-slate-700 mb-2">Meaning</label>
-          <textarea id="vocabMeaning" rows="4" placeholder="Enter meaning..." class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-sky-500 focus:ring-2 focus:ring-sky-100 outline-none transition resize-none"></textarea>
-        </div>
-        <button onclick="saveVocab()" class="w-full py-3 bg-gradient-to-r from-sky-500 to-sky-600 hover:from-sky-600 hover:to-sky-700 text-white font-semibold rounded-xl transition">
-          Save Word
-        </button>
-      </div>
-    </div>
-  </div>
-  
-  <!-- Exit Quiz Modal (Mandatory) -->
+  <!-- Exit Quiz Modal -->
   <div id="exitQuizModal" class="fixed inset-0 bg-slate-900/80 z-[100] hidden items-center justify-center p-4 overflow-y-auto">
     <div class="bg-white rounded-2xl shadow-2xl w-full max-w-2xl my-8 animate-slide-up">
-      <!-- Quiz Header -->
       <div class="p-6 border-b border-slate-100 bg-gradient-to-r from-sky-500 to-sky-600 rounded-t-2xl text-white">
         <div class="flex items-center justify-between">
           <div>
@@ -282,22 +211,19 @@
           <span>Question <span id="currentQuestionNum">1</span> of <span id="totalQuestions">5</span></span>
           <span>Score: <span id="quizCurrentScore">0</span>/<span id="quizMaxScore">5</span></span>
         </div>
-        <!-- Progress bar -->
         <div class="mt-3 h-2 bg-white/20 rounded-full overflow-hidden">
           <div id="quizProgressBar" class="h-full bg-white transition-all duration-300" style="width: 0%"></div>
         </div>
       </div>
       
-      <!-- Quiz Content -->
       <div class="p-6">
         <div id="quizQuestionContainer">
           <p id="quizQuestion" class="text-lg font-medium text-slate-800 mb-6"></p>
           <div id="quizOptions" class="space-y-3"></div>
         </div>
         
-        <!-- Quiz Results (hidden initially) -->
         <div id="quizResults" class="hidden text-center py-6">
-          <div class="w-20 h-20 mx-auto mb-4 rounded-full flex items-center justify-center" id="quizResultIcon">
+          <div class="w-20 h-20 mx-auto mb-4 rounded-full flex items-center justify-center bg-green-100" id="quizResultIcon">
             <i class="fas fa-trophy text-3xl text-yellow-500"></i>
           </div>
           <h3 class="text-2xl font-bold text-slate-800 mb-2">Quiz Complete!</h3>
@@ -309,7 +235,6 @@
         </div>
       </div>
       
-      <!-- Quiz Footer -->
       <div id="quizFooter" class="p-6 border-t border-slate-100 flex justify-end">
         <button id="nextQuestionBtn" onclick="nextQuestion()" class="px-6 py-2 bg-gradient-to-r from-sky-500 to-sky-600 hover:from-sky-600 hover:to-sky-700 text-white font-medium rounded-xl transition">
           Next<i class="fas fa-arrow-right ml-2"></i>
@@ -318,7 +243,7 @@
     </div>
   </div>
   
-  <!-- Warning Modal (shown when trying to leave without quiz) -->
+  <!-- Warning Modal -->
   <div id="warningModal" class="fixed inset-0 bg-slate-900/80 z-[100] hidden items-center justify-center p-4">
     <div class="bg-white rounded-2xl shadow-2xl w-full max-w-md animate-slide-up">
       <div class="p-6 text-center">
@@ -334,7 +259,7 @@
     </div>
   </div>
   
-  <!-- Toast Notification -->
+  <!-- Toast -->
   <div id="toast" class="fixed bottom-4 right-4 z-50 hidden">
     <div class="bg-slate-800 text-white px-6 py-3 rounded-xl shadow-lg flex items-center gap-3 animate-fade-in">
       <i id="toastIcon" class="fas fa-check-circle text-green-400"></i>
@@ -343,15 +268,11 @@
   </div>
 
   <script>
-    // ============================================
-    // SUPABASE CONFIGURATION
-    // ============================================
+    // Supabase config
     window.SUPABASE_URL = 'https://kruwfhzfqieuiuhqlutt.supabase.co';
     window.SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImtydXdmaHpmcWlldWl1aHFsdXR0Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjIxOTk0OTAsImV4cCI6MjA3Nzc3NTQ5MH0.XD3-PDjDtKwCVsBILYgVrHF7Yc9tHkzpvpN2b7ojvB4';
     
-    // ============================================
-    // SILENT STUDY TIME TRACKING
-    // ============================================
+    // Silent Study Tracker
     const StudyTracker = {
       sessionId: null,
       startTime: null,
@@ -360,7 +281,7 @@
       lastActivity: Date.now(),
       pagesViewed: new Set(),
       maxPageReached: 0,
-      minPagesForQuiz: 3, // Minimum pages before quiz is required
+      minPagesForQuiz: 2,
       quizCompleted: false,
       exitAllowed: false,
       
@@ -369,27 +290,17 @@
         this.startTime = Date.now();
         this.loadSessionData();
         
-        // Track visibility changes
         document.addEventListener('visibilitychange', () => {
-          if (document.hidden) {
-            this.pause();
-          } else {
-            this.resume();
-          }
+          if (document.hidden) this.pause();
+          else this.resume();
         });
         
-        // Track activity silently
         ['click', 'keydown', 'scroll', 'mousemove'].forEach(event => {
           document.addEventListener(event, () => this.updateActivity(), { passive: true });
         });
         
-        // Start silent timer
         this.startTimer();
-        
-        // Sync with server every 30 seconds
         setInterval(() => this.syncWithServer(), 30000);
-        
-        // Handle exit attempts
         this.setupExitHandlers();
       },
       
@@ -401,12 +312,8 @@
           this.pagesViewed = new Set(data.pagesViewed || []);
           this.maxPageReached = data.maxPageReached || 0;
         }
-        
-        // Load last quiz score
         const lastScore = localStorage.getItem('lekki_last_quiz_score');
-        if (lastScore) {
-          document.getElementById('quizScoreDisplay').textContent = lastScore + '%';
-        }
+        if (lastScore) document.getElementById('quizScoreDisplay').textContent = lastScore + '%';
       },
       
       saveSessionData() {
@@ -422,9 +329,7 @@
         setInterval(() => {
           if (this.isActive && Date.now() - this.lastActivity < 120000) {
             this.totalSeconds++;
-            if (this.totalSeconds % 60 === 0) {
-              this.saveSessionData();
-            }
+            if (this.totalSeconds % 60 === 0) this.saveSessionData();
           }
         }, 1000);
       },
@@ -435,19 +340,12 @@
       
       trackPage(pageNum) {
         this.pagesViewed.add(pageNum);
-        if (pageNum > this.maxPageReached) {
-          this.maxPageReached = pageNum;
-        }
+        if (pageNum > this.maxPageReached) this.maxPageReached = pageNum;
         this.saveSessionData();
-        this.updateStats();
-      },
-      
-      updateStats() {
         document.getElementById('pagesReadCount').textContent = this.pagesViewed.size;
       },
       
       setupExitHandlers() {
-        // Prevent browser close/tab close
         window.addEventListener('beforeunload', (e) => {
           if (!this.exitAllowed && this.maxPageReached >= this.minPagesForQuiz && !this.quizCompleted) {
             this.saveSessionData();
@@ -459,7 +357,6 @@
           this.syncWithServer();
         });
         
-        // Intercept link clicks
         document.getElementById('backToDashboard').addEventListener('click', (e) => {
           if (!this.exitAllowed && this.maxPageReached >= this.minPagesForQuiz && !this.quizCompleted) {
             e.preventDefault();
@@ -467,7 +364,6 @@
           }
         });
         
-        // Intercept browser back button
         window.addEventListener('popstate', (e) => {
           if (!this.exitAllowed && this.maxPageReached >= this.minPagesForQuiz && !this.quizCompleted) {
             e.preventDefault();
@@ -476,7 +372,6 @@
           }
         });
         
-        // Add history state for back button interception
         history.pushState(null, null, location.href);
       },
       
@@ -493,7 +388,6 @@
             const { data: { user } } = await window.supabaseClient.auth.getUser();
             if (user) {
               const studyMinutes = Math.floor(this.totalSeconds / 60);
-              
               await window.supabaseClient.from('study_sessions').upsert({
                 user_id: user.id,
                 book_id: 'lekki-headmaster',
@@ -502,31 +396,7 @@
                 max_page: this.maxPageReached,
                 session_date: new Date().toISOString().split('T')[0]
               }, { onConflict: 'user_id,book_id,session_date' });
-              
-              // Update study hours goal
-              await this.updateStudyHoursGoal(user.id);
             }
-          }
-        } catch (err) {
-          console.log('Sync deferred:', err.message);
-        }
-      },
-      
-      async updateStudyHoursGoal(userId) {
-        try {
-          const { data: goals } = await window.supabaseClient
-            .from('user_goals')
-            .select('*')
-            .eq('user_id', userId)
-            .eq('goal_type', 'study_hours')
-            .single();
-          
-          if (goals) {
-            const newMinutes = Math.floor(this.totalSeconds / 60);
-            await window.supabaseClient
-              .from('user_goals')
-              .update({ current_value: newMinutes })
-              .eq('id', goals.id);
           }
         } catch (err) {}
       },
@@ -539,190 +409,133 @@
       }
     };
     
-    // ============================================
-    // QUIZ SYSTEM
-    // ============================================
+    // Quiz System with comprehensive question bank
     const QuizSystem = {
       questions: [],
       currentIndex: 0,
       score: 0,
       answers: [],
       
-      // Comprehensive question bank for The Lekki Headmaster
+      // Comprehensive question bank - questions work for ANY page range
       questionBank: [
-        // Questions for pages 1-5
-        {
-          question: "What is the title of the novel?",
-          options: ["The Lagos Teacher", "The Lekki Headmaster", "The School Principal", "The Headmaster's Tale"],
-          correct: 1,
-          pageRange: [1, 5]
-        },
-        {
-          question: "Where is the story set?",
-          options: ["In a village in Kano", "In Lekki, Lagos State", "In Abuja city", "In Ibadan town"],
-          correct: 1,
-          pageRange: [1, 5]
-        },
-        {
-          question: "Who is the author of The Lekki Headmaster?",
-          options: ["Chinua Achebe", "Kabir Alabi Garba", "Wole Soyinka", "Chimamanda Adichie"],
-          correct: 1,
-          pageRange: [1, 5]
-        },
-        {
-          question: "The word 'Lekki' in the title refers to:",
-          options: ["A person's name", "A location in Lagos", "A type of school", "A traditional title"],
-          correct: 1,
-          pageRange: [1, 5]
-        },
-        {
-          question: "What is the profession of the main character?",
-          options: ["Doctor", "Lawyer", "Headmaster", "Engineer"],
-          correct: 2,
-          pageRange: [1, 5]
-        },
-        // Questions for pages 1-10
-        {
-          question: "The story is classified as which genre?",
-          options: ["Science Fiction", "Drama/Literature", "Horror", "Fantasy"],
-          correct: 1,
-          pageRange: [1, 10]
-        },
-        {
-          question: "The novel is set in which country?",
-          options: ["Ghana", "Kenya", "Nigeria", "South Africa"],
-          correct: 2,
-          pageRange: [1, 10]
-        },
-        {
-          question: "A headmaster is responsible for:",
-          options: ["Teaching only one subject", "Managing a school", "Cleaning the school", "Cooking food"],
-          correct: 1,
-          pageRange: [1, 10]
-        },
-        {
-          question: "The story explores themes related to:",
-          options: ["Space exploration", "Education and society", "Underwater adventures", "Time travel"],
-          correct: 1,
-          pageRange: [1, 10]
-        },
-        {
-          question: "Lekki is known for being:",
-          options: ["A rural farming community", "An urban area in Lagos", "A desert region", "A mountain village"],
-          correct: 1,
-          pageRange: [1, 10]
-        },
-        // Questions for pages 1-15
-        {
-          question: "The protagonist faces challenges related to:",
-          options: ["Running a business", "School administration", "Medical practice", "Legal cases"],
-          correct: 1,
-          pageRange: [1, 15]
-        },
-        {
-          question: "The novel highlights issues in:",
-          options: ["Healthcare system", "Educational system", "Banking sector", "Military operations"],
-          correct: 1,
-          pageRange: [1, 15]
-        },
-        {
-          question: "Which of these is a character type you would expect in the story?",
-          options: ["Astronauts", "Teachers and students", "Aliens", "Dragons"],
-          correct: 1,
-          pageRange: [1, 15]
-        },
-        {
-          question: "The setting of Lekki suggests:",
-          options: ["A traditional rural setting", "A modern urban environment", "An island community", "A desert landscape"],
-          correct: 1,
-          pageRange: [1, 15]
-        },
-        {
-          question: "The title suggests the story focuses on:",
-          options: ["A student's journey", "A school leader's experiences", "A parent's struggles", "A politician's career"],
-          correct: 1,
-          pageRange: [1, 15]
-        },
-        // Questions for pages 1-20+
-        {
-          question: "The literary work is meant for:",
-          options: ["Primary school students only", "Secondary school literature students", "University researchers only", "Professional teachers only"],
-          correct: 1,
-          pageRange: [1, 20]
-        },
-        {
-          question: "Stories about headmasters often explore:",
-          options: ["Leadership challenges", "Cooking recipes", "Sports strategies", "Musical compositions"],
-          correct: 0,
-          pageRange: [1, 20]
-        },
-        {
-          question: "The novel would likely discuss:",
-          options: ["Student-teacher relationships", "Hospital procedures", "Court cases", "Military training"],
-          correct: 0,
-          pageRange: [1, 20]
-        },
-        {
-          question: "In Nigerian literature, stories about schools often address:",
-          options: ["Social and educational reforms", "Farming techniques", "Fishing methods", "Mining operations"],
-          correct: 0,
-          pageRange: [1, 20]
-        },
-        {
-          question: "The story likely includes conflicts between:",
-          options: ["Different educational philosophies", "Different sports teams", "Different countries", "Different planets"],
-          correct: 0,
-          pageRange: [1, 20]
-        },
-        // More advanced questions
-        {
-          question: "A headmaster's role includes:",
-          options: ["Only teaching classes", "Administrative and educational leadership", "Only financial management", "Only sports coordination"],
-          correct: 1,
-          pageRange: [1, 25]
-        },
-        {
-          question: "The novel can teach readers about:",
-          options: ["Nigerian culture and education", "European history", "American politics", "Asian traditions"],
-          correct: 0,
-          pageRange: [1, 25]
-        },
-        {
-          question: "Literature students analyze this text to understand:",
-          options: ["Mathematical concepts", "Literary techniques and themes", "Scientific principles", "Musical notation"],
-          correct: 1,
-          pageRange: [1, 25]
-        },
-        {
-          question: "The character development in the story shows:",
-          options: ["Static, unchanging characters", "Characters who grow and change", "Only perfect characters", "Only villainous characters"],
-          correct: 1,
-          pageRange: [1, 30]
-        },
-        {
-          question: "The narrative perspective is likely:",
-          options: ["Third-person omniscient or first-person", "Only dialogue", "Only descriptions", "Only poetry"],
-          correct: 0,
-          pageRange: [1, 30]
-        }
+        // Basic questions (available from page 1+)
+        { question: "What is the title of this novel?", options: ["The Lagos Teacher", "The Lekki Headmaster", "The School Principal", "The Nigerian Headmaster"], correct: 1, minPage: 1 },
+        { question: "Who is the author of The Lekki Headmaster?", options: ["Chinua Achebe", "Kabir Alabi Garba", "Wole Soyinka", "Cyprian Ekwensi"], correct: 1, minPage: 1 },
+        { question: "The story is set in which Nigerian state?", options: ["Kano State", "Lagos State", "Abuja FCT", "Rivers State"], correct: 1, minPage: 1 },
+        { question: "What does 'Lekki' refer to?", options: ["A person's name", "A location in Lagos", "A school name", "A traditional title"], correct: 1, minPage: 1 },
+        { question: "A headmaster is the head of which institution?", options: ["Hospital", "School", "Bank", "Church"], correct: 1, minPage: 1 },
+        { question: "The novel is a work of:", options: ["Biography", "Fiction/Literature", "History", "Science"], correct: 1, minPage: 1 },
+        { question: "What country is the setting of the novel?", options: ["Ghana", "Nigeria", "Kenya", "South Africa"], correct: 1, minPage: 1 },
+        { question: "The title 'The Lekki Headmaster' suggests the main character is:", options: ["A doctor", "A school principal", "A lawyer", "A politician"], correct: 1, minPage: 1 },
+        { question: "What genre does this novel belong to?", options: ["Science Fiction", "Drama/Prose", "Poetry", "Non-fiction"], correct: 1, minPage: 1 },
+        { question: "The publisher of this novel is:", options: ["Longman", "Heinemann", "Basmallah Communications", "Macmillan"], correct: 2, minPage: 1 },
+        
+        // Character and theme questions
+        { question: "A headmaster's main responsibility is:", options: ["Teaching only one class", "Managing the school", "Cooking for students", "Driving the bus"], correct: 1, minPage: 2 },
+        { question: "The novel explores themes related to:", options: ["Space exploration", "Education and society", "Underwater adventure", "Time travel"], correct: 1, minPage: 2 },
+        { question: "In Nigerian literature, stories about headmasters often address:", options: ["Social and educational issues", "Farming techniques", "Medical practices", "Military training"], correct: 0, minPage: 2 },
+        { question: "The protagonist of the story is most likely a:", options: ["Student", "Headmaster", "Parent", "Politician"], correct: 1, minPage: 2 },
+        { question: "The setting of Lekki suggests:", options: ["A rural village", "An urban environment", "A desert", "A mountain region"], correct: 1, minPage: 2 },
+        
+        // Deeper analysis questions
+        { question: "The novel is studied in Nigerian schools for:", options: ["Mathematics practice", "Literature analysis", "Science experiments", "Physical education"], correct: 1, minPage: 3 },
+        { question: "Stories set in schools often explore:", options: ["Leadership challenges", "Sports victories", "Cooking recipes", "Musical compositions"], correct: 0, minPage: 3 },
+        { question: "The character of a headmaster represents:", options: ["Students only", "Authority and leadership", "Parents", "Government officials"], correct: 1, minPage: 3 },
+        { question: "In the novel, the school setting is important because it:", options: ["Shows sports activities", "Reflects society's values", "Demonstrates farming", "Teaches cooking"], correct: 1, minPage: 3 },
+        { question: "The literary work can teach readers about:", options: ["Nigerian education system", "European history", "American politics", "Asian culture"], correct: 0, minPage: 3 },
+        
+        // Plot and character development
+        { question: "A protagonist in literature is:", options: ["The villain", "The main character", "A minor character", "The narrator"], correct: 1, minPage: 4 },
+        { question: "The conflict in the novel likely involves:", options: ["Educational challenges", "Medical emergencies", "Natural disasters", "Alien invasions"], correct: 0, minPage: 4 },
+        { question: "Character development in the novel shows:", options: ["Static characters", "Characters who grow", "Only villains", "No character change"], correct: 1, minPage: 4 },
+        { question: "The narrative perspective is likely:", options: ["Third-person view", "Only dialogue", "Only descriptions", "Only poetry"], correct: 0, minPage: 4 },
+        { question: "The school in the novel serves as a:", options: ["Background only", "Microcosm of society", "Sports arena", "Restaurant"], correct: 1, minPage: 4 },
+        
+        // Theme analysis
+        { question: "A major theme in school-based literature is:", options: ["Corruption in education", "Cooking methods", "Sports techniques", "Fashion trends"], correct: 0, minPage: 5 },
+        { question: "The novel addresses the role of:", options: ["Education in development", "Sports in schools", "Food in culture", "Music in society"], correct: 0, minPage: 5 },
+        { question: "The headmaster character represents:", options: ["Student interests only", "Educational leadership", "Political power", "Religious authority"], correct: 1, minPage: 5 },
+        { question: "In African literature, education themes often relate to:", options: ["Colonial influence", "Traditional conflicts", "Modern challenges", "All of the above"], correct: 3, minPage: 5 },
+        { question: "The title suggests the story focuses on:", options: ["A student's journey", "A school leader's experience", "A parent's concern", "A teacher's struggle"], correct: 1, minPage: 5 },
+        
+        // Literary techniques
+        { question: "The author uses setting to:", options: ["Show weather", "Create atmosphere and context", "Describe clothing", "List locations"], correct: 1, minPage: 6 },
+        { question: "Dialogue in the novel helps to:", options: ["Fill pages", "Reveal character and advance plot", "Show punctuation", "Teach grammar"], correct: 1, minPage: 6 },
+        { question: "Imagery in literature appeals to:", options: ["Logic only", "The senses", "Mathematics", "Science"], correct: 1, minPage: 6 },
+        { question: "The author's tone in the novel is likely:", options: ["Humorous only", "Serious and reflective", "Angry", "Indifferent"], correct: 1, minPage: 6 },
+        { question: "Symbolism in the novel may include:", options: ["Random objects", "The school as society", "Weather patterns", "Traffic signs"], correct: 1, minPage: 6 },
+        
+        // Deeper content questions
+        { question: "The novel's conflict may stem from:", options: ["Educational challenges", "Personal ambitions", "Social expectations", "All of the above"], correct: 3, minPage: 7 },
+        { question: "Secondary characters in the novel serve to:", options: ["Fill space", "Support or oppose the protagonist", "Only provide comedy", "Teach lessons"], correct: 1, minPage: 7 },
+        { question: "The climax of the novel is:", options: ["The beginning", "The turning point", "The end", "The middle"], correct: 1, minPage: 7 },
+        { question: "Resolution in literature means:", options: "The problem's solution", "The conflict introduction", "Character introduction", "Setting description"], correct: 0, minPage: 7 },
+        { question: "The novel's message about education is likely:", options: ["Education is unnecessary", "Education transforms lives", "Education is expensive", "Education is easy"], correct: 1, minPage: 7 },
+        
+        // Advanced analysis
+        { question: "The author's purpose is likely to:", options: ["Entertain only", "Inform only", "Entertain and educate", "Confuse readers"], correct: 2, minPage: 8 },
+        { question: "Irony in literature means:", options: ["Direct statements", "Contrast between expectation and reality", "Humor", "Sadness"], correct: 1, minPage: 8 },
+        { question: "Foreshadowing is used to:", options: ["Explain the past", "Hint at future events", "Describe characters", "List facts"], correct: 1, minPage: 8 },
+        { question: "The novel's theme of leadership explores:", options: ["Dictatorship", "Responsible leadership", "Avoiding responsibility", "Ignoring problems"], correct: 1, minPage: 8 },
+        { question: "The setting of Lekki is significant because it:", options: ["Is a rural area", "Is a modern urban area", "Is a desert", "Is an island"], correct: 1, minPage: 8 },
+        
+        // Character analysis
+        { question: "The headmaster faces challenges from:", options: ["Students", "Parents", "Staff", "All stakeholders"], correct: 3, minPage: 9 },
+        { question: "Character motivation in the novel includes:", options: ["Personal ambition", "Duty to students", "Social pressure", "All of the above"], correct: 3, minPage: 9 },
+        { question: "The novel shows that leadership requires:", options: ["Authority only", "Wisdom and patience", "Force", "Money"], correct: 1, minPage: 9 },
+        { question: "Conflict between tradition and modernity is shown through:", options: ["School practices", "Student behavior", "Administrative decisions", "All of the above"], correct: 3, minPage: 9 },
+        { question: "The protagonist's strength lies in:", options: ["Physical power", "Character and principles", "Wealth", "Political connections"], correct: 1, minPage: 9 },
+        
+        // Extended questions for higher pages
+        { question: "The novel explores the theme of:", options: ["Individual vs society", "Nature vs nurture", "Love vs duty", "All themes present"], correct: 3, minPage: 10 },
+        { question: "Supporting characters include:", options: ["Teachers", "Students", "Parents", "All groups"], correct: 3, minPage: 10 },
+        { question: "The school represents:", options: ["A building", "A microcosm of society", "A business", "A home"], correct: 1, minPage: 10 },
+        { question: "The author criticizes or examines:", options: ["Educational policies", "Social values", "Personal ethics", "All aspects"], correct: 3, minPage: 10 },
+        { question: "Readers learn from the novel about:", options: ["School administration", "Human relationships", "Social responsibility", "All topics"], correct: 3, minPage: 10 },
+        
+        // More questions for comprehensive coverage
+        { question: "The narrative style of the novel is:", options: ["Poetic", "Prose narrative", "Dramatic dialogue", "Epistolary"], correct: 1, minPage: 11 },
+        { question: "The headmaster's character demonstrates:", options: ["Perfection", "Human flaws and growth", "Villainy", "Indifference"], correct: 1, minPage: 11 },
+        { question: "Community expectations in the novel include:", options: ["Academic excellence", "Moral guidance", "Social reform", "All expectations"], correct: 3, minPage: 11 },
+        { question: "The novel's relevance today lies in:", options: ["Historical interest", "Ongoing educational debates", "Nostalgia", "Entertainment value"], correct: 1, minPage: 11 },
+        { question: "Students in the novel represent:", options: ["Future leaders", "Passive observers", "Antagonists", "Background characters"], correct: 0, minPage: 11 },
+        
+        // Deeper thematic questions
+        { question: "The novel explores power dynamics between:", options: ["Teachers and students", "Administration and staff", "School and community", "All relationships"], correct: 3, minPage: 12 },
+        { question: "Moral lessons in the novel include:", options: ["Integrity", "Perseverance", "Responsibility", "All virtues"], correct: 3, minPage: 12 },
+        { question: "The author's style can be described as:", options: ["Complex and difficult", "Clear and accessible", "Archaic", "Technical"], correct: 1, minPage: 12 },
+        { question: "The novel addresses contemporary issues of:", options: ["Education quality", "Leadership ethics", "Social justice", "All issues"], correct: 3, minPage: 12 },
+        { question: "Reading this novel helps students develop:", options: ["Critical thinking", "Empathy", "Cultural awareness", "All skills"], correct: 3, minPage: 12 },
+        
+        // Questions for later pages
+        { question: "As the plot develops, tensions arise from:", options: ["Administrative conflicts", "Personal dilemmas", "External pressures", "All sources"], correct: 3, minPage: 15 },
+        { question: "The resolution of conflicts involves:", options: ["Compromise", "Understanding", "Growth", "All elements"], correct: 3, minPage: 15 },
+        { question: "Secondary characters add depth by:", options: ["Providing contrast", "Offering different perspectives", "Creating subplots", "All functions"], correct: 3, minPage: 15 },
+        { question: "The novel's ending likely:", options: ["Resolves major conflicts", "Leaves questions open", "Teaches a lesson", "Combines elements"], correct: 3, minPage: 15 },
+        { question: "The enduring message of the novel is:", options: ["Education matters", "Leadership requires sacrifice", "Character defines success", "All messages"], correct: 3, minPage: 15 },
+        
+        // Extended page questions
+        { question: "The relationship between school and community shows:", options: ["Isolation", "Interdependence", "Conflict only", "Separation"], correct: 1, minPage: 20 },
+        { question: "Character relationships evolve through:", options: ["Conflict", "Cooperation", "Understanding", "All dynamics"], correct: 3, minPage: 20 },
+        { question: "The novel's commentary on Nigerian society includes:", options: ["Corruption critique", "Value of education", "Social dynamics", "All themes"], correct: 3, minPage: 20 },
+        { question: "Personal growth in characters results from:", options: ["Challenges faced", "Lessons learned", "Relationships formed", "All factors"], correct: 3, minPage: 20 },
+        { question: "The complete reading reveals the author's:", options: ["Worldview", "Educational philosophy", "Storytelling craft", "Complete vision"], correct: 3, minPage: 25 }
       ],
       
       generateQuiz(upToPage) {
-        // Filter questions based on pages read
-        const eligibleQuestions = this.questionBank.filter(q => 
-          q.pageRange[1] <= upToPage
-        );
+        // Get questions where the user has read enough pages
+        const eligibleQuestions = this.questionBank.filter(q => q.minPage <= upToPage);
         
-        // Shuffle and pick 5 questions
+        // Shuffle and select questions
         const shuffled = eligibleQuestions.sort(() => Math.random() - 0.5);
         this.questions = shuffled.slice(0, Math.min(5, shuffled.length));
         
-        // If not enough questions, use all available
-        if (this.questions.length < 3) {
-          this.questions = eligibleQuestions;
+        // Ensure at least 3 questions
+        if (this.questions.length < 3 && eligibleQuestions.length >= 3) {
+          this.questions = eligibleQuestions.slice(0, 3);
         }
         
-        return this.questions.length > 0;
+        return this.questions.length >= 3;
       },
       
       start() {
@@ -747,7 +560,6 @@
         document.getElementById('currentQuestionNum').textContent = this.currentIndex + 1;
         document.getElementById('quizCurrentScore').textContent = this.score;
         
-        // Update progress bar
         const progress = ((this.currentIndex) / this.questions.length) * 100;
         document.getElementById('quizProgressBar').style.width = progress + '%';
         
@@ -812,17 +624,11 @@
         document.getElementById('finalScore').textContent = this.score;
         document.getElementById('finalMaxScore').textContent = this.questions.length;
         document.getElementById('quizPercentageText').textContent = `Percentage: ${percentage}%`;
-        
-        // Update progress bar to 100%
         document.getElementById('quizProgressBar').style.width = '100%';
         
-        // Save result
         this.saveResult(percentage);
-        
-        // Mark quiz as completed
         StudyTracker.setQuizCompleted(percentage);
         
-        // Show appropriate icon
         const iconContainer = document.getElementById('quizResultIcon');
         if (percentage >= 80) {
           iconContainer.className = 'w-20 h-20 mx-auto mb-4 rounded-full flex items-center justify-center bg-green-100';
@@ -869,9 +675,7 @@
       }
     };
     
-    // ============================================
-    // PDF READER INITIALIZATION
-    // ============================================
+    // PDF Reader
     pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
     const pdfPath = '../assets/Notes/Lekki-Headmaster-novel.pdf';
 
@@ -899,15 +703,7 @@
         renderPage(currentPage);
         updateSidebar();
       } catch (error) {
-        document.querySelector('.flex-1.overflow-auto').innerHTML = `
-          <div class="flex flex-col items-center justify-center h-full text-center p-8">
-            <div class="w-20 h-20 bg-red-100 rounded-full flex items-center justify-center mb-4">
-              <i class="fas fa-exclamation-triangle text-3xl text-red-500"></i>
-            </div>
-            <h2 class="text-xl font-bold text-slate-800 mb-2">Error Loading PDF</h2>
-            <p class="text-slate-500">Unable to load the book. Please try again later.</p>
-          </div>
-        `;
+        console.error('PDF load error:', error);
       }
     }
 
@@ -917,7 +713,6 @@
       document.getElementById('pageInput').onkeypress = (e) => {
         if (e.key === 'Enter') goToPage(parseInt(e.target.value) || currentPage);
       };
-
       document.getElementById('bookmarkBtn').onclick = toggleBookmark;
       document.getElementById('addNoteBtn').onclick = () => openModal('noteModal');
       document.getElementById('toggleDarkMode').onclick = toggleDarkMode;
@@ -926,10 +721,8 @@
     }
 
     function toggleSidebar() {
-      const sidebar = document.getElementById('sidebar');
-      const overlay = document.getElementById('overlay');
-      sidebar.classList.toggle('hide');
-      overlay.classList.toggle('hidden');
+      document.getElementById('sidebar').classList.toggle('hide');
+      document.getElementById('overlay').classList.toggle('hidden');
     }
 
     async function renderPage(pageNum) {
@@ -1004,19 +797,6 @@
       showToast('Note saved!', 'success');
     }
 
-    function saveVocab() {
-      const word = document.getElementById('vocabWord').value;
-      const meaning = document.getElementById('vocabMeaning').value;
-      if (!word || !meaning) { showToast('Please fill in both fields', 'error'); return; }
-      vocabulary.push({ word, meaning, page: currentPage });
-      localStorage.setItem('lekki_vocabulary', JSON.stringify(vocabulary));
-      closeModal('vocabModal');
-      document.getElementById('vocabWord').value = '';
-      document.getElementById('vocabMeaning').value = '';
-      updateSidebar();
-      showToast('Word added!', 'success');
-    }
-
     function updateSidebar() {
       const bookmarksList = document.getElementById('bookmarksList');
       if (Object.keys(bookmarks).length) {
@@ -1032,7 +812,7 @@
 
       const notesList = document.getElementById('notesList');
       if (notes.length) {
-        notesList.innerHTML = notes.map((n, i) => `
+        notesList.innerHTML = notes.map(n => `
           <button onclick="goToPage(${n.page})" class="w-full text-left px-3 py-2 rounded-lg hover:bg-sky-50 transition group">
             <div class="font-medium text-slate-700 group-hover:text-sky-600 text-sm">${n.title}</div>
             <div class="text-xs text-slate-400">Page ${n.page}</div>
@@ -1045,7 +825,7 @@
       const vocabList = document.getElementById('vocabularyList');
       if (vocabulary.length) {
         vocabList.innerHTML = vocabulary.map(v => `
-          <div class="px-3 py-2 rounded-lg bg-slate-50 group">
+          <div class="px-3 py-2 rounded-lg bg-slate-50">
             <div class="font-medium text-slate-700 text-sm">${v.word}</div>
             <div class="text-xs text-slate-500">${v.meaning.substring(0, 50)}${v.meaning.length > 50 ? '...' : ''}</div>
           </div>
@@ -1059,12 +839,10 @@
       const toast = document.getElementById('toast');
       const icon = document.getElementById('toastIcon');
       const msg = document.getElementById('toastMessage');
-      
       msg.textContent = message;
       icon.className = type === 'success' ? 'fas fa-check-circle text-green-400' : 
                        type === 'error' ? 'fas fa-exclamation-circle text-red-400' : 
                        'fas fa-info-circle text-sky-400';
-      
       toast.classList.remove('hidden');
       setTimeout(() => toast.classList.add('hidden'), 3000);
     }
@@ -1073,7 +851,6 @@
       document.body.classList.toggle('dark');
       const isDark = document.body.classList.contains('dark');
       localStorage.setItem('lekki_darkMode', isDark);
-      
       if (isDark) {
         document.body.classList.add('bg-slate-900', 'text-slate-100');
         document.body.classList.remove('bg-slate-50', 'text-slate-800');
@@ -1081,24 +858,17 @@
         document.body.classList.remove('bg-slate-900', 'text-slate-100');
         document.body.classList.add('bg-slate-50', 'text-slate-800');
       }
-      
       showToast(isDark ? 'Dark mode enabled' : 'Light mode enabled', 'info');
     }
 
-    // ============================================
-    // QUIZ FUNCTIONS
-    // ============================================
     function startMandatoryQuiz() {
-      // Close warning modal
       document.getElementById('warningModal').classList.add('hidden');
       document.getElementById('warningModal').classList.remove('flex');
       
-      // Generate and start quiz
       const success = QuizSystem.generateQuiz(StudyTracker.maxPageReached);
       if (success) {
         QuizSystem.start();
       } else {
-        // If no questions, allow exit
         allowExit();
       }
     }
@@ -1108,8 +878,6 @@
       document.getElementById('exitQuizModal').classList.add('hidden');
       document.getElementById('exitQuizModal').classList.remove('flex');
       document.body.classList.remove('quiz-active');
-      
-      // Navigate to dashboard
       window.location.href = 'student-dashboard.html';
     }
 
@@ -1118,12 +886,8 @@
 
     async function readAloud() {
       const speakBtn = document.getElementById('speakBtn');
-      
       if (isReading) {
-        if (audioElement) {
-          audioElement.pause();
-          audioElement.currentTime = 0;
-        }
+        if (audioElement) { audioElement.pause(); audioElement.currentTime = 0; }
         isReading = false;
         speakBtn.innerHTML = '<i class="fas fa-volume-up"></i><span class="hidden sm:inline text-sm font-medium">Read</span>';
         return;
@@ -1152,14 +916,14 @@
           body: JSON.stringify({ text: textToRead, lang: 'en' })
         });
 
-        if (!response.ok) throw new Error('TTS service unavailable');
+        if (!response.ok) throw new Error('TTS unavailable');
 
         const audioBlob = await response.blob();
         const audioUrl = URL.createObjectURL(audioBlob);
         
         if (!audioElement) audioElement = new Audio();
         audioElement.src = audioUrl;
-        audioElement.play().catch(err => {
+        audioElement.play().catch(() => {
           showToast('Audio error', 'error');
           isReading = false;
           speakBtn.innerHTML = '<i class="fas fa-volume-up"></i><span class="hidden sm:inline text-sm font-medium">Read</span>';
@@ -1178,13 +942,11 @@
       }
     }
 
-    // Load dark mode preference
     if (localStorage.getItem('lekki_darkMode') === 'true') {
       document.body.classList.add('dark', 'bg-slate-900', 'text-slate-100');
       document.body.classList.remove('bg-slate-50', 'text-slate-800');
     }
     
-    // Load Supabase client silently
     import('https://esm.sh/@supabase/supabase-js@2').then(({ createClient }) => {
       window.supabaseClient = createClient(window.SUPABASE_URL, window.SUPABASE_ANON_KEY);
     }).catch(() => {});
