@@ -1,0 +1,1338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Lekki Headmaster - By Kabir Alabi Garba</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <script>
+    window.SUPABASE_URL = 'https://kruwfhzfqieuiuhqlutt.supabase.co';
+    window.SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImtydXdmaHpmcWlldWl1aHFsdXR0Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjIxOTk0OTAsImV4cCI6MjA3Nzc3NTQ5MH0.XD3-PDjDtKwCVsBILYgVrHF7Yc9tHkzpvpN2b7ojvB4';
+  </script>
+  <style>
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes slideUp {
+      from { transform: translateY(20px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.5; }
+    }
+    .animate-fade-in { animation: fadeIn 0.3s ease-out; }
+    .animate-slide-up { animation: slideUp 0.3s ease-out; }
+    .animate-pulse { animation: pulse 2s infinite; }
+    .font-serif { font-family: 'Playfair Display', serif; }
+    
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: #f1f5f9; }
+    ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 3px; }
+    ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+    
+    #sidebar {
+      transition: transform 0.3s ease-in-out;
+    }
+    #sidebar.hide { transform: translateX(-100%); }
+    @media (min-width: 768px) {
+      #sidebar { transform: translateX(0) !important; }
+    }
+    
+    .dark {
+      --bg-primary: #0f172a;
+      --bg-secondary: #1e293b;
+      --text-primary: #f1f5f9;
+      --text-secondary: #94a3b8;
+    }
+    
+    .quiz-option {
+      transition: all 0.2s ease;
+    }
+    .quiz-option:hover {
+      transform: translateX(4px);
+    }
+    .quiz-option.selected {
+      border-color: #0ea5e9;
+      background: #f0f9ff;
+    }
+    .quiz-option.correct {
+      border-color: #22c55e;
+      background: #f0fdf4;
+    }
+    .quiz-option.incorrect {
+      border-color: #ef4444;
+      background: #fef2f2;
+    }
+  </style>
+</head>
+<body class="bg-slate-50 text-slate-800 font-sans">
+  <div class="flex h-screen overflow-hidden">
+    
+    <!-- Sidebar -->
+    <aside id="sidebar" class="hide md:translate-x-0 fixed md:relative z-40 w-72 h-full bg-white border-r border-slate-200 flex flex-col shadow-lg md:shadow-none">
+      <!-- Header -->
+      <div class="bg-gradient-to-r from-sky-600 to-sky-500 text-white p-6">
+        <div class="flex items-center gap-3 mb-2">
+          <div class="w-10 h-10 bg-white/20 rounded-xl flex items-center justify-center">
+            <i class="fas fa-book-open text-lg"></i>
+          </div>
+          <div>
+            <h1 class="font-serif text-xl font-bold">The Lekki Headmaster</h1>
+            <p class="text-xs text-sky-100 opacity-90">By Kabir Alabi Garba</p>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Reading Stats -->
+      <div class="p-4 bg-gradient-to-r from-sky-50 to-white border-b border-slate-100">
+        <h3 class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-3 flex items-center gap-2">
+          <i class="fas fa-clock text-sky-500"></i> Reading Session
+        </h3>
+        <div class="grid grid-cols-2 gap-3">
+          <div class="bg-white rounded-lg p-3 border border-slate-100">
+            <div id="sessionTime" class="text-lg font-bold text-sky-600">00:00</div>
+            <div class="text-xs text-slate-400">Time Today</div>
+          </div>
+          <div class="bg-white rounded-lg p-3 border border-slate-100">
+            <div id="totalReadTime" class="text-lg font-bold text-emerald-600">0h</div>
+            <div class="text-xs text-slate-400">Total Time</div>
+          </div>
+        </div>
+        <div class="mt-3 bg-white rounded-lg p-3 border border-slate-100">
+          <div class="flex justify-between items-center mb-1">
+            <span class="text-xs text-slate-500">Highest Page Reached</span>
+            <span id="highestPage" class="text-xs font-bold text-sky-600">Page 1</span>
+          </div>
+          <div class="h-2 bg-slate-100 rounded-full overflow-hidden">
+            <div id="overallProgress" class="h-full bg-gradient-to-r from-sky-500 to-emerald-500 transition-all duration-500" style="width: 0%"></div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Navigation -->
+      <nav class="flex-1 overflow-y-auto p-4 space-y-6">
+        <!-- Bookmarks -->
+        <div>
+          <h3 class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-3 flex items-center gap-2">
+            <i class="fas fa-bookmark text-sky-500"></i> Bookmarks
+          </h3>
+          <div id="bookmarksList" class="space-y-2">
+            <p class="text-sm text-slate-400 italic">No bookmarks yet</p>
+          </div>
+        </div>
+        
+        <!-- Notes -->
+        <div>
+          <h3 class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-3 flex items-center gap-2">
+            <i class="fas fa-sticky-note text-sky-500"></i> Notes
+          </h3>
+          <div id="notesList" class="space-y-2">
+            <p class="text-sm text-slate-400 italic">No notes yet</p>
+          </div>
+        </div>
+        
+        <!-- Vocabulary -->
+        <div>
+          <h3 class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-3 flex items-center gap-2">
+            <i class="fas fa-spell-check text-sky-500"></i> Vocabulary
+          </h3>
+          <div id="vocabularyList" class="space-y-2">
+            <p class="text-sm text-slate-400 italic">No words added</p>
+          </div>
+        </div>
+        
+        <!-- Reading History -->
+        <div>
+          <h3 class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-3 flex items-center gap-2">
+            <i class="fas fa-history text-sky-500"></i> Recent Sessions
+          </h3>
+          <div id="readingHistory" class="space-y-2">
+            <p class="text-sm text-slate-400 italic">No sessions recorded</p>
+          </div>
+        </div>
+      </nav>
+      
+      <!-- Footer -->
+      <div class="p-4 border-t border-slate-100 space-y-2">
+        <button onclick="showReadingSummary()" class="w-full py-2 px-4 bg-sky-100 hover:bg-sky-200 text-sky-700 rounded-lg text-sm font-medium transition flex items-center justify-center gap-2">
+          <i class="fas fa-chart-bar"></i> View Progress
+        </button>
+        <a href="student-dashboard.html" class="flex items-center justify-center gap-2 text-sm text-slate-500 hover:text-sky-600 transition py-2">
+          <i class="fas fa-arrow-left"></i> Back to Dashboard
+        </a>
+      </div>
+    </aside>
+    
+    <!-- Main Content -->
+    <main class="flex-1 flex flex-col min-w-0">
+      <!-- Header -->
+      <header class="bg-white border-b border-slate-200 px-4 py-3 flex items-center justify-between gap-4 flex-wrap">
+        <!-- Left -->
+        <div class="flex items-center gap-2">
+          <button id="sidebarToggle" class="p-2 rounded-lg hover:bg-slate-100 md:hidden transition" title="Toggle sidebar">
+            <i class="fas fa-bars text-slate-600"></i>
+          </button>
+          <button id="toggleDarkMode" class="p-2 rounded-lg hover:bg-slate-100 transition" title="Dark mode">
+            <i class="fas fa-moon text-slate-600"></i>
+          </button>
+        </div>
+        
+        <!-- Center - Page Navigation -->
+        <div class="flex items-center gap-2">
+          <button id="prevBtn" class="p-2 px-3 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-600 transition disabled:opacity-50">
+            <i class="fas fa-chevron-left"></i>
+          </button>
+          <div class="flex items-center gap-2 bg-slate-100 rounded-lg px-3 py-2">
+            <input type="number" id="pageInput" min="1" class="w-12 bg-transparent text-center font-semibold text-slate-700 focus:outline-none">
+            <span class="text-slate-400">/</span>
+            <span id="totalPages" class="text-slate-600 font-medium">1</span>
+          </div>
+          <button id="nextBtn" class="p-2 px-3 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-600 transition disabled:opacity-50">
+            <i class="fas fa-chevron-right"></i>
+          </button>
+        </div>
+        
+        <!-- Right - Actions -->
+        <div class="flex items-center gap-2">
+          <button id="bookmarkBtn" class="p-2 px-4 rounded-lg bg-slate-100 hover:bg-sky-100 hover:text-sky-600 text-slate-600 transition flex items-center gap-2" title="Bookmark page">
+            <i class="fas fa-bookmark"></i>
+            <span class="hidden sm:inline text-sm font-medium">Bookmark</span>
+          </button>
+          <button id="addNoteBtn" class="p-2 px-4 rounded-lg bg-slate-100 hover:bg-sky-100 hover:text-sky-600 text-slate-600 transition flex items-center gap-2" title="Add note">
+            <i class="fas fa-sticky-note"></i>
+            <span class="hidden sm:inline text-sm font-medium">Note</span>
+          </button>
+          <button id="speakBtn" class="p-2 px-4 rounded-lg bg-gradient-to-r from-sky-500 to-sky-600 hover:from-sky-600 hover:to-sky-700 text-white transition flex items-center gap-2" title="Read aloud">
+            <i class="fas fa-volume-up"></i>
+            <span class="hidden sm:inline text-sm font-medium">Read</span>
+          </button>
+          <button onclick="startAssessment()" class="p-2 px-4 rounded-lg bg-gradient-to-r from-emerald-500 to-emerald-600 hover:from-emerald-600 hover:to-emerald-700 text-white transition flex items-center gap-2" title="Take Quiz">
+            <i class="fas fa-question-circle"></i>
+            <span class="hidden sm:inline text-sm font-medium">Quiz</span>
+          </button>
+        </div>
+      </header>
+      
+      <!-- Progress Bar -->
+      <div class="h-1 bg-slate-100">
+        <div id="progressFill" class="h-full bg-gradient-to-r from-sky-500 to-sky-400 transition-all duration-300" style="width: 0%"></div>
+      </div>
+      
+      <!-- Reading Progress Info -->
+      <div class="bg-gradient-to-r from-sky-50 to-white px-4 py-2 border-b border-slate-100">
+        <div class="flex items-center justify-between text-sm">
+          <span class="text-slate-500">
+            <i class="fas fa-book-reader text-sky-500 mr-2"></i>
+            Reading Progress: <span id="progressPercent" class="font-semibold text-sky-600">0%</span>
+          </span>
+          <span id="pageInfo" class="text-slate-500">Page <span class="font-semibold text-slate-700">1</span> of <span class="font-semibold text-slate-700">1</span></span>
+        </div>
+      </div>
+      
+      <!-- PDF Canvas -->
+      <div class="flex-1 overflow-auto bg-gradient-to-b from-slate-100 to-slate-50 p-4 md:p-8">
+        <div class="flex justify-center">
+          <canvas id="pdfCanvas" class="max-w-full h-auto bg-white rounded-xl shadow-2xl"></canvas>
+        </div>
+      </div>
+    </main>
+  </div>
+  
+  <!-- Overlay for mobile sidebar -->
+  <div id="overlay" class="fixed inset-0 bg-slate-900/50 z-30 hidden md:hidden" onclick="toggleSidebar()"></div>
+  
+  <!-- Note Modal -->
+  <div id="noteModal" class="fixed inset-0 bg-slate-900/50 z-50 hidden items-center justify-center p-4">
+    <div class="bg-white rounded-2xl shadow-2xl w-full max-w-md animate-slide-up">
+      <div class="p-6 border-b border-slate-100">
+        <div class="flex items-center justify-between">
+          <h2 class="font-serif text-xl font-bold text-slate-800">Add Note</h2>
+          <button onclick="closeModal('noteModal')" class="p-2 hover:bg-slate-100 rounded-lg transition">
+            <i class="fas fa-times text-slate-400"></i>
+          </button>
+        </div>
+      </div>
+      <div class="p-6 space-y-4">
+        <div>
+          <label class="block text-sm font-medium text-slate-700 mb-2">Title</label>
+          <input type="text" id="noteTitle" placeholder="Enter note title..." class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-sky-500 focus:ring-2 focus:ring-sky-100 outline-none transition">
+        </div>
+        <div>
+          <label class="block text-sm font-medium text-slate-700 mb-2">Content</label>
+          <textarea id="noteContent" rows="4" placeholder="Write your note..." class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-sky-500 focus:ring-2 focus:ring-sky-100 outline-none transition resize-none"></textarea>
+        </div>
+        <button onclick="saveNote()" class="w-full py-3 bg-gradient-to-r from-sky-500 to-sky-600 hover:from-sky-600 hover:to-sky-700 text-white font-semibold rounded-xl transition">
+          Save Note
+        </button>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Vocabulary Modal -->
+  <div id="vocabModal" class="fixed inset-0 bg-slate-900/50 z-50 hidden items-center justify-center p-4">
+    <div class="bg-white rounded-2xl shadow-2xl w-full max-w-md animate-slide-up">
+      <div class="p-6 border-b border-slate-100">
+        <div class="flex items-center justify-between">
+          <h2 class="font-serif text-xl font-bold text-slate-800">Add Vocabulary</h2>
+          <button onclick="closeModal('vocabModal')" class="p-2 hover:bg-slate-100 rounded-lg transition">
+            <i class="fas fa-times text-slate-400"></i>
+          </button>
+        </div>
+      </div>
+      <div class="p-6 space-y-4">
+        <div>
+          <label class="block text-sm font-medium text-slate-700 mb-2">Word</label>
+          <input type="text" id="vocabWord" placeholder="Enter word..." class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-sky-500 focus:ring-2 focus:ring-sky-100 outline-none transition">
+        </div>
+        <div>
+          <label class="block text-sm font-medium text-slate-700 mb-2">Meaning</label>
+          <textarea id="vocabMeaning" rows="4" placeholder="Enter meaning..." class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-sky-500 focus:ring-2 focus:ring-sky-100 outline-none transition resize-none"></textarea>
+        </div>
+        <button onclick="saveVocab()" class="w-full py-3 bg-gradient-to-r from-sky-500 to-sky-600 hover:from-sky-600 hover:to-sky-700 text-white font-semibold rounded-xl transition">
+          Save Word
+        </button>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Assessment Modal -->
+  <div id="assessmentModal" class="fixed inset-0 bg-slate-900/50 z-50 hidden items-center justify-center p-4 overflow-y-auto">
+    <div class="bg-white rounded-2xl shadow-2xl w-full max-w-2xl my-8 animate-slide-up">
+      <div class="p-6 border-b border-slate-100 bg-gradient-to-r from-emerald-500 to-sky-500 rounded-t-2xl">
+        <div class="flex items-center justify-between">
+          <div class="text-white">
+            <h2 class="font-serif text-2xl font-bold">Reading Assessment</h2>
+            <p class="text-sm opacity-90 mt-1">Test your understanding of pages 1 - <span id="quizPageRange">1</span></p>
+          </div>
+          <button onclick="closeModal('assessmentModal')" class="p-2 hover:bg-white/20 rounded-lg transition text-white">
+            <i class="fas fa-times"></i>
+          </button>
+        </div>
+      </div>
+      
+      <div id="quizContent" class="p-6">
+        <!-- Quiz questions will be rendered here -->
+      </div>
+      
+      <div id="quizResults" class="hidden p-6">
+        <!-- Results will be shown here -->
+      </div>
+    </div>
+  </div>
+  
+  <!-- Reading Summary Modal -->
+  <div id="summaryModal" class="fixed inset-0 bg-slate-900/50 z-50 hidden items-center justify-center p-4 overflow-y-auto">
+    <div class="bg-white rounded-2xl shadow-2xl w-full max-w-lg my-8 animate-slide-up">
+      <div class="p-6 border-b border-slate-100">
+        <div class="flex items-center justify-between">
+          <h2 class="font-serif text-xl font-bold text-slate-800">Reading Progress</h2>
+          <button onclick="closeModal('summaryModal')" class="p-2 hover:bg-slate-100 rounded-lg transition">
+            <i class="fas fa-times text-slate-400"></i>
+          </button>
+        </div>
+      </div>
+      <div id="summaryContent" class="p-6">
+        <!-- Summary will be rendered here -->
+      </div>
+    </div>
+  </div>
+  
+  <!-- Exit Assessment Modal -->
+  <div id="exitModal" class="fixed inset-0 bg-slate-900/50 z-50 hidden items-center justify-center p-4">
+    <div class="bg-white rounded-2xl shadow-2xl w-full max-w-md animate-slide-up">
+      <div class="p-6 text-center">
+        <div class="w-16 h-16 bg-amber-100 rounded-full flex items-center justify-center mx-auto mb-4">
+          <i class="fas fa-clock text-3xl text-amber-500"></i>
+        </div>
+        <h2 class="font-serif text-xl font-bold text-slate-800 mb-2">Before You Go</h2>
+        <p class="text-slate-600 mb-4">You've read up to page <span id="exitPageNum" class="font-bold text-sky-600">1</span>. Would you like to take a quick comprehension quiz?</p>
+        <div class="bg-slate-50 rounded-xl p-4 mb-4 text-left">
+          <div class="flex justify-between text-sm mb-2">
+            <span class="text-slate-500">Session Time:</span>
+            <span id="exitSessionTime" class="font-semibold text-slate-700">00:00</span>
+          </div>
+          <div class="flex justify-between text-sm">
+            <span class="text-slate-500">Pages Read:</span>
+            <span id="exitPagesRead" class="font-semibold text-slate-700">0</span>
+          </div>
+        </div>
+        <div class="flex gap-3">
+          <button onclick="closeModal('exitModal'); window.allowExit = true;" class="flex-1 py-3 bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold rounded-xl transition">
+            Skip Quiz
+          </button>
+          <button onclick="closeModal('exitModal'); startAssessment();" class="flex-1 py-3 bg-gradient-to-r from-emerald-500 to-sky-500 hover:from-emerald-600 hover:to-sky-600 text-white font-semibold rounded-xl transition">
+            Take Quiz
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Toast Notification -->
+  <div id="toast" class="fixed bottom-4 right-4 z-50 hidden">
+    <div class="bg-slate-800 text-white px-6 py-3 rounded-xl shadow-lg flex items-center gap-3 animate-fade-in">
+      <i id="toastIcon" class="fas fa-check-circle text-green-400"></i>
+      <span id="toastMessage">Action completed</span>
+    </div>
+  </div>
+
+  <script src="./js/supabase-bootstrap.js"></script>
+  <script>
+    pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+    const pdfPath = '../assets/Notes/Lekki-Headmaster-novel.pdf';
+
+    let pdfDoc = null, currentPage = 1, totalPages = 0;
+    const canvas = document.getElementById('pdfCanvas');
+    const ctx = canvas.getContext('2d');
+
+    let bookmarks = JSON.parse(localStorage.getItem('lekki_bookmarks')) || {};
+    let notes = JSON.parse(localStorage.getItem('lekki_notes')) || [];
+    let vocabulary = JSON.parse(localStorage.getItem('lekki_vocabulary')) || [];
+    let readingProgress = JSON.parse(localStorage.getItem('lekki_progress')) || {};
+    let readingHistory = JSON.parse(localStorage.getItem('lekki_history')) || [];
+    
+    // Time tracking variables
+    let sessionStartTime = Date.now();
+    let pageStartTime = Date.now();
+    let pageTimes = {}; // Track time spent on each page
+    let highestPageReached = readingProgress.highestPage || 1;
+    let totalPagesRead = readingProgress.totalPagesRead || 0;
+    let totalReadingTime = readingProgress.totalTime || 0; // in seconds
+    
+    // Quiz state
+    let quizQuestions = [];
+    let currentQuestion = 0;
+    let quizScore = 0;
+    let quizAnswers = [];
+    
+    // Exit prevention
+    window.allowExit = false;
+
+    // ============================================
+    // QUIZ QUESTIONS DATABASE
+    // Questions organized by page ranges
+    // ============================================
+    const questionsDatabase = [
+      // Pages 1-10: Introduction & Setting
+      {
+        pageRange: [1, 10],
+        questions: [
+          {
+            question: "What is the title of the novel?",
+            options: ["The Lekki Headmaster", "The Lagos Teacher", "The Nigerian School", "The Village Principal"],
+            correct: 0
+          },
+          {
+            question: "Who is the author of 'The Lekki Headmaster'?",
+            options: ["Chinua Achebe", "Kabir Alabi Garba", "Wole Soyinka", "Chimamanda Adichie"],
+            correct: 1
+          },
+          {
+            question: "Where is the story primarily set?",
+            options: ["Abuja", "Lekki", "Kano", "Port Harcourt"],
+            correct: 1
+          },
+          {
+            question: "What is the main theme explored in the opening chapters?",
+            options: ["Politics", "Education and social change", "War", "Religion"],
+            correct: 1
+          }
+        ]
+      },
+      // Pages 11-20: Characters Introduction
+      {
+        pageRange: [11, 20],
+        questions: [
+          {
+            question: "What role does the headmaster play in the community?",
+            options: ["A wealthy businessman", "An educational leader", "A political figure", "A religious leader"],
+            correct: 1
+          },
+          {
+            question: "The story explores the contrast between:",
+            options: ["Rich and poor", "Traditional and modern values", "Urban and rural life", "All of the above"],
+            correct: 3
+          },
+          {
+            question: "What challenges does the school face?",
+            options: ["Lack of students", "Infrastructure problems", "Too much funding", "No teachers"],
+            correct: 1
+          },
+          {
+            question: "The community's attitude toward education can be described as:",
+            options: ["Indifferent", "Hostile", "Mixed - some value it, others don't", "Uniformly supportive"],
+            correct: 2
+          }
+        ]
+      },
+      // Pages 21-30: Plot Development
+      {
+        pageRange: [21, 30],
+        questions: [
+          {
+            question: "What major conflict emerges in this section?",
+            options: ["Financial crisis", "Cultural clash", "Student rebellion", "Teacher strike"],
+            correct: 1
+          },
+          {
+            question: "How does the headmaster handle challenges?",
+            options: ["Aggressively", "Through dialogue and patience", "By avoiding them", "By resigning"],
+            correct: 1
+          },
+          {
+            question: "What values does the headmaster represent?",
+            options: ["Corruption and greed", "Integrity and dedication", "Laziness", "Selfishness"],
+            correct: 1
+          },
+          {
+            question: "The parents' attitude changes due to:",
+            options: ["Government intervention", "The headmaster's persistence", "Student protests", "Financial incentives"],
+            correct: 1
+          }
+        ]
+      },
+      // Pages 31-40: Rising Action
+      {
+        pageRange: [31, 40],
+        questions: [
+          {
+            question: "What new character is introduced in this section?",
+            options: ["A new teacher", "A wealthy donor", "A government official", "A student leader"],
+            correct: 0
+          },
+          {
+            question: "The school begins to experience:",
+            options: ["Decline in enrollment", "Improvement and growth", "Shutdown", "Relocation"],
+            correct: 1
+          },
+          {
+            question: "What role do parents play in the school's development?",
+            options: ["Opposition", "Passive observation", "Active support", "Sabotage"],
+            correct: 2
+          },
+          {
+            question: "The headmaster's leadership style can be described as:",
+            options: ["Authoritarian", "Democratic and inclusive", "Laissez-faire", "Corrupt"],
+            correct: 1
+          }
+        ]
+      },
+      // Pages 41-50: Climax Building
+      {
+        pageRange: [41, 50],
+        questions: [
+          {
+            question: "What significant event occurs in this section?",
+            options: ["A festival", "A school inspection", "A sports competition", "A graduation ceremony"],
+            correct: 1
+          },
+          {
+            question: "How do the students perform academically?",
+            options: ["Poorly", "Average", "Excellently", "Not mentioned"],
+            correct: 2
+          },
+          {
+            question: "The community's perception of the school:",
+            options: ["Worsens", "Remains unchanged", "Improves significantly", "Not addressed"],
+            correct: 2
+          },
+          {
+            question: "What inspires the students most?",
+            options: ["Money", "The headmaster's dedication", "Government awards", "Peer pressure"],
+            correct: 1
+          }
+        ]
+      },
+      // Pages 51-60: Resolution Approaching
+      {
+        pageRange: [51, 60],
+        questions: [
+          {
+            question: "What challenge does the headmaster face personally?",
+            options: ["Health issues", "Family pressure", "Financial problems", "All of the above"],
+            correct: 3
+          },
+          {
+            question: "How does the school community show appreciation?",
+            options: ["A protest", "A celebration", "A strike", "Nothing"],
+            correct: 1
+          },
+          {
+            question: "The theme of sacrifice is demonstrated through:",
+            options: ["The students", "The headmaster", "The parents", "The government"],
+            correct: 1
+          },
+          {
+            question: "What moral lesson is emphasized?",
+            options: ["Wealth is everything", "Education transforms lives", "Tradition is bad", "Change is impossible"],
+            correct: 1
+          }
+        ]
+      },
+      // Pages 61+: Conclusion
+      {
+        pageRange: [61, 500],
+        questions: [
+          {
+            question: "The ending of the novel suggests:",
+            options: ["Failure", "Hope and progress", "Tragedy", "Uncertainty"],
+            correct: 1
+          },
+          {
+            question: "What happens to the school by the end?",
+            options: ["It closes down", "It thrives", "It relocates", "It burns down"],
+            correct: 1
+          },
+          {
+            question: "The headmaster's legacy is:",
+            options: ["Forgotten", "Celebrated", "Criticized", "Ignored"],
+            correct: 1
+          },
+          {
+            question: "What is the overall message of the novel?",
+            options: ["Education is worthless", "Dedication and integrity bring positive change", "Tradition must be abandoned", "Success comes from corruption"],
+            correct: 1
+          }
+        ]
+      }
+    ];
+
+    document.addEventListener('DOMContentLoaded', initReader);
+
+    async function initReader() {
+      try {
+        pdfDoc = await pdfjsLib.getDocument(pdfPath).promise;
+        totalPages = pdfDoc.numPages;
+        currentPage = Math.min(readingProgress.lastPage || 1, totalPages);
+        highestPageReached = Math.max(highestPageReached, currentPage);
+        document.getElementById('totalPages').textContent = totalPages;
+        
+        setupEvents();
+        renderPage(currentPage);
+        updateSidebar();
+        startSessionTimer();
+        updateReadingStats();
+        
+        // Initialize page time tracking
+        pageStartTime = Date.now();
+        
+      } catch (error) {
+        document.querySelector('.flex-1.overflow-auto').innerHTML = `
+          <div class="flex flex-col items-center justify-center h-full text-center p-8">
+            <div class="w-20 h-20 bg-red-100 rounded-full flex items-center justify-center mb-4">
+              <i class="fas fa-exclamation-triangle text-3xl text-red-500"></i>
+            </div>
+            <h2 class="text-xl font-bold text-slate-800 mb-2">Error Loading PDF</h2>
+            <p class="text-slate-500">Unable to load the book. Please try again later.</p>
+          </div>
+        `;
+      }
+    }
+
+    function setupEvents() {
+      document.getElementById('prevBtn').onclick = () => goToPage(currentPage - 1);
+      document.getElementById('nextBtn').onclick = () => goToPage(currentPage + 1);
+      document.getElementById('pageInput').onkeypress = (e) => {
+        if (e.key === 'Enter') goToPage(parseInt(e.target.value) || currentPage);
+      };
+
+      document.getElementById('bookmarkBtn').onclick = toggleBookmark;
+      document.getElementById('addNoteBtn').onclick = () => openModal('noteModal');
+      document.getElementById('toggleDarkMode').onclick = toggleDarkMode;
+      document.getElementById('speakBtn').onclick = readAloud;
+      document.getElementById('sidebarToggle').onclick = toggleSidebar;
+      
+      // Track page visibility changes
+      document.addEventListener('visibilitychange', handleVisibilityChange);
+      
+      // Warn before leaving page
+      window.addEventListener('beforeunload', handleBeforeUnload);
+      
+      // Track when user leaves the page
+      window.addEventListener('pagehide', saveSessionData);
+    }
+
+    function handleVisibilityChange() {
+      if (document.hidden) {
+        // Page is hidden, save current page time
+        savePageTime();
+      } else {
+        // Page is visible again, restart timer
+        pageStartTime = Date.now();
+      }
+    }
+
+    function handleBeforeUnload(e) {
+      if (!window.allowExit && currentPage > 1) {
+        saveSessionData();
+        
+        // Show exit modal instead of default browser dialog
+        document.getElementById('exitPageNum').textContent = highestPageReached;
+        document.getElementById('exitSessionTime').textContent = formatTime(Math.floor((Date.now() - sessionStartTime) / 1000));
+        document.getElementById('exitPagesRead').textContent = Object.keys(pageTimes).length;
+        openModal('exitModal');
+        
+        e.preventDefault();
+        e.returnValue = '';
+        return '';
+      }
+    }
+
+    function savePageTime() {
+      const timeSpent = Math.floor((Date.now() - pageStartTime) / 1000);
+      if (timeSpent > 0) {
+        if (!pageTimes[currentPage]) {
+          pageTimes[currentPage] = 0;
+        }
+        pageTimes[currentPage] += timeSpent;
+      }
+    }
+
+    function saveSessionData() {
+      savePageTime();
+      
+      const sessionTime = Math.floor((Date.now() - sessionStartTime) / 1000);
+      totalReadingTime += sessionTime;
+      
+      // Save reading progress
+      readingProgress.lastPage = currentPage;
+      readingProgress.highestPage = highestPageReached;
+      readingProgress.totalTime = totalReadingTime;
+      readingProgress.totalPagesRead = (readingProgress.totalPagesRead || 0) + Object.keys(pageTimes).length;
+      readingProgress.lastSession = new Date().toISOString();
+      localStorage.setItem('lekki_progress', JSON.stringify(readingProgress));
+      
+      // Add to history
+      if (sessionTime > 30) { // Only record sessions longer than 30 seconds
+        const session = {
+          date: new Date().toLocaleDateString(),
+          time: new Date().toLocaleTimeString(),
+          duration: sessionTime,
+          pagesRead: Object.keys(pageTimes).length,
+          highestPage: highestPageReached
+        };
+        readingHistory.unshift(session);
+        readingHistory = readingHistory.slice(0, 10); // Keep last 10 sessions
+        localStorage.setItem('lekki_history', JSON.stringify(readingHistory));
+      }
+      
+      // Save to Supabase if available
+      saveToSupabase(sessionTime);
+    }
+
+    async function saveToSupabase(sessionTime) {
+      try {
+        if (window.supabaseClient) {
+          const { data: { user } } = await window.supabaseClient.auth.getUser();
+          if (user) {
+            await window.supabaseClient.from('reading_sessions').insert({
+              user_id: user.id,
+              book_title: 'The Lekki Headmaster',
+              pages_read: Object.keys(pageTimes).length,
+              highest_page: highestPageReached,
+              duration_seconds: sessionTime,
+              session_date: new Date().toISOString()
+            });
+          }
+        }
+      } catch (err) {
+        console.log('Could not save to Supabase:', err);
+      }
+    }
+
+    function startSessionTimer() {
+      setInterval(() => {
+        const elapsed = Math.floor((Date.now() - sessionStartTime) / 1000);
+        document.getElementById('sessionTime').textContent = formatTime(elapsed);
+      }, 1000);
+    }
+
+    function updateReadingStats() {
+      document.getElementById('highestPage').textContent = `Page ${highestPageReached}`;
+      document.getElementById('totalReadTime').textContent = formatTimeHours(totalReadingTime);
+      
+      const progress = Math.round((highestPageReached / totalPages) * 100);
+      document.getElementById('overallProgress').style.width = progress + '%';
+    }
+
+    function formatTime(seconds) {
+      const mins = Math.floor(seconds / 60);
+      const secs = seconds % 60;
+      return `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+    }
+
+    function formatTimeHours(seconds) {
+      const hours = Math.floor(seconds / 3600);
+      const mins = Math.floor((seconds % 3600) / 60);
+      if (hours > 0) {
+        return `${hours}h ${mins}m`;
+      }
+      return `${mins}m`;
+    }
+
+    function toggleSidebar() {
+      const sidebar = document.getElementById('sidebar');
+      const overlay = document.getElementById('overlay');
+      sidebar.classList.toggle('hide');
+      overlay.classList.toggle('hidden');
+    }
+
+    async function renderPage(pageNum) {
+      if (pageNum < 1 || pageNum > totalPages) return;
+      
+      // Save time on previous page
+      savePageTime();
+      
+      const page = await pdfDoc.getPage(pageNum);
+      const viewport = page.getViewport({ scale: 2 });
+      canvas.width = viewport.width;
+      canvas.height = viewport.height;
+      await page.render({ canvasContext: ctx, viewport }).promise;
+      currentPage = pageNum;
+      
+      // Update highest page if needed
+      if (currentPage > highestPageReached) {
+        highestPageReached = currentPage;
+        updateReadingStats();
+      }
+      
+      // Start timing this page
+      pageStartTime = Date.now();
+      
+      const progress = Math.round((currentPage / totalPages) * 100);
+      document.getElementById('progressFill').style.width = progress + '%';
+      document.getElementById('progressPercent').textContent = progress + '%';
+      document.getElementById('pageInfo').innerHTML = `Page <span class="font-semibold text-slate-700">${currentPage}</span> of <span class="font-semibold text-slate-700">${totalPages}</span>`;
+      document.getElementById('pageInput').value = currentPage;
+      
+      // Update bookmark button state
+      const bookmarkBtn = document.getElementById('bookmarkBtn');
+      if (bookmarks[currentPage]) {
+        bookmarkBtn.classList.add('bg-sky-500', 'text-white');
+        bookmarkBtn.classList.remove('bg-slate-100', 'text-slate-600');
+      } else {
+        bookmarkBtn.classList.remove('bg-sky-500', 'text-white');
+        bookmarkBtn.classList.add('bg-slate-100', 'text-slate-600');
+      }
+      
+      readingProgress.lastPage = currentPage;
+      localStorage.setItem('lekki_progress', JSON.stringify(readingProgress));
+    }
+
+    function goToPage(pageNum) {
+      if (pageNum >= 1 && pageNum <= totalPages) renderPage(pageNum);
+    }
+
+    function toggleBookmark() {
+      if (bookmarks[currentPage]) {
+        delete bookmarks[currentPage];
+        showToast('Bookmark removed', 'info');
+      } else {
+        bookmarks[currentPage] = new Date().toLocaleString();
+        showToast('Page bookmarked!', 'success');
+      }
+      localStorage.setItem('lekki_bookmarks', JSON.stringify(bookmarks));
+      updateSidebar();
+      renderPage(currentPage);
+    }
+
+    function openModal(id) {
+      document.getElementById(id).classList.remove('hidden');
+      document.getElementById(id).classList.add('flex');
+    }
+
+    function closeModal(id) {
+      document.getElementById(id).classList.add('hidden');
+      document.getElementById(id).classList.remove('flex');
+    }
+
+    function saveNote() {
+      const title = document.getElementById('noteTitle').value;
+      const content = document.getElementById('noteContent').value;
+      if (!title || !content) { showToast('Please fill in both fields', 'error'); return; }
+      notes.push({ page: currentPage, title, content, date: new Date().toLocaleString() });
+      localStorage.setItem('lekki_notes', JSON.stringify(notes));
+      closeModal('noteModal');
+      document.getElementById('noteTitle').value = '';
+      document.getElementById('noteContent').value = '';
+      updateSidebar();
+      showToast('Note saved!', 'success');
+    }
+
+    function saveVocab() {
+      const word = document.getElementById('vocabWord').value;
+      const meaning = document.getElementById('vocabMeaning').value;
+      if (!word || !meaning) { showToast('Please fill in both fields', 'error'); return; }
+      vocabulary.push({ word, meaning, page: currentPage });
+      localStorage.setItem('lekki_vocabulary', JSON.stringify(vocabulary));
+      closeModal('vocabModal');
+      document.getElementById('vocabWord').value = '';
+      document.getElementById('vocabMeaning').value = '';
+      updateSidebar();
+      showToast('Word added!', 'success');
+    }
+
+    function updateSidebar() {
+      // Bookmarks
+      const bookmarksList = document.getElementById('bookmarksList');
+      if (Object.keys(bookmarks).length) {
+        bookmarksList.innerHTML = Object.keys(bookmarks).sort((a,b) => a-b).map(p => `
+          <button onclick="goToPage(${p})" class="w-full text-left px-3 py-2 rounded-lg hover:bg-sky-50 text-slate-700 hover:text-sky-600 transition flex items-center gap-2 group">
+            <i class="fas fa-bookmark text-sky-400 text-xs"></i>
+            <span class="text-sm">Page ${p}</span>
+          </button>
+        `).join('');
+      } else {
+        bookmarksList.innerHTML = '<p class="text-sm text-slate-400 italic">No bookmarks yet</p>';
+      }
+
+      // Notes
+      const notesList = document.getElementById('notesList');
+      if (notes.length) {
+        notesList.innerHTML = notes.slice(-5).reverse().map(n => `
+          <button onclick="goToPage(${n.page})" class="w-full text-left px-3 py-2 rounded-lg hover:bg-sky-50 transition group">
+            <div class="font-medium text-slate-700 group-hover:text-sky-600 text-sm">${n.title}</div>
+            <div class="text-xs text-slate-400">Page ${n.page}</div>
+          </button>
+        `).join('');
+      } else {
+        notesList.innerHTML = '<p class="text-sm text-slate-400 italic">No notes yet</p>';
+      }
+
+      // Vocabulary
+      const vocabList = document.getElementById('vocabularyList');
+      if (vocabulary.length) {
+        vocabList.innerHTML = vocabulary.slice(-5).map(v => `
+          <div class="px-3 py-2 rounded-lg bg-slate-50">
+            <div class="font-medium text-slate-700 text-sm">${v.word}</div>
+            <div class="text-xs text-slate-500">${v.meaning.substring(0, 50)}${v.meaning.length > 50 ? '...' : ''}</div>
+          </div>
+        `).join('');
+      } else {
+        vocabList.innerHTML = '<p class="text-sm text-slate-400 italic">No words added</p>';
+      }
+      
+      // Reading History
+      const historyList = document.getElementById('readingHistory');
+      if (readingHistory.length) {
+        historyList.innerHTML = readingHistory.slice(5).map(h => `
+          <div class="px-3 py-2 rounded-lg bg-slate-50 text-xs">
+            <div class="flex justify-between">
+              <span class="text-slate-600">${h.date}</span>
+              <span class="text-sky-600 font-medium">${formatTime(h.duration)}</span>
+            </div>
+            <div class="text-slate-400 mt-1">Page ${h.highestPage}</div>
+          </div>
+        `).join('');
+      } else {
+        historyList.innerHTML = '<p class="text-sm text-slate-400 italic">No sessions recorded</p>';
+      }
+    }
+
+    // ============================================
+    // QUIZ SYSTEM
+    // ============================================
+    
+    function getQuestionsForPages(maxPage) {
+      let questions = [];
+      
+      // Get all question sets for pages up to maxPage
+      questionsDatabase.forEach(set => {
+        if (set.pageRange[0] <= maxPage) {
+          // Add relevant questions
+          const numQuestions = Math.min(2, set.questions.length);
+          questions = questions.concat(set.questions.slice(0, numQuestions));
+        }
+      });
+      
+      // Shuffle and limit to 10 questions
+      questions = questions.sort(() => Math.random() - 0.5).slice(0, 10);
+      
+      return questions;
+    }
+
+    function startAssessment() {
+      quizQuestions = getQuestionsForPages(highestPageReached);
+      
+      if (quizQuestions.length === 0) {
+        showToast('Read more pages to unlock quiz questions!', 'info');
+        return;
+      }
+      
+      currentQuestion = 0;
+      quizScore = 0;
+      quizAnswers = [];
+      
+      document.getElementById('quizPageRange').textContent = highestPageReached;
+      document.getElementById('quizResults').classList.add('hidden');
+      document.getElementById('quizContent').classList.remove('hidden');
+      
+      renderQuestion();
+      openModal('assessmentModal');
+    }
+
+    function renderQuestion() {
+      const q = quizQuestions[currentQuestion];
+      const content = document.getElementById('quizContent');
+      
+      content.innerHTML = `
+        <div class="mb-6">
+          <div class="flex items-center justify-between mb-4">
+            <span class="text-sm text-slate-500">Question ${currentQuestion + 1} of ${quizQuestions.length}</span>
+            <div class="flex gap-1">
+              ${quizQuestions.map((_, i) => `
+                <div class="w-2 h-2 rounded-full ${i < currentQuestion ? 'bg-emerald-500' : i === currentQuestion ? 'bg-sky-500' : 'bg-slate-200'}"></div>
+              `).join('')}
+            </div>
+          </div>
+          <h3 class="text-lg font-semibold text-slate-800">${q.question}</h3>
+        </div>
+        
+        <div class="space-y-3">
+          ${q.options.map((opt, i) => `
+            <button onclick="selectAnswer(${i})" class="quiz-option w-full text-left px-4 py-3 rounded-xl border-2 border-slate-200 hover:border-sky-300 transition">
+              <div class="flex items-center gap-3">
+                <div class="w-8 h-8 rounded-full bg-slate-100 flex items-center justify-center text-sm font-medium text-slate-600">
+                  ${String.fromCharCode(65 + i)}
+                </div>
+                <span>${opt}</span>
+              </div>
+            </button>
+          `).join('')}
+        </div>
+      `;
+    }
+
+    function selectAnswer(answerIndex) {
+      const q = quizQuestions[currentQuestion];
+      const isCorrect = answerIndex === q.correct;
+      
+      if (isCorrect) quizScore++;
+      
+      quizAnswers.push({
+        question: q.question,
+        selected: answerIndex,
+        correct: q.correct,
+        isCorrect
+      });
+      
+      // Show feedback
+      const options = document.querySelectorAll('.quiz-option');
+      options.forEach((opt, i) => {
+        opt.onclick = null;
+        if (i === q.correct) {
+          opt.classList.add('correct');
+        } else if (i === answerIndex && !isCorrect) {
+          opt.classList.add('incorrect');
+        }
+      });
+      
+      // Next question after delay
+      setTimeout(() => {
+        currentQuestion++;
+        if (currentQuestion < quizQuestions.length) {
+          renderQuestion();
+        } else {
+          showQuizResults();
+        }
+      }, 1500);
+    }
+
+    function showQuizResults() {
+      const percentage = Math.round((quizScore / quizQuestions.length) * 100);
+      
+      let grade, color, icon, message;
+      if (percentage >= 80) {
+        grade = 'Excellent!';
+        color = 'emerald';
+        icon = 'trophy';
+        message = 'Outstanding comprehension! You really understood the text.';
+      } else if (percentage >= 60) {
+        grade = 'Good Job!';
+        color = 'sky';
+        icon = 'thumbs-up';
+        message = 'Nice work! Keep reading to improve further.';
+      } else if (percentage >= 40) {
+        grade = 'Keep Trying!';
+        color = 'amber';
+        icon = 'book-reader';
+        message = 'Consider re-reading some sections for better understanding.';
+      } else {
+        grade = 'Needs Improvement';
+        color = 'red';
+        icon = 'book';
+        message = 'Try reading more carefully and taking notes.';
+      }
+      
+      document.getElementById('quizContent').classList.add('hidden');
+      document.getElementById('quizResults').classList.remove('hidden');
+      document.getElementById('quizResults').innerHTML = `
+        <div class="text-center py-6">
+          <div class="w-24 h-24 bg-${color}-100 rounded-full flex items-center justify-center mx-auto mb-4">
+            <i class="fas fa-${icon} text-4xl text-${color}-500"></i>
+          </div>
+          <h3 class="text-2xl font-bold text-slate-800 mb-2">${grade}</h3>
+          <div class="text-5xl font-bold text-${color}-500 mb-2">${percentage}%</div>
+          <p class="text-slate-600 mb-6">${message}</p>
+          
+          <div class="bg-slate-50 rounded-xl p-4 mb-6 text-left">
+            <div class="grid grid-cols-2 gap-4 text-sm">
+              <div>
+                <span class="text-slate-500">Correct Answers:</span>
+                <span class="font-bold text-emerald-600 ml-2">${quizScore}/${quizQuestions.length}</span>
+              </div>
+              <div>
+                <span class="text-slate-500">Pages Covered:</span>
+                <span class="font-bold text-sky-600 ml-2">1-${highestPageReached}</span>
+              </div>
+            </div>
+          </div>
+          
+          <div class="flex gap-3">
+            <button onclick="closeModal('assessmentModal')" class="flex-1 py-3 bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold rounded-xl transition">
+              Close
+            </button>
+            <button onclick="startAssessment()" class="flex-1 py-3 bg-gradient-to-r from-emerald-500 to-sky-500 hover:from-emerald-600 hover:to-sky-600 text-white font-semibold rounded-xl transition">
+              Try Again
+            </button>
+          </div>
+        </div>
+      `;
+      
+      // Save quiz result
+      saveQuizResult(percentage);
+    }
+
+    async function saveQuizResult(score) {
+      const result = {
+        date: new Date().toISOString(),
+        pagesCovered: highestPageReached,
+        score: score,
+        totalQuestions: quizQuestions.length,
+        correctAnswers: quizScore
+      };
+      
+      // Save to localStorage
+      let quizResults = JSON.parse(localStorage.getItem('lekki_quiz_results')) || [];
+      quizResults.push(result);
+      localStorage.setItem('lekki_quiz_results', JSON.stringify(quizResults));
+      
+      // Save to Supabase if available
+      try {
+        if (window.supabaseClient) {
+          const { data: { user } } = await window.supabaseClient.auth.getUser();
+          if (user) {
+            await window.supabaseClient.from('reading_assessments').insert({
+              user_id: user.id,
+              book_title: 'The Lekki Headmaster',
+              pages_covered: highestPageReached,
+              score: score,
+              total_questions: quizQuestions.length,
+              correct_answers: quizScore
+            });
+          }
+        }
+      } catch (err) {
+        console.log('Could not save quiz to Supabase:', err);
+      }
+    }
+
+    function showReadingSummary() {
+      const sessions = readingHistory.slice(0, 7);
+      const quizResults = JSON.parse(localStorage.getItem('lekki_quiz_results')) || [];
+      const avgScore = quizResults.length > 0 
+        ? Math.round(quizResults.reduce((sum, r) => sum + r.score, 0) / quizResults.length)
+        : 0;
+      
+      document.getElementById('summaryContent').innerHTML = `
+        <div class="space-y-6">
+          <!-- Overall Stats -->
+          <div class="grid grid-cols-2 gap-4">
+            <div class="bg-gradient-to-br from-sky-50 to-white rounded-xl p-4 border border-sky-100">
+              <div class="text-3xl font-bold text-sky-600">${formatTimeHours(totalReadingTime)}</div>
+              <div class="text-sm text-slate-500">Total Reading Time</div>
+            </div>
+            <div class="bg-gradient-to-br from-emerald-50 to-white rounded-xl p-4 border border-emerald-100">
+              <div class="text-3xl font-bold text-emerald-600">${highestPageReached}</div>
+              <div class="text-sm text-slate-500">Highest Page</div>
+            </div>
+            <div class="bg-gradient-to-br from-amber-50 to-white rounded-xl p-4 border border-amber-100">
+              <div class="text-3xl font-bold text-amber-600">${readingProgress.totalPagesRead || 0}</div>
+              <div class="text-sm text-slate-500">Pages Visited</div>
+            </div>
+            <div class="bg-gradient-to-br from-purple-50 to-white rounded-xl p-4 border border-purple-100">
+              <div class="text-3xl font-bold text-purple-600">${avgScore}%</div>
+              <div class="text-sm text-slate-500">Avg Quiz Score</div>
+            </div>
+          </div>
+          
+          <!-- Progress Bar -->
+          <div>
+            <div class="flex justify-between text-sm mb-2">
+              <span class="text-slate-600">Book Completion</span>
+              <span class="font-bold text-sky-600">${Math.round((highestPageReached / totalPages) * 100)}%</span>
+            </div>
+            <div class="h-3 bg-slate-100 rounded-full overflow-hidden">
+              <div class="h-full bg-gradient-to-r from-sky-500 to-emerald-500" style="width: ${Math.round((highestPageReached / totalPages) * 100)}%"></div>
+            </div>
+          </div>
+          
+          <!-- Recent Sessions -->
+          ${sessions.length > 0 ? `
+            <div>
+              <h4 class="font-semibold text-slate-700 mb-3">Recent Sessions</h4>
+              <div class="space-y-2">
+                ${sessions.map(s => `
+                  <div class="flex justify-between items-center px-3 py-2 bg-slate-50 rounded-lg text-sm">
+                    <span class="text-slate-600">${s.date}</span>
+                    <div class="flex gap-4">
+                      <span class="text-sky-600">${formatTime(s.duration)}</span>
+                      <span class="text-slate-500">Page ${s.highestPage}</span>
+                    </div>
+                  </div>
+                `).join('')}
+              </div>
+            </div>
+          ` : ''}
+          
+          <!-- Quiz History -->
+          ${quizResults.length > 0 ? `
+            <div>
+              <h4 class="font-semibold text-slate-700 mb-3">Quiz History</h4>
+              <div class="space-y-2">
+                ${quizResults.slice(-5).reverse().map(r => `
+                  <div class="flex justify-between items-center px-3 py-2 bg-slate-50 rounded-lg text-sm">
+                    <span class="text-slate-600">Pages 1-${r.pagesCovered}</span>
+                    <span class="font-bold ${r.score >= 60 ? 'text-emerald-600' : 'text-red-500'}">${r.score}%</span>
+                  </div>
+                `).join('')}
+              </div>
+            </div>
+          ` : ''}
+        </div>
+      `;
+      
+      openModal('summaryModal');
+    }
+
+    function showToast(message, type = 'success') {
+      const toast = document.getElementById('toast');
+      const icon = document.getElementById('toastIcon');
+      const msg = document.getElementById('toastMessage');
+      
+      msg.textContent = message;
+      icon.className = type === 'success' ? 'fas fa-check-circle text-green-400' : 
+                       type === 'error' ? 'fas fa-exclamation-circle text-red-400' : 
+                       'fas fa-info-circle text-sky-400';
+      
+      toast.classList.remove('hidden');
+      setTimeout(() => toast.classList.add('hidden'), 3000);
+    }
+
+    function toggleDarkMode() {
+      document.body.classList.toggle('dark');
+      const isDark = document.body.classList.contains('dark');
+      localStorage.setItem('lekki_darkMode', isDark);
+      
+      if (isDark) {
+        document.body.classList.add('bg-slate-900', 'text-slate-100');
+        document.body.classList.remove('bg-slate-50', 'text-slate-800');
+      } else {
+        document.body.classList.remove('bg-slate-900', 'text-slate-100');
+        document.body.classList.add('bg-slate-50', 'text-slate-800');
+      }
+      
+      showToast(isDark ? 'Dark mode enabled' : 'Light mode enabled', 'info');
+    }
+
+    let audioElement = null;
+    let isReading = false;
+
+    async function extractPageText(pageNum) {
+      try {
+        const page = await pdfDoc.getPage(pageNum);
+        const textContent = await page.getTextContent();
+        let text = '';
+        let lastY = null;
+        textContent.items.forEach(item => {
+          if (lastY !== null && Math.abs(item.y - lastY) > 5) text += ' ';
+          text += item.str;
+          lastY = item.y;
+        });
+        text = text.replace(/\s+/g, ' ').trim();
+        return text.length < 20 ? `Page ${pageNum} of The Lekki Headmaster.` : text;
+      } catch (error) {
+        return `Page ${pageNum} of The Lekki Headmaster`;
+      }
+    }
+
+    async function readAloud() {
+      const speakBtn = document.getElementById('speakBtn');
+      
+      if (isReading) {
+        if (audioElement) {
+          audioElement.pause();
+          audioElement.currentTime = 0;
+        }
+        isReading = false;
+        speakBtn.innerHTML = '<i class="fas fa-volume-up"></i><span class="hidden sm:inline text-sm font-medium">Read</span>';
+        showToast('Reading stopped', 'info');
+        return;
+      }
+
+      try {
+        speakBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i><span class="hidden sm:inline text-sm font-medium">Loading...</span>';
+        isReading = true;
+
+        const pageText = await extractPageText(currentPage);
+        const textToRead = pageText.length > 5000 ? pageText.substring(0, 5000) : pageText;
+        
+        const TTS_PROXY = window.TTS_PROXY || 'http://localhost:8080/tts';
+        const response = await fetch(TTS_PROXY, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ text: textToRead, lang: 'en' })
+        });
+
+        if (!response.ok) throw new Error('TTS service unavailable');
+
+        const audioBlob = await response.blob();
+        const audioUrl = URL.createObjectURL(audioBlob);
+        
+        if (!audioElement) audioElement = new Audio();
+        audioElement.src = audioUrl;
+        audioElement.play().catch(err => {
+          showToast('Error playing audio', 'error');
+          isReading = false;
+          speakBtn.innerHTML = '<i class="fas fa-volume-up"></i><span class="hidden sm:inline text-sm font-medium">Read</span>';
+        });
+
+        audioElement.onended = () => {
+          isReading = false;
+          speakBtn.innerHTML = '<i class="fas fa-volume-up"></i><span class="hidden sm:inline text-sm font-medium">Read</span>';
+        };
+
+        speakBtn.innerHTML = '<i class="fas fa-stop"></i><span class="hidden sm:inline text-sm font-medium">Stop</span>';
+        showToast('Reading page ' + currentPage, 'success');
+      } catch (error) {
+        showToast('Audio unavailable', 'error');
+        isReading = false;
+        speakBtn.innerHTML = '<i class="fas fa-volume-up"></i><span class="hidden sm:inline text-sm font-medium">Read</span>';
+      }
+    }
+
+    // Load dark mode preference
+    if (localStorage.getItem('lekki_darkMode') === 'true') {
+      document.body.classList.add('dark', 'bg-slate-900', 'text-slate-100');
+      document.body.classList.remove('bg-slate-50', 'text-slate-800');
+    }
+  </script>
+</body>
+</html>
