@@ -14,9 +14,13 @@
     @keyframes fadeIn { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
     @keyframes slideUp { from { transform: translateY(20px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
     @keyframes shake { 0%, 100% { transform: translateX(0); } 25% { transform: translateX(-5px); } 75% { transform: translateX(5px); } }
+    @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
+    @keyframes spin { to { transform: rotate(360deg); } }
     .animate-fade-in { animation: fadeIn 0.3s ease-out; }
     .animate-slide-up { animation: slideUp 0.3s ease-out; }
     .animate-shake { animation: shake 0.5s ease-in-out; }
+    .animate-pulse { animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite; }
+    .animate-spin { animation: spin 1s linear infinite; }
     .font-serif { font-family: 'Playfair Display', serif; }
     ::-webkit-scrollbar { width: 6px; }
     ::-webkit-scrollbar-track { background: #f1f5f9; }
@@ -236,7 +240,7 @@
       </div>
       
       <div id="quizFooter" class="p-6 border-t border-slate-100 flex justify-end">
-        <button id="nextQuestionBtn" onclick="nextQuestion()" class="px-6 py-2 bg-gradient-to-r from-sky-500 to-sky-600 hover:from-sky-600 hover:to-sky-700 text-white font-medium rounded-xl transition">
+        <button id="nextQuestionBtn" onclick="QuizSystem.nextQuestion()" class="px-6 py-2 bg-gradient-to-r from-sky-500 to-sky-600 hover:from-sky-600 hover:to-sky-700 text-white font-medium rounded-xl transition">
           Next<i class="fas fa-arrow-right ml-2"></i>
         </button>
       </div>
@@ -524,18 +528,30 @@
       
       generateQuiz(upToPage) {
         // Get questions where the user has read enough pages
-        const eligibleQuestions = this.questionBank.filter(q => q.minPage <= upToPage);
+        let eligibleQuestions = this.questionBank.filter(q => q.minPage <= upToPage);
+        
+        // If not enough page-specific questions, use general questions (minPage: 1)
+        if (eligibleQuestions.length < 5) {
+          const generalQuestions = this.questionBank.filter(q => q.minPage === 1);
+          eligibleQuestions = [...new Set([...eligibleQuestions, ...generalQuestions])];
+        }
+        
+        // If still not enough, use all questions
+        if (eligibleQuestions.length < 3) {
+          eligibleQuestions = this.questionBank.slice(0, 10);
+        }
         
         // Shuffle and select questions
         const shuffled = eligibleQuestions.sort(() => Math.random() - 0.5);
-        this.questions = shuffled.slice(0, Math.min(5, shuffled.length));
+        this.questions = shuffled.slice(0, 5);
         
-        // Ensure at least 3 questions
-        if (this.questions.length < 3 && eligibleQuestions.length >= 3) {
-          this.questions = eligibleQuestions.slice(0, 3);
+        // Ensure we have at least 3 questions
+        if (this.questions.length < 3) {
+          this.questions = this.questionBank.slice(0, 5);
         }
         
-        return this.questions.length >= 3;
+        console.log('Quiz generated with', this.questions.length, 'questions for upToPage:', upToPage);
+        return true; // Always return true since we always have questions
       },
       
       start() {
@@ -543,15 +559,25 @@
         this.score = 0;
         this.answers = [];
         
+        // Reset quiz UI state
+        document.getElementById('quizQuestionContainer').classList.remove('hidden');
+        document.getElementById('quizFooter').classList.remove('hidden');
+        document.getElementById('quizResults').classList.add('hidden');
+        
         document.getElementById('totalQuestions').textContent = this.questions.length;
         document.getElementById('quizMaxScore').textContent = this.questions.length;
-        document.getElementById('quizUpToPage').textContent = StudyTracker.maxPageReached;
+        document.getElementById('quizUpToPage').textContent = StudyTracker.maxPageReached || 1;
         
         this.showQuestion();
         
-        document.getElementById('exitQuizModal').classList.remove('hidden');
-        document.getElementById('exitQuizModal').classList.add('flex');
+        // Show quiz modal
+        const modal = document.getElementById('exitQuizModal');
+        modal.classList.remove('hidden');
+        modal.classList.add('flex');
+        modal.style.display = 'flex';
         document.body.classList.add('quiz-active');
+        
+        console.log('Quiz started with', this.questions.length, 'questions');
       },
       
       showQuestion() {
@@ -862,22 +888,35 @@
     }
 
     function startMandatoryQuiz() {
+      // Hide warning modal
       document.getElementById('warningModal').classList.add('hidden');
       document.getElementById('warningModal').classList.remove('flex');
       
-      const success = QuizSystem.generateQuiz(StudyTracker.maxPageReached);
+      // Generate and start quiz
+      const success = QuizSystem.generateQuiz(StudyTracker.maxPageReached || 1);
       if (success) {
         QuizSystem.start();
       } else {
-        allowExit();
+        // This shouldn't happen now, but just in case
+        showToast('Starting simplified quiz...', 'info');
+        QuizSystem.questions = QuizSystem.questionBank.slice(0, 5);
+        QuizSystem.start();
       }
     }
 
     function allowExit() {
       StudyTracker.exitAllowed = true;
+      StudyTracker.quizCompleted = true;
+      
+      // Hide all modals
       document.getElementById('exitQuizModal').classList.add('hidden');
       document.getElementById('exitQuizModal').classList.remove('flex');
+      document.getElementById('exitQuizModal').style.display = 'none';
+      document.getElementById('warningModal').classList.add('hidden');
+      document.getElementById('warningModal').classList.remove('flex');
       document.body.classList.remove('quiz-active');
+      
+      // Navigate to dashboard
       window.location.href = 'student-dashboard.html';
     }
 
