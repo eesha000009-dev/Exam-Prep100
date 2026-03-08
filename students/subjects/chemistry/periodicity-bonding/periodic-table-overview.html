@@ -759,113 +759,541 @@
                     type: "note",
                     chunks: [
                         {
-                            intro: "Every element has a unique atomic number and mass number. These numbers tell us about the structure of atoms. Let's understand what they mean!",
+                            intro: "Let's explore the structure of an atom! Interact with the simulation below - click on the particles to learn about them. Watch how protons and neutrons cluster in the center (nucleus) while electrons orbit around.",
                             content: `
                                 <div class="section-card">
                                     <h3 class="text-xl font-semibold text-gray-800 mb-4 flex items-center">
-                                        <i class="fas fa-atom text-amber-500 mr-3"></i>Understanding Atomic Structure
+                                        <i class="fas fa-atom text-amber-500 mr-3"></i>Interactive Atom Structure
                                     </h3>
                                     
-                                    <p class="text-gray-700 mb-4">Every atom is made up of three subatomic particles. Let's learn about each one:</p>
-                                    
-                                    <div class="space-y-3 mb-4">
-                                        <!-- Protons -->
-                                        <div class="bg-red-50 p-4 rounded-lg border-l-4 border-red-500">
-                                            <div class="flex items-center gap-3">
-                                                <div class="w-12 h-12 bg-red-200 rounded-full flex items-center justify-center">
-                                                    <span class="text-red-700 font-bold text-lg">+</span>
-                                                </div>
-                                                <div>
-                                                    <h4 class="font-semibold text-red-800">Protons (p⁺)</h4>
-                                                    <p class="text-sm text-gray-700">Positively charged particles found in the nucleus</p>
-                                                </div>
-                                            </div>
-                                        </div>
+                                    <!-- Interactive Atom SVG -->
+                                    <div class="bg-gradient-to-br from-slate-900 to-slate-800 rounded-xl p-4 mb-4">
+                                        <svg id="atomStructureSVG" viewBox="0 0 400 300" class="w-full max-w-md mx-auto">
+                                            <!-- Electron orbits -->
+                                            <ellipse cx="200" cy="150" rx="150" ry="50" fill="none" stroke="rgba(100,150,255,0.2)" stroke-width="1" stroke-dasharray="5,5"/>
+                                            <ellipse cx="200" cy="150" rx="100" ry="120" fill="none" stroke="rgba(100,150,255,0.2)" stroke-width="1" stroke-dasharray="5,5" transform="rotate(60 200 150)"/>
+                                            <ellipse cx="200" cy="150" rx="100" ry="120" fill="none" stroke="rgba(100,150,255,0.2)" stroke-width="1" stroke-dasharray="5,5" transform="rotate(-60 200 150)"/>
+                                            
+                                            <!-- Nucleus glow -->
+                                            <defs>
+                                                <radialGradient id="nucleusGlow">
+                                                    <stop offset="0%" stop-color="#ef4444" stop-opacity="0.6"/>
+                                                    <stop offset="100%" stop-color="#ef4444" stop-opacity="0"/>
+                                                </radialGradient>
+                                            </defs>
+                                            <circle cx="200" cy="150" r="50" fill="url(#nucleusGlow)"/>
+                                            
+                                            <!-- Nucleus -->
+                                            <g id="nucleusGroup">
+                                                <!-- Protons (red with +) -->
+                                                <g class="proton cursor-pointer" onclick="showParticleInfo('proton')">
+                                                    <circle cx="190" cy="140" r="12" fill="#ef4444" stroke="#fca5a5" stroke-width="2"/>
+                                                    <text x="190" y="145" text-anchor="middle" fill="white" font-size="14" font-weight="bold">+</text>
+                                                </g>
+                                                <g class="proton cursor-pointer" onclick="showParticleInfo('proton')">
+                                                    <circle cx="210" cy="145" r="12" fill="#ef4444" stroke="#fca5a5" stroke-width="2"/>
+                                                    <text x="210" y="150" text-anchor="middle" fill="white" font-size="14" font-weight="bold">+</text>
+                                                </g>
+                                                <g class="proton cursor-pointer" onclick="showParticleInfo('proton')">
+                                                    <circle cx="200" cy="160" r="12" fill="#ef4444" stroke="#fca5a5" stroke-width="2"/>
+                                                    <text x="200" y="165" text-anchor="middle" fill="white" font-size="14" font-weight="bold">+</text>
+                                                </g>
+                                                <g class="proton cursor-pointer" onclick="showParticleInfo('proton')">
+                                                    <circle cx="195" cy="155" r="12" fill="#ef4444" stroke="#fca5a5" stroke-width="2"/>
+                                                    <text x="195" y="160" text-anchor="middle" fill="white" font-size="14" font-weight="bold">+</text>
+                                                </g>
+                                                <g class="proton cursor-pointer" onclick="showParticleInfo('proton')">
+                                                    <circle cx="205" cy="135" r="12" fill="#ef4444" stroke="#fca5a5" stroke-width="2"/>
+                                                    <text x="205" y="140" text-anchor="middle" fill="white" font-size="14" font-weight="bold">+</text>
+                                                </g>
+                                                <g class="proton cursor-pointer" onclick="showParticleInfo('proton')">
+                                                    <circle cx="188" cy="158" r="12" fill="#ef4444" stroke="#fca5a5" stroke-width="2"/>
+                                                    <text x="188" y="163" text-anchor="middle" fill="white" font-size="14" font-weight="bold">+</text>
+                                                </g>
+                                                <!-- Neutrons (gray with n) -->
+                                                <g class="neutron cursor-pointer" onclick="showParticleInfo('neutron')">
+                                                    <circle cx="200" cy="142" r="12" fill="#6b7280" stroke="#d1d5db" stroke-width="2"/>
+                                                    <text x="200" y="147" text-anchor="middle" fill="white" font-size="11" font-weight="bold">n</text>
+                                                </g>
+                                                <g class="neutron cursor-pointer" onclick="showParticleInfo('neutron')">
+                                                    <circle cx="215" cy="155" r="12" fill="#6b7280" stroke="#d1d5db" stroke-width="2"/>
+                                                    <text x="215" y="160" text-anchor="middle" fill="white" font-size="11" font-weight="bold">n</text>
+                                                </g>
+                                                <g class="neutron cursor-pointer" onclick="showParticleInfo('neutron')">
+                                                    <circle cx="185" cy="148" r="12" fill="#6b7280" stroke="#d1d5db" stroke-width="2"/>
+                                                    <text x="185" y="153" text-anchor="middle" fill="white" font-size="11" font-weight="bold">n</text>
+                                                </g>
+                                                <g class="neutron cursor-pointer" onclick="showParticleInfo('neutron')">
+                                                    <circle cx="205" cy="165" r="12" fill="#6b7280" stroke="#d1d5db" stroke-width="2"/>
+                                                    <text x="205" y="170" text-anchor="middle" fill="white" font-size="11" font-weight="bold">n</text>
+                                                </g>
+                                                <g class="neutron cursor-pointer" onclick="showParticleInfo('neutron')">
+                                                    <circle cx="195" cy="130" r="12" fill="#6b7280" stroke="#d1d5db" stroke-width="2"/>
+                                                    <text x="195" y="135" text-anchor="middle" fill="white" font-size="11" font-weight="bold">n</text>
+                                                </g>
+                                                <g class="neutron cursor-pointer" onclick="showParticleInfo('neutron')">
+                                                    <circle cx="212" cy="138" r="12" fill="#6b7280" stroke="#d1d5db" stroke-width="2"/>
+                                                    <text x="212" y="143" text-anchor="middle" fill="white" font-size="11" font-weight="bold">n</text>
+                                                </g>
+                                            </g>
+                                            
+                                            <!-- Electrons (blue with -) -->
+                                            <g class="electron cursor-pointer" onclick="showParticleInfo('electron')">
+                                                <circle cx="50" cy="150" r="8" fill="#3b82f6" stroke="#93c5fd" stroke-width="2">
+                                                    <animateMotion dur="3s" repeatCount="indefinite">
+                                                        <mpath href="#orbit1"/>
+                                                    </animateMotion>
+                                                </circle>
+                                                <text fill="#93c5fd" font-size="10" font-weight="bold">
+                                                    <textPath href="#orbit1">
+                                                        <animate attributeName="startOffset" from="0%" to="100%" dur="3s" repeatCount="indefinite"/>
+                                                    </textPath>
+                                                </text>
+                                            </g>
+                                            <g class="electron cursor-pointer" onclick="showParticleInfo('electron')">
+                                                <circle cx="200" cy="30" r="8" fill="#3b82f6" stroke="#93c5fd" stroke-width="2">
+                                                    <animateMotion dur="4s" repeatCount="indefinite">
+                                                        <mpath href="#orbit2"/>
+                                                    </animateMotion>
+                                                </circle>
+                                            </g>
+                                            <g class="electron cursor-pointer" onclick="showParticleInfo('electron')">
+                                                <circle cx="200" cy="270" r="8" fill="#3b82f6" stroke="#93c5fd" stroke-width="2">
+                                                    <animateMotion dur="4s" repeatCount="indefinite">
+                                                        <mpath href="#orbit3"/>
+                                                    </animateMotion>
+                                                </circle>
+                                            </g>
+                                            
+                                            <!-- Hidden paths for animation -->
+                                            <path id="orbit1" d="M 50 150 A 150 50 0 1 1 350 150 A 150 50 0 1 1 50 150" fill="none"/>
+                                            <path id="orbit2" d="M 200 30 A 100 120 60 1 1 100 270" fill="none"/>
+                                            <path id="orbit3" d="M 200 270 A 100 120 -60 1 1 300 30" fill="none"/>
+                                            
+                                            <!-- Labels -->
+                                            <text x="200" y="285" text-anchor="middle" fill="#94a3b8" font-size="12">Carbon Atom (C)</text>
+                                        </svg>
                                         
-                                        <!-- Neutrons -->
-                                        <div class="bg-gray-100 p-4 rounded-lg border-l-4 border-gray-400">
-                                            <div class="flex items-center gap-3">
-                                                <div class="w-12 h-12 bg-gray-200 rounded-full flex items-center justify-center">
-                                                    <span class="text-gray-600 font-bold text-lg">n</span>
-                                                </div>
-                                                <div>
-                                                    <h4 class="font-semibold text-gray-800">Neutrons (n⁰)</h4>
-                                                    <p class="text-sm text-gray-700">Neutral particles (no charge) found in the nucleus</p>
-                                                </div>
+                                        <!-- Legend -->
+                                        <div class="flex justify-center gap-4 mt-2 text-xs">
+                                            <div class="flex items-center gap-1">
+                                                <div class="w-4 h-4 rounded-full bg-red-500"></div>
+                                                <span class="text-red-300">Proton (+)</span>
                                             </div>
-                                        </div>
-                                        
-                                        <!-- Electrons -->
-                                        <div class="bg-blue-50 p-4 rounded-lg border-l-4 border-blue-500">
-                                            <div class="flex items-center gap-3">
-                                                <div class="w-12 h-12 bg-blue-200 rounded-full flex items-center justify-center">
-                                                    <span class="text-blue-700 font-bold text-lg">−</span>
-                                                </div>
-                                                <div>
-                                                    <h4 class="font-semibold text-blue-800">Electrons (e⁻)</h4>
-                                                    <p class="text-sm text-gray-700">Negatively charged particles orbiting the nucleus</p>
-                                                </div>
+                                            <div class="flex items-center gap-1">
+                                                <div class="w-4 h-4 rounded-full bg-gray-500"></div>
+                                                <span class="text-gray-300">Neutron (0)</span>
+                                            </div>
+                                            <div class="flex items-center gap-1">
+                                                <div class="w-4 h-4 rounded-full bg-blue-500"></div>
+                                                <span class="text-blue-300">Electron (−)</span>
                                             </div>
                                         </div>
                                     </div>
                                     
-                                    <div class="bg-amber-50 p-4 rounded-lg border border-amber-200">
-                                        <p class="text-amber-800"><i class="fas fa-lightbulb mr-2"></i><strong>Key Fact:</strong> Protons and neutrons are in the nucleus (center) and make up most of the atom's mass. Electrons are very light and orbit around the nucleus.</p>
-                                    </div>
-                                </div>
-                            `
-                        },
-                        {
-                            intro: "Now let's understand the atomic number - the identity of an element. This is one of the most important numbers in chemistry!",
-                            content: `
-                                <div class="section-card">
-                                    <h3 class="text-xl font-semibold text-gray-800 mb-4 flex items-center">
-                                        <i class="fas fa-fingerprint text-amber-500 mr-3"></i>Atomic Number (Z)
-                                    </h3>
-                                    
-                                    <div class="bg-gradient-to-r from-blue-50 to-indigo-50 p-5 rounded-lg mb-4 border border-blue-200">
-                                        <div class="text-center mb-3">
-                                            <span class="text-3xl font-bold text-blue-700">Z = Number of Protons</span>
-                                        </div>
-                                        <p class="text-gray-700 text-center">The atomic number tells us exactly how many <strong>protons</strong> are in the nucleus of an atom.</p>
-                                    </div>
-                                    
-                                    <div class="bg-white p-4 rounded-lg border mb-4">
-                                        <h4 class="font-semibold text-gray-800 mb-3">Why is Atomic Number So Important?</h4>
-                                        <ul class="space-y-2 text-gray-700">
-                                            <li class="flex items-start gap-2">
-                                                <i class="fas fa-check-circle text-green-500 mt-1"></i>
-                                                <span><strong>It defines the element!</strong> Every atom with 6 protons is Carbon. Every atom with 8 protons is Oxygen.</span>
-                                            </li>
-                                            <li class="flex items-start gap-2">
-                                                <i class="fas fa-check-circle text-green-500 mt-1"></i>
-                                                <span><strong>No two elements have the same atomic number</strong> - each element is unique!</span>
-                                            </li>
-                                            <li class="flex items-start gap-2">
-                                                <i class="fas fa-check-circle text-green-500 mt-1"></i>
-                                                <span>In a <strong>neutral atom</strong>, the number of electrons = number of protons = atomic number</span>
-                                            </li>
+                                    <!-- Info Panel -->
+                                    <div id="particleInfoPanel" class="bg-blue-50 p-4 rounded-lg border border-blue-200 mb-4">
+                                        <h4 class="font-semibold text-blue-800 mb-2">👆 Click on any particle above to learn more!</h4>
+                                        <p class="text-sm text-gray-700">Notice in the simulation:</p>
+                                        <ul class="text-sm text-gray-700 mt-2 space-y-1">
+                                            <li>• <strong class="text-red-600">Red particles (Protons)</strong> are clustered in the center with neutrons - this is the <strong>nucleus</strong></li>
+                                            <li>• <strong class="text-gray-600">Gray particles (Neutrons)</strong> are also in the nucleus, mixed with protons</li>
+                                            <li>• <strong class="text-blue-600">Blue particles (Electrons)</strong> orbit around the nucleus in paths called "shells"</li>
                                         </ul>
                                     </div>
                                     
-                                    <div class="grid md:grid-cols-3 gap-3">
-                                        <div class="bg-yellow-50 p-3 rounded-lg text-center border">
-                                            <div class="text-2xl font-bold text-yellow-700">Z = 6</div>
-                                            <div class="text-sm text-gray-600">6 protons</div>
-                                            <div class="text-lg font-semibold text-gray-800 mt-1">Carbon (C)</div>
-                                        </div>
-                                        <div class="bg-green-50 p-3 rounded-lg text-center border">
-                                            <div class="text-2xl font-bold text-green-700">Z = 8</div>
-                                            <div class="text-sm text-gray-600">8 protons</div>
-                                            <div class="text-lg font-semibold text-gray-800 mt-1">Oxygen (O)</div>
-                                        </div>
-                                        <div class="bg-red-50 p-3 rounded-lg text-center border">
-                                            <div class="text-2xl font-bold text-red-700">Z = 11</div>
-                                            <div class="text-sm text-gray-600">11 protons</div>
-                                            <div class="text-lg font-semibold text-gray-800 mt-1">Sodium (Na)</div>
-                                        </div>
+                                    <div class="bg-amber-50 p-4 rounded-lg border-l-4 border-amber-500">
+                                        <p class="text-amber-800"><i class="fas fa-lightbulb mr-2"></i><strong>What you're seeing:</strong> The atom is mostly empty space! The nucleus (center) contains protons and neutrons, while electrons zoom around it at high speeds.</p>
                                     </div>
                                 </div>
+                                
+                                <script>
+                                    function showParticleInfo(particle) {
+                                        const panel = document.getElementById('particleInfoPanel');
+                                        const info = {
+                                            proton: {
+                                                title: '🔴 Proton (p⁺)',
+                                                color: 'red',
+                                                content: \`
+                                                    <p class="text-gray-700 mb-2"><strong>Charge:</strong> Positive (+1)</p>
+                                                    <p class="text-gray-700 mb-2"><strong>Location:</strong> In the nucleus (center)</p>
+                                                    <p class="text-gray-700 mb-2"><strong>Mass:</strong> 1 atomic mass unit (amu)</p>
+                                                    <p class="text-gray-700"><strong>Key Point:</strong> The NUMBER OF PROTONS determines which element it is! Change the protons, change the element.</p>
+                                                \`
+                                            },
+                                            neutron: {
+                                                title: '⚪ Neutron (n⁰)',
+                                                color: 'gray',
+                                                content: \`
+                                                    <p class="text-gray-700 mb-2"><strong>Charge:</strong> Neutral (0)</p>
+                                                    <p class="text-gray-700 mb-2"><strong>Location:</strong> In the nucleus (center)</p>
+                                                    <p class="text-gray-700 mb-2"><strong>Mass:</strong> 1 atomic mass unit (amu)</p>
+                                                    <p class="text-gray-700"><strong>Key Point:</strong> Neutrons add mass but don't change the element. Different numbers of neutrons create ISOTOPES of the same element.</p>
+                                                \`
+                                            },
+                                            electron: {
+                                                title: '🔵 Electron (e⁻)',
+                                                color: 'blue',
+                                                content: \`
+                                                    <p class="text-gray-700 mb-2"><strong>Charge:</strong> Negative (−1)</p>
+                                                    <p class="text-gray-700 mb-2"><strong>Location:</strong> Orbiting the nucleus in shells</p>
+                                                    <p class="text-gray-700 mb-2"><strong>Mass:</strong> Very tiny! ≈ 1/1836 of a proton</p>
+                                                    <p class="text-gray-700"><strong>Key Point:</strong> Electrons determine chemical behavior. In a neutral atom, electrons = protons.</p>
+                                                \`
+                                            }
+                                        };
+                                        
+                                        panel.innerHTML = \`
+                                            <h4 class="font-semibold text-\${info[particle].color}-800 mb-3">\${info[particle].title}</h4>
+                                            \${info[particle].content}
+                                        \`;
+                                        panel.className = \`bg-\${info[particle].color}-50 p-4 rounded-lg border border-\${info[particle].color}-200 mb-4\`;
+                                    }
+                                </script>
+                            `
+                        },
+                        {
+                            intro: "Now let's explore the Atomic Number (Z). Use the interactive simulation below - change the number of protons and watch what happens to the element identity!",
+                            content: `
+                                <div class="section-card">
+                                    <h3 class="text-xl font-semibold text-gray-800 mb-4 flex items-center">
+                                        <i class="fas fa-fingerprint text-amber-500 mr-3"></i>Atomic Number (Z) - Interactive
+                                    </h3>
+                                    
+                                    <div class="bg-gradient-to-br from-blue-50 to-indigo-100 p-4 rounded-xl mb-4">
+                                        <div class="text-center mb-4">
+                                            <div class="inline-block bg-white px-6 py-3 rounded-lg shadow-lg border-2 border-blue-300">
+                                                <div class="text-4xl font-bold text-blue-700" id="zValueDisplay">6</div>
+                                                <div class="text-sm text-gray-600">Atomic Number (Z)</div>
+                                            </div>
+                                        </div>
+                                        
+                                        <!-- Interactive Z selector -->
+                                        <div class="bg-white rounded-lg p-4 mb-4">
+                                            <label class="block text-sm font-medium text-gray-700 mb-2">Adjust Protons (Z):</label>
+                                            <input type="range" id="protonSlider" min="1" max="20" value="6" class="w-full h-3 bg-blue-200 rounded-lg appearance-none cursor-pointer">
+                                            <div class="flex justify-between text-xs text-gray-500 mt-1">
+                                                <span>1 (H)</span>
+                                                <span>10 (Ne)</span>
+                                                <span>20 (Ca)</span>
+                                            </div>
+                                        </div>
+                                        
+                                        <!-- Atom visualization -->
+                                        <div class="flex justify-center mb-4">
+                                            <svg id="zAtomSVG" viewBox="0 0 200 200" class="w-48 h-48">
+                                                <!-- Nucleus background -->
+                                                <circle cx="100" cy="100" r="35" fill="url(#nucleusGradientZ)"/>
+                                                <defs>
+                                                    <radialGradient id="nucleusGradientZ">
+                                                        <stop offset="0%" stop-color="#fbbf24"/>
+                                                        <stop offset="100%" stop-color="#f59e0b"/>
+                                                    </radialGradient>
+                                                </defs>
+                                                <!-- Protons will be drawn here -->
+                                                <g id="protonCircles"></g>
+                                                <!-- Electron shells -->
+                                                <circle cx="100" cy="100" r="60" fill="none" stroke="#3b82f6" stroke-width="1" stroke-dasharray="4,2" opacity="0.5"/>
+                                                <circle cx="100" cy="100" r="85" fill="none" stroke="#3b82f6" stroke-width="1" stroke-dasharray="4,2" opacity="0.3"/>
+                                                <!-- Electrons will be drawn here -->
+                                                <g id="electronCircles"></g>
+                                            </svg>
+                                        </div>
+                                        
+                                        <!-- Element Info -->
+                                        <div id="elementInfoZ" class="bg-white rounded-lg p-4 text-center">
+                                            <div class="text-5xl font-bold text-gray-800 mb-1" id="elementSymbolZ">C</div>
+                                            <div class="text-xl text-gray-600" id="elementNameZ">Carbon</div>
+                                            <div class="text-sm text-gray-500 mt-2">
+                                                <span id="protonCountZ">6</span> protons | 
+                                                <span id="electronCountZ">6</span> electrons (neutral)
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- Explanation based on simulation -->
+                                    <div class="bg-white p-4 rounded-lg border mb-4">
+                                        <h4 class="font-semibold text-gray-800 mb-3">📖 What the simulation shows:</h4>
+                                        <div class="space-y-3 text-gray-700">
+                                            <p><strong>Watch carefully:</strong> As you move the slider, you're changing the number of <strong class="text-red-600">protons</strong> in the nucleus.</p>
+                                            <p><strong>Notice:</strong> The <strong class="text-blue-700">element changes!</strong> This proves that:</p>
+                                            <div class="bg-blue-50 p-3 rounded-lg border-l-4 border-blue-500">
+                                                <p class="font-semibold text-blue-800">Z (Atomic Number) = Number of Protons</p>
+                                                <p class="text-sm text-gray-600 mt-1">The atomic number IDENTIFIES the element!</p>
+                                            </div>
+                                            <p><strong>Also notice:</strong> In the neutral atom shown, the number of <strong class="text-blue-600">electrons</strong> equals the number of <strong class="text-red-600">protons</strong>.</p>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="bg-amber-50 p-4 rounded-lg border-l-4 border-amber-500">
+                                        <p class="text-amber-800"><i class="fas fa-key mr-2"></i><strong>Key Insight:</strong> No two elements have the same atomic number. If Z = 6, it's ALWAYS Carbon - never anything else! The atomic number is like the element's fingerprint.</p>
+                                    </div>
+                                </div>
+                                
+                                <script>
+                                    const elementNames = {
+                                        1: {symbol: 'H', name: 'Hydrogen'},
+                                        2: {symbol: 'He', name: 'Helium'},
+                                        3: {symbol: 'Li', name: 'Lithium'},
+                                        4: {symbol: 'Be', name: 'Beryllium'},
+                                        5: {symbol: 'B', name: 'Boron'},
+                                        6: {symbol: 'C', name: 'Carbon'},
+                                        7: {symbol: 'N', name: 'Nitrogen'},
+                                        8: {symbol: 'O', name: 'Oxygen'},
+                                        9: {symbol: 'F', name: 'Fluorine'},
+                                        10: {symbol: 'Ne', name: 'Neon'},
+                                        11: {symbol: 'Na', name: 'Sodium'},
+                                        12: {symbol: 'Mg', name: 'Magnesium'},
+                                        13: {symbol: 'Al', name: 'Aluminium'},
+                                        14: {symbol: 'Si', name: 'Silicon'},
+                                        15: {symbol: 'P', name: 'Phosphorus'},
+                                        16: {symbol: 'S', name: 'Sulfur'},
+                                        17: {symbol: 'Cl', name: 'Chlorine'},
+                                        18: {symbol: 'Ar', name: 'Argon'},
+                                        19: {symbol: 'K', name: 'Potassium'},
+                                        20: {symbol: 'Ca', name: 'Calcium'}
+                                    };
+                                    
+                                    function updateZAtom(z) {
+                                        document.getElementById('zValueDisplay').textContent = z;
+                                        document.getElementById('elementSymbolZ').textContent = elementNames[z].symbol;
+                                        document.getElementById('elementNameZ').textContent = elementNames[z].name;
+                                        document.getElementById('protonCountZ').textContent = z;
+                                        document.getElementById('electronCountZ').textContent = z;
+                                        
+                                        // Draw protons
+                                        const protonGroup = document.getElementById('protonCircles');
+                                        protonGroup.innerHTML = '';
+                                        const maxShow = Math.min(z, 10);
+                                        for(let i = 0; i < maxShow; i++) {
+                                            const angle = (i / maxShow) * 2 * Math.PI;
+                                            const r = 15;
+                                            const x = 100 + r * Math.cos(angle);
+                                            const y = 100 + r * Math.sin(angle);
+                                            const circle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+                                            circle.setAttribute('cx', x);
+                                            circle.setAttribute('cy', y);
+                                            circle.setAttribute('r', '8');
+                                            circle.setAttribute('fill', '#ef4444');
+                                            circle.setAttribute('stroke', '#fca5a5');
+                                            circle.setAttribute('stroke-width', '1');
+                                            protonGroup.appendChild(circle);
+                                        }
+                                        if(z > 10) {
+                                            const text = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+                                            text.setAttribute('x', '100');
+                                            text.setAttribute('y', '105');
+                                            text.setAttribute('text-anchor', 'middle');
+                                            text.setAttribute('fill', 'white');
+                                            text.setAttribute('font-size', '10');
+                                            text.setAttribute('font-weight', 'bold');
+                                            text.textContent = '+' + z;
+                                            protonGroup.appendChild(text);
+                                        }
+                                        
+                                        // Draw electrons
+                                        const electronGroup = document.getElementById('electronCircles');
+                                        electronGroup.innerHTML = '';
+                                        const shells = [2, 8, 8, 2]; // Simplified electron configuration
+                                        let remaining = z;
+                                        let shellIndex = 0;
+                                        let radius = 60;
+                                        
+                                        while(remaining > 0 && shellIndex < shells.length) {
+                                            const electronsInShell = Math.min(remaining, shells[shellIndex]);
+                                            for(let i = 0; i < electronsInShell; i++) {
+                                                const angle = (i / electronsInShell) * 2 * Math.PI - Math.PI/2;
+                                                const x = 100 + radius * Math.cos(angle);
+                                                const y = 100 + radius * Math.sin(angle);
+                                                const circle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+                                                circle.setAttribute('cx', x);
+                                                circle.setAttribute('cy', y);
+                                                circle.setAttribute('r', '5');
+                                                circle.setAttribute('fill', '#3b82f6');
+                                                circle.setAttribute('stroke', '#93c5fd');
+                                                circle.setAttribute('stroke-width', '1');
+                                                electronGroup.appendChild(circle);
+                                            }
+                                            remaining -= electronsInShell;
+                                            shellIndex++;
+                                            radius += 25;
+                                        }
+                                    }
+                                    
+                                    document.getElementById('protonSlider').addEventListener('input', function() {
+                                        updateZAtom(parseInt(this.value));
+                                    });
+                                    
+                                    // Initialize
+                                    updateZAtom(6);
+                                </script>
+                            `
+                        },
+                        {
+                            intro: "Now let's explore the Mass Number (A). Use this interactive simulation to see how protons and neutrons combine to give the mass number. Try the practice questions below!",
+                            content: `
+                                <div class="section-card">
+                                    <h3 class="text-xl font-semibold text-gray-800 mb-4 flex items-center">
+                                        <i class="fas fa-weight-hanging text-amber-500 mr-3"></i>Mass Number (A) - Interactive
+                                    </h3>
+                                    
+                                    <div class="bg-gradient-to-br from-green-50 to-emerald-100 p-4 rounded-xl mb-4">
+                                        <!-- Formula Display -->
+                                        <div class="text-center mb-4">
+                                            <div class="inline-flex items-center gap-4 bg-white px-6 py-4 rounded-lg shadow-lg border-2 border-green-300">
+                                                <div class="text-center">
+                                                    <div class="text-3xl font-bold text-green-700" id="aValueDisplay">12</div>
+                                                    <div class="text-xs text-gray-600">Mass Number (A)</div>
+                                                </div>
+                                                <div class="text-2xl text-gray-400">=</div>
+                                                <div class="text-center">
+                                                    <div class="text-3xl font-bold text-red-600" id="zPartDisplay">6</div>
+                                                    <div class="text-xs text-gray-600">Protons (Z)</div>
+                                                </div>
+                                                <div class="text-2xl text-gray-400">+</div>
+                                                <div class="text-center">
+                                                    <div class="text-3xl font-bold text-gray-600" id="nPartDisplay">6</div>
+                                                    <div class="text-xs text-gray-600">Neutrons (N)</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                        <!-- Controls -->
+                                        <div class="grid md:grid-cols-2 gap-4 mb-4">
+                                            <div class="bg-white rounded-lg p-3">
+                                                <label class="block text-sm font-medium text-red-700 mb-1">Protons (Z):</label>
+                                                <input type="range" id="protonSliderA" min="1" max="20" value="6" class="w-full h-2 bg-red-200 rounded-lg appearance-none cursor-pointer">
+                                                <div class="text-center text-red-700 font-bold" id="protonValA">6</div>
+                                            </div>
+                                            <div class="bg-white rounded-lg p-3">
+                                                <label class="block text-sm font-medium text-gray-700 mb-1">Neutrons (N):</label>
+                                                <input type="range" id="neutronSliderA" min="0" max="30" value="6" class="w-full h-2 bg-gray-300 rounded-lg appearance-none cursor-pointer">
+                                                <div class="text-center text-gray-700 font-bold" id="neutronValA">6</div>
+                                            </div>
+                                        </div>
+                                        
+                                        <!-- Visual representation -->
+                                        <div class="bg-white rounded-lg p-4">
+                                            <div class="flex justify-center items-center gap-2 flex-wrap">
+                                                <div class="text-center">
+                                                    <div class="flex flex-wrap justify-center gap-1 mb-2" id="protonDotsA" style="max-width: 100px;">
+                                                        <!-- Proton dots rendered here -->
+                                                    </div>
+                                                    <span class="text-xs text-red-600">Protons</span>
+                                                </div>
+                                                <div class="text-xl text-gray-400">+</div>
+                                                <div class="text-center">
+                                                    <div class="flex flex-wrap justify-center gap-1 mb-2" id="neutronDotsA" style="max-width: 100px;">
+                                                        <!-- Neutron dots rendered here -->
+                                                    </div>
+                                                    <span class="text-xs text-gray-600">Neutrons</span>
+                                                </div>
+                                                <div class="text-xl text-gray-400">=</div>
+                                                <div class="text-center">
+                                                    <div class="flex flex-wrap justify-center gap-1 mb-2" id="totalDotsA" style="max-width: 150px;">
+                                                        <!-- Total dots rendered here -->
+                                                    </div>
+                                                    <span class="text-xs text-green-600">In Nucleus (A)</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                        <!-- Element notation -->
+                                        <div id="elementNotation" class="mt-4 text-center bg-white rounded-lg p-4">
+                                            <div class="inline-block relative">
+                                                <div class="absolute -top-2 left-1/2 transform -translate-x-1/2 text-sm text-gray-600" id="massNotation">12</div>
+                                                <div class="absolute -top-2 left-0 text-sm text-blue-600" id="atomicNotation">6</div>
+                                                <div class="text-4xl font-bold px-4" id="elementNotationSymbol">C</div>
+                                            </div>
+                                            <p class="text-sm text-gray-600 mt-2" id="notationExplain">This is Carbon-12 (¹²C)</p>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- Explanation -->
+                                    <div class="bg-white p-4 rounded-lg border mb-4">
+                                        <h4 class="font-semibold text-gray-800 mb-3">📖 What the simulation shows:</h4>
+                                        <div class="space-y-3 text-gray-700">
+                                            <p><strong>Move the sliders</strong> to change the number of protons and neutrons.</p>
+                                            <p><strong>Watch the formula:</strong> A = Z + N (Mass number = Protons + Neutrons)</p>
+                                            <p><strong>Notice:</strong> The <span class="text-green-600 font-semibold">green total</span> shows all particles in the nucleus - this is the mass number!</p>
+                                            <p><strong>Why not electrons?</strong> Electrons have ~1/1836 the mass of a proton - they're too light to count!</p>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="bg-red-50 p-4 rounded-lg border-l-4 border-red-500">
+                                        <h4 class="font-semibold text-red-800 mb-2">📝 Exam-Style Question:</h4>
+                                        <p class="text-gray-700 mb-2">Set the sliders to answer this question:</p>
+                                        <p class="font-medium text-gray-800">"An element X has atomic number 13 and 14 neutrons. Calculate its mass number."</p>
+                                        <details class="mt-2">
+                                            <summary class="text-sm text-blue-600 cursor-pointer hover:text-blue-800">Check your answer</summary>
+                                            <div class="mt-2 text-sm text-gray-700 bg-white p-3 rounded">
+                                                <p><strong>Step 1:</strong> Z = 13 (atomic number = protons)</p>
+                                                <p><strong>Step 2:</strong> N = 14 (neutrons)</p>
+                                                <p><strong>Step 3:</strong> A = Z + N = 13 + 14 = <strong class="text-green-600">27</strong></p>
+                                                <p class="mt-2">This is <strong>Aluminium-27 (²⁷Al)</strong></p>
+                                            </div>
+                                        </details>
+                                    </div>
+                                </div>
+                                
+                                <script>
+                                    function updateMassNumber() {
+                                        const z = parseInt(document.getElementById('protonSliderA').value);
+                                        const n = parseInt(document.getElementById('neutronSliderA').value);
+                                        const a = z + n;
+                                        
+                                        document.getElementById('protonValA').textContent = z;
+                                        document.getElementById('neutronValA').textContent = n;
+                                        document.getElementById('zPartDisplay').textContent = z;
+                                        document.getElementById('nPartDisplay').textContent = n;
+                                        document.getElementById('aValueDisplay').textContent = a;
+                                        
+                                        // Update notation
+                                        document.getElementById('massNotation').textContent = a;
+                                        document.getElementById('atomicNotation').textContent = z;
+                                        
+                                        // Get element info
+                                        const elementNames = {
+                                            1: 'H', 2: 'He', 3: 'Li', 4: 'Be', 5: 'B', 6: 'C', 7: 'N', 8: 'O', 9: 'F', 10: 'Ne',
+                                            11: 'Na', 12: 'Mg', 13: 'Al', 14: 'Si', 15: 'P', 16: 'S', 17: 'Cl', 18: 'Ar', 19: 'K', 20: 'Ca'
+                                        };
+                                        const elementNamesFull = {
+                                            1: 'Hydrogen', 2: 'Helium', 3: 'Lithium', 4: 'Beryllium', 5: 'Boron', 6: 'Carbon', 7: 'Nitrogen', 8: 'Oxygen', 9: 'Fluorine', 10: 'Neon',
+                                            11: 'Sodium', 12: 'Magnesium', 13: 'Aluminium', 14: 'Silicon', 15: 'Phosphorus', 16: 'Sulfur', 17: 'Chlorine', 18: 'Argon', 19: 'Potassium', 20: 'Calcium'
+                                        };
+                                        
+                                        document.getElementById('elementNotationSymbol').textContent = elementNames[z] || '?';
+                                        document.getElementById('notationExplain').textContent = 'This is ' + (elementNamesFull[z] || 'Unknown') + '-' + a;
+                                        
+                                        // Draw dots
+                                        function drawDots(containerId, count, color) {
+                                            const container = document.getElementById(containerId);
+                                            container.innerHTML = '';
+                                            const displayCount = Math.min(count, 20);
+                                            for(let i = 0; i < displayCount; i++) {
+                                                const dot = document.createElement('div');
+                                                dot.className = 'w-3 h-3 rounded-full ' + color;
+                                                container.appendChild(dot);
+                                            }
+                                            if(count > 20) {
+                                                const more = document.createElement('div');
+                                                more.className = 'text-xs text-gray-500';
+                                                more.textContent = '+' + (count - 20);
+                                                container.appendChild(more);
+                                            }
+                                        }
+                                        
+                                        drawDots('protonDotsA', z, 'bg-red-500');
+                                        drawDots('neutronDotsA', n, 'bg-gray-400');
+                                        drawDots('totalDotsA', Math.min(a, 30), 'bg-green-500');
+                                    }
+                                    
+                                    document.getElementById('protonSliderA').addEventListener('input', updateMassNumber);
+                                    document.getElementById('neutronSliderA').addEventListener('input', updateMassNumber);
+                                    
+                                    // Initialize
+                                    updateMassNumber();
+                                </script>
                             `
                         },
                         {
