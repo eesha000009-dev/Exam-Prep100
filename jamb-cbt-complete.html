@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JAMB CBT Exam</title>
+    <style>
+        body { background: linear-gradient(to right, #6a11cb, #2575fc); color: white; font-family: Arial, sans-serif; }
+        header { text-align: center; padding: 20px; }
+        .timer { font-size: 24px; }
+        .subject-selection, .question { margin: 20px; }
+        .button { padding: 10px 20px; background: #2575fc; border: none; cursor: pointer; }
+        .button:hover { background: #6a11cb; }
+        .progress { width: 100%; background: #ddd; }
+        .progress-bar { height: 20px; width: 0; background: green; }
+        @media (max-width: 600px) {
+            body { font-size: 14px; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>JAMB CBT Examination</h1>
+        <div class="timer" id="timer">Time Remaining: 3:00:00</div>
+    </header>
+    <div class="subject-selection">
+        <h2>Select Subjects</h2>
+        <select id="subject1">
+            <option value="english">English</option>
+            <option value="math">Mathematics</option>
+            <option value="chemistry">Chemistry</option>
+            <option value="physics">Physics</option>
+            <option value="biology">Biology</option>
+        </select>
+        <select id="subject2">
+            <option value="math">Mathematics</option>
+            <option value="chemistry">Chemistry</option>
+            <option value="physics">Physics</option>
+            <option value="biology">Biology</option>
+        </select>
+        <select id="subject3">
+            <option value="math">Mathematics</option>
+            <option value="chemistry">Chemistry</option>
+            <option value="physics">Physics</option>
+            <option value="biology">Biology</option>
+        </select>
+        <button class="button" onclick="startExam()">Start Exam</button>
+    </div>
+
+    <div class="question" id="questionArea" style="display:none;">
+        <!-- Questions will be generated here dynamically -->
+    </div>
+
+    <script>
+        let totalQuestions = 180;
+        let timeRemaining = 3 * 60 * 60; // 3 hours in seconds
+        const timerElement = document.getElementById('timer');
+
+        function startExam() {
+            document.querySelector('.subject-selection').style.display = 'none';
+            document.getElementById('questionArea').style.display = 'block';
+            startTimer();
+            generateQuestions();
+        }
+
+        function startTimer() {
+            const interval = setInterval(() => {
+                if (timeRemaining <= 0) {
+                    clearInterval(interval);
+                    alert('Time is up!');
+                }
+                const hours = Math.floor(timeRemaining / 3600);
+                const minutes = Math.floor((timeRemaining % 3600) / 60);
+                const seconds = timeRemaining % 60;
+                timerElement.innerText = `Time Remaining: ${hours}:${minutes}:${seconds}`;
+                timeRemaining--;
+            }, 1000);
+        }
+
+        function generateQuestions() {
+            // Here, you can dynamically insert questions into the questionArea.
+            for (let i = 1; i <= totalQuestions; i++) {
+                const question = document.createElement('div');
+                question.innerHTML = `<p>Question ${i}: What is the answer?</p>`;
+                document.getElementById('questionArea').appendChild(question);
+            }
+        }
+    </script>
+</body>
+</html>
