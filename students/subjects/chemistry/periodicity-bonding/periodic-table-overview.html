@@ -27,39 +27,6 @@
         }
         .sidebar-overlay.show { display: block; }
 
-        /* Simulation container */
-        .simulation-container {
-            position: relative;
-            width: 100%;
-            height: 600px;
-            overflow: hidden;
-            border-radius: 8px;
-            background: #f9fafb;
-        }
-        .simulation-container iframe {
-            width: 100%;
-            height: 100%;
-            border: none;
-        }
-
-        /* Video container */
-        .video-container {
-            position: relative;
-            width: 100%;
-            padding-bottom: 56.25%;
-            height: 0;
-            overflow: hidden;
-            border-radius: 8px;
-            background: #f9fafb;
-        }
-        .video-container iframe {
-            position: absolute;
-            top: 0; left: 0;
-            width: 100%;
-            height: 100%;
-            border: none;
-        }
-
         /* Intro text styling */
         .intro-text {
             background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
@@ -120,26 +87,79 @@
             cursor: pointer;
         }
 
-        /* Periodic table mini grid */
-        .periodic-mini {
-            display: grid;
-            grid-template-columns: repeat(18, 1fr);
-            gap: 2px;
-            font-size: 8px;
+        /* Custom Periodic Table */
+        .periodic-table-container {
+            font-family: 'Inter', sans-serif;
+            overflow-x: auto;
+            padding: 10px;
         }
-        .periodic-mini .element {
+        .periodic-table {
+            display: grid;
+            grid-template-columns: repeat(18, minmax(32px, 1fr));
+            gap: 2px;
+            max-width: 100%;
+        }
+        .element-cell {
             aspect-ratio: 1;
             display: flex;
+            flex-direction: column;
             align-items: center;
             justify-content: center;
-            border-radius: 2px;
-            font-weight: 600;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-size: 10px;
+            position: relative;
         }
-        .periodic-mini .metal { background: #93c5fd; }
-        .periodic-mini .nonmetal { background: #86efac; }
-        .periodic-mini .metalloid { background: #fde68a; }
-        .periodic-mini .noble { background: #c4b5fd; }
-        .periodic-mini .empty { background: transparent; }
+        .element-cell:hover {
+            transform: scale(1.2);
+            z-index: 10;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+        }
+        .element-cell .symbol {
+            font-weight: bold;
+            font-size: 12px;
+        }
+        .element-cell .number {
+            font-size: 7px;
+            opacity: 0.7;
+        }
+        .element-cell.metal { background: linear-gradient(135deg, #93c5fd, #60a5fa); color: #1e3a5f; }
+        .element-cell.nonmetal { background: linear-gradient(135deg, #86efac, #4ade80); color: #14532d; }
+        .element-cell.metalloid { background: linear-gradient(135deg, #fde68a, #fbbf24); color: #78350f; }
+        .element-cell.noble { background: linear-gradient(135deg, #c4b5fd, #a78bfa); color: #4c1d95; }
+        .element-cell.alkali { background: linear-gradient(135deg, #fca5a5, #f87171); color: #7f1d1d; }
+        .element-cell.alkaline { background: linear-gradient(135deg, #fdba74, #fb923c); color: #7c2d12; }
+        .element-cell.halogen { background: linear-gradient(135deg, #5eead4, #2dd4bf); color: #134e4a; }
+        .element-cell.transition { background: linear-gradient(135deg, #93c5fd, #3b82f6); color: #1e3a5f; }
+        .element-cell.lanthanide { background: linear-gradient(135deg, #f9a8d4, #f472b6); color: #831843; }
+        .element-cell.actinide { background: linear-gradient(135deg, #d8b4fe, #c084fc); color: #581c87; }
+        .element-cell.empty { background: transparent; cursor: default; }
+        .element-cell.empty:hover { transform: none; box-shadow: none; }
+        
+        /* Element Info Panel */
+        .element-info-panel {
+            background: linear-gradient(135deg, #fef3c7, #fde68a);
+            border-radius: 12px;
+            padding: 1rem;
+            margin-top: 1rem;
+            border: 2px solid #f59e0b;
+            display: none;
+        }
+        .element-info-panel.active { display: block; }
+        
+        /* Legend */
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 11px;
+        }
+        .legend-color {
+            width: 16px;
+            height: 16px;
+            border-radius: 3px;
+        }
 
         @media (max-width: 768px) {
             .desktop-sidebar { display: none; }
@@ -155,7 +175,6 @@
                 box-shadow: 2px 0 10px rgba(0,0,0,0.1);
             }
             .mobile-sidebar.show { left: 0; }
-            .simulation-container { height: 350px; }
             
             .intro-text {
                 padding: 0.875rem 1rem;
@@ -169,23 +188,13 @@
                 padding: 1rem;
                 margin-bottom: 1rem;
             }
-        }
-
-        @media (max-width: 480px) {
-            .simulation-container { height: 280px; }
             
-            .intro-text {
-                padding: 0.75rem;
-                margin-bottom: 0.75rem;
+            .periodic-table {
+                grid-template-columns: repeat(18, minmax(24px, 1fr));
+                gap: 1px;
             }
-            .intro-text p {
-                font-size: 0.875rem;
-            }
-            
-            .section-card {
-                padding: 0.875rem;
-                margin-bottom: 0.875rem;
-            }
+            .element-cell .symbol { font-size: 9px; }
+            .element-cell .number { font-size: 6px; }
         }
     </style>
 </head>
@@ -249,7 +258,7 @@
                     <div id="stepContainer" class="bg-white rounded-lg shadow-sm p-6 mb-6"></div>
 
                     <!-- Resources Section -->
-                    <div id="resourcesContainer" class="bg-white rounded-lg shadow-sm p-6">
+                    <div id="resourcesContainer" class="bg-white rounded-lg shadow-sm p-6 hidden">
                         <h3 class="text-lg font-semibold mb-4">Resources</h3>
                         <div id="resourcesGrid" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4"></div>
                     </div>
@@ -272,22 +281,153 @@
         </div>
     </div>
 
-    <!-- Resource Modal -->
-    <div id="resourceModal" class="hidden fixed inset-0 bg-gray-800 bg-opacity-75 overflow-y-auto h-full w-full z-50 flex items-center justify-center p-4">
-        <div class="relative mx-auto p-5 border w-full max-w-5xl shadow-lg rounded-md bg-white">
-            <div class="flex justify-between items-center pb-3 border-b">
-                <h3 id="resourceModalTitle" class="text-xl font-semibold">Resource</h3>
-                <button id="closeResourceModal" class="text-gray-600 hover:text-gray-900 text-2xl font-bold">&times;</button>
-            </div>
-            <div id="resourceModalContent" class="mt-4"></div>
-        </div>
-    </div>
-
     <script>
         let currentStepIndex = 0;
         let currentChunkIndex = 0;
         let stepsCompleted = [];
         let topicTracker = null;
+
+        // Element data for interactive periodic table
+        const elementsData = [
+            // Period 1
+            { z: 1, symbol: 'H', name: 'Hydrogen', mass: '1.008', category: 'nonmetal', group: 1, period: 1 },
+            { z: 2, symbol: 'He', name: 'Helium', mass: '4.003', category: 'noble', group: 18, period: 1 },
+            // Period 2
+            { z: 3, symbol: 'Li', name: 'Lithium', mass: '6.941', category: 'alkali', group: 1, period: 2 },
+            { z: 4, symbol: 'Be', name: 'Beryllium', mass: '9.012', category: 'alkaline', group: 2, period: 2 },
+            { z: 5, symbol: 'B', name: 'Boron', mass: '10.81', category: 'metalloid', group: 13, period: 2 },
+            { z: 6, symbol: 'C', name: 'Carbon', mass: '12.01', category: 'nonmetal', group: 14, period: 2 },
+            { z: 7, symbol: 'N', name: 'Nitrogen', mass: '14.01', category: 'nonmetal', group: 15, period: 2 },
+            { z: 8, symbol: 'O', name: 'Oxygen', mass: '16.00', category: 'nonmetal', group: 16, period: 2 },
+            { z: 9, symbol: 'F', name: 'Fluorine', mass: '19.00', category: 'halogen', group: 17, period: 2 },
+            { z: 10, symbol: 'Ne', name: 'Neon', mass: '20.18', category: 'noble', group: 18, period: 2 },
+            // Period 3
+            { z: 11, symbol: 'Na', name: 'Sodium', mass: '22.99', category: 'alkali', group: 1, period: 3 },
+            { z: 12, symbol: 'Mg', name: 'Magnesium', mass: '24.31', category: 'alkaline', group: 2, period: 3 },
+            { z: 13, symbol: 'Al', name: 'Aluminium', mass: '26.98', category: 'metal', group: 13, period: 3 },
+            { z: 14, symbol: 'Si', name: 'Silicon', mass: '28.09', category: 'metalloid', group: 14, period: 3 },
+            { z: 15, symbol: 'P', name: 'Phosphorus', mass: '30.97', category: 'nonmetal', group: 15, period: 3 },
+            { z: 16, symbol: 'S', name: 'Sulfur', mass: '32.07', category: 'nonmetal', group: 16, period: 3 },
+            { z: 17, symbol: 'Cl', name: 'Chlorine', mass: '35.45', category: 'halogen', group: 17, period: 3 },
+            { z: 18, symbol: 'Ar', name: 'Argon', mass: '39.95', category: 'noble', group: 18, period: 3 },
+            // Period 4
+            { z: 19, symbol: 'K', name: 'Potassium', mass: '39.10', category: 'alkali', group: 1, period: 4 },
+            { z: 20, symbol: 'Ca', name: 'Calcium', mass: '40.08', category: 'alkaline', group: 2, period: 4 },
+            { z: 21, symbol: 'Sc', name: 'Scandium', mass: '44.96', category: 'transition', group: 3, period: 4 },
+            { z: 22, symbol: 'Ti', name: 'Titanium', mass: '47.87', category: 'transition', group: 4, period: 4 },
+            { z: 23, symbol: 'V', name: 'Vanadium', mass: '50.94', category: 'transition', group: 5, period: 4 },
+            { z: 24, symbol: 'Cr', name: 'Chromium', mass: '52.00', category: 'transition', group: 6, period: 4 },
+            { z: 25, symbol: 'Mn', name: 'Manganese', mass: '54.94', category: 'transition', group: 7, period: 4 },
+            { z: 26, symbol: 'Fe', name: 'Iron', mass: '55.85', category: 'transition', group: 8, period: 4 },
+            { z: 27, symbol: 'Co', name: 'Cobalt', mass: '58.93', category: 'transition', group: 9, period: 4 },
+            { z: 28, symbol: 'Ni', name: 'Nickel', mass: '58.69', category: 'transition', group: 10, period: 4 },
+            { z: 29, symbol: 'Cu', name: 'Copper', mass: '63.55', category: 'transition', group: 11, period: 4 },
+            { z: 30, symbol: 'Zn', name: 'Zinc', mass: '65.38', category: 'transition', group: 12, period: 4 },
+            { z: 31, symbol: 'Ga', name: 'Gallium', mass: '69.72', category: 'metal', group: 13, period: 4 },
+            { z: 32, symbol: 'Ge', name: 'Germanium', mass: '72.63', category: 'metalloid', group: 14, period: 4 },
+            { z: 33, symbol: 'As', name: 'Arsenic', mass: '74.92', category: 'metalloid', group: 15, period: 4 },
+            { z: 34, symbol: 'Se', name: 'Selenium', mass: '78.97', category: 'nonmetal', group: 16, period: 4 },
+            { z: 35, symbol: 'Br', name: 'Bromine', mass: '79.90', category: 'halogen', group: 17, period: 4 },
+            { z: 36, symbol: 'Kr', name: 'Krypton', mass: '83.80', category: 'noble', group: 18, period: 4 },
+            // Period 5 (first few)
+            { z: 37, symbol: 'Rb', name: 'Rubidium', mass: '85.47', category: 'alkali', group: 1, period: 5 },
+            { z: 38, symbol: 'Sr', name: 'Strontium', mass: '87.62', category: 'alkaline', group: 2, period: 5 },
+            { z: 39, symbol: 'Y', name: 'Yttrium', mass: '88.91', category: 'transition', group: 3, period: 5 },
+            // Add more elements as needed...
+        ];
+
+        // Generate periodic table HTML
+        function generatePeriodicTable() {
+            let html = '<div class="periodic-table">';
+            
+            // Create 7 periods x 18 groups grid
+            for (let period = 1; period <= 7; period++) {
+                for (let group = 1; group <= 18; group++) {
+                    // Find element at this position
+                    const element = elementsData.find(e => e.period === period && e.group === group);
+                    
+                    if (element) {
+                        html += `
+                            <div class="element-cell ${element.category}" 
+                                 onclick="showElementInfo(${element.z})"
+                                 title="${element.name}">
+                                <span class="number">${element.z}</span>
+                                <span class="symbol">${element.symbol}</span>
+                            </div>
+                        `;
+                    } else {
+                        // Check if this is a placeholder position (lanthanides/actinides gap)
+                        if (period === 6 && group === 3) {
+                            html += `<div class="element-cell lanthanide" onclick="showLanthanides()" title="Lanthanides">
+                                <span class="number">57-71</span>
+                                <span class="symbol">La-Lu</span>
+                            </div>`;
+                        } else if (period === 7 && group === 3) {
+                            html += `<div class="element-cell actinide" onclick="showActinides()" title="Actinides">
+                                <span class="number">89-103</span>
+                                <span class="symbol">Ac-Lr</span>
+                            </div>`;
+                        } else {
+                            html += `<div class="element-cell empty"></div>`;
+                        }
+                    }
+                }
+            }
+            
+            html += '</div>';
+            return html;
+        }
+
+        // Show element information
+        function showElementInfo(atomicNumber) {
+            const element = elementsData.find(e => e.z === atomicNumber);
+            if (!element) return;
+            
+            const panel = document.getElementById('elementInfoPanel');
+            if (panel) {
+                panel.innerHTML = `
+                    <div class="flex items-center gap-4">
+                        <div class="text-4xl font-bold text-amber-800">${element.symbol}</div>
+                        <div>
+                            <h4 class="text-xl font-bold text-amber-900">${element.name}</h4>
+                            <p class="text-amber-700">Atomic Number: ${element.z}</p>
+                            <p class="text-amber-700">Atomic Mass: ${element.mass}</p>
+                            <p class="text-amber-700">Category: ${element.category.charAt(0).toUpperCase() + element.category.slice(1)}</p>
+                            <p class="text-amber-700">Group: ${element.group} | Period: ${element.period}</p>
+                        </div>
+                    </div>
+                `;
+                panel.classList.add('active');
+            }
+        }
+
+        function showLanthanides() {
+            const panel = document.getElementById('elementInfoPanel');
+            if (panel) {
+                panel.innerHTML = `
+                    <div class="text-center">
+                        <h4 class="text-xl font-bold text-pink-800 mb-2">Lanthanides (Elements 57-71)</h4>
+                        <p class="text-pink-700">The lanthanides are a series of 15 metallic elements. They are known as "rare earth elements" and are used in electronics, magnets, and catalysts.</p>
+                        <p class="text-pink-600 mt-2">Examples: Lanthanum (La), Cerium (Ce), Neodymium (Nd)</p>
+                    </div>
+                `;
+                panel.classList.add('active');
+            }
+        }
+
+        function showActinides() {
+            const panel = document.getElementById('elementInfoPanel');
+            if (panel) {
+                panel.innerHTML = `
+                    <div class="text-center">
+                        <h4 class="text-xl font-bold text-purple-800 mb-2">Actinides (Elements 89-103)</h4>
+                        <p class="text-purple-700">The actinides are radioactive elements. Most are synthetic (man-made). Uranium and Plutonium are used in nuclear reactors.</p>
+                        <p class="text-purple-600 mt-2">Examples: Actinium (Ac), Uranium (U), Plutonium (Pu)</p>
+                    </div>
+                `;
+                panel.classList.add('active');
+            }
+        }
 
         const topicData = {
             title: "The Periodic Table",
@@ -343,31 +483,34 @@
                             `
                         },
                         {
-                            intro: "Now let's explore this with an interactive simulation. Click on different elements to see their properties and discover the patterns yourself!",
+                            intro: "Now let's explore the periodic table interactively! Click on any element to see its properties. Notice how elements in the same group share similar properties!",
                             content: `
                                 <div class="section-card">
                                     <h3 class="text-xl font-semibold text-gray-800 mb-4 flex items-center">
                                         <i class="fas fa-laptop-code text-amber-500 mr-3"></i>Interactive Periodic Table
                                     </h3>
-                                    <p class="text-gray-700 mb-4">Explore the periodic table interactively. Click on elements to see their properties!</p>
-                                    <div class="bg-gray-50 p-4 rounded-lg border">
-                                        <div class="simulation-container">
-                                            <iframe src="https://phet.colorado.edu/sims/html/periodic-table/latest/periodic-table_en.html"></iframe>
-                                        </div>
+                                    <p class="text-gray-700 mb-4">Click on any element to see its details. Notice the colors representing different categories!</p>
+                                    
+                                    <!-- Legend -->
+                                    <div class="flex flex-wrap gap-3 mb-4 p-3 bg-gray-50 rounded-lg">
+                                        <div class="legend-item"><div class="legend-color" style="background: linear-gradient(135deg, #fca5a5, #f87171);"></div>Alkali Metals</div>
+                                        <div class="legend-item"><div class="legend-color" style="background: linear-gradient(135deg, #fdba74, #fb923c);"></div>Alkaline Earth</div>
+                                        <div class="legend-item"><div class="legend-color" style="background: linear-gradient(135deg, #93c5fd, #3b82f6);"></div>Transition Metals</div>
+                                        <div class="legend-item"><div class="legend-color" style="background: linear-gradient(135deg, #86efac, #4ade80);"></div>Non-metals</div>
+                                        <div class="legend-item"><div class="legend-color" style="background: linear-gradient(135deg, #fde68a, #fbbf24);"></div>Metalloids</div>
+                                        <div class="legend-item"><div class="legend-color" style="background: linear-gradient(135deg, #5eead4, #2dd4bf);"></div>Halogens</div>
+                                        <div class="legend-item"><div class="legend-color" style="background: linear-gradient(135deg, #c4b5fd, #a78bfa);"></div>Noble Gases</div>
                                     </div>
+                                    
+                                    <div class="periodic-table-container">
+                                        ${generatePeriodicTable()}
+                                    </div>
+                                    
+                                    <div id="elementInfoPanel" class="element-info-panel"></div>
                                 </div>
                             `
                         }
-                    ],
-                    resources: [
-                        { type: "simulation", title: "Periodic Table Explorer", description: "Interactive element explorer.", url: "https://phet.colorado.edu/sims/html/periodic-table/latest/periodic-table_en.html" }
-                    ],
-                    quiz: {
-                        question: "Who developed the first widely recognized periodic table?",
-                        options: ["John Dalton", "Dmitri Mendeleev", "Niels Bohr", "Ernest Rutherford"],
-                        correct: 1,
-                        explanation: "Dmitri Mendeleev developed the periodic table in 1869. He even predicted elements that hadn't been discovered yet!"
-                    }
+                    ]
                 },
                 {
                     id: "metals-nonmetals",
@@ -465,30 +608,40 @@
                             `
                         },
                         {
-                            intro: "Now let's watch a video that explains these concepts in more detail with visual demonstrations.",
+                            intro: "Now let's test your understanding with some practice problems!",
                             content: `
                                 <div class="section-card">
                                     <h3 class="text-xl font-semibold text-gray-800 mb-4 flex items-center">
-                                        <i class="fas fa-play-circle text-amber-500 mr-3"></i>Video Explanation
+                                        <i class="fas fa-question-circle text-amber-500 mr-3"></i>Quick Check
                                     </h3>
-                                    <div class="bg-gray-50 p-4 rounded-lg border">
-                                        <div class="video-container">
-                                            <iframe src="https://www.youtube.com/embed/FHq0NgQhUHg" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                                    
+                                    <div class="space-y-4">
+                                        <div class="bg-yellow-50 p-4 rounded-lg border border-yellow-200">
+                                            <p class="font-medium text-gray-800 mb-2">1. Classify the following as metal, non-metal, or metalloid: Sodium (Na), Silicon (Si), Chlorine (Cl)</p>
+                                            <details class="mt-2">
+                                                <summary class="text-sm text-blue-600 cursor-pointer hover:text-blue-800">Check Answer</summary>
+                                                <div class="mt-2 text-sm text-gray-700 bg-white p-3 rounded">
+                                                    <p><strong>Sodium (Na):</strong> Metal (left side, shiny, conducts electricity)</p>
+                                                    <p><strong>Silicon (Si):</strong> Metalloid (on the diagonal line, semiconductor)</p>
+                                                    <p><strong>Chlorine (Cl):</strong> Non-metal (right side, gas, poor conductor)</p>
+                                                </div>
+                                            </details>
+                                        </div>
+                                        
+                                        <div class="bg-yellow-50 p-4 rounded-lg border border-yellow-200">
+                                            <p class="font-medium text-gray-800 mb-2">2. Why is silicon used in computer chips?</p>
+                                            <details class="mt-2">
+                                                <summary class="text-sm text-blue-600 cursor-pointer hover:text-blue-800">Check Answer</summary>
+                                                <div class="mt-2 text-sm text-gray-700 bg-white p-3 rounded">
+                                                    <p>Silicon is a <strong>metalloid</strong>, meaning it has properties of both metals and non-metals. It is a <strong>semiconductor</strong> - it can conduct electricity under certain conditions, which is essential for controlling electrical signals in computer chips.</p>
+                                                </div>
+                                            </details>
                                         </div>
                                     </div>
                                 </div>
                             `
                         }
-                    ],
-                    resources: [
-                        { type: "video", title: "Metals vs Non-metals", description: "Visual comparison of properties.", url: "https://www.youtube.com/embed/FHq0NgQhUHg" }
-                    ],
-                    quiz: {
-                        question: "Which element is a metalloid?",
-                        options: ["Sodium (Na)", "Silicon (Si)", "Chlorine (Cl)", "Iron (Fe)"],
-                        correct: 1,
-                        explanation: "Silicon (Si) is a metalloid - it has properties of both metals and non-metals, and is a semiconductor used in electronics."
-                    }
+                    ]
                 },
                 {
                     id: "groups-periods",
@@ -506,10 +659,10 @@
                                     
                                     <div class="space-y-3">
                                         <!-- Alkali Metals -->
-                                        <div class="bg-purple-50 p-4 rounded-lg border-l-4 border-purple-500">
+                                        <div class="bg-red-50 p-4 rounded-lg border-l-4 border-red-500">
                                             <div class="flex items-center justify-between">
-                                                <h4 class="font-semibold text-purple-800">Group 1: Alkali Metals</h4>
-                                                <span class="text-sm bg-purple-200 px-2 py-1 rounded">Li, Na, K, Rb, Cs, Fr</span>
+                                                <h4 class="font-semibold text-red-800">Group 1: Alkali Metals</h4>
+                                                <span class="text-sm bg-red-200 px-2 py-1 rounded">Li, Na, K, Rb, Cs, Fr</span>
                                             </div>
                                             <ul class="text-sm text-gray-700 mt-2 grid md:grid-cols-2 gap-1">
                                                 <li>• Very reactive (react with water!)</li>
@@ -548,10 +701,10 @@
                                         </div>
                                         
                                         <!-- Noble Gases -->
-                                        <div class="bg-pink-50 p-4 rounded-lg border-l-4 border-pink-500">
+                                        <div class="bg-purple-50 p-4 rounded-lg border-l-4 border-purple-500">
                                             <div class="flex items-center justify-between">
-                                                <h4 class="font-semibold text-pink-800">Group 18: Noble Gases</h4>
-                                                <span class="text-sm bg-pink-200 px-2 py-1 rounded">He, Ne, Ar, Kr, Xe, Rn</span>
+                                                <h4 class="font-semibold text-purple-800">Group 18: Noble Gases</h4>
+                                                <span class="text-sm bg-purple-200 px-2 py-1 rounded">He, Ne, Ar, Kr, Xe, Rn</span>
                                             </div>
                                             <ul class="text-sm text-gray-700 mt-2 grid md:grid-cols-2 gap-1">
                                                 <li>• Unreactive (inert)</li>
@@ -579,51 +732,26 @@
                             `
                         },
                         {
-                            intro: "Let's explore these families interactively! Click on different groups in the simulation to see how elements in the same family share properties.",
-                            content: `
-                                <div class="section-card">
-                                    <h3 class="text-xl font-semibold text-gray-800 mb-4 flex items-center">
-                                        <i class="fas fa-laptop-code text-amber-500 mr-3"></i>Interactive: Explore Element Families
-                                    </h3>
-                                    <p class="text-gray-700 mb-4">Try clicking on elements from the same group (column) to see how they share similar properties!</p>
-                                    <div class="bg-gray-50 p-4 rounded-lg border">
-                                        <div class="simulation-container">
-                                            <iframe src="https://phet.colorado.edu/sims/html/periodic-table/latest/periodic-table_en.html"></iframe>
-                                        </div>
-                                    </div>
-                                </div>
-                            `
-                        },
-                        {
-                            intro: "Here's a quick memory trick to remember the order of reactivity for some important groups...",
+                            intro: "Here's a quick memory trick to remember the reactivity series of some important groups...",
                             content: `
                                 <div class="bg-gradient-to-r from-amber-50 to-yellow-50 p-5 rounded-lg border border-amber-200">
                                     <h4 class="font-semibold text-amber-800 mb-3"><i class="fas fa-brain mr-2"></i>Memory Tricks</h4>
                                     
                                     <div class="mb-4">
                                         <p class="font-medium text-gray-800 mb-2">Alkali Metals Reactivity (most to least):</p>
-                                        <p class="text-lg font-bold text-purple-700">"Krazy Na-Li Cs Friends Really-Rare"</p>
-                                        <p class="text-sm text-gray-600 mt-1">K > Na > Li > Cs > Rb > Fr</p>
+                                        <p class="text-lg font-bold text-red-700">"Krazy Na-Li Cs Friends Really-Rare"</p>
+                                        <p class="text-sm text-gray-600 mt-1">K > Na > Li > Cs > Rb > Fr (reactivity decreases down group)</p>
                                     </div>
                                     
                                     <div>
                                         <p class="font-medium text-gray-800 mb-2">Halogens Reactivity (most to least):</p>
                                         <p class="text-lg font-bold text-teal-700">"First Class Boats Is Always-Time"</p>
-                                        <p class="text-sm text-gray-600 mt-1">F > Cl > Br > I > At</p>
+                                        <p class="text-sm text-gray-600 mt-1">F > Cl > Br > I > At (reactivity decreases down group)</p>
                                     </div>
                                 </div>
                             `
                         }
-                    ],
-                    resources: [
-                        { type: "simulation", title: "Element Families", description: "Explore group properties.", url: "https://phet.colorado.edu/sims/html/periodic-table/latest/periodic-table_en.html" }
-                    ],
-                    quiz: {
-                        question: "Which group contains the most reactive metals?",
-                        options: ["Group 2 (Alkaline Earth)", "Group 1 (Alkali Metals)", "Group 17 (Halogens)", "Group 18 (Noble Gases)"],
-                        correct: 1,
-                        explanation: "Group 1 Alkali Metals are the most reactive metals. They react vigorously with water and must be stored under oil."
-                    }
+                    ]
                 },
                 {
                     id: "atomic-structure",
@@ -677,11 +805,11 @@
                                         <div class="flex items-center justify-center gap-2 flex-wrap">
                                             <span class="bg-red-100 px-3 py-2 rounded font-mono">H (1)</span>
                                             <span class="text-gray-400">→</span>
-                                            <span class="bg-orange-100 px-3 py-2 rounded font-mono">He (2)</span>
+                                            <span class="bg-purple-100 px-3 py-2 rounded font-mono">He (2)</span>
                                             <span class="text-gray-400">→</span>
-                                            <span class="bg-yellow-100 px-3 py-2 rounded font-mono">Li (3)</span>
+                                            <span class="bg-red-100 px-3 py-2 rounded font-mono">Li (3)</span>
                                             <span class="text-gray-400">→</span>
-                                            <span class="bg-green-100 px-3 py-2 rounded font-mono">Be (4)</span>
+                                            <span class="bg-orange-100 px-3 py-2 rounded font-mono">Be (4)</span>
                                             <span class="text-gray-400">→</span>
                                             <span class="text-gray-500">...continues...</span>
                                         </div>
@@ -707,7 +835,7 @@
                             `
                         },
                         {
-                            intro: "Now let's practice reading element information with this interactive quiz!",
+                            intro: "Now let's practice reading element information with these exercises!",
                             content: `
                                 <div class="section-card">
                                     <h3 class="text-xl font-semibold text-gray-800 mb-4 flex items-center">
@@ -716,7 +844,7 @@
                                     
                                     <div class="space-y-4">
                                         <div class="bg-yellow-50 p-4 rounded-lg border border-yellow-200">
-                                            <p class="font-medium text-gray-800 mb-2">An element has atomic number 11. How many protons and electrons does it have in its neutral state?</p>
+                                            <p class="font-medium text-gray-800 mb-2">1. An element has atomic number 11. How many protons and electrons does it have in its neutral state?</p>
                                             <details class="mt-2">
                                                 <summary class="text-sm text-blue-600 cursor-pointer hover:text-blue-800">Check Answer</summary>
                                                 <div class="mt-2 text-sm text-gray-700 bg-white p-3 rounded">
@@ -728,7 +856,7 @@
                                         </div>
                                         
                                         <div class="bg-yellow-50 p-4 rounded-lg border border-yellow-200">
-                                            <p class="font-medium text-gray-800 mb-2">An atom has 17 protons and 18 neutrons. What is its atomic number and mass number?</p>
+                                            <p class="font-medium text-gray-800 mb-2">2. An atom has 17 protons and 18 neutrons. What is its atomic number and mass number?</p>
                                             <details class="mt-2">
                                                 <summary class="text-sm text-blue-600 cursor-pointer hover:text-blue-800">Check Answer</summary>
                                                 <div class="mt-2 text-sm text-gray-700 bg-white p-3 rounded">
@@ -742,14 +870,7 @@
                                 </div>
                             `
                         }
-                    ],
-                    resources: [],
-                    quiz: {
-                        question: "What does the atomic number of an element represent?",
-                        options: ["Number of neutrons", "Number of protons", "Total mass of the atom", "Number of electron shells"],
-                        correct: 1,
-                        explanation: "The atomic number (Z) equals the number of protons in the nucleus. This is what makes each element unique!"
-                    }
+                    ]
                 },
                 {
                     id: "summary",
@@ -807,9 +928,6 @@
                                 </div>
                             `
                         }
-                    ],
-                    resources: [
-                        { type: "simulation", title: "Periodic Table Game", description: "Test your knowledge.", url: "https://phet.colorado.edu/sims/html/periodic-table/latest/periodic-table_en.html" }
                     ]
                 }
             ]
@@ -817,13 +935,8 @@
 
         // Initialize the learning system
         function init() {
-            // Build steps list
             buildStepsList();
-            
-            // Load first step
             loadStep(0);
-            
-            // Setup event listeners
             setupEventListeners();
         }
 
@@ -855,7 +968,6 @@
             const step = topicData.steps[stepIndex];
             const container = document.getElementById('stepContainer');
             
-            // Update active state in sidebar
             document.querySelectorAll('.step-button').forEach((btn, idx) => {
                 if (idx === stepIndex) {
                     btn.classList.add('active', 'border-amber-300');
@@ -864,10 +976,8 @@
                 }
             });
             
-            // Load first chunk
             loadChunk(stepIndex, 0);
             
-            // Update navigation buttons
             document.getElementById('prevStepBtn').disabled = stepIndex === 0;
             
             const nextBtn = document.getElementById('nextStepBtn');
@@ -877,13 +987,8 @@
                 nextBtn.innerHTML = 'Continue <i class="fas fa-chevron-right ml-2"></i>';
             }
             
-            // Update progress
             updateProgress();
             
-            // Load resources
-            loadResources(step);
-            
-            // Track section viewed
             if (topicTracker && step.id) {
                 topicTracker.markSectionViewed(step.id);
             }
@@ -896,15 +1001,12 @@
             
             let html = '';
             
-            // Add intro text
             if (chunk.intro) {
                 html += `<div class="intro-text animate-fade-in-up"><p>${chunk.intro}</p></div>`;
             }
             
-            // Add content
             html += chunk.content;
             
-            // Add click hint if there are more chunks
             if (chunkIndex < step.chunks.length - 1) {
                 html += `
                     <div class="click-hint" onclick="nextChunk()">
@@ -923,7 +1025,6 @@
             
             container.innerHTML = html;
             
-            // Scroll to top
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
@@ -935,60 +1036,6 @@
             }
         }
 
-        function loadResources(step) {
-            const grid = document.getElementById('resourcesGrid');
-            const container = document.getElementById('resourcesContainer');
-            
-            if (!step.resources || step.resources.length === 0) {
-                container.classList.add('hidden');
-                return;
-            }
-            
-            container.classList.remove('hidden');
-            
-            let html = '';
-            step.resources.forEach(resource => {
-                const icon = resource.type === 'video' ? 'fa-play-circle' : 'fa-flask';
-                const color = resource.type === 'video' ? 'text-red-500' : 'text-blue-500';
-                
-                html += `
-                    <div class="resource-card bg-gray-50 p-4 rounded-lg border cursor-pointer" onclick="openResource('${resource.type}', '${resource.url}', '${resource.title}')">
-                        <div class="flex items-center mb-2">
-                            <i class="fas ${icon} ${color} mr-2"></i>
-                            <span class="font-medium text-gray-800">${resource.title}</span>
-                        </div>
-                        <p class="text-sm text-gray-600">${resource.description}</p>
-                    </div>
-                `;
-            });
-            
-            grid.innerHTML = html;
-        }
-
-        function openResource(type, url, title) {
-            const modal = document.getElementById('resourceModal');
-            const modalTitle = document.getElementById('resourceModalTitle');
-            const modalContent = document.getElementById('resourceModalContent');
-            
-            modalTitle.textContent = title;
-            
-            if (type === 'video') {
-                modalContent.innerHTML = `
-                    <div class="video-container">
-                        <iframe src="${url}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                    </div>
-                `;
-            } else {
-                modalContent.innerHTML = `
-                    <div class="simulation-container" style="height: 500px;">
-                        <iframe src="${url}"></iframe>
-                    </div>
-                `;
-            }
-            
-            modal.classList.remove('hidden');
-        }
-
         function updateProgress() {
             const progress = ((currentStepIndex + 1) / topicData.steps.length) * 100;
             document.getElementById('progressBar').style.width = `${progress}%`;
@@ -996,7 +1043,6 @@
         }
 
         function setupEventListeners() {
-            // Step buttons
             document.querySelectorAll('.step-button').forEach(btn => {
                 btn.addEventListener('click', () => {
                     const stepIndex = parseInt(btn.dataset.step);
@@ -1004,7 +1050,6 @@
                 });
             });
             
-            // Navigation buttons
             document.getElementById('prevStepBtn').addEventListener('click', () => {
                 if (currentStepIndex > 0) {
                     loadStep(currentStepIndex - 1);
@@ -1014,35 +1059,20 @@
             document.getElementById('nextStepBtn').addEventListener('click', () => {
                 const step = topicData.steps[currentStepIndex];
                 
-                // Check if there are more chunks
                 if (currentChunkIndex < step.chunks.length - 1) {
                     nextChunk();
                     return;
                 }
                 
-                // Move to next step or complete
                 if (currentStepIndex < topicData.steps.length - 1) {
                     loadStep(currentStepIndex + 1);
                 } else {
-                    // Show quiz
                     if (window.TopicQuizInstance) {
                         window.TopicQuizInstance.start();
                     }
                 }
             });
             
-            // Resource modal
-            document.getElementById('closeResourceModal').addEventListener('click', () => {
-                document.getElementById('resourceModal').classList.add('hidden');
-            });
-            
-            document.getElementById('resourceModal').addEventListener('click', (e) => {
-                if (e.target === e.currentTarget) {
-                    e.currentTarget.classList.add('hidden');
-                }
-            });
-            
-            // Mobile menu
             document.getElementById('mobileMenuBtn').addEventListener('click', () => {
                 document.getElementById('mobileSidebar').classList.add('show');
                 document.getElementById('sidebarOverlay').classList.add('show');
@@ -1058,7 +1088,6 @@
                 document.getElementById('sidebarOverlay').classList.remove('show');
             });
             
-            // Start Quiz button
             document.getElementById('startQuizBtn')?.addEventListener('click', () => {
                 if (window.TopicQuizInstance) {
                     window.TopicQuizInstance.start();
@@ -1066,7 +1095,6 @@
             });
         }
 
-        // Initialize on load
         init();
     </script>
 
@@ -1143,7 +1171,6 @@
             tracker: tracker
         });
 
-        // Make tracker available globally
         window.topicTracker = tracker;
     </script>
 </body>
