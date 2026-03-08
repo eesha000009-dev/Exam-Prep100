@@ -91,17 +91,51 @@
             border: 1px solid #e5e7eb;
         }
 
-        /* Click hint */
+        /* Click hint - more prominent button style */
         .click-hint {
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 6px;
-            color: #9ca3af;
-            font-size: 0.875rem;
-            font-weight: 400;
+            gap: 8px;
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            color: #92400e;
+            font-size: 1rem;
+            font-weight: 600;
             cursor: pointer;
-            margin-top: 16px;
+            margin-top: 24px;
+            padding: 12px 24px;
+            border-radius: 12px;
+            border: 2px solid #f59e0b;
+            transition: all 0.3s ease;
+            animation: pulse-hint 2s infinite;
+        }
+        .click-hint:hover {
+            background: linear-gradient(135deg, #fde68a 0%, #fcd34d 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(245, 158, 11, 0.4);
+        }
+        
+        @keyframes pulse-hint {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(245, 158, 11, 0.4); }
+            50% { box-shadow: 0 0 0 8px rgba(245, 158, 11, 0); }
+        }
+        
+        /* Step complete indicator */
+        .step-complete-hint {
+            background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%);
+            border: 2px solid #10b981;
+            color: #065f46;
+            padding: 16px 24px;
+            border-radius: 12px;
+            text-align: center;
+            margin-top: 24px;
+        }
+        .step-complete-hint .arrow {
+            animation: bounce-down 1s infinite;
+        }
+        @keyframes bounce-down {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(8px); }
         }
 
         /* Content area cursor */
@@ -1906,18 +1940,44 @@ Neutrons = A - Z = ..."></textarea>
             
             html += chunk.content;
             
+            // Add chunk progress indicator
+            const totalChunks = step.chunks.length;
+            const chunkProgress = `<div class="text-center text-sm text-gray-400 mb-2">Section ${chunkIndex + 1} of ${totalChunks}</div>`;
+            html = chunkProgress + html;
+            
             if (chunkIndex < step.chunks.length - 1) {
+                // Not the last chunk - show "Continue" button
                 html += `
-                    <div class="click-hint" onclick="nextChunk()">
-                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <div class="click-hint" onclick="event.stopPropagation(); nextChunk();">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
                         </svg>
-                        <span>Click to continue</span>
+                        <span>Click to continue to next section</span>
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                        </svg>
                     </div>
                 `;
-                container.classList.add('clickable');
-                container.onclick = nextChunk;
+                // Don't make container clickable - only the button should trigger navigation
+                container.classList.remove('clickable');
+                container.onclick = null;
             } else {
+                // Last chunk of this step - show "Continue to next topic" hint
+                if (stepIndex < topicData.steps.length - 1) {
+                    const nextStepName = topicData.steps[stepIndex + 1].title;
+                    html += `
+                        <div class="step-complete-hint">
+                            <p class="font-semibold text-lg mb-2">✅ Section Complete!</p>
+                            <p class="text-sm mb-2">You've finished this part. Click the <strong>"Continue"</strong> button below to go to:</p>
+                            <p class="font-bold text-emerald-700">"${nextStepName}"</p>
+                            <div class="arrow mt-3">
+                                <svg class="w-8 h-8 mx-auto text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+                                </svg>
+                            </div>
+                        </div>
+                    `;
+                }
                 container.classList.remove('clickable');
                 container.onclick = null;
             }
