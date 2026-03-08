@@ -844,11 +844,6 @@
                                                         <mpath href="#orbit1"/>
                                                     </animateMotion>
                                                 </circle>
-                                                <text fill="#93c5fd" font-size="10" font-weight="bold">
-                                                    <textPath href="#orbit1">
-                                                        <animate attributeName="startOffset" from="0%" to="100%" dur="3s" repeatCount="indefinite"/>
-                                                    </textPath>
-                                                </text>
                                             </g>
                                             <g class="electron cursor-pointer" onclick="showParticleInfo('electron')">
                                                 <circle cx="200" cy="30" r="8" fill="#3b82f6" stroke="#93c5fd" stroke-width="2">
@@ -906,50 +901,6 @@
                                         <p class="text-amber-800"><i class="fas fa-lightbulb mr-2"></i><strong>What you're seeing:</strong> The atom is mostly empty space! The nucleus (center) contains protons and neutrons, while electrons zoom around it at high speeds.</p>
                                     </div>
                                 </div>
-                                
-                                <script>
-                                    function showParticleInfo(particle) {
-                                        const panel = document.getElementById('particleInfoPanel');
-                                        const info = {
-                                            proton: {
-                                                title: '🔴 Proton (p⁺)',
-                                                color: 'red',
-                                                content: \`
-                                                    <p class="text-gray-700 mb-2"><strong>Charge:</strong> Positive (+1)</p>
-                                                    <p class="text-gray-700 mb-2"><strong>Location:</strong> In the nucleus (center)</p>
-                                                    <p class="text-gray-700 mb-2"><strong>Mass:</strong> 1 atomic mass unit (amu)</p>
-                                                    <p class="text-gray-700"><strong>Key Point:</strong> The NUMBER OF PROTONS determines which element it is! Change the protons, change the element.</p>
-                                                \`
-                                            },
-                                            neutron: {
-                                                title: '⚪ Neutron (n⁰)',
-                                                color: 'gray',
-                                                content: \`
-                                                    <p class="text-gray-700 mb-2"><strong>Charge:</strong> Neutral (0)</p>
-                                                    <p class="text-gray-700 mb-2"><strong>Location:</strong> In the nucleus (center)</p>
-                                                    <p class="text-gray-700 mb-2"><strong>Mass:</strong> 1 atomic mass unit (amu)</p>
-                                                    <p class="text-gray-700"><strong>Key Point:</strong> Neutrons add mass but don't change the element. Different numbers of neutrons create ISOTOPES of the same element.</p>
-                                                \`
-                                            },
-                                            electron: {
-                                                title: '🔵 Electron (e⁻)',
-                                                color: 'blue',
-                                                content: \`
-                                                    <p class="text-gray-700 mb-2"><strong>Charge:</strong> Negative (−1)</p>
-                                                    <p class="text-gray-700 mb-2"><strong>Location:</strong> Orbiting the nucleus in shells</p>
-                                                    <p class="text-gray-700 mb-2"><strong>Mass:</strong> Very tiny! ≈ 1/1836 of a proton</p>
-                                                    <p class="text-gray-700"><strong>Key Point:</strong> Electrons determine chemical behavior. In a neutral atom, electrons = protons.</p>
-                                                \`
-                                            }
-                                        };
-                                        
-                                        panel.innerHTML = \`
-                                            <h4 class="font-semibold text-\${info[particle].color}-800 mb-3">\${info[particle].title}</h4>
-                                            \${info[particle].content}
-                                        \`;
-                                        panel.className = \`bg-\${info[particle].color}-50 p-4 rounded-lg border border-\${info[particle].color}-200 mb-4\`;
-                                    }
-                                </script>
                             `
                         },
                         {
@@ -971,7 +922,7 @@
                                         <!-- Interactive Z selector -->
                                         <div class="bg-white rounded-lg p-4 mb-4">
                                             <label class="block text-sm font-medium text-gray-700 mb-2">Adjust Protons (Z):</label>
-                                            <input type="range" id="protonSlider" min="1" max="20" value="6" class="w-full h-3 bg-blue-200 rounded-lg appearance-none cursor-pointer">
+                                            <input type="range" id="protonSlider" min="1" max="20" value="6" class="w-full h-3 bg-blue-200 rounded-lg appearance-none cursor-pointer" oninput="updateZAtom(this.value)">
                                             <div class="flex justify-between text-xs text-gray-500 mt-1">
                                                 <span>1 (H)</span>
                                                 <span>10 (Ne)</span>
@@ -983,13 +934,13 @@
                                         <div class="flex justify-center mb-4">
                                             <svg id="zAtomSVG" viewBox="0 0 200 200" class="w-48 h-48">
                                                 <!-- Nucleus background -->
-                                                <circle cx="100" cy="100" r="35" fill="url(#nucleusGradientZ)"/>
                                                 <defs>
                                                     <radialGradient id="nucleusGradientZ">
                                                         <stop offset="0%" stop-color="#fbbf24"/>
                                                         <stop offset="100%" stop-color="#f59e0b"/>
                                                     </radialGradient>
                                                 </defs>
+                                                <circle cx="100" cy="100" r="35" fill="url(#nucleusGradientZ)"/>
                                                 <!-- Protons will be drawn here -->
                                                 <g id="protonCircles"></g>
                                                 <!-- Electron shells -->
@@ -1029,104 +980,6 @@
                                         <p class="text-amber-800"><i class="fas fa-key mr-2"></i><strong>Key Insight:</strong> No two elements have the same atomic number. If Z = 6, it's ALWAYS Carbon - never anything else! The atomic number is like the element's fingerprint.</p>
                                     </div>
                                 </div>
-                                
-                                <script>
-                                    const elementNames = {
-                                        1: {symbol: 'H', name: 'Hydrogen'},
-                                        2: {symbol: 'He', name: 'Helium'},
-                                        3: {symbol: 'Li', name: 'Lithium'},
-                                        4: {symbol: 'Be', name: 'Beryllium'},
-                                        5: {symbol: 'B', name: 'Boron'},
-                                        6: {symbol: 'C', name: 'Carbon'},
-                                        7: {symbol: 'N', name: 'Nitrogen'},
-                                        8: {symbol: 'O', name: 'Oxygen'},
-                                        9: {symbol: 'F', name: 'Fluorine'},
-                                        10: {symbol: 'Ne', name: 'Neon'},
-                                        11: {symbol: 'Na', name: 'Sodium'},
-                                        12: {symbol: 'Mg', name: 'Magnesium'},
-                                        13: {symbol: 'Al', name: 'Aluminium'},
-                                        14: {symbol: 'Si', name: 'Silicon'},
-                                        15: {symbol: 'P', name: 'Phosphorus'},
-                                        16: {symbol: 'S', name: 'Sulfur'},
-                                        17: {symbol: 'Cl', name: 'Chlorine'},
-                                        18: {symbol: 'Ar', name: 'Argon'},
-                                        19: {symbol: 'K', name: 'Potassium'},
-                                        20: {symbol: 'Ca', name: 'Calcium'}
-                                    };
-                                    
-                                    function updateZAtom(z) {
-                                        document.getElementById('zValueDisplay').textContent = z;
-                                        document.getElementById('elementSymbolZ').textContent = elementNames[z].symbol;
-                                        document.getElementById('elementNameZ').textContent = elementNames[z].name;
-                                        document.getElementById('protonCountZ').textContent = z;
-                                        document.getElementById('electronCountZ').textContent = z;
-                                        
-                                        // Draw protons
-                                        const protonGroup = document.getElementById('protonCircles');
-                                        protonGroup.innerHTML = '';
-                                        const maxShow = Math.min(z, 10);
-                                        for(let i = 0; i < maxShow; i++) {
-                                            const angle = (i / maxShow) * 2 * Math.PI;
-                                            const r = 15;
-                                            const x = 100 + r * Math.cos(angle);
-                                            const y = 100 + r * Math.sin(angle);
-                                            const circle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
-                                            circle.setAttribute('cx', x);
-                                            circle.setAttribute('cy', y);
-                                            circle.setAttribute('r', '8');
-                                            circle.setAttribute('fill', '#ef4444');
-                                            circle.setAttribute('stroke', '#fca5a5');
-                                            circle.setAttribute('stroke-width', '1');
-                                            protonGroup.appendChild(circle);
-                                        }
-                                        if(z > 10) {
-                                            const text = document.createElementNS('http://www.w3.org/2000/svg', 'text');
-                                            text.setAttribute('x', '100');
-                                            text.setAttribute('y', '105');
-                                            text.setAttribute('text-anchor', 'middle');
-                                            text.setAttribute('fill', 'white');
-                                            text.setAttribute('font-size', '10');
-                                            text.setAttribute('font-weight', 'bold');
-                                            text.textContent = '+' + z;
-                                            protonGroup.appendChild(text);
-                                        }
-                                        
-                                        // Draw electrons
-                                        const electronGroup = document.getElementById('electronCircles');
-                                        electronGroup.innerHTML = '';
-                                        const shells = [2, 8, 8, 2]; // Simplified electron configuration
-                                        let remaining = z;
-                                        let shellIndex = 0;
-                                        let radius = 60;
-                                        
-                                        while(remaining > 0 && shellIndex < shells.length) {
-                                            const electronsInShell = Math.min(remaining, shells[shellIndex]);
-                                            for(let i = 0; i < electronsInShell; i++) {
-                                                const angle = (i / electronsInShell) * 2 * Math.PI - Math.PI/2;
-                                                const x = 100 + radius * Math.cos(angle);
-                                                const y = 100 + radius * Math.sin(angle);
-                                                const circle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
-                                                circle.setAttribute('cx', x);
-                                                circle.setAttribute('cy', y);
-                                                circle.setAttribute('r', '5');
-                                                circle.setAttribute('fill', '#3b82f6');
-                                                circle.setAttribute('stroke', '#93c5fd');
-                                                circle.setAttribute('stroke-width', '1');
-                                                electronGroup.appendChild(circle);
-                                            }
-                                            remaining -= electronsInShell;
-                                            shellIndex++;
-                                            radius += 25;
-                                        }
-                                    }
-                                    
-                                    document.getElementById('protonSlider').addEventListener('input', function() {
-                                        updateZAtom(parseInt(this.value));
-                                    });
-                                    
-                                    // Initialize
-                                    updateZAtom(6);
-                                </script>
                             `
                         },
                         {
@@ -1162,12 +1015,12 @@
                                         <div class="grid md:grid-cols-2 gap-4 mb-4">
                                             <div class="bg-white rounded-lg p-3">
                                                 <label class="block text-sm font-medium text-red-700 mb-1">Protons (Z):</label>
-                                                <input type="range" id="protonSliderA" min="1" max="20" value="6" class="w-full h-2 bg-red-200 rounded-lg appearance-none cursor-pointer">
+                                                <input type="range" id="protonSliderA" min="1" max="20" value="6" class="w-full h-2 bg-red-200 rounded-lg appearance-none cursor-pointer" oninput="updateMassNumber()">
                                                 <div class="text-center text-red-700 font-bold" id="protonValA">6</div>
                                             </div>
                                             <div class="bg-white rounded-lg p-3">
                                                 <label class="block text-sm font-medium text-gray-700 mb-1">Neutrons (N):</label>
-                                                <input type="range" id="neutronSliderA" min="0" max="30" value="6" class="w-full h-2 bg-gray-300 rounded-lg appearance-none cursor-pointer">
+                                                <input type="range" id="neutronSliderA" min="0" max="30" value="6" class="w-full h-2 bg-gray-300 rounded-lg appearance-none cursor-pointer" oninput="updateMassNumber()">
                                                 <div class="text-center text-gray-700 font-bold" id="neutronValA">6</div>
                                             </div>
                                         </div>
@@ -1176,23 +1029,17 @@
                                         <div class="bg-white rounded-lg p-4">
                                             <div class="flex justify-center items-center gap-2 flex-wrap">
                                                 <div class="text-center">
-                                                    <div class="flex flex-wrap justify-center gap-1 mb-2" id="protonDotsA" style="max-width: 100px;">
-                                                        <!-- Proton dots rendered here -->
-                                                    </div>
+                                                    <div class="flex flex-wrap justify-center gap-1 mb-2" id="protonDotsA" style="max-width: 100px;"></div>
                                                     <span class="text-xs text-red-600">Protons</span>
                                                 </div>
                                                 <div class="text-xl text-gray-400">+</div>
                                                 <div class="text-center">
-                                                    <div class="flex flex-wrap justify-center gap-1 mb-2" id="neutronDotsA" style="max-width: 100px;">
-                                                        <!-- Neutron dots rendered here -->
-                                                    </div>
+                                                    <div class="flex flex-wrap justify-center gap-1 mb-2" id="neutronDotsA" style="max-width: 100px;"></div>
                                                     <span class="text-xs text-gray-600">Neutrons</span>
                                                 </div>
                                                 <div class="text-xl text-gray-400">=</div>
                                                 <div class="text-center">
-                                                    <div class="flex flex-wrap justify-center gap-1 mb-2" id="totalDotsA" style="max-width: 150px;">
-                                                        <!-- Total dots rendered here -->
-                                                    </div>
+                                                    <div class="flex flex-wrap justify-center gap-1 mb-2" id="totalDotsA" style="max-width: 150px;"></div>
                                                     <span class="text-xs text-green-600">In Nucleus (A)</span>
                                                 </div>
                                             </div>
@@ -1200,10 +1047,10 @@
                                         
                                         <!-- Element notation -->
                                         <div id="elementNotation" class="mt-4 text-center bg-white rounded-lg p-4">
-                                            <div class="inline-block relative">
-                                                <div class="absolute -top-2 left-1/2 transform -translate-x-1/2 text-sm text-gray-600" id="massNotation">12</div>
-                                                <div class="absolute -top-2 left-0 text-sm text-blue-600" id="atomicNotation">6</div>
-                                                <div class="text-4xl font-bold px-4" id="elementNotationSymbol">C</div>
+                                            <div class="inline-block relative px-4">
+                                                <div class="absolute -top-1 left-0 text-xs text-blue-600" id="atomicNotation">6</div>
+                                                <div class="absolute -top-1 right-0 text-xs text-gray-600" id="massNotation">12</div>
+                                                <div class="text-4xl font-bold mt-2" id="elementNotationSymbol">C</div>
                                             </div>
                                             <p class="text-sm text-gray-600 mt-2" id="notationExplain">This is Carbon-12 (¹²C)</p>
                                         </div>
@@ -1235,65 +1082,6 @@
                                         </details>
                                     </div>
                                 </div>
-                                
-                                <script>
-                                    function updateMassNumber() {
-                                        const z = parseInt(document.getElementById('protonSliderA').value);
-                                        const n = parseInt(document.getElementById('neutronSliderA').value);
-                                        const a = z + n;
-                                        
-                                        document.getElementById('protonValA').textContent = z;
-                                        document.getElementById('neutronValA').textContent = n;
-                                        document.getElementById('zPartDisplay').textContent = z;
-                                        document.getElementById('nPartDisplay').textContent = n;
-                                        document.getElementById('aValueDisplay').textContent = a;
-                                        
-                                        // Update notation
-                                        document.getElementById('massNotation').textContent = a;
-                                        document.getElementById('atomicNotation').textContent = z;
-                                        
-                                        // Get element info
-                                        const elementNames = {
-                                            1: 'H', 2: 'He', 3: 'Li', 4: 'Be', 5: 'B', 6: 'C', 7: 'N', 8: 'O', 9: 'F', 10: 'Ne',
-                                            11: 'Na', 12: 'Mg', 13: 'Al', 14: 'Si', 15: 'P', 16: 'S', 17: 'Cl', 18: 'Ar', 19: 'K', 20: 'Ca'
-                                        };
-                                        const elementNamesFull = {
-                                            1: 'Hydrogen', 2: 'Helium', 3: 'Lithium', 4: 'Beryllium', 5: 'Boron', 6: 'Carbon', 7: 'Nitrogen', 8: 'Oxygen', 9: 'Fluorine', 10: 'Neon',
-                                            11: 'Sodium', 12: 'Magnesium', 13: 'Aluminium', 14: 'Silicon', 15: 'Phosphorus', 16: 'Sulfur', 17: 'Chlorine', 18: 'Argon', 19: 'Potassium', 20: 'Calcium'
-                                        };
-                                        
-                                        document.getElementById('elementNotationSymbol').textContent = elementNames[z] || '?';
-                                        document.getElementById('notationExplain').textContent = 'This is ' + (elementNamesFull[z] || 'Unknown') + '-' + a;
-                                        
-                                        // Draw dots
-                                        function drawDots(containerId, count, color) {
-                                            const container = document.getElementById(containerId);
-                                            container.innerHTML = '';
-                                            const displayCount = Math.min(count, 20);
-                                            for(let i = 0; i < displayCount; i++) {
-                                                const dot = document.createElement('div');
-                                                dot.className = 'w-3 h-3 rounded-full ' + color;
-                                                container.appendChild(dot);
-                                            }
-                                            if(count > 20) {
-                                                const more = document.createElement('div');
-                                                more.className = 'text-xs text-gray-500';
-                                                more.textContent = '+' + (count - 20);
-                                                container.appendChild(more);
-                                            }
-                                        }
-                                        
-                                        drawDots('protonDotsA', z, 'bg-red-500');
-                                        drawDots('neutronDotsA', n, 'bg-gray-400');
-                                        drawDots('totalDotsA', Math.min(a, 30), 'bg-green-500');
-                                    }
-                                    
-                                    document.getElementById('protonSliderA').addEventListener('input', updateMassNumber);
-                                    document.getElementById('neutronSliderA').addEventListener('input', updateMassNumber);
-                                    
-                                    // Initialize
-                                    updateMassNumber();
-                                </script>
                             `
                         },
                         {
@@ -1877,6 +1665,212 @@
                 }
             });
         }
+
+        // ========================================
+        // Interactive Simulation Functions
+        // ========================================
+        
+        // Element data for simulations
+        const elementNames = {
+            1: {symbol: 'H', name: 'Hydrogen'},
+            2: {symbol: 'He', name: 'Helium'},
+            3: {symbol: 'Li', name: 'Lithium'},
+            4: {symbol: 'Be', name: 'Beryllium'},
+            5: {symbol: 'B', name: 'Boron'},
+            6: {symbol: 'C', name: 'Carbon'},
+            7: {symbol: 'N', name: 'Nitrogen'},
+            8: {symbol: 'O', name: 'Oxygen'},
+            9: {symbol: 'F', name: 'Fluorine'},
+            10: {symbol: 'Ne', name: 'Neon'},
+            11: {symbol: 'Na', name: 'Sodium'},
+            12: {symbol: 'Mg', name: 'Magnesium'},
+            13: {symbol: 'Al', name: 'Aluminium'},
+            14: {symbol: 'Si', name: 'Silicon'},
+            15: {symbol: 'P', name: 'Phosphorus'},
+            16: {symbol: 'S', name: 'Sulfur'},
+            17: {symbol: 'Cl', name: 'Chlorine'},
+            18: {symbol: 'Ar', name: 'Argon'},
+            19: {symbol: 'K', name: 'Potassium'},
+            20: {symbol: 'Ca', name: 'Calcium'}
+        };
+        
+        const elementSymbols = {
+            1: 'H', 2: 'He', 3: 'Li', 4: 'Be', 5: 'B', 6: 'C', 7: 'N', 8: 'O', 9: 'F', 10: 'Ne',
+            11: 'Na', 12: 'Mg', 13: 'Al', 14: 'Si', 15: 'P', 16: 'S', 17: 'Cl', 18: 'Ar', 19: 'K', 20: 'Ca'
+        };
+        
+        const elementFullNames = {
+            1: 'Hydrogen', 2: 'Helium', 3: 'Lithium', 4: 'Beryllium', 5: 'Boron', 6: 'Carbon', 7: 'Nitrogen', 8: 'Oxygen', 9: 'Fluorine', 10: 'Neon',
+            11: 'Sodium', 12: 'Magnesium', 13: 'Aluminium', 14: 'Silicon', 15: 'Phosphorus', 16: 'Sulfur', 17: 'Chlorine', 18: 'Argon', 19: 'Potassium', 20: 'Calcium'
+        };
+        
+        // Show particle info when clicked
+        window.showParticleInfo = function(particle) {
+            const panel = document.getElementById('particleInfoPanel');
+            if (!panel) return;
+            
+            const info = {
+                proton: {
+                    title: '🔴 Proton (p⁺)',
+                    color: 'red',
+                    content: '<p class="text-gray-700 mb-2"><strong>Charge:</strong> Positive (+1)</p>' +
+                             '<p class="text-gray-700 mb-2"><strong>Location:</strong> In the nucleus (center)</p>' +
+                             '<p class="text-gray-700 mb-2"><strong>Mass:</strong> 1 atomic mass unit (amu)</p>' +
+                             '<p class="text-gray-700"><strong>Key Point:</strong> The NUMBER OF PROTONS determines which element it is! Change the protons, change the element.</p>'
+                },
+                neutron: {
+                    title: '⚪ Neutron (n⁰)',
+                    color: 'gray',
+                    content: '<p class="text-gray-700 mb-2"><strong>Charge:</strong> Neutral (0)</p>' +
+                             '<p class="text-gray-700 mb-2"><strong>Location:</strong> In the nucleus (center)</p>' +
+                             '<p class="text-gray-700 mb-2"><strong>Mass:</strong> 1 atomic mass unit (amu)</p>' +
+                             '<p class="text-gray-700"><strong>Key Point:</strong> Neutrons add mass but don\'t change the element. Different numbers of neutrons create ISOTOPES of the same element.</p>'
+                },
+                electron: {
+                    title: '🔵 Electron (e⁻)',
+                    color: 'blue',
+                    content: '<p class="text-gray-700 mb-2"><strong>Charge:</strong> Negative (−1)</p>' +
+                             '<p class="text-gray-700 mb-2"><strong>Location:</strong> Orbiting the nucleus in shells</p>' +
+                             '<p class="text-gray-700 mb-2"><strong>Mass:</strong> Very tiny! ≈ 1/1836 of a proton</p>' +
+                             '<p class="text-gray-700"><strong>Key Point:</strong> Electrons determine chemical behavior. In a neutral atom, electrons = protons.</p>'
+                }
+            };
+            
+            panel.innerHTML = '<h4 class="font-semibold text-' + info[particle].color + '-800 mb-3">' + info[particle].title + '</h4>' + info[particle].content;
+            panel.className = 'bg-' + info[particle].color + '-50 p-4 rounded-lg border border-' + info[particle].color + '-200 mb-4';
+        };
+        
+        // Update Z atom visualization
+        window.updateZAtom = function(z) {
+            z = parseInt(z);
+            const zDisplay = document.getElementById('zValueDisplay');
+            const symbolDisplay = document.getElementById('elementSymbolZ');
+            const nameDisplay = document.getElementById('elementNameZ');
+            const protonCount = document.getElementById('protonCountZ');
+            const electronCount = document.getElementById('electronCountZ');
+            
+            if (zDisplay) zDisplay.textContent = z;
+            if (symbolDisplay && elementNames[z]) symbolDisplay.textContent = elementNames[z].symbol;
+            if (nameDisplay && elementNames[z]) nameDisplay.textContent = elementNames[z].name;
+            if (protonCount) protonCount.textContent = z;
+            if (electronCount) electronCount.textContent = z;
+            
+            // Draw protons
+            const protonGroup = document.getElementById('protonCircles');
+            if (protonGroup) {
+                protonGroup.innerHTML = '';
+                const maxShow = Math.min(z, 10);
+                for(let i = 0; i < maxShow; i++) {
+                    const angle = (i / maxShow) * 2 * Math.PI;
+                    const r = 15;
+                    const x = 100 + r * Math.cos(angle);
+                    const y = 100 + r * Math.sin(angle);
+                    const circle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+                    circle.setAttribute('cx', x);
+                    circle.setAttribute('cy', y);
+                    circle.setAttribute('r', '8');
+                    circle.setAttribute('fill', '#ef4444');
+                    circle.setAttribute('stroke', '#fca5a5');
+                    circle.setAttribute('stroke-width', '1');
+                    protonGroup.appendChild(circle);
+                }
+                if(z > 10) {
+                    const text = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+                    text.setAttribute('x', '100');
+                    text.setAttribute('y', '105');
+                    text.setAttribute('text-anchor', 'middle');
+                    text.setAttribute('fill', 'white');
+                    text.setAttribute('font-size', '10');
+                    text.setAttribute('font-weight', 'bold');
+                    text.textContent = '+' + z;
+                    protonGroup.appendChild(text);
+                }
+            }
+            
+            // Draw electrons
+            const electronGroup = document.getElementById('electronCircles');
+            if (electronGroup) {
+                electronGroup.innerHTML = '';
+                const shells = [2, 8, 8, 2];
+                let remaining = z;
+                let shellIndex = 0;
+                let radius = 60;
+                
+                while(remaining > 0 && shellIndex < shells.length) {
+                    const electronsInShell = Math.min(remaining, shells[shellIndex]);
+                    for(let i = 0; i < electronsInShell; i++) {
+                        const angle = (i / electronsInShell) * 2 * Math.PI - Math.PI/2;
+                        const x = 100 + radius * Math.cos(angle);
+                        const y = 100 + radius * Math.sin(angle);
+                        const circle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+                        circle.setAttribute('cx', x);
+                        circle.setAttribute('cy', y);
+                        circle.setAttribute('r', '5');
+                        circle.setAttribute('fill', '#3b82f6');
+                        circle.setAttribute('stroke', '#93c5fd');
+                        circle.setAttribute('stroke-width', '1');
+                        electronGroup.appendChild(circle);
+                    }
+                    remaining -= electronsInShell;
+                    shellIndex++;
+                    radius += 25;
+                }
+            }
+        };
+        
+        // Update mass number simulation
+        window.updateMassNumber = function() {
+            const zSlider = document.getElementById('protonSliderA');
+            const nSlider = document.getElementById('neutronSliderA');
+            if (!zSlider || !nSlider) return;
+            
+            const z = parseInt(zSlider.value);
+            const n = parseInt(nSlider.value);
+            const a = z + n;
+            
+            const protonVal = document.getElementById('protonValA');
+            const neutronVal = document.getElementById('neutronValA');
+            const zPart = document.getElementById('zPartDisplay');
+            const nPart = document.getElementById('nPartDisplay');
+            const aDisplay = document.getElementById('aValueDisplay');
+            const massNotation = document.getElementById('massNotation');
+            const atomicNotation = document.getElementById('atomicNotation');
+            const symbolNotation = document.getElementById('elementNotationSymbol');
+            const notationExplain = document.getElementById('notationExplain');
+            
+            if (protonVal) protonVal.textContent = z;
+            if (neutronVal) neutronVal.textContent = n;
+            if (zPart) zPart.textContent = z;
+            if (nPart) nPart.textContent = n;
+            if (aDisplay) aDisplay.textContent = a;
+            if (massNotation) massNotation.textContent = a;
+            if (atomicNotation) atomicNotation.textContent = z;
+            if (symbolNotation && elementSymbols[z]) symbolNotation.textContent = elementSymbols[z];
+            if (notationExplain && elementFullNames[z]) notationExplain.textContent = 'This is ' + elementFullNames[z] + '-' + a;
+            
+            // Draw dots function
+            function drawDots(containerId, count, colorClass) {
+                const container = document.getElementById(containerId);
+                if (!container) return;
+                container.innerHTML = '';
+                const displayCount = Math.min(count, 20);
+                for(let i = 0; i < displayCount; i++) {
+                    const dot = document.createElement('div');
+                    dot.className = 'w-3 h-3 rounded-full ' + colorClass;
+                    container.appendChild(dot);
+                }
+                if(count > 20) {
+                    const more = document.createElement('div');
+                    more.className = 'text-xs text-gray-500';
+                    more.textContent = '+' + (count - 20);
+                    container.appendChild(more);
+                }
+            }
+            
+            drawDots('protonDotsA', z, 'bg-red-500');
+            drawDots('neutronDotsA', n, 'bg-gray-400');
+            drawDots('totalDotsA', Math.min(a, 30), 'bg-green-500');
+        };
 
         init();
     </script>
