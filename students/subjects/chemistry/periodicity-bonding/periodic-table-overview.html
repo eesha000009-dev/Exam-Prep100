@@ -991,6 +991,212 @@
                             `
                         },
                         {
+                            intro: "Let's understand the key relationships involving atomic number (Z). These are essential for solving problems!",
+                            content: `
+                                <div class="section-card">
+                                    <h3 class="text-xl font-semibold text-gray-800 mb-4 flex items-center">
+                                        <i class="fas fa-link text-amber-500 mr-3"></i>Atomic Number - Key Relationships
+                                    </h3>
+                                    
+                                    <div class="bg-gradient-to-r from-blue-50 to-indigo-50 p-5 rounded-lg border border-blue-200 mb-4">
+                                        <h4 class="font-semibold text-blue-800 mb-3 text-center text-lg">What is Atomic Number (Z)?</h4>
+                                        <div class="bg-white p-4 rounded-lg text-center mb-4">
+                                            <p class="text-gray-700 mb-2">The <strong class="text-blue-700">Atomic Number (Z)</strong> is the number of <strong class="text-red-600">protons</strong> in the nucleus of an atom.</p>
+                                            <div class="bg-blue-100 p-3 rounded-lg mt-3">
+                                                <p class="text-xl font-bold text-blue-800">Z = Number of Protons</p>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="grid md:grid-cols-2 gap-4">
+                                            <div class="bg-white p-4 rounded-lg border-l-4 border-red-500">
+                                                <h5 class="font-semibold text-red-700 mb-2">🔴 Z tells us Protons</h5>
+                                                <p class="text-sm text-gray-600">If Z = 6, the atom has <strong>6 protons</strong> in its nucleus. This NEVER changes for a given element.</p>
+                                            </div>
+                                            <div class="bg-white p-4 rounded-lg border-l-4 border-blue-500">
+                                                <h5 class="font-semibold text-blue-700 mb-2">🔵 In a Neutral Atom: Electrons = Protons</h5>
+                                                <p class="text-sm text-gray-600">If Z = 6, a neutral atom has <strong>6 electrons</strong> orbiting the nucleus (same as protons).</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="bg-white p-4 rounded-lg border mb-4">
+                                        <h4 class="font-semibold text-gray-800 mb-3">📋 Important Formulas for Atomic Number:</h4>
+                                        <div class="space-y-3">
+                                            <div class="bg-red-50 p-3 rounded border-l-4 border-red-500">
+                                                <p class="font-mono"><strong class="text-red-700">Finding Protons:</strong> Protons = Z (Atomic Number)</p>
+                                                <p class="text-xs text-gray-500 mt-1">Example: If Z = 11, then protons = 11</p>
+                                            </div>
+                                            <div class="bg-blue-50 p-3 rounded border-l-4 border-blue-500">
+                                                <p class="font-mono"><strong class="text-blue-700">Finding Electrons (neutral atom):</strong> Electrons = Protons = Z</p>
+                                                <p class="text-xs text-gray-500 mt-1">Example: If Z = 11, then electrons = 11 (in neutral atom)</p>
+                                            </div>
+                                            <div class="bg-green-50 p-3 rounded border-l-4 border-green-500">
+                                                <p class="font-mono"><strong class="text-green-700">Identifying the Element:</strong> Look up Z on the periodic table!</p>
+                                                <p class="text-xs text-gray-500 mt-1">Example: Z = 11 → Sodium (Na)</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="bg-yellow-50 p-4 rounded-lg border border-yellow-300">
+                                        <h4 class="font-semibold text-amber-800 mb-2">⚠️ Important Note about Ions:</h4>
+                                        <p class="text-gray-700 text-sm">In a <strong>neutral atom</strong>, electrons = protons. But in an <strong>ion</strong>, the number of electrons changes:</p>
+                                        <ul class="text-sm text-gray-600 mt-2 space-y-1">
+                                            <li>• <strong>Positive ion (cation):</strong> Lost electrons → fewer electrons than protons</li>
+                                            <li>• <strong>Negative ion (anion):</strong> Gained electrons → more electrons than protons</li>
+                                        </ul>
+                                        <p class="text-sm text-amber-700 mt-2"><strong>Remember:</strong> Z (atomic number) = protons ALWAYS, but electrons only equal protons in neutral atoms!</p>
+                                    </div>
+                                </div>
+                            `
+                        },
+                        {
+                            intro: "Now let's practice what we've learned about atomic number! First, we'll work through one together, then you try on your own.",
+                            content: `
+                                <div class="section-card">
+                                    <h3 class="text-xl font-semibold text-gray-800 mb-4 flex items-center">
+                                        <i class="fas fa-pencil-alt text-amber-500 mr-3"></i>Practice: Atomic Number (Z)
+                                    </h3>
+                                    
+                                    <!-- Guided Practice -->
+                                    <div class="bg-green-50 p-4 rounded-lg border border-green-200 mb-4">
+                                        <h4 class="font-semibold text-green-800 mb-3">📝 Guided Practice - Let's solve this together:</h4>
+                                        <p class="text-gray-800 mb-3 font-medium">An element X has atomic number 13. How many protons and electrons does it have (in a neutral atom)? Identify the element.</p>
+                                        
+                                        <div id="guided-practice-z" class="space-y-4">
+                                            <!-- Step 1 -->
+                                            <div class="bg-white p-3 rounded-lg border">
+                                                <p class="text-sm text-gray-600 mb-2"><strong>Step 1:</strong> What is the atomic number (Z)?</p>
+                                                <div class="flex items-center gap-3">
+                                                    <input type="text" id="step1-z" placeholder="Enter Z..." class="flex-grow p-2 border rounded-md text-sm">
+                                                    <button onclick="checkStepZ(1)" class="px-4 py-2 bg-green-200 text-green-700 rounded-md hover:bg-green-300 text-sm font-medium">Check</button>
+                                                </div>
+                                                <p id="feedback1-z" class="text-xs mt-2"></p>
+                                            </div>
+                                            
+                                            <!-- Step 2 -->
+                                            <div class="bg-white p-3 rounded-lg border">
+                                                <p class="text-sm text-gray-600 mb-2"><strong>Step 2:</strong> How many protons? (Protons = Z)</p>
+                                                <div class="flex items-center gap-3">
+                                                    <input type="text" id="step2-z" placeholder="Enter protons..." class="flex-grow p-2 border rounded-md text-sm">
+                                                    <button onclick="checkStepZ(2)" class="px-4 py-2 bg-green-200 text-green-700 rounded-md hover:bg-green-300 text-sm font-medium">Check</button>
+                                                </div>
+                                                <p id="feedback2-z" class="text-xs mt-2"></p>
+                                            </div>
+                                            
+                                            <!-- Step 3 -->
+                                            <div class="bg-white p-3 rounded-lg border">
+                                                <p class="text-sm text-gray-600 mb-2"><strong>Step 3:</strong> How many electrons in a neutral atom?</p>
+                                                <div class="flex items-center gap-3">
+                                                    <input type="text" id="step3-z" placeholder="Enter electrons..." class="flex-grow p-2 border rounded-md text-sm">
+                                                    <button onclick="checkStepZ(3)" class="px-4 py-2 bg-green-200 text-green-700 rounded-md hover:bg-green-300 text-sm font-medium">Check</button>
+                                                </div>
+                                                <p id="feedback3-z" class="text-xs mt-2"></p>
+                                            </div>
+                                            
+                                            <!-- Step 4 -->
+                                            <div class="bg-white p-3 rounded-lg border">
+                                                <p class="text-sm text-gray-600 mb-2"><strong>Step 4:</strong> Identify the element (use the periodic table or memory):</p>
+                                                <div class="flex items-center gap-3">
+                                                    <input type="text" id="step4-z" placeholder="Enter element name or symbol..." class="flex-grow p-2 border rounded-md text-sm">
+                                                    <button onclick="checkStepZ(4)" class="px-4 py-2 bg-green-200 text-green-700 rounded-md hover:bg-green-300 text-sm font-medium">Check</button>
+                                                </div>
+                                                <p id="feedback4-z" class="text-xs mt-2"></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- Independent Practice -->
+                                    <div class="bg-blue-50 p-4 rounded-lg border border-blue-200">
+                                        <h4 class="font-semibold text-blue-800 mb-3">🎯 Independent Practice - Now you try!</h4>
+                                        <p class="text-gray-600 text-sm mb-3">Solve these problems on your own. Show your workings and provide your final answer.</p>
+                                        
+                                        <!-- Problem 1 -->
+                                        <div class="bg-white p-4 rounded-lg border mb-4">
+                                            <p class="font-medium text-gray-800 mb-3">1. An element has atomic number 17. How many protons and electrons does it have (neutral atom)? What element is it?</p>
+                                            <div class="space-y-3">
+                                                <div>
+                                                    <label class="block text-sm font-medium text-gray-700 mb-1">Your Workings</label>
+                                                    <textarea id="workingsZ1" rows="3" class="w-full p-2 border rounded-md text-sm" placeholder="Show your steps here...
+1. Z = ...
+2. Protons = Z = ...
+3. Electrons = Protons (neutral) = ...
+4. Element = ..."></textarea>
+                                                </div>
+                                                <div class="grid grid-cols-3 gap-2">
+                                                    <div>
+                                                        <label class="block text-sm font-medium text-gray-700 mb-1">Protons</label>
+                                                        <input type="text" id="protonsZ1" placeholder="17" class="w-full p-2 border rounded-md text-sm">
+                                                    </div>
+                                                    <div>
+                                                        <label class="block text-sm font-medium text-gray-700 mb-1">Electrons</label>
+                                                        <input type="text" id="electronsZ1" placeholder="17" class="w-full p-2 border rounded-md text-sm">
+                                                    </div>
+                                                    <div>
+                                                        <label class="block text-sm font-medium text-gray-700 mb-1">Element</label>
+                                                        <input type="text" id="elementZ1" placeholder="Chlorine" class="w-full p-2 border rounded-md text-sm">
+                                                    </div>
+                                                </div>
+                                                <button onclick="checkIndependentZ(1)" class="w-full bg-blue-600 text-white font-semibold py-2 rounded-md hover:bg-blue-700 transition">Check Answer</button>
+                                                <p id="independent-feedback-z1" class="text-sm mt-2"></p>
+                                            </div>
+                                        </div>
+                                        
+                                        <!-- Problem 2 -->
+                                        <div class="bg-white p-4 rounded-lg border mb-4">
+                                            <p class="font-medium text-gray-800 mb-3">2. An atom has 20 protons. What is its atomic number? What element is it? How many electrons in a neutral atom?</p>
+                                            <div class="space-y-3">
+                                                <div>
+                                                    <label class="block text-sm font-medium text-gray-700 mb-1">Your Workings</label>
+                                                    <textarea id="workingsZ2" rows="3" class="w-full p-2 border rounded-md text-sm" placeholder="Hint: Z = number of protons..."></textarea>
+                                                </div>
+                                                <div class="grid grid-cols-3 gap-2">
+                                                    <div>
+                                                        <label class="block text-sm font-medium text-gray-700 mb-1">Atomic No. (Z)</label>
+                                                        <input type="text" id="zAnswer2" placeholder="20" class="w-full p-2 border rounded-md text-sm">
+                                                    </div>
+                                                    <div>
+                                                        <label class="block text-sm font-medium text-gray-700 mb-1">Element</label>
+                                                        <input type="text" id="elementZ2" placeholder="Calcium" class="w-full p-2 border rounded-md text-sm">
+                                                    </div>
+                                                    <div>
+                                                        <label class="block text-sm font-medium text-gray-700 mb-1">Electrons</label>
+                                                        <input type="text" id="electronsZ2" placeholder="20" class="w-full p-2 border rounded-md text-sm">
+                                                    </div>
+                                                </div>
+                                                <button onclick="checkIndependentZ(2)" class="w-full bg-blue-600 text-white font-semibold py-2 rounded-md hover:bg-blue-700 transition">Check Answer</button>
+                                                <p id="independent-feedback-z2" class="text-sm mt-2"></p>
+                                            </div>
+                                        </div>
+                                        
+                                        <!-- Problem 3 -->
+                                        <div class="bg-white p-4 rounded-lg border">
+                                            <p class="font-medium text-gray-800 mb-3">3. Sodium (Na) has atomic number 11. A sodium ion (Na⁺) has lost one electron. How many protons and electrons does Na⁺ have?</p>
+                                            <div class="space-y-3">
+                                                <div>
+                                                    <label class="block text-sm font-medium text-gray-700 mb-1">Your Workings</label>
+                                                    <textarea id="workingsZ3" rows="3" class="w-full p-2 border rounded-md text-sm" placeholder="Hint: Protons stay the same, but electrons change...
+Neutral Na: 11 protons, 11 electrons
+Na⁺ (lost 1 electron): 11 protons, ? electrons"></textarea>
+                                                </div>
+                                                <div class="grid grid-cols-2 gap-2">
+                                                    <div>
+                                                        <label class="block text-sm font-medium text-gray-700 mb-1">Protons in Na⁺</label>
+                                                        <input type="text" id="protonsZ3" placeholder="11" class="w-full p-2 border rounded-md text-sm">
+                                                    </div>
+                                                    <div>
+                                                        <label class="block text-sm font-medium text-gray-700 mb-1">Electrons in Na⁺</label>
+                                                        <input type="text" id="electronsZ3" placeholder="10" class="w-full p-2 border rounded-md text-sm">
+                                                    </div>
+                                                </div>
+                                                <button onclick="checkIndependentZ(3)" class="w-full bg-blue-600 text-white font-semibold py-2 rounded-md hover:bg-blue-700 transition">Check Answer</button>
+                                                <p id="independent-feedback-z3" class="text-sm mt-2"></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            `
+                        },
+                        {
                             intro: "Now let's explore the Mass Number (A). Use this interactive simulation to see how protons and neutrons combine to give the mass number. Try the practice questions below!",
                             content: `
                                 <div class="section-card">
@@ -2074,6 +2280,109 @@ Neutrons = A - Z = ..."></textarea>
         // ========================================
         // Interactive Practice Functions
         // ========================================
+        
+        // Atomic Number Practice - Guided
+        window.checkStepZ = function(step) {
+            const feedback = document.getElementById('feedback' + step + '-z');
+            const input = document.getElementById('step' + step + '-z');
+            if (!feedback || !input) return;
+            
+            const value = input.value.trim().toLowerCase();
+            let correct = false;
+            let message = '';
+            
+            if (step === 1) {
+                correct = value === '13';
+                message = correct ? '✅ Correct! Z = 13' : '❌ Not quite. The atomic number (Z) is given as 13.';
+            } else if (step === 2) {
+                correct = value === '13';
+                message = correct ? '✅ Correct! Protons = Z = 13' : '❌ Not quite. Protons = Z = 13.';
+            } else if (step === 3) {
+                correct = value === '13';
+                message = correct ? '✅ Correct! In a neutral atom, electrons = protons = 13' : '❌ Not quite. In a neutral atom, electrons = protons = 13.';
+            } else if (step === 4) {
+                correct = value === 'aluminium' || value === 'aluminum' || value === 'al';
+                message = correct ? '✅ Correct! Z = 13 is Aluminium (Al)!' : '❌ Not quite. Z = 13 is Aluminium (Al). Check the periodic table!';
+            }
+            
+            feedback.innerHTML = message;
+            feedback.className = 'text-xs mt-2 ' + (correct ? 'text-green-600 font-medium' : 'text-red-600');
+        };
+        
+        // Atomic Number Practice - Independent
+        window.checkIndependentZ = function(problemNum) {
+            if (problemNum === 1) {
+                const protonsInput = document.getElementById('protonsZ1');
+                const electronsInput = document.getElementById('electronsZ1');
+                const elementInput = document.getElementById('elementZ1');
+                const feedback = document.getElementById('independent-feedback-z1');
+                
+                if (!protonsInput || !electronsInput || !elementInput || !feedback) return;
+                
+                const protons = protonsInput.value.trim();
+                const electrons = electronsInput.value.trim();
+                const element = elementInput.value.trim().toLowerCase();
+                
+                const pCorrect = protons === '17';
+                const eCorrect = electrons === '17';
+                const elementCorrect = element === 'chlorine' || element === 'cl';
+                
+                if (pCorrect && eCorrect && elementCorrect) {
+                    feedback.innerHTML = '✅ <strong>Perfect!</strong> Protons = 17, Electrons = 17, Element = Chlorine (Cl). Well done!';
+                    feedback.className = 'text-sm mt-2 text-green-600 font-medium';
+                } else {
+                    let hint = '❌ Check: Protons = Z = 17, Electrons = Protons = 17 (neutral), Element = Chlorine (Z=17)';
+                    feedback.innerHTML = hint;
+                    feedback.className = 'text-sm mt-2 text-red-600';
+                }
+            } else if (problemNum === 2) {
+                const zInput = document.getElementById('zAnswer2');
+                const elementInput = document.getElementById('elementZ2');
+                const electronsInput = document.getElementById('electronsZ2');
+                const feedback = document.getElementById('independent-feedback-z2');
+                
+                if (!zInput || !elementInput || !electronsInput || !feedback) return;
+                
+                const z = zInput.value.trim();
+                const element = elementInput.value.trim().toLowerCase();
+                const electrons = electronsInput.value.trim();
+                
+                const zCorrect = z === '20';
+                const elementCorrect = element === 'calcium' || element === 'ca';
+                const eCorrect = electrons === '20';
+                
+                if (zCorrect && elementCorrect && eCorrect) {
+                    feedback.innerHTML = '✅ <strong>Perfect!</strong> Z = 20, Element = Calcium (Ca), Electrons = 20. Excellent!';
+                    feedback.className = 'text-sm mt-2 text-green-600 font-medium';
+                } else {
+                    feedback.innerHTML = '❌ Check: Z = protons = 20, Element = Calcium (Z=20), Electrons = protons = 20';
+                    feedback.className = 'text-sm mt-2 text-red-600';
+                }
+            } else if (problemNum === 3) {
+                const protonsInput = document.getElementById('protonsZ3');
+                const electronsInput = document.getElementById('electronsZ3');
+                const feedback = document.getElementById('independent-feedback-z3');
+                
+                if (!protonsInput || !electronsInput || !feedback) return;
+                
+                const protons = protonsInput.value.trim();
+                const electrons = electronsInput.value.trim();
+                
+                const pCorrect = protons === '11';
+                const eCorrect = electrons === '10';
+                
+                if (pCorrect && eCorrect) {
+                    feedback.innerHTML = '✅ <strong>Excellent!</strong> Na⁺ has 11 protons (unchanged) and 10 electrons (lost 1). You understand ions!';
+                    feedback.className = 'text-sm mt-2 text-green-600 font-medium';
+                } else if (pCorrect) {
+                    feedback.innerHTML = '⚠️ Protons are correct (11), but Na⁺ lost 1 electron, so electrons = 11 - 1 = 10';
+                    feedback.className = 'text-sm mt-2 text-amber-600';
+                } else {
+                    feedback.innerHTML = '❌ Remember: Protons stay at 11 (Z=11), but Na⁺ lost 1 electron → 10 electrons';
+                    feedback.className = 'text-sm mt-2 text-red-600';
+                }
+            }
+        };
         
         // Mass Number Practice - Guided
         window.checkStepMass = function(step) {
