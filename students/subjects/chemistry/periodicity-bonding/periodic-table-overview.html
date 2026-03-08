@@ -763,37 +763,428 @@
                             content: `
                                 <div class="section-card">
                                     <h3 class="text-xl font-semibold text-gray-800 mb-4 flex items-center">
-                                        <i class="fas fa-atom text-amber-500 mr-3"></i>Key Atomic Numbers
+                                        <i class="fas fa-atom text-amber-500 mr-3"></i>Understanding Atomic Structure
                                     </h3>
                                     
-                                    <div class="grid md:grid-cols-2 gap-4 mb-4">
-                                        <div class="bg-blue-50 p-4 rounded-lg border">
-                                            <h4 class="font-semibold text-blue-800 mb-2">Atomic Number (Z)</h4>
-                                            <p class="text-gray-700 text-sm mb-2">The number of protons in the nucleus. This defines the element!</p>
-                                            <div class="bg-white p-3 rounded text-center">
-                                                <p class="text-sm text-gray-600">Carbon has Z = 6</p>
-                                                <p class="text-xs text-gray-500">Means 6 protons</p>
+                                    <p class="text-gray-700 mb-4">Every atom is made up of three subatomic particles. Let's learn about each one:</p>
+                                    
+                                    <div class="space-y-3 mb-4">
+                                        <!-- Protons -->
+                                        <div class="bg-red-50 p-4 rounded-lg border-l-4 border-red-500">
+                                            <div class="flex items-center gap-3">
+                                                <div class="w-12 h-12 bg-red-200 rounded-full flex items-center justify-center">
+                                                    <span class="text-red-700 font-bold text-lg">+</span>
+                                                </div>
+                                                <div>
+                                                    <h4 class="font-semibold text-red-800">Protons (p⁺)</h4>
+                                                    <p class="text-sm text-gray-700">Positively charged particles found in the nucleus</p>
+                                                </div>
                                             </div>
                                         </div>
                                         
-                                        <div class="bg-green-50 p-4 rounded-lg border">
-                                            <h4 class="font-semibold text-green-800 mb-2">Mass Number (A)</h4>
-                                            <p class="text-gray-700 text-sm mb-2">Total number of protons + neutrons in the nucleus.</p>
-                                            <div class="bg-white p-3 rounded text-center">
-                                                <p class="text-sm text-gray-600">Carbon-12 has A = 12</p>
-                                                <p class="text-xs text-gray-500">Means 6 protons + 6 neutrons</p>
+                                        <!-- Neutrons -->
+                                        <div class="bg-gray-100 p-4 rounded-lg border-l-4 border-gray-400">
+                                            <div class="flex items-center gap-3">
+                                                <div class="w-12 h-12 bg-gray-200 rounded-full flex items-center justify-center">
+                                                    <span class="text-gray-600 font-bold text-lg">n</span>
+                                                </div>
+                                                <div>
+                                                    <h4 class="font-semibold text-gray-800">Neutrons (n⁰)</h4>
+                                                    <p class="text-sm text-gray-700">Neutral particles (no charge) found in the nucleus</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                        <!-- Electrons -->
+                                        <div class="bg-blue-50 p-4 rounded-lg border-l-4 border-blue-500">
+                                            <div class="flex items-center gap-3">
+                                                <div class="w-12 h-12 bg-blue-200 rounded-full flex items-center justify-center">
+                                                    <span class="text-blue-700 font-bold text-lg">−</span>
+                                                </div>
+                                                <div>
+                                                    <h4 class="font-semibold text-blue-800">Electrons (e⁻)</h4>
+                                                    <p class="text-sm text-gray-700">Negatively charged particles orbiting the nucleus</p>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                     
-                                    <div class="bg-amber-50 p-4 rounded-lg border-l-4 border-amber-500">
-                                        <p class="text-amber-800"><i class="fas fa-exclamation-triangle mr-2"></i><strong>Important:</strong> In a neutral atom: Number of protons = Number of electrons. But ions have different numbers of electrons!</p>
+                                    <div class="bg-amber-50 p-4 rounded-lg border border-amber-200">
+                                        <p class="text-amber-800"><i class="fas fa-lightbulb mr-2"></i><strong>Key Fact:</strong> Protons and neutrons are in the nucleus (center) and make up most of the atom's mass. Electrons are very light and orbit around the nucleus.</p>
                                     </div>
                                 </div>
                             `
                         },
                         {
-                            intro: "The periodic table is arranged by atomic number. Elements increase by 1 proton as you move left to right across each period. Let's see this pattern!",
+                            intro: "Now let's understand the atomic number - the identity of an element. This is one of the most important numbers in chemistry!",
+                            content: `
+                                <div class="section-card">
+                                    <h3 class="text-xl font-semibold text-gray-800 mb-4 flex items-center">
+                                        <i class="fas fa-fingerprint text-amber-500 mr-3"></i>Atomic Number (Z)
+                                    </h3>
+                                    
+                                    <div class="bg-gradient-to-r from-blue-50 to-indigo-50 p-5 rounded-lg mb-4 border border-blue-200">
+                                        <div class="text-center mb-3">
+                                            <span class="text-3xl font-bold text-blue-700">Z = Number of Protons</span>
+                                        </div>
+                                        <p class="text-gray-700 text-center">The atomic number tells us exactly how many <strong>protons</strong> are in the nucleus of an atom.</p>
+                                    </div>
+                                    
+                                    <div class="bg-white p-4 rounded-lg border mb-4">
+                                        <h4 class="font-semibold text-gray-800 mb-3">Why is Atomic Number So Important?</h4>
+                                        <ul class="space-y-2 text-gray-700">
+                                            <li class="flex items-start gap-2">
+                                                <i class="fas fa-check-circle text-green-500 mt-1"></i>
+                                                <span><strong>It defines the element!</strong> Every atom with 6 protons is Carbon. Every atom with 8 protons is Oxygen.</span>
+                                            </li>
+                                            <li class="flex items-start gap-2">
+                                                <i class="fas fa-check-circle text-green-500 mt-1"></i>
+                                                <span><strong>No two elements have the same atomic number</strong> - each element is unique!</span>
+                                            </li>
+                                            <li class="flex items-start gap-2">
+                                                <i class="fas fa-check-circle text-green-500 mt-1"></i>
+                                                <span>In a <strong>neutral atom</strong>, the number of electrons = number of protons = atomic number</span>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    
+                                    <div class="grid md:grid-cols-3 gap-3">
+                                        <div class="bg-yellow-50 p-3 rounded-lg text-center border">
+                                            <div class="text-2xl font-bold text-yellow-700">Z = 6</div>
+                                            <div class="text-sm text-gray-600">6 protons</div>
+                                            <div class="text-lg font-semibold text-gray-800 mt-1">Carbon (C)</div>
+                                        </div>
+                                        <div class="bg-green-50 p-3 rounded-lg text-center border">
+                                            <div class="text-2xl font-bold text-green-700">Z = 8</div>
+                                            <div class="text-sm text-gray-600">8 protons</div>
+                                            <div class="text-lg font-semibold text-gray-800 mt-1">Oxygen (O)</div>
+                                        </div>
+                                        <div class="bg-red-50 p-3 rounded-lg text-center border">
+                                            <div class="text-2xl font-bold text-red-700">Z = 11</div>
+                                            <div class="text-sm text-gray-600">11 protons</div>
+                                            <div class="text-lg font-semibold text-gray-800 mt-1">Sodium (Na)</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            `
+                        },
+                        {
+                            intro: "Now let's learn about mass number - which tells us about the total particles in the nucleus. This is where protons and neutrons come together!",
+                            content: `
+                                <div class="section-card">
+                                    <h3 class="text-xl font-semibold text-gray-800 mb-4 flex items-center">
+                                        <i class="fas fa-weight-hanging text-amber-500 mr-3"></i>Mass Number (A)
+                                    </h3>
+                                    
+                                    <div class="bg-gradient-to-r from-green-50 to-emerald-50 p-5 rounded-lg mb-4 border border-green-200">
+                                        <div class="text-center mb-3">
+                                            <span class="text-2xl font-bold text-green-700">A = Protons + Neutrons</span>
+                                        </div>
+                                        <p class="text-gray-700 text-center">Mass number is the <strong>total</strong> number of protons and neutrons in the nucleus.</p>
+                                    </div>
+                                    
+                                    <div class="bg-white p-4 rounded-lg border mb-4">
+                                        <h4 class="font-semibold text-gray-800 mb-3">The Key Formula</h4>
+                                        <div class="bg-gray-100 p-4 rounded-lg text-center">
+                                            <p class="text-xl font-mono font-bold text-gray-800">Mass Number (A) = Atomic Number (Z) + Number of Neutrons</p>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="bg-amber-50 p-4 rounded-lg border-l-4 border-amber-500 mb-4">
+                                        <p class="text-amber-800"><i class="fas fa-calculator mr-2"></i><strong>Why only protons and neutrons?</strong> Electrons have very little mass (about 1/1836 of a proton's mass), so they don't contribute significantly to the total mass of an atom!</p>
+                                    </div>
+                                    
+                                    <div class="bg-white p-4 rounded-lg border">
+                                        <h4 class="font-semibold text-gray-800 mb-3">Example: Carbon-12</h4>
+                                        <div class="flex items-center justify-center gap-4">
+                                            <div class="text-center">
+                                                <div class="text-4xl font-bold text-gray-800">¹²C</div>
+                                                <div class="text-sm text-gray-600">Carbon-12</div>
+                                            </div>
+                                            <div class="text-gray-500">=</div>
+                                            <div class="bg-red-100 px-4 py-2 rounded-lg text-center">
+                                                <div class="font-bold text-red-700">6 protons</div>
+                                                <div class="text-xs text-gray-600">(Z = 6)</div>
+                                            </div>
+                                            <div class="text-gray-500">+</div>
+                                            <div class="bg-gray-200 px-4 py-2 rounded-lg text-center">
+                                                <div class="font-bold text-gray-700">6 neutrons</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            `
+                        },
+                        {
+                            intro: "Let's see how atomic number, protons, electrons, neutrons, and mass number all relate to each other. Understanding these relationships is key to solving problems!",
+                            content: `
+                                <div class="section-card">
+                                    <h3 class="text-xl font-semibold text-gray-800 mb-4 flex items-center">
+                                        <i class="fas fa-link text-amber-500 mr-3"></i>Key Relationships
+                                    </h3>
+                                    
+                                    <div class="bg-gradient-to-r from-amber-50 to-yellow-50 p-4 rounded-lg border border-amber-200 mb-4">
+                                        <h4 class="font-semibold text-amber-800 mb-3">For a Neutral Atom:</h4>
+                                        <div class="grid md:grid-cols-2 gap-3">
+                                            <div class="bg-white p-3 rounded-lg">
+                                                <p class="text-center font-mono text-lg">
+                                                    <span class="text-blue-600">Protons</span> = <span class="text-purple-600">Atomic Number (Z)</span>
+                                                </p>
+                                            </div>
+                                            <div class="bg-white p-3 rounded-lg">
+                                                <p class="text-center font-mono text-lg">
+                                                    <span class="text-blue-600">Protons</span> = <span class="text-green-600">Electrons</span>
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="bg-gray-50 p-4 rounded-lg border mb-4">
+                                        <h4 class="font-semibold text-gray-800 mb-3">Important Formulas to Remember:</h4>
+                                        <div class="space-y-3">
+                                            <div class="bg-white p-3 rounded border-l-4 border-blue-500">
+                                                <p class="font-mono"><strong class="text-blue-700">Finding Protons:</strong> Protons = Z (Atomic Number)</p>
+                                            </div>
+                                            <div class="bg-white p-3 rounded border-l-4 border-green-500">
+                                                <p class="font-mono"><strong class="text-green-700">Finding Electrons:</strong> Electrons = Protons (in neutral atom)</p>
+                                            </div>
+                                            <div class="bg-white p-3 rounded border-l-4 border-gray-500">
+                                                <p class="font-mono"><strong class="text-gray-700">Finding Neutrons:</strong> Neutrons = A - Z (Mass Number - Atomic Number)</p>
+                                            </div>
+                                            <div class="bg-white p-3 rounded border-l-4 border-purple-500">
+                                                <p class="font-mono"><strong class="text-purple-700">Finding Mass Number:</strong> A = Z + Neutrons</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="bg-white p-4 rounded-lg border-2 border-amber-300">
+                                        <h4 class="font-semibold text-gray-800 mb-3 text-center">Complete Picture of an Atom</h4>
+                                        <div class="overflow-x-auto">
+                                            <table class="w-full text-sm">
+                                                <thead>
+                                                    <tr class="bg-amber-100">
+                                                        <th class="p-2 text-left">Element</th>
+                                                        <th class="p-2 text-center">Z</th>
+                                                        <th class="p-2 text-center">Protons</th>
+                                                        <th class="p-2 text-center">Electrons</th>
+                                                        <th class="p-2 text-center">Neutrons</th>
+                                                        <th class="p-2 text-center">A (Mass #)</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr class="border-b">
+                                                        <td class="p-2 font-semibold">Hydrogen</td>
+                                                        <td class="p-2 text-center text-blue-600">1</td>
+                                                        <td class="p-2 text-center">1</td>
+                                                        <td class="p-2 text-center">1</td>
+                                                        <td class="p-2 text-center">0</td>
+                                                        <td class="p-2 text-center text-green-600">1</td>
+                                                    </tr>
+                                                    <tr class="border-b bg-gray-50">
+                                                        <td class="p-2 font-semibold">Carbon</td>
+                                                        <td class="p-2 text-center text-blue-600">6</td>
+                                                        <td class="p-2 text-center">6</td>
+                                                        <td class="p-2 text-center">6</td>
+                                                        <td class="p-2 text-center">6</td>
+                                                        <td class="p-2 text-center text-green-600">12</td>
+                                                    </tr>
+                                                    <tr class="border-b">
+                                                        <td class="p-2 font-semibold">Oxygen</td>
+                                                        <td class="p-2 text-center text-blue-600">8</td>
+                                                        <td class="p-2 text-center">8</td>
+                                                        <td class="p-2 text-center">8</td>
+                                                        <td class="p-2 text-center">8</td>
+                                                        <td class="p-2 text-center text-green-600">16</td>
+                                                    </tr>
+                                                    <tr class="bg-gray-50">
+                                                        <td class="p-2 font-semibold">Sodium</td>
+                                                        <td class="p-2 text-center text-blue-600">11</td>
+                                                        <td class="p-2 text-center">11</td>
+                                                        <td class="p-2 text-center">11</td>
+                                                        <td class="p-2 text-center">12</td>
+                                                        <td class="p-2 text-center text-green-600">23</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            `
+                        },
+                        {
+                            intro: "Now let's practice with the type of questions you'll see in exams. These calculation problems are very common!",
+                            content: `
+                                <div class="section-card">
+                                    <h3 class="text-xl font-semibold text-gray-800 mb-4 flex items-center">
+                                        <i class="fas fa-calculator text-amber-500 mr-3"></i>Mass Number Calculations
+                                    </h3>
+                                    
+                                    <div class="bg-red-50 p-4 rounded-lg border-l-4 border-red-500 mb-4">
+                                        <h4 class="font-semibold text-red-800 mb-2">Most Common Exam Question Type:</h4>
+                                        <p class="text-gray-700">"An element X has atomic number Z and N neutrons. Calculate its mass number."</p>
+                                    </div>
+                                    
+                                    <div class="bg-white p-4 rounded-lg border mb-4">
+                                        <h4 class="font-semibold text-gray-800 mb-3">Step-by-Step Solution Method:</h4>
+                                        <ol class="space-y-2 text-gray-700">
+                                            <li class="flex items-start gap-2">
+                                                <span class="bg-amber-200 rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold text-amber-800">1</span>
+                                                <span><strong>Identify the atomic number (Z)</strong> = number of protons</span>
+                                            </li>
+                                            <li class="flex items-start gap-2">
+                                                <span class="bg-amber-200 rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold text-amber-800">2</span>
+                                                <span><strong>Identify the number of neutrons (N)</strong></span>
+                                            </li>
+                                            <li class="flex items-start gap-2">
+                                                <span class="bg-amber-200 rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold text-amber-800">3</span>
+                                                <span><strong>Calculate mass number:</strong> A = Z + N</span>
+                                            </li>
+                                        </ol>
+                                    </div>
+                                    
+                                    <div class="bg-gradient-to-r from-green-50 to-emerald-50 p-4 rounded-lg border border-green-200">
+                                        <h4 class="font-semibold text-green-800 mb-3">Worked Example:</h4>
+                                        <div class="bg-white p-4 rounded-lg">
+                                            <p class="font-medium text-gray-800 mb-3">An element X has atomic number 13 and 14 neutrons. Calculate its mass number.</p>
+                                            <div class="space-y-2 text-gray-700">
+                                                <p><strong>Given:</strong></p>
+                                                <ul class="ml-4 list-disc">
+                                                    <li>Atomic number (Z) = 13</li>
+                                                    <li>Number of neutrons (N) = 14</li>
+                                                </ul>
+                                                <p><strong>Solution:</strong></p>
+                                                <div class="bg-gray-100 p-3 rounded font-mono">
+                                                    <p>Mass Number (A) = Z + N</p>
+                                                    <p>A = 13 + 14</p>
+                                                    <p class="text-green-600 font-bold">A = 27</p>
+                                                </div>
+                                                <p class="text-sm text-gray-600 mt-2">The element is <strong>Aluminium (Al)</strong> with mass number 27, written as ²⁷Al</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            `
+                        },
+                        {
+                            intro: "Let's practice with more examples - this will help you master these calculations!",
+                            content: `
+                                <div class="section-card">
+                                    <h3 class="text-xl font-semibold text-gray-800 mb-4 flex items-center">
+                                        <i class="fas fa-pencil-alt text-amber-500 mr-3"></i>Practice Problems
+                                    </h3>
+                                    
+                                    <div class="space-y-4">
+                                        <div class="bg-yellow-50 p-4 rounded-lg border border-yellow-200">
+                                            <p class="font-medium text-gray-800 mb-2">1. An element X has atomic number 20 and has 20 neutrons. Calculate its mass number.</p>
+                                            <details class="mt-2">
+                                                <summary class="text-sm text-blue-600 cursor-pointer hover:text-blue-800">Check Answer</summary>
+                                                <div class="mt-2 text-sm text-gray-700 bg-white p-3 rounded">
+                                                    <p><strong>Solution:</strong></p>
+                                                    <p>Mass Number (A) = Z + N</p>
+                                                    <p>A = 20 + 20 = <strong>40</strong></p>
+                                                    <p class="text-gray-500 mt-1">This is Calcium-40 (⁴⁰Ca)</p>
+                                                </div>
+                                            </details>
+                                        </div>
+                                        
+                                        <div class="bg-yellow-50 p-4 rounded-lg border border-yellow-200">
+                                            <p class="font-medium text-gray-800 mb-2">2. An element has atomic number 11 and 12 neutrons. Calculate its mass number and identify the element.</p>
+                                            <details class="mt-2">
+                                                <summary class="text-sm text-blue-600 cursor-pointer hover:text-blue-800">Check Answer</summary>
+                                                <div class="mt-2 text-sm text-gray-700 bg-white p-3 rounded">
+                                                    <p><strong>Solution:</strong></p>
+                                                    <p>Mass Number (A) = Z + N</p>
+                                                    <p>A = 11 + 12 = <strong>23</strong></p>
+                                                    <p class="text-gray-500 mt-1">Atomic number 11 = Sodium (Na). This is Sodium-23 (²³Na)</p>
+                                                </div>
+                                            </details>
+                                        </div>
+                                        
+                                        <div class="bg-yellow-50 p-4 rounded-lg border border-yellow-200">
+                                            <p class="font-medium text-gray-800 mb-2">3. An element X with atomic number 17 has 18 neutrons. Calculate its mass number.</p>
+                                            <details class="mt-2">
+                                                <summary class="text-sm text-blue-600 cursor-pointer hover:text-blue-800">Check Answer</summary>
+                                                <div class="mt-2 text-sm text-gray-700 bg-white p-3 rounded">
+                                                    <p><strong>Solution:</strong></p>
+                                                    <p>Mass Number (A) = Z + N</p>
+                                                    <p>A = 17 + 18 = <strong>35</strong></p>
+                                                    <p class="text-gray-500 mt-1">Atomic number 17 = Chlorine (Cl). This is Chlorine-35 (³⁵Cl)</p>
+                                                </div>
+                                            </details>
+                                        </div>
+                                        
+                                        <div class="bg-yellow-50 p-4 rounded-lg border border-yellow-200">
+                                            <p class="font-medium text-gray-800 mb-2">4. An atom has 26 protons and 30 neutrons. What is its atomic number and mass number?</p>
+                                            <details class="mt-2">
+                                                <summary class="text-sm text-blue-600 cursor-pointer hover:text-blue-800">Check Answer</summary>
+                                                <div class="mt-2 text-sm text-gray-700 bg-white p-3 rounded">
+                                                    <p><strong>Solution:</strong></p>
+                                                    <p>Atomic Number (Z) = Number of protons = <strong>26</strong></p>
+                                                    <p>Mass Number (A) = Z + N = 26 + 30 = <strong>56</strong></p>
+                                                    <p class="text-gray-500 mt-1">Atomic number 26 = Iron (Fe). This is Iron-56 (⁵⁶Fe)</p>
+                                                </div>
+                                            </details>
+                                        </div>
+                                    </div>
+                                </div>
+                            `
+                        },
+                        {
+                            intro: "Let's also learn how to find the number of neutrons when we know the mass number and atomic number - this is the reverse calculation!",
+                            content: `
+                                <div class="section-card">
+                                    <h3 class="text-xl font-semibold text-gray-800 mb-4 flex items-center">
+                                        <i class="fas fa-exchange-alt text-amber-500 mr-3"></i>Finding Neutrons
+                                    </h3>
+                                    
+                                    <div class="bg-purple-50 p-4 rounded-lg border-l-4 border-purple-500 mb-4">
+                                        <h4 class="font-semibold text-purple-800 mb-2">Rearranging the Formula:</h4>
+                                        <p class="text-gray-700">If you know the mass number (A) and atomic number (Z), you can find neutrons:</p>
+                                        <div class="bg-white p-3 rounded mt-2 text-center font-mono text-lg">
+                                            Neutrons (N) = Mass Number (A) - Atomic Number (Z)
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="bg-white p-4 rounded-lg border mb-4">
+                                        <h4 class="font-semibold text-gray-800 mb-3">Worked Example:</h4>
+                                        <p class="text-gray-700 mb-2">An atom of Uranium-238 has atomic number 92. How many neutrons does it have?</p>
+                                        <div class="space-y-2 text-gray-700">
+                                            <div class="bg-gray-100 p-3 rounded font-mono">
+                                                <p>Neutrons = A - Z</p>
+                                                <p>Neutrons = 238 - 92</p>
+                                                <p class="text-purple-600 font-bold">Neutrons = 146</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="space-y-3">
+                                        <div class="bg-yellow-50 p-4 rounded-lg border border-yellow-200">
+                                            <p class="font-medium text-gray-800 mb-2">5. An atom of Nitrogen-14 has atomic number 7. How many neutrons does it have?</p>
+                                            <details class="mt-2">
+                                                <summary class="text-sm text-blue-600 cursor-pointer hover:text-blue-800">Check Answer</summary>
+                                                <div class="mt-2 text-sm text-gray-700 bg-white p-3 rounded">
+                                                    <p>Neutrons = A - Z = 14 - 7 = <strong>7 neutrons</strong></p>
+                                                </div>
+                                            </details>
+                                        </div>
+                                        
+                                        <div class="bg-yellow-50 p-4 rounded-lg border border-yellow-200">
+                                            <p class="font-medium text-gray-800 mb-2">6. Chlorine-35 has atomic number 17. How many protons, electrons (in neutral atom), and neutrons does it have?</p>
+                                            <details class="mt-2">
+                                                <summary class="text-sm text-blue-600 cursor-pointer hover:text-blue-800">Check Answer</summary>
+                                                <div class="mt-2 text-sm text-gray-700 bg-white p-3 rounded">
+                                                    <p><strong>Protons:</strong> 17 (equals atomic number)</p>
+                                                    <p><strong>Electrons:</strong> 17 (neutral atom)</p>
+                                                    <p><strong>Neutrons:</strong> 35 - 17 = <strong>18 neutrons</strong></p>
+                                                </div>
+                                            </details>
+                                        </div>
+                                    </div>
+                                </div>
+                            `
+                        },
+                        {
+                            intro: "Excellent progress! Now let's see how the periodic table is arranged by atomic number.",
                             content: `
                                 <div class="section-card">
                                     <h3 class="text-xl font-semibold text-gray-800 mb-4 flex items-center">
@@ -829,42 +1220,6 @@
                                                 <p><strong>Center:</strong> Symbol (C)</p>
                                                 <p><strong>Bottom:</strong> Name & Atomic mass</p>
                                             </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            `
-                        },
-                        {
-                            intro: "Now let's practice reading element information with these exercises!",
-                            content: `
-                                <div class="section-card">
-                                    <h3 class="text-xl font-semibold text-gray-800 mb-4 flex items-center">
-                                        <i class="fas fa-question-circle text-amber-500 mr-3"></i>Quick Check
-                                    </h3>
-                                    
-                                    <div class="space-y-4">
-                                        <div class="bg-yellow-50 p-4 rounded-lg border border-yellow-200">
-                                            <p class="font-medium text-gray-800 mb-2">1. An element has atomic number 11. How many protons and electrons does it have in its neutral state?</p>
-                                            <details class="mt-2">
-                                                <summary class="text-sm text-blue-600 cursor-pointer hover:text-blue-800">Check Answer</summary>
-                                                <div class="mt-2 text-sm text-gray-700 bg-white p-3 rounded">
-                                                    <p><strong>Protons = 11</strong> (Atomic number tells us this)</p>
-                                                    <p><strong>Electrons = 11</strong> (Neutral atom has equal protons and electrons)</p>
-                                                    <p class="text-gray-500 mt-1">This element is Sodium (Na)</p>
-                                                </div>
-                                            </details>
-                                        </div>
-                                        
-                                        <div class="bg-yellow-50 p-4 rounded-lg border border-yellow-200">
-                                            <p class="font-medium text-gray-800 mb-2">2. An atom has 17 protons and 18 neutrons. What is its atomic number and mass number?</p>
-                                            <details class="mt-2">
-                                                <summary class="text-sm text-blue-600 cursor-pointer hover:text-blue-800">Check Answer</summary>
-                                                <div class="mt-2 text-sm text-gray-700 bg-white p-3 rounded">
-                                                    <p><strong>Atomic number = 17</strong> (Number of protons)</p>
-                                                    <p><strong>Mass number = 35</strong> (17 + 18 = 35)</p>
-                                                    <p class="text-gray-500 mt-1">This is Chlorine-35 (Cl-35)</p>
-                                                </div>
-                                            </details>
                                         </div>
                                     </div>
                                 </div>
