@@ -2050,9 +2050,135 @@ Neutrons = A - Z = ..."></textarea>
             document.getElementById('startQuizBtn')?.addEventListener('click', () => {
                 if (window.TopicQuizInstance) {
                     window.TopicQuizInstance.start();
+                } else if (window.periodicTableQuiz) {
+                    window.periodicTableQuiz.start();
                 }
             });
         }
+
+        // ========================================
+        // Practice Score Tracking System
+        // ========================================
+        
+        const PracticeTracker = {
+            topicId: 'periodic-table-overview',
+            practiceScores: {
+                atomicNumber: { correct: 0, total: 0, details: [] },
+                massNumber: { correct: 0, total: 0, details: [] },
+                neutrons: { correct: 0, total: 0, details: [] }
+            },
+            quizScore: null,
+            
+            init() {
+                // Load saved practice scores
+                this.loadScores();
+            },
+            
+            loadScores() {
+                const saved = localStorage.getItem(`practice_${this.topicId}`);
+                if (saved) {
+                    try {
+                        const data = JSON.parse(saved);
+                        this.practiceScores = data.practiceScores || this.practiceScores;
+                        this.quizScore = data.quizScore;
+                    } catch (e) {
+                        console.warn('Failed to load practice scores:', e);
+                    }
+                }
+            },
+            
+            saveScores() {
+                localStorage.setItem(`practice_${this.topicId}`, JSON.stringify({
+                    practiceScores: this.practiceScores,
+                    quizScore: this.quizScore,
+                    lastUpdated: new Date().toISOString()
+                }));
+            },
+            
+            recordAnswer(category, questionId, isCorrect, userAnswer) {
+                if (!this.practiceScores[category]) {
+                    this.practiceScores[category] = { correct: 0, total: 0, details: [] };
+                }
+                
+                this.practiceScores[category].total++;
+                if (isCorrect) {
+                    this.practiceScores[category].correct++;
+                }
+                
+                this.practiceScores[category].details.push({
+                    questionId,
+                    isCorrect,
+                    userAnswer,
+                    timestamp: new Date().toISOString()
+                });
+                
+                this.saveScores();
+                this.updateProgressDisplay();
+            },
+            
+            recordQuizScore(score, total) {
+                this.quizScore = { score, total, percentage: Math.round((score / total) * 100) };
+                this.saveScores();
+                this.updateProgressDisplay();
+            },
+            
+            getPracticePercentage() {
+                let totalCorrect = 0;
+                let totalQuestions = 0;
+                
+                Object.values(this.practiceScores).forEach(category => {
+                    totalCorrect += category.correct;
+                    totalQuestions += category.total;
+                });
+                
+                if (totalQuestions === 0) return null;
+                return Math.round((totalCorrect / totalQuestions) * 100);
+            },
+            
+            getCombinedScore() {
+                const practicePercent = this.getPracticePercentage();
+                const results = {
+                    practice: practicePercent,
+                    quiz: this.quizScore ? this.quizScore.percentage : null,
+                    combined: null,
+                    practiceDetails: this.practiceScores,
+                    quizDetails: this.quizScore
+                };
+                
+                // Calculate combined average (practice = 40%, quiz = 60%)
+                if (practicePercent !== null && this.quizScore) {
+                    results.combined = Math.round((practicePercent * 0.4) + (this.quizScore.percentage * 0.6));
+                } else if (practicePercent !== null) {
+                    results.combined = practicePercent;
+                } else if (this.quizScore) {
+                    results.combined = this.quizScore.percentage;
+                }
+                
+                return results;
+            },
+            
+            updateProgressDisplay() {
+                // Update any progress display elements
+                const practicePercent = this.getPracticePercentage();
+                
+                // Show practice score in summary section if exists
+                const practiceScoreEl = document.getElementById('practice-score-display');
+                if (practiceScoreEl && practicePercent !== null) {
+                    const totalCorrect = Object.values(this.practiceScores).reduce((sum, cat) => sum + cat.correct, 0);
+                    const totalQuestions = Object.values(this.practiceScores).reduce((sum, cat) => sum + cat.total, 0);
+                    practiceScoreEl.innerHTML = `
+                        <div class="bg-blue-50 p-4 rounded-lg border border-blue-200 mb-4">
+                            <h4 class="font-semibold text-blue-800 mb-2">📊 Practice Progress</h4>
+                            <p class="text-2xl font-bold text-blue-600">${practicePercent}%</p>
+                            <p class="text-sm text-gray-600">${totalCorrect} out of ${totalQuestions} practice questions correct</p>
+                        </div>
+                    `;
+                }
+            }
+        };
+        
+        // Initialize practice tracker
+        PracticeTracker.init();
 
         // ========================================
         // Interactive Simulation Functions
@@ -2386,8 +2512,12 @@ Neutrons = A - Z = ..."></textarea>
                 const pCorrect = protons === '17';
                 const eCorrect = electrons === '17';
                 const elementCorrect = element === 'chlorine' || element === 'cl';
+                const allCorrect = pCorrect && eCorrect && elementCorrect;
                 
-                if (pCorrect && eCorrect && elementCorrect) {
+                // Record answer
+                PracticeTracker.recordAnswer('atomicNumber', 'ind-z-1', allCorrect, { protons, electrons, element });
+                
+                if (allCorrect) {
                     feedback.innerHTML = '✅ <strong>Perfect!</strong> Protons = 17, Electrons = 17, Element = Chlorine (Cl). Well done!';
                     feedback.className = 'text-sm mt-2 text-green-600 font-medium';
                 } else {
@@ -2410,8 +2540,12 @@ Neutrons = A - Z = ..."></textarea>
                 const zCorrect = z === '20';
                 const elementCorrect = element === 'calcium' || element === 'ca';
                 const eCorrect = electrons === '20';
+                const allCorrect = zCorrect && elementCorrect && eCorrect;
                 
-                if (zCorrect && elementCorrect && eCorrect) {
+                // Record answer
+                PracticeTracker.recordAnswer('atomicNumber', 'ind-z-2', allCorrect, { z, element, electrons });
+                
+                if (allCorrect) {
                     feedback.innerHTML = '✅ <strong>Perfect!</strong> Z = 20, Element = Calcium (Ca), Electrons = 20. Excellent!';
                     feedback.className = 'text-sm mt-2 text-green-600 font-medium';
                 } else {
@@ -2430,8 +2564,12 @@ Neutrons = A - Z = ..."></textarea>
                 
                 const pCorrect = protons === '11';
                 const eCorrect = electrons === '10';
+                const allCorrect = pCorrect && eCorrect;
                 
-                if (pCorrect && eCorrect) {
+                // Record answer
+                PracticeTracker.recordAnswer('atomicNumber', 'ind-z-3', allCorrect, { protons, electrons });
+                
+                if (allCorrect) {
                     feedback.innerHTML = '✅ <strong>Excellent!</strong> Na⁺ has 11 protons (unchanged) and 10 electrons (lost 1). You understand ions!';
                     feedback.className = 'text-sm mt-2 text-green-600 font-medium';
                 } else if (pCorrect) {
@@ -2479,8 +2617,12 @@ Neutrons = A - Z = ..."></textarea>
             // Extract numbers from the answer
             const numbers = value.match(/\d+/g);
             const answer = numbers ? parseInt(numbers[numbers.length - 1]) : null;
+            const isCorrect = answer === correctAnswer;
             
-            if (answer === correctAnswer) {
+            // Record answer
+            PracticeTracker.recordAnswer('massNumber', 'ind-mass-' + problemNum, isCorrect, { value, answer });
+            
+            if (isCorrect) {
                 feedback.innerHTML = '✅ <strong>Correct!</strong> Well done!';
                 feedback.className = 'text-sm mt-2 text-green-600 font-medium';
             } else {
@@ -2501,8 +2643,12 @@ Neutrons = A - Z = ..."></textarea>
             
             const zCorrect = z === '26';
             const aCorrect = a === '56';
+            const allCorrect = zCorrect && aCorrect;
             
-            if (zCorrect && aCorrect) {
+            // Record answer
+            PracticeTracker.recordAnswer('massNumber', 'ind-mass-3', allCorrect, { z, a });
+            
+            if (allCorrect) {
                 feedback.innerHTML = '✅ <strong>Correct!</strong> Z = 26 (Iron) and A = 56. This is Iron-56 (⁵⁶Fe)!';
                 feedback.className = 'text-sm mt-2 text-green-600 font-medium';
             } else if (zCorrect) {
@@ -2561,6 +2707,9 @@ Neutrons = A - Z = ..."></textarea>
             
             let message = '';
             let allCorrect = pCorrect && eCorrect && nCorrect;
+            
+            // Record answer
+            PracticeTracker.recordAnswer('neutrons', 'ind-neutron-1', allCorrect, { protons, electrons, neutrons });
             
             if (allCorrect) {
                 message = '✅ <strong>Perfect!</strong> Protons = 17, Electrons = 17, Neutrons = 18. This is Chlorine-35 (³⁵Cl)!';
@@ -2649,7 +2798,57 @@ Neutrons = A - Z = ..."></textarea>
             tracker: tracker
         });
 
+        // Connect quiz to PracticeTracker for combined scoring
+        const originalShowResults = quiz.showResults.bind(quiz);
+        quiz.showResults = async function() {
+            await originalShowResults();
+            
+            // Record quiz score to PracticeTracker
+            PracticeTracker.recordQuizScore(this.score, this.questions.length);
+            
+            // Show combined score
+            const combinedScore = PracticeTracker.getCombinedScore();
+            const content = document.getElementById('quiz-content');
+            if (content && combinedScore) {
+                const practicePercent = combinedScore.practice || 0;
+                const quizPercent = combinedScore.quiz || 0;
+                const totalCombined = combinedScore.combined || 0;
+                
+                content.innerHTML += `
+                    <div class="mt-6 p-4 bg-gradient-to-r from-purple-50 to-indigo-50 rounded-xl border-2 border-purple-200">
+                        <h4 class="font-bold text-lg text-purple-800 mb-3 text-center">📊 Your Complete Score Summary</h4>
+                        <div class="grid grid-cols-3 gap-4 text-center">
+                            <div class="bg-white p-3 rounded-lg">
+                                <p class="text-xs text-gray-500 mb-1">Practice Questions</p>
+                                <p class="text-2xl font-bold ${practicePercent >= 60 ? 'text-green-600' : 'text-amber-600'}">${practicePercent !== null ? practicePercent + '%' : 'N/A'}</p>
+                                <p class="text-xs text-gray-400">(40% weight)</p>
+                            </div>
+                            <div class="bg-white p-3 rounded-lg">
+                                <p class="text-xs text-gray-500 mb-1">Quiz</p>
+                                <p class="text-2xl font-bold ${quizPercent >= 60 ? 'text-green-600' : 'text-amber-600'}">${quizPercent}%</p>
+                                <p class="text-xs text-gray-400">(60% weight)</p>
+                            </div>
+                            <div class="bg-white p-3 rounded-lg border-2 border-purple-300">
+                                <p class="text-xs text-gray-500 mb-1">Combined Score</p>
+                                <p class="text-2xl font-bold ${totalCombined >= 60 ? 'text-green-600' : 'text-red-600'}">${totalCombined}%</p>
+                                <p class="text-xs text-gray-400">Final Grade</p>
+                            </div>
+                        </div>
+                        ${totalCombined >= 60 ? 
+                            '<p class="text-center text-green-600 font-medium mt-3">🎉 Congratulations! You passed this topic!</p>' : 
+                            '<p class="text-center text-amber-600 font-medium mt-3">📚 Keep practicing! Review the material and try again.</p>'
+                        }
+                    </div>
+                `;
+            }
+        };
+
+        // Make quiz accessible globally
+        window.periodicTableQuiz = quiz;
         window.topicTracker = tracker;
+        
+        // Also expose for Start Quiz button
+        window.TopicQuizInstance = quiz;
     </script>
 </body>
 </html>
