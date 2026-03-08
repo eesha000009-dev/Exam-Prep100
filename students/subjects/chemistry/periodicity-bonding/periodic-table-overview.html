@@ -929,7 +929,7 @@
                                         
                                         <!-- Interactive Z selector -->
                                         <div class="bg-white rounded-lg p-4 mb-4">
-                                            <label class="block text-sm font-medium text-gray-700 mb-2">Adjust Protons (Z):</label>
+                                            <label class="block text-sm font-medium text-gray-700 mb-2">Adjust Atomic Number (Z):</label>
                                             <input type="range" id="protonSlider" min="1" max="20" value="6" class="w-full h-3 bg-blue-200 rounded-lg appearance-none cursor-pointer" oninput="updateZAtom(this.value)">
                                             <div class="flex justify-between text-xs text-gray-500 mt-1">
                                                 <span>1 (H)</span>
@@ -1029,7 +1029,7 @@
                                                 <div class="text-2xl text-gray-400">=</div>
                                                 <div class="text-center">
                                                     <div class="text-3xl font-bold text-red-600" id="zPartDisplay">15</div>
-                                                    <div class="text-xs text-gray-600">Protons (Z)</div>
+                                                    <div class="text-xs text-gray-600">Protons (= Z)</div>
                                                 </div>
                                                 <div class="text-2xl text-gray-400">+</div>
                                                 <div class="text-center">
@@ -1042,7 +1042,7 @@
                                         <!-- Controls -->
                                         <div class="grid md:grid-cols-2 gap-4 mb-4">
                                             <div class="bg-white rounded-lg p-3">
-                                                <label class="block text-sm font-medium text-red-700 mb-1">Protons (Z):</label>
+                                                <label class="block text-sm font-medium text-red-700 mb-1">Atomic Number (Z):</label>
                                                 <input type="range" id="protonSliderA" min="1" max="20" value="15" class="w-full h-2 bg-red-200 rounded-lg appearance-none cursor-pointer" oninput="updateMassNumber()">
                                                 <div class="text-center text-red-700 font-bold" id="protonValA">15</div>
                                             </div>
@@ -1305,64 +1305,115 @@
                             `
                         },
                         {
-                            intro: "Let's practice with more examples - this will help you master these calculations!",
+                            intro: "Let's practice with more examples - this will help you master these calculations! First, we'll work through one together, then you try on your own.",
                             content: `
                                 <div class="section-card">
                                     <h3 class="text-xl font-semibold text-gray-800 mb-4 flex items-center">
-                                        <i class="fas fa-pencil-alt text-amber-500 mr-3"></i>Practice Problems
+                                        <i class="fas fa-pencil-alt text-amber-500 mr-3"></i>Practice: Calculating Mass Number
                                     </h3>
                                     
-                                    <div class="space-y-4">
-                                        <div class="bg-yellow-50 p-4 rounded-lg border border-yellow-200">
-                                            <p class="font-medium text-gray-800 mb-2">1. An element X has atomic number 20 and has 20 neutrons. Calculate its mass number.</p>
-                                            <details class="mt-2">
-                                                <summary class="text-sm text-blue-600 cursor-pointer hover:text-blue-800">Check Answer</summary>
-                                                <div class="mt-2 text-sm text-gray-700 bg-white p-3 rounded">
-                                                    <p><strong>Solution:</strong></p>
-                                                    <p>Mass Number (A) = Z + N</p>
-                                                    <p>A = 20 + 20 = <strong>40</strong></p>
-                                                    <p class="text-gray-500 mt-1">This is Calcium-40 (⁴⁰Ca)</p>
+                                    <!-- Guided Practice -->
+                                    <div class="bg-green-50 p-4 rounded-lg border border-green-200 mb-4">
+                                        <h4 class="font-semibold text-green-800 mb-3">📝 Guided Practice - Let's solve this together:</h4>
+                                        <p class="text-gray-800 mb-3 font-medium">An element X has atomic number 20 and has 20 neutrons. Calculate its mass number.</p>
+                                        
+                                        <div id="guided-practice-mass" class="space-y-4">
+                                            <!-- Step 1 -->
+                                            <div class="bg-white p-3 rounded-lg border">
+                                                <p class="text-sm text-gray-600 mb-2"><strong>Step 1:</strong> What is the atomic number (Z)?</p>
+                                                <div class="flex items-center gap-3">
+                                                    <input type="text" id="step1-mass" placeholder="Enter Z..." class="flex-grow p-2 border rounded-md text-sm">
+                                                    <button onclick="checkStepMass(1)" class="px-4 py-2 bg-green-200 text-green-700 rounded-md hover:bg-green-300 text-sm font-medium">Check</button>
                                                 </div>
-                                            </details>
+                                                <p id="feedback1-mass" class="text-xs mt-2"></p>
+                                            </div>
+                                            
+                                            <!-- Step 2 -->
+                                            <div class="bg-white p-3 rounded-lg border">
+                                                <p class="text-sm text-gray-600 mb-2"><strong>Step 2:</strong> How many neutrons (N)?</p>
+                                                <div class="flex items-center gap-3">
+                                                    <input type="text" id="step2-mass" placeholder="Enter N..." class="flex-grow p-2 border rounded-md text-sm">
+                                                    <button onclick="checkStepMass(2)" class="px-4 py-2 bg-green-200 text-green-700 rounded-md hover:bg-green-300 text-sm font-medium">Check</button>
+                                                </div>
+                                                <p id="feedback2-mass" class="text-xs mt-2"></p>
+                                            </div>
+                                            
+                                            <!-- Step 3 -->
+                                            <div class="bg-white p-3 rounded-lg border">
+                                                <p class="text-sm text-gray-600 mb-2"><strong>Step 3:</strong> Calculate Mass Number (A = Z + N)</p>
+                                                <div class="flex items-center gap-3">
+                                                    <input type="text" id="step3-mass" placeholder="Enter A..." class="flex-grow p-2 border rounded-md text-sm">
+                                                    <button onclick="checkStepMass(3)" class="px-4 py-2 bg-green-200 text-green-700 rounded-md hover:bg-green-300 text-sm font-medium">Check</button>
+                                                </div>
+                                                <p id="feedback3-mass" class="text-xs mt-2"></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- Independent Practice -->
+                                    <div class="bg-blue-50 p-4 rounded-lg border border-blue-200">
+                                        <h4 class="font-semibold text-blue-800 mb-3">🎯 Independent Practice - Now you try!</h4>
+                                        <p class="text-gray-600 text-sm mb-3">Solve these problems on your own. Show your workings and provide your final answer.</p>
+                                        
+                                        <!-- Problem 1 -->
+                                        <div class="bg-white p-4 rounded-lg border mb-4">
+                                            <p class="font-medium text-gray-800 mb-3">1. An element has atomic number 11 and 12 neutrons. Calculate its mass number and identify the element.</p>
+                                            <div class="space-y-3">
+                                                <div>
+                                                    <label class="block text-sm font-medium text-gray-700 mb-1">Your Workings</label>
+                                                    <textarea id="workings1" rows="3" class="w-full p-2 border rounded-md text-sm" placeholder="Show your steps here...
+1. Z = ...
+2. N = ...
+3. A = Z + N = ..."></textarea>
+                                                </div>
+                                                <div>
+                                                    <label class="block text-sm font-medium text-gray-700 mb-1">Final Answer (Mass Number)</label>
+                                                    <input type="text" id="answer1" placeholder="e.g., A = 23" class="w-full p-2 border rounded-md text-sm">
+                                                </div>
+                                                <button onclick="checkIndependentAnswer(1, 23)" class="w-full bg-blue-600 text-white font-semibold py-2 rounded-md hover:bg-blue-700 transition">Check Answer</button>
+                                                <p id="independent-feedback1" class="text-sm mt-2"></p>
+                                            </div>
                                         </div>
                                         
-                                        <div class="bg-yellow-50 p-4 rounded-lg border border-yellow-200">
-                                            <p class="font-medium text-gray-800 mb-2">2. An element has atomic number 11 and 12 neutrons. Calculate its mass number and identify the element.</p>
-                                            <details class="mt-2">
-                                                <summary class="text-sm text-blue-600 cursor-pointer hover:text-blue-800">Check Answer</summary>
-                                                <div class="mt-2 text-sm text-gray-700 bg-white p-3 rounded">
-                                                    <p><strong>Solution:</strong></p>
-                                                    <p>Mass Number (A) = Z + N</p>
-                                                    <p>A = 11 + 12 = <strong>23</strong></p>
-                                                    <p class="text-gray-500 mt-1">Atomic number 11 = Sodium (Na). This is Sodium-23 (²³Na)</p>
+                                        <!-- Problem 2 -->
+                                        <div class="bg-white p-4 rounded-lg border mb-4">
+                                            <p class="font-medium text-gray-800 mb-3">2. An element X with atomic number 17 has 18 neutrons. Calculate its mass number.</p>
+                                            <div class="space-y-3">
+                                                <div>
+                                                    <label class="block text-sm font-medium text-gray-700 mb-1">Your Workings</label>
+                                                    <textarea id="workings2" rows="3" class="w-full p-2 border rounded-md text-sm" placeholder="Show your steps here..."></textarea>
                                                 </div>
-                                            </details>
+                                                <div>
+                                                    <label class="block text-sm font-medium text-gray-700 mb-1">Final Answer (Mass Number)</label>
+                                                    <input type="text" id="answer2" placeholder="e.g., A = 35" class="w-full p-2 border rounded-md text-sm">
+                                                </div>
+                                                <button onclick="checkIndependentAnswer(2, 35)" class="w-full bg-blue-600 text-white font-semibold py-2 rounded-md hover:bg-blue-700 transition">Check Answer</button>
+                                                <p id="independent-feedback2" class="text-sm mt-2"></p>
+                                            </div>
                                         </div>
                                         
-                                        <div class="bg-yellow-50 p-4 rounded-lg border border-yellow-200">
-                                            <p class="font-medium text-gray-800 mb-2">3. An element X with atomic number 17 has 18 neutrons. Calculate its mass number.</p>
-                                            <details class="mt-2">
-                                                <summary class="text-sm text-blue-600 cursor-pointer hover:text-blue-800">Check Answer</summary>
-                                                <div class="mt-2 text-sm text-gray-700 bg-white p-3 rounded">
-                                                    <p><strong>Solution:</strong></p>
-                                                    <p>Mass Number (A) = Z + N</p>
-                                                    <p>A = 17 + 18 = <strong>35</strong></p>
-                                                    <p class="text-gray-500 mt-1">Atomic number 17 = Chlorine (Cl). This is Chlorine-35 (³⁵Cl)</p>
+                                        <!-- Problem 3 -->
+                                        <div class="bg-white p-4 rounded-lg border">
+                                            <p class="font-medium text-gray-800 mb-3">3. An atom has 26 protons and 30 neutrons. What is its atomic number and mass number?</p>
+                                            <div class="space-y-3">
+                                                <div>
+                                                    <label class="block text-sm font-medium text-gray-700 mb-1">Your Workings</label>
+                                                    <textarea id="workings3" rows="3" class="w-full p-2 border rounded-md text-sm" placeholder="Show your steps here...
+Hint: Z = number of protons"></textarea>
                                                 </div>
-                                            </details>
-                                        </div>
-                                        
-                                        <div class="bg-yellow-50 p-4 rounded-lg border border-yellow-200">
-                                            <p class="font-medium text-gray-800 mb-2">4. An atom has 26 protons and 30 neutrons. What is its atomic number and mass number?</p>
-                                            <details class="mt-2">
-                                                <summary class="text-sm text-blue-600 cursor-pointer hover:text-blue-800">Check Answer</summary>
-                                                <div class="mt-2 text-sm text-gray-700 bg-white p-3 rounded">
-                                                    <p><strong>Solution:</strong></p>
-                                                    <p>Atomic Number (Z) = Number of protons = <strong>26</strong></p>
-                                                    <p>Mass Number (A) = Z + N = 26 + 30 = <strong>56</strong></p>
-                                                    <p class="text-gray-500 mt-1">Atomic number 26 = Iron (Fe). This is Iron-56 (⁵⁶Fe)</p>
+                                                <div class="grid grid-cols-2 gap-2">
+                                                    <div>
+                                                        <label class="block text-sm font-medium text-gray-700 mb-1">Atomic Number (Z)</label>
+                                                        <input type="text" id="answer3z" placeholder="e.g., 26" class="w-full p-2 border rounded-md text-sm">
+                                                    </div>
+                                                    <div>
+                                                        <label class="block text-sm font-medium text-gray-700 mb-1">Mass Number (A)</label>
+                                                        <input type="text" id="answer3a" placeholder="e.g., 56" class="w-full p-2 border rounded-md text-sm">
+                                                    </div>
                                                 </div>
-                                            </details>
+                                                <button onclick="checkIndependentAnswer3()" class="w-full bg-blue-600 text-white font-semibold py-2 rounded-md hover:bg-blue-700 transition">Check Answer</button>
+                                                <p id="independent-feedback3" class="text-sm mt-2"></p>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -1396,27 +1447,75 @@
                                         </div>
                                     </div>
                                     
-                                    <div class="space-y-3">
-                                        <div class="bg-yellow-50 p-4 rounded-lg border border-yellow-200">
-                                            <p class="font-medium text-gray-800 mb-2">5. An atom of Nitrogen-14 has atomic number 7. How many neutrons does it have?</p>
-                                            <details class="mt-2">
-                                                <summary class="text-sm text-blue-600 cursor-pointer hover:text-blue-800">Check Answer</summary>
-                                                <div class="mt-2 text-sm text-gray-700 bg-white p-3 rounded">
-                                                    <p>Neutrons = A - Z = 14 - 7 = <strong>7 neutrons</strong></p>
-                                                </div>
-                                            </details>
-                                        </div>
+                                    <!-- Interactive Practice for Neutrons -->
+                                    <div class="bg-green-50 p-4 rounded-lg border border-green-200 mb-4">
+                                        <h4 class="font-semibold text-green-800 mb-3">📝 Guided Practice:</h4>
+                                        <p class="text-gray-800 mb-3 font-medium">An atom of Nitrogen-14 has atomic number 7. How many neutrons does it have?</p>
                                         
-                                        <div class="bg-yellow-50 p-4 rounded-lg border border-yellow-200">
-                                            <p class="font-medium text-gray-800 mb-2">6. Chlorine-35 has atomic number 17. How many protons, electrons (in neutral atom), and neutrons does it have?</p>
-                                            <details class="mt-2">
-                                                <summary class="text-sm text-blue-600 cursor-pointer hover:text-blue-800">Check Answer</summary>
-                                                <div class="mt-2 text-sm text-gray-700 bg-white p-3 rounded">
-                                                    <p><strong>Protons:</strong> 17 (equals atomic number)</p>
-                                                    <p><strong>Electrons:</strong> 17 (neutral atom)</p>
-                                                    <p><strong>Neutrons:</strong> 35 - 17 = <strong>18 neutrons</strong></p>
+                                        <div class="space-y-4">
+                                            <!-- Step 1 -->
+                                            <div class="bg-white p-3 rounded-lg border">
+                                                <p class="text-sm text-gray-600 mb-2"><strong>Step 1:</strong> What is the mass number (A)?</p>
+                                                <div class="flex items-center gap-3">
+                                                    <input type="text" id="step1-neutron" placeholder="Enter A..." class="flex-grow p-2 border rounded-md text-sm">
+                                                    <button onclick="checkStepNeutron(1)" class="px-4 py-2 bg-green-200 text-green-700 rounded-md hover:bg-green-300 text-sm font-medium">Check</button>
                                                 </div>
-                                            </details>
+                                                <p id="feedback1-neutron" class="text-xs mt-2"></p>
+                                            </div>
+                                            
+                                            <!-- Step 2 -->
+                                            <div class="bg-white p-3 rounded-lg border">
+                                                <p class="text-sm text-gray-600 mb-2"><strong>Step 2:</strong> What is the atomic number (Z)?</p>
+                                                <div class="flex items-center gap-3">
+                                                    <input type="text" id="step2-neutron" placeholder="Enter Z..." class="flex-grow p-2 border rounded-md text-sm">
+                                                    <button onclick="checkStepNeutron(2)" class="px-4 py-2 bg-green-200 text-green-700 rounded-md hover:bg-green-300 text-sm font-medium">Check</button>
+                                                </div>
+                                                <p id="feedback2-neutron" class="text-xs mt-2"></p>
+                                            </div>
+                                            
+                                            <!-- Step 3 -->
+                                            <div class="bg-white p-3 rounded-lg border">
+                                                <p class="text-sm text-gray-600 mb-2"><strong>Step 3:</strong> Calculate Neutrons (N = A - Z)</p>
+                                                <div class="flex items-center gap-3">
+                                                    <input type="text" id="step3-neutron" placeholder="Enter N..." class="flex-grow p-2 border rounded-md text-sm">
+                                                    <button onclick="checkStepNeutron(3)" class="px-4 py-2 bg-green-200 text-green-700 rounded-md hover:bg-green-300 text-sm font-medium">Check</button>
+                                                </div>
+                                                <p id="feedback3-neutron" class="text-xs mt-2"></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- Independent Practice -->
+                                    <div class="bg-blue-50 p-4 rounded-lg border border-blue-200">
+                                        <h4 class="font-semibold text-blue-800 mb-3">🎯 Independent Practice:</h4>
+                                        
+                                        <div class="bg-white p-4 rounded-lg border">
+                                            <p class="font-medium text-gray-800 mb-3">Chlorine-35 has atomic number 17. How many protons, electrons (in neutral atom), and neutrons does it have?</p>
+                                            <div class="space-y-3">
+                                                <div>
+                                                    <label class="block text-sm font-medium text-gray-700 mb-1">Your Workings</label>
+                                                    <textarea id="workingsNeutron" rows="3" class="w-full p-2 border rounded-md text-sm" placeholder="Show your steps here...
+Protons = Z = ...
+Electrons = Protons (neutral atom) = ...
+Neutrons = A - Z = ..."></textarea>
+                                                </div>
+                                                <div class="grid grid-cols-3 gap-2">
+                                                    <div>
+                                                        <label class="block text-sm font-medium text-gray-700 mb-1">Protons</label>
+                                                        <input type="text" id="protonsAnswer" placeholder="17" class="w-full p-2 border rounded-md text-sm">
+                                                    </div>
+                                                    <div>
+                                                        <label class="block text-sm font-medium text-gray-700 mb-1">Electrons</label>
+                                                        <input type="text" id="electronsAnswer" placeholder="17" class="w-full p-2 border rounded-md text-sm">
+                                                    </div>
+                                                    <div>
+                                                        <label class="block text-sm font-medium text-gray-700 mb-1">Neutrons</label>
+                                                        <input type="text" id="neutronsAnswer" placeholder="18" class="w-full p-2 border rounded-md text-sm">
+                                                    </div>
+                                                </div>
+                                                <button onclick="checkNeutronPractice()" class="w-full bg-blue-600 text-white font-semibold py-2 rounded-md hover:bg-blue-700 transition">Check Answer</button>
+                                                <p id="neutron-feedback" class="text-sm mt-2"></p>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -1971,6 +2070,139 @@
             const superscripts = {'0': '⁰', '1': '¹', '2': '²', '3': '³', '4': '⁴', '5': '⁵', '6': '⁶', '7': '⁷', '8': '⁸', '9': '⁹'};
             return String(num).split('').map(d => superscripts[d] || d).join('');
         }
+
+        // ========================================
+        // Interactive Practice Functions
+        // ========================================
+        
+        // Mass Number Practice - Guided
+        window.checkStepMass = function(step) {
+            const feedback = document.getElementById('feedback' + step + '-mass');
+            const input = document.getElementById('step' + step + '-mass');
+            if (!feedback || !input) return;
+            
+            const value = input.value.trim();
+            let correct = false;
+            let message = '';
+            
+            if (step === 1) {
+                correct = value === '20';
+                message = correct ? '✅ Correct! Z = 20' : '❌ Not quite. The atomic number (Z) is given as 20.';
+            } else if (step === 2) {
+                correct = value === '20';
+                message = correct ? '✅ Correct! N = 20' : '❌ Not quite. The number of neutrons (N) is given as 20.';
+            } else if (step === 3) {
+                correct = value === '40';
+                message = correct ? '✅ Correct! A = Z + N = 20 + 20 = 40. This is Calcium-40 (⁴⁰Ca)!' : '❌ Not quite. Mass Number = Z + N = 20 + 20 = 40.';
+            }
+            
+            feedback.innerHTML = message;
+            feedback.className = 'text-xs mt-2 ' + (correct ? 'text-green-600 font-medium' : 'text-red-600');
+        };
+        
+        // Mass Number Practice - Independent
+        window.checkIndependentAnswer = function(problemNum, correctAnswer) {
+            const input = document.getElementById('answer' + problemNum);
+            const feedback = document.getElementById('independent-feedback' + problemNum);
+            if (!input || !feedback) return;
+            
+            const value = input.value.trim();
+            // Extract numbers from the answer
+            const numbers = value.match(/\d+/g);
+            const answer = numbers ? parseInt(numbers[numbers.length - 1]) : null;
+            
+            if (answer === correctAnswer) {
+                feedback.innerHTML = '✅ <strong>Correct!</strong> Well done!';
+                feedback.className = 'text-sm mt-2 text-green-600 font-medium';
+            } else {
+                feedback.innerHTML = '❌ Not quite. Check your calculation: A = Z + N';
+                feedback.className = 'text-sm mt-2 text-red-600';
+            }
+        };
+        
+        // Problem 3 - has both Z and A
+        window.checkIndependentAnswer3 = function() {
+            const zInput = document.getElementById('answer3z');
+            const aInput = document.getElementById('answer3a');
+            const feedback = document.getElementById('independent-feedback3');
+            if (!zInput || !aInput || !feedback) return;
+            
+            const z = zInput.value.trim();
+            const a = aInput.value.trim();
+            
+            const zCorrect = z === '26';
+            const aCorrect = a === '56';
+            
+            if (zCorrect && aCorrect) {
+                feedback.innerHTML = '✅ <strong>Correct!</strong> Z = 26 (Iron) and A = 56. This is Iron-56 (⁵⁶Fe)!';
+                feedback.className = 'text-sm mt-2 text-green-600 font-medium';
+            } else if (zCorrect) {
+                feedback.innerHTML = '⚠️ Z is correct (26), but A = 26 + 30 = 56. Try again!';
+                feedback.className = 'text-sm mt-2 text-amber-600';
+            } else if (aCorrect) {
+                feedback.innerHTML = '⚠️ A is correct (56), but Z = number of protons = 26. Try again!';
+                feedback.className = 'text-sm mt-2 text-amber-600';
+            } else {
+                feedback.innerHTML = '❌ Z = number of protons = 26, and A = Z + N = 26 + 30 = 56';
+                feedback.className = 'text-sm mt-2 text-red-600';
+            }
+        };
+        
+        // Neutron Practice - Guided
+        window.checkStepNeutron = function(step) {
+            const feedback = document.getElementById('feedback' + step + '-neutron');
+            const input = document.getElementById('step' + step + '-neutron');
+            if (!feedback || !input) return;
+            
+            const value = input.value.trim();
+            let correct = false;
+            let message = '';
+            
+            if (step === 1) {
+                correct = value === '14';
+                message = correct ? '✅ Correct! A = 14 (from Nitrogen-14)' : '❌ Not quite. The mass number is 14 (from Nitrogen-14).';
+            } else if (step === 2) {
+                correct = value === '7';
+                message = correct ? '✅ Correct! Z = 7' : '❌ Not quite. The atomic number (Z) is given as 7.';
+            } else if (step === 3) {
+                correct = value === '7';
+                message = correct ? '✅ Correct! N = A - Z = 14 - 7 = 7 neutrons!' : '❌ Not quite. Neutrons = A - Z = 14 - 7 = 7.';
+            }
+            
+            feedback.innerHTML = message;
+            feedback.className = 'text-xs mt-2 ' + (correct ? 'text-green-600 font-medium' : 'text-red-600');
+        };
+        
+        // Neutron Practice - Independent
+        window.checkNeutronPractice = function() {
+            const protonsInput = document.getElementById('protonsAnswer');
+            const electronsInput = document.getElementById('electronsAnswer');
+            const neutronsInput = document.getElementById('neutronsAnswer');
+            const feedback = document.getElementById('neutron-feedback');
+            
+            if (!protonsInput || !electronsInput || !neutronsInput || !feedback) return;
+            
+            const protons = protonsInput.value.trim();
+            const electrons = electronsInput.value.trim();
+            const neutrons = neutronsInput.value.trim();
+            
+            const pCorrect = protons === '17';
+            const eCorrect = electrons === '17';
+            const nCorrect = neutrons === '18';
+            
+            let message = '';
+            let allCorrect = pCorrect && eCorrect && nCorrect;
+            
+            if (allCorrect) {
+                message = '✅ <strong>Perfect!</strong> Protons = 17, Electrons = 17, Neutrons = 18. This is Chlorine-35 (³⁵Cl)!';
+                feedback.className = 'text-sm mt-2 text-green-600 font-medium';
+            } else {
+                message = '❌ Check your answers: Protons = Z = 17, Electrons = Protons (neutral) = 17, Neutrons = A - Z = 35 - 17 = 18';
+                feedback.className = 'text-sm mt-2 text-red-600';
+            }
+            
+            feedback.innerHTML = message;
+        };
 
         init();
     </script>
