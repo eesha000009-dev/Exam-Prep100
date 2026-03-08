@@ -999,16 +999,36 @@
                                     </h3>
                                     
                                     <div class="bg-gradient-to-br from-green-50 to-emerald-100 p-4 rounded-xl mb-4">
+                                        
+                                        <!-- Standard Element Notation Model -->
+                                        <div class="text-center mb-6">
+                                            <p class="text-sm text-gray-600 mb-2 font-medium">Standard Element Notation:</p>
+                                            <div class="inline-flex items-center justify-center bg-white px-8 py-4 rounded-xl shadow-lg border-2 border-emerald-300">
+                                                <div class="relative" style="min-width: 60px;">
+                                                    <!-- Mass Number (A) - superscript left -->
+                                                    <span class="absolute -top-3 -left-1 text-lg font-bold text-green-600" id="massNotationTop">21</span>
+                                                    <!-- Element Symbol -->
+                                                    <span class="text-5xl font-bold text-gray-800" id="elementNotationSymbol">Sc</span>
+                                                    <!-- Atomic Number (Z) - subscript left -->
+                                                    <span class="absolute -bottom-1 -left-1 text-lg font-bold text-blue-600" id="atomicNotationBottom">15</span>
+                                                </div>
+                                            </div>
+                                            <p class="text-xs text-gray-500 mt-2">
+                                                <span class="text-green-600 font-semibold">A (Mass Number)</span> is the superscript, 
+                                                <span class="text-blue-600 font-semibold">Z (Atomic Number)</span> is the subscript
+                                            </p>
+                                        </div>
+                                        
                                         <!-- Formula Display -->
                                         <div class="text-center mb-4">
                                             <div class="inline-flex items-center gap-4 bg-white px-6 py-4 rounded-lg shadow-lg border-2 border-green-300">
                                                 <div class="text-center">
-                                                    <div class="text-3xl font-bold text-green-700" id="aValueDisplay">12</div>
+                                                    <div class="text-3xl font-bold text-green-700" id="aValueDisplay">21</div>
                                                     <div class="text-xs text-gray-600">Mass Number (A)</div>
                                                 </div>
                                                 <div class="text-2xl text-gray-400">=</div>
                                                 <div class="text-center">
-                                                    <div class="text-3xl font-bold text-red-600" id="zPartDisplay">6</div>
+                                                    <div class="text-3xl font-bold text-red-600" id="zPartDisplay">15</div>
                                                     <div class="text-xs text-gray-600">Protons (Z)</div>
                                                 </div>
                                                 <div class="text-2xl text-gray-400">+</div>
@@ -1023,8 +1043,8 @@
                                         <div class="grid md:grid-cols-2 gap-4 mb-4">
                                             <div class="bg-white rounded-lg p-3">
                                                 <label class="block text-sm font-medium text-red-700 mb-1">Protons (Z):</label>
-                                                <input type="range" id="protonSliderA" min="1" max="20" value="6" class="w-full h-2 bg-red-200 rounded-lg appearance-none cursor-pointer" oninput="updateMassNumber()">
-                                                <div class="text-center text-red-700 font-bold" id="protonValA">6</div>
+                                                <input type="range" id="protonSliderA" min="1" max="20" value="15" class="w-full h-2 bg-red-200 rounded-lg appearance-none cursor-pointer" oninput="updateMassNumber()">
+                                                <div class="text-center text-red-700 font-bold" id="protonValA">15</div>
                                             </div>
                                             <div class="bg-white rounded-lg p-3">
                                                 <label class="block text-sm font-medium text-gray-700 mb-1">Neutrons (N):</label>
@@ -1053,14 +1073,9 @@
                                             </div>
                                         </div>
                                         
-                                        <!-- Element notation -->
-                                        <div id="elementNotation" class="mt-4 text-center bg-white rounded-lg p-4">
-                                            <div class="inline-block relative px-4">
-                                                <div class="absolute -top-1 left-0 text-xs text-blue-600" id="atomicNotation">6</div>
-                                                <div class="absolute -top-1 right-0 text-xs text-gray-600" id="massNotation">12</div>
-                                                <div class="text-4xl font-bold mt-2" id="elementNotationSymbol">C</div>
-                                            </div>
-                                            <p class="text-sm text-gray-600 mt-2" id="notationExplain">This is Carbon-12 (¹²C)</p>
+                                        <!-- Element name -->
+                                        <div class="mt-4 text-center">
+                                            <p class="text-sm text-gray-600" id="notationExplain">This is Scandium-21 (²¹Sc)</p>
                                         </div>
                                     </div>
                                     
@@ -1900,25 +1915,32 @@
             const n = parseInt(nSlider.value);
             const a = z + n;
             
+            // Update slider values display
             const protonVal = document.getElementById('protonValA');
             const neutronVal = document.getElementById('neutronValA');
+            if (protonVal) protonVal.textContent = z;
+            if (neutronVal) neutronVal.textContent = n;
+            
+            // Update formula display
             const zPart = document.getElementById('zPartDisplay');
             const nPart = document.getElementById('nPartDisplay');
             const aDisplay = document.getElementById('aValueDisplay');
-            const massNotation = document.getElementById('massNotation');
-            const atomicNotation = document.getElementById('atomicNotation');
-            const symbolNotation = document.getElementById('elementNotationSymbol');
-            const notationExplain = document.getElementById('notationExplain');
-            
-            if (protonVal) protonVal.textContent = z;
-            if (neutronVal) neutronVal.textContent = n;
             if (zPart) zPart.textContent = z;
             if (nPart) nPart.textContent = n;
             if (aDisplay) aDisplay.textContent = a;
-            if (massNotation) massNotation.textContent = a;
-            if (atomicNotation) atomicNotation.textContent = z;
+            
+            // Update element notation model
+            const massNotationTop = document.getElementById('massNotationTop');
+            const atomicNotationBottom = document.getElementById('atomicNotationBottom');
+            const symbolNotation = document.getElementById('elementNotationSymbol');
+            const notationExplain = document.getElementById('notationExplain');
+            
+            if (massNotationTop) massNotationTop.textContent = a;
+            if (atomicNotationBottom) atomicNotationBottom.textContent = z;
             if (symbolNotation && elementSymbols[z]) symbolNotation.textContent = elementSymbols[z];
-            if (notationExplain && elementFullNames[z]) notationExplain.textContent = 'This is ' + elementFullNames[z] + '-' + a;
+            if (notationExplain && elementFullNames[z]) {
+                notationExplain.textContent = 'This is ' + elementFullNames[z] + '-' + a + ' (' + superscriptNum(a) + elementSymbols[z] + ')';
+            }
             
             // Draw dots function
             function drawDots(containerId, count, colorClass) {
@@ -1941,8 +1963,14 @@
             
             drawDots('protonDotsA', z, 'bg-red-500');
             drawDots('neutronDotsA', n, 'bg-gray-400');
-            drawDots('totalDotsA', Math.min(a, 30), 'bg-green-500');
+            drawDots('totalDotsA', a, 'bg-green-500');
         };
+        
+        // Helper function to create superscript numbers
+        function superscriptNum(num) {
+            const superscripts = {'0': '⁰', '1': '¹', '2': '²', '3': '³', '4': '⁴', '5': '⁵', '6': '⁶', '7': '⁷', '8': '⁸', '9': '⁹'};
+            return String(num).split('').map(d => superscripts[d] || d).join('');
+        }
 
         init();
     </script>
