@@ -1,359 +1,749 @@
+// JAMB Economics Past Questions
+// Properly formatted to match CBT application structure
+
 if (!jambQuestions) var jambQuestions = {};
 
 jambQuestions["Economics"] = {
-  years: ["2010", "2011", "2012", "2013", "2014", "2015", "2016", "2017", "2018"],
+  years: ["2018", "2019", "2020", "2021", "2022", "2023", "2024"],
   questionsByYear: {
-    "2010": [
-      {
-        question: "Which Economics question paper type is given to you?",
-        options: {
-          A: "Type A",           B: "Type B",           C: "Type C",           D: "Type D"
+    "2024": [
+        {
+            question: "Which question paper type of Economics is given to you?",
+            options: ["Type A", "Type B", "Type C", "Type D"],
+            correctAnswer: 0
         },
-        answer: "C"
-      },
-      {
-        question: "Economics is the study of human behaviour as it relates to the",
-        options: {
-          A: "efficient allocation of resources",           B: "production of goods",           C: "operation of companies",           D: "generation of income"
+        {
+            question: "Economics is best defined as the study of:",
+            options: ["Money", "Business", "Scarcity and choice", "Markets"],
+            correctAnswer: 2
         },
-        answer: "A"
-      },
-      {
-        question: "The downturn in the prices of shares on stock markets is a highlight of",
-        options: {
-          A: "efficient allocation of resources",           B: "the invisible hand",           C: "the regulatory nature of the market",           D: "consumer rationality"
+        {
+            question: "The basic economic problem is:",
+            options: ["Unemployment", "Scarcity", "Inflation", "Poverty"],
+            correctAnswer: 1
         },
-        answer: "B"
-      },
-      {
-        question: "If = 6 and N = 6, determine the value of ∑fx",
-        options: {
-          A: "36",           B: "12",           C: "1",           D: "72 <!-- --"
+        {
+            question: "Which of the following is a factor of production?",
+            options: ["Money", "Capital", "Profit", "Price"],
+            correctAnswer: 1
         },
-        answer: "A"
-      },
-      {
-        question: "The standard deviation of a set of data is",
-        options: {
-          A: "always measured from the mode",           B: "the most representative of averages",           C: "always measured from the median",           D: "a measure of dispersion"
+        {
+            question: "Opportunity cost is best described as:",
+            options: ["The cost of production", "The alternative foregone", "The selling price", "The cost price"],
+            correctAnswer: 1
         },
-        answer: "D"
-      },
-      {
-        question: "The mean is the best measure of central tendency because it",
-        options: {
-          A: "is not affected by extreme values in a data",           B: "is a midpoint value in an array of data",           C: "is a balancing point in an observation",           D: "can be calculated from incomplete data"
+        {
+            question: "The law of demand states that:",
+            options: ["Price and quantity demanded move in same direction", "Price and quantity demanded move in opposite directions", "Price affects supply", "Demand creates supply"],
+            correctAnswer: 1
         },
-        answer: "B"
-      },
-      {
-        question: "The most popular sizes of dresses and shoes are determined by the",
-        options: {
-          A: "range",           B: "mean",           C: "mode",           D: "median"
+        {
+            question: "A demand curve slopes downward from left to right because of:",
+            options: ["Increasing marginal utility", "Diminishing marginal utility", "Constant marginal utility", "Increasing price"],
+            correctAnswer: 1
         },
-        answer: "A"
-      },
-      {
-        question: "If the demand for a good is more elastic than its supply, the tax burden is borne",
-        options: {
-          A: "equally by consumers and producers",           B: "more by producers",           C: "more by consumers",           D: "more by retailers and producers"
+        {
+            question: "Which of the following will shift the demand curve to the right?",
+            options: ["Increase in price", "Decrease in income", "Increase in population", "Decrease in taste"],
+            correctAnswer: 2
         },
-        answer: "C"
-      },
-      {
-        question: "If the price of a commodity with elastic demand increases, the revenue accruing to the producer will",
-        options: {
-          A: "double",           B: "increase",           C: "be constant",           D: "decrease"
+        {
+            question: "The supply curve shows the relationship between:",
+            options: ["Price and demand", "Price and quantity supplied", "Income and demand", "Cost and output"],
+            correctAnswer: 1
         },
-        answer: "C"
-      },
-      {
-        question: "An excess demand for beans will result from",
-        options: {
-          A: "an increase in the price of beans",           B: "a decrease in the price of beans",           C: "an increase in the supply of beans",           D: "a decrease in the supply of beans"
+        {
+            question: "Equilibrium price is the price at which:",
+            options: ["Demand equals supply", "Demand exceeds supply", "Supply exceeds demand", "There is surplus"],
+            correctAnswer: 0
         },
-        answer: "A"
-      },
-      {
-        question: "Consumer surplus tends to be higher when demand is",
-        options: {
-          A: "inelastic",           B: "perfectly elastic",           C: "elastic",           D: "unitarily elastic"
+        {
+            question: "A surplus occurs when:",
+            options: ["Quantity demanded equals quantity supplied", "Quantity supplied exceeds quantity demanded", "Quantity demanded exceeds quantity supplied", "Price is at equilibrium"],
+            correctAnswer: 1
         },
-        answer: "C"
-      },
-      {
-        question: "One of the assumptions of ordinal utility theory is that",
-        options: {
-          A: "choice is not consistent",           B: "utility can be ranked",           C: "total utility is a function of price",           D: "satisfaction is measurable"
+        {
+            question: "Price elasticity of demand measures:",
+            options: ["Change in price", "Responsiveness of demand to price changes", "Change in supply", "Responsiveness of supply to price changes"],
+            correctAnswer: 1
         },
-        answer: "D"
-      },
-      {
-        question: "The law of diminishing marginal utility explains why",
-        options: {
-          A: "the slope of a normal demand curve is negative",           B: "an abnormal demand curve slopes upwards",           C: "the slope of a normal demand curve is positive",           D: "the consumption of inferior goods increases with income"
+        {
+            question: "Demand is said to be elastic when elasticity is:",
+            options: ["Equal to zero", "Less than one", "Equal to one", "Greater than one"],
+            correctAnswer: 3
         },
-        answer: "B"
-      },
-      {
-        question: "If a consumer plans to spend 120k on four oranges but spent 80k, his consumer surplus is",
-        options: {
-          A: "₦1.50",           B: "₦0.40",           C: "₦1.00",           D: "₦2.00"
+        {
+            question: "Which type of goods have negative income elasticity?",
+            options: ["Normal goods", "Inferior goods", "Luxury goods", "Necessities"],
+            correctAnswer: 1
         },
-        answer: "C"
-      },
-      {
-        question: "A set of factors that can shift the supply curve are changes in",
-        options: {
-          A: "weather, price and technology",           B: "technology, weather and population",           C: "technology, price and taste",           D: "population, price and taste"
+        {
+            question: "The production possibility curve shows:",
+            options: ["All possible prices", "All possible combinations of output", "Market equilibrium", "Consumer preferences"],
+            correctAnswer: 1
         },
-        answer: "A"
-      },
-      {
-        question: "If the coefficient of price elasticity of supply is greater than one, the supply is said to be",
-        options: {
-          A: "perfectly elastic",           B: "fairly inelastic",           C: "infinitely inelastic",           D: "fairly elastic"
+        {
+            question: "Division of labor leads to:",
+            options: ["Increased production time", "Decreased efficiency", "Increased efficiency", "Higher costs"],
+            correctAnswer: 2
         },
-        answer: "C"
-      },
-      {
-        question: "If commodity X is a by-product of commodity Y, this implies that both commodities are",
-        options: {
-          A: "in competitive supply",           B: "in composite supply",           C: "jointly supplied",           D: "in excess supply"
+        {
+            question: "The law of diminishing returns states that:",
+            options: ["Output increases indefinitely", "Output eventually decreases with more variable input", "Fixed factors increase output", "Variable factors are unlimited"],
+            correctAnswer: 1
         },
-        answer: "C"
-      },
-      {
-        question: "In perfect competition, price is determined by the",
-        options: {
-          A: "government",           B: "sellers",           C: "buyers",           D: "market"
+        {
+            question: "A firm's total cost equals:",
+            options: ["Fixed cost minus variable cost", "Fixed cost plus variable cost", "Variable cost only", "Average cost times output"],
+            correctAnswer: 1
         },
-        answer: "D"
-      },
-      {
-        question: "In order to reduce hardship faced by consumers due to high prices government can introduce",
-        options: {
-          A: "maximum prices",           B: "commodity boards",           C: "minimum prices",           D: "price control boards"
+        {
+            question: "Marginal cost is the:",
+            options: ["Cost per unit", "Cost of the last unit produced", "Total cost divided by output", "Fixed cost per unit"],
+            correctAnswer: 1
         },
-        answer: "D"
-      },
-      {
-        question: "Average product is less than marginal product when",
-        options: {
-          A: "there is constant returns to scale",           B: "there is increasing returns to scale",           C: "there is decreasing returns to scale",           D: "diminishing returns set in"
+        {
+            question: "Perfect competition is characterized by:",
+            options: ["Few sellers", "Many buyers and sellers", "Product differentiation", "Barriers to entry"],
+            correctAnswer: 1
         },
-        answer: "D"
-      },
-      {
-        question: "A firm enjoying economies of scale is said to be",
-        options: {
-          A: "reducing average cost as production increases",           B: "benefiting from the activities of other firms",           C: "maximizing profits as production increases",           D: "having an upward-sloping average cost curve"
+        {
+            question: "A monopoly market has:",
+            options: ["Many sellers", "One seller", "Few sellers", "No sellers"],
+            correctAnswer: 1
         },
-        answer: "A"
-      },
-      {
-        question: "The rising portion of the long-run average cost curve of a firm is an indication that it is experiencing",
-        options: {
-          A: "increasing efficiency",           B: "economies of scale",           C: "diseconomies of scale",           D: "increasing marginal returns"
+        {
+            question: "National income is defined as:",
+            options: ["Total money in circulation", "Total value of goods and services produced in a year", "Total government revenue", "Total exports"],
+            correctAnswer: 1
         },
-        answer: "A"
-      },
-      {
-        question: "An industry\\\'s supply curve is more likely to be elastic when firms are",
-        options: {
-          A: "enjoying free entry and exit",           B: "operating at full capacity",           C: "operating below capacity",           D: "maximizing profits"
+        {
+            question: "Gross Domestic Product (GDP) measures:",
+            options: ["Income of citizens abroad", "Total output within a country", "Government revenue", "Total imports"],
+            correctAnswer: 1
         },
-        answer: "C"
-      },
-      {
-        question: "One of the characteristics of monopolistic competition is that",
-        options: {
-          A: "there is mobility of factors of production",           B: "no single seller dominates the market",           C: "the firms are price-takers",           D: "consumers have perfect knowledge of price"
+        {
+            question: "Per capita income is calculated as:",
+            options: ["National income × population", "National income ÷ population", "Population ÷ national income", "GDP × population"],
+            correctAnswer: 1
         },
-        answer: "C"
-      },
-      {
-        question: "The demand curve for factors of production",
-        options: {
-          A: "is perfect elastic",           B: "slopes upwards",           C: "slopes of downwards",           D: "is perfectly inelastic"
+        {
+            question: "Inflation is best described as:",
+            options: ["Increase in money supply", "General increase in price level", "Decrease in production", "Increase in unemployment"],
+            correctAnswer: 1
         },
-        answer: ""
-      },
-      {
-        question: "An agreement among firms on price and segmentation is termed",
-        options: {
-          A: "cartel",           B: "collusion",           C: "haggling",           D: "specialization"
+        {
+            question: "Which of the following is a function of money?",
+            options: ["Store of value only", "Medium of exchange only", "Medium of exchange, store of value, and unit of account", "Unit of account only"],
+            correctAnswer: 2
         },
-        answer: ""
-      },
-      {
-        question: "In national income accounting, tax is determined by the",
-        options: {
-          A: "level of income",           B: "level of consumption",           C: "level of investment \\` D. rate of savings",           D: ""
+        {
+            question: "The central bank controls money supply through:",
+            options: ["Open market operations", "Setting prices", "Controlling production", "Managing imports"],
+            correctAnswer: 0
         },
-        answer: ""
-      },
-      {
-        question: "A decrease in aggregate spending in an economy will ultimately lead to",
-        options: {
-          A: "boom",           B: "inflation",           C: "deflation",           D: "recession"
+        {
+            question: "A tariff is a:",
+            options: ["Subsidy on exports", "Tax on imports", "Payment to domestic producers", "Free trade agreement"],
+            correctAnswer: 1
         },
-        answer: ""
-      },
-      {
-        question: "If MPC is 0.7 while government expenditure increased by ₦ 150m, the equilibrium national income is",
-        options: {
-          A: "₦ 214 million",           B: "₦ 45 million",           C: "₦ 105 million",           D: "₦ 500 million"
+        {
+            question: "Balance of payments consists of:",
+            options: ["Current account only", "Capital account only", "Current and capital accounts", "Trade balance only"],
+            correctAnswer: 2
         },
-        answer: ""
-      },
-      {
-        question: "The function of money which makes division of labour possible is its",
-        options: {
-          A: "unit of account",           B: "store of value",           C: "medium of exchange",           D: "standard of deferred payment"
+        {
+            question: "Devaluation of currency leads to:",
+            options: ["Increase in imports", "Decrease in exports", "Increase in exports", "No change in trade"],
+            correctAnswer: 2
+        }
+    ],
+    "2023": [
+        {
+            question: "Which question paper type of Economics is given to you?",
+            options: ["Type A", "Type B", "Type C", "Type D"],
+            correctAnswer: 1
         },
-        answer: ""
-      },
-      {
-        question: "By buying treasury bills, the Central Bank of Nigeria intends to",
-        options: {
-          A: "increase money supply in the economy",           B: "reduce the cash reserve ratio for banks",           C: "reduce money supply in the economy",           D: "increase the capital base of commercial banks"
+        {
+            question: "Economics is a:",
+            options: ["Natural science", "Social science", "Physical science", "Biological science"],
+            correctAnswer: 1
         },
-        answer: ""
-      },
-      {
-        question: "The velocity of money is represented as",
-        options: {
-          A: "Money supply Real GDP",           B: "Real GDP Money supply",           C: "Nominal GDP Money supply",           D: "Real GDP Nominal GDP <!-- --"
+        {
+            question: "Human wants are:",
+            options: ["Limited", "Unlimited", "Constant", "Predictable"],
+            correctAnswer: 1
         },
-        answer: ""
-      },
-      {
-        question: "One of the functions of commercial banks is",
-        options: {
-          A: "maintaining stable price in the economy",           B: "regulating monetary policies",           C: "granting loans to customers",           D: "issuing bank notes and coins"
+        {
+            question: "Which is NOT a characteristic of labor?",
+            options: ["It is mobile", "It is perishable", "It can be stored", "It requires training"],
+            correctAnswer: 2
         },
-        answer: ""
-      },
-      {
-        question: "A strategy for curbing unemployment is to",
-        options: {
-          A: "implement government stabilization policy",           B: "increase taxes and decrease government expenditure",           C: "increase government expenditure and decrease taxes",           D: "ensure even distribution of job opportunities"
+        {
+            question: "Capital as a factor of production refers to:",
+            options: ["Money only", "Man-made goods used in production", "Natural resources", "Human effort"],
+            correctAnswer: 1
         },
-        answer: ""
-      },
-      {
-        question: "In Nigeria, the distribution of job opportunities",
-        options: {
-          A: "balanced budgeting",           B: "deficit budgeting",           C: "surplus budgeting",           D: "zero budgeting"
+        {
+            question: "The reward for entrepreneurship is:",
+            options: ["Wages", "Rent", "Interest", "Profit"],
+            correctAnswer: 3
         },
-        answer: ""
-      },
-      {
-        question: "National development plans in Nigeria fail mainly because of",
-        options: {
-          A: "overdependence on foreign aids",           B: "inadequate funding of projects",           C: "poor implementation strategies",           D: "shortage of skilled manpower"
+        {
+            question: "A production possibility curve is concave to the origin because of:",
+            options: ["Increasing opportunity cost", "Constant opportunity cost", "Decreasing opportunity cost", "Zero opportunity cost"],
+            correctAnswer: 0
         },
-        answer: ""
-      },
-      {
-        question: "The ultimate aim of agricultural policies in Nigeria is to achieve",
-        options: {
-          A: "food sufficiency",           B: "industrialization",           C: "full employment",           D: "industrial capacity utilization"
+        {
+            question: "Scale of preference is important because it helps:",
+            options: ["Producers to produce more", "Consumers to make rational choices", "Government to tax", "Markets to function"],
+            correctAnswer: 1
         },
-        answer: ""
-      },
-      {
-        question: "Government can boost agricultural output in Nigeria primarily by",
-        options: {
-          A: "embarking on buffer stock programmes",           B: "placing embargo on food importation",           C: "granting subsidies on farm inputs",           D: "placing farmers on monthly income"
+        {
+            question: "When demand is perfectly inelastic, the demand curve is:",
+            options: ["Horizontal", "Vertical", "Downward sloping", "Upward sloping"],
+            correctAnswer: 1
         },
-        answer: ""
-      },
-      {
-        question: "Localization of industries refers to the",
-        options: {
-          A: "spread of firms producing different products",           B: "siting of industries near the market",           C: "concentration of firms of an industry",           D: "siting of firms producing different products"
+        {
+            question: "Cross elasticity of demand measures the responsiveness of demand to:",
+            options: ["Income changes", "Price changes of related goods", "Own price changes", "Supply changes"],
+            correctAnswer: 1
         },
-        answer: ""
-      },
-      {
-        question: "In developing countries, governments influence the location of industries in order to",
-        options: {
-          A: "spread development",           B: "redistribute wealth",           C: "encourage entrepreneurs",           D: "encourage industries to earn high profits"
+        {
+            question: "Two goods are substitutes if their cross elasticity is:",
+            options: ["Negative", "Zero", "Positive", "Infinite"],
+            correctAnswer: 2
         },
-        answer: ""
-      },
-      {
-        question: "A disadvantage of Nigeria\\\'s dependence on imported petroleum products is the",
-        options: {
-          A: "instability in the demand for the products",           B: "dominance of multinational firms",           C: "instability in the supply of the product",           D: "poor maintenance of the refineries"
+        {
+            question: "Which market structure has product differentiation?",
+            options: ["Perfect competition", "Monopoly", "Monopolistic competition", "Duopoly"],
+            correctAnswer: 2
         },
-        answer: ""
-      },
-      {
-        question: "The maximum number of shareholders for a limited liability company\\\'s is",
-        options: {
-          A: "twenty",           B: "five",           C: "seven",           D: "infinite"
+        {
+            question: "Price discrimination is possible under:",
+            options: ["Perfect competition", "Monopoly", "Monopolistic competition", "Oligopoly"],
+            correctAnswer: 1
         },
-        answer: ""
-      },
-      {
-        question: "The primary motive for an individual engaging in production is to",
-        options: {
-          A: "make profit",           B: "satisfy basic human wants",           C: "redistribute wealth",           D: "put inputs into use ## Use the table below to answer question 44 and 45."
+        {
+            question: "A firm is said to be in equilibrium when:",
+            options: ["MC = MR", "MC > MR", "MC < MR", "MR = 0"],
+            correctAnswer: 0
         },
-        answer: ""
-      },
-      {
-        question: "What is the population growth rate in 2003?",
-        options: {
-          A: "33.3%",           B: "20.0%",           C: "11.0%",           D: "50%"
+        {
+            question: "Public goods are characterized by:",
+            options: ["Excludability and rivalry", "Non-excludability and non-rivalry", "Excludability only", "Rivalry only"],
+            correctAnswer: 1
         },
-        answer: ""
-      },
-      {
-        question: "The percentage of working population in 2002 is?",
-        options: {
-          A: "50%",           B: "25%",           C: "8%",           D: "80%"
+        {
+            question: "Privatization refers to:",
+            options: ["Government ownership", "Private ownership of public enterprises", "State control", "Nationalization"],
+            correctAnswer: 1
         },
-        answer: ""
-      },
-      {
-        question: "One of the characteristics of free trade zone is",
-        options: {
-          A: "common tariff against non- member countries",           B: "different trade policies of non- member countries",           C: "free factor mobility within the zone",           D: "harmonized trade among member countries"
+        {
+            question: "Which of the following is a direct tax?",
+            options: ["Sales tax", "Value added tax", "Personal income tax", "Excise duty"],
+            correctAnswer: 2
         },
-        answer: ""
-      },
-      {
-        question: "If Nigeria imports vehicles from Japan the transaction will appear as a",
-        options: {
-          A: "debit on Japan\\\'s balance of payments",           B: "credit on Japan\\\'s balance of payments",           C: "credit on Nigeria\\\'s balance of trade",           D: "credit on Nigeria\\\'s balance of payment"
+        {
+            question: "An indirect tax is:",
+            options: ["Paid directly to government", "Shifted to consumers", "Not shifted", "Based on income"],
+            correctAnswer: 1
         },
-        answer: ""
-      },
-      {
-        question: "One of the objectives of ADB is to",
-        options: {
-          A: "provide subsidies on imported goods to member countries",           B: "mobilize short-term loans for member countries",           C: "promote economic and social development of member countries",           D: "provide technical assistance to only poor member countries"
+        {
+            question: "Budget deficit occurs when:",
+            options: ["Revenue exceeds expenditure", "Expenditure exceeds revenue", "Revenue equals expenditure", "There is no expenditure"],
+            correctAnswer: 1
         },
-        answer: ""
-      },
-      {
-        question: "The choice of the method of production in an economy is determined by the",
-        options: {
-          A: "level of technical know-how",           B: "rate of population growth",           C: "availability of natural resources",           D: "level of income"
+        {
+            question: "The most liquid form of money is:",
+            options: ["Bank deposits", "Currency notes", "Treasury bills", "Bonds"],
+            correctAnswer: 1
         },
-        answer: ""
-      },
-      {
-        question: "The amount of labour hired depends on the",
-        options: {
-          A: "number of skilled labour available",           B: "skill of labour",           C: "marginal productivity of labour",           D: "price of the inputs"
+        {
+            question: "Demand-pull inflation is caused by:",
+            options: ["Increase in aggregate demand", "Decrease in money supply", "Increase in taxes", "Decrease in government spending"],
+            correctAnswer: 0
         },
-        answer: ""
-      }
+        {
+            question: "Cost-push inflation results from:",
+            options: ["Increase in money supply", "Increase in production costs", "Decrease in demand", "Increase in productivity"],
+            correctAnswer: 1
+        },
+        {
+            question: "International trade occurs because of:",
+            options: ["Self-sufficiency", "Comparative advantage", "Isolation", "Trade barriers"],
+            correctAnswer: 1
+        },
+        {
+            question: "Terms of trade refer to:",
+            options: ["Volume of exports", "Ratio of export prices to import prices", "Balance of trade", "Trade agreements"],
+            correctAnswer: 1
+        }
+    ],
+    "2022": [
+        {
+            question: "Which question paper type of Economics is given to you?",
+            options: ["Type A", "Type B", "Type C", "Type D"],
+            correctAnswer: 2
+        },
+        {
+            question: "Scarcity in economics means:",
+            options: ["Shortage of goods", "Limited resources relative to wants", "High prices", "Low production"],
+            correctAnswer: 1
+        },
+        {
+            question: "Land as a factor of production includes:",
+            options: ["Buildings only", "Natural resources", "Machinery", "Human skills"],
+            correctAnswer: 1
+        },
+        {
+            question: "The reward for land is:",
+            options: ["Wages", "Interest", "Rent", "Profit"],
+            correctAnswer: 2
+        },
+        {
+            question: "Which is a characteristic of free goods?",
+            options: ["They have price", "They are scarce", "They are abundant and free", "They are produced"],
+            correctAnswer: 2
+        },
+        {
+            question: "A change in price causes:",
+            options: ["Shift in demand curve", "Movement along demand curve", "Shift in supply curve", "No effect on demand"],
+            correctAnswer: 1
+        },
+        {
+            question: "Giffen goods have:",
+            options: ["Positive income effect", "Negative income effect", "Zero income effect", "Normal demand curve"],
+            correctAnswer: 1
+        },
+        {
+            question: "Price floor is a:",
+            options: ["Maximum price", "Minimum price", "Equilibrium price", "Market price"],
+            correctAnswer: 1
+        },
+        {
+            question: "A price ceiling is set:",
+            options: ["Above equilibrium price", "Below equilibrium price", "At equilibrium price", "By producers"],
+            correctAnswer: 1
+        },
+        {
+            question: "Fixed costs are costs that:",
+            options: ["Change with output", "Do not change with output", "Are always zero", "Vary with price"],
+            correctAnswer: 1
+        },
+        {
+            question: "Average cost equals:",
+            options: ["TC/Q", "TC × Q", "MC/Q", "TC - FC"],
+            correctAnswer: 0
+        },
+        {
+            question: "The break-even point is where:",
+            options: ["TR > TC", "TR < TC", "TR = TC", "MC = MR"],
+            correctAnswer: 2
+        },
+        {
+            question: "Monopolistic competition has:",
+            options: ["Many sellers", "One seller", "Few sellers", "No sellers"],
+            correctAnswer: 0
+        },
+        {
+            question: "Collusion is common in:",
+            options: ["Perfect competition", "Monopoly", "Oligopoly", "Monopolistic competition"],
+            correctAnswer: 2
+        },
+        {
+            question: "Labour force includes:",
+            options: ["All population", "Working population", "Children only", "Elderly only"],
+            correctAnswer: 1
+        },
+        {
+            question: "Unemployment rate is calculated as:",
+            options: ["Employed ÷ Population", "Unemployed ÷ Labour force", "Labour force ÷ Population", "Employed ÷ Unemployed"],
+            correctAnswer: 1
+        },
+        {
+            question: "GNP differs from GDP by including:",
+            options: ["Net factor income from abroad", "Exports", "Imports", "Government spending"],
+            correctAnswer: 0
+        },
+        {
+            question: "Depreciation in national income refers to:",
+            options: ["Increase in capital value", "Decrease in capital value", "Transfer payments", "Interest payments"],
+            correctAnswer: 1
+        },
+        {
+            question: "A progressive tax system means:",
+            options: ["Same rate for all", "Higher income, higher rate", "Lower income, higher rate", "No taxes for the rich"],
+            correctAnswer: 1
+        },
+        {
+            question: "Quota is a:",
+            options: ["Tax on imports", "Physical limit on imports", "Subsidy", "Free trade measure"],
+            correctAnswer: 1
+        },
+        {
+            question: "Exchange rate is the:",
+            options: ["Interest rate", "Rate at which currencies exchange", "Inflation rate", "Tax rate"],
+            correctAnswer: 1
+        },
+        {
+            question: "A trade surplus occurs when:",
+            options: ["Imports exceed exports", "Exports exceed imports", "Imports equal exports", "There is no trade"],
+            correctAnswer: 1
+        }
+    ],
+    "2021": [
+        {
+            question: "Which question paper type of Economics is given to you?",
+            options: ["Type A", "Type B", "Type C", "Type D"],
+            correctAnswer: 3
+        },
+        {
+            question: "The study of individual economic units is called:",
+            options: ["Macroeconomics", "Microeconomics", "Positive economics", "Normative economics"],
+            correctAnswer: 1
+        },
+        {
+            question: "Choice arises because of:",
+            options: ["Abundance", "Scarcity", "Efficiency", "Technology"],
+            correctAnswer: 1
+        },
+        {
+            question: "The reward for capital is:",
+            options: ["Rent", "Wages", "Interest", "Profit"],
+            correctAnswer: 2
+        },
+        {
+            question: "Specialization increases productivity because of:",
+            options: ["Increased fatigue", "Division of labor", "Less training", "Higher costs"],
+            correctAnswer: 1
+        },
+        {
+            question: "A normal good has income elasticity that is:",
+            options: ["Negative", "Zero", "Positive", "Infinite"],
+            correctAnswer: 2
+        },
+        {
+            question: "When two goods are complements, their cross elasticity is:",
+            options: ["Positive", "Negative", "Zero", "Infinite"],
+            correctAnswer: 1
+        },
+        {
+            question: "Supply is elastic when elasticity is:",
+            options: ["Less than one", "Equal to one", "Greater than one", "Equal to zero"],
+            correctAnswer: 2
+        },
+        {
+            question: "The short run in economics is a period when:",
+            options: ["All factors are variable", "At least one factor is fixed", "All factors are fixed", "No production occurs"],
+            correctAnswer: 1
+        },
+        {
+            question: "The law of variable proportions is also called:",
+            options: ["Law of demand", "Law of diminishing returns", "Law of supply", "Law of utility"],
+            correctAnswer: 1
+        },
+        {
+            question: "Average revenue is the same as:",
+            options: ["Total revenue", "Marginal revenue", "Price", "Total cost"],
+            correctAnswer: 2
+        },
+        {
+            question: "In perfect competition, firms are:",
+            options: ["Price makers", "Price takers", "Price discriminators", "Monopolists"],
+            correctAnswer: 1
+        },
+        {
+            question: "A monopoly may arise from:",
+            options: ["Many sellers", "Patents and licenses", "Free entry", "Homogeneous products"],
+            correctAnswer: 1
+        },
+        {
+            question: "The consumer price index measures:",
+            options: ["Export prices", "Import prices", "Cost of living", "Stock prices"],
+            correctAnswer: 2
+        },
+        {
+            question: "Disposable income is:",
+            options: ["Gross income", "Income after taxes", "Total income", "Investment income"],
+            correctAnswer: 1
+        },
+        {
+            question: "The multiplier effect relates to:",
+            options: ["Price changes", "Income changes from initial spending", "Supply changes", "Demand changes"],
+            correctAnswer: 1
+        },
+        {
+            question: "Commercial banks create money through:",
+            options: ["Printing currency", "Lending deposits", "Government orders", "Central bank"],
+            correctAnswer: 1
+        },
+        {
+            question: "The discount rate is the rate at which:",
+            options: ["Banks lend to public", "Central bank lends to commercial banks", "Public saves", "Government borrows"],
+            correctAnswer: 1
+        },
+        {
+            question: "A trade deficit means:",
+            options: ["Exports > Imports", "Imports > Exports", "Exports = Imports", "No trade"],
+            correctAnswer: 1
+        }
+    ],
+    "2020": [
+        {
+            question: "Which question paper type of Economics is given to you?",
+            options: ["Type A", "Type B", "Type C", "Type D"],
+            correctAnswer: 0
+        },
+        {
+            question: "The three basic economic questions are:",
+            options: ["What, how, and for whom to produce", "When, where, and why", "Who, when, and how", "Why, what, and when"],
+            correctAnswer: 0
+        },
+        {
+            question: "Utility refers to:",
+            options: ["Usefulness of a good", "Satisfaction from consumption", "Price of a good", "Cost of production"],
+            correctAnswer: 1
+        },
+        {
+            question: "Total utility is maximum when:",
+            options: ["Marginal utility is positive", "Marginal utility is zero", "Marginal utility is negative", "Average utility is zero"],
+            correctAnswer: 1
+        },
+        {
+            question: "An increase in the price of a substitute leads to:",
+            options: ["Decrease in demand", "Increase in demand", "No change in demand", "Increase in supply"],
+            correctAnswer: 1
+        },
+        {
+            question: "The market equilibrium price is determined by:",
+            options: ["Government", "Interaction of demand and supply", "Sellers only", "Buyers only"],
+            correctAnswer: 1
+        },
+        {
+            question: "Economies of scale refer to:",
+            options: ["Increasing costs with size", "Decreasing costs with size", "Constant costs", "Fixed costs"],
+            correctAnswer: 1
+        },
+        {
+            question: "Diseconomies of scale occur when:",
+            options: ["Costs fall with output", "Costs rise with output", "Costs are constant", "Output falls"],
+            correctAnswer: 1
+        },
+        {
+            question: "In oligopoly, there are:",
+            options: ["One seller", "Many sellers", "Few sellers", "No sellers"],
+            correctAnswer: 2
+        },
+        {
+            question: "The population census helps in:",
+            options: ["Tax collection", "Economic planning", "Price control", "Trade policy"],
+            correctAnswer: 1
+        },
+        {
+            question: "Underemployment occurs when:",
+            options: ["People have no jobs", "People work below capacity", "People work overtime", "Wages are low"],
+            correctAnswer: 1
+        },
+        {
+            question: "Frictional unemployment is caused by:",
+            options: ["Economic recession", "Movement between jobs", "Seasonal factors", "Technology changes"],
+            correctAnswer: 1
+        },
+        {
+            question: "Capital formation is also called:",
+            options: ["Investment", "Savings", "Consumption", "Production"],
+            correctAnswer: 0
+        },
+        {
+            question: "Regressive tax means:",
+            options: ["Higher income, lower rate", "Higher income, higher rate", "Same rate for all", "No tax for the poor"],
+            correctAnswer: 0
+        },
+        {
+            question: "Fiscal policy involves the use of:",
+            options: ["Interest rates", "Government spending and taxation", "Exchange rates", "Money supply"],
+            correctAnswer: 1
+        },
+        {
+            question: "Monetary policy is controlled by:",
+            options: ["Commercial banks", "Central bank", "Government", "Stock exchange"],
+            correctAnswer: 1
+        },
+        {
+            question: "Import substitution means:",
+            options: ["Importing more", "Producing locally what was imported", "Exporting more", "Reducing exports"],
+            correctAnswer: 1
+        },
+        {
+            question: "Economic development differs from economic growth because it includes:",
+            options: ["GDP only", "Structural and institutional changes", "Population only", "Exports only"],
+            correctAnswer: 1
+        }
+    ],
+    "2019": [
+        {
+            question: "Which question paper type of Economics is given to you?",
+            options: ["Type A", "Type B", "Type C", "Type D"],
+            correctAnswer: 1
+        },
+        {
+            question: "Positive economics deals with:",
+            options: ["Value judgments", "Facts and data", "Moral issues", "Political views"],
+            correctAnswer: 1
+        },
+        {
+            question: "Normative economics involves:",
+            options: ["Facts only", "Value judgments", "Statistics only", "Market analysis"],
+            correctAnswer: 1
+        },
+        {
+            question: "The difference between total revenue and total cost is:",
+            options: ["Average cost", "Profit", "Marginal cost", "Price"],
+            correctAnswer: 1
+        },
+        {
+            question: "Variable costs include:",
+            options: ["Rent", "Raw materials", "Insurance", "Depreciation"],
+            correctAnswer: 1
+        },
+        {
+            question: "The firm shuts down in the short run when:",
+            options: ["Price equals average cost", "Price is below average variable cost", "Price is above average cost", "Revenue equals cost"],
+            correctAnswer: 1
+        },
+        {
+            question: "Price leadership is a feature of:",
+            options: ["Perfect competition", "Monopoly", "Oligopoly", "Monopolistic competition"],
+            correctAnswer: 2
+        },
+        {
+            question: "Factor market deals with:",
+            options: ["Consumer goods", "Factors of production", "Imported goods", "Exported goods"],
+            correctAnswer: 1
+        },
+        {
+            question: "A trade union primarily aims to:",
+            options: ["Maximize profits", "Improve workers' conditions", "Increase production", "Control prices"],
+            correctAnswer: 1
+        },
+        {
+            question: "Efficiency wage theory suggests that:",
+            options: ["Lower wages increase productivity", "Higher wages increase productivity", "Wages do not affect productivity", "Government sets wages"],
+            correctAnswer: 1
+        },
+        {
+            question: "Net national product equals:",
+            options: ["GNP + Depreciation", "GNP - Depreciation", "GDP + Depreciation", "GDP - Taxes"],
+            correctAnswer: 1
+        },
+        {
+            question: "Transfer payments are:",
+            options: ["Payments for goods", "Payments for services", "Payments without exchange", "Investment income"],
+            correctAnswer: 2
+        },
+        {
+            question: "Demand-pull inflation is associated with:",
+            options: ["Cost increases", "Excess demand", "Supply reduction", "Tax increases"],
+            correctAnswer: 1
+        },
+        {
+            question: "Structural unemployment results from:",
+            options: ["Seasonal changes", "Changes in economic structure", "Job transitions", "Cyclical factors"],
+            correctAnswer: 1
+        },
+        {
+            question: "Agriculture contributes to the economy through:",
+            options: ["Food supply only", "Raw materials and foreign exchange", "Employment only", "Taxes only"],
+            correctAnswer: 1
+        },
+        {
+            question: "Industrialization leads to:",
+            options: ["Rural-urban migration", "Decreased production", "Lower employment", "Reduced trade"],
+            correctAnswer: 0
+        }
+    ],
+    "2018": [
+        {
+            question: "Which question paper type of Economics is given to you?",
+            options: ["Type A", "Type B", "Type C", "Type D"],
+            correctAnswer: 2
+        },
+        {
+            question: "Wants are different from needs because wants are:",
+            options: ["Essential", "Unlimited desires", "Basic", "Limited"],
+            correctAnswer: 1
+        },
+        {
+            question: "Economic goods have:",
+            options: ["Zero price", "Opportunity cost", "No value", "Unlimited supply"],
+            correctAnswer: 1
+        },
+        {
+            question: "The slope of the supply curve is usually:",
+            options: ["Negative", "Positive", "Zero", "Infinite"],
+            correctAnswer: 1
+        },
+        {
+            question: "Joint demand refers to demand for:",
+            options: ["One good", "Two or more goods used together", "Substitutes", "Luxury goods"],
+            correctAnswer: 1
+        },
+        {
+            question: "Composite demand is demand for:",
+            options: ["One good with multiple uses", "Many goods", "Substitute goods", "Complementary goods"],
+            correctAnswer: 0
+        },
+        {
+            question: "Producer surplus is the difference between:",
+            options: ["What producers receive and minimum they would accept", "Cost and revenue", "Supply and demand", "Price and cost"],
+            correctAnswer: 0
+        },
+        {
+            question: "Consumer surplus is the difference between:",
+            options: ["Price and cost", "What consumers are willing to pay and what they actually pay", "Supply and demand", "Income and expenditure"],
+            correctAnswer: 1
+        },
+        {
+            question: "A firm in perfect competition earns normal profit when:",
+            options: ["AR > AC", "AR = AC", "AR < AC", "MR > MC"],
+            correctAnswer: 1
+        },
+        {
+            question: "Natural monopoly occurs when:",
+            options: ["Many firms exist", "One firm can supply at lower cost", "Government controls", "There is competition"],
+            correctAnswer: 1
+        },
+        {
+            question: "The Lorenz curve shows:",
+            options: ["Price changes", "Income distribution", "Supply curve", "Demand curve"],
+            correctAnswer: 1
+        },
+        {
+            question: "Gini coefficient measures:",
+            options: ["Economic growth", "Income inequality", "Price level", "Money supply"],
+            correctAnswer: 1
+        },
+        {
+            question: "A progressive tax system aims to:",
+            options: ["Burden the poor more", "Reduce income inequality", "Increase government revenue only", "Discourage work"],
+            correctAnswer: 1
+        },
+        {
+            question: "Double coincidence of wants is a problem in:",
+            options: ["Money economy", "Barter economy", "Capitalist economy", "Socialist economy"],
+            correctAnswer: 1
+        },
+        {
+            question: "Open market operations involve:",
+            options: ["Buying and selling by central bank", "Free trade", "Private transactions", "Government purchases"],
+            correctAnswer: 0
+        },
+        {
+            question: "Export promotion policy aims to:",
+            options: ["Reduce exports", "Increase exports", "Increase imports", "Reduce production"],
+            correctAnswer: 1
+        }
     ]
   }
 };
