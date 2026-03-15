@@ -1,0 +1,2485 @@
+if (!jambQuestions) var jambQuestions = {};
+
+jambQuestions["Physics"] = {
+  years: ["2010", "2011", "2012", "2013", "2014", "2015", "2016", "2017", "2018"],
+  questionsByYear: {
+    "2010": [
+      {
+        number: 1,
+        question: "Which Physics Question Paper Type is given to you?",
+        options: ["Type A", "Type B", "Type C", "Type D"],
+        answer: "B"
+      },
+      {
+        number: 2,
+        question: "Two cars moving in the same direction have speeds of 100kmh⁻¹ and 130kmh⁻¹. What is the velocity of the faster car as measured by an observer in the slower car?",
+        options: ["130 kmh⁻¹", "230 kmh⁻¹", "200 kmh⁻¹", "30 kmh⁻¹"],
+        answer: "D"
+      },
+      {
+        number: 3,
+        question: "The diagram shows a velocity-time graph. The statement that is true about this motion is that, the car",
+        options: ["decelerates between points F and H", "accelerates between points F and G", "has a constant speed between points E and F", "has no acceleration between point F and G"],
+        answer: "D"
+      },
+      {
+        number: 4,
+        question: "A stone and a feather dropped from the same height above the earth surface. Ignoring air resistance, which of the following is correct?",
+        options: ["The stone and feather will both reach the ground at the same time.", "The stone will reach the ground first", "The feather will reach the ground first", "The feather will be blown away by the wind while stone will drop steadily."],
+        answer: "A"
+      },
+      {
+        number: 5,
+        question: "A car moves with an initial velocity of 25 ms⁻¹ and reaches a velocity of 45 ms⁻¹ in 10s. What is the acceleration of the car?",
+        options: ["5 ms⁻²", "25 ms⁻²", "20 ms⁻²", "2 ms⁻²"],
+        answer: "D"
+      },
+      {
+        number: 6,
+        question: "An object is weighed at different locations on the earth. What will be the right observation?",
+        options: ["Both the mass and weight vary", "The weight is constant while the mass varies", "The mass is constant while the weight varies", "Both the mass and weight are constant."],
+        answer: "C"
+      },
+      {
+        number: 7,
+        question: "The diagram represents balls in an undulating surface. Which of the following options represents positions of stable equilibrium?",
+        options: ["II, V and VIII", "I, II and VII", "III, VI and IX", "III, IV and VIII"],
+        answer: "C"
+      },
+      {
+        number: 8,
+        question: "A bob of weight 0.1N hangs from a massless string of length 50cm. A variable horizontal force which increases from zero is applied to pull the bob until the string makes an angle of 60° with the vertical. The work done is",
+        options: ["0.250 J", "0.025 J", "0.050 J", "0.500 J"],
+        answer: "B"
+      },
+      {
+        number: 9,
+        question: "The surfaces of conveyor belts are made rough so as to",
+        options: ["prevent the load from slipping", "make them stronger", "enable them to carry more load", "protect them while carrying load."],
+        answer: "A"
+      },
+      {
+        number: 10,
+        question: "A machine of velocity ratio 6 requires an effort of 400N to raise a load of 800N through 1m. Find the efficiency of the machine.",
+        options: ["50%", "22.2%", "33.3%", "55.6%"],
+        answer: "C"
+      },
+      {
+        number: 11,
+        question: "If a wire 30cm long is extended to 30.5cm by a force of 300N. Find the strain energy of the wire.",
+        options: ["7.50 J", "750.00 J", "75.00 J", "0.75 J"],
+        answer: "D"
+      },
+      {
+        number: 12,
+        question: "In a hydraulic press, the pump piston exerts a pressure of 100 Pa on the liquid. What force is exerted in the second piston of cross-sectional area 3 m²?",
+        options: ["200 N", "100 N", "150 N", "300 N"],
+        answer: "D"
+      },
+      {
+        number: 13,
+        question: "The accurate measurement of the relative density of a substance in its powered form is done with a beam balance and",
+        options: ["an eureka can", "a burette", "a pipette", "a density bottle."],
+        answer: "D"
+      },
+      {
+        number: 14,
+        question: "A hydrometer is an instrument used in measuring",
+        options: ["density of liquid", "relative density of a liquid", "relative humidity of a liquid", "vapour pressure of a fluid"],
+        answer: "A"
+      },
+      {
+        number: 15,
+        question: "One special advantage of alcohol water over mercury as a thermometric liquid is its",
+        options: ["low freezing point", "low boiling point", "high specific heat capacity", "low density."],
+        answer: "D"
+      },
+      {
+        number: 16,
+        question: "Two metals P and Q of lengths l₁ and l₂ are heated through the same temperature difference. If the ratio of the linear expansivities of P to Q is 2:3 and the ratio of their lengths is 3:4. What is the ratio of increase in lengths of P to Q?",
+        options: ["5:7", "2:1", "1:2", "7:5"],
+        answer: "C"
+      },
+      {
+        number: 17,
+        question: "The density of a certain oil on frying becomes 0.4kgm⁻³ with a volume of 20m⁻³. What will be its initial volume when its initial density is 0.8kgm⁻³ assuming no loss of oil due to spillage?",
+        options: ["10 kgm⁻³", "5 kgm⁻³", "8 kgm⁻³", "12 kgm⁻³"],
+        answer: "A"
+      },
+      {
+        number: 18,
+        question: "Heat is radiated by all hot objects in the form of",
+        options: ["light energy", "solar energy", "infrared ray", "x-rays."],
+        answer: "C"
+      },
+      {
+        number: 19,
+        question: "If a container is filled with ice to the brim, what happens to the level of water when the ice completely melts?",
+        options: ["The water in the glass outflows.", "The level of water drops.", "The level of water remains unchanged", "The level of water goes up."],
+        answer: "B"
+      },
+      {
+        number: 20,
+        question: "The small droplet of water that forms on the grass in the early hours of the morning is",
+        options: ["dew", "mist", "fog", "hail."],
+        answer: "A"
+      },
+      {
+        number: 21,
+        question: "A vapour is said to be saturated when",
+        options: ["a dynamic equilibrium exists such that more molecules return to the liquid than are leaving it.", "the vapour pressure is atmospheric", "the temperature of the vapour varies", "a dynamic equilibrium exists between liquid molecules and the vapour molecules."],
+        answer: "D"
+      },
+      {
+        number: 22,
+        question: "The pressure of one mole of an ideal gas of volume 10⁻²m³ at a temperature of 27°C is [Molar gas constant = 8.3 Jmol⁻¹K⁻¹]",
+        options: ["2.24 x 10⁴ Nm⁻²", "2.24 x 10⁵ Nm⁻¹", "2.49 x 10⁵ Nm⁻¹", "2.49 x 10⁴ Nm⁻¹."],
+        answer: "C"
+      },
+      {
+        number: 23,
+        question: "Which of the following has no effect on radiation?",
+        options: ["density.", "temperature.", "surface area.", "nature of the surface."],
+        answer: "A"
+      },
+      {
+        number: 24,
+        question: "The wavelength of a wave travelling with a velocity of 420ms⁻¹ is 42m. What is its period?",
+        options: ["1.0s", "0.1s", "0.5s", "1.2s"],
+        answer: "B"
+      },
+      {
+        number: 25,
+        question: "The sound of an electric bell dies down slowly when air is slowly pumped out from a bottle because",
+        options: ["sound cannot pass through the bottle", "sound can pass through a vacuum", "sound needs a material medium", "the wavelength of sound becomes greater in the bottle."],
+        answer: "D"
+      },
+      {
+        number: 26,
+        question: "During a thunderstorm, the sound is heard over a long time. This phenomenon is referred to as",
+        options: ["refraction of sound", "reverberation", "superposition", "diffraction of sound."],
+        answer: "B"
+      },
+      {
+        number: 27,
+        question: "The velocity of sound in air at 16°C is 340ms⁻¹. What will it be when the pressure is doubled and its temperature raised to 127°C?",
+        options: ["4,000ms⁻¹", "160,000 ms⁻¹", "8,000 ms⁻¹", "400 ms⁻¹"],
+        answer: "D"
+      },
+      {
+        number: 28,
+        question: "In comparing the camera and the human eye, the film of the camera functions as the",
+        options: ["iris", "pupil", "cornea", "retina"],
+        answer: "D"
+      },
+      {
+        number: 29,
+        question: "An object 4 cm high is placed 15 cm from a concave mirror of focal length 5 cm. The size of the image is",
+        options: ["3 cm", "5 cm", "4 cm", "2 cm"],
+        answer: "D"
+      },
+      {
+        number: 30,
+        question: "An object is embedded in a block of ice, 10cm below the plane surface. If the refractive index of the ice is 1.50, the apparent depth of the object below the surface is",
+        options: ["6.7 cm", "7.63 cm", "7.50 cm", "2.50 cm"],
+        answer: "A"
+      },
+      {
+        number: 31,
+        question: "Which of the following is used for the correction of short-sightedness?",
+        options: ["Concave lens.", "Concave mirror.", "Convex mirror.", "Convex lens."],
+        answer: "A"
+      },
+      {
+        number: 32,
+        question: "Dispersion occurs when white light passes through a glass prism because of the",
+        options: ["different speeds of the colours in the glass.", "high density of the glass.", "defects in the glass.", "different hidden colours in the glass."],
+        answer: "A"
+      },
+      {
+        number: 33,
+        question: "When a positively charged rod is brought nearer the cap of a positively charged electroscope, the leaves divergence will.",
+        options: ["converge", "remain constant", "diverge", "be induced."],
+        answer: "C"
+      },
+      {
+        number: 34,
+        question: "Three capacitors of capacitance, 2µF, 4µF and 8µF are connected in parallel and a p.d of 6V is maintained across each capacitor, the total energy stored is",
+        options: ["6.90 x 10⁻⁶ J", "6.90 x 10⁻⁴ J", "2.52 x 10⁻⁴ J", "2.52 x 10⁻⁶ J"],
+        answer: "C"
+      },
+      {
+        number: 35,
+        question: "A cell of emf 12V and internal resistance 4Ω is connected to an external resistor of resistance 2Ω. Find the current flow.",
+        options: ["4 A", "2 A", "3 A", "5 A"],
+        answer: "B"
+      },
+      {
+        number: 36,
+        question: "The diagram shows a balanced metre bridge. The value of x is",
+        options: ["66.7 cm", "25.0 cm", "33.3 cm", "75.0 cm"],
+        answer: "C"
+      },
+      {
+        number: 37,
+        question: "Three 4Ω resistors connected in parallel have a potential difference of 16V applied across them. What is the total current in the circuit?",
+        options: ["12 A", "8 A", "10 A", "14 A"],
+        answer: "A"
+      },
+      {
+        number: 38,
+        question: "In the diagram, a 200 W bulb is lighted by a 240 V a.c mains supply. If 1kWh is sold at N40, the cost of keeping the bulb lighted for a day is.",
+        options: ["N 192.00", "N 1.92", "N 19.20", "N 1,920.00."],
+        answer: "A"
+      },
+      {
+        number: 39,
+        question: "Power supply is transmitted at a very high voltage and low current in order to",
+        options: ["increase the power supply", "prevent overheating of the coil", "make it travel fast", "make it pass through the transformers."],
+        answer: "B"
+      },
+      {
+        number: 40,
+        question: "In the diagram, if the south-poles of two magnets stroke a steel bar, the polarities at T and V will respectively be",
+        options: ["north and south", "south and south", "north and north", "south and north."],
+        answer: "C"
+      },
+      {
+        number: 41,
+        question: "A galvanometer with full-scale deflection of 10mA is to be converted to a voltmeter with full-scale deflection of 5 V. If a series resistance of 498Ω is used for the conversion, the resistance of the galvanometer is",
+        options: ["2 Ω", "10 Ω", "5 Ω", "1 Ω"],
+        answer: "A"
+      },
+      {
+        number: 42,
+        question: "Two inductors of inductances 5 mH and 15mH are connected in series and a current of 5A flows through them. The total energy stored in the inductors is",
+        options: ["250.0 J", "50.0 J", "62.5 J", "500.0 J"],
+        answer: "A"
+      },
+      {
+        number: 43,
+        question: "In alternating current circuit at resonance, the angle of lead or lag is",
+        options: ["90°", "0°", "45°", "180°"],
+        answer: "A"
+      },
+      {
+        number: 44,
+        question: "In Faraday's law of electrolysis, a graph of mass deposited against the quantity of electricity is plotted. The slope of the graph gives",
+        options: ["the electrochemical equivalent", "the charge released", "the current flowing", "the energy released"],
+        answer: "A"
+      },
+      {
+        number: 45,
+        question: "In a discharge tube, most of the gas is pumped out so that electricity is conducted at",
+        options: ["steady voltage", "high pressure", "low pressure", "low voltage."],
+        answer: "B"
+      },
+      {
+        number: 46,
+        question: "The radioisotope ²³⁵U decays by emitting two alpha particles, three beta particles and a gamma ray. What is the mass and atomic numbers of the resulting daughter element?",
+        options: ["91 and 227", "92 and 238", "227 and 91", "215 and 88."],
+        answer: "A"
+      },
+      {
+        number: 47,
+        question: "The ground state energy for a hydrogen atom is 5.44 x 10⁻¹⁹ J. If an electron drops from zero to ground state, calculate the frequency of the emitted radiation [h = 6.6 x 10⁻³⁴ Js]",
+        options: ["2.0 x 10¹⁶Hz", "2.0 x 10¹⁵Hz", "5.0 x 10¹⁵Hz", "5.0 x 10¹⁶Hz"],
+        answer: "NO OPTION"
+      },
+      {
+        number: 48,
+        question: "Transistors are used for the",
+        options: ["conversion of a.c. to d.c.", "conversion of d.c. to a.c.", "amplification of signals", "rectification of signals."],
+        answer: "C"
+      },
+      {
+        number: 49,
+        question: "A typical transistor characteristic is represented as",
+        options: ["Graph A", "Graph B", "Graph C", "Graph D"],
+        answer: "C"
+      },
+      {
+        number: 50,
+        question: "Which of the following is a pure semiconductor?",
+        options: ["Silicon", "Phosphorus", "Transistor", "Carbon"],
+        answer: "A"
+      }
+    ],
+    "2011": [
+      {
+        number: 1,
+        question: "Which Question Paper Type of Physics is given to you?",
+        options: ["Type A", "Type B", "Type C", "Type D."],
+        answer: "C"
+      },
+      {
+        number: 2,
+        question: "A carpenter on top of a roof 20.m high dropped a hammer of mass 1.5kg and it fell freely to the ground. The kinetic energy of the hammer just before hitting the ground is....... [g = 10ms⁻²]",
+        options: ["450 J", "600 J", "150 J", "300 J"],
+        answer: "A"
+      },
+      {
+        number: 3,
+        question: "Two balls X and Y weighing 5g and 50kg respectively were thrown up vertically at the same time with a velocity of 100ms⁻¹. How will their positions be one second later?",
+        options: ["X and Y will both be 500m from the point of throw", "X and Y will be 500m from each other", "Y will be 500 m ahead of X", "X will be 500m ahead of Y."],
+        answer: "B"
+      },
+      {
+        number: 4,
+        question: "A man standing on a lift that is descending does not feel any weight because",
+        options: ["there is no gravitational pull on the man in the lift", "the inside of the lift is air tight", "the lift is in vacuum", "there is no reaction from the floor of the lift."],
+        answer: "A"
+      },
+      {
+        number: 5,
+        question: "The diagram shows two vectors at right angles to each other. The value of the resultant vector is",
+        options: ["13.0 N", "14.0 N", "10.0 N", "12.0 N."],
+        answer: "D"
+      },
+      {
+        number: 6,
+        question: "An object of mass 2kg moves with a velocity of 10ms⁻¹ round a circle of radius 4m. Calculate the centripetal force on the object.",
+        options: ["40 N", "25 N", "100 N", "50 N"],
+        answer: "A"
+      },
+      {
+        number: 7,
+        question: "If it takes an object 3s to fall freely to the ground from a certain height, what is the distance covered by the object? [g = 10ms⁻²]",
+        options: ["60 m", "90 m", "30 m", "45 m."],
+        answer: "A"
+      },
+      {
+        number: 8,
+        question: "The diagrams show the positions of a cone. The position which can be described as neutral equilibrium is represented as",
+        options: ["Y and X", "Z only", "X only", "Y and Z."],
+        answer: "C"
+      },
+      {
+        number: 9,
+        question: "If a tube of small radius opened at both ends is placed in a liquid, the liquid will",
+        options: ["rise above the liquid level if the liquid does not wet the glass", "remain at the same level irrespective of whether the liquid wets the glass or not", "fall below the liquid level if the liquid wets the glass", "fall below the liquid level if the liquid does not wet the glass."],
+        answer: "A"
+      },
+      {
+        number: 10,
+        question: "I. Density of the liquid II. Depth below the surface of the liquid. III. Surface area of the liquid. In which of the statement above will pressure be dependent?",
+        options: ["I and III only", "I and II only", "II and III only", "I, II and III."],
+        answer: "A"
+      },
+      {
+        number: 11,
+        question: "I. High thermal capacity II. High sensitivity III. Easy readability IV. Accuracy over a wide range of temperatures. From the statements above, the qualities of a good thermometer are",
+        options: ["II, III and IV", "I and II", "I, II, III and IV", "I, III and IV."],
+        answer: "C"
+      },
+      {
+        number: 12,
+        question: "A machine is used to lift a load of 20 N through a height of 10m. if the efficiency of the machine is 40%, how much work is done?",
+        options: ["120 J", "80 J", "500 J", "300 J."],
+        answer: "D"
+      },
+      {
+        number: 13,
+        question: "Which of the following could be effectively used to reduce friction?",
+        options: ["Petrol", "Kerosene", "Grease", "Water."],
+        answer: "D"
+      },
+      {
+        number: 14,
+        question: "A copper wire was subjected to a tensile stress of 7.7 x 10⁷ Nm⁻². Calculate the tensile strain of the wire. [Young modulus = 1.1 x 10¹¹Nm⁻²]",
+        options: ["2.2 x 10⁻⁴", "2.0 x 10⁻⁵", "7.0 x 10⁻³", "7.0 x 10⁻⁴"],
+        answer: "A"
+      },
+      {
+        number: 15,
+        question: "An object weighs 22kg in water and 30kg in air. What is the up thrust exerted by the liquid on the object? [g = 10 ms⁻²]",
+        options: ["80 N", "50 N", "520 N", "220 N."],
+        answer: "A"
+      },
+      {
+        number: 16,
+        question: "A block of aluminium is heated electrically by a 30 W heater. If the temperature rises by 100°C in 5 minutes, the heat capacity of the aluminium is",
+        options: ["200 JK⁻¹", "900 JK⁻¹", "90 JK⁻¹", "100 JK⁻¹"],
+        answer: "C"
+      },
+      {
+        number: 17,
+        question: "A perfect emitter or absorber of radiant energy is a",
+        options: ["red body", "conductor", "black body", "white body."],
+        answer: "D"
+      },
+      {
+        number: 18,
+        question: "The phenomenon that shows that increase in pressure lowers the melting point can be observed in",
+        options: ["regelation", "sublimation", "condensation", "coagulation."],
+        answer: "B"
+      },
+      {
+        number: 19,
+        question: "If the volume of a gas increases steadily as the temperature decreases at constant pressure, the gas obeys",
+        options: ["Charles' law", "Graham's law", "Boyle's law", "pressure law."],
+        answer: "B"
+      },
+      {
+        number: 20,
+        question: "Steam burn is more severe than that of boiling water because",
+        options: ["steam burn is dependent on relative humidity", "steam burn is independent of relative humidity", "steam possess greater heat energy per unit mass", "water boils at a higher temperature"],
+        answer: "D"
+      },
+      {
+        number: 21,
+        question: "Which of the following types of waves needs a medium for propagation?",
+        options: ["X-rays", "Sound waves", "Light waves", "Radio waves."],
+        answer: "C"
+      },
+      {
+        number: 22,
+        question: "The ground is always cold at night because the",
+        options: ["atmosphere reflects the sun's energy at night", "atmosphere absorbs the sun's energy at night", "earth radiates heat to the atmosphere at night", "sun no longer shines at night."],
+        answer: "D"
+      },
+      {
+        number: 23,
+        question: "A metal of volume 40cm³ is heated from 30°C to 90°C, the increase in volume is..... [Linear expansivity of the metal = 2.0 x 10⁻⁵K⁻¹]",
+        options: ["0.40cm³", "0.14cm³", "0.12cm³", "1.20cm³"],
+        answer: "NO ANSWER"
+      },
+      {
+        number: 24,
+        question: "I. Change of state II. Diffusion III. Radiation IV. Osmosis. Which of the processes above can be explained using the kinetic theory?",
+        options: ["I, II and IV", "I, II, III and IV", "I, II and III", "I, III and IV."],
+        answer: "B"
+      },
+      {
+        number: 25,
+        question: "When the human eye loses its power of accommodation, the defect is known as",
+        options: ["long-sightedness", "short-sightedness", "presbyopia", "astigmatism."],
+        answer: "D"
+      },
+      {
+        number: 26,
+        question: "A length of wire has a frequency of 255Hz when stretched by a force of 225 N. If the force increases to 324 N, what is the new frequency of vibration?",
+        options: ["356 Hz", "306 Hz", "512 Hz", "488 Hz."],
+        answer: "C"
+      },
+      {
+        number: 27,
+        question: "A certain far-sighted person cannot see objects that are closer to the eye than 50cm clearly. Determine the power of the converging lens which will enable him to see at 25cm.",
+        options: ["0.04 D", "0.06 D", "0.02 D", "0.03 D."],
+        answer: "C"
+      },
+      {
+        number: 28,
+        question: "Which of the following electromagnetic waves has the highest frequency?",
+        options: ["X-rays", "Ultra-violet rays", "Radio waves", "Infrared-rays."],
+        answer: "B"
+      },
+      {
+        number: 29,
+        question: "When a red rose flower is observed in blue light, what colour does the observer see?",
+        options: ["Yellow", "Red", "Blue", "Magenta."],
+        answer: "A"
+      },
+      {
+        number: 30,
+        question: "The eclipse of the sun occurs when the",
+        options: ["moon's umbra falls on some part of the earth", "moon is between the sun and the earth", "earth is between the sun and the moon", "moon is not completely hidden in the earth's shadow."],
+        answer: "C"
+      },
+      {
+        number: 31,
+        question: "A cannon is fired from town X. After how long is the sound heard at a town Y 4.95 km away? [velocity of sound in air = 333 ms⁻¹]",
+        options: ["15 s", "0 s", "10 s", "12 s"],
+        answer: "B"
+      },
+      {
+        number: 32,
+        question: "An image in a convex lens is upright magnified 3 times. If the focal length of the lens is 15cm, what is the object distance?",
+        options: ["14 cm", "10cm", "25 cm", "26cm."],
+        answer: "C"
+      },
+      {
+        number: 33,
+        question: "The capacitance of a parallel plate capacitor is 20 µF in air and 60 µF in the presence of a dielectric. What is the dielectric constant?",
+        options: ["2.0", "0.3", "6.0", "3.0."],
+        answer: "A"
+      },
+      {
+        number: 34,
+        question: "In the circuit below, three resistors, 2Ω, 4 Ω and 12 Ω are connected in parallel and a 12 V battery is connected across the combination. The current flowing through the 12 Ω resistor is",
+        options: ["9.6 A", "14.4 A", "1.0 A", "3.2 A."],
+        answer: "D"
+      },
+      {
+        number: 35,
+        question: "If the charge of electricity per kWh is N4, what is the cost of operating an electrical appliance rated 2.50 V, 2 A for 6 hours?",
+        options: ["N24", "N0.12", "N12", "N16."],
+        answer: "NO ANSWER"
+      },
+      {
+        number: 36,
+        question: "The correct expression for the potential at a point, distance r from a charge q, in an electric field is",
+        options: ["q/4πε₀r²", "q/4πε₀r", "q²/4πε₀r", "q²/4πε₀r²"],
+        answer: "B"
+      },
+      {
+        number: 37,
+        question: "Three similar cells each of e.m.f 2V and internal resistance 2 Ω are connected in parallel, the total e.m.f and total internal resistance are respectively",
+        options: ["6 V, 0.7 Ω", "6 V, 6.0 Ω", "2 V, 0.7 Ω", "2 V, 6.0 Ω"],
+        answer: "D"
+      },
+      {
+        number: 38,
+        question: "In homes, electrical appliances and lamps are connected in parallel because",
+        options: ["less voltage will be used", "parallel connection does not heat up the wires", "series connection uses high voltage", "less current will be used."],
+        answer: "A"
+      },
+      {
+        number: 39,
+        question: "Two resistors 5 Ω and 10 Ω are arranged first in series and later in parallel to a 24 V source. The ratio of total power dissipated in the series and parallel arrangement respectively is",
+        options: ["3:5", "5:3", "1:50", "50:1."],
+        answer: "NO ANSWER"
+      },
+      {
+        number: 40,
+        question: "Which of the following will be applied when a metal x in electrolysis?",
+        options: ["Y is the anode and very high current is used", "X is the anode and very high current is used", "X is the cathode and Y is the anode", "Y is the cathode and X is the anode"],
+        answer: "A"
+      },
+      {
+        number: 41,
+        question: "A radioactive isotope has a decay constant of 10⁻⁵s⁻¹. Calculate its half-life.",
+        options: ["6.93 x 10⁴s", "6.93 x 10⁻⁶s", "6.93 x 10⁻⁵s", "6.93 x 10⁵s"],
+        answer: "A"
+      },
+      {
+        number: 42,
+        question: "Which of the following is a property of steel?",
+        options: ["It can easily be magnetized and demagnetized", "It cannot retain its magnetism longer than iron", "It can be used for making temporary magnets", "It can be used for making permanent magnets."],
+        answer: "A"
+      },
+      {
+        number: 43,
+        question: "If the threshold frequency for tungsten is 1.3 x 10¹⁵Hz, what is its work function? [h = 6.6 x 10⁻³⁴ Js]",
+        options: ["8.85 x 10⁻¹⁸ J", "8.58 x 10⁻¹⁹ J", "8.58 x 10⁻¹⁵ J", "8.58 x 10⁻¹⁷ J"],
+        answer: "C"
+      },
+      {
+        number: 44,
+        question: "In an a.c. circuit, the ratio of r.m.s value to peak value of current is",
+        options: ["1/√2", "√2", "2", "1/2"],
+        answer: "A"
+      },
+      {
+        number: 45,
+        question: "Two inductors of inductances 4H and 8H are arranged in series and a current of 10A is passed through them. What is the energy stored in them?",
+        options: ["250 J", "500 J", "50 J", "133 J."],
+        answer: "A"
+      },
+      {
+        number: 46,
+        question: "Under which of the following conditions do gasses conduct electricity?",
+        options: ["High pressure and high p.d", "Low pressure and low p.d", "low pressure and high p.d", "High pressure and low p.d"],
+        answer: "D"
+      },
+      {
+        number: 47,
+        question: "In measuring high frequency a.c., the instrument used is the",
+        options: ["hot wire ammeter", "d.c. ammeter", "moving coil ammeter", "moving iron ammeter."],
+        answer: "B"
+      },
+      {
+        number: 48,
+        question: "The bond between silicon and germanium is",
+        options: ["electrovalent", "covalent", "ionic", "dative."],
+        answer: "C"
+      },
+      {
+        number: 49,
+        question: "Which of the following materials has an increase in resistance with temperature?",
+        options: ["Electrolyte", "Water", "Metals", "Wood."],
+        answer: "D"
+      },
+      {
+        number: 50,
+        question: "The electrical properties of germanium can be altered drastically by the addition of impurities. The process is referred to as",
+        options: ["doping", "saturation", "bonding", "amplification."],
+        answer: "B"
+      }
+    ],
+    "2012": [
+      {
+        number: 1,
+        question: "Which Question paper type of physics as indicated above is given to you",
+        options: ["Type Green", "Type Purple", "Type Red", "Type Yellow"],
+        answer: "B"
+      },
+      {
+        number: 2,
+        question: "In order to remove the error of parallax when taking measurements with a metre rule, the eye should be focused",
+        options: ["slantingly towards the left on the markings", "slantingly towards the right on the markings", "vertically downwards on the markings", "vertically upwards on the markings."],
+        answer: "C"
+      },
+      {
+        number: 3,
+        question: "A load is pulled at a uniform speed along horizontal floor by a rope at 45° to floor. If the force in the rope is 1500N, what is the frictional force on the load?",
+        options: ["1524N", "1350N", "1260N", "1061N"],
+        answer: "D"
+      },
+      {
+        number: 4,
+        question: "From the diagram above, OT is,",
+        options: ["18N", "14N", "5N", "2N"],
+        answer: "C"
+      },
+      {
+        number: 5,
+        question: "From the velocity-time graph shown above, which of the following quantities CANNOT be determined?",
+        options: ["Deceleration.", "Initial velocity.", "Total distance travelled.", "Initial acceleration"],
+        answer: "D"
+      },
+      {
+        number: 6,
+        question: "Calculate the total distance covered by a train before coming to rest if its initial speed is 30ms⁻¹ with a constant retardation of 0.1ms⁻².",
+        options: ["5500m", "4500m", "4200m", "3000m."],
+        answer: "B"
+      },
+      {
+        number: 7,
+        question: "A car starts from rest and moves with a uniform acceleration of 30ms⁻² for 20s. Calculate the distance covered at the end of the motion.",
+        options: ["6km", "12km", "18km", "24km."],
+        answer: "A"
+      },
+      {
+        number: 8,
+        question: "A rocket is fired from the earth's surface to a distant planet. By Newton's law of universal gravitation, the force F will",
+        options: ["increase as a reduces", "increase as G varies", "remains constant", "increases as r increases"],
+        answer: "A"
+      },
+      {
+        number: 9,
+        question: "If a freely suspended object is pulled to one side and released, it oscillates about the point of suspension because the",
+        options: ["acceleration is directly proportional to the displacement", "motion is directed away from the equilibrium point", "acceleration is directly proportional to the square of the displacement", "velocity is minimum at the equilibrium point."],
+        answer: "A"
+      },
+      {
+        number: 10,
+        question: "An object moves in a circular path of radius 0.5m with a speed of 1ms⁻¹. What is its angular velocity?",
+        options: ["8 rads⁻¹", "4 rads⁻¹", "2 rads⁻¹", "1 rads⁻¹"],
+        answer: "C"
+      },
+      {
+        number: 11,
+        question: "From the diagram above, calculate the work done when the particle moves from x = 0m to x = 80m.",
+        options: ["1200J", "2400J", "6000J", "7000J"],
+        answer: "B"
+      },
+      {
+        number: 12,
+        question: "The diagram above shows a wooden block just about to slide down an inclined plane whose inclination to the horizontal is α. The coefficient of frictional force between the block and the plane is",
+        options: ["sin α", "tan α", "cot α", "cos α"],
+        answer: "B"
+      },
+      {
+        number: 13,
+        question: "An object of mass 20kg slides down an inclined plane at an angle of 30° to the horizontal. The coefficient of active friction is [g ≈ 10ms⁻²]",
+        options: ["0.2", "0.3", "0.5", "0.6"],
+        answer: "D"
+      },
+      {
+        number: 14,
+        question: "A block and tackle is used to raise a load of 25N through a vertical distance of 30m. What is the efficiency of the system if the work done against friction is 1500J? [g ≈ 10ms⁻²]",
+        options: ["62.5%", "73.3%", "83.3%", "94.3%"],
+        answer: "C"
+      },
+      {
+        number: 15,
+        question: "If a load of 1kg stretches a cord by 1.2cm, what is the force constant of the cord? [g ≈ 10ms⁻²]",
+        options: ["866 Nm⁻¹", "833 Nm⁻¹", "769 Nm⁻¹", "667 Nm⁻¹"],
+        answer: "B"
+      },
+      {
+        number: 16,
+        question: "An object of volume 1m³ and mass 2kg is totally immersed in a liquid of density 1kgm⁻³. Calculate its apparent weight.",
+        options: ["20 N", "10 N", "2 N", "1 N"],
+        answer: "B"
+      },
+      {
+        number: 17,
+        question: "The pressure at any point in a liquid at rest depends only on the",
+        options: ["depth and the density", "mass and the volume", "quantity and the surface area", "surface area and the viscosity."],
+        answer: "A"
+      },
+      {
+        number: 18,
+        question: "A balloon whose volume is 300m³ is filled with hydrogen. If the density of air is 1.3kgm⁻³, find the up thrust on the balloon. [g ≈ 10ms⁻²]",
+        options: ["3000N", "3800N", "3900N", "4200N"],
+        answer: "C"
+      },
+      {
+        number: 19,
+        question: "Clinical thermometers are examples of",
+        options: ["pressure gas thermometer", "resistance thermometer", "alcohol thermometer", "mercury-in-glass thermometer."],
+        answer: "D"
+      },
+      {
+        number: 20,
+        question: "Two metals P and Q are heated through the same temperature difference. If the ratio of the linear expansivities of P to Q is 2:3 and the ratio of their lengths is 3:4 respectively, the ratio of the increase in lengths of P to Q is",
+        options: ["1:2", "2:1", "8:9", "9:8"],
+        answer: "A"
+      },
+      {
+        number: 21,
+        question: "2000cm³ of a gas is collected at 27°C and 700mmHg. What is the volume of the gas at standard temperature and pressure?",
+        options: ["1896.5cm³", "1767.3cm³", "1676.3cm³", "1456.5cm³"],
+        answer: "C"
+      },
+      {
+        number: 22,
+        question: "Calculate the temperature change when 500 J of heat is supplied to 100g of water. (Specific heat capacity of water = 4200Jkg⁻¹K⁻¹)",
+        options: ["12.1°C", "2.1°C", "1.2°C", "0.1°C"],
+        answer: "C"
+      },
+      {
+        number: 23,
+        question: "Which of the following is NOT a factor that can increase the rate of evaporation of water in a lake?",
+        options: ["Increase in the pressure of the atmosphere", "Rise in temperature", "Increase in the average speed of the molecules of water", "Increase in the kinetic energy of the molecules of water."],
+        answer: "A"
+      },
+      {
+        number: 24,
+        question: "The quantity of heat energy required to melt completely 1kg of ice at -30°C is (latent heat of fusion = 3.5 x 10⁵ Jkg⁻¹, specific heat capacity of ice = 2.1 x 10³Jkg⁻¹ K⁻¹)",
+        options: ["4.13 x 10⁵J", "4.13 x 10⁵J", "3.56 x 10⁴J", "3.56 x 10²J"],
+        answer: "B"
+      },
+      {
+        number: 25,
+        question: "I. It is a rapid, constant and irregular motion of tiny particles. II. It gives evidence that tiny particles of matter called molecules exist. III. It takes place only in gases. IV. It gives evidence that molecules are in a constant state of random motion. Which of the combinations above is correct about Brownian motion?",
+        options: ["I, II and III", "II, III and IV only", "I, III and IV only", "I, II and IV only"],
+        answer: "D"
+      },
+      {
+        number: 26,
+        question: "The equation of a wave travelling in a horizontal direction is expressed as y=15 sin (60t-x) what is its wavelength?",
+        options: ["60m", "15m", "5m", "2m"],
+        answer: "C"
+      },
+      {
+        number: 27,
+        question: "From the diagram above, if the particles F is at a distance x from O to the right, the phase of the vibration will be different from that at O by",
+        options: ["2πx/λ", "πx/λ", "λ/2πx", "x/λ"],
+        answer: "A"
+      },
+      {
+        number: 28,
+        question: "Which of the following factors will affect the velocity of sound?",
+        options: ["An increase in the pitch of the sound", "An increase in the loudness of the sound", "Wind travelling in the same direction of the sound", "A change in the atmospheric pressure at constant temperature."],
+        answer: "C"
+      },
+      {
+        number: 29,
+        question: "The characteristics of a vibration that determines its intensity is the",
+        options: ["Frequency", "Overtone", "Wavelength", "Amplitude"],
+        answer: "D"
+      },
+      {
+        number: 30,
+        question: "Where a man can place his face to get an enlarged image when using a concave mirror to shave.",
+        options: ["between the centre of curvature and the principle focus", "at principle focus", "between the principle focus and the pole", "At the centre of the curvature"],
+        answer: "C"
+      },
+      {
+        number: 31,
+        question: "A pinhole camera is placed 300m in front of a building so that the image is formed on a screen 5cm from the pinhole. If the image is 2.5cm high, the height of the building will be",
+        options: ["25m", "50m", "100m", "150m"],
+        answer: "D"
+      },
+      {
+        number: 32,
+        question: "The magnification of an object 2cm tall when placed 10cm in front of a plane mirror is",
+        options: ["6.0", "1.0", "0.7", "0.6"],
+        answer: "B"
+      },
+      {
+        number: 33,
+        question: "After reflection from the concave mirror, rays of light from the sun converges",
+        options: ["At the radius of curvature", "At the focus", "Beyond the radius of curvature", "Between the focus and radius of curvature"],
+        answer: "B"
+      },
+      {
+        number: 34,
+        question: "A glass block of thickness 10cm is placed on an object. If an observer views the object vertically, the displacement of the object is",
+        options: ["3.33cm", "5.00cm", "6.67cm", "8.50cm"],
+        answer: "A"
+      },
+      {
+        number: 35,
+        question: "I. Rays of light travel from a less dense medium to a denser medium II. The angle of incidence is greater than critical angle. III. Rays of light travel from a denser medium to a less dense medium. Which of the statements above are conditions for total internal reflection to occur?",
+        options: ["I & II only", "I & III only", "II & III only", "II only"],
+        answer: "C"
+      },
+      {
+        number: 36,
+        question: "The use of lenses is NOT applicable in the",
+        options: ["projector", "human eye", "periscope", "telescope"],
+        answer: "C"
+      },
+      {
+        number: 37,
+        question: "Dispersion of white light is the ability of white light to",
+        options: ["Penetrate air, water and glass", "Move in a straight line", "Move around corners", "Separate to its component colours"],
+        answer: "D"
+      },
+      {
+        number: 38,
+        question: "A newly charged 12V accumulator can easily start a car whereas eight new dry cells in series with an effective e.m.f. of 12V cannot start the same car because",
+        options: ["The current capacity is high", "The current capacity is low", "It cannot be re-charged", "It cannot easily be connected to a car"],
+        answer: "B"
+      },
+      {
+        number: 39,
+        question: "Six identical cells, each of e.m.f. 2V are connected as shown above. The effective e.m.f. of the cell is",
+        options: ["0V", "4V", "6V", "12V"],
+        answer: "B"
+      },
+      {
+        number: 40,
+        question: "The fuse in an electric devise is always connected to the ----",
+        options: ["Neutral side of an electric supply", "Earth side of an electric supply", "Live side of an electric supply", "Terminal side of an electric supply"],
+        answer: "C"
+      },
+      {
+        number: 41,
+        question: "A particle carrying a charge of 1.0 x 10⁻⁸C enters a magnetic field at 3.0 x 10²ms⁻¹ at right angles to the field. If the force on this particle is 1.8 x 10⁻⁸N, what is the magnitude of the field?",
+        options: ["6.0 x 10⁻¹T", "6.0 x 10⁻²T", "6.0 x 10⁻³T", "6.0 x 10⁻⁴T"],
+        answer: "C"
+      },
+      {
+        number: 42,
+        question: "Which of the following is the correct shape of the graph of capacity reactance Xc versus frequency F for a pure capacitor in an a.c. circuit?",
+        options: ["Graph A", "Graph B", "Graph C", "Graph D"],
+        answer: "D"
+      },
+      {
+        number: 43,
+        question: "The current output form of an a.c. source is given as I = 10 sin ωt. The d.c. equivalent of the current is",
+        options: ["5.0A", "7.1A", "10.0A", "14.1A"],
+        answer: "B"
+      },
+      {
+        number: 44,
+        question: "A conductor of length 1m moves with a velocity of 50ms⁻¹ at an angle of 30° to the direction of a uniform magnetic field of flux density 1.5 Wbm⁻². What is the e.m.f. induced in the conductor?",
+        options: ["37.5V", "50.5V", "75.0V", "80.5V"],
+        answer: "A"
+      },
+      {
+        number: 45,
+        question: "The process of detecting a pin mistakenly swallowed by a child x-ray",
+        options: ["Diagnosis", "Therapy", "Crystallography", "mammography"],
+        answer: "C"
+      },
+      {
+        number: 46,
+        question: "Which of the following particles CANNOT be deflected by both electric and magnetic fields?",
+        options: ["Gamma rays", "Alpha particles", "Wave particles", "Beta particles"],
+        answer: "A"
+      },
+      {
+        number: 47,
+        question: "A piece of radioactive material contains 1000 atoms. If its half-life is 20 seconds, the time taken for 125 atoms to remain is",
+        options: ["20 seconds", "40 seconds", "60 seconds", "80 seconds"],
+        answer: "C"
+      },
+      {
+        number: 48,
+        question: "The p-n junction diodes can act as rectifiers because they",
+        options: ["Conduct current when forward biased", "Conduct current when reverse-biased", "Block current when forward biased", "Conduct current in both directions"],
+        answer: "B"
+      },
+      {
+        number: 49,
+        question: "If a reverse-biased voltage is applied across a p-n junction, the depletion layer width is",
+        options: ["Increased", "Decreased", "Constant", "halved"],
+        answer: "B"
+      },
+      {
+        number: 50,
+        question: "I. Small size II. Low power requirement III. Not easily damaged by high Temperature IV. Highly durable. Which of the above are the advantages of semiconductors?",
+        options: ["I, II and III only", "II, III and IV only", "I, II and IV only", "I, II III and IV"],
+        answer: "D"
+      }
+    ],
+    "2013": [
+      {
+        number: 1,
+        question: "Which Question Paper Type of Physics is given to you?",
+        options: ["Type D.", "Type I.", "Type B.", "Type U."],
+        answer: "A"
+      },
+      {
+        number: 2,
+        question: "When a brick is taken from the earth's surface to the moon, its mass",
+        options: ["remains constant", "reduces.", "increases.", "becomes zero."],
+        answer: "A"
+      },
+      {
+        number: 3,
+        question: "The resultant of two forces is 50N. If the forces are perpendicular to each other and one of them makes an angle of 30° with the resultant, find its magnitude.",
+        options: ["100.0N", "57.7N", "43.3 N", "25.0N"],
+        answer: "C"
+      },
+      {
+        number: 4,
+        question: "The pair of physical quantities that are scalar only are",
+        options: ["volume and area", "moment and momentum", "length and displacement.", "impulse and time."],
+        answer: "A"
+      },
+      {
+        number: 5,
+        question: "A simple pendulum of length 0.4m has a period of 2s. What is the period a similar pendulum of length 0.8m at the same place?",
+        options: ["8s", "4s", "2√2 s", "√2 s"],
+        answer: "C"
+      },
+      {
+        number: 6,
+        question: "A train with an initial velocity of 20ms⁻¹ is subjected to a uniform deceleration of 2 ms⁻². The time required to bring the train to a complete halt is",
+        options: ["5s.", "10s.", "20s.", "40s."],
+        answer: "B"
+      },
+      {
+        number: 7,
+        question: "Calculate the apparent weight loss of a man weighing 70kg in an elevator moving downwards with an acceleration of 1.5ms⁻². [g ≈ 10ms⁻²]",
+        options: ["686N.", "595N.", "581N.", "1105N"],
+        answer: "D"
+      },
+      {
+        number: 8,
+        question: "A piece of cork floats in a liquid. What fraction of its volume will be immersed in the liquid? [Density of the cork = 0.25 x 10³ kgm⁻³, density of the liquid = 1.25 x 10³kgm⁻³]",
+        options: ["0.8.", "0.5.", "0.2.", "0.1."],
+        answer: "C"
+      },
+      {
+        number: 9,
+        question: "An object is moving with a velocity of 5ms⁻¹. At what height must a similar body be situated to have a potential energy equal in value with kinetic energy of the moving body?",
+        options: ["25.0m", "20.0m.", "1.3m.", "1.0m."],
+        answer: "C"
+      },
+      {
+        number: 10,
+        question: "If a pump is capable of lifting 5000kg of water through a vertical height of 60 m in 15 min, the power of the pump is",
+        options: ["2.5 x 10⁵J s⁻¹", "2.5 x 10⁴J s⁻¹", "3.3 x 10³Js⁻¹", "3.3 x 10²J s⁻¹"],
+        answer: "C"
+      },
+      {
+        number: 11,
+        question: "The coefficient of friction between two perfectly smooth surface is",
+        options: ["infinity.", "one", "half.", "zero."],
+        answer: "D"
+      },
+      {
+        number: 12,
+        question: "What effort will a machine of efficiency 90% apply to lift a load of 180N if its effort arm is twice as long as its load arm?",
+        options: ["80N", "90N.", "100N.", "120N."],
+        answer: "C"
+      },
+      {
+        number: 13,
+        question: "Calculate the work done when a force of 20N stretches a spring by 50mm.",
+        options: ["0.5J.", "1.5J.", "2.0J.", "2.5J."],
+        answer: "A"
+      },
+      {
+        number: 14,
+        question: "At what depth below the sea-level would one experience a change of pressure equal to one atmosphere? [Density of sea water = 1013kgm⁻³ one atmosphere = 0.01 x 10⁵ Nm⁻² g=10ms⁻²]",
+        options: ["0.1 m.", "1.0m.", "10.0m.", "100.0m"],
+        answer: "C"
+      },
+      {
+        number: 15,
+        question: "What volume of alcohol will have same mass as 4.2m³ of petrol?",
+        options: ["0.8 m³.", "1.4 m³.", "3.6 m³.", "4.9 m³."],
+        answer: "C"
+      },
+      {
+        number: 16,
+        question: "Calculate the length which corresponds to a temperature of 20°C if the used steam points of an ungraduated thermometer are 400 mm apart.",
+        options: ["20mm.", "30mm.", "60mm", "80mm."],
+        answer: "D"
+      },
+      {
+        number: 17,
+        question: "A wire of length 100.0m at 30°C has linear expansivity of 2 x 10⁻⁵ K⁻¹. Calculate the length of the wire at a temperature of -10°C.",
+        options: ["100.08m.", "100.04m.", "99.96m", "99.92m."],
+        answer: "D"
+      },
+      {
+        number: 18,
+        question: "A gas at a pressure of 10⁵ Nm⁻² expands from 0.6 m³ to 1.2 m³ at constant temperature, the work done is",
+        options: ["7.0 x 10⁶ J.", "6.0 x 10⁶ J.", "6.0 x 10⁵J.", "6.0 x 10⁴ J."],
+        answer: "D"
+      },
+      {
+        number: 19,
+        question: "Two liquids X and Y having the same mass are supplied with the same quantity of heat. If the temperature rise in X is twice that of Y, the ratio of specific heat capacity of X to that of Y is",
+        options: ["2:1.", "1:2.", "4:1.", "1:4."],
+        answer: "C"
+      },
+      {
+        number: 20,
+        question: "Foods cook quicker in salt water than in pure water because of the effect of",
+        options: ["dissolved substances on the boiling point.", "atmospheric pressure on the boiling point.", "food nutrients on the thermal energy.", "salts on the thermal conductivity of water."],
+        answer: "A"
+      },
+      {
+        number: 21,
+        question: "Steam from boiling water causes more damage on the skin that does boiling water because",
+        options: ["water has a high specific heat.", "steam has latent heat of fusion.", "the steam is at higher temperature than the water.", "steam brings heat more easily by convection."],
+        answer: "C"
+      },
+      {
+        number: 22,
+        question: "What will happen to the boiling point of pure water when it is heated in a place 30m below sea level?",
+        options: ["It will be more than 100°C.", "It will be less than 100°C.", "It will still be at 100°C.", "It will be fluctuating."],
+        answer: "A"
+      },
+      {
+        number: 23,
+        question: "The rise or fall of liquid in a narrow tube is because of the",
+        options: ["viscosity of the liquid.", "surface tension of the liquid.", "friction between the walls of the tube and the liquid.", "osmotic pressure of the liquid."],
+        answer: "B"
+      },
+      {
+        number: 24,
+        question: "The mechanism of heat transfer from one point to another through the vibration of the molecules of the medium is",
+        options: ["convection.", "conduction", "radiation", "diffusion"],
+        answer: "B"
+      },
+      {
+        number: 25,
+        question: "A wave travels through stretched strings is known as",
+        options: ["electromagnetic wave.", "micro wave.", "mechanical wave.", "seismic wave."],
+        answer: "C"
+      },
+      {
+        number: 26,
+        question: "A transverse wave and a longitudinal wave travelling in the same direction in a medium differ essentially in their",
+        options: ["frequency.", "amplitude.", "direction of vibration of the particles of the medium", "period of vibration of the particles of the medium."],
+        answer: "C"
+      },
+      {
+        number: 27,
+        question: "What is the velocity of sound at 100°C, if the velocity of sound at 0°C is 340ms⁻¹?",
+        options: ["497ms⁻¹", "440ms⁻¹", "397ms⁻¹", "240ms⁻¹"],
+        answer: "B"
+      },
+      {
+        number: 28,
+        question: "If a sonometer has a fundamental frequency of 450Hz, what is the frequency of the fifth overtone?",
+        options: ["0Hz", "456Hz", "44Hz", "75Hz"],
+        answer: "A"
+      },
+      {
+        number: 29,
+        question: "A man 1.5m tall is standing 3m in front of a pinhole camera whose distance between the hole and the screen is 0.1m. What is the height of the image of the man on the screen?",
+        options: ["0.05m", "0.15m.", "0.30m.", "1.00m."],
+        answer: "A"
+      },
+      {
+        number: 30,
+        question: "A ray of light passing through the centre of curvature of a concave mirror is reflected by the mirror at",
+        options: ["0°.", "45°.", "90°.", "180°"],
+        answer: "A"
+      },
+      {
+        number: 31,
+        question: "From the diagram below, calculate the incident angle i.",
+        options: ["41°.", "49°.", "55°.", "61°."],
+        answer: "A"
+      },
+      {
+        number: 32,
+        question: "Total internal reflection will not occur when light travels from",
+        options: ["water to air.", "water into glass.", "glass to air.", "glass into water."],
+        answer: "B"
+      },
+      {
+        number: 33,
+        question: "What does the diagram above represent?",
+        options: ["telescope in normal use.", "microscope in normal use.", "telescope in abnormal use.", "microscope in abnormal use."],
+        answer: "A"
+      },
+      {
+        number: 34,
+        question: "If the linear magnification of the objective and eyepiece convex lenses of a compound microscope are 4 and 7 respectively, calculate the angular magnification of the microscope.",
+        options: ["2.", "3.", "11.", "28."],
+        answer: "D"
+      },
+      {
+        number: 35,
+        question: "The angle of deviation of light of various colours passing through a triangular prism increases in the order",
+        options: ["red → green → blue.", "green → violet → blue.", "blue → red → green.", "blue → green → red."],
+        answer: "D"
+      },
+      {
+        number: 36,
+        question: "Calculate the force acting on an electron of charge 1.5 x 10⁻¹⁹C placed in an electric field of intensity 10⁵Vm⁻¹.",
+        options: ["1.5 x 10⁻¹¹N", "1.5 x 10⁻¹²N", "1.5 x 10⁻¹³N", "1.5 x 10⁻¹⁴N"],
+        answer: "C"
+      },
+      {
+        number: 37,
+        question: "Capacitors are used in the induction coil to",
+        options: ["control circuits.", "dissipate energy.", "prevent electric sparks.", "prevent distortion of electric fields."],
+        answer: "C"
+      },
+      {
+        number: 38,
+        question: "A cell of emf 1.5V is connected in series with a 1Ω resistor and a current of 0.3A flows through the resistor. Find the internal resistance of the cell.",
+        options: ["4Ω.", "3.0Ω.", "1.5Ω.", "1.00Ω."],
+        answer: "A"
+      },
+      {
+        number: 39,
+        question: "Which of the following obeys ohms law?",
+        options: ["electrolytes.", "metals.", "diode.", "glass."],
+        answer: "B"
+      },
+      {
+        number: 40,
+        question: "A house has ten 40W and five 100W bulbs. How much will it cost the owner of the house to keep them lit for 10 hours if the cost of a unit is N5?",
+        options: ["N90.", "N50.", "N45", "N40."],
+        answer: "C"
+      },
+      {
+        number: 41,
+        question: "An electric device is rated 2000V, 250V. Calculate the maximum current it can take.",
+        options: ["9A.", "8A.", "7A.", "6A."],
+        answer: "B"
+      },
+      {
+        number: 42,
+        question: "When a charge moves through an electric circuit in the direction of an electric force, it",
+        options: ["gains both potential and kinetic energy.", "gains potential energy and kinetic energy.", "loses potential energy and gains kinetic energy.", "loses both potential and kinetic energy."],
+        answer: "A"
+      },
+      {
+        number: 43,
+        question: "To convert a galvanometer to voltmeter, a",
+        options: ["high resistance is connected to it in series.", "high resistance is connected to it in parallel.", "low resistance is connected to it in series.", "low resistance is connected to it in parallel."],
+        answer: "A"
+      },
+      {
+        number: 44,
+        question: "Induced emfs are best explained using",
+        options: ["Ohm's law.", "Faraday's law.", "Coulomb's law.", "Lenz's law."],
+        answer: "D"
+      },
+      {
+        number: 45,
+        question: "If a current of 2.5A flows through an electrolyte for 3 hours and 1.8g of a substance is deposited, what is the mass of the substance that will be deposited if a current of 4A flows through it for 4.8 hours?",
+        options: ["2.4g", "3.2g", "4.6g.", "4.8g."],
+        answer: "C"
+      },
+      {
+        number: 46,
+        question: "Calculate the energy of the third level of an atom if the ground state energy is -24eV",
+        options: ["-9.20eV.", "-8.20eV.", "-2.75eV.", "-1.75eV."],
+        answer: "C"
+      },
+      {
+        number: 47,
+        question: "In photo-emission, the number of photoelectrons ejected per second depends on the",
+        options: ["frequency of the beam.", "work function of the metal.", "threshold frequency of the metal.", "intensity of the beam."],
+        answer: "C"
+      },
+      {
+        number: 48,
+        question: "The particle nature of light is demonstrated by the",
+        options: ["photoelectric effect.", "speed of light.", "colours of light.", "diffraction of light."],
+        answer: "D"
+      },
+      {
+        number: 49,
+        question: "The energy of a photon having a wavelength of 10⁻¹⁰m is (h= 6.63 x 10⁻³⁴ Js c= 3.0 x 10⁸ ms⁻¹)",
+        options: ["2.0 x 10⁻¹⁵ J", "1.7 x 10⁻¹³ J", "2.0 x 10⁻¹² J", "1.7 x 10⁻¹² J"],
+        answer: "A"
+      },
+      {
+        number: 50,
+        question: "The bond between silicon and germanium is",
+        options: ["dative.", "covalent.", "trivalent.", "ionic."],
+        answer: "C"
+      }
+    ],
+    "2014": [
+      {
+        number: 1,
+        question: "Which question paper type of physics is given to you",
+        options: ["Type F", "Type E", "Type L", "Type S"],
+        answer: "A"
+      },
+      {
+        number: 2,
+        question: "What is the least possible error encountered when taking measurement with a meter rule?",
+        options: ["0.1mm", "1.0mm", "0.5mm", "0.2mm"],
+        answer: "C"
+      },
+      {
+        number: 3,
+        question: "A quantity which requires magnitude and direction to be specified is",
+        options: ["Temperature", "Distance", "Displacement", "Mass"],
+        answer: "C"
+      },
+      {
+        number: 4,
+        question: "I. Electrical potential II. Torque III. Kinetic Energy IV. Momentum. Which of the quantities listed are vectors?",
+        options: ["II and IV", "I and II", "I and III", "II and III"],
+        answer: "A"
+      },
+      {
+        number: 5,
+        question: "Which type of motion do the wheels of a moving car undergo?",
+        options: ["Vibratory and translational motion", "Random and translational motion", "Rotational and oscillatory motion", "Translational and rotational motion"],
+        answer: "D"
+      },
+      {
+        number: 6,
+        question: "From the diagram below, the region of zero acceleration is",
+        options: ["MN", "NS", "SP", "PQ"],
+        answer: "D"
+      },
+      {
+        number: 7,
+        question: "A car accelerates uniformly from rest at 3ms⁻². its velocity after traveling a distance of 24m is",
+        options: ["12ms⁻¹", "144ms⁻¹", "72ms⁻¹", "36ms⁻¹"],
+        answer: "A"
+      },
+      {
+        number: 8,
+        question: "Calculate the escape velocity of a satellite launched from the earth's surface if the radius of the earth is 6.4 x 10⁶m",
+        options: ["25.3kms⁻¹", "4.2kms⁻¹", "4.0kms⁻¹", "11.3kms⁻¹"],
+        answer: "D"
+      },
+      {
+        number: 9,
+        question: "An object of weight 80kg on earth is taken to a planet where acceleration due to gravity is one-third of its value on earth. The weight of the object on the planet is",
+        options: ["48N", "12N", "27N", "36N"],
+        answer: "D"
+      },
+      {
+        number: 10,
+        question: "One of the conditions necessary for an object to be in equilibrium when acted upon by a number of parallel forces is that the vector sum of the forces is",
+        options: ["Average", "Zero", "Negative", "Positive"],
+        answer: "B"
+      },
+      {
+        number: 11,
+        question: "What happens when three coplanar non-parallel forces are in equilibrium?",
+        options: ["Their lines of action are parallel.", "They are represented in magnitude only", "They are represented in direction only", "Their lines of action meet at a point"],
+        answer: "D"
+      },
+      {
+        number: 12,
+        question: "An object of mass 20kg is released from a height of 10m above the ground level. The kinetic energy of the object just before it hits the ground is",
+        options: ["200J", "4000J", "2000J", "500J"],
+        answer: "C"
+      },
+      {
+        number: 13,
+        question: "The energy in the nucleus of atoms produce heat which can be used to generate",
+        options: ["Kinetic energy", "Mechanical energy", "Electrical energy", "Potential energy"],
+        answer: "C"
+      },
+      {
+        number: 14,
+        question: "A machine whose efficiency is 75% is used to lift a load of 1000N. Calculate the effort put in to the machine if it has a Velocity ratio of 4.",
+        options: ["343.32N", "233.33N", "333.33N", "334.33N"],
+        answer: "C"
+      },
+      {
+        number: 15,
+        question: "A wheel and an axle is used to raise a load whose weight is 800N when an effort of 250N is applied. If the radii of the wheel and axle are 800mm and 200mm respectively, the efficiency of the machine is",
+        options: ["90%", "80%", "85%", "87%"],
+        answer: "B"
+      },
+      {
+        number: 16,
+        question: "A force of 500N is applied to a steel wire of cross-sectional area 0.2m², the tensile stress is",
+        options: ["2.5x10⁴Nm⁻²", "1.0x10²Nm⁻²", "1.0x10³Nm⁻²", "2.5x10³Nm⁻²"],
+        answer: "D"
+      },
+      {
+        number: 17,
+        question: "From the diagram above, the point that represent the elastic limit is",
+        options: ["Q", "R", "S", "T"],
+        answer: "A"
+      },
+      {
+        number: 18,
+        question: "The small droplet of water that forms on the grass in early hours of the morning is",
+        options: ["hail", "mist", "dew", "fog"],
+        answer: "C"
+      },
+      {
+        number: 19,
+        question: "What is the equivalent of 20K in Celsius scale?",
+        options: ["293 °C", "68 °C", "36°C", "20°C"],
+        answer: "D"
+      },
+      {
+        number: 20,
+        question: "A glass bottle of initial volume 2 x 10⁴cm³ is heated from 20°C to 50°C. If the linear expansivity of glass is 9x10⁻⁶K⁻¹, the volume of the bottle at 50°C is",
+        options: ["20 016.2cm³", "20 005.4cm³", "20 008.1cm³", "20 013.5cm³"],
+        answer: "A"
+      },
+      {
+        number: 21,
+        question: "The equation PaVbTc= constant reduces to Charles Law if",
+        options: ["a=1, b=1and c=0", "a=1, b=0 and c=-1", "a=0, b=1 and c=1", "a=0, b=1 and c=-1"],
+        answer: "D"
+      },
+      {
+        number: 22,
+        question: "The quantity of heat needed to raise the temperature of a body by 1K is the body's",
+        options: ["Heat capacity", "Internal energy", "Specific heat capacity", "Latent heat of fusion"],
+        answer: "A"
+      },
+      {
+        number: 23,
+        question: "The melting point of a substance is equivalent to its",
+        options: ["Vapor Pressure", "solidification Temperature", "Liquidification Temperature", "Solidification Pressures"],
+        answer: "C"
+      },
+      {
+        number: 24,
+        question: "The temperature at which the water vapor present in the air is just sufficient to saturate air is",
+        options: ["Boiling point", "Ice point", "Saturation point", "Dew point"],
+        answer: "D"
+      },
+      {
+        number: 25,
+        question: "Heat transfer by convection in a liquid is due to the",
+        options: ["Latent heat of vaporization of the liquid", "Increased vibration of the molecules of the liquid about their mean position", "Variation of density of the liquid", "Expansion of the liquid as it is heated"],
+        answer: "A"
+      },
+      {
+        number: 26,
+        question: "The distance between two successive crests of a wave is 15cm and the velocity 300ms⁻¹. Calculate the frequency.",
+        options: ["2.0x10²Hz", "4.5x10³Hz", "2.0x10³Hz", "4.5x10²Hz"],
+        answer: "A"
+      },
+      {
+        number: 27,
+        question: "A boy receives the echo of his clap reflected by a nearby hill 0.8s later. How far is he from the hill?",
+        options: ["528m", "66m", "136m", "264m"],
+        answer: "D"
+      },
+      {
+        number: 28,
+        question: "The diagram above show a stationary wave of wavelength 40 cm in a closed tube. The length l is the resonating air column is",
+        options: ["10cm", "20cm", "30cm", "40cm"],
+        answer: "A"
+      },
+      {
+        number: 29,
+        question: "An object is placed 10m from a pinhole camera of length 25cm. Calculate the linear magnification.",
+        options: ["2.5 x 10⁻²", "2.5 x 10⁻¹", "2.5 x 10¹", "2.5 x 10²"],
+        answer: "A"
+      },
+      {
+        number: 30,
+        question: "The focal length of a concave mirror is 2.0cm. If an object is placed 8.0cm from it, the image is at",
+        options: ["2.7m", "2.0m", "2.3m", "2.5m"],
+        answer: "A"
+      },
+      {
+        number: 31,
+        question: "In a compound microscope, the objective and the eye piece focal lengths are",
+        options: ["Long", "Short", "The same", "At infinity"],
+        answer: "B"
+      },
+      {
+        number: 32,
+        question: "When a telescope is in normal use, the final image is at",
+        options: ["The focus", "The radius of curvature", "The near point", "Infinity"],
+        answer: "D"
+      },
+      {
+        number: 33,
+        question: "When a negatively charged rod is brought near the cap of a charged gold leaf electroscope which has positive charges, the leaf",
+        options: ["Collapses", "Collapses and diverges again", "Diverges", "Remains the same"],
+        answer: "A"
+      },
+      {
+        number: 34,
+        question: "What charge is stored in a 0.1F capacitor when a 10V supply is connected across it?",
+        options: ["1C", "5C", "4C", "2C"],
+        answer: "A"
+      },
+      {
+        number: 35,
+        question: "Calculate the effective capacitance of the circuit above",
+        options: ["1µF", "2µF", "3µF", "4µF"],
+        answer: "D"
+      },
+      {
+        number: 36,
+        question: "The maximum power transfer occurs in a cell when the external resistance is",
+        options: ["Twice the internal resistance of the cell", "The same as the internal resistance of the cell", "Greater than the internal resistance of the cell", "Less than the internal resistance of the cell"],
+        answer: "B"
+      },
+      {
+        number: 37,
+        question: "If a metal wire 4m long and cross-sectional area 0.8 mm² has a resistance of 60Ω, find the resistivity of the wire",
+        options: ["5.3x10⁻⁷ Ωm", "3.0x10⁻⁵ Ωm", "1.2x10⁻⁶ Ωm", "3.2x10⁻⁶ Ωm"],
+        answer: "C"
+      },
+      {
+        number: 38,
+        question: "A circuit has a resistance of 200Ω. The resistance of the circuit can be reduced to 120Ω when",
+        options: ["A 300Ω resistor is connected to it in parallel", "An 80Ω resistor is connected to it in series", "A 150Ω resistor is connected to it in parallel", "A 240Ω resistor is connected to it in series"],
+        answer: "A"
+      },
+      {
+        number: 39,
+        question: "PHCN measures its electrical energy in",
+        options: ["W", "KWh", "Wh", "J"],
+        answer: "B"
+      },
+      {
+        number: 40,
+        question: "What is the best method of demagnetizing a steel bar magnet?",
+        options: ["Hammering", "Heating it", "Rough handling it", "Solenoid method"],
+        answer: "C"
+      },
+      {
+        number: 41,
+        question: "The magnitude of the angle of dip at the equator is",
+        options: ["360°", "0°", "90°", "180°"],
+        answer: "B"
+      },
+      {
+        number: 42,
+        question: "The diagram above is that of",
+        options: ["a step- up transformer", "a step - down transformer", "an auto transformer", "an oil transformer."],
+        answer: "A"
+      },
+      {
+        number: 43,
+        question: "The electromotive force in the secondary winding is",
+        options: ["increasing", "reducing", "Stabilizing", "Varying"],
+        answer: "A"
+      },
+      {
+        number: 44,
+        question: "What type of reaction is represented by the equation ²¹H + ²¹H → ³²He + ¹₀n + energy?",
+        options: ["Ionization", "Fusion", "Fission", "Chain"],
+        answer: "B"
+      },
+      {
+        number: 45,
+        question: "When an atom undergoes a beta decay, the atomic number of the nucleus",
+        options: ["Remains unchanged", "Decreases by one", "Increases by one", "Becomes zero"],
+        answer: "C"
+      },
+      {
+        number: 46,
+        question: "Calculate the mass of the copper deposited during electrolysis when a current of 4A passes through a copper salt for 2 hours. [ece of Copper z=3.3x10⁻⁷kgC⁻¹]",
+        options: ["2.9 x 10⁵kg", "9.5 x 10⁻⁷kg", "9.5 x 10⁻³kg", "2.9 x 10⁻⁴kg"],
+        answer: "D"
+      },
+      {
+        number: 47,
+        question: "Which gas produces a pink coloured light in a discharge tube?",
+        options: ["Mercury", "Argon", "Air", "Neon"],
+        answer: "D"
+      },
+      {
+        number: 48,
+        question: "When ²¹⁰₈₂Pb decays to ²⁰⁶Pb, it emits",
+        options: ["two alpha and two beta particles", "an alpha particle", "one beta particle", "one alpha and one beta particle"],
+        answer: "A"
+      },
+      {
+        number: 49,
+        question: "In a common emitter configuration, the output voltage is through the",
+        options: ["Resistor", "Base", "Collector", "Emitter"],
+        answer: "A"
+      },
+      {
+        number: 50,
+        question: "Which of the graph below shows the characteristic of an i-v transistor?",
+        options: ["Graph A", "Graph B", "Graph C", "Graph D"],
+        answer: "C"
+      }
+    ],
+    "2015": [
+      {
+        number: 1,
+        question: "A piece of rubber 10cm long stretches 6mm when a load of 100N is hung from it. What is the strain?",
+        options: ["6 X 10⁻³", "6", "60", "6.0 X 10⁻³"],
+        answer: "A"
+      },
+      {
+        number: 2,
+        question: "The diagram above shows the lens arrangement in",
+        options: ["compound microscope", "a binocular", "an astronomical", "a periscope"],
+        answer: "C"
+      },
+      {
+        number: 3,
+        question: "What is the total resistance in the below diagram?",
+        options: ["5 ohms", "25 ohms", "15 ohms", "35 ohms"],
+        answer: "B"
+      },
+      {
+        number: 4,
+        question: "A body of mass 6kg rests on an inclined plane. The normal reaction R and the limiting frictional force is F as shown in the diagram. If F is 30N and g=10ms⁻², then the angle of inclination θ is",
+        options: ["15°", "60°", "45°", "30°"],
+        answer: "D"
+      },
+      {
+        number: 5,
+        question: "The speed of light in air is 3.0 x 10⁸ms⁻¹. Its speed in glass having a refractive index of 1.65 is",
+        options: ["1.82 x 10⁸ ms⁻¹", "3.00 x 10⁸ ms⁻¹", "4.95 x 10⁸ ms⁻¹", "1.65 x 10⁸ ms⁻¹"],
+        answer: "A"
+      },
+      {
+        number: 6,
+        question: "Longitudinal waves do not exhibit",
+        options: ["refraction", "polarization", "diffraction", "reflection"],
+        answer: "B"
+      },
+      {
+        number: 7,
+        question: "A device that converts sound energy into electrical energy is",
+        options: ["the horn of a motor car", "the telephone earpiece", "a loudspeaker", "a microphone."],
+        answer: "C"
+      },
+      {
+        number: 8,
+        question: "A good calorimeter should be of",
+        options: ["low specific heat capacity and low heat conductivity", "high specific heat capacity and low heat conductivity", "high specific heat capacity and low heat conductivity", "low specific heat capacity and high heat conductivity."],
+        answer: "D"
+      },
+      {
+        number: 9,
+        question: "Which of the following is most strongly deflected by a magnetic field?",
+        options: ["β-particles", "α-particles", "γ-rays.", "δ-rays"],
+        answer: "A"
+      },
+      {
+        number: 10,
+        question: "If a beaker is filled with water, it is observed that the surface of the water is not horizontal at the glass-water interface. This behaviour is due to",
+        options: ["friction", "surface tension", "viscosity", "evaporation"],
+        answer: "B"
+      },
+      {
+        number: 11,
+        question: "A dynamo primarily conducts",
+        options: ["potential energy into kinetic energy", "electrical energy into kinetic energy", "mechanical energy into electrical energy", "kinetic energy into potential energy"],
+        answer: "C"
+      },
+      {
+        number: 12,
+        question: "A particle is injected perpendicularly into an electric field. It travels along a curved path as depicted in the figure. The particle is",
+        options: ["gamma ray", "a proton", "a neutron", "an electron"],
+        answer: "D"
+      },
+      {
+        number: 13,
+        question: "In which of the following diagrams is the length of the length tube equal to one wavelength?",
+        options: ["Diagram A", "Diagram B", "Diagram C", "Diagram D"],
+        answer: "A"
+      },
+      {
+        number: 14,
+        question: "A calibrated potentiometer is used to measure the e.m.f. of a cell because the",
+        options: ["internal resistance of a cell is small compared with that of the potentiometer", "potentiometer takes no current from the cell", "potentiometer has a linear scale", "resistance of the potentiometer is less than that of a voltmeter"],
+        answer: "B"
+      },
+      {
+        number: 15,
+        question: "Which of the following is a vector?",
+        options: ["Electric charge", "Electric potential difference", "Electric field", "Electrical capacitance."],
+        answer: "C"
+      },
+      {
+        number: 16,
+        question: "The photocell works on the principle of the",
+        options: ["voltaic cell", "photographic plate", "emission of protons by incident electrons", "emission of electrons by incident radiation"],
+        answer: "D"
+      },
+      {
+        number: 17,
+        question: "When an atom loses or gains a charge, it becomes",
+        options: ["an ion", "an electron", "a neutron", "a proton"],
+        answer: "A"
+      },
+      {
+        number: 18,
+        question: "Which of the following characteristics of a wave is used in the measurement of the depth of the sea?",
+        options: ["Diffraction", "Reflection", "Refraction", "Interference"],
+        answer: "B"
+      },
+      {
+        number: 19,
+        question: "Which of the following are produced after a nuclear fusion process? I. One heavy nucleus II. Neutrons III. Protons IV. Energy",
+        options: ["I and II", "II and III", "I and IV", "II and IV."],
+        answer: "C"
+      },
+      {
+        number: 20,
+        question: "Two similar kettles containing equal masses of boiling water are placed on a table. If the surface of one is highly polished and the surface of the other is covered with soot, which of the following observations is correct?",
+        options: ["The two kettles will cool down at the same rate", "The polished kettle cools down more quickly by conduction", "The kettle covered with soot cools down more quickly because it is a good radiator of heat", "The kettle covered with soot cools down more quickly by the process of heat convection."],
+        answer: "D"
+      },
+      {
+        number: 21,
+        question: "Total eclipse of the sun occurs when the",
+        options: ["moon is between the sun and the earth", "sun is between the moon and the earth", "the earth is between the moon and the sun", "ozone layer is threatened."],
+        answer: "A"
+      },
+      {
+        number: 22,
+        question: "Which of the following pairs of colours gives the widest separation in the spectrum of white light?",
+        options: ["Green and Yellow", "Red and violet", "Red and indigo", "Yellow and violet."],
+        answer: "B"
+      },
+      {
+        number: 23,
+        question: "Which of the following with respect to a body performing simple harmonic motion are in phase?",
+        options: ["Displacement and velocity of the body", "Displacement and force on the body", "Velocity and acceleration of the body", "Force acting on the body and the acceleration"],
+        answer: "C"
+      },
+      {
+        number: 24,
+        question: "A uniform metre rule weighing 0.5N is to be pivoted on a knife-edge at the 30cm-mark. Where will a force of 2N be placed from the pivot to balance the metre rule?",
+        options: ["95cm", "5cm", "20cm", "25cm"],
+        answer: "D"
+      },
+      {
+        number: 25,
+        question: "A solid weighs 10.0N in air, 6.0N when fully immersed in water and 7.0N when fully immersed in a certain liquid X. Calculate the relative density of the liquid.",
+        options: ["3/4", "4/3", "5/3", "7/10"],
+        answer: "A"
+      },
+      {
+        number: 26,
+        question: "The diagram above shows a maximum and minimum thermometer divided into three portions P, Q and R. Which of the following is true about the respective content of P, Q and R?",
+        options: ["Air, alcohol and mercury", "alcohol, mercury and alcohol", "mercury, alcohol and mercury", "Air, mercury and alcohol"],
+        answer: "B"
+      },
+      {
+        number: 27,
+        question: "The process of energy production in the sun is",
+        options: ["nuclear fission", "nuclear fusion", "electron collision", "radioactivity decay"],
+        answer: "C"
+      },
+      {
+        number: 28,
+        question: "The particle is responsible for nuclear fusion in a nuclear reactor is",
+        options: ["electron", "Photon", "proton.", "Neutron"],
+        answer: "D"
+      },
+      {
+        number: 29,
+        question: "If the uncertainty in the measurement of the position of a particle is 5×10⁻¹⁰m, the uncertainty in the momentum of the particle is [h=6.6 ×10⁻³⁴J]",
+        options: ["1.32 × 10⁻²⁴ Ns", "3.30 × 10⁻⁴⁴ Ns", "1.32 × 10⁻⁴⁴ Ns", "3.30 × 10⁻²⁴ Ns"],
+        answer: "A"
+      },
+      {
+        number: 30,
+        question: "The change in volume when 450kg of ice is completely melted is [density of ice =900kgm⁻³ Density of water=1000 kgm⁻³]",
+        options: ["0.50m", "0.45m³", "4.50m³", "0.05m³"],
+        answer: "D"
+      },
+      {
+        number: 31,
+        question: "When impurities are added to semiconductor",
+        options: ["decreases", "increases then decreases", "decreases", "remains constant"],
+        answer: "A"
+      },
+      {
+        number: 32,
+        question: "The process through which free electrons leave the hot surface of hot metal is known as",
+        options: ["photo emission", "thermionic emission", "photon emission", "electron emission"],
+        answer: "B"
+      },
+      {
+        number: 33,
+        question: "The production of pure spectrum could easily be achieved using a",
+        options: ["Triangular prism only", "Triangular prism with two concave lens", "Glass prism with a pin", "Triangular prism with two convex lens."],
+        answer: "D"
+      },
+      {
+        number: 34,
+        question: "A short chain is sometimes attached to the back of a petrol tanker to",
+        options: ["Conduct excess charges to the earth", "Ensure the balancing of the tanker", "Caution the driver when over speeding", "Generate more friction"],
+        answer: "A"
+      },
+      {
+        number: 35,
+        question: "A perfect emitter or absorber of radiant energy is a",
+        options: ["White body", "Red body", "Conductor", "Black body"],
+        answer: "D"
+      },
+      {
+        number: 36,
+        question: "Six identical cells, each of e.m.f 2V are connected as shown above. The effective e.m.f of the cell is",
+        options: ["4V", "0V", "6V", "12V"],
+        answer: "A"
+      },
+      {
+        number: 37,
+        question: "If a pump is capable of lifting 5000Kg of water through a vertical height of 60 m in 50 mins, the power of the pump is",
+        options: ["2.5×10⁵Js⁻¹", "3.3 × 10³Js⁻¹", "2.5 ×10⁴Js⁻¹", "3.3 × 10²Js⁻¹"],
+        answer: "B"
+      },
+      {
+        number: 38,
+        question: "The distance between two successive crest of a wave is 15 cm and the velocity is 300ms⁻¹. Calculate the frequency.",
+        options: ["4.5 × 10⁵ Hz", "4.5 × 10² Hz", "2.0 × 10³ Hz", "2.0 × 10² Hz"],
+        answer: "A"
+      },
+      {
+        number: 39,
+        question: "An electric lamp marked 240V, 60 Watts is left to operate for an hour. How much energy is generated by the filament?",
+        options: ["3.86 × 10⁵ J", "2.16 × 10⁵ J", "1.80 × 10⁴ J", "3.56 × 10⁵ J"],
+        answer: "B"
+      },
+      {
+        number: 40,
+        question: "In comparing the camera and human eye, the film of the camera functions as the",
+        options: ["Iris", "Pupil", "Retina", "Cornea"],
+        answer: "C"
+      }
+    ],
+    "2016": [
+      {
+        number: 1,
+        question: "What is the least possible error encountered when taking measurement with a meter rule?",
+        options: ["0.5 mm", "1.0 mm.", "0.2 mm.", "0.1 mm"],
+        answer: "B"
+      },
+      {
+        number: 2,
+        question: "The electromotive force in the secondary winding is",
+        options: ["stabilizing", "reducing", "increasing", "varying"],
+        answer: "C"
+      },
+      {
+        number: 3,
+        question: "If a pump is capable of lifting 5000 kg of water through a vertical height of 60 in 15 mins, the power of the pump is",
+        options: ["3.3 x 10³J s⁻¹", "2.5 x 10⁴J s⁻¹", "2.5 x 10⁵J s⁻¹", "3.3 x 10²J s⁻¹"],
+        answer: "A"
+      },
+      {
+        number: 4,
+        question: "Calculate the temperature change when 500J of heat is supplied to 100g of water.",
+        options: ["12.1°C", "2.1°C", "1.2°C", "0.1°C"],
+        answer: "C"
+      },
+      {
+        number: 5,
+        question: "Which of the following particles CANNOT be deflected by both electric and magnetic fields?",
+        options: ["Gamma rays", "Alpha particles.", "Wave particles", "Beta particles."],
+        answer: "A"
+      },
+      {
+        number: 6,
+        question: "Under which of the following conditions do gasses conduct electricity?",
+        options: ["High pressure and low p.d", "Low pressure and high p.d", "Low pressure and low p.d", "High pressure and high p.d"],
+        answer: "B"
+      },
+      {
+        number: 7,
+        question: "Dispersion occurs when white light passes through a glass prism because of the",
+        options: ["defects in the glass.", "high density of the glass.", "different speeds of the colour in the glass.", "different hidden colours in the glass."],
+        answer: "C"
+      },
+      {
+        number: 8,
+        question: "Calculate the e.m.f of the cell in the above circuit if its internal resistance is negligible.",
+        options: ["12V", "36V", "2V", "8V"],
+        answer: "D"
+      },
+      {
+        number: 9,
+        question: "An object of mass 80kg is pulled on a horizontal rough ground by a force of 500N. Find the coefficient of static friction. [g ≈ 10ms⁻²]",
+        options: ["0.6.", "0.4", "1.0", "0.8."],
+        answer: "A"
+      },
+      {
+        number: 10,
+        question: "The diagram above shows plank RS pivoted at its centre of gravity O and is in equilibrium with the weights P and Q. If a weight 2P is added to P, the plank will be in equilibrium again by",
+        options: ["moving P nearer to O.", "moving Q nearer to O.", "adding a weight Q to Q.", "moving P further away from O."],
+        answer: "B"
+      },
+      {
+        number: 11,
+        question: "A glass plate 0.9 cm thick has a refractive index of 1.50. How long does it take for a pulse of light to pass through the plate? [c= 3.0 x 10⁸ms⁻¹]",
+        options: ["3.0 x 10⁻¹⁰ s", "4.5 x 10⁻¹¹ s", "3.0 x 10⁻¹¹ s", "4.5 x 10⁻¹⁰ s"],
+        answer: "C"
+      },
+      {
+        number: 12,
+        question: "The main purpose of the transformer in an a.c radio set is to",
+        options: ["increase power to the radio.", "convert energy from a.c. to d.c", "step up the voltage.", "step down the voltage."],
+        answer: "D"
+      },
+      {
+        number: 13,
+        question: "The energy associated with the emitted photon when a mercury atom changes from one state to another is 3.3 eV. Calculate the frequency of the photon.",
+        options: ["3.2 x 10⁻⁵³ Hz.", "3.1 x 10⁻⁵³ Hz", "1.3 x 10⁻⁵³ Hz", "8.0 x 10⁻⁵³ Hz"],
+        answer: "D"
+      },
+      {
+        number: 14,
+        question: "²³⁵₉₂U + ¹₀n → ¹⁴⁴₅₆Ba + ⁹⁰Kr + 2X. In the reaction above, X is",
+        options: ["electron.", "neutron.", "neutrino.", "proton."],
+        answer: "B"
+      },
+      {
+        number: 15,
+        question: "To protect a material from the influence of an external magnetic field, the material should be kept in a",
+        options: ["soft iron ring.", "loop of copper wire.", "triangular zinc ring.", "square steel ring."],
+        answer: "A"
+      },
+      {
+        number: 16,
+        question: "The refractive index of the medium M in the diagram above is",
+        options: ["1/√2", "√3", "√2", "2"],
+        answer: "B"
+      },
+      {
+        number: 17,
+        question: "Thermal equilibrium between two objects exists when",
+        options: ["the heat capacities of both objects are the same", "the quantity of heat in both objects are the same.", "the temperature of both objects are equal", "one object loses heat continuously to the other."],
+        answer: "C"
+      },
+      {
+        number: 18,
+        question: "Which of the following is a characteristic of stationary waves?",
+        options: ["The antinode is a point of minimum displacement.", "The distance between two successive nodes is one wavelength.", "They can be transverse or longitudinal", "They are formed by two identical waves travelling in opposite directions."],
+        answer: "D"
+      },
+      {
+        number: 19,
+        question: "The height at which the atmosphere ceases to exist is about 80km. if the atmospheric pressure at a height of 20km above the ground level is",
+        options: ["480mmHg", "570mmHg", "190mmHg", "380mmHg"],
+        answer: "A"
+      },
+      {
+        number: 20,
+        question: "A metal of mass 0.5kg is heated to 100° and then transferred to a well-lagged calorimeter of heat capacity 80Jk⁻¹ containing water of heat capacity of the metal",
+        options: ["92 J kg⁻¹", "286 J kg⁻¹ k⁻¹", "133 J kg⁻¹ k⁻¹", "887 J kg⁻¹ k⁻¹"],
+        answer: "C"
+      },
+      {
+        number: 21,
+        question: "In the series a.c circuit shown below, the p.d across the inductor is 8 V.r.m.s. The effective voltage is",
+        options: ["10v", "2v", "14v", "48v"],
+        answer: "A"
+      },
+      {
+        number: 22,
+        question: "In a closed organ pipe producing a musical note, an antinode will always be produced at",
+        options: ["the closed end", "the middle", "the open end", "all the parts of the pipe."],
+        answer: "C"
+      },
+      {
+        number: 23,
+        question: "What happens when a certain quantity of pure ice is completely changed to water at 0°C?",
+        options: ["Latent heat is absorbed, the mass decreases and the volume increases.", "latent heat is absorbed, the mass remains constant and the volume decreases.", "latent heat is given out, the mass increases and the volume remains constant", "latent heat is given out, the mass remains constant and the volume decreases."],
+        answer: "B"
+      },
+      {
+        number: 24,
+        question: "In the diagram above, P, Q and R are vectors. Which of the following options gives the correct relationship between the vectors?",
+        options: ["P = Q + R", "P = Q - R", "P = R - Q", "P + Q + R = 0"],
+        answer: "D"
+      },
+      {
+        number: 25,
+        question: "If two parallel conductors carry currents flowing in the same direction, the conductors will",
+        options: ["repel each other", "attract each other", "both move in the same direction.", "have no effect on each other"],
+        answer: "A"
+      },
+      {
+        number: 26,
+        question: "Which of the following correctly explain(s) why a green leaf appears green in a bright daylight? I. It absorbs only the green component of sunlight II. It absorbs all colours in sunlight except green III. It reflects only the green component of sunlight",
+        options: ["I only", "II and III only", "I and II only", "II only."],
+        answer: "B"
+      },
+      {
+        number: 27,
+        question: "Which of the following factors has no effect on the e.m.f of a primary cell?",
+        options: ["nature of plate", "size of the cell", "temperature", "nature of the electrolyte."],
+        answer: "C"
+      },
+      {
+        number: 28,
+        question: "When the bottom tip of a vibrating tuning fork is held in contact with a wooden box, a louder sound is heard. this phenomenon is known as",
+        options: ["beats", "echoing", "reverberation", "resonance."],
+        answer: "D"
+      },
+      {
+        number: 29,
+        question: "A particle of mass m which is at rest splits up into two. if the mass and the velocity of one of the particles are m/3 and v respectively, calculate the velocity of the second particle",
+        options: ["v/2", "v/3", "2v/3", "v"],
+        answer: "B"
+      },
+      {
+        number: 30,
+        question: "The electrochemical equivalent of silver is 0.0012g/C if 36.0g of silver is to be deposited by electrolysis on a surface by passing a steady current for 5.0 minutes, the current must be",
+        options: ["6000A", "100A", "100A", "1.0A"],
+        answer: "C"
+      },
+      {
+        number: 31,
+        question: "The principle of operation of an induction coil is based on",
+        options: ["Ohm's law", "ampere's law", "faraday's law", "coulomb's law"],
+        answer: "A"
+      },
+      {
+        number: 32,
+        question: "A radioactive sample initially contains N atoms. After three half-lives the number of atoms that have disintegrated is",
+        options: ["N/8", "3N/8", "5N/8", "7N/8"],
+        answer: "D"
+      },
+      {
+        number: 33,
+        question: "Mercury is suitable as a barometric fluid because it",
+        options: ["expands uniformly", "is several times denser than water", "is opaque", "is a good conductor of heat"],
+        answer: "B"
+      },
+      {
+        number: 34,
+        question: "Which of the following features is NOT a characteristic of natural radioactivity?",
+        options: ["radioactivity is a nuclear phenomenon", "radioactivity is exhibited only by the element of mass number greater than 206", "The radioactivity of an element is affected by electric and magnetic fields in the surroundings.", "Radioactive substances emit three types of radiations α-rays, β-rays and γ-rays."],
+        answer: "C"
+      },
+      {
+        number: 35,
+        question: "Which of the following is a correct explanation of the INERTIA of a body?",
+        options: ["Reluctance to start moving at rest and its reluctance to stop moving once it has begun move", "Reluctance to stop moving", "Readiness to start moving", "Reluctance to start moving and its readiness to stop moving once it has begun to move"],
+        answer: "A"
+      },
+      {
+        number: 36,
+        question: "If the force on a charge of 0.2 coulomb in an electric field is 4N, the intensity of the field is",
+        options: ["0.8", "20.0 N/C", "0.8N/C", "4.2N/C"],
+        answer: "B"
+      },
+      {
+        number: 37,
+        question: "The point beyond which a stretched spring does not return to its original length is called the",
+        options: ["breaking point", "spring constant", "elastic limit", "elasticity point."],
+        answer: "C"
+      },
+      {
+        number: 38,
+        question: "Which of the following statements is applicable to a real image formed by a concave mirror? I. It can be observed on a screen II. It is always inverted and in front of the mirror III. It only seems to exist IV. It is formed by the actual converging of rays of light.",
+        options: ["I, II and III only", "I, II and IV only", "I and III only)", "I and II only."],
+        answer: "A"
+      },
+      {
+        number: 39,
+        question: "Which of the following does not cause a reduction of the surface tension of water?",
+        options: ["soap solution", "detergent", "alcohol", "grease"],
+        answer: "D"
+      },
+      {
+        number: 40,
+        question: "In what range of temperature is the expansion of water anomalous?",
+        options: ["+208°C to +212°C", "-800°C to -76°C", "0°C to 4°C", "-4°C TO 0°"],
+        answer: "C"
+      }
+    ],
+    "2017": [
+      {
+        number: 1,
+        question: "The focal length of a concave mirror is 2.0 cm. If an object is placed 8.0cm from it, the image is at.",
+        options: ["2.7m", "2.3m", "2.5m", "2.0m"],
+        answer: "A"
+      },
+      {
+        number: 2,
+        question: "PHCN measures is electrical energy in",
+        options: ["Wh.", "Kwh", "J", "W."],
+        answer: "B"
+      },
+      {
+        number: 3,
+        question: "The resultant of two forces is 50N. If the forces are perpendicular to each other and one of them makes an angle 30° with the resultant. Find its magnitude.",
+        options: ["100.0N", "57.7N", "25.0N", "43.3N"],
+        answer: "D"
+      },
+      {
+        number: 4,
+        question: "A piece of radioactive material contains 1000 atoms. If its half-life is 20 seconds, the time taken for 125 atoms to remain is",
+        options: ["20 seconds", "40 seconds", "60 seconds", "80 seconds"],
+        answer: "D"
+      },
+      {
+        number: 5,
+        question: "The correct expression for the potential at a point, distance r from a charge q, in an electric field is",
+        options: ["q/4πε₀r²", "q/4πε₀r", "q²/4πε₀r", "q²/4πε₀r²"],
+        answer: "A"
+      },
+      {
+        number: 6,
+        question: "A typical transistor characteristic is represented as",
+        options: ["Graph A", "Graph B", "Graph C", "Graph D"],
+        answer: "B"
+      },
+      {
+        number: 7,
+        question: "In a discharge tube, most of the gas is pumped out so that electricity is concluded at",
+        options: ["steady voltage", "high pressure", "low pressure.", "low voltage."],
+        answer: "C"
+      },
+      {
+        number: 8,
+        question: "I. Moon II. Sun III. Street light IV. Stars. Which of the above is a natural source of light?",
+        options: ["I, II and IV only", "I, II and III only", "III and IV only", "II and IV only"],
+        answer: "D"
+      },
+      {
+        number: 9,
+        question: "An object placed at the bottom of a well full of clear water appears closer to the surface due to",
+        options: ["refraction.", "reflection.", "an inverter", "a magnifier"],
+        answer: "A"
+      },
+      {
+        number: 10,
+        question: "A boy drags a bag of rice along a smooth horizontal flow with a force of 2N applied at an angle of 60° to the flow. The work done after a distance of 3m is",
+        options: ["6J.", "4 J", "5 J", "3 J"],
+        answer: "C"
+      },
+      {
+        number: 11,
+        question: "The spheres of masses 5.0kg and 10.0kg are 0.3m apart. Calculate the force of attraction between them.",
+        options: ["3.57 X 10⁻² N.", "3.71 X 10⁻² N.", "4.00 X 10⁻² N.", "3.50 X 10⁻² N."],
+        answer: "B"
+      },
+      {
+        number: 12,
+        question: "When very hot water is poured into two identical thin and thick glass tumblers in equal volumes, the thick one cracks because",
+        options: ["of the even expansion of glass.", "glass is a good conductor of heat.", "glass is a crystal", "of the uneven expansion of glass"],
+        answer: "D"
+      },
+      {
+        number: 13,
+        question: "The diagram above represents the stress-strain for a typical metal rod. What does X represent?",
+        options: ["Yield point", "Breaking point", "Elastic limit", "proportional limit"],
+        answer: "A"
+      },
+      {
+        number: 14,
+        question: "Transverse waves can be distinguished from longitudinal waves using the characteristic of",
+        options: ["diffraction", "reflection.", "polarization.", "refraction."],
+        answer: "C"
+      },
+      {
+        number: 15,
+        question: "Which of the following pairs of light rays shows the widest separation in the spectrum of white light?",
+        options: ["Green and yellow.", "Blue and red", "Indigo and violet", "Orange and red."],
+        answer: "B"
+      },
+      {
+        number: 16,
+        question: "Which of the following graphs shows the correct vector diagram for the circuit above?",
+        options: ["Graph A", "Graph B", "Graph C", "Graph D"],
+        answer: "A"
+      },
+      {
+        number: 17,
+        question: "A transistor functions mainly as a",
+        options: ["switch and an amplifier", "rectifier and an amplifier", "charge storer and a switch", "charge storer and an amplifier"],
+        answer: "D"
+      },
+      {
+        number: 18,
+        question: "A thin wire with heavy weights attached to both ends is hung over a block of ice resting on two supports. If the wire cuts through the ice block while the block remains solid behind the wire, the process is called",
+        options: ["fusion", "sublimation", "regelation", "condensation."],
+        answer: "C"
+      },
+      {
+        number: 19,
+        question: "The inner diameter of a small test tube can be measured accurately using a",
+        options: ["micrometer screw gauge", "pair of Vernier callipers", "metre rule", "pair of dividers."],
+        answer: "B"
+      },
+      {
+        number: 20,
+        question: "A platinum resistance thermometer records 3.0Ω at 0°C and 8.0Ω at 100°C. If it records 6.0Ω in a certain environment, the temperature of the medium is",
+        options: ["60°C", "80°C", "50°C", "30°C"],
+        answer: "A"
+      },
+      {
+        number: 21,
+        question: "In the diagram above, which of the angles θ₁, θ₂, θ₃, and θ₄ is the angle of deviation of a ray of light passing through XYZ?",
+        options: ["θ₂", "θ₃", "θ₁", "θ₄"],
+        answer: "B"
+      },
+      {
+        number: 22,
+        question: "Which of the following is the dimension of pressure?",
+        options: ["ML²T⁻³", "ML⁻¹T⁻²", "ML²T⁻¹T⁻²", "ML⁻³"],
+        answer: "C"
+      },
+      {
+        number: 23,
+        question: "A capacitor 8µF, is charged to a potential difference of 100V. The energy stored by the capacitor is",
+        options: ["1.0 x 10⁴ J", "4.0 x 10⁻² J", "1.25 x 10 J", "8.0 x 10 J"],
+        answer: "B"
+      },
+      {
+        number: 24,
+        question: "Which of the following statements correctly describe(s) cathode rays? I. They consist of tiny particles carrying negative electric charges II. They are deflected in a magnetic field but not in an electric field. III. They consist of fast-moving neutrons and deflected in an electric field.",
+        options: ["I only", "III only", "I and II only", "II and III only."],
+        answer: "D"
+      },
+      {
+        number: 25,
+        question: "A concave mirror has a radius of curvature of 36cm. At what distance from the mirror should an object be placed to give a real image three times the size of the object?",
+        options: ["12cm", "24cm", "48cm", "108cm"],
+        answer: "A"
+      },
+      {
+        number: 26,
+        question: "The net capacitance in the circuit shown above is",
+        options: ["8.0 µF", "6.0 µF", "2.0 µF", "4.0 µF"],
+        answer: "C"
+      },
+      {
+        number: 27,
+        question: "A sonometer wire of length 100cm under a tension of 10N, has a frequency of 250Hz. Keeping the length of the wire constant, the tension is adjusted to produce a new frequency of 350Hz. The new tension is",
+        options: ["5.1N", "19.6N", "14.0N", "7.1N"],
+        answer: "B"
+      },
+      {
+        number: 28,
+        question: "In a sound wave in air, the adjacent rarefactions and compressions are separated by a distance of 17cm. If the velocity of the sound wave is 340ms⁻¹. Determine the frequency.",
+        options: ["10Hz", "20Hz", "5780Hz", "1000Hz"],
+        answer: "D"
+      },
+      {
+        number: 29,
+        question: "A note is called an octave of another note when",
+        options: ["the notes have the same fundamental frequency", "its frequency is half of the first note.", "its frequency is twice that of the first note.", "its periodic time is twice that of the first note."],
+        answer: "C"
+      },
+      {
+        number: 30,
+        question: "A metallic strip of iron and brass was heated. Which of the following diagrams accurately illustrated the shape of the strip after heating?",
+        options: ["Diagram A", "Diagram B", "Diagram C", "Diagram D"],
+        answer: "A"
+      },
+      {
+        number: 31,
+        question: "Which of the following is in a neutral equilibrium?",
+        options: ["A heavy weight suspended on a string", "The beam of a balance in use", "A heavy-based table lamp", "A cone resting on its slant edge"],
+        answer: "D"
+      },
+      {
+        number: 32,
+        question: "A convex mirror is used as a driving mirror because I. Its image is erect II. It has a large field of view III. It has a long focal length. Identify the CORRECT statement(s).",
+        options: ["I and III only", "I and II only", "II and III only", "I, II and III only"],
+        answer: "B"
+      },
+      {
+        number: 33,
+        question: "What is the cost of running five 50W lamps and four 100W lamps for 10 hours if electrical energy costs 2 kobo per kWh?",
+        options: ["N 0.13", "N 0.65", "N 3.90", "N 39.00"],
+        answer: "A"
+      },
+      {
+        number: 34,
+        question: "The specific latent heat of vaporization of a substance is always",
+        options: ["less than its specific latent heat of fusion", "equal to its specific latent heat of fusion", "greater than its specific latent of fusion", "all of the above depending on the nature of the substance."],
+        answer: "C"
+      },
+      {
+        number: 35,
+        question: "A hydrometer is an instrument for measuring the",
+        options: ["depth of water in a vessel", "relative humidity of the air", "relative density of a liquid by finding the apparent loss in weight", "relative density of a liquid by the method of flotation"],
+        answer: "D"
+      },
+      {
+        number: 36,
+        question: "A transformer has 300 turns of wire in the primary coil and 30 turns in the secondary coil. If the input voltage is 100 volts, the output voltage is",
+        options: ["10 volts", "5 volts", "15 volts", "20 volts."],
+        answer: "D"
+      },
+      {
+        number: 37,
+        question: "The activity of a radioactive substance depends on",
+        options: ["temperature and purity", "purity and age", "temperature and age", "age, purity and temperature"],
+        answer: "C"
+      },
+      {
+        number: 38,
+        question: "The speed of light in air is 3 x 10⁸ ms⁻¹. If the refractive index of light from air-to-water is 4/3, then which of the following is the correct value of the speed of light in water?",
+        options: ["4 x 10⁸m s⁻¹", "2.23 x 10⁸m s⁻¹", "2.25 x 10⁸m s⁻²", "4/9 x 10⁸m s⁻¹"],
+        answer: "B"
+      },
+      {
+        number: 39,
+        question: "A magnet is moved through a coil of wire. The e.m.f. produced in the wire depends on",
+        options: ["the number of turns in the coil", "the strength of magnet", "the speed at which the magnet is moved", "all of the above."],
+        answer: "D"
+      },
+      {
+        number: 40,
+        question: "A charge of one coulomb liberated 0.0033g of copper in an electrolytic process. How long will it take a current of 2A to liberate 1.98g of copper in such a process?",
+        options: ["30 minutes", "5 minutes", "50 minutes", "60 minutes."],
+        answer: "B"
+      }
+    ],
+    "2018": [
+      {
+        number: 1,
+        question: "A man walks 1 km due east and then 1km due north. His displacement is",
+        options: ["√2 km N 45° E", "1km N 30°E", "1km N 15° E", "√2 km N 60° E"],
+        answer: "A"
+      },
+      {
+        number: 2,
+        question: "The density of 400cm³ of palm oil was 0.9gcm⁻³ before frying. If the density of the oil was 0.6gcm⁻³ after frying, assuming no loss of oil to spilling, its new volume was",
+        options: ["360 cm³", "600 cm³", "240 cm³", "800 cm³"],
+        answer: "B"
+      },
+      {
+        number: 3,
+        question: "Which of the following is true of an electrical charge?",
+        options: ["Positive charge means deficit electrons", "Negative charge means excess of electrons", "Electric current means movement of electrons", "All of the above"],
+        answer: "D"
+      },
+      {
+        number: 4,
+        question: "Natural radioactivity consists of the emission of --.",
+        options: ["α-particles and β-rays", "α-particles and X-rays", "α-particles, β-rays and γ-rays", "α-rays and X-rays"],
+        answer: "C"
+      },
+      {
+        number: 5,
+        question: "Which of the following does NOT describe the image formed by a plane mirror?",
+        options: ["Erect", "Laterally inverted", "Same distance from mirror as object", "Magnified"],
+        answer: "D"
+      },
+      {
+        number: 6,
+        question: "What is the resultant resistance of the circuit given above?",
+        options: ["8Ω", "11Ω", "4Ω", "3.6Ω"],
+        answer: "A"
+      },
+      {
+        number: 7,
+        question: "Which of the following best describes the energy changes which take place when a steam engine drives a generator which lights a lamp?",
+        options: ["Heat → Light → Sound → Kinetic", "Heat → Kinetic → Electricity → Heat and Light", "Kinetic → Light → Heat → Electricity", "Electricity → Kinetic → Heat → Light"],
+        answer: "B"
+      },
+      {
+        number: 8,
+        question: "Cathode rays are",
+        options: ["High-energy electromagnetic waves", "protons", "neutrons", "streams of electrons"],
+        answer: "D"
+      },
+      {
+        number: 9,
+        question: "A narrow beam of white light can be split into different colours by a glass prism. The correct explanation is that",
+        options: ["white light is an electromagnetic wave", "the prism has all the colours of the white light", "different colours of white light travel with different speeds in glass", "white light has undergone total internal reflection in the prism."],
+        answer: "C"
+      },
+      {
+        number: 10,
+        question: "Figure represents a block-and-tackle pulley system on which an effort of W Newtons supports a load of 120.0N. If the efficiency of the machine is 40, then the value of W is",
+        options: ["28.0 N", "48.0 N", "288.0 N", "50.0 N"],
+        answer: "B"
+      },
+      {
+        number: 11,
+        question: "What type of reaction is represented by the following scheme? ²¹H + ²¹H → ³²He + ¹₀n + energy",
+        options: ["Fusion reaction", "Fission reaction", "Chain reaction", "Radioactive decay"],
+        answer: "A"
+      },
+      {
+        number: 12,
+        question: "The amount of heat needed to raise the temperature of 10kg of copper by 1K its",
+        options: ["specific heat capacity", "latent heat", "heat capacity", "internal energy"],
+        answer: "C"
+      },
+      {
+        number: 13,
+        question: "The electrochemical equivalent of silver 0.0012g/C. If 36.0g of silver is to be deposited by electrolysis on a surface by passing a steady current for 5.0 minutes, the current must be",
+        options: ["6000A", "100A", "10A", "1A"],
+        answer: "B"
+      },
+      {
+        number: 14,
+        question: "Shadows and eclipses result from the",
+        options: ["refraction of light", "reflection of light.", "diffraction of light", "rectilinear propagation of light"],
+        answer: "D"
+      },
+      {
+        number: 15,
+        question: "Which of the following obeys Ohm's Law?",
+        options: ["All metals", "Diode only", "All electrolytes", "Glass"],
+        answer: "A"
+      },
+      {
+        number: 16,
+        question: "Which of the following statements are TRUE OF ISOTOPES? I. Isotopes of an element have the same chemical properties because they have the same number of electrons II. Isotopes of elements are normally separated using physical properties III. Isotopes of an element has the same number of protons in their nuclei.",
+        options: ["I and II only", "I and III only", "II and III only", "I, II and III."],
+        answer: "C"
+      },
+      {
+        number: 17,
+        question: "In the diagram above, the hanging mass m is adjusted until m is on the verge of sliding. The coefficient of static friction between mass m and the table is",
+        options: ["M/m", "m/M", "M/(M+m)", "m/(M+m)"],
+        answer: "D"
+      },
+      {
+        number: 18,
+        question: "Which of the following may be used to explain a mirage? I. Layers of air near the road surface have varying refractive indices in hot weather II. Road surfaces sometimes become good reflectors in hot weather. III. Light from the sky can be reflected upwards after coming close to and the road surface.",
+        options: ["I and III only", "II and III only", "II only", "I, II and III"],
+        answer: "A"
+      },
+      {
+        number: 19,
+        question: "In the diagram below, if the atmosphere pressure is 760mm, the pressure in the chamber G is",
+        options: ["660mm", "830mm", "690mm", "860mm"],
+        answer: "B"
+      },
+      {
+        number: 20,
+        question: "Which of the following has the lowest internal resistance when new?",
+        options: ["Leclanche cell", "Daniel cell", "Torch battery", "Accumulator"],
+        answer: "D"
+      },
+      {
+        number: 21,
+        question: "The pitch of an acoustic device can be increased by",
+        options: ["decreasing the loudness", "increasing the amplitude", "increasing the frequency", "decreasing the intensity."],
+        answer: "C"
+      },
+      {
+        number: 22,
+        question: "One of the features of the fission process is that",
+        options: ["it leads to chain reaction", "its products are not radioactive", "neutrons are not released.", "the sum of the masses of the reactants equals the sum of the masses of the products."],
+        answer: "A"
+      },
+      {
+        number: 23,
+        question: "The linear expansivity of brass is 2 x 10⁻⁵ K⁻¹. If the volume of a piece of brass is 15.00 cm³ at 0°C, what is the volume at 100°C?",
+        options: ["16.03 cm³", "15.09 cm³", "16.00 cm³", "15.03 cm³"],
+        answer: "B"
+      },
+      {
+        number: 24,
+        question: "A lead bullet of mass 0.05kg is fired with a velocity of 200 ms⁻¹ into a lead block of mass 0.95kg. Given that the lead block can move freely, the final kinetic energy after impact is",
+        options: ["150 J", "100 J", "50 J", "200 J"],
+        answer: "C"
+      },
+      {
+        number: 25,
+        question: "In a series R-L-C circuit at resonance, the voltages across the resistor and the inductor are 20V and 40V respectively. What is the voltage across the capacitor?",
+        options: ["30 V", "70 V", "50 V", "40 V"],
+        answer: "D"
+      },
+      {
+        number: 26,
+        question: "If the fraction of the atoms of a radioactive material left after 120 years is 1/64, what is the half-life of the material?",
+        options: ["20 years", "10 years", "2 years", "24 years"],
+        answer: "A"
+      },
+      {
+        number: 27,
+        question: "In the diagram below, which of the simple pendula will resonate with P when set into oscillation?",
+        options: ["U", "T", "R and T", "Q and R"],
+        answer: "B"
+      },
+      {
+        number: 28,
+        question: "The time rate of loss of heat by a body is proportional to the",
+        options: ["temperature of its surroundings", "temperature of the body", "difference in temperature between the body and its surroundings", "ration of the temperature of the body to that of its surroundings."],
+        answer: "C"
+      },
+      {
+        number: 29,
+        question: "A positive charged rod X is brought near an uncharged metal sphere Y and is then touched by a finger with X still in place. When the finger is removed, the result is that Y has",
+        options: ["no charge and a zero potential", "a positive charge and a zero potential.", "a negative charge and a positive potential.", "a negative charge and a negative potential."],
+        answer: "D"
+      },
+      {
+        number: 30,
+        question: "Electrical appliances in homes are normally earthed so that",
+        options: ["a person touching the appliances is safe from electric shock.", "both the a.c. and d.c. sources can be used.", "the appliances are maintained at a higher p.d. than the earth.", "the appliances are maintained at a lower p.d. than the earth."],
+        answer: "A"
+      },
+      {
+        number: 31,
+        question: "The process whereby a liquid turns spontaneously into vapour is called",
+        options: ["regelation", "evaporation.", "boiling.", "sublimation."],
+        answer: "B"
+      },
+      {
+        number: 32,
+        question: "Which of the following diagrams represents correctly an n-p-n transistor?",
+        options: ["Diagram A", "Diagram B", "Diagram C", "Diagram D"],
+        answer: "D"
+      },
+      {
+        number: 33,
+        question: "The differences observed in solids, liquids and gases may be accounted for by",
+        options: ["their relative masses.", "their melting points.", "the spacing and forces acting between the molecules.", "the different molecules in each of them."],
+        answer: "C"
+      },
+      {
+        number: 34,
+        question: "Convex mirrors are used as driving mirrors because images formed are",
+        options: ["erect, virtual and diminished", "erect, real and diminished", "erect, virtual and magnified", "inverted, virtual and diminished."],
+        answer: "A"
+      },
+      {
+        number: 35,
+        question: "Musical instruments playing the same note can be distinguished from one another owing to the differences in their",
+        options: ["quality.", "pitch.", "intensity", "loudness"],
+        answer: "B"
+      },
+      {
+        number: 36,
+        question: "In the diagram above, if the south-poles of two magnets stroke a steel bar, the polarities at T and V will respectively be",
+        options: ["north and south.", "south and south.", "north and north.", "south and north."],
+        answer: "C"
+      },
+      {
+        number: 37,
+        question: "In homes, electrical appliances and lamps are connected in parallel because",
+        options: ["less current will be used", "less voltage will be used.", "parallel connection does not heat up the wires", "series connection uses high voltage"],
+        answer: "D"
+      },
+      {
+        number: 38,
+        question: "An object moves in a circular path of radius 0.5m with a speed of 1ms⁻¹. What is its angular velocity?",
+        options: ["8 rad s⁻¹", "4 rad s⁻¹", "1 rad s⁻¹", "2 rad s⁻¹"],
+        answer: "D"
+      },
+      {
+        number: 39,
+        question: "What effort will a machine of efficiency 90% apply to lift a load of 180N if its efforts arm is twice as long as its load arm?",
+        options: ["100N", "90N", "80N", "120N"],
+        answer: "A"
+      },
+      {
+        number: 40,
+        question: "Calculate the effective capacitance of the circuit above.",
+        options: ["4µF", "3 µF", "2 µF", "1 µF."],
+        answer: "D"
+      }
+    ]
+  }
+};
