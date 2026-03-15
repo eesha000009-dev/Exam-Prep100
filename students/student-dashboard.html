@@ -1206,70 +1206,72 @@
       renderSubjectCards({}); // Show cards immediately with default state
       loadProgressFromSupabase(); // Then load real data
     </script>
-<!-- The Picture to click -->
-<img src="cortex-owl-brain.svg" id="chatBtn" alt="Open Chat" style="cursor:pointer; width:150px;">
+    
+    <!-- Floating Cortex AI Owl - Bottom Right -->
+    <div class="fixed bottom-6 right-6 z-50" id="floatingOwl">
+      <img src="/cortex-owl-brain.svg" id="chatBtn" alt="Cortex AI" class="w-20 h-20 cursor-pointer hover:scale-110 transition-transform drop-shadow-xl animate-float-mascot" title="Chat with Cortex AI">
+    </div>
+    
+    <!-- The Popup (Modal) -->
+    <div id="chatModal" class="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 hidden items-center justify-center p-4">
+      <div class="bg-white rounded-3xl w-full max-w-2xl max-h-[90vh] overflow-hidden shadow-2xl relative">
+        <button class="close-btn absolute top-4 right-4 w-10 h-10 bg-slate-100 hover:bg-slate-200 rounded-full flex items-center justify-center transition-colors z-10">
+          <i class="fas fa-times text-slate-600"></i>
+        </button>
+        
+        <div class="p-4 border-b border-slate-100 flex items-center gap-3">
+          <img src="/cortex-owl-brain.svg" alt="Cortex AI" class="w-10 h-10">
+          <div>
+            <div class="font-bold text-slate-800">CORTEX AI</div>
+            <div class="text-xs text-slate-500">Your Study Companion</div>
+          </div>
+        </div>
+        
+        <iframe 
+          src="https://app.edcafe.ai/chatbots/68b96ebb2a5be310497b6a0b" 
+          title="CORTEX AI" 
+          allow="microphone" 
+          style="border: none; width: 100%; height: 500px;">
+        </iframe>
+      </div>
+    </div>
+    
+    <script>
+      const modal = document.getElementById("chatModal");
+      const btn = document.getElementById("chatBtn");
+      const closeBtn = document.querySelector(".close-btn");
 
-<!-- The Popup (Modal) -->
-<div id="chatModal" class="modal">
-  <div class="modal-content">
-    <span class="close-btn">&times;</span>
-    <iframe src="https://app.edcafe.ai/chatbots/68b96ebb2a5be310497b6a0b" 
-            title="CORTEX AI" allow="microphone" 
-            style="border: none; width: 100%; height: 500px;"></iframe>
-  </div>
-</div>
+      // Open the popup
+      btn.onclick = function() {
+        modal.classList.remove('hidden');
+        modal.classList.add('flex');
+        document.body.style.overflow = 'hidden';
+      }
 
-<script>
-  const modal = document.getElementById("chatModal");
-  const btn = document.getElementById("chatBtn");
-  const closeBtn = document.getElementsByClassName("close-btn")[0];
+      // Close the popup
+      closeBtn.onclick = function() {
+        modal.classList.add('hidden');
+        modal.classList.remove('flex');
+        document.body.style.overflow = '';
+      }
 
-  // Open the popup
-  btn.onclick = function() {
-    modal.style.display = "block";
-  }
-
-  // Close the popup
-  closeBtn.onclick = function() {
-    modal.style.display = "none";
-  }
-
-  // Close if they click outside the box
-  window.onclick = function(event) {
-    if (event.target == modal) {
-      modal.style.display = "none";
-    }
-  }
-</script>
-<style>
-  /* The background overlay */
-.modal {
-  display: none; /* Hidden by default */
-  position: fixed;
-  z-index: 1000;
-  left: 0; top: 0;
-  width: 100%; height: 100%;
-  background-color: rgba(0,0,0,0.5); /* Semi-transparent black */
-}
-
-/* The box in the middle */
-.modal-content {
-  background-color: white;
-  margin: 5% auto;
-  padding: 20px;
-  width: 80%;
-  max-width: 600px;
-  border-radius: 10px;
-}
-
-/* Close button */
-.close-btn {
-  float: right;
-  font-size: 28px;
-  font-weight: bold;
-  cursor: pointer;
-}
-
-</style>
+      // Close if they click outside the box
+      modal.onclick = function(event) {
+        if (event.target === modal) {
+          modal.classList.add('hidden');
+          modal.classList.remove('flex');
+          document.body.style.overflow = '';
+        }
+      }
+      
+      // Close on Escape key
+      document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+          modal.classList.add('hidden');
+          modal.classList.remove('flex');
+          document.body.style.overflow = '';
+        }
+      });
+    </script>
   </body>
 </html>
