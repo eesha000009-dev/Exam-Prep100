@@ -1207,7 +1207,7 @@
       loadProgressFromSupabase(); // Then load real data
     </script>
 <!-- The Picture to click -->
-<img src="YOUR_PICTURE_NAME.jpg" id="chatBtn" alt="Open Chat" style="cursor:pointer; width:150px;">
+<img src="cortex-owl-brain.svg" id="chatBtn" alt="Open Chat" style="cursor:pointer; width:150px;">
 
 <!-- The Popup (Modal) -->
 <div id="chatModal" class="modal">
@@ -1219,6 +1219,57 @@
   </div>
 </div>
 
+<script>
+  const modal = document.getElementById("chatModal");
+  const btn = document.getElementById("chatBtn");
+  const closeBtn = document.getElementsByClassName("close-btn")[0];
 
+  // Open the popup
+  btn.onclick = function() {
+    modal.style.display = "block";
+  }
+
+  // Close the popup
+  closeBtn.onclick = function() {
+    modal.style.display = "none";
+  }
+
+  // Close if they click outside the box
+  window.onclick = function(event) {
+    if (event.target == modal) {
+      modal.style.display = "none";
+    }
+  }
+</script>
+<style>
+  /* The background overlay */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed;
+  z-index: 1000;
+  left: 0; top: 0;
+  width: 100%; height: 100%;
+  background-color: rgba(0,0,0,0.5); /* Semi-transparent black */
+}
+
+/* The box in the middle */
+.modal-content {
+  background-color: white;
+  margin: 5% auto;
+  padding: 20px;
+  width: 80%;
+  max-width: 600px;
+  border-radius: 10px;
+}
+
+/* Close button */
+.close-btn {
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+</style>
   </body>
 </html>
