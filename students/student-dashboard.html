@@ -1206,5 +1206,19 @@
       renderSubjectCards({}); // Show cards immediately with default state
       loadProgressFromSupabase(); // Then load real data
     </script>
+<!-- The Picture to click -->
+<img src="YOUR_PICTURE_NAME.jpg" id="chatBtn" alt="Open Chat" style="cursor:pointer; width:150px;">
+
+<!-- The Popup (Modal) -->
+<div id="chatModal" class="modal">
+  <div class="modal-content">
+    <span class="close-btn">&times;</span>
+    <iframe src="https://app.edcafe.ai/chatbots/68b96ebb2a5be310497b6a0b" 
+            title="CORTEX AI" allow="microphone" 
+            style="border: none; width: 100%; height: 500px;"></iframe>
+  </div>
+</div>
+
+
   </body>
 </html>
