@@ -1,1163 +1,1240 @@
-// JAMB English Past Questions (2010-2018)
-// Extracted and formatted from PDF source
+// English Questions - Extracted from PDF
+// Total: 176 questions
+// Generated: 2026-03-15 22:57:33
 
-if (!jambQuestions) var jambQuestions = {};
+export const englishQuestions = [
+  {
+    id: 1,
+    year: "2010",
+    question: "The absence of instruction manual in Spaceship Earth has PASSAGE II Spaceship Earth difficult cause of ill health in our society, means of travelling in spacecraft of as many as 70-80% of all visits inquisitiveness problem that every doctor shares",
+    options: ["made the operation of the Stress is by far the most common", "forced man to devise other and may be the underlying cause", "challenged man’s to family doctors. It is also the", "made man helpless with patients."],
+    correctAnswer: -1
+  },
+  {
+    id: 2,
+    year: "2010",
+    question: "From the passage, it can be Experts note that stress is an deduced that man issue everyone can relate to experimentally. In studying and education stress, we can derive personal as accidentally problems undergoing duress. They often search of knowledge someone deal with his/her stress should learn to handle his/hers",
+    options: ["learns by experiment and better understanding about", "learns by chance and well as professional benefits.", "is incapable of solving all his Stress can be overcome without", "by his nature is in constant say anyone who wants to help"],
+    correctAnswer: -1
+  },
+  {
+    id: 3,
+    year: "2010",
+    question: "The experts feel one can Corruption occurs when a public control one’s stress because official expects to be induced to perform an act which that public stress Corruption can slow down widely discussed consequences of",
+    options: ["its causes are understandable officials is ordinarily required to", "it is not difficult to control do by law.", "external factors contribute less", "it is individually initiated development. One of the most"],
+    correctAnswer: -1
+  },
+  {
+    id: 4,
+    year: "2010",
+    question: "From the passage, it can be corruption is the distortion of deduced that stress is governmental expenditure. This often results in public money system projects, rather than people factors factors are presented for corrupt use or diversion of funds. Raising the www.toppers.com.ng",
+    options: ["hormonal disorder in the body being wasted on white elephant", "individually induced problems oriented services, such as health", "bodily reaction to internal and education.", "bodily reaction to external As a result, more opportunities"],
+    correctAnswer: -1
+  },
+  {
+    id: 5,
+    year: "2010",
+    question: "Who, according to the writer numbered 16 to 25. should prevent corruption? Immediately following each gap, four options are Each question carries 2 marks",
+    options: ["Lawyers and Police provided. Choose the most", "Corrupt public officers appropriate option for each", "The government gap.", "The people"],
+    correctAnswer: -1
+  },
+  {
+    id: 6,
+    year: "2010",
+    question: "Which of the following is an indication of ethical standard of Drought is a word that invokes governance? strong emotions. This is not surprising as the … 16 … [A. developments have … 17 … [A.",
+    options: ["Fundamental human right ideology B. phenomenon C. idea", "Socio-economic instability D. component] is usually", "Democratic governance accompanied by a number of", "Bloated expenditure unpleasant developments. These"],
+    correctAnswer: -1
+  },
+  {
+    id: 7,
+    year: "2010",
+    question: "Though Mr. Iro is a new chairman, he views other A. It is always good to get members with jaundiced eye. midway in anything one does position on dealing with his C. It is always good to move away members from the forefront position concerning his members hard. members 29. The witness said he had no axe to grind with his brothers www.toppers.com.ng",
+    options: ["It is always good to act with", "He takes a rather forceful moderation", "He takes an unfavourable D. It is always good to work very", "He takes a sickly view of his"],
+    correctAnswer: -1
+  },
+  {
+    id: 8,
+    year: "2010",
+    question: "The footballers moved with A. we are completely at a loss their tails between their legs. B. we are irrevocably committed they won the match they had been despised by their opponents A. He is conceited they had been defeated C. He is a rich man between their legs.",
+    options: ["we are already qualified", "they moved happily because D. we are perfectly committed", "they were unhappy because 33. Uche is full of himself", "they were ashamed because B. He is complete", "they moved with their tails D. He is careful."],
+    correctAnswer: -1
+  },
+  {
+    id: 9,
+    year: "2010",
+    question: "The woman was mournful as D. An easy her husband was found dead drunk 37. The trader was amused by the cut-throat rush for the goods husband was absolutely drunk A. Worrisome husband would drink again as C. Lacklustre soon he recovered from the D. Mad drunken stupor 38. The teacher said that Ali’s husband was drunk and always as details helpless as a dead man www.toppers.com.ng",
+    options: ["She was sad because of her", "She was apprehensive that her B. Strange", "She was sad because her essay was full of many redundant", "Unexplained"],
+    correctAnswer: -1
+  },
+  {
+    id: 10,
+    year: "2010",
+    question: "His father surmounted the B. Harsh myriad of obstacles on his way C. Rough",
+    options: ["Gentle", "Most", "Few 43. The captain says sports is", "All being debased by commercial", "Many sponsorship"],
+    correctAnswer: -1
+  },
+  {
+    id: 11,
+    year: "2010",
+    question: "Her ingenuous smile drew our A. Localized attention B. Perverted people sometimes imagine",
+    options: ["Elevated", "Witty D. Overvalued", "Naïve", "Clever 44. Governing a country is not", "Arrogant always as straightforward as"],
+    correctAnswer: -1
+  },
+  {
+    id: 12,
+    year: "2010",
+    question: "Ndeni gave a flawless speech at the party A. Complicated www.toppers.com.ng",
+    options: ["Troublesome", "A wonderful C. Untoward", "A careless D. Irksome", "An interesting 45. The crowd was very receptive", "An imperfect to the speaker’s suggestion", "Disobedient"],
+    correctAnswer: -1
+  },
+  {
+    id: 13,
+    year: "2010",
+    question: "There was a general B. Cold and friendly acquiescence on the new drug law C. Cloudy and thundery",
+    options: ["Hot and uncomfortable", "Resistance", "Discrepancy 50. Ada gave her husband a look", "Compromise that made words superfluous", "Agreement", "Redundant"],
+    correctAnswer: -1
+  },
+  {
+    id: 14,
+    year: "2010",
+    question: "Aisha seems to feel B. Spurious ambivalent about her future C. Unnecessary phrase in italics",
+    options: ["Scanty", "Decisive", "Anxious In each of questions 51 to 65,", "Ambitious choose the option nearest in", "Inconsiderate meaning to the word or"],
+    correctAnswer: -1
+  },
+  {
+    id: 15,
+    year: "2010",
+    question: "The report of the committee contained a plethora of details 51. A political Impasse does not offer the best opportunity for www.toppers.com.ng",
+    options: ["Shortage merrymaking", "Simplicity", "Multitude A. manifesto", "Spectrum B. party", "gridlock", "rally"],
+    correctAnswer: -1
+  },
+  {
+    id: 16,
+    year: "2010",
+    question: "We were all enthusiastic as A. expensive we awaited the result of the B. foreign election C. insipid",
+    options: ["cheap", "bemused", "agitated 56. Kaltume crouched over the", "elated paper on her desk", "nervous", "wrote on"],
+    correctAnswer: -1
+  },
+  {
+    id: 17,
+    year: "2010",
+    question: "The uniform makes the B. stood on guards look absurd C. walked over",
+    options: ["bent over", "dirty", "smart 57. The panacea for a country’s", "sensible economic mess lies in systematic", "ridiculous planning and hardwork"],
+    correctAnswer: -1
+  },
+  {
+    id: 18,
+    year: "2010",
+    question: "The law is often tardy in A. cure reacting to changing attitude B. hope since the military came back to",
+    options: ["foresight", "quick D. trouble", "slow", "exclusive 58. Thousands of workers have", "generous been victims of retrenchment"],
+    correctAnswer: -1
+  },
+  {
+    id: 19,
+    year: "2010",
+    question: "The principal gave his speech offhand at the sports meeting A. Appropriate blemish",
+    options: ["Inconsequential", "calmly C. Emphatic", "beautifully D. Adequate", "unconcerned", "unprepared 63. Her reputation is without a"],
+    correctAnswer: -1
+  },
+  {
+    id: 20,
+    year: "2010",
+    question: "Jankoli was dressed in an old assortment of clothes A. Struggle secretary",
+    options: ["Problem", "Avalanche C. Fault", "Homogeneity D. Blessing", "Sameness", "Melange 64. Ugo is eligible for the post of"],
+    correctAnswer: -1
+  },
+  {
+    id: 21,
+    year: "2010",
+    question: "The girl’s father was astounded to see her appear from A. Nominated the shrine B. Invited www.toppers.com.ng",
+    options: ["Qualified", "collected D. Intelligent", "Overwhelmed", "embarrassed 65. This is an abridged version of", "Astonished No Longer at Ease", "An outdated"],
+    correctAnswer: -1
+  },
+  {
+    id: 22,
+    year: "2010",
+    question: "Lemoti……… as a painter, but me …….. also as a sculptor",
+    options: ["if I had come some days before", "is a gifted only not B. if I had come the day before", "is only not gifted C. did you come yesterday", "is gifted not only D. had I come yesterday", "is only gifted"],
+    correctAnswer: -1
+  },
+  {
+    id: 23,
+    year: "2010",
+    question: "He can recall the important the fracas, but I think she will pull dates in the nation’s history, it is ……. interesting to listen as he rattles ……… A. up",
+    options: ["over", "off C. through", "over D. back", "up", "out 71. A wide range of options …….."],
+    correctAnswer: -1
+  },
+  {
+    id: 24,
+    year: "2010",
+    question: "Long after everyone…….. the",
+    options: ["sells/have hall, obi still sat inside.", "sell/has", "sell/have A. left", "sells/has B. is leaving", "has left"],
+    correctAnswer: -1
+  },
+  {
+    id: 25,
+    year: "2010",
+    question: "They are the…….. dresses",
+    options: ["more economic rapid growth", "economic more rapid growth A. babys’", "rapid economic more growth B. baby", "more rapid economic growth C. babies", "babies’"],
+    correctAnswer: -1
+  },
+  {
+    id: 26,
+    year: "2010",
+    question: "The principal said that he was pleased……… my effort. 78. The politician was sent……. Exile www.toppers.com.ng",
+    options: ["on A. onto", "of B. into", "with C. on", "about D. to"],
+    correctAnswer: -1
+  },
+  {
+    id: 27,
+    year: "2010",
+    question: "When we looked up, we…….. C. prescribed the plane some miles away D. proscribed",
+    options: ["site 83. The man was happy that his", "cited son confessed his guilt and so the", "sited others were……", "sighted", "Implicated"],
+    correctAnswer: -1
+  },
+  {
+    id: 28,
+    year: "2010",
+    question: "Vital….. is still spread….. word B. accused of mouth in most villages in Africa C. punished",
+    options: ["exonerated", "information/from", "information/with 84. Based on the facts before me,", "information/by I have no alternative…… to hold", "information/through you responsible"],
+    correctAnswer: -1
+  },
+  {
+    id: 29,
+    year: "2010",
+    question: "Western education is one of A. only the….. of colonial rule. B. as",
+    options: ["than", "legacies D. but", "evidence", "remnants 85. Many people would always", "inheritance find reasons to……the law"],
+    correctAnswer: -1
+  },
+  {
+    id: 30,
+    year: "2010",
+    question: "The federal government A. arrogate has…… child trafficking B. debase www.toppers.com.ng",
+    options: ["circumvent", "postulated D. circumspect", "projected"],
+    correctAnswer: -1
+  },
+  {
+    id: 31,
+    year: "2010",
+    question: "Coup A. bathe",
+    options: ["length", "whup C. months", "hoot D. paths", "couple", "scout 90. High"],
+    correctAnswer: -1
+  },
+  {
+    id: 32,
+    year: "2010",
+    question: "Indict A. what",
+    options: ["honest", "bright C. who", "fish D. vehicle", "pick", "brick 91. Of course"],
+    correctAnswer: -1
+  },
+  {
+    id: 33,
+    year: "2010",
+    question: "Roared A. plough with the given word. In each of the questions 89 to 91, choose the option that has 92. Boys www.toppers.com.ng",
+    options: ["dough", "towered C. over", "coast D. orphan", "brought In each of question 92 to 94,", "rod choose the option that rhymes"],
+    correctAnswer: -1
+  },
+  {
+    id: 34,
+    year: "2010",
+    question: "Shine A. saTISfactory",
+    options: ["satisFACtory", "clean C. SATisfactory", "fine D. satisfactory", "machine", "lain 97. captivity"],
+    correctAnswer: -1
+  },
+  {
+    id: 35,
+    year: "2010",
+    question: "Seer A. captiVIty the word in capital letters has In each of question 95 to 97, the emphatic. Choose the choose the most appropriate option to which the given stress pattern from the sentence relates options. The stressed syllables 98. EMEKA finished his home are written in capital letter(s) work yesterday",
+    options: ["CAPtivity", "snare C. capTIvity", "spare D. CAPtiviTY", "spear", "square In each of question 98 to 100,"],
+    correctAnswer: -1
+  },
+  {
+    id: 36,
+    year: "2010",
+    question: "Political A. Was Emeka helped to do his homework? www.toppers.com.ng",
+    options: ["poliTIcal B. Did Emeka do his homework?", "PoLItical"],
+    correctAnswer: -1
+  },
+  {
+    id: 37,
+    year: "2010",
+    question: "D 62. A 63. C 64. C 65. D",
+    options: ["Did Taiwo fly to London? 66. C 67. A 68. A 69. B 70. C", "Did Taiwo sail to Brazil? 71. D 72. D 73. D 74. C 75. C", "Did Taiwo sail to London?", "Where did Taiwo sail to? 76. C 77. D 78. C 79. D 80. C"],
+    correctAnswer: -1
+  },
+  {
+    id: 38,
+    year: "2010",
+    question: "C 92. C 93. B 94. B 95. B ANSWERS",
+    options: ["Whose bag is made of leather 96. B 97. C 98. D 99. A 100. B", "Is my bag made of polythene?", "Is Abu’s bag made of leather?", "Is my bag made of leather?"],
+    correctAnswer: -1
+  },
+  {
+    id: 39,
+    year: "2013",
+    question: "Which question Paper Type of Uses of English is given to you? 4. The phrase trims off any waste clay, as used in the passage, www.toppers.com.ng",
+    options: ["Type D means to---", "Type I", "Type B A. cut away unnecessary parts", "Type U B. force the clay to the centre"],
+    correctAnswer: -1
+  },
+  {
+    id: 40,
+    year: "2013",
+    question: "The word congenial, as used in jogging paths can also function as the passage, means--- new kinds of concert halls where we can hear what we want as performance artistes put PASSAGE II themselves on the line. To avoid embarrassment, the artiste must Music plays a vital role in human train before hand and ensure that society. Good music provides technical difficulties are avoided entertainment and emotional and that the listeners are actively release, and it accompanies involved. What is performed, how activities ranging from dances to it sounds to the excitement of religious ceremonies. such a moment and feelings are exchanged between stage and Music is heard everywhere; in hall. auditoriums, homes, elevators, schools, sports arenas and on the Our response to a musical streets. Recorded performance is performance or an artiste is a sensational innovation elevation subjective and rooted in deep of the twentieth century. Thanks feelings. Even professional critics to modern technology like can differ strongly in their compact disc (CD) digital video evaluations of a performance. disc (DVD) and the MP 3 player, www.toppers.com.ng",
+    options: ["congested often as we want.", "precise", "similar Live performances provide a", "nice special excitement. In a live"],
+    correctAnswer: -1
+  },
+  {
+    id: 41,
+    year: "2013",
+    question: "Which of the following is true D. better appreciated by according to the passage? professional critics performance performances provide a special www.toppers.com.ng",
+    options: ["Music can enhance evaluation 9. According to the writer, live", "All listeners are music makers excitement because they are"],
+    correctAnswer: -1
+  },
+  {
+    id: 42,
+    year: "2013",
+    question: "According to the passage, music plays a vital role in human As with all events on this…13… [A. society because— scanner B. skate C. snow D. scale), it is impossible to describe relief we can be reasonably sure of the popular music opportunity. from…14….. (A. pressure waves through the CD, MP3 and DVD. air D. pressure gauge ). PASSAGE III The immediate result of the…15… (A. reduction B. commotion C. Whatever may be its wider detonation D. distortion) is that imputations, the explosion of the air surrounding the bomb is hydrogen bomb is, for the raised very rapidly to an meteorologist, simply another enormously high…16… (A. way B. atmospheric disturbance. It temperature C. class D. profile]. should therefore be classified with certain rare natural…..11…… (A. The hot gases expand violently as programmes B. occurrences C. great…17…(A. firearms B. fireballs resources D. laws), such as C. fireworks D. firesmokes), volcanic…12….[A. insurrection B. compressing the air around them www.toppers.com.ng",
+    options: ["music provides enjoyment and what happens in details. However", "it is easy to appreciate music main effects, and the most", "stage performance is the most impressive of these arises", "everybody can listen to music B. pressure volume C. pressure"],
+    correctAnswer: -1
+  },
+  {
+    id: 43,
+    year: "2013",
+    question: "If you have not beheld your 27. In the novel, Bright lived with chi in his stark nakedness, be Teacher because prepared to do so as soon as you set foot in that man’s house. A. his father had gone on a long From the excerpt above, whose journey house was being referred to? B. he was Teacher’s nephew",
+    options: ["his father was indebted to", "Mazi Nwokike Teacher", "Teacher Zaccheus D. he wanted to become a", "Mazi Okeke teacher.", "Mazl Laze"],
+    correctAnswer: -1
+  },
+  {
+    id: 44,
+    year: "2013",
+    question: "In the novel, the people of was good at Umuchukwu likened samuel to",
+    options: ["Jokes", "a swimmer B. proverbs", "an ancestral spirit C. cricket", "a chief priest D. games", "a fisherman"],
+    correctAnswer: -1
+  },
+  {
+    id: 45,
+    year: "2013",
+    question: "Obu dashed out of the school military because building because headmaster C. he loved the British soldiers errand. www.toppers.com.ng",
+    options: ["he wanted to travel to Burma", "he was given a prize by the B. he was a social nuisance", "his teacher wanted to ‘flog him D. his grandfather was a military", "he came top of Standard I man.", "his teacher sent him on an"],
+    correctAnswer: -1
+  },
+  {
+    id: 46,
+    year: "2013",
+    question: "In the novel, the ‘pad’ was a C. take part in the election symbol of process Questions 31 to 35 are based A. he became the supplier of all on Jerry Agada’s The essential commodities Successors. B. the Ibos were conscripted into the army",
+    options: ["extort money from the people.", "love", "success 33. The civil war created business", "unity opportunities for people like", "failure Owiocho because"],
+    correctAnswer: -1
+  },
+  {
+    id: 47,
+    year: "2013",
+    question: "It can be inferred from the C. the exit of the Ibos created a novel that Mr Eze was Terkura vacuum Atsen’s D. the Ibos had ventured into other businesses.",
+    options: ["business partner", "uncle 34. My boy, your future is bright,", "role model you can be anything you want to", "boss. be …."],
+    correctAnswer: -1
+  },
+  {
+    id: 48,
+    year: "2013",
+    question: "From the novel, David The statement above was made thought Ifenne should be involved because Ifenne had in politics because he wanted him to ……… A. purchased his first bus www.toppers.com.ng",
+    options: ["been working for others to", "make a ‘name’ for posterity make profit", "rig the election for someone C. been planning to excel"],
+    correctAnswer: -1
+  },
+  {
+    id: 49,
+    year: "2013",
+    question: "The departure of Ibo rewarded. competitors to the East had favoured 37. Tolu and Chinedu live in each other’s pockets. LEXIS, STRUCTURE AND ORAL D. They are very close to each FORMS other. In each of questions 36 to 45, 38. As the drama unfolded, select the option that best Olatinuke was advised explains the information conveyed in the sentence. A. She was advised to wear her shirt",
+    options: ["Okoh’s marriage", "Mama Okoh’s business A. They are long-term business", "Torkwase at Otukpo partners", "Sgt. Onyilo in the war front. B. They steal from each other.", "They blackmail each other."],
+    correctAnswer: -1
+  },
+  {
+    id: 50,
+    year: "2013",
+    question: "The team’s poor performance B. She was advised to commit at the tournament plumb the herself depths of horror. C. She was advised to stay calm. them to the next round. enjoyed by all www.toppers.com.ng",
+    options: ["She was advised to join the", "The team’s performance took club.", "The team’s performance was 39. He is a clinging child.", "He is a handsome young man"],
+    correctAnswer: -1
+  },
+  {
+    id: 51,
+    year: "2013",
+    question: "Zinana’s examination result as a beauty queen. was not unfavourable. C. She walked past the beauty queen. her expectation. examination mother,’ The new bride declared admission. A. She sees motherhood as a burden",
+    options: ["She failed her examination D. She was acting as a beauty", "Her examination did not meet queen.", "She was successful in the 43. ‘I can’t wait to become a", "Her result could not earn her"],
+    correctAnswer: -1
+  },
+  {
+    id: 52,
+    year: "2013",
+    question: "You need to brush up on your B. She is excited about Spanish. motherhood of Spain D. She will be patient as a a Spainard. together if he wants to pass the examination.",
+    options: ["She is not keen on becoming a", "You need to study the history mother", "You need to improve your skills mother.", "You need a brush from Spain", "You need to learn to play with 44. Usman needs to get his acts"],
+    correctAnswer: -1
+  },
+  {
+    id: 53,
+    year: "2013",
+    question: "Ramatu ‘expressed her C. brief. feelings in no uncertain terms. D. lasting. strongly. couple has been frosty. courageously. A. fraudulent. cautiously. C. amenable. sickly.",
+    options: ["She expressed it dearly and 48. The relationship between the", "She expressed it secretly and", "She expressed it quietly and B. cordial.", "She expressed it feebly and D. frugal."],
+    correctAnswer: -1
+  },
+  {
+    id: 54,
+    year: "2013",
+    question: "The accused was eventually www.toppers.com.ng",
+    options: ["gentle. convicted.", "rude.", "polite. A. initially.", "shocking. B. consequently."],
+    correctAnswer: -1
+  },
+  {
+    id: 55,
+    year: "2013",
+    question: "The soldiers tried in their",
+    options: ["masses dogged defence of the city.", "middle class", "elite A. indifferent", "politicians B. strong", "miserable"],
+    correctAnswer: -1
+  },
+  {
+    id: 56,
+    year: "2013",
+    question: "Everyone’s condition was D. classical appalling. In each of questions 56 to 65,",
+    options: ["simple choose the option nearest in", "cloudy meaning to the word or", "pleasant phrase in italics.", "complex"],
+    correctAnswer: -1
+  },
+  {
+    id: 57,
+    year: "2013",
+    question: "The man’s mordant wit is of education for the girl child. apparent to the entire village.",
+    options: ["an optimistic", "Kind B. a cogent", "scathing C. a passionate", "caustic D. an ignorant", "withering"],
+    correctAnswer: -1
+  },
+  {
+    id: 58,
+    year: "2013",
+    question: "Mohammed does his work A. open with so much ardour. B. constant",
+    options: ["strong", "enthusiasm D. useless", "discouragement", "knowledge 62 The lamb is a feeble little", "indifference animal."],
+    correctAnswer: -1
+  },
+  {
+    id: 59,
+    year: "2013",
+    question: "The athlete is proud to be in A. fat the vanguard of sports B. quiet development. C. loving",
+    options: ["weak", "unforgettable position", "leading position 63. The actress screamed when", "destructive position she noticed an object behind her", "emerging position", "wailed"],
+    correctAnswer: -1
+  },
+  {
+    id: 60,
+    year: "2013",
+    question: "Nwankwo was on the verge of B. protested signing a two-year contract with C. waded in the club. D. stormed out www.toppers.com.ng",
+    options: ["shore 64. The exhibition was an eye", "brink opener to all.", "summit"],
+    correctAnswer: -1
+  },
+  {
+    id: 61,
+    year: "2013",
+    question: "As a journalist, Bala has himself... the poor always had a nose for stories.",
+    options: ["to helping", "soft comment B. in helping", "cynical statement C. by helping", "an instinct D. to be helping", "a command"],
+    correctAnswer: -1
+  },
+  {
+    id: 62,
+    year: "2013",
+    question: "The girl says she is averse... C. so what others admire. D. but",
+    options: ["for 70. The students had a ... on", "from Independence Day.", "to", "with A. march past", "match pass"],
+    correctAnswer: -1
+  },
+  {
+    id: 63,
+    year: "2013",
+    question: "Do you mind ... another hour B. colonial or two C. collusion",
+    options: ["coalition", "to wait", "to have waited 75. All farmers were", "wait encouraged... carry out", "waiting fumigation on their farms"],
+    correctAnswer: -1
+  },
+  {
+    id: 64,
+    year: "2013",
+    question: "The continuous rain has really A. to ... the soil. B. from",
+    options: ["in", "melted up D. with", "mopped up", "satiated 76. There are lots of... in the", "saturated park."],
+    correctAnswer: -1
+  },
+  {
+    id: 65,
+    year: "2013",
+    question: "The police described the boy A. luxury buses moving fast as being... hand B. luxury buses fast moving",
+    options: ["moving fast luxury buses", "on by D. fast-moving luxury buses", "up to", "over at 77. Yours is to command... is to", "out of obey"],
+    correctAnswer: -1
+  },
+  {
+    id: 66,
+    year: "2013",
+    question: "It was very easy for the two A. their political parties to form a... B. theirs government C. theirs' www.toppers.com.ng",
+    options: ["their's", "co-operative"],
+    correctAnswer: -1
+  },
+  {
+    id: 67,
+    year: "2013",
+    question: "Local governments are B. whoever offers authorized to pass --- C. whomever offers",
+    options: ["whomsoever offer", "bye's-law", "bye-law 82. Our teacher defined... as the", "bye-laws killing of one's mother.", "byes'-laws", "patriach"],
+    correctAnswer: -1
+  },
+  {
+    id: 68,
+    year: "2013",
+    question: "Umar: I have never visited B. matricide the dentist. C. matriarch Aliyu:___ D. patricide",
+    options: ["neither have l 83. If you are confused...", "I also never anything, phone my office.", "neither myself", "I myself haven't A. about", "for"],
+    correctAnswer: -1
+  },
+  {
+    id: 69,
+    year: "2013",
+    question: "Usman would have won the C. of race.... D. with",
+    options: ["if he had run faster faster 84. We have a family mutiny...", "although he ran faster our hands.", "only if he could run fast", "if he had run faster A. from", "of"],
+    correctAnswer: -1
+  },
+  {
+    id: 70,
+    year: "2013",
+    question: "glasier A. mouse",
+    options: ["nurse", "gleam C. noise", "flat D. horse", "feign", "glass 90. guitar"],
+    correctAnswer: -1
+  },
+  {
+    id: 71,
+    year: "2013",
+    question: "laud A. jam",
+    options: ["strange", "lavatory C. judge", "loud D. rogue", "lathe", "core 91. loose"],
+    correctAnswer: -1
+  },
+  {
+    id: 72,
+    year: "2013",
+    question: "coma A. sell www.toppers.com.ng",
+    options: ["fuse", "colonel C. close", "cogent D. rouse", "come"],
+    correctAnswer: -1
+  },
+  {
+    id: 73,
+    year: "2013",
+    question: "rite",
+    options: ["dedicaTION", "list B. deDlcation", "wit C. dedication", "wright D. Dedication", "rim"],
+    correctAnswer: -1
+  },
+  {
+    id: 74,
+    year: "2013",
+    question: "Joys",
+    options: ["interNAtional", "elbow B. internaTIONal", "pots C. International", "boys D. inTERnational", "stays"],
+    correctAnswer: -1
+  },
+  {
+    id: 75,
+    year: "2013",
+    question: "Call In each of question 98 to 100, In each of questions 95 to 97, the word in capital letters has choose the most appropriate the emphatic stress. Choose stress pattern from the the option to which the given sentence relates. www.toppers.com.ng",
+    options: ["information", "wall B. information", "quail C. information", "dull D. Information", "slate"],
+    correctAnswer: -1
+  },
+  {
+    id: 76,
+    year: "2013",
+    question: "Adamu is leaving a CAR 19. C 20. C 21. B 22. B 23. D behind. 24. B 25. B front? 36. C 37. D 38. C 39. B 40. C",
+    options: ["What is Adamu leaving behind? 26. B 27. A 28. C 29. B 30. A", "Is Adamu driving the car in 31. C 32. A 33. C 34. D 35. B", "Who is leaving a car behind? 41. B 42. B 43. B 44. B 45. C", "Where is Adamu leaving a car? 46. A 47. D 48. B 49. B 50. A"],
+    correctAnswer: -1
+  },
+  {
+    id: 77,
+    year: "2013",
+    question: "C 57. A 58. A 59. B 60. B",
+    options: ["Who took off the wig? 61. C 62. D 63. A 64. B 65. C", "What did Lambusa do? 66. C 67. C 68. A 69. D 70. A", "Did Lambusa take off a wig? 71. D 72. D 73. D 74. D 75. A", "Did Lambusa take off the ring?"],
+    correctAnswer: -1
+  },
+  {
+    id: 78,
+    year: "2013",
+    question: "D 87. B 88. B 89. C 90. D ANSWER KEYS:",
+    options: ["Is the bed in the parlour? 91. A 92. C 93. C 94. A 95. C", "Was the bed in the room? 96. A 97. A 98. A 99. B 100. D", "What is in the room?", "Where is the bed?"],
+    correctAnswer: -1
+  },
+  {
+    id: 79,
+    year: "2014",
+    question: "Which question paper type of A. Reasons for political change use of English is given to you? B. The struggle for political power the passage, means www.toppers.com.ng",
+    options: ["Elements of politics", "Type F D. Social change and political", "Type E empowerment", "Type L", "Type S 5. The word alteration, as used in"],
+    correctAnswer: -1
+  },
+  {
+    id: 80,
+    year: "2014",
+    question: "It can be deduced from the organs",
+    options: ["Heterogeneous creatures passage that snakes have", "Voracious cow eaters", "Great insect eaters A. No external auditory organ", "Homogeneous reptiles B. Visible internal locomotive"],
+    correctAnswer: -1
+  },
+  {
+    id: 81,
+    year: "2014",
+    question: "The most notable thing about C. No visual sense of snakes, according to the passage, measurement is that they D. Large appetite for antelopes state passage is",
+    options: ["Abound in gombe and plateau 10. A suitable title for this", "Are versatile in reproduction", "Eat big but seldom A. Feeding habits of snakes", "Exist in families B. Some characteristics of snakes", "Snakes as legless, cold-"],
+    correctAnswer: -1
+  },
+  {
+    id: 82,
+    year: "2014",
+    question: "Which of the following is true blooded reptiles according to the passage? D. Species of snakes in Nigeria and other lands region PASSAGE III continent The passage below has gaps numbered 11 to 20. www.toppers.com.ng",
+    options: ["Snakes are not in the polar", "Snakes are endemic on every"],
+    correctAnswer: -1
+  },
+  {
+    id: 83,
+    year: "2014",
+    question: "Chief Okeke Okafo decided to A. Time Obu spent at teachers buy an 'iron horse' because it house would B. Disappearance of Obu in standard clan wife placed on Obu. from one town to another like the district commissioner who `carried his class` would be instructed to",
+    options: ["Allow him to be the head of the C. Price tag Mazi Laza and his", "Raise his status in the clan D. Participation of Obu as a", "Minimize the strain of travel member of the masquerade group", "Give him the opportunity to act 24. According to the novel, a pupil"],
+    correctAnswer: -1
+  },
+  {
+    id: 84,
+    year: "2014",
+    question: "In the novel, what did Mazi",
+    options: ["Distract Ada Laza do after putting a pinch of", "Encourage Ada`s cooking habit snuff into each nostril?", "Confuse Obu", "Test Obu`s cooking skills A. He commended his wife", "He gave the remaining to"],
+    correctAnswer: -1
+  },
+  {
+    id: 85,
+    year: "2014",
+    question: "From the novel, what was occasions with madam engineers A. She copied psalm 119 from pedals B. She fetched water from the chief Okeke`s C. She ate only once a day for one week www.toppers.com.ng",
+    options: ["Had injury people on many Ada`s punishment for fighting", "Was manufacture by local", "Had faulty brakes and outdated start to finish", "Came from the same stock as stream with a basket"],
+    correctAnswer: -1
+  },
+  {
+    id: 86,
+    year: "2014",
+    question: "In the novel, Obu would not D. went to schools touch cocoyam soup because he claimed it 33. From the novel, what did Terkura do with the balance of the Question 31 to 35 are based D. He bought two cars for his on Jerry Agada`s The father Successors",
+    options: ["had lost its taste money chief Ofega paid him?", "would get struck in his throat", "would make him sick A. He married another wife", "was not well prepared B. He brought a beautiful house", "He invested it in his business"],
+    correctAnswer: -1
+  },
+  {
+    id: 87,
+    year: "2014",
+    question: "The entertainment expenses prominent because of the for Okoh Ameh`s traditional marriage rites were paid for by A. Road of her husband spending half the",
+    options: ["Bridge", "Okoh amah`s parents C. International hotel", "the bide`s parents D. Railway station", "Okoh Ameh", "Terkura Atsen 35. In the novel, Maria's tolerance"],
+    correctAnswer: -1
+  },
+  {
+    id: 88,
+    year: "2014",
+    question: "The minister considered the neighbours to take care of her ministry’s budget to a drop in the children ocean in view of the number of C. The woman may be arrested projects in the pipeline. for allowing her children to be a nuisance to her neighbours inadequate for projected for allowing her children to expenditure destroy her neighbour’s crops. for failing to complete a number 38 Jummai's father remarked that of projects. pigs would fly before she passed. www.toppers.com.ng",
+    options: ["The amount available may be D. The police wanted remarked", "The minister maybe dropped"],
+    correctAnswer: -1
+  },
+  {
+    id: 89,
+    year: "2014",
+    question: "The president said that he C. Olu gave his brother a difficult found himself between a rock and time a hard place when the press said D. Olu gave his brother a ride in that he had resigned his car abandoned farm today. were unsafe A. Adeola may go to the farm make B. Adeola ought not to have gone D Hard places are dangerous for to the farm today the president C. Adeola must not go to the farm today",
+    options: ["He dreamt that he was 42. Adeola dosen't have to go the", "He thought that hard places", "He had a hard decision to today if he so wishes"],
+    correctAnswer: -1
+  },
+  {
+    id: 90,
+    year: "2014",
+    question: "Kunana is like a bear with a D. Adeola should not go to the sore head. farm today www.toppers.com.ng",
+    options: ["He is a bully 43. My boss asked me to take my", "He is grumpy eyes off the ball.", "He is ugly"],
+    correctAnswer: -1
+  },
+  {
+    id: 91,
+    year: "2014",
+    question: "The robber was hedged in by 46. Prolonged strike action the people. debilitated the industry. the people B. isolated people D. destroyed people 47 One of the students bought a people",
+    options: ["The robber was surrounded by A. invigorated", "The robber was killed by the C. weakened", "The robber was exposed by the", "The robber was caught by the plagiarized copy of the book", "a used"],
+    correctAnswer: -1
+  },
+  {
+    id: 92,
+    year: "2014",
+    question: "Many workers are not happy B. an original because they live a hand-to- C. a revised mouth life. D. an annotated hands aback by her father's gift of a car. avaricious A. shocked www.toppers.com.ng",
+    options: ["They work hard with their 48. The young girl was taken", "They are voracious and"],
+    correctAnswer: -1
+  },
+  {
+    id: 93,
+    year: "2014",
+    question: "Musa is a gifted but erratic B. affection for player C. acronym for",
+    options: ["alarm for", "strong", "regular 53. The dressmaker-...- unpicked", "unpredictable the seam of the shirt", "unstable", "threaded"],
+    correctAnswer: -1
+  },
+  {
+    id: 94,
+    year: "2014",
+    question: "The lamp shades were B. sewed up translucent C. picked up",
+    options: ["tore for", "opaque", "interested 54. The testimony of the witness", "luminous was vague.", "transparent", "disturbing"],
+    correctAnswer: -1
+  },
+  {
+    id: 95,
+    year: "2014",
+    question: "My niece has an B. true unquenchable thirst for adventure C. ambiguous stories. D. clear www.toppers.com.ng",
+    options: ["a spurious 55. As a student, Isa tried", "an illegitimate communal living for a few years", "a reduced", "an inextinguishable A. collective", "general"],
+    correctAnswer: -1
+  },
+  {
+    id: 96,
+    year: "2014",
+    question: "The chairman admires B. an inviting incessant meetings. C. a frightful",
+    options: ["a cheerful.", "unusual", "planned 60. The first round of the", "constant tournament was a doddle.", "irregular", "easy"],
+    correctAnswer: -1
+  },
+  {
+    id: 97,
+    year: "2014",
+    question: "Today's weather is favourable B. balanced for a game of tennis. C. dodgy",
+    options: ["exasperating", "impartial", "abnormal 61. The lazy man cast a lustful", "encouraging glance at his neighbour's wife.", "disapproving", "hateful"],
+    correctAnswer: -1
+  },
+  {
+    id: 98,
+    year: "2014",
+    question: "They accused him of A. breaking fomenting political unrest. B. securing completes the gap",
+    options: ["swapping", "inciting D. strengthening", "discouraging", "preventing In each of questions 66 to 85,", "guiding. choose the option that best"],
+    correctAnswer: -1
+  },
+  {
+    id: 99,
+    year: "2014",
+    question: "You can learn a great deal just from watching other players. 66. The House and The Senate will __ At noon next Wednesday",
+    options: ["invent to hear address by the president", "accumulate", "allow A. convene", "discover. B. adjourn", "rise"],
+    correctAnswer: -1
+  },
+  {
+    id: 100,
+    year: "2014",
+    question: "All the researchers were D. collude asked to garner information on the new viral infection. 67. At the --- of the century many ways of doing things were B disseminate 65 The dispute between the two D. sight countries has resulted in the severing of diplomatic relations 68. You may have the pencil, but you can't have the ballpoint ... www.toppers.com.ng",
+    options: ["collect introduced.", "distort A. turn", "give. B. event", "birth"],
+    correctAnswer: -1
+  },
+  {
+    id: 101,
+    year: "2014",
+    question: "The president said that the C. to and from country was not out of the.... yet. D. to and fro",
+    options: ["forest 73. The woman refused to", "fog testify.... Her husband", "water", "wood A. in", "at"],
+    correctAnswer: -1
+  },
+  {
+    id: 102,
+    year: "2014",
+    question: "He went to the restaurant to C. against enjoy the special. D. from",
+    options: ["suite 74. Abike must have found the", "cuisine very interesting movies quite....", "a la carte", "chef A. absolving", "absorbing"],
+    correctAnswer: -1
+  },
+  {
+    id: 103,
+    year: "2014",
+    question: "The invigilator--- to know how C. nauseating long the examination.... going on. D. perverting B wants/had been between the end of one line. www.toppers.com.ng",
+    options: ["wanted/has been 75. The words___ divided", "wants/have been", "wanted/had been A. have been", "have being"],
+    correctAnswer: -1
+  },
+  {
+    id: 104,
+    year: "2014",
+    question: "Those___ are very beautiful. D. just",
+    options: ["flowers of her 80. The chairman is too much---", "flowers of her's an idealist for this government", "our flower", "flowers ours A. from", "about"],
+    correctAnswer: -1
+  },
+  {
+    id: 105,
+    year: "2014",
+    question: "Cooking has never been C. of Jumoke’s--- D. with",
+    options: ["recital 81. The clock--- 12 O’clock two", "purview hours ago.", "style", "forte A. strikes", "strike"],
+    correctAnswer: -1
+  },
+  {
+    id: 106,
+    year: "2014",
+    question: "Whats is the jury’s --- the",
+    options: ["sporadic matter", "concordant", "concurrent A. verdict on", "chronic B. verdict from", "verdict at"],
+    correctAnswer: -1
+  },
+  {
+    id: 107,
+    year: "2014",
+    question: "The unconscious man was---- 86. cool after receiving first aid.",
+    options: ["full", "reawakened B. luke", "reformed C. look", "restored D. should", "revived"],
+    correctAnswer: -1
+  },
+  {
+    id: 108,
+    year: "2014",
+    question: "The laughter –his face for a moment. A. flow",
+    options: ["sugar", "improved C. hold", "controlled D. floor", "animated", "remade 88. palm"],
+    correctAnswer: -1
+  },
+  {
+    id: 109,
+    year: "2014",
+    question: "She traced her family history- A. ranch --matrilineal descent. B. florid same consonant sound as the In each of questions 86 to 88, one represented by the choose the option that has the letter(s) underlined. same vowel sound as the one represented by the letter(s) 89. vision underlined. www.toppers.com.ng",
+    options: ["lunch", "in D. plait", "by", "with In each of questions 89 to 91,", "at. choose the option that has the"],
+    correctAnswer: -1
+  },
+  {
+    id: 110,
+    year: "2014",
+    question: "gnash D. dead",
+    options: ["forge 94. tax", "new", "king A. box", "ring B. lacks", "back"],
+    correctAnswer: -1
+  },
+  {
+    id: 111,
+    year: "2014",
+    question: "epitaph D. ask are written in capital letter. Choose the option that rhymes with the given word. 95. valedictory",
+    options: ["pseudo In each of questions 95 to 97,", "fan choose the most appropriate", "paper stress pattern from the", "pneumonia. options. The stressed syllables"],
+    correctAnswer: -1
+  },
+  {
+    id: 112,
+    year: "2014",
+    question: "ever A. valeDICtory www.toppers.com.ng",
+    options: ["valedicTORY", "favour C. VAledictory", "fever D. vaLEdictory", "never", "heavier 96. congratulation"],
+    correctAnswer: -1
+  },
+  {
+    id: 113,
+    year: "2014",
+    question: "conspiracy A. Is Amina going to Abuja by air?",
+    options: ["Who went to Abuja by air?", "conspiRAcy C. Did Amina go to Abuja by", "conspiraCY road?", "consPIracy D. Did Amina go to Jos by air?", "CONspiracy"],
+    correctAnswer: -1
+  },
+  {
+    id: 114,
+    year: "2014",
+    question: "My mother brought a BICYCLE yesterday. ANSWER KEYS: yesterday? 8. A 9. B 10. B 11. C 12. B 13. A yesterday? 19. A 20. D 21. D 22. D 23. D yesterday? www.toppers.com.ng",
+    options: ["What did you mother buy 1. C 2. C 3. A 4. D 5. C 6. A 7. A", "Whose mother bought a bicycle 14. B 15. A 16. C 17. B 18. C", "Did my mother steal a bicycle 24. A 25. D"],
+    correctAnswer: -1
+  },
+  {
+    id: 115,
+    year: "2015",
+    question: "From the passage, it can be 4. According to the passage, the deduced that different approaches to conflict management are approach a. Pernicious option c. Misleading warring nation to sue for peace facilitating opportunities passage, means",
+    options: ["All nations adopt the peaceful", "All nations prefer the military b. Uniform", "Prevailing circumstances push a d. Fundamental", "Conflicts are noted for 5. The word utility, as used in the"],
+    correctAnswer: -1
+  },
+  {
+    id: 116,
+    year: "2015",
+    question: "Which of the following a. Difficulty statements can be inferred from b. Attitude the passage? c. Usefulness conflict management depends on 6. The word couched, as used in the state of affairs the passage, means approach can be applied in all a. Arranged situations b. Expressed approaches can be all situations. d. Itemized www.toppers.com.ng",
+    options: ["Management", "The approach to employ in", "Only one conflict management", "All conflict management c. Modified"],
+    correctAnswer: -1
+  },
+  {
+    id: 117,
+    year: "2015",
+    question: "From the writer's point of view, 9. What is the symbolic function one can conclude that of a native language, according to the passage? has is its a. It enables the society itself the language more interwoven within the group the same society from others have not developed their society and beyond. language",
+    options: ["The only authority a society", "Language and culture are b. It promotes understanding", "People of the same culture in c. It distinguishes that society", "Developing people of the world d. It alienates progress within the"],
+    correctAnswer: -1
+  },
+  {
+    id: 118,
+    year: "2015",
+    question: "Which of the following can be imply that inferred from the passage? only in our native language b. Native languages are difficult to important as the world around us c. No foreign language should be around us if our language is not d. No society conducts its written education in a foreign language world of people who speak the PASSAGE II same language The passage below has gaps, immediately following such www.toppers.com.ng",
+    options: ["The language of instruction is", "The world is interpreted to use ideally one's own language", "Our native language is as use as languages of instruction.", "We know more about the world taught in any society", "The world around us is the"],
+    correctAnswer: -1
+  },
+  {
+    id: 119,
+    year: "2015",
+    question: "A. influenced 18. A. lauded",
+    options: ["hampered B. muffled", "subdued C. muffled", "rejected D. enunciated"],
+    correctAnswer: -1
+  },
+  {
+    id: 120,
+    year: "2015",
+    question: "A. high 19. A. rejects",
+    options: ["minimal B. approves", "low C. contradicts", "moderate D. verifies"],
+    correctAnswer: -1
+  },
+  {
+    id: 121,
+    year: "2015",
+    question: "A. attitude 20. A. Lauded",
+    options: ["image B. Muffled", "effort C. Mumbled", "avenue D. Enunciated"],
+    correctAnswer: -1
+  },
+  {
+    id: 122,
+    year: "2015",
+    question: "A. appreciate These question 21 to 36 are",
+    options: ["emulate based on A. H Mohammed's", "reject \"The Last Day at Forcados", "denounce High School\""],
+    correctAnswer: -1
+  },
+  {
+    id: 123,
+    year: "2015",
+    question: "A. mild 21. The information that Efua's",
+    options: ["acute diary had been leaked to all in the", "slow school was first made known to", "average her by ----"],
+    correctAnswer: -1
+  },
+  {
+    id: 124,
+    year: "2015",
+    question: "A. seldom a. Caro www.toppers.com.ng",
+    options: ["usually b. Ansa", "often c. Nene", "frequently d. Joke"],
+    correctAnswer: -1
+  },
+  {
+    id: 125,
+    year: "2015",
+    question: "\"What do you want? Doesn't it 26. At one time, the closeness offend your pure gentle soul to be between Jimi and Wole sitting beside me? heightened because they wanted In the excerpt above, pure and to gentle soul referred to quest to learn at school",
+    options: ["Contend with Jimi adversaries", "Nene at Forcados High School", "Jimi b. Unite against the bullying of", "Efau the eldest brother", "Ansa c. Present a common front in their"],
+    correctAnswer: -1
+  },
+  {
+    id: 126,
+    year: "2015",
+    question: "Teacher Bade earned the",
+    options: ["He smiled sheepishly nickname \"cane\" because he was", "He murmured awkwardly", "He snubbed her a. A Discipline master in the", "He embraced her school", "Always ready to listen to"],
+    correctAnswer: -1
+  },
+  {
+    id: 127,
+    year: "2015",
+    question: "After the graduation, Nene student's complaints hoped to study c. Always ready to punish offenders conclude that Forcados high school emphasized www.toppers.com.ng",
+    options: ["Accountancy d. Always ready to appreciate", "Law students", "Architecture", "Education 28. From the storyline, we could"],
+    correctAnswer: -1
+  },
+  {
+    id: 128,
+    year: "2015",
+    question: "Despite the fact that Anza with as he took his shower was not as brilliant as Jimi, he still saw Jimi as a a. He was whistling bright spark in an unspoken",
+    options: ["He was crying", "Friendly and likeable person c. He was dancing", "Timid and likeable person d. He was brooding", "Likeable but hostile person", "Humble ad likeable person 33. Who was considered as a"],
+    correctAnswer: -1
+  },
+  {
+    id: 129,
+    year: "2015",
+    question: "Jimi was to run away from the contest with Jimi over their policemen when they asked him chemistry results? to stop by Samaritan c. Nene Efau was that of",
+    options: ["Eze", "Getting help from a good b. Caro", "Jumping into a nearby bush d. Efau", "Hiding under the table", "Jumping into a moving bus 34. The teacher's attitude towards"],
+    correctAnswer: -1
+  },
+  {
+    id: 130,
+    year: "2015",
+    question: "The impromptu meeting to prepare for the mid-term dinner a. Recognition was attended by the b. Misconception www.toppers.com.ng",
+    options: ["Misapplication", "School prefects d. Repression"],
+    correctAnswer: -1
+  },
+  {
+    id: 131,
+    year: "2015",
+    question: "Which of these best describe a. His actions were seriously Aunty Moni's character trait rejected humour",
+    options: ["His action were severe and", "Garrulous accepted", "Docile c. His action were itemized", "Arrogant because he was young", "Extravagant d. His action provoked the"],
+    correctAnswer: -1
+  },
+  {
+    id: 132,
+    year: "2015",
+    question: "The workers tightened their hold on the capital 38. I haven't seen the movie and my brother hasn't either their capital a. I have seen the movie but more strictly b. My brother and I haven't seen the capital c. Only my brother has seen the the capital and beyond. d. I was the only one that has seen the move From these questions, select the options that best explain 39. Sule would have been given the information conveyed in the car if his father had hot the sentence. complained.",
+    options: ["They tightened a rope round", "They controlled the capital neither of my brother have", "The held unto other workers in the movie", "They stretched their hold on movie"],
+    correctAnswer: -1
+  },
+  {
+    id: 133,
+    year: "2015",
+    question: "Adayi cannot halt the march that lives in the community of time. D. He is one of those that live in the most developed part of the things happen. 43. Bello said he would pitch his march. A. He would support the club.",
+    options: ["she is willing to march on city.", "She cannot change the way", "She halts the march on time. tent with the club.", "She cannot alter the peace", "He would build a pitch in the"],
+    correctAnswer: -1
+  },
+  {
+    id: 134,
+    year: "2015",
+    question: "The lecture is Uye s road to club Damascus. C. He would build a tent on the pitch. travel to Damascus. the club. that changes the way she thinks 44. Try not to lose heart, said the about Damascus. that cannot be changed. B. Try not to become sad and hopeless",
+    options: ["The lecture is an opportunity to D. He would distance himself from", "The lecture is an experience", "The lecture talks exclusively man.", "The lecture is an experience A. Try not to be bold and weak"],
+    correctAnswer: -1
+  },
+  {
+    id: 135,
+    year: "2015",
+    question: "Kasim would have attended A. Educating the party if he had been invited. B. Frightening even if he eat he was invited. young officers did not attend A. Set up invitation. C. Defended For these questions, choose the option opposite in 49. I like Adamu weird attitude. meaning to the word or phrase in italics A.Buoyant",
+    options: ["Pleasant", "He would not have attended D. Strange", "He attended the party before 48. The house was invaded by the", "He was not invited and so, he", "He attended the party without B. Put down", "built.", "Peculiar"],
+    correctAnswer: -1
+  },
+  {
+    id: 136,
+    year: "2015",
+    question: "Adewale's arrival always C. Zestful triggers a media frenzy D. Normal. www.toppers.com.ng",
+    options: ["Violence. 50. We travelled to an obscure", "Agitation little town", "Calm", "Excitement. A. rugged", "Distinguished", "Secluded"],
+    correctAnswer: -1
+  },
+  {
+    id: 137,
+    year: "2015",
+    question: "She is known for her bizarre C. Sarcastic dressing. D. Deluded.",
+    options: ["Natural 55. Alade is noted for his erratic", "Weird behaviour.", "Obsolete", "Odious A. Fitful", "Bizarre"],
+    correctAnswer: -1
+  },
+  {
+    id: 138,
+    year: "2015",
+    question: "Lami normally scurries around C. Consistent town D. Euphoric alcohol",
+    options: ["Scampers 56. The priest knows Ochai as an", "Dashes abstainer", "Dawdles", "Scuttles A. Someone who never drinks"],
+    correctAnswer: -1
+  },
+  {
+    id: 139,
+    year: "2015",
+    question: "Sule’s poem is always explicit B. Someone who holds onto his and compelling ideas the option nearest in meaning",
+    options: ["Someone who reads a lot", "Exciting D. Someone who never cares", "Clear about others", "Ambiguous", "Long. From these questions, choose"],
+    correctAnswer: -1
+  },
+  {
+    id: 140,
+    year: "2015",
+    question: "She gave a caustic remark on C. essential the occasion D. critical",
+    options: ["tangible 61. Usman likes toys made with", "Friendly bright and animated colours.", "insignificant", "Sarcastic. A. dull", "sparkling"],
+    correctAnswer: -1
+  },
+  {
+    id: 141,
+    year: "2015",
+    question: "It was a good try but it didn't C. black quite work out. D. deep",
+    options: ["Come to 62. The man has strong distaste", "come off for alcohol.", "come from", "come for A. love", "aversion"],
+    correctAnswer: -1
+  },
+  {
+    id: 142,
+    year: "2015",
+    question: "Garuba’s performances in the C. desire competition was horrid. D. excitement. 60 Just me the basic facts with C. opportunity needless details D. rot www.toppers.com.ng",
+    options: ["terrible 63. The schism in the'", "encouraging organization is on the increase.", "Commendable", "rigid. A. disagreement", "understanding", "relevant 64. Sule admires people who have", "extraneous unbending character"],
+    correctAnswer: -1
+  },
+  {
+    id: 143,
+    year: "2015",
+    question: "He detests honesty",
+    options: ["were", "likes B. are", "hates C. is", "encourages D. was.", "commands."],
+    correctAnswer: -1
+  },
+  {
+    id: 144,
+    year: "2015",
+    question: "The number of stores will be C. splited increased ... twenty to thirty. D. splits.",
+    options: ["from 70. Had Aisha realized what", "on marriage entails she –", "at", "into A. could have not rush into it", "would have rushes into it"],
+    correctAnswer: -1
+  },
+  {
+    id: 145,
+    year: "2015",
+    question: "... bomb had earlier been C. would not have rushes into it defused D. would not have rushed into it. www.toppers.com.ng",
+    options: ["A leaf 71.", "An alive"],
+    correctAnswer: -1
+  },
+  {
+    id: 146,
+    year: "2015",
+    question: "The company deals ... C. that computer software D. while 73 There is no logic --- any of C. does he their claims. D. is he.",
+    options: ["with 76. He ran out when he saw the", "for teacher ...?", "in", "to. A. didn't he", "isn't he", "with 77. Parents should be good", "in examples ... their children.", "from", "up A. to", "at"],
+    correctAnswer: -1
+  },
+  {
+    id: 147,
+    year: "2015",
+    question: "... the house was an easy task C. from for the demolition squad. D. by.",
+    options: ["Bringing forth 78. He travelled ... last week", "Tearing down", "Bringing up A. somewhat", "Tearing with. B. somewhere", "some at"],
+    correctAnswer: -1
+  },
+  {
+    id: 148,
+    year: "2015",
+    question: "He was present at the party www.toppers.com.ng",
+    options: ["since ....?", "when"],
+    correctAnswer: -1
+  },
+  {
+    id: 149,
+    year: "2015",
+    question: "The prisoners had been ... C. stand across for from all contacts D. stand besides for.",
+    options: ["kept upon 84. She arrived ... air for the", "kept apart occasion.", "kept for", "kept on. A. for", "in"],
+    correctAnswer: -1
+  },
+  {
+    id: 150,
+    year: "2015",
+    question: "We detest these... declared C. with the woman D. by",
+    options: ["types of programme 85. Audu overbalanced and ... the", "type of programmes water.", "types of programmes", "type of programme. A. fell into", "fell from"],
+    correctAnswer: -1
+  },
+  {
+    id: 151,
+    year: "2015",
+    question: "lima doesn't like working in C. fell for the dark ...? D. fell at. www.toppers.com.ng",
+    options: ["has she For this question, choose the", "does she option that has the same", "will she sound as the one represented", "did she. by the letter(s) underlined."],
+    correctAnswer: -1
+  },
+  {
+    id: 152,
+    year: "2015",
+    question: "Bore A. of",
+    options: ["often", "call C. off", "curl D. physics.", "slot", "hum 91. Lodge"],
+    correctAnswer: -1
+  },
+  {
+    id: 153,
+    year: "2015",
+    question: "Head A. soldier option that rhymes with the",
+    options: ["rogue", "said C. go", "heard D. measure.", "herd", "shirt For this question, choose the"],
+    correctAnswer: -1
+  },
+  {
+    id: 154,
+    year: "2015",
+    question: "Sky given word.",
+    options: ["cite 92. Suite", "eats", "breaks A. tree", "coil B. breath", "bleat"],
+    correctAnswer: -1
+  },
+  {
+    id: 155,
+    year: "2015",
+    question: "Loath D. sweet.",
+    options: ["breathe 93. Cart", "that", "thaw A. lash", "tank B. cat", "part"],
+    correctAnswer: -1
+  },
+  {
+    id: 156,
+    year: "2015",
+    question: "Sight A. moTIvation capital letter has the emphatic For this question, choose the stress. Choose the option to choose the appropriate stress which the given sentence pattern from the options. the relates. stress syllables are written in capital letter(s) 98. Bukola’s UNCLE is a strict teacher",
+    options: ["motivaTION", "skate C. motiVAtion", "short D. MOtivation.", "cite", "plait In the question, the words in"],
+    correctAnswer: -1
+  },
+  {
+    id: 157,
+    year: "2015",
+    question: "Programmatic teacher?",
+    options: ["Is Bukola’s uncles a strict", "proGRAMmatic cook?", "PROgrammatic B. Is Tunde’s uncle a strict", "programMATIC teacher?", "programmatIC C. Is Bukola’s aunt a strict"],
+    correctAnswer: -1
+  },
+  {
+    id: 158,
+    year: "2015",
+    question: "Certification D. Is Bukola’s uncle an easy going teacher? chair?",
+    options: ["certiFIcation", "CERtification 99. She puts spoon on the CHAIR.", "certifiCAtion", "cerTIfication. A. Did she put the fork on the"],
+    correctAnswer: -1
+  },
+  {
+    id: 159,
+    year: "2015",
+    question: "C 87. A 88. A 89. C 90. A ANSWER KEYS",
+    options: ["Is Asa a robber? 91. A 92. D 93. C 94. C 95. C", "Who is a lawyer? 96. C 97. C 98. C 99. B 100. B", "Is Asa the lawyer?", "Was Asa the lawyer?"],
+    correctAnswer: -1
+  },
+  {
+    id: 160,
+    year: "2018",
+    question: "What point of view is the Geography master fond of A. Simile advancing? B. Metaphor kinds of problem from deadly diseases 4. What extra argument (lid the Africans for sins they committed each of vie master's points? long ago. people. in Africa www.toppers.com.ng",
+    options: ["Personification", "Africans are infested with all D. Hyperbole", "Only the white men are free", "The Almighty God is punishing new boy offer after countering", "God did not curse the white A. There are problems especially"],
+    correctAnswer: -1
+  },
+  {
+    id: 161,
+    year: "2018",
+    question: "Why do you think the master provided. Choose the most fought back with his look rather appropriate option for each than with further argument? gap. were valid many virus and ...7... [A. germ B. argument diseases such as measles, but boy's argument others including ... 8... [A. catarrh on his points. influenza] known also as the ...",
+    options: ["He knew that the boy's points Mankind has been ravaged by", "He had answers to the boy's bacterial C. dirty D. mosquito]", "He went out to sort for the tuberculosis, diarrhoea and many", "He already made up his mind B. runny-nose C. headache D."],
+    correctAnswer: -1
+  },
+  {
+    id: 162,
+    year: "2018",
+    question: "\"...who had no answer to this C. universal D. regular]. new battle\". What grammatical name is given Outbreaks of many of these to the above passage expression diseases have been brought under as it is used in the passage? control in the last fifty years. Some 10... [A. pains B. fevers C. www.toppers.com.ng",
+    options: ["(non-defining) relative clause infection D. traces] like measles", "Adverbial clause and whooping cough still pose a", "Subordinate clause great danger to younger children."],
+    correctAnswer: -1
+  },
+  {
+    id: 163,
+    year: "2018",
+    question: "When asked to state her side D. getting to understand each of the story, Bunmi started by other. beating about the bush. This means that Bunmi 26. The driver smelled a rat when the policemen asked him to stop. coming to the point. C. careful",
+    options: ["went straight to the point This means that the driver was", "was lost in great thought", "followed a bush path A. reckless", "approached the subject without B. suspicious", "offensive."],
+    correctAnswer: -1
+  },
+  {
+    id: 164,
+    year: "2018",
+    question: "The amount he donated was small. He said it was his widow's 27. The students were as advised mite. This means that to face their studies and let the sleeping dog lie. This means that afford B. organise them properly",
+    options: ["he was a widow the students should", "he was misery.", "it was all he could honestly A. obey the authorities", "he could have given more. C. leave matters as they are now", "be as watchful as sleeping"],
+    correctAnswer: -1
+  },
+  {
+    id: 165,
+    year: "2018",
+    question: "The friendship between Segun dogs. and Shehu has turned sour. This means that Segun and Shehu are 28. From the way Ngozi behaves, it is obvious she is a greenhorn. www.toppers.com.ng",
+    options: ["no longer friends This means that Ngozi is", "stilt friends", "better friends now A. arrogant", "cautious"],
+    correctAnswer: -1
+  },
+  {
+    id: 166,
+    year: "2018",
+    question: "The economic situation is so means that Okoronkwo bad that many wage earners are hardly able to make both ends A. has Chosen the game career as meet. This means that its father expenditure of person from his lather. with their income profession from his father's. sufficient for their essential needs 32. The debating team was activities that bring them extra and not to play to the gallery. pay. This means that the team should not",
+    options: ["is very much like his father", "people's income exceed their C. is a I extremely different sort", "most people are extravagant D. has taken up a different", "people's earnings are not", "most people engage in warned to make convincing points"],
+    correctAnswer: -1
+  },
+  {
+    id: 167,
+    year: "2018",
+    question: "Since I found out his hypocritical nature, I have been A. be selfish keeping him at arm's length. This B. underrate opponents means that I C. be over-confident working hard is living in a fool's www.toppers.com.ng",
+    options: ["attempt to win cheap", "avoid being similar with him popularity.", "ignore his advice", "report him to the authority 33. Anyone who thinks that he", ". stop visiting him. can succeed in life without"],
+    correctAnswer: -1
+  },
+  {
+    id: 168,
+    year: "2018",
+    question: "The doctor was very gentle",
+    options: ["industrious with his patients in the examining", "carefree room", "careful", "corrupt A. harsh", "rude"],
+    correctAnswer: -1
+  },
+  {
+    id: 169,
+    year: "2018",
+    question: "My father is a very prosperous C. rough businessman. D. unkind www.toppers.com.ng",
+    options: ["ungrateful 39. The President took exception", "unscrupulous to the ignoble role the young man", "unskilled played in the matter", "unsuccessful"],
+    correctAnswer: -1
+  },
+  {
+    id: 170,
+    year: "2018",
+    question: "The man who had been seriously ill was convalescing at a A. remedy seaside resort B. Consciousness gap(s).",
+    options: ["hostility", "regaining health D. receptiveness", "deteriorating in health", "recuperating For the questions, choose the", "relaxing options that best complete the"],
+    correctAnswer: -1
+  },
+  {
+    id: 171,
+    year: "2018",
+    question: "For millions of years, the world resources have remained 44, He was ... [A. assisted B. boundless duped C. enjoined D. encouraged] ... by the trickster. successful] ..., they stopped",
+    options: ["unlimited", "scarce 45. When the soldiers saw that", "indomitable resistance was ... [A. inadequate", "limited B. inefficient C. futile D."],
+    correctAnswer: -1
+  },
+  {
+    id: 172,
+    year: "2018",
+    question: "The difference between the fighting experimental procedures was imperceptible to me 46. You should read all the ... [A. brochures B. prospectus C. tickets www.toppers.com.ng",
+    options: ["negligible D. handouts] ... carefully before", "significant"],
+    correctAnswer: -1
+  },
+  {
+    id: 173,
+    year: "2018",
+    question: "The Emir and Conqueror of D. affirmed the enemy territories. ---[A. arrives B. are to arrive C. arrive 52. The high cost of living these 48 We ought to have visited the A. extravagance Governor, ...[A. isn't it B, oughtn't B. economy we C. shouldn't we D. haven't] C. recklessness",
+    options: ["are arriving] --- next week. days calls for a lot of frugality", "prudence."],
+    correctAnswer: -1
+  },
+  {
+    id: 174,
+    year: "2018",
+    question: "The principal took exception In each of these questions, to the ignoble role the teacher choose the appropriate stress plays d in the matter item from the options. The syllables are written in capital In each of these questions, B. comFORtable choose the option that has the C. comfortaBLE same sound as the one D. comforTABLE represented by the letter(s) underlined. 59. incapacitate",
+    options: ["embarrassing letters.", "honourable", "extraordinary 58. comfortable", "dishonourable", "COMfortable"],
+    correctAnswer: -1
+  },
+  {
+    id: 175,
+    year: "2018",
+    question: "key A. inCApacitate C seat",
+    options: ["incaPAcitate", "sit C. INcapacitate", "bet D. incapaciTATE.", "tread 60. encouragement"],
+    correctAnswer: -1
+  },
+  {
+    id: 176,
+    year: "2018",
+    question: "taught A. Encouragement www.toppers.com.ng",
+    options: ["encouragement", "law C. encouRAgement", "aunt D. encouragement", "count", "plateau"],
+    correctAnswer: -1
+  },
+];
 
-jambQuestions["English"] = {
-  years: ["2010", "2011", "2012", "2013", "2014", "2015", "2016", "2017", "2018"],
-  questionsByYear: {
-    "2010": [
-        {
-            question: "Which Use of English Paper Type is given to you?",
-            options: ["Type A", "Type B", "Type C", "Type D"],
-            correctAnswer: 0
-        },
-        {
-            question: "According to the writer, the exciting thing about Spaceship Earth is that",
-            options: ["has no instruction manual", "it is not difficult to maintain", "is peculiar to other automobiles", "is relatively easy to operate"],
-            correctAnswer: 0
-        },
-        {
-            question: "The absence of instruction manual in Spaceship Earth has",
-            options: ["made the operation of the Spaceship Earth difficult", "forced man to devise other means of travelling in spacecraft", "challenged man's inquisitiveness", "made man helpless"],
-            correctAnswer: 2
-        },
-        {
-            question: "From the passage, it can be deduced that man",
-            options: ["learns by experiment and education", "learns by chance and accidentally", "is incapable of solving all his problems", "by his nature is in constant search of knowledge"],
-            correctAnswer: 0
-        },
-        {
-            question: "The writer's mood in the passage is that of",
-            options: ["non-committal", "pessimism", "optimism", "frustration"],
-            correctAnswer: 2
-        },
-        {
-            question: "The expression 'stress is an issue everybody can relate to experimentally' means that",
-            options: ["it is better understood when experienced", "its problem can be solved by everybody", "everybody avoids it", "everybody encounters it"],
-            correctAnswer: 0
-        },
-        {
-            question: "Which of the following is true according to the passage?",
-            options: ["Stress is mostly caused by internal factors", "Stress can only be avoided during relaxation", "Stress is better handled by the individual", "The issues of stress can be solved with no effort"],
-            correctAnswer: 2
-        },
-        {
-            question: "According to the passage, the major step in controlling stress is",
-            options: ["changing one's attitude to stressors", "understanding the history of disease", "visiting family doctors for check-up and treatment", "constant exercise to dissipate every energy"],
-            correctAnswer: 0
-        },
-        {
-            question: "The experts feel one can control one's stress because",
-            options: ["its causes are understandable", "it is not difficult to control", "external factors contribute less stress", "it is individually initiated"],
-            correctAnswer: 3
-        },
-        {
-            question: "From the passage, it can be deduced that stress is",
-            options: ["hormonal disorder in the body system", "individually induced problems", "bodily reaction to internal and external factors", "bodily reaction to external factors"],
-            correctAnswer: 2
-        },
-        {
-            question: "According to the writer, corruption is triggered off by",
-            options: ["unnecessary affluence", "selfish interest", "private officials", "public officers"],
-            correctAnswer: 1
-        },
-        {
-            question: "From the passage, one of the consequences of corruption is that",
-            options: ["large projects are executed", "it is beneficial to wealth people", "it impedes the progress of a nation", "people get what they want with so much money to spend"],
-            correctAnswer: 2
-        },
-        {
-            question: "Who, according to the writer should prevent corruption?",
-            options: ["Lawyers and Police", "Corrupt public officers", "The government", "The people"],
-            correctAnswer: 2
-        },
-        {
-            question: "Which of the following is an indication of ethical standard of governance?",
-            options: ["Fundamental human right ideology", "Socio-economic instability", "Democratic governance", "Bloated expenditure"],
-            correctAnswer: 2
-        },
-        {
-            question: "The essence of fighting corruption, according to the passage, is to",
-            options: ["send the corrupt to yell", "promote good governance", "punish corrupt politicians", "make people richer"],
-            correctAnswer: 1
-        },
-        {
-            question: "People are not interested in who rules.",
-            options: ["People are not ruled by the leaders they want", "People are not concerned about who rules them", "The rulers are not concerned about the people", "People who rule are not interested in the ruled"],
-            correctAnswer: 1
-        },
-        {
-            question: "It was good to steer a middle course in whatever one does.",
-            options: ["It is always good to get midway in anything one does", "It is always good to act with moderation", "It is always good to move away from the forefront", "It is always good to work very hard"],
-            correctAnswer: 1
-        },
-        {
-            question: "The witness said he had no axe to grind with his brothers.",
-            options: ["He had no hatred for the brothers", "He had no axe and therefore stole the matchet", "He had no axe and therefore borrowed their matchet", "He had no vested interest in the brothers"],
-            correctAnswer: 0
-        },
-        {
-            question: "The footballers moved with their tails between their legs.",
-            options: ["they moved happily because they won the match", "they were unhappy because they had been despised by their opponents", "they were ashamed because they had been defeated", "they moved with their tails between their legs"],
-            correctAnswer: 2
-        },
-        {
-            question: "The headmaster managed to talk his way out of having to give a speech.",
-            options: ["he delivered a speech despite the difficulty", "he managed to give a speech out of a difficult situation", "he managed to get himself out of a difficult situation", "he managed to talk on his way"],
-            correctAnswer: 2
-        },
-        {
-            question: "I am optimistic about the interview though it was a mind-bending exercise.",
-            options: ["An enervating", "A debilitating", "A difficult", "An easy"],
-            correctAnswer: 3
-        },
-        {
-            question: "The trader was amused by the cut-throat rush for the goods.",
-            options: ["Worrisome", "Strange", "Lacklustre", "Mad"],
-            correctAnswer: 2
-        },
-        {
-            question: "The teacher said that Ali's essay was full of many redundant details.",
-            options: ["Unexplained", "Strange", "Necessary", "Useful"],
-            correctAnswer: 2
-        },
-        {
-            question: "His father surmounted the myriad of obstacles on his way.",
-            options: ["Most", "Few", "All", "Many"],
-            correctAnswer: 1
-        },
-        {
-            question: "Her ingenuous smile drew our attention.",
-            options: ["Witty", "Naïve", "Clever", "Arrogant"],
-            correctAnswer: 1
-        }
-    ],
-    "2011": [
-        {
-            question: "Which question paper type of use of English is given to you?",
-            options: ["Type A", "Type B", "Type C", "Type D"],
-            correctAnswer: 3
-        },
-        {
-            question: "The writer's statement conveyed in the posture, as used in the passage can be described as",
-            options: ["Ineffectual", "Contentious", "Logical", "Unguarded"],
-            correctAnswer: 1
-        },
-        {
-            question: "Which of the following is true according to the passage?",
-            options: ["Bio cell would produce very costly energy", "Bio cell, at the beginning, derived their energy from sugar", "Sugar and fuel were initially used as source of energy for bio cells", "Bio cells were forms of power used by the scientists"],
-            correctAnswer: 1
-        },
-        {
-            question: "The inventor of biocell justified the need for it by saying that it would",
-            options: ["develop ways for changing bio cell into fuel for use", "yield a source of energy without much spending", "produce electricity for all type of machines", "produce signal to guide all ship and other vessels"],
-            correctAnswer: 1
-        },
-        {
-            question: "According to the passage, electricity was first discovered in",
-            options: ["heart and brains", "muscles of animals", "lightning", "fish"],
-            correctAnswer: 2
-        },
-        {
-            question: "Which of the following represents the writer's view in the passage?",
-            options: ["Evil thought may come but there is virtue in keeping them out", "Evil thought will continue to sting us likes vipers as long as there are enemies who offend us", "Evil thoughts will always come to our mind no matter what we do", "Like most birds, evil thoughts fly swiftly in our minds without perching"],
-            correctAnswer: 0
-        },
-        {
-            question: "Which statement of the following represent the view expressed by the writer in the first paragraph?",
-            options: ["Evil thought will eventually ruin the evil man", "If we do not stop the pendulum of thought from swinging, our thoughts will soon become our enemies", "To many evil thoughts leave fatal consequences", "It is possible to decide what control our thoughts"],
-            correctAnswer: 0
-        },
-        {
-            question: "From the argument in the second paragraph, it can be concluded that it",
-            options: ["Are helpless because they fly out of their minds", "Cherries idle and slothful ways", "Are thieves with evil instincts", "Treasure and ruminate on them"],
-            correctAnswer: 3
-        },
-        {
-            question: "The expression 'Think of the devil, and he will appear' as used in the passage suggests that",
-            options: ["likes the devil evil thoughts must not reign in our hearts", "evil thoughts are fantasies which exist only in people's mind", "uncontrolled evil thoughts may lead to evil deeds", "the devil gives evil thoughts only to those who invite him in"],
-            correctAnswer: 2
-        },
-        {
-            question: "Which statement of the following summarizes the argument of the fourth paragraph?",
-            options: ["Heavy traffic on a miry and dirty road may lead to evil thought", "The more evil we think, the more vile we are likely to become", "Evil people should not be welcome as guest in our homes the same way we welcome good people", "Evil thoughts control the key to human heart and no one can keep them out"],
-            correctAnswer: 1
-        },
-        {
-            question: "According to the writer, people lead and motivate others because they want to",
-            options: ["project individual contribution", "encourage selfless service", "make the world a home", "prevent empty search"],
-            correctAnswer: 2
-        },
-        {
-            question: "According to the passage, balance must be enthroned as a critical component because it is",
-            options: ["not content because society esteems such roles to be inferior", "critical an interdependent amazing conscience", "a critical part of fidelity", "a serious way of ensuring success"],
-            correctAnswer: 3
-        },
-        {
-            question: "The word 'inclinations' as in the passage means",
-            options: ["creeds", "tendencies", "inhibitions", "power"],
-            correctAnswer: 1
-        },
-        {
-            question: "Which of the following statements is true according to the passage?",
-            options: ["When square pegs are put in round holes", "People do certain things in life because they know the repercussion", "People agree on all issues and behave the same way for the same reason", "Understanding life at different levels gives no account of visible acquisition"],
-            correctAnswer: 0
-        },
-        {
-            question: "From the passage, it can be inferred that",
-            options: ["People insincerely discuss facts that govern their behaviour", "All managerial decisions are based on assumptions", "People make conscious effort to acquire hidden knowledge", "All things in life exist on some beliefs"],
-            correctAnswer: 3
-        },
-        {
-            question: "If he were here, it could be more fun.",
-            options: ["He was expected but did not show up to make the occasion lively", "There was no fun because he was not present", "He did not show up and so the occasion lacked much fun", "He was being expected to supply more fun"],
-            correctAnswer: 1
-        },
-        {
-            question: "The secretary said that the postponement of the meeting was due to unforeseen circumstances.",
-            options: ["The date of the meeting was shifted as a result of unexpected reasons", "The meeting's date was put off for strange reasons", "The meeting was called off as a result of unknown obstacles", "The meeting broke off as a result of unusual difficulties"],
-            correctAnswer: 0
-        },
-        {
-            question: "The hunter has a bird's-eye view of the animals.",
-            options: ["He views the animal from a high position", "He views the bird's eye", "He views the birds on the tree with one eye", "He watches animals and birds closely"],
-            correctAnswer: 0
-        },
-        {
-            question: "Even though Susan was the last in the examination, her result wasn't too different from what had been expected.",
-            options: ["Her result was poor", "Her result was a disappointment", "Her result was as expected", "She had not been serious with her studies"],
-            correctAnswer: 2
-        },
-        {
-            question: "Mrs. Adasu does all her work with more haste, less speed.",
-            options: ["She accepts whatever she does with more haste and speed", "She approaches whatever she does hurriedly", "She addresses everything she does very quickly to avoid mistakes", "She does everything carefully to avoid mistakes"],
-            correctAnswer: 1
-        },
-        {
-            question: "Since its inception in 1983, the newspaper has attracted thousands of readers.",
-            options: ["renaissance", "coming", "commencement", "publication"],
-            correctAnswer: 2
-        },
-        {
-            question: "Mrs. Asio wanted her sister to stop being so detached.",
-            options: ["friendly", "careless", "indifferent", "passionate"],
-            correctAnswer: 2
-        },
-        {
-            question: "Lantana dwelt in a ruined cottage on the hillside.",
-            options: ["sat", "worked", "slept", "lived"],
-            correctAnswer: 3
-        },
-        {
-            question: "The mistake brought the show to an ignominious end.",
-            options: ["a good", "a palatable", "a disgraceful", "a satisfactory"],
-            correctAnswer: 2
-        },
-        {
-            question: "He compliments me on my way of doing things.",
-            options: ["complements", "imitates", "disgusts", "praises"],
-            correctAnswer: 3
-        }
-    ],
-    "2012": [
-        {
-            question: "Which Question Paper Type of Uses of English as indicated above is given to you?",
-            options: ["Type Green", "Type Purple", "Type Red", "Type Yellow"],
-            correctAnswer: 3
-        },
-        {
-            question: "From the passage, one can say that all ethnic groups have",
-            options: ["different traditional religions with some elements of similarities", "completely different religious practices", "the same traditional religion", "the same religious manifestations with common deities"],
-            correctAnswer: 0
-        },
-        {
-            question: "According to the first paragraph, Nigerians believe that the",
-            options: ["supernatural and natural world co-exist", "supernatural and natural worlds are antagonistic", "supernatural world controls the natural world", "supernatural world exploits the natural world"],
-            correctAnswer: 0
-        },
-        {
-            question: "Traditional religion has waned in Nigeria owing to the",
-            options: ["influence of Islam over Bori spirits", "influence of Christianity over local oracles", "decline of the interest in traditional religions", "influence of non-traditional religions"],
-            correctAnswer: 3
-        },
-        {
-            question: "Which factor is common to all traditional religions as mentioned in the passage?",
-            options: ["Prayer only", "Divination", "Sacrifice only", "Rituals"],
-            correctAnswer: 1
-        },
-        {
-            question: "It can be inferred from the passage that",
-            options: ["Nigerians have access to foreign books only", "Nigerian undergraduates do not read textbooks", "Nigerians read foreign and indigenous books alike", "Nigerians read mostly foreign books"],
-            correctAnswer: 3
-        },
-        {
-            question: "The reason for indigenous books lack in most renowned bookshops, according to the passage, is",
-            options: ["Nigerians prefer reading foreign books", "foreign books attract more buyers", "indigenous books are sometimes not available", "the low quality of indigenous books"],
-            correctAnswer: 1
-        },
-        {
-            question: "The expression 'that earned her the award is profoundly gripping' as used in the passage, means that the book is",
-            options: ["highly interesting and captures attention", "is of high quality to the writer", "attracts many indigenous and foreign readers", "is widely acknowledged by many authors"],
-            correctAnswer: 0
-        },
-        {
-            question: "The university science lecturer gives his reason for issuing handouts as",
-            options: ["lack of teaching aids among students", "low purchasing power", "low quality of books", "lack of sufficient time"],
-            correctAnswer: 1
-        },
-        {
-            question: "A suitable title for this passage is",
-            options: ["Nigerian Literary Writers", "Nigerian Publishers and International Awards", "Poor Reading Culture in Nigeria", "Why Nigerian Lecturers Sell Handouts"],
-            correctAnswer: 2
-        },
-        {
-            question: "The attitude of the writer of the passage can best be described as",
-            options: ["objective", "critical", "non-committal", "emotional"],
-            correctAnswer: 0
-        },
-        {
-            question: "It can be deduced from the passage that",
-            options: ["all experiences are best teachers", "learning through pains is superior to wisdom", "wise thoughts are more desirable than experience", "experience is to learning by chance"],
-            correctAnswer: 2
-        },
-        {
-            question: "Which of the following statements is true according to the passage?",
-            options: ["Man must make mistake in order to survive", "The totality of our actions should be decided by our judgement", "If we do not make mistakes, experience must be our teacher", "Our future would be judged by our past mistakes"],
-            correctAnswer: 1
-        },
-        {
-            question: "According to the passage, we must be disciplined to",
-            options: ["make experience our best teacher in reality", "from experience in future", "choose the learning opportunity that comes our way", "decide against making experience our teacher"],
-            correctAnswer: 3
-        },
-        {
-            question: "The phrase 'a complete and wholehearted devotion' as used in the passage means",
-            options: ["acting without doubt", "learning with tension", "learning without pains", "teaching with ease"],
-            correctAnswer: 0
-        },
-        {
-            question: "Hardworking students must not have a finger in every pie at school.",
-            options: ["Hardworking students must not have a role to play in most activities in the school", "Only hardworking students must participate in all activities in the school", "Hardworking students do not participate in all activities in the school", "Hardworking students must ask others to participate in school activities"],
-            correctAnswer: 0
-        },
-        {
-            question: "The vice chancellor is riding the crest of the last quarter of his administration.",
-            options: ["The vice chancellor enjoys the acknowledgement of the success of his administration", "The vice chancellor does not enjoy the people's criticism of his administration", "The vice chancellor hopes to overcome soon the poor comments on his administration", "The vice chancellor does not talk of his successes on office"],
-            correctAnswer: 0
-        },
-        {
-            question: "She was absolved by the course from the charge.",
-            options: ["She was convicted for the charge", "She was blamed and charged to court", "Her case was resolved by the less than one billion shares", "She was declared free from the charge"],
-            correctAnswer: 3
-        },
-        {
-            question: "The landlord is fond of throwing his weight about.",
-            options: ["The landlord likes healthy exercise", "The landlord is overweight", "The landlord gives orders to people", "The landlord is respected by his tenants"],
-            correctAnswer: 2
-        },
-        {
-            question: "The company ought to have issued warrants for one billion shares.",
-            options: ["The company has issued one billion shares", "The management expected the company to issue more than one billion shares", "Members bought shares less than one billion", "The company did not issue one billion shares"],
-            correctAnswer: 3
-        },
-        {
-            question: "As an idiot, the boy is weak in class.",
-            options: ["a deviant", "a dunce", "an expert", "a genius"],
-            correctAnswer: 2
-        },
-        {
-            question: "We were shocked by the news that he had lost the money.",
-            options: ["astonished", "disconcerted", "unconcerned", "surprised"],
-            correctAnswer: 2
-        },
-        {
-            question: "The principal was advised to be flexible on critical issues.",
-            options: ["livid", "cautious", "evasive", "rigid"],
-            correctAnswer: 3
-        },
-        {
-            question: "Bola always looks sober.",
-            options: ["excited", "serious", "worried", "helpless"],
-            correctAnswer: 0
-        },
-        {
-            question: "Dupe was promoted for her efficiency.",
-            options: ["ability", "incompetence", "inconsistency", "rudeness"],
-            correctAnswer: 1
-        }
-    ],
-    "2013": [
-        {
-            question: "Which question Paper Type of Uses of English is given to you?",
-            options: ["Type D", "Type I", "Type B", "Type U"],
-            correctAnswer: 1
-        },
-        {
-            question: "Which of the following is true according to the passage?",
-            options: ["Anyone, with almost no training, can run pots on a wheel", "Pots can be made quickly and correctly", "A pot thrown on a wheel is less likely to break", "The potter does not have to work hard if he uses the wheel"],
-            correctAnswer: 1
-        },
-        {
-            question: "From the passage, how does a potter make several pots of almost identical size?",
-            options: ["By having the knowledge of different pots", "By weighing the lumps of clay", "By having the right tools", "By knowing what to do from experience"],
-            correctAnswer: 1
-        },
-        {
-            question: "The phrase 'trims off any waste clay' as used in the passage means to",
-            options: ["cut away unnecessary parts", "force the clay to the centre", "divide the clay into two", "wash away different colours"],
-            correctAnswer: 0
-        },
-        {
-            question: "The word 'congenial' as used in the passage means",
-            options: ["congested", "precise", "similar", "nice"],
-            correctAnswer: 3
-        },
-        {
-            question: "Which of the following is true according to the passage?",
-            options: ["Music can enhance evaluation performance", "All listeners are music makers", "All artistes are objective in their feelings", "Music influences feelings at different levels"],
-            correctAnswer: 3
-        },
-        {
-            question: "The expression 'stage and hall' as used in the passage means the",
-            options: ["artiste and his music", "artiste and the audience", "producer and the director", "director and the audience"],
-            correctAnswer: 1
-        },
-        {
-            question: "From the passage, it can be deduced that music is",
-            options: ["appreciated as the environment dictates", "better appreciated in a crowd", "better appreciated when we are happy", "professional critics"],
-            correctAnswer: 0
-        },
-        {
-            question: "According to the writer, live performances provide a special excitement because they are",
-            options: ["stage-managed", "interactive", "error-free and original", "educative"],
-            correctAnswer: 1
-        },
-        {
-            question: "According to the passage, music plays a vital role in human society because",
-            options: ["music provides enjoyment and relief", "it is easy to appreciate music", "stage performance is the most impressive", "everybody can listen to music through the CD, MP3 and DVD"],
-            correctAnswer: 0
-        },
-        {
-            question: "In their preparation for the masquerade, David and others agreed to exercise extra caution in their dealings with Samuel because he would",
-            options: ["force them to dance with the masquerade", "try his tricks on them to know their secrets", "prepare well ahead of them", "put them to shame"],
-            correctAnswer: 0
-        },
-        {
-            question: "In the novel, Nwomiko was famous for her",
-            options: ["lack of fighting spirit", "spiritual powers", "political struggles", "lack of spiritual values"],
-            correctAnswer: 1
-        },
-        {
-            question: "With remarkable agility, he mounted The Fallen Goliath and went on to stuff his mouth with earth. Who was the Fallen Goliath in the excerpt above?",
-            options: ["Cromwell", "David", "Polycarp", "Samuel"],
-            correctAnswer: 2
-        },
-        {
-            question: "If you have not beheld your chi in his stark nakedness, be prepared to do so as soon as you set foot in that man's house. From the excerpt above, whose house was being referred to?",
-            options: ["Mazi Nwokike", "Teacher Zaccheus", "Mazi Okeke", "Mazi Laze"],
-            correctAnswer: 0
-        },
-        {
-            question: "In the novel, the people of Umuchukwu likened Samuel to",
-            options: ["a swimmer", "an ancestral spirit", "a chief priest", "a fisherman"],
-            correctAnswer: 1
-        },
-        {
-            question: "Tolu and Chinedu live in each other's pockets.",
-            options: ["They are long-term business partners", "They steal from each other", "They blackmail each other", "They are very close to each other"],
-            correctAnswer: 3
-        },
-        {
-            question: "Olatinuke was advised to keep her shirt on.",
-            options: ["She was advised to wear her shirt", "She was advised to commit herself", "She was advised to stay calm", "She was advised to join the club"],
-            correctAnswer: 2
-        },
-        {
-            question: "He is a clinging child.",
-            options: ["He is a handsome young man", "He is possessive", "He likes to cling with his sister", "He is a bully"],
-            correctAnswer: 1
-        },
-        {
-            question: "Zinana's examination result was not unfavourable.",
-            options: ["She failed her examination", "Her examination did not meet her expectation", "She was successful in the examination", "Her result could not earn her admission"],
-            correctAnswer: 2
-        },
-        {
-            question: "You need to brush up on your Spanish.",
-            options: ["You need to study the history of Spain", "You need to improve your skills", "You need a brush from Spain", "You need to learn to play with a Spaniard"],
-            correctAnswer: 1
-        },
-        {
-            question: "Amaka would pass for a beauty queen.",
-            options: ["She would pass the drink to the queen who is sitting next to her", "She would be accepted by all as a beauty queen", "She walked past the beauty queen", "She was acting as a beauty queen"],
-            correctAnswer: 1
-        },
-        {
-            question: "The girl took a cursory glance at the letter and hid it.",
-            options: ["sententious", "concise", "brief", "lasting"],
-            correctAnswer: 2
-        },
-        {
-            question: "The relationship between the couple has been frosty.",
-            options: ["fraudulent", "cordial", "amenable", "frugal"],
-            correctAnswer: 1
-        },
-        {
-            question: "The Nobel laureate's activity in the field of science is heinous.",
-            options: ["indelible", "laudable", "deplorable", "forgettable"],
-            correctAnswer: 1
-        },
-        {
-            question: "The accused was eventually convicted.",
-            options: ["initially", "consequently", "subsequently", "finally"],
-            correctAnswer: 0
-        },
-        {
-            question: "The plebs can be found in every society of the world.",
-            options: ["masses", "middle class", "elite", "politicians"],
-            correctAnswer: 2
-        }
-    ],
-    "2014": [
-        {
-            question: "Which question paper type of use of English is given to you?",
-            options: ["Type F", "Type E", "Type L", "Type S"],
-            correctAnswer: 2
-        },
-        {
-            question: "Which of the following is true according to the passage?",
-            options: ["Change is inimitable", "Change is inestimable", "Change is invaluable", "Change is inevitable"],
-            correctAnswer: 3
-        },
-        {
-            question: "It can be deduced from the passage that political and social changes are",
-            options: ["Intertwined", "Antithetical", "Independent", "Repulsive"],
-            correctAnswer: 0
-        },
-        {
-            question: "A suitable title for this passage is",
-            options: ["Reasons for political change", "The struggle for political power", "Elements of politics", "Social change and political empowerment"],
-            correctAnswer: 3
-        },
-        {
-            question: "The word 'alteration' as used in the passage means",
-            options: ["Multiplication", "Recognition", "Modification", "Complication"],
-            correctAnswer: 2
-        },
-        {
-            question: "It can be inferred from the passage that snakes are",
-            options: ["Heterogeneous creatures", "Voracious cow eaters", "Great insect eaters", "Homogeneous reptiles"],
-            correctAnswer: 0
-        },
-        {
-            question: "The most notable thing about snakes, according to the passage, is that they",
-            options: ["Abound in Gombe and Plateau State", "Are versatile in reproduction", "Eat big but seldom", "Exist in families"],
-            correctAnswer: 2
-        },
-        {
-            question: "Which of the following is true according to the passage?",
-            options: ["Snakes are not in the polar region", "Snakes are endemic on every continent", "There are countless number of snakes in the republic of Ireland", "Snakes are seldom seen at the Antarctica"],
-            correctAnswer: 0
-        },
-        {
-            question: "It can be deduced from the passage that snakes have",
-            options: ["No external auditory organ", "Visible internal locomotive visual sense organs", "No measurement", "Large appetite for antelopes"],
-            correctAnswer: 0
-        },
-        {
-            question: "A suitable title for this passage is",
-            options: ["Feeding habits of snakes", "Some characteristics of snakes", "Snakes as legless, cold-blooded reptiles", "Species of snakes in Nigeria and other lands"],
-            correctAnswer: 1
-        },
-        {
-            question: "From the excerpt above, the word 'vanquished' means",
-            options: ["Unflappable", "Unconcerned", "Sensitive", "Subdued"],
-            correctAnswer: 3
-        },
-        {
-            question: "In the novel, the suspicion that Obu was an 'ogbanje' had revalued the",
-            options: ["Time Obu spent at teacher's house", "Disappearance of Obu in standard", "Price tag Mazi Laza and his wife placed on Obu", "Participation of Obu as a member of the masquerade group"],
-            correctAnswer: 1
-        },
-        {
-            question: "According to the novel, a pupil who 'carried his class' would be instructed to",
-            options: ["Dance on the assembly ground", "Fetch firewood for the teachers", "Carry a pad", "Clean the latrines"],
-            correctAnswer: 1
-        },
-        {
-            question: "The statement above was meant to",
-            options: ["Distract Ada", "Encourage Ada's cooking habit", "Confuse Obu", "Test Obu's cooking skills"],
-            correctAnswer: 0
-        },
-        {
-            question: "According to the novel, Mazi Laza would shout at any person standing in his way because his bicycle in Umuatala clan was",
-            options: ["Had injured people on many occasions", "Was manufactured by local engineers", "Had faulty brakes and outdated pedals", "Came from the same stock as Chief Okeke's"],
-            correctAnswer: 2
-        },
-        {
-            question: "The police are looking for the woman who framed her children out to her neighbours.",
-            options: ["The woman and her children are in the habit of working in neighbour's farm and the police are not well disposed to this", "The police may arrest the woman for allowing her neighbours to take care of her children", "The woman may be arrested for allowing her children to be a nuisance to her neighbours", "The police wanted to arrest her for allowing her children to destroy her neighbour's crops"],
-            correctAnswer: 2
-        },
-        {
-            question: "Jummai's father remarked that pigs would fly before she passed.",
-            options: ["It would be possible to pass only if she worked harder", "It would never be possible for her to pass", "He would have to bribe her teachers to enable her to pass", "She would have to cheat in order to pass"],
-            correctAnswer: 1
-        },
-        {
-            question: "The president said that he found himself between a rock and a hard place when the press said that he had resigned.",
-            options: ["He dreamt that he was abandoned", "He thought that hard places were unsafe", "He had a hard decision to make", "Hard places are dangerous for the president"],
-            correctAnswer: 2
-        },
-        {
-            question: "Kunana is like a bear with a sore head.",
-            options: ["He is a bully", "He is grumpy", "He is ugly", "He is quiet"],
-            correctAnswer: 1
-        },
-        {
-            question: "Olu gave his brother a bumpy ride.",
-            options: ["Olu's brother rode on Olu's back to success", "Olu took his brother on a bumpy road", "Olu gave his brother a difficult time", "Olu gave his brother a ride in his car"],
-            correctAnswer: 2
-        },
-        {
-            question: "Adeola doesn't have to go to the farm today.",
-            options: ["Adeola may go to the farm today if he so wishes", "Adeola ought not to have gone to the farm today", "Adeola must not go to the farm today", "Adeola should not go to the farm today"],
-            correctAnswer: 0
-        },
-        {
-            question: "Prolonged strike action debilitated the industry.",
-            options: ["invigorated", "isolated", "weakened", "destroyed"],
-            correctAnswer: 0
-        },
-        {
-            question: "One of the students bought a plagiarized copy of the book.",
-            options: ["a used", "an original", "a revised", "an annotated"],
-            correctAnswer: 1
-        },
-        {
-            question: "The young girl was taken aback by her father's gift of a car.",
-            options: ["shocked", "unmoved", "surprised", "nonplussed"],
-            correctAnswer: 1
-        },
-        {
-            question: "Musa is a gifted but erratic player.",
-            options: ["strong", "regular", "unpredictable", "unstable"],
-            correctAnswer: 1
-        },
-        {
-            question: "The lamp shades were translucent.",
-            options: ["opaque", "interested", "luminous", "transparent"],
-            correctAnswer: 0
-        }
-    ],
-    "2015": [
-        {
-            question: "The expression 'third party' as used in the passage means",
-            options: ["Politician", "Intruder", "Conformist", "Mediator"],
-            correctAnswer: 3
-        },
-        {
-            question: "From the passage, it can be deduced that",
-            options: ["All nations adopt the peaceful approach", "All nations prefer the military option", "Prevailing circumstances push a warring nation to sue for peace", "Conflicts are noted for facilitating opportunities"],
-            correctAnswer: 2
-        },
-        {
-            question: "Which of the following statements can be inferred from the passage?",
-            options: ["The approach to employ in conflict management depends on the state of affairs", "Only one conflict management approach can be applied in all situations", "All conflict management approaches can be applied in all situations", "There is a general disagreement among scholars on conflict management"],
-            correctAnswer: 0
-        },
-        {
-            question: "According to the passage, the different approaches to conflict management are",
-            options: ["Pernicious", "Uniform", "Misleading", "Fundamental"],
-            correctAnswer: 1
-        },
-        {
-            question: "The word 'utility' as used in the passage means",
-            options: ["Difficulty", "Attitude", "Usefulness", "Management"],
-            correctAnswer: 2
-        },
-        {
-            question: "The word 'couched' as used in the passage means",
-            options: ["Arranged", "Expressed", "Modified", "Itemized"],
-            correctAnswer: 1
-        },
-        {
-            question: "From the writer's point of view, one can conclude that",
-            options: ["The only authority a society has is its language", "Language and culture are interwoven", "People of the same culture in the same society", "Developing people of the world have not developed their language"],
-            correctAnswer: 1
-        },
-        {
-            question: "Which of the following can be inferred from the passage?",
-            options: ["The world is interpreted to use only in our native language", "Our native language is as important as the world around us", "We know more about the world around us if our language is not written", "The world around us is the world of people who speak the same language"],
-            correctAnswer: 1
-        },
-        {
-            question: "What is the symbolic function of a native language, according to the passage?",
-            options: ["It enables the society itself the more", "It promotes understanding within the group", "It distinguishes that society from others", "It alienates progress within the society and beyond"],
-            correctAnswer: 2
-        },
-        {
-            question: "From the passage, one can imply that",
-            options: ["The language of instruction is ideally one's own language", "Native languages are difficult to use as languages of instruction", "No foreign language should be taught in any society", "No society conducts its education in a foreign language"],
-            correctAnswer: 0
-        },
-        {
-            question: "The information that Efua's diary had been leaked to all in the school was first made known to her by",
-            options: ["Caro", "Ansa", "Nene", "Joke"],
-            correctAnswer: 2
-        },
-        {
-            question: "'What do you want? Doesn't it offend your pure gentle soul to be sitting beside me?' In the excerpt above, pure and gentle soul referred to",
-            options: ["Nene", "Jimi", "Efua", "Ansa"],
-            correctAnswer: 1
-        },
-        {
-            question: "What did Ansa do when Efua was introduced to him for the first time?",
-            options: ["He smiled sheepishly", "He murmured awkwardly", "He snubbed her", "He embraced her"],
-            correctAnswer: 0
-        },
-        {
-            question: "After the graduation, Nene hoped to study",
-            options: ["Accountancy", "Law", "Architecture", "Education"],
-            correctAnswer: 0
-        },
-        {
-            question: "At one time, the closeness between Jimi and Wole heightened because they wanted to",
-            options: ["Contend with Jimi adversaries at Forcados High School", "Unite against the bullying of the eldest brother", "Present a common front in their quest to learn at school", "Practice the act of dancing in the school choir"],
-            correctAnswer: 1
-        },
-        {
-            question: "The workers tightened their hold on the capital.",
-            options: ["They tightened a rope round their capital", "They controlled the capital more strictly", "They held unto other workers in the capital", "They stretched their hold on the capital and beyond"],
-            correctAnswer: 1
-        },
-        {
-            question: "I haven't seen the movie and my brother hasn't either.",
-            options: ["I have seen the movie but neither of my brother have", "My brother and I haven't seen the movie", "Only my brother has seen the movie", "I was the only one that has seen the movie"],
-            correctAnswer: 1
-        },
-        {
-            question: "Sule would have been given the car if his father had not complained.",
-            options: ["He wasn't given the car because his father complained", "He was given the car because his father complained", "His father complained about the car and he was given", "He was given the car even though his father didn't complain"],
-            correctAnswer: 0
-        },
-        {
-            question: "Adayi cannot halt the march of time.",
-            options: ["She is willing to march on", "She cannot change the way things happen", "She halts the march on time", "She cannot alter the peace march"],
-            correctAnswer: 1
-        },
-        {
-            question: "The lecture is Uye's road to Damascus.",
-            options: ["The lecture is an opportunity to travel to Damascus", "The lecture is an experience that changes the way she thinks", "The lecture talks exclusively about Damascus", "The lecture is an experience that cannot be changed"],
-            correctAnswer: 1
-        },
-        {
-            question: "She said the experience was harrowing.",
-            options: ["Educating", "Frightening", "Pleasant", "Strange"],
-            correctAnswer: 1
-        },
-        {
-            question: "The house was invaded by the young officers.",
-            options: ["Set up", "Put down", "Defended", "Built"],
-            correctAnswer: 2
-        },
-        {
-            question: "I like Adamu's weird attitude.",
-            options: ["Buoyant", "Peculiar", "Zestful", "Normal"],
-            correctAnswer: 3
-        },
-        {
-            question: "We travelled to an obscure little town.",
-            options: ["rugged", "Distinguished", "Secluded", "inglorious"],
-            correctAnswer: 1
-        },
-        {
-            question: "She is known for her bizarre dressing.",
-            options: ["Natural", "Weird", "Obsolete", "Odious"],
-            correctAnswer: 0
-        }
-    ],
-    "2016": [
-        {
-            question: "The view expressed by the writer in the last paragraph is that",
-            options: ["the number of alcoholics and smoker is certainly increasing", "more people appear to take to drinking and smoking", "sales of alcohol and tobacco products have improved tremendously", "more people now abstain from drinking and smoking"],
-            correctAnswer: 1
-        },
-        {
-            question: "It can be concluded from the passage that morality, religion and economy are",
-            options: ["somewhat interconnected", "clearly interconnected", "certainly different", "certainly unrelated"],
-            correctAnswer: 0
-        },
-        {
-            question: "According to the passage, the moralist idea is that",
-            options: ["the smoking of cigarettes is bad and unacceptable", "it is typically African not to smoke cigarettes", "people should accept a point of view only when they are convinced", "smoking is not good but a little alcohol may be permitted"],
-            correctAnswer: 0
-        },
-        {
-            question: "Which of the following statements is true according to the passage?",
-            options: ["Total abstinence from drinking and smoking is a religious obligation", "Smoking and drinking may have positive effects on the economy", "Everyone ignores the moralist view on drinking and smoking", "People who drink or smoke surely die of cancer"],
-            correctAnswer: 1
-        },
-        {
-            question: "The positions maintained by the moralist and the economist can be described as being",
-            options: ["quite indifferent", "very agreeable", "very passionate", "at variance"],
-            correctAnswer: 3
-        },
-        {
-            question: "The sentence 'There will be twice as many of us before most of us are dead' means",
-            options: ["some increase in human and animal population growth rates", "across the earth", "the population growth rate will double before our death", "many of us will die as a result of population explosion"],
-            correctAnswer: 2
-        },
-        {
-            question: "Which of the following statements is true according to the passage?",
-            options: ["Man kills animal only when he can afford to do so", "Man eats all categories of animals", "Animals that eat his kind was otherwise a nuisance to him in the business of keeping alive", "Man poses the greatest threat to nature"],
-            correctAnswer: 3
-        },
-        {
-            question: "The basic causes of the elimination of certain animals from the earth include",
-            options: ["a deliberate battle against nature and the quest for leopard skin", "man's decision to live in cities and the development of large farm lands", "man's penchant for meat and the sale of animals for meat and hides", "extensive killing of animals and the fast disappearances of their favourable habitats"],
-            correctAnswer: 3
-        },
-        {
-            question: "The expression 'when man evolved a conscience' means when",
-            options: ["man's intellect improved tremendously", "man became the creature", "man developed an awareness of right and wrong", "man acquired new habits"],
-            correctAnswer: 2
-        },
-        {
-            question: "From the passage, the attitude of the writer can be described as",
-            options: ["indifferent", "partial", "optimistic", "pessimistic"],
-            correctAnswer: 3
-        },
-        {
-            question: "According to the Novel, Efua was in Forcados High School because",
-            options: ["her stepfather was a board member", "her mother's support", "of the former school principal's recommendation", "of aunt Moni's gift to the school"],
-            correctAnswer: 3
-        },
-        {
-            question: "According to the Novel, who intimated Efua that there was a clash between area boys?",
-            options: ["Miss Novi", "Mr Salami", "Mr Edet", "Mr Mallum"],
-            correctAnswer: 1
-        },
-        {
-            question: "The speculation amongst the students of Forcados High School was that Jimi was dating",
-            options: ["Joke", "Caro", "Risikat", "Efua"],
-            correctAnswer: 3
-        },
-        {
-            question: "The best thing that happened to Efua at the end of the term was",
-            options: ["the visit of Nene's family", "her participation in the Christmas concert", "her exclusion from Miss Novi's charity group", "the principal's commendation of her result"],
-            correctAnswer: 1
-        },
-        {
-            question: "When did a boy faint at Forcados High School?",
-            options: ["during the prize-giving day", "during the Mid-term dinner", "during the valedictory service", "during the inter-house sports competition"],
-            correctAnswer: 3
-        },
-        {
-            question: "Ramatu expressed her feelings in no uncertain terms.",
-            options: ["she expressed it feebly and sickly", "she expresses it quietly and cautiously", "she expressed it secretly and courageously", "she expressed it clearly and strongly"],
-            correctAnswer: 3
-        },
-        {
-            question: "Usman needs to get his act together if he wants to pass the examination.",
-            options: ["he needs to put on his stage costume", "he needs to be fast when writing the examination", "he needs to organise himself", "he needs to put all points down in the examination"],
-            correctAnswer: 2
-        },
-        {
-            question: "As the drama unfolded, Olatinuke was advised to keep her shirt on.",
-            options: ["she was advised to stay calm", "she was advised to commit herself", "she was advised to join the club", "she was advised to wear her shirt"],
-            correctAnswer: 0
-        },
-        {
-            question: "The team's poor performance at the tournament plumbed the depths of horror.",
-            options: ["the team's performance was rewarded", "the team's performance took them to the next round", "the team's performance was enjoyed by all", "the team's performance was full of disappointment"],
-            correctAnswer: 3
-        },
-        {
-            question: "He is a clinging child.",
-            options: ["He is a bully", "He likes to cling with his sister", "He is possessive", "He is a handsome young man"],
-            correctAnswer: 2
-        },
-        {
-            question: "The relationship between the couple has been frosty.",
-            options: ["amenable", "fraudulent", "frugal", "cordial"],
-            correctAnswer: 3
-        },
-        {
-            question: "The dressmaker unpicked the seam of the shirt.",
-            options: ["tore up", "sewed up", "threaded", "picked up"],
-            correctAnswer: 1
-        },
-        {
-            question: "Some of my neighbours have an antipathy to dogs.",
-            options: ["enmity towards", "alarm for", "acronym", "affection for"],
-            correctAnswer: 0
-        },
-        {
-            question: "Chibuzor gave a curt nod and walked away.",
-            options: ["rude", "polite", "gentle", "shocking"],
-            correctAnswer: 1
-        },
-        {
-            question: "The girl took a cursory glance at the letter and hid it.",
-            options: ["brief", "sententious", "lasting", "concise"],
-            correctAnswer: 0
-        }
-    ],
-    "2017": [
-        {
-            question: "Advantages usually enjoyed by men began to",
-            options: ["weaken through gender sensitivity", "diminish through women emancipation", "dwindle with the advancement of civilization", "fade with wide self-realization"],
-            correctAnswer: 0
-        },
-        {
-            question: "According to the passage, what two masters are women struggling to serve?",
-            options: ["The health and education of their children", "The husband and the children", "The office and the husband", "The office and the home"],
-            correctAnswer: 3
-        },
-        {
-            question: "According to the passage, ancient societies were secured because",
-            options: ["men were assigned superior roles", "the tasks of women and men were outlined", "women accepted inferior roles", "the roles of women were commonly interpreted through gender sensitivity"],
-            correctAnswer: 1
-        },
-        {
-            question: "From the passage, it can be inferred that women emancipation results in",
-            options: ["women becoming covertly ambitious", "resentment of men by gain", "crises at home", "men becoming nonchalant"],
-            correctAnswer: 0
-        },
-        {
-            question: "The phrase 'suffer tremendously' as used in the passage means",
-            options: ["greatly disadvantaged", "to become worse", "badly unpleased", "badly affected"],
-            correctAnswer: 3
-        },
-        {
-            question: "The college food was described as dreadful by",
-            options: ["Jane", "Charlie", "Mahul", "Vanessa"],
-            correctAnswer: 3
-        },
-        {
-            question: "According to the novel, Vanessa fell sick after the party at Charlie's place because",
-            options: ["she drank too much and skipped meals", "of the continuous ringing of Oxford bells", "her room was not warm enough", "the food in the college was terrible"],
-            correctAnswer: 0
-        },
-        {
-            question: "In the novel, it was that Vanessa's father was in the",
-            options: ["Northern Protectorate", "colonial service", "house of commons", "house of lords"],
-            correctAnswer: 1
-        },
-        {
-            question: "From the novel, the Nigerian film shown created mixed reactions in",
-            options: ["Simon", "Ike", "Francis", "Margery"],
-            correctAnswer: 1
-        },
-        {
-            question: "The mention of Negritude, in the novel, is an example of",
-            options: ["African contribution to democracy", "African tribal custom", "African contribution to western civilization", "African adoption of western culture"],
-            correctAnswer: 2
-        },
-        {
-            question: "The government didn't mind my mentioning his name.",
-            options: ["He was not angry when I mentioned his name", "He was angry when I mentioned his name", "He told me not to mention his name", "He forgot to mention his name to me"],
-            correctAnswer: 0
-        },
-        {
-            question: "The leader said he was not unaware of the plight of the people.",
-            options: ["He knew of their plight", "He was not informed of their plight", "He could not understand their plight", "He felt their plight"],
-            correctAnswer: 0
-        },
-        {
-            question: "But for the expense, I'd buy a bigger car.",
-            options: ["I want to buy a bigger car because it is more expensive", "I will not buy a bigger car because it is too expensive", "I would buy a bigger car if I had more money", "I would like to buy a bigger car if it was not so expensive"],
-            correctAnswer: 3
-        },
-        {
-            question: "No sooner had he got into the pool than the telephone rang.",
-            options: ["He didn't get into the pool because the telephone rang", "The telephone rang just after he got into the pool", "The telephone rang as he was getting into the pool", "The telephone rang before he got into the pool"],
-            correctAnswer: 1
-        },
-        {
-            question: "My father said I might just as well stay at home for another year.",
-            options: ["I should stay at home because I had no other choice", "I might stay at home and do well", "Staying at home was probably the best thing for me", "I ought to stay at home in order to do well"],
-            correctAnswer: 2
-        },
-        {
-            question: "The King's security men were relegated to the east.",
-            options: ["discharge from", "known in", "accepted in", "hated by"],
-            correctAnswer: 1
-        },
-        {
-            question: "The minister averred his commitment.",
-            options: ["denied", "pledged", "undertook", "accented"],
-            correctAnswer: 0
-        },
-        {
-            question: "The company was on the brink of a financial abyss.",
-            options: ["difficult", "scandal", "services", "stability"],
-            correctAnswer: 3
-        },
-        {
-            question: "Nosa is indisposed.",
-            options: ["anxious", "fragile", "healthy", "cautious"],
-            correctAnswer: 2
-        },
-        {
-            question: "A conscientious student should not receive a reward.",
-            options: ["An irresponsible", "A persistent", "A busy", "An active"],
-            correctAnswer: 0
-        },
-        {
-            question: "The poem appealed to my sixth sense.",
-            options: ["brain", "mind", "instinct", "intelligence"],
-            correctAnswer: 0
-        },
-        {
-            question: "Sophie anticipated the celebration of her tenth birthday.",
-            options: ["suggested", "hoped for", "imagined", "waited for"],
-            correctAnswer: 2
-        },
-        {
-            question: "Mr. Bola is an irascible young man.",
-            options: ["a weak", "a crabbed", "a hilarious", "a rude"],
-            correctAnswer: 3
-        },
-        {
-            question: "She became neurotic as a result of her performance.",
-            options: ["balanced", "disturbed", "rational", "excited"],
-            correctAnswer: 2
-        },
-        {
-            question: "Malam Aliyu lived in lack.",
-            options: ["surplus", "penury", "plenitude", "opulence"],
-            correctAnswer: 1
-        }
-    ],
-    "2018": [
-        {
-            question: "What point of view is the Geography master fond of advancing?",
-            options: ["Africans are infested with all kinds of problem", "Only the white men are free from deadly diseases", "The Almighty God is punishing Africans for sins they committed long ago", "God did not curse the white people"],
-            correctAnswer: 2
-        },
-        {
-            question: "Which of the following arguments did he not use to support his views?",
-            options: ["In Africa, the mosquito causes deadly malaria whereas in Britain, it doesn't bite or cause malaria", "There is malaria both in Britain and in African Countries", "The snakes in Africa are deadly but those in Britain are harmless", "The sickle cell disease is peculiar to the black race"],
-            correctAnswer: 1
-        },
-        {
-            question: "'...rock the boat' What figure of speech is this expression?",
-            options: ["Simile", "Metaphor", "Personification", "Hyperbole"],
-            correctAnswer: 1
-        },
-        {
-            question: "What extra argument did the new boy offer after countering each of the master's points?",
-            options: ["There are problems especially in Africa", "There are deadly snakes in America and Africa", "There are harmless snakes in Britain", "Many white men prefer the African climate to their own"],
-            correctAnswer: 3
-        },
-        {
-            question: "Why do you think the master fought back with his look rather than with further argument?",
-            options: ["He knew that the boy's points were valid", "He had answers to the boy's argument", "He went out to sort for the boy's argument", "He already made up his mind on his points"],
-            correctAnswer: 0
-        },
-        {
-            question: "'...who had no answer to this new battle.' What grammatical name is given to the above expression as it is used in the passage?",
-            options: ["(non-defining) relative clause", "Adverbial clause", "Subordinate clause", "Main clause"],
-            correctAnswer: 0
-        },
-        {
-            question: "When asked to state her side of the story, Bunmi started by beating about the bush. This means that Bunmi",
-            options: ["went straight to the point", "was lost in great thought", "followed a bush path", "approached the subject without coming to the point"],
-            correctAnswer: 3
-        },
-        {
-            question: "The amount he donated was small. He said it was his widow's mite. This means that",
-            options: ["he was a widow", "he was misery", "it was all he could honestly afford", "he was a widower"],
-            correctAnswer: 2
-        },
-        {
-            question: "The driver smelled a rat when the policemen asked him to stop. This means that the driver was",
-            options: ["reckless", "suspicious", "careful", "offensive"],
-            correctAnswer: 1
-        },
-        {
-            question: "The students were advised to face their studies and let the sleeping dog lie. This means that the students should",
-            options: ["obey the authorities", "avoid trouble", "forget the past", "get to understand each other"],
-            correctAnswer: 2
-        },
-        {
-            question: "Mankind has been ravaged by many virus and ______ diseases such as measles.",
-            options: ["germ", "bacterial", "dirty", "mosquito"],
-            correctAnswer: 1
-        },
-        {
-            question: "Outbreaks of many of these diseases have been brought under control in the last fifty years. Some ______ like measles and whooping cough still pose a great danger to younger children.",
-            options: ["pains", "fevers", "infection", "traces"],
-            correctAnswer: 2
-        },
-        {
-            question: "The ______ of measles are more easily ______ than those of whooping cough.",
-            options: ["symptoms / diagnosed", "appearance / treated", "feels / dealt with", "signs / handled"],
-            correctAnswer: 0
-        },
-        {
-            question: "Unlike that of many others, the virus of measles more easily remain ______ for hundreds of years.",
-            options: ["unchanged", "constant", "erratic", "undiscovered"],
-            correctAnswer: 0
-        },
-        {
-            question: "However, once you have had an ______ of this dreadful disease, you develop an ______ which is almost complete and long lasting.",
-            options: ["epidemic / armour", "encounter / ability", "attack / immunity", "indisposition / impurity"],
-            correctAnswer: 2
-        },
-        {
-            question: "Modern science has made available ______ to prevent many childhood diseases.",
-            options: ["injections", "medicine", "tablets", "vaccines"],
-            correctAnswer: 3
-        },
-        {
-            question: "More effective treatment of complications arising from these childhood diseases using penicillin and other ______ helped to reduce the ______ rate among children.",
-            options: ["relievers / high", "treatments / mortality", "Pills / killing", "antibiotics / dangerous"],
-            correctAnswer: 1
-        },
-        {
-            question: "It is universally accepted that good ______ is the right of every human being.",
-            options: ["health", "body", "sense", "development"],
-            correctAnswer: 0
-        },
-        {
-            question: "We have today ______ drugs which give protection against most childhood diseases.",
-            options: ["bitter", "lovely", "potent", "marvellous"],
-            correctAnswer: 2
-        },
-        {
-            question: "Choose the option that has the same vowel sound as the one represented by the letter(s) underlined: tolerated",
-            options: ["stale", "kneel", "met", "motor"],
-            correctAnswer: 1
-        },
-        {
-            question: "Choose the option that has the same consonant sound as the one represented by the letter(s) underlined: gearbox",
-            options: ["bare", "feature", "beer", "teacher"],
-            correctAnswer: 3
-        },
-        {
-            question: "Choose the option that rhymes with the given word: confusion",
-            options: ["measure", "mission", "correction", "caution"],
-            correctAnswer: 3
-        },
-        {
-            question: "Choose the appropriate stress pattern: tertiary",
-            options: ["shame", "question", "catch", "chair"],
-            correctAnswer: 0
-        },
-        {
-            question: "Choose the appropriate stress pattern: distribution",
-            options: ["distriBUtion", "DIStribution", "disTRIbution", "distribuTION"],
-            correctAnswer: 0
-        },
-        {
-            question: "My house is ACROSS the road.",
-            options: ["Is her house across the road?", "Is my room across the road?", "Is my house on the road?", "Is my house across the street?"],
-            correctAnswer: 3
-        }
-    ]
-  }
-};
+export default englishQuestions;
