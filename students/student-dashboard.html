@@ -52,6 +52,16 @@
         50% { transform: translateY(-30px) rotate(180deg); opacity: 0.3; }
       }
       
+      /* Floating Mascot Animation */
+      .animate-float-mascot {
+        animation: floatMascot 4s ease-in-out infinite;
+      }
+      
+      @keyframes floatMascot {
+        0%, 100% { transform: translateY(0) rotate(-5deg); }
+        50% { transform: translateY(-15px) rotate(5deg); }
+      }
+      
       /* Glassmorphism Cards */
       .glass-card {
         background: rgba(255, 255, 255, 0.95);
@@ -463,6 +473,16 @@
             <div class="particle w-20 h-20 top-10 right-20" style="animation-delay: 0s;"></div>
             <div class="particle w-12 h-12 bottom-20 right-40" style="animation-delay: 2s;"></div>
             <div class="particle w-16 h-16 top-20 right-1/3" style="animation-delay: 4s;"></div>
+            
+            <!-- Cortex AI Owl Mascot - Floating Right -->
+            <div class="absolute right-4 top-1/2 -translate-y-1/2 hidden xl:block z-20">
+              <div class="relative">
+                <img src="../cortex-owl-brain.svg" alt="Cortex AI Owl" class="w-32 h-32 drop-shadow-2xl animate-float-mascot">
+                <div class="absolute -bottom-2 left-1/2 -translate-x-1/2 bg-white/20 backdrop-blur-sm px-3 py-1 rounded-full text-xs font-medium text-white whitespace-nowrap">
+                  🦉 Cortex AI
+                </div>
+              </div>
+            </div>
             
             <div class="relative z-10 flex flex-col lg:flex-row lg:items-center lg:justify-between gap-8">
               <div>
