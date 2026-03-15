@@ -518,7 +518,12 @@
                     <div class="text-sm font-medium text-red-600 mb-4" id="question-number">Question 1 of 40</div>
                     
                     <!-- Question Text -->
-                    <p id="question-text" class="text-lg mb-6">Loading question...</p>
+                    <p id="question-text" class="text-lg mb-4">Loading question...</p>
+                    
+                    <!-- Question Image -->
+                    <div id="question-image-container" class="mb-6 hidden">
+                        <img id="question-image" src="" alt="Question diagram" class="max-w-full h-auto rounded-lg border border-gray-200">
+                    </div>
                     
                     <!-- Options -->
                     <div id="options-container" class="space-y-3">
@@ -998,6 +1003,16 @@
             document.getElementById('question-number').textContent = `Question ${state.currentQuestionIndex + 1} of ${state.questions.length}`;
             document.getElementById('current-subject-name').textContent = question.subject;
             document.getElementById('year-badge').textContent = question.year;
+            
+            // Handle question image
+            const imageContainer = document.getElementById('question-image-container');
+            const questionImage = document.getElementById('question-image');
+            if (question.image) {
+                questionImage.src = question.image;
+                imageContainer.classList.remove('hidden');
+            } else {
+                imageContainer.classList.add('hidden');
+            }
 
             const optionLetters = ['A', 'B', 'C', 'D'];
             const answerKey = `${state.currentQuestionIndex}`;
