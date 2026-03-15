@@ -229,14 +229,11 @@
               Cortex Video Learning
             </h1>
             <p class="text-white/80 text-lg mb-6 max-w-xl">
-              Access thousands of curated educational videos from the best teachers. Master any subject with visual learning designed for WAEC, NECO & JAMB success.
+              Access curated educational videos from Excellence Academy. Master any subject with visual learning designed for WAEC, NECO & JAMB success.
             </p>
             <div class="flex flex-wrap gap-3">
               <button onclick="scrollToContent()" class="quick-action px-5 py-2.5 bg-white text-sky-600 rounded-xl font-semibold hover:bg-sky-50 flex items-center gap-2 shadow-lg">
                 <i class="fas fa-play"></i> Start Watching
-              </button>
-              <button onclick="showSavedVideos()" class="quick-action px-5 py-2.5 bg-white/20 backdrop-blur rounded-xl font-medium hover:bg-white/30 flex items-center gap-2">
-                <i class="fas fa-bookmark"></i> My Playlists
               </button>
             </div>
           </div>
@@ -263,43 +260,10 @@
         </div>
       </section>
 
-      <!-- Stats Cards -->
-      <section class="grid grid-cols-2 md:grid-cols-4 gap-4">
-        <div class="stat-card bg-white rounded-2xl p-5 border border-slate-200 shadow-sm">
-          <div class="w-12 h-12 bg-sky-100 rounded-xl flex items-center justify-center mb-3">
-            <i class="fas fa-video text-sky-600 text-xl"></i>
-          </div>
-          <div class="text-2xl font-bold text-slate-800" id="statVideos">34+</div>
-          <div class="text-sm text-slate-500">Video Lessons</div>
-        </div>
-        <div class="stat-card bg-white rounded-2xl p-5 border border-slate-200 shadow-sm">
-          <div class="w-12 h-12 bg-emerald-100 rounded-xl flex items-center justify-center mb-3">
-            <i class="fas fa-users text-emerald-600 text-xl"></i>
-          </div>
-          <div class="text-2xl font-bold text-slate-800">500K+</div>
-          <div class="text-sm text-slate-500">Subscribers</div>
-        </div>
-        <div class="stat-card bg-white rounded-2xl p-5 border border-slate-200 shadow-sm">
-          <div class="w-12 h-12 bg-amber-100 rounded-xl flex items-center justify-center mb-3">
-            <i class="fas fa-clock text-amber-600 text-xl"></i>
-          </div>
-          <div class="text-2xl font-bold text-slate-800">15+</div>
-          <div class="text-sm text-slate-500">Hours Content</div>
-        </div>
-        <div class="stat-card bg-white rounded-2xl p-5 border border-slate-200 shadow-sm">
-          <div class="w-12 h-12 bg-purple-100 rounded-xl flex items-center justify-center mb-3">
-            <i class="fas fa-graduation-cap text-purple-600 text-xl"></i>
-          </div>
-          <div class="text-2xl font-bold text-slate-800">4</div>
-          <div class="text-sm text-slate-500">Subjects</div>
-        </div>
-      </section>
-
       <!-- Categories -->
-      <section id="categoriesSection">
+      <section id="categoriesSection" class="mt-6">
         <div class="flex items-center justify-between mb-4">
           <h2 class="text-xl font-bold text-slate-800">Browse by Subject</h2>
-          <button onclick="toggleAllCategories()" class="text-sm text-sky-600 hover:text-sky-700 font-medium">View All</button>
         </div>
         
         <div class="flex flex-wrap gap-2" id="categoryPills">
@@ -321,26 +285,8 @@
         </div>
       </section>
 
-      <!-- Tabs -->
-      <section>
-        <div class="flex items-center gap-6 border-b border-slate-200">
-          <button onclick="switchTab('trending')" class="tab-btn active px-4 py-3 font-medium text-slate-500 hover:text-slate-800 transition-colors">
-            <i class="fas fa-fire mr-2 text-orange-500"></i>Trending
-          </button>
-          <button onclick="switchTab('recent')" class="tab-btn px-4 py-3 font-medium text-slate-500 hover:text-slate-800 transition-colors">
-            <i class="fas fa-clock mr-2 text-sky-500"></i>Recently Added
-          </button>
-          <button onclick="switchTab('popular')" class="tab-btn px-4 py-3 font-medium text-slate-500 hover:text-slate-800 transition-colors">
-            <i class="fas fa-star mr-2 text-amber-500"></i>Most Popular
-          </button>
-          <button onclick="switchTab('playlists')" class="tab-btn px-4 py-3 font-medium text-slate-500 hover:text-slate-800 transition-colors">
-            <i class="fas fa-list mr-2 text-purple-500"></i>Playlists
-          </button>
-        </div>
-      </section>
-
       <!-- Video Grid -->
-      <section id="videoGridSection">
+      <section id="videoGridSection" class="mt-6">
         <div id="videoGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
           <!-- Videos will be loaded dynamically -->
         </div>
@@ -350,30 +296,6 @@
           <button onclick="loadMoreVideos()" class="px-8 py-3 bg-white border border-slate-200 hover:bg-slate-50 rounded-xl font-medium text-slate-600 transition-colors shadow-sm">
             <i class="fas fa-plus mr-2"></i>Load More Videos
           </button>
-        </div>
-      </section>
-
-      <!-- Channels Section -->
-      <section class="mt-8">
-        <div class="flex items-center justify-between mb-4">
-          <h2 class="text-xl font-bold text-slate-800">Featured Channels</h2>
-          <a href="#" class="text-sm text-sky-600 hover:text-sky-700 font-medium">View All Channels</a>
-        </div>
-        
-        <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4" id="channelsGrid">
-          <!-- Channels will be loaded dynamically -->
-        </div>
-      </section>
-
-      <!-- Recommended Playlists -->
-      <section class="mt-8">
-        <div class="flex items-center justify-between mb-4">
-          <h2 class="text-xl font-bold text-slate-800">Recommended Playlists</h2>
-          <a href="#" class="text-sm text-sky-600 hover:text-sky-700 font-medium">View All</a>
-        </div>
-        
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5" id="playlistsGrid">
-          <!-- Playlists will be loaded dynamically -->
         </div>
       </section>
 
@@ -491,25 +413,10 @@
       ],
     };
 
-    const CHANNELS = [
-      { name: 'Excellence Academy', subscribers: '500K+', videos: 800, bgColor: 'bg-sky-100', iconColor: 'text-sky-600', icon: 'fa-graduation-cap' },
-      { name: 'Jonah Emmanuel', subscribers: '500K+', videos: 800, bgColor: 'bg-purple-100', iconColor: 'text-purple-600', icon: 'fa-chalkboard-teacher' },
-    ];
-
-    const PLAYLISTS = [
-      { title: 'Physics Motion & Mechanics', subject: 'Physics', videos: 6, duration: '2h 30m', thumbnail: 'https://img.youtube.com/vi/MeKprfzpwY4/maxresdefault.jpg', views: '102K' },
-      { title: 'JAMB Biology Past Questions', subject: 'Biology', videos: 3, duration: '2h 25m', thumbnail: 'https://img.youtube.com/vi/_sUG273kju4/maxresdefault.jpg', views: '112K' },
-      { title: 'Organic Chemistry Full Course', subject: 'Chemistry', videos: 1, duration: '2h 15m', thumbnail: 'https://img.youtube.com/vi/HiuZw3baWCc/maxresdefault.jpg', views: '156K' },
-      { title: 'Calculus Differentiation', subject: 'Mathematics', videos: 3, duration: '1h 00m', thumbnail: 'https://img.youtube.com/vi/2IIfjY7Sjns/maxresdefault.jpg', views: '45K' },
-      { title: 'Indices & Logarithms', subject: 'Mathematics', videos: 3, duration: '1h 15m', thumbnail: 'https://img.youtube.com/vi/55HG-Z063jw/maxresdefault.jpg', views: '67K' },
-      { title: 'JAMB Physics Past Questions', subject: 'Physics', videos: 2, duration: '2h 15m', thumbnail: 'https://img.youtube.com/vi/GRhkjag3JQ8/maxresdefault.jpg', views: '85K' },
-    ];
-
     // ============================================
     // STATE MANAGEMENT
     // ============================================
     let currentCategory = 'all';
-    let currentTab = 'trending';
     let displayedVideos = [];
     let currentPage = 0;
     const videosPerPage = 12;
@@ -522,9 +429,6 @@
     document.addEventListener('DOMContentLoaded', () => {
       initializeApp();
       loadVideos();
-      loadChannels();
-      loadPlaylists();
-      updateStats();
     });
 
     function initializeApp() {
@@ -590,18 +494,8 @@
         ? getAllVideos() 
         : VIDEO_DATABASE[currentCategory] || [];
       
-      // Sort based on tab
-      switch (currentTab) {
-        case 'trending':
-          videos = videos.sort((a, b) => parseViews(b.views) - parseViews(a.views));
-          break;
-        case 'recent':
-          videos = videos.slice().reverse();
-          break;
-        case 'popular':
-          videos = videos.sort((a, b) => parseViews(b.views) - parseViews(a.views));
-          break;
-      }
+      // Sort by views (trending)
+      videos = videos.sort((a, b) => parseViews(b.views) - parseViews(a.views));
       
       displayedVideos = videos;
       renderVideos();
@@ -684,51 +578,7 @@
     }
 
     function getChannelIcon(channel) {
-      const ch = CHANNELS.find(c => c.name === channel);
-      return ch ? ch.icon : 'fa-play';
-    }
-
-    // ============================================
-    // CHANNELS & PLAYLISTS
-    // ============================================
-    function loadChannels() {
-      const grid = document.getElementById('channelsGrid');
-      grid.innerHTML = CHANNELS.map(channel => `
-        <div class="bg-white rounded-xl p-4 border border-slate-200 hover:shadow-md transition-all cursor-pointer hover:transform hover:scale-105">
-          <div class="w-14 h-14 mx-auto mb-3 rounded-full ${channel.bgColor} flex items-center justify-center">
-            <i class="fas ${channel.icon} ${channel.iconColor} text-xl"></i>
-          </div>
-          <h3 class="font-semibold text-sm text-center text-slate-800 mb-1 truncate">${channel.name}</h3>
-          <p class="text-xs text-slate-500 text-center">${channel.subscribers} subscribers</p>
-          <p class="text-xs text-slate-400 text-center">${channel.videos} videos</p>
-        </div>
-      `).join('');
-    }
-
-    function loadPlaylists() {
-      const grid = document.getElementById('playlistsGrid');
-      grid.innerHTML = PLAYLISTS.map(playlist => `
-        <div class="video-card bg-white rounded-xl overflow-hidden border border-slate-200 cursor-pointer shadow-sm">
-          <div class="relative aspect-video">
-            <img src="${playlist.thumbnail}" alt="${playlist.title}" class="w-full h-full object-cover">
-            <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
-            <div class="absolute bottom-0 left-0 right-0 p-4">
-              <h3 class="font-semibold text-sm text-white mb-1">${playlist.title}</h3>
-              <div class="flex items-center justify-between text-xs text-white/80">
-                <span>${playlist.videos} videos</span>
-                <span>${playlist.duration}</span>
-              </div>
-            </div>
-            <div class="absolute top-2 right-2 px-2 py-1 bg-black/60 rounded text-xs text-white">
-              <i class="fas fa-list mr-1"></i>${playlist.videos}
-            </div>
-          </div>
-          <div class="p-3 flex items-center justify-between text-xs text-slate-500 bg-slate-50">
-            <span><i class="fas fa-eye mr-1"></i>${playlist.views}</span>
-            <span class="px-2 py-0.5 rounded bg-sky-100 text-sky-600">${playlist.subject}</span>
-          </div>
-        </div>
-      `).join('');
+      return 'fa-play';
     }
 
     // ============================================
@@ -744,44 +594,6 @@
       event.target.closest('.category-pill').classList.add('active');
       
       loadVideos();
-    }
-
-    function switchTab(tab) {
-      currentTab = tab;
-      
-      // Update active tab
-      document.querySelectorAll('.tab-btn').forEach(btn => {
-        btn.classList.remove('active');
-      });
-      event.target.closest('.tab-btn').classList.add('active');
-      
-      loadVideos();
-    }
-
-    function searchVideos(query) {
-      if (!query) {
-        loadVideos();
-        return;
-      }
-      
-      const allVideos = getAllVideos();
-      const searchTerms = query.toLowerCase().split(' ').filter(t => t.length > 0);
-      
-      const filtered = allVideos.filter(video => {
-        const searchText = `${video.title} ${video.subject} ${video.topic} ${video.channel} ${(video.description || '')}`.toLowerCase();
-        return searchTerms.every(term => searchText.includes(term));
-      });
-      
-      displayedVideos = filtered;
-      currentPage = 0;
-      renderVideos();
-      
-      // Show search results count
-      if (filtered.length > 0) {
-        showToast(`Found ${filtered.length} video${filtered.length > 1 ? 's' : ''} for "${query}"`, 'success');
-      } else {
-        showToast(`No videos found for "${query}". Try different keywords.`, 'info');
-      }
     }
 
     function loadMoreVideos() {
@@ -865,7 +677,6 @@
       }
       localStorage.setItem('savedVideos', JSON.stringify(savedVideos));
       renderVideos();
-      updateStats();
     }
 
     function saveVideo() {
@@ -942,16 +753,8 @@
       }, 3000);
     }
 
-    function updateStats() {
-      document.getElementById('statVideos').textContent = getAllVideos().length + '+';
-    }
-
     function scrollToContent() {
       document.getElementById('videoGridSection').scrollIntoView({ behavior: 'smooth' });
-    }
-
-    function toggleAllCategories() {
-      showToast('All categories are displayed', 'info');
     }
   </script>
 </body>
