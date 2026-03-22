@@ -1008,11 +1008,31 @@
             // Build question content with passage and image support
             let questionContent = '';
             
-            // Add passage if exists (for English comprehension)
+            // Add passage if exists (for English comprehension) - collapsible format
             if (question.passage) {
-                questionContent += `<div class="bg-blue-50 border-l-4 border-blue-400 p-4 mb-4 rounded-r-lg">
-                    <div class="text-xs text-blue-600 font-semibold mb-2">📖 PASSAGE</div>
-                    <p class="text-sm text-gray-700 leading-relaxed">${question.passage}</p>
+                // Get passage data from the passages object
+                const yearPassages = window.jambQuestions?.["English"]?.passages?.[question.year];
+                const passageData = yearPassages?.[question.passage];
+                const passageText = passageData?.content || question.passage;
+                const passageTitle = passageData?.title || 'PASSAGE';
+                const passageId = `passage-${state.currentQuestionIndex}`;
+                
+                questionContent += `
+                <div class="mb-4">
+                    <button onclick="togglePassage('${passageId}')" 
+                        class="w-full flex items-center justify-between p-3 bg-gradient-to-r from-blue-50 to-indigo-50 border border-blue-200 rounded-xl hover:from-blue-100 hover:to-indigo-100 transition-all group">
+                        <div class="flex items-center gap-2">
+                            <span class="text-xl">📖</span>
+                            <span class="font-semibold text-blue-800">${passageTitle}</span>
+                            <span class="text-xs text-blue-600 bg-blue-100 px-2 py-0.5 rounded-full">Click to ${document.getElementById(passageId)?.classList?.contains('hidden') !== false ? 'expand' : 'collapse'}</span>
+                        </div>
+                        <svg id="${passageId}-icon" class="w-5 h-5 text-blue-600 transform transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                        </svg>
+                    </button>
+                    <div id="${passageId}" class="hidden mt-2 p-4 bg-white border border-gray-200 rounded-xl shadow-sm max-h-64 overflow-y-auto">
+                        <p class="text-sm text-gray-700 leading-relaxed whitespace-pre-line">${passageText}</p>
+                    </div>
                 </div>`;
             }
             
@@ -1380,6 +1400,20 @@
             }
             
             display.textContent = calcDisplay;
+        }
+
+        // Passage Toggle Function for English comprehension
+        function togglePassage(passageId) {
+            const passageDiv = document.getElementById(passageId);
+            const icon = document.getElementById(passageId + '-icon');
+            
+            if (passageDiv.classList.contains('hidden')) {
+                passageDiv.classList.remove('hidden');
+                icon.classList.add('rotate-180');
+            } else {
+                passageDiv.classList.add('hidden');
+                icon.classList.remove('rotate-180');
+            }
         }
 
         // Image Modal Functions

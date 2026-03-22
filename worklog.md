@@ -46,3 +46,25 @@ Stage Summary:
 - 297 questions had incorrect image associations → images set to null
 - Images now only show for questions that actually reference diagrams
 - Files saved in js/*.js.fixed and then renamed to replace originals
+
+---
+Task ID: 3
+Agent: Main Agent
+Task: Verify CBT uses new VLM-extracted Physics question images
+
+Work Log:
+- Verified images in `images/physics_questions/` folder: 410 total images
+- Confirmed image count matches expected:
+  - 2010-2014: 50 images each (250 total)
+  - 2015-2018: 40 images each (160 total)
+- Verified physics-questions.js has 410 image references matching the images
+- Confirmed CBT HTML (cbt.html) loads physics-questions.js correctly
+- Verified CBT renderQuestion() function properly displays question images
+- Images show question text + diagrams (no options) as intended
+
+Stage Summary:
+- Physics question images are correctly configured in the CBT software
+- All 410 questions have corresponding images in the correct folder
+- CBT displays images when students view Physics questions
+- Image paths: `images/physics_questions/{year}_q{num}.png`
+- No changes needed - setup is complete
