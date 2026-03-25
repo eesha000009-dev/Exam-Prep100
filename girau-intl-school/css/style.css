@@ -4,43 +4,43 @@
 
 /* CSS Variables */
 :root {
-    /* Colors - Girau School Uniform Colors (RED & LIGHT BLUE) */
-    --primary-color: #dc2626;
-    --primary-dark: #b91c1c;
-    --primary-light: #ef4444;
-    --primary-lighter: #fecaca;
-    --primary-lightest: #fef2f2;
+    /* Colors - Girau School Uniform Colors (MAROON & WHITE) */
+    --primary-color: #800020;
+    --primary-dark: #5c0017;
+    --primary-light: #a63d56;
+    --primary-lighter: #d4a5b0;
+    --primary-lightest: #f5e6e9;
     
-    --secondary-color: #3b82f6;
-    --secondary-dark: #1d4ed8;
-    --secondary-light: #60a5fa;
-    --secondary-lighter: #bfdbfe;
-    --secondary-lightest: #eff6ff;
+    --secondary-color: #ffffff;
+    --secondary-dark: #f8f9fa;
+    --secondary-light: #ffffff;
+    --secondary-lighter: #ffffff;
+    --secondary-lightest: #ffffff;
     
-    --accent-color: #dc2626;
-    --accent-light: #ef4444;
+    --accent-color: #800020;
+    --accent-light: #a63d56;
     
     --success-color: #10b981;
     --warning-color: #f59e0b;
-    --error-color: #dc2626;
+    --error-color: #800020;
     
     --text-dark: #1e293b;
     --text-medium: #475569;
     --text-light: #64748b;
     --text-lighter: #94a3b8;
     
-    --bg-light: #f8fafc;
+    --bg-light: #f8f9fa;
     --bg-lighter: #ffffff;
-    --bg-dark: #1e293b;
+    --bg-dark: #2d1f21;
     
-    --border-color: #e2e8f0;
-    --border-light: #f1f5f9;
+    --border-color: #e8d5d9;
+    --border-light: #f5e6e9;
     
-    /* Gradients - School Colors */
-    --gradient-primary: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%);
-    --gradient-secondary: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
-    --gradient-hero: linear-gradient(135deg, #dc2626 0%, #1e40af 50%, #b91c1c 100%);
-    --gradient-accent: linear-gradient(135deg, #dc2626 0%, #991b1b 100%);
+    /* Gradients - School Colors (Maroon & White) */
+    --gradient-primary: linear-gradient(135deg, #800020 0%, #5c0017 100%);
+    --gradient-secondary: linear-gradient(135deg, #800020 0%, #a63d56 100%);
+    --gradient-hero: linear-gradient(135deg, #800020 0%, #5c0017 50%, #800020 100%);
+    --gradient-accent: linear-gradient(135deg, #800020 0%, #5c0017 100%);
     
     /* Shadows */
     --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
