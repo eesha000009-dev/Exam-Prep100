@@ -6,7 +6,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>Girau International School | E-Learning Platform</title>
-  <meta name="description" content="Girau International School E-Learning Platform - Access educational resources, subjects, and learning materials.">
+  <meta name="description" content="Girau International School E-Learning Platform - Connect students and teachers for assignments, grading, and progress monitoring.">
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
@@ -93,6 +93,11 @@
       background-clip: text;
     }
 
+    /* Gradient background */
+    .gradient-bg {
+      background: linear-gradient(135deg, #1a365d 0%, #800020 100%);
+    }
+
     /* Right-side mockup card */
     .mockup-card {
       width: 100%;
@@ -150,264 +155,7 @@
       z-index: 1;
     }
 
-    .stat-highlight {
-      font-size: 1.25rem;
-      color: #800020;
-      font-weight: 600;
-      margin-bottom: 1.5rem;
-      display: inline-block;
-      padding: 0.5rem 1.5rem;
-      background: rgba(128, 0, 32, 0.1);
-      border-radius: 50px;
-    }
-
-    .impact-statement {
-      font-size: 1.125rem;
-      color: #1a365d;
-      font-weight: 600;
-      margin-top: 1.5rem;
-    }
-
-    .hero-visual {
-      margin: 2rem auto;
-      position: relative;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      width: 100%;
-      max-width: 1000px;
-    }
-
-    .device-wrapper {
-      position: relative;
-      width: 100%;
-      padding: 0 1rem;
-    }
-
-    .device-screen {
-      width: 100%;
-      height: auto;
-      border-radius: 16px;
-      box-shadow: 0 20px 40px rgba(26,54,93,0.2);
-      transition: all 0.3s ease-in-out;
-      border: 1px solid rgba(26, 54, 93, 0.1);
-    }
-
-    .device-screen:hover {
-      transform: translateY(-10px);
-      box-shadow: 0 30px 60px rgba(26,54,93,0.3);
-    }
-
-  /* Swiper adjustments */
-  .mySwiper { width: 100%; }
-  .swiper-slide { box-sizing: border-box; padding: 0.25rem; }
-  .carousel-video { width: 100%; border-radius: 12px; display: block; }
-  .carousel-video { object-fit: cover; }
-  .swiper-pagination-bullet { background: rgba(148,163,184,0.6); opacity: 1; }
-  .swiper-pagination-bullet-active { background: linear-gradient(90deg, #1a365d, #800020); box-shadow: 0 6px 18px rgba(26,54,93,0.18); }
-
-    /* Responsive Breakpoints */
-    @media (max-width: 1024px) {
-      .achievement-cards {
-        grid-template-columns: repeat(3, 1fr);
-        gap: 1rem;
-      }
-
-      .hero {
-        padding: 6rem 1.5rem 4rem;
-      }
-
-      .injini-headline {
-        font-size: 2.4rem;
-      }
-
-      .injini-subheadline {
-        font-size: 1.2rem;
-      }
-
-      .injini-mission {
-        font-size: 1rem;
-      }
-    }
-
-    @media (max-width: 768px) {
-      .achievement-cards {
-        grid-template-columns: repeat(3, 1fr);
-        gap: 0.75rem;
-      }
-
-      .device-wrapper {
-        max-width: 100%;
-        padding: 0 0.75rem;
-      }
-
-      .achievement-card {
-        padding: 0.75rem;
-      }
-
-      .achievement-card .counter {
-        font-size: 1.5rem;
-      }
-
-      .achievement-card .achievement-icon {
-        font-size: 1.75rem;
-      }
-
-      .injini-headline {
-        font-size: 1.6rem;
-        padding: 0.75rem 0;
-        line-height: 1.15;
-      }
-
-      .injini-subheadline {
-        font-size: 1rem;
-      }
-
-      .injini-mission {
-        font-size: 0.95rem;
-        margin: 0.9rem auto 1.25rem;
-        line-height: 1.4;
-      }
-
-      .stat-highlight {
-        font-size: 0.9rem;
-        padding: 0.4rem 1rem;
-        margin-bottom: 1rem;
-      }
-
-      .impact-statement {
-        font-size: 0.9rem;
-        margin-top: 1rem;
-      }
-
-      .hero {
-        padding: 4rem 1rem 3rem;
-      }
-
-      .button {
-        padding: 0.75rem 1.5rem;
-        font-size: 0.9rem;
-      }
-
-      .hero-cta {
-        gap: 1rem;
-        margin: 1.5rem 0 2rem;
-      }
-    }
-
-    @media (max-width: 480px) {
-      .achievement-cards {
-        grid-template-columns: repeat(3, 1fr);
-        gap: 0.75rem;
-      }
-
-      .achievement-card {
-        padding: 0.75rem;
-      }
-
-      .achievement-info .counter {
-        font-size: 1.8rem;
-      }
-    }
-
-    /* Injini-style headline and mission statement */
-    .injini-headline {
-      font-size: 3rem;
-      font-weight: 800;
-      line-height: 1.05;
-      color: #1a202c;
-      margin: 0.75rem auto 1.25rem;
-      font-family: 'Plus Jakarta Sans', Arial, sans-serif;
-      letter-spacing: -0.8px;
-      padding: 1.25rem 0;
-      text-transform: capitalize;
-      max-width: 900px;
-      text-align: center;
-    }
-
-    .injini-subheadline {
-      font-size: 1.4rem;
-      font-weight: 700;
-      background: linear-gradient(135deg, #1a365d 0%, #800020 100%);
-      -webkit-background-clip: text;
-      background-clip: text;
-      -webkit-text-fill-color: transparent;
-      color: transparent;
-      margin-top: 0.5rem;
-      display: block;
-      letter-spacing: -0.2px;
-    }
-
-    .injini-mission {
-      font-size: 1.05rem;
-      color: #1a365d;
-      font-weight: 600;
-      line-height: 1.45;
-      margin: 0.75rem auto 1.5rem;
-      font-family: 'Plus Jakarta Sans', Arial, sans-serif;
-      max-width: 880px;
-      padding: 0 0.5rem;
-      text-align: center;
-    }
-
-    /* Equal-height achievement/stat cards */
-    #stats-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1rem;
-      align-items: stretch;
-    }
-
-    #stats-grid > .relative {
-      display: flex;
-      align-items: stretch;
-    }
-
-    #stats-grid .relative > .relative {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: 100%;
-      height: 100%;
-      min-height: 120px;
-      padding: 1rem;
-    }
-
-    @media (min-width: 768px) {
-      #stats-grid .relative > .relative {
-        min-height: 140px;
-        padding: 1.25rem;
-      }
-    }
-
-    @media (min-width: 1024px) {
-      #stats-grid .relative > .relative {
-        min-height: 160px;
-        padding: 1.5rem;
-      }
-    }
-
-    #stats-grid > .relative,
-    #stats-grid > .relative > .relative {
-      min-height: 140px !important;
-      height: 100% !important;
-      display: flex !important;
-      align-items: center !important;
-      justify-content: center !important;
-    }
-
-    #stats-grid > .relative > .relative {
-      padding-left: 1rem !important;
-      padding-right: 1rem !important;
-    }
-
-    .hero-cta {
-      display: flex;
-      gap: 1.5rem;
-      justify-content: center;
-      margin: 2.5rem 0 3rem;
-    }
-
+    /* Buttons */
     .button {
       display: inline-flex;
       align-items: center;
@@ -440,38 +188,6 @@
     .button-secondary:hover {
       background: rgba(26, 54, 93, 0.1);
       transform: translateY(-2px);
-    }
-
-    .achievement-cards {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1rem;
-      margin: 2rem auto;
-      max-width: 1200px;
-      padding: 0 1rem;
-    }
-
-    .achievement-card {
-      background: linear-gradient(135deg, #1a365d 0%, #800020 100%);
-      color: #fff;
-      border-radius: 16px;
-      box-shadow: 0 4px 16px rgba(26,54,93,0.15);
-      padding: 1.5rem;
-      text-align: center;
-      position: relative;
-      z-index: 2;
-      border: none;
-      transform: translateY(0);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-      width: 100%;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-    }
-
-    .achievement-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 12px 40px rgba(26,54,93,0.25);
     }
 
     /* Navbar Styles */
@@ -549,32 +265,6 @@
         transform: translateY(0);
       }
 
-      .nav-item.dropdown {
-        width: 100%;
-      }
-
-      .dropdown-content {
-        position: static;
-        box-shadow: none;
-        padding: 1rem 0;
-        background: #f8fafc;
-        border-radius: 8px;
-        margin-top: 0.5rem;
-      }
-
-      .auth-buttons {
-        flex-direction: column;
-        width: 100%;
-        gap: 1rem;
-        padding-top: 1rem;
-        border-top: 1px solid #e2e8f0;
-      }
-
-      .auth-buttons a {
-        width: 100%;
-        text-align: center;
-      }
-
       .hero {
         padding-top: 2rem;
       }
@@ -600,11 +290,6 @@
       gap: 0.5rem;
       margin-bottom: 1.5rem;
       font-size: 1.5rem;
-    }
-
-    .footer-logo i {
-      color: #fff;
-      font-size: 2rem;
     }
 
     .footer-section {
@@ -664,50 +349,11 @@
       text-align: center;
     }
 
-    .footer-links {
-      margin-top: 1rem;
-      display: flex;
-      justify-content: center;
-      gap: 2rem;
-    }
-
-    .footer-links a {
-      color: #a0aec0;
-      textDecoration: none;
-      font-size: 0.9rem;
-      transition: color 0.3s ease;
-    }
-
-    .footer-links a:hover {
-      color: #fff;
-    }
-
     @media (max-width: 768px) {
       .footer-content {
         grid-template-columns: 2fr 1fr;
         gap: 1.5rem;
         padding: 0 1rem;
-      }
-
-      .footer-links {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 1rem;
-        justify-items: center;
-      }
-
-      .cta-buttons {
-        display: flex;
-        flex-wrap: nowrap;
-        gap: 1rem;
-        justify-content: center;
-        padding: 0 1rem;
-      }
-
-      .button {
-        padding: 0.75rem 1.5rem;
-        font-size: 1rem;
-        white-space: nowrap;
       }
     }
 
@@ -715,10 +361,6 @@
       .footer-content {
         grid-template-columns: 3fr 2fr;
         gap: 1rem;
-      }
-
-      .footer-links {
-        grid-template-columns: repeat(2, 1fr);
       }
     }
 
@@ -734,10 +376,6 @@
       animation: blob 10s infinite;
     }
     
-    .animation-delay-2000 {
-      animation-delay: 2s;
-    }
-    
     .bg-grid-pattern {
       background-size: 40px 40px;
       background-image: 
@@ -745,36 +383,61 @@
         linear-gradient(to bottom, rgba(0,0,0,0.05) 1px, transparent 1px);
     }
 
-    /* Subject cards */
-    .subject-card {
-      background: white;
-      border-radius: 16px;
-      overflow: hidden;
-      box-shadow: 0 8px 32px rgba(26, 54, 93, 0.08);
-      transition: all 0.3s ease;
-    }
-
-    .subject-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 16px 48px rgba(26, 54, 93, 0.12);
-    }
-
-    .subject-icon {
-      width: 60px;
-      height: 60px;
-      border-radius: 16px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.5rem;
-      color: white;
-      background: linear-gradient(135deg, #1a365d, #800020);
-    }
-
     /* Swiper Container */
     .swiper-container {
       width: 100%;
       height: 100%;
+    }
+
+    .swiper-pagination-bullet { background: rgba(148,163,184,0.6); opacity: 1; }
+    .swiper-pagination-bullet-active { background: linear-gradient(90deg, #1a365d, #800020); box-shadow: 0 6px 18px rgba(26,54,93,0.18); }
+
+    /* Workflow Cards */
+    .workflow-card {
+      background: white;
+      border-radius: 20px;
+      padding: 2rem;
+      box-shadow: 0 8px 32px rgba(26, 54, 93, 0.08);
+      transition: all 0.3s ease;
+      border: 1px solid rgba(26, 54, 93, 0.05);
+    }
+
+    .workflow-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 20px 48px rgba(26, 54, 93, 0.12);
+    }
+
+    .workflow-icon {
+      width: 70px;
+      height: 70px;
+      border-radius: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.75rem;
+      color: white;
+      margin-bottom: 1.5rem;
+    }
+
+    /* Portal Cards */
+    .portal-card {
+      background: linear-gradient(135deg, #1a365d 0%, #800020 100%);
+      border-radius: 24px;
+      padding: 2.5rem;
+      color: white;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .portal-card::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      right: -50%;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+      pointer-events: none;
     }
   </style>
 </head>
@@ -789,13 +452,13 @@
           <span class="text-2xl font-bold gradient-text">Girau International</span>
         </a>
         <ul class="hidden md:flex items-center space-x-8 font-medium text-gray-600">
+          <li><a href="#workflow" class="hover:text-primary transition-colors">How It Works</a></li>
           <li><a href="#features" class="hover:text-primary transition-colors">Features</a></li>
           <li><a href="#subjects" class="hover:text-primary transition-colors">Subjects</a></li>
-          <li><a href="#resources" class="hover:text-primary transition-colors">Resources</a></li>
         </ul>
         <div class="hidden md:flex items-center space-x-4">
-          <a href="../girau.html" class="text-primary font-semibold hover:opacity-80 transition-opacity">
-            <i class="fas fa-arrow-left mr-2"></i>Back to Main Site
+          <a href="../general/login.html" class="button button-primary text-sm py-2 px-6">
+            <i class="fas fa-sign-in-alt mr-2"></i>Log In
           </a>
         </div>
         <button class="md:hidden z-50 block" id="mobile-menu-button" aria-label="Open Menu">
@@ -806,13 +469,13 @@
     <!-- Mobile Menu -->
     <div id="mobile-menu" class="hidden md:hidden bg-white px-4 pb-4 border-t">
       <ul class="space-y-4 font-medium text-gray-600 mt-4">
+        <li><a href="#workflow" class="block hover:text-primary transition-colors">How It Works</a></li>
         <li><a href="#features" class="block hover:text-primary transition-colors">Features</a></li>
         <li><a href="#subjects" class="block hover:text-primary transition-colors">Subjects</a></li>
-        <li><a href="#resources" class="block hover:text-primary transition-colors">Resources</a></li>
       </ul>
       <div class="mt-6">
-        <a href="../girau.html" class="block text-center py-2 px-4 rounded-full gradient-text font-semibold border border-primary">
-          <i class="fas fa-arrow-left mr-2"></i>Back to Main Site
+        <a href="../general/login.html" class="block text-center py-3 px-4 rounded-full gradient-bg text-white font-semibold">
+          <i class="fas fa-sign-in-alt mr-2"></i>Log In
         </a>
       </div>
     </div>
@@ -829,14 +492,14 @@
           <div class="space-y-6 sm:space-y-8 mt-4" data-aos="fade-up">
             <!-- Badge -->
             <div class="inline-flex items-center bg-gradient-to-r from-blue-50 to-red-50 border border-gray-200 rounded-full py-2 px-3 sm:px-4">
-              <span class="flex-shrink-0 bg-primary rounded-full w-2 h-2 mr-2 animate-pulse"></span>
-              <span class="text-primary font-medium text-xs sm:text-sm">E-Learning Platform - Girau International School</span>
+              <span class="flex-shrink-0 gradient-bg rounded-full w-2 h-2 mr-2 animate-pulse"></span>
+              <span class="text-primary font-medium text-xs sm:text-sm">Student-Teacher Learning Platform</span>
             </div>
 
             <h1 class="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900 leading-tight mb-2 sm:mb-3">
-              Shaping Characters, Igniting the Quest for
+              Connect, Learn & Grow
               <span class="relative block mt-2">
-                <span class="bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary">Knowledge</span>
+                <span class="bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary">Together</span>
                 <svg class="absolute bottom-0 left-0 w-full h-3 -mb-1 opacity-30" viewBox="0 0 300 12" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path d="M3 9C100.015 4.01984 197.03 4.01984 294.045 9" stroke="#1a365d" stroke-width="6" stroke-linecap="round"/>
                 </svg>
@@ -844,77 +507,40 @@
             </h1>
 
             <p class="text-base sm:text-lg text-gray-600 max-w-full mb-6">
-              Empowering students to reach their full potential by being responsible and pursuing excellence in life. Access comprehensive educational resources, interactive lessons, and study materials for all subjects.
+              A seamless platform where teachers assign work, students submit assignments, and progress is monitored in real-time. Experience the future of collaborative education at Girau International School.
             </p>
 
             <div class="flex flex-col sm:flex-row gap-2 sm:gap-4 mb-6 w-full max-w-full">
-              <a href="#subjects" class="inline-flex items-center justify-center px-6 sm:px-8 py-3 sm:py-4 rounded-full bg-gradient-to-r from-primary to-secondary text-white font-semibold hover:shadow-lg hover:scale-105 transition-all duration-300 text-sm sm:text-base">
-                Browse Subjects
+              <a href="../general/signup.html" class="inline-flex items-center justify-center px-6 sm:px-8 py-3 sm:py-4 rounded-full bg-gradient-to-r from-primary to-secondary text-white font-semibold hover:shadow-lg hover:scale-105 transition-all duration-300 text-sm sm:text-base">
+                Get Started Free
                 <svg class="w-4 h-4 sm:w-5 sm:h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
                 </svg>
               </a>
-              <a href="#resources" class="inline-flex items-center justify-center px-6 sm:px-8 py-3 sm:py-4 rounded-full bg-white border border-gray-200 text-gray-600 font-semibold hover:border-primary hover:text-primary transition-all duration-300 text-sm sm:text-base">
-                <i class="fas fa-play-circle mr-2"></i>Quick Resources
+              <a href="../general/login.html" class="inline-flex items-center justify-center px-6 sm:px-8 py-3 sm:py-4 rounded-full bg-white border border-gray-200 text-gray-600 font-semibold hover:border-primary hover:text-primary transition-all duration-300 text-sm sm:text-base">
+                <i class="fas fa-sign-in-alt mr-2"></i>Log In
               </a>
             </div>
 
-          <!-- Stats Grid and Teacher CTA -->
-          <div class="space-y-6 sm:space-y-10 w-full max-w-full">
-            <!-- Stats Grid -->
-            <div class="grid grid-cols-2 md:grid-cols-3 gap-3 sm:gap-6 mx-auto max-w-lg md:max-w-none">
-              <!-- Subjects -->
-              <div class="stat-card bg-white rounded-xl sm:rounded-2xl p-3 sm:p-6 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 relative overflow-hidden group">
-                <div class="absolute inset-0 bg-gradient-to-r from-primary/10 to-secondary/10 transform -translate-x-full group-hover:translate-x-0 transition-transform duration-700"></div>
-                <div class="relative z-10">
-                  <span class="block text-2xl sm:text-4xl lg:text-5xl font-bold gradient-text mb-1 sm:mb-2 group-hover:scale-110 transition-transform duration-300">12+</span>
-                  <span class="text-gray-600 text-xs sm:text-base font-medium">Subjects</span>
-                </div>
-                <div class="absolute -bottom-4 -right-4 sm:-bottom-6 sm:-right-6 w-12 h-12 sm:w-20 sm:h-20 bg-primary/5 rounded-full group-hover:scale-150 transition-transform duration-700"></div>
-              </div>
-
-              <!-- Topics -->
-              <div class="stat-card bg-white rounded-xl sm:rounded-2xl p-3 sm:p-6 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 relative overflow-hidden group">
-                <div class="absolute inset-0 bg-gradient-to-r from-secondary/10 to-primary/10 transform -translate-x-full group-hover:translate-x-0 transition-transform duration-700"></div>
-                <div class="relative z-10">
-                  <span class="block text-2xl sm:text-4xl lg:text-5xl font-bold gradient-text mb-1 sm:mb-2 group-hover:scale-110 transition-transform duration-300">500+</span>
-                  <span class="text-gray-600 text-xs sm:text-base font-medium">Topics</span>
-                </div>
-                <div class="absolute -bottom-4 -right-4 sm:-bottom-6 sm:-right-6 w-12 h-12 sm:w-20 sm:h-20 bg-secondary/5 rounded-full group-hover:scale-150 transition-transform duration-700"></div>
-              </div>
-
-              <!-- 24/7 Access -->
-              <div class="col-span-2 md:col-span-1 mx-auto w-1/2 md:w-full stat-card bg-white rounded-xl sm:rounded-2xl p-3 sm:p-6 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 relative overflow-hidden group">
-                <div class="absolute inset-0 bg-gradient-to-r from-primary/10 to-secondary/10 transform -translate-x-full group-hover:translate-x-0 transition-transform duration-700"></div>
-                <div class="relative z-10">
-                  <span class="block text-2xl sm:text-4xl lg:text-5xl font-bold gradient-text mb-1 sm:mb-2 group-hover:scale-110 transition-transform duration-300">24/7</span>
-                  <span class="text-gray-600 text-xs sm:text-base font-medium">Access</span>
-                </div>
-                <div class="absolute -bottom-4 -right-4 sm:-bottom-6 sm:-right-6 w-12 h-12 sm:w-20 sm:h-20 bg-primary/5 rounded-full group-hover:scale-150 transition-transform duration-700"></div>
-              </div>
-            </div>
-
-            <!-- Teacher CTA -->
-            <div class="flex justify-center">
-              <a href="../girau.html" class="group inline-flex items-center space-x-3 text-lg text-gray-600 hover:text-primary transform hover:-translate-y-1 transition-all duration-300">
-                <span class="flex items-center">
-                  <i class="fas fa-school text-primary mr-2 group-hover:scale-110 transition-transform duration-300"></i>
-                  <span class="font-medium">Back to School Website?</span>
-                </span>
-                <span class="text-primary flex items-center font-medium group-hover:translate-x-1 transition-transform duration-300">
-                  Click here
-                  <i class="fas fa-arrow-right ml-2 transform group-hover:translate-x-1 transition-transform duration-300"></i>
-                </span>
+            <!-- Quick Access Links -->
+            <div class="flex flex-wrap gap-4 pt-4">
+              <a href="../teachers/teacher-confirmation.html" class="group inline-flex items-center space-x-2 text-gray-600 hover:text-primary transition-all duration-300">
+                <i class="fas fa-chalkboard-teacher text-primary group-hover:scale-110 transition-transform"></i>
+                <span class="font-medium">Teacher Portal</span>
+                <i class="fas fa-arrow-right text-xs transform group-hover:translate-x-1 transition-transform"></i>
+              </a>
+              <a href="student-dashboard.html" class="group inline-flex items-center space-x-2 text-gray-600 hover:text-primary transition-all duration-300">
+                <i class="fas fa-user-graduate text-primary group-hover:scale-110 transition-transform"></i>
+                <span class="font-medium">Student Dashboard</span>
+                <i class="fas fa-arrow-right text-xs transform group-hover:translate-x-1 transition-transform"></i>
               </a>
             </div>
           </div>
-        </div>
-
 
           <!-- Right column: Image Carousel -->
           <div class="relative" data-aos="fade-left">
             <div class="relative z-10">
-              <!-- Image Container -->
+              <!-- Swiper Container -->
               <div class="swiper-container main-swiper rounded-2xl shadow-xl overflow-hidden max-h-[300px] sm:max-h-[400px] lg:max-h-[500px]">
                 <div class="swiper-wrapper h-full">
                   <!-- Carousel Slides -->
@@ -923,25 +549,25 @@
                       <img src="../images/buildings/school-building.jpeg" alt="Girau International School" class="w-full h-full object-cover">
                       <div class="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent"></div>
                       <div class="absolute bottom-4 left-4 right-4 text-white">
-                        <h3 class="text-base sm:text-lg font-semibold">Modern Learning Facilities</h3>
+                        <h3 class="text-base sm:text-lg font-semibold">Modern Learning Environment</h3>
                       </div>
                     </div>
                   </div>
                   <div class="swiper-slide h-full">
                     <div class="relative h-full overflow-hidden rounded-lg bg-gray-100">
-                      <img src="../images/activities/classroom-activity.jpg" alt="Students Learning" class="w-full h-full object-cover">
+                      <img src="../images/students/students-playing.jpeg" alt="Students Learning" class="w-full h-full object-cover">
                       <div class="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent"></div>
                       <div class="absolute bottom-4 left-4 right-4 text-white">
-                        <h3 class="text-base sm:text-lg font-semibold">Interactive Classroom Sessions</h3>
+                        <h3 class="text-base sm:text-lg font-semibold">Collaborative Learning</h3>
                       </div>
                     </div>
                   </div>
                   <div class="swiper-slide h-full">
                     <div class="relative h-full overflow-hidden rounded-lg bg-gray-100">
-                      <img src="../images/activities/student-success.jpg" alt="Student Success" class="w-full h-full object-cover">
+                      <img src="../images/cultural-day.jpeg" alt="Cultural Activities" class="w-full h-full object-cover">
                       <div class="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent"></div>
                       <div class="absolute bottom-4 left-4 right-4 text-white">
-                        <h3 class="text-base sm:text-lg font-semibold">Student Success Stories</h3>
+                        <h3 class="text-base sm:text-lg font-semibold">Holistic Education</h3>
                       </div>
                     </div>
                   </div>
@@ -955,263 +581,294 @@
       </div>
     </section>
 
+    <!-- Student-Teacher Workflow Section -->
+    <section id="workflow" class="py-20 bg-white">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-16" data-aos="fade-up">
+          <p class="text-sm font-semibold gradient-text uppercase tracking-wider mb-2">How It Works</p>
+          <h2 class="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
+            Seamless <span class="gradient-text">Student-Teacher</span> Workflow
+          </h2>
+          <p class="text-gray-600 max-w-2xl mx-auto">
+            Our platform streamlines the entire learning process from assignment creation to grade monitoring.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8" data-aos="fade-up">
+          <!-- Step 1: Assign -->
+          <div class="workflow-card text-center">
+            <div class="workflow-icon gradient-bg mx-auto">
+              <i class="fas fa-file-alt"></i>
+            </div>
+            <div class="text-sm font-bold gradient-text mb-2">Step 1</div>
+            <h3 class="text-xl font-bold text-gray-900 mb-3">Assign Work</h3>
+            <p class="text-gray-600 text-sm">Teachers create and assign tasks, quizzes, and projects to students with due dates and instructions.</p>
+          </div>
+
+          <!-- Step 2: Submit -->
+          <div class="workflow-card text-center">
+            <div class="workflow-icon gradient-bg mx-auto">
+              <i class="fas fa-paper-plane"></i>
+            </div>
+            <div class="text-sm font-bold gradient-text mb-2">Step 2</div>
+            <h3 class="text-xl font-bold text-gray-900 mb-3">Submit Assignments</h3>
+            <p class="text-gray-600 text-sm">Students complete and submit their work online with file attachments and written responses.</p>
+          </div>
+
+          <!-- Step 3: Grade -->
+          <div class="workflow-card text-center">
+            <div class="workflow-icon gradient-bg mx-auto">
+              <i class="fas fa-check-circle"></i>
+            </div>
+            <div class="text-sm font-bold gradient-text mb-2">Step 3</div>
+            <h3 class="text-xl font-bold text-gray-900 mb-3">Grade & Feedback</h3>
+            <p class="text-gray-600 text-sm">Teachers review submissions, provide grades, and give detailed feedback for improvement.</p>
+          </div>
+
+          <!-- Step 4: Monitor -->
+          <div class="workflow-card text-center">
+            <div class="workflow-icon gradient-bg mx-auto">
+              <i class="fas fa-chart-line"></i>
+            </div>
+            <div class="text-sm font-bold gradient-text mb-2">Step 4</div>
+            <h3 class="text-xl font-bold text-gray-900 mb-3">Track Progress</h3>
+            <p class="text-gray-600 text-sm">Both students and teachers monitor academic progress with detailed analytics and reports.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- Features Section -->
     <section id="features" class="py-20 bg-gray-50">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="text-center mb-12" data-aos="fade-up">
           <h2 class="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
-            Why Choose <span class="gradient-text">Our Platform</span>
+            Powerful <span class="gradient-text">Features</span>
           </h2>
           <p class="text-gray-600 max-w-2xl mx-auto">
-            Experience a modern approach to learning with our comprehensive e-learning platform designed for student success.
+            Everything you need for effective teaching and learning in one integrated platform.
           </p>
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8" data-aos="fade-up">
           <div class="feature-card">
             <div class="icon-swatch">
-              <i class="fas fa-laptop-code text-white text-2xl"></i>
+              <i class="fas fa-tasks text-white text-2xl"></i>
             </div>
-            <h3 class="text-xl font-bold text-gray-900 mb-2">Interactive Learning</h3>
+            <h3 class="text-xl font-bold text-gray-900 mb-2">Assignment Management</h3>
             <p class="text-gray-600">
-              Engage with interactive simulations, quizzes, and hands-on experiments that make learning fun and effective.
+              Create, distribute, and collect assignments effortlessly. Support for multiple file formats and automatic deadline tracking.
             </p>
           </div>
 
           <div class="feature-card">
             <div class="icon-swatch">
-              <i class="fas fa-chalkboard-teacher text-white text-2xl"></i>
+              <i class="fas fa-star text-white text-2xl"></i>
             </div>
-            <h3 class="text-xl font-bold text-gray-900 mb-2">Expert Content</h3>
+            <h3 class="text-xl font-bold text-gray-900 mb-2">Grading System</h3>
             <p class="text-gray-600">
-              Access carefully curated educational materials aligned with Nigerian and British curriculum standards.
+              Efficient grading tools with rubrics, inline feedback, and automatic grade calculations. Export grades to reports.
             </p>
           </div>
 
           <div class="feature-card">
             <div class="icon-swatch">
-              <i class="fas fa-clock text-white text-2xl"></i>
+              <i class="fas fa-chart-bar text-white text-2xl"></i>
             </div>
-            <h3 class="text-xl font-bold text-gray-900 mb-2">Learn Anytime</h3>
+            <h3 class="text-xl font-bold text-gray-900 mb-2">Progress Monitoring</h3>
             <p class="text-gray-600">
-              Study at your own pace with 24/7 access to all resources. Your learning journey never stops.
+              Real-time dashboards showing student performance, completion rates, and areas needing improvement.
             </p>
+          </div>
+
+          <div class="feature-card">
+            <div class="icon-swatch">
+              <i class="fas fa-comments text-white text-2xl"></i>
+            </div>
+            <h3 class="text-xl font-bold text-gray-900 mb-2">Communication Hub</h3>
+            <p class="text-gray-600">
+              Built-in messaging system for teacher-student communication. Announcements, discussions, and Q&A forums.
+            </p>
+          </div>
+
+          <div class="feature-card">
+            <div class="icon-swatch">
+              <i class="fas fa-book-open text-white text-2xl"></i>
+            </div>
+            <h3 class="text-xl font-bold text-gray-900 mb-2">Resource Library</h3>
+            <p class="text-gray-600">
+              Access textbooks, video lessons, past questions, and study materials organized by subject and topic.
+            </p>
+          </div>
+
+          <div class="feature-card">
+            <div class="icon-swatch">
+              <i class="fas fa-bell text-white text-2xl"></i>
+            </div>
+            <h3 class="text-xl font-bold text-gray-900 mb-2">Smart Notifications</h3>
+            <p class="text-gray-600">
+              Stay updated with assignment deadlines, new grades, announcements, and upcoming events via notifications.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Portal Cards Section -->
+    <section id="portals" class="py-20 bg-white">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-12" data-aos="fade-up">
+          <h2 class="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
+            Choose Your <span class="gradient-text">Portal</span>
+          </h2>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8" data-aos="fade-up">
+          <!-- Student Portal -->
+          <div class="portal-card">
+            <div class="relative z-10">
+              <div class="flex items-center gap-4 mb-6">
+                <div class="w-16 h-16 bg-white/20 rounded-2xl flex items-center justify-center">
+                  <i class="fas fa-user-graduate text-3xl text-white"></i>
+                </div>
+                <div>
+                  <h3 class="text-2xl font-bold">Student Portal</h3>
+                  <p class="text-white/80">For Students</p>
+                </div>
+              </div>
+              <ul class="space-y-3 mb-8">
+                <li class="flex items-center gap-3">
+                  <i class="fas fa-check-circle text-green-300"></i>
+                  <span>View and submit assignments</span>
+                </li>
+                <li class="flex items-center gap-3">
+                  <i class="fas fa-check-circle text-green-300"></i>
+                  <span>Check grades and feedback</span>
+                </li>
+                <li class="flex items-center gap-3">
+                  <i class="fas fa-check-circle text-green-300"></i>
+                  <span>Access study materials</span>
+                </li>
+                <li class="flex items-center gap-3">
+                  <i class="fas fa-check-circle text-green-300"></i>
+                  <span>Track learning progress</span>
+                </li>
+              </ul>
+              <a href="../general/login.html" class="inline-flex items-center justify-center px-8 py-3 rounded-full bg-white text-primary font-semibold hover:shadow-lg hover:scale-105 transition-all duration-300">
+                <i class="fas fa-sign-in-alt mr-2"></i>Access Student Portal
+              </a>
+            </div>
+          </div>
+
+          <!-- Teacher Portal -->
+          <div class="portal-card">
+            <div class="relative z-10">
+              <div class="flex items-center gap-4 mb-6">
+                <div class="w-16 h-16 bg-white/20 rounded-2xl flex items-center justify-center">
+                  <i class="fas fa-chalkboard-teacher text-3xl text-white"></i>
+                </div>
+                <div>
+                  <h3 class="text-2xl font-bold">Teacher Portal</h3>
+                  <p class="text-white/80">For Educators</p>
+                </div>
+              </div>
+              <ul class="space-y-3 mb-8">
+                <li class="flex items-center gap-3">
+                  <i class="fas fa-check-circle text-green-300"></i>
+                  <span>Create and assign tasks</span>
+                </li>
+                <li class="flex items-center gap-3">
+                  <i class="fas fa-check-circle text-green-300"></i>
+                  <span>Grade student submissions</span>
+                </li>
+                <li class="flex items-center gap-3">
+                  <i class="fas fa-check-circle text-green-300"></i>
+                  <span>Monitor student progress</span>
+                </li>
+                <li class="flex items-center gap-3">
+                  <i class="fas fa-check-circle text-green-300"></i>
+                  <span>Manage class resources</span>
+                </li>
+              </ul>
+              <a href="../teachers/teacher-confirmation.html" class="inline-flex items-center justify-center px-8 py-3 rounded-full bg-white text-primary font-semibold hover:shadow-lg hover:scale-105 transition-all duration-300">
+                <i class="fas fa-sign-in-alt mr-2"></i>Access Teacher Portal
+              </a>
+            </div>
           </div>
         </div>
       </div>
     </section>
 
     <!-- Subjects Section -->
-    <section id="subjects" class="py-20 bg-white">
+    <section id="subjects" class="py-20 bg-gray-50">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="text-center mb-12" data-aos="fade-up">
-          <p class="text-sm font-semibold gradient-text uppercase tracking-wider mb-2">Explore Our</p>
+          <p class="text-sm font-semibold gradient-text uppercase tracking-wider mb-2">Explore</p>
           <h2 class="text-3xl sm:text-4xl font-bold text-gray-900">
-            <span class="gradient-text">Subjects</span>
+            <span class="gradient-text">Subjects</span> Available
           </h2>
         </div>
 
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6" data-aos="fade-up">
-          <!-- Mathematics -->
-          <a href="subjects/mathematics/index.html" class="subject-card group">
-            <div class="p-5 flex items-start gap-4">
-              <div class="subject-icon flex-shrink-0">
-                <i class="fas fa-square-root-alt"></i>
-              </div>
-              <div>
-                <h3 class="text-lg font-bold text-gray-900 mb-2 group-hover:text-primary transition-colors">Mathematics</h3>
-                <p class="text-gray-600 text-sm">Algebra, calculus, geometry, trigonometry, and statistics.</p>
-                <div class="mt-4 flex items-center text-primary font-semibold text-sm">
-                  Explore <i class="fas fa-arrow-right ml-2 group-hover:translate-x-1 transition-transform"></i>
-                </div>
-              </div>
+        <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4" data-aos="fade-up">
+          <a href="subjects/mathematics/index.html" class="bg-white rounded-xl p-4 text-center hover:shadow-lg transition-all duration-300 group">
+            <div class="w-12 h-12 gradient-bg rounded-xl flex items-center justify-center mx-auto mb-3 group-hover:scale-110 transition-transform">
+              <i class="fas fa-square-root-alt text-white"></i>
             </div>
+            <span class="font-semibold text-gray-900">Mathematics</span>
           </a>
-
-          <!-- English -->
-          <a href="subjects/english/index.html" class="subject-card group">
-            <div class="p-5 flex items-start gap-4">
-              <div class="subject-icon flex-shrink-0">
-                <i class="fas fa-book"></i>
-              </div>
-              <div>
-                <h3 class="text-lg font-bold text-gray-900 mb-2 group-hover:text-primary transition-colors">English</h3>
-                <p class="text-gray-600 text-sm">Grammar, comprehension, writing, and literature appreciation.</p>
-                <div class="mt-4 flex items-center text-primary font-semibold text-sm">
-                  Explore <i class="fas fa-arrow-right ml-2 group-hover:translate-x-1 transition-transform"></i>
-                </div>
-              </div>
+          <a href="subjects/english/index.html" class="bg-white rounded-xl p-4 text-center hover:shadow-lg transition-all duration-300 group">
+            <div class="w-12 h-12 gradient-bg rounded-xl flex items-center justify-center mx-auto mb-3 group-hover:scale-110 transition-transform">
+              <i class="fas fa-book text-white"></i>
             </div>
+            <span class="font-semibold text-gray-900">English</span>
           </a>
-
-          <!-- Physics -->
-          <a href="subjects/physics/index.html" class="subject-card group">
-            <div class="p-5 flex items-start gap-4">
-              <div class="subject-icon flex-shrink-0">
-                <i class="fas fa-atom"></i>
-              </div>
-              <div>
-                <h3 class="text-lg font-bold text-gray-900 mb-2 group-hover:text-primary transition-colors">Physics</h3>
-                <p class="text-gray-600 text-sm">Mechanics, electricity, optics, waves, and modern physics.</p>
-                <div class="mt-4 flex items-center text-primary font-semibold text-sm">
-                  Explore <i class="fas fa-arrow-right ml-2 group-hover:translate-x-1 transition-transform"></i>
-                </div>
-              </div>
+          <a href="subjects/physics/index.html" class="bg-white rounded-xl p-4 text-center hover:shadow-lg transition-all duration-300 group">
+            <div class="w-12 h-12 gradient-bg rounded-xl flex items-center justify-center mx-auto mb-3 group-hover:scale-110 transition-transform">
+              <i class="fas fa-atom text-white"></i>
             </div>
+            <span class="font-semibold text-gray-900">Physics</span>
           </a>
-
-          <!-- Chemistry -->
-          <a href="subjects/chemistry/index.html" class="subject-card group">
-            <div class="p-5 flex items-start gap-4">
-              <div class="subject-icon flex-shrink-0">
-                <i class="fas fa-flask"></i>
-              </div>
-              <div>
-                <h3 class="text-lg font-bold text-gray-900 mb-2 group-hover:text-primary transition-colors">Chemistry</h3>
-                <p class="text-gray-600 text-sm">Organic, inorganic, physical chemistry, and practicals.</p>
-                <div class="mt-4 flex items-center text-primary font-semibold text-sm">
-                  Explore <i class="fas fa-arrow-right ml-2 group-hover:translate-x-1 transition-transform"></i>
-                </div>
-              </div>
+          <a href="subjects/chemistry/index.html" class="bg-white rounded-xl p-4 text-center hover:shadow-lg transition-all duration-300 group">
+            <div class="w-12 h-12 gradient-bg rounded-xl flex items-center justify-center mx-auto mb-3 group-hover:scale-110 transition-transform">
+              <i class="fas fa-flask text-white"></i>
             </div>
+            <span class="font-semibold text-gray-900">Chemistry</span>
           </a>
-
-          <!-- Biology -->
-          <a href="subjects/biology/index.html" class="subject-card group">
-            <div class="p-5 flex items-start gap-4">
-              <div class="subject-icon flex-shrink-0">
-                <i class="fas fa-dna"></i>
-              </div>
-              <div>
-                <h3 class="text-lg font-bold text-gray-900 mb-2 group-hover:text-primary transition-colors">Biology</h3>
-                <p class="text-gray-600 text-sm">Life sciences, genetics, ecology, and human biology.</p>
-                <div class="mt-4 flex items-center text-primary font-semibold text-sm">
-                  Explore <i class="fas fa-arrow-right ml-2 group-hover:translate-x-1 transition-transform"></i>
-                </div>
-              </div>
+          <a href="subjects/biology/index.html" class="bg-white rounded-xl p-4 text-center hover:shadow-lg transition-all duration-300 group">
+            <div class="w-12 h-12 gradient-bg rounded-xl flex items-center justify-center mx-auto mb-3 group-hover:scale-110 transition-transform">
+              <i class="fas fa-dna text-white"></i>
             </div>
+            <span class="font-semibold text-gray-900">Biology</span>
           </a>
-
-          <!-- Economics -->
-          <a href="subjects/economics/economics.html" class="subject-card group">
-            <div class="p-5 flex items-start gap-4">
-              <div class="subject-icon flex-shrink-0">
-                <i class="fas fa-chart-line"></i>
-              </div>
-              <div>
-                <h3 class="text-lg font-bold text-gray-900 mb-2 group-hover:text-primary transition-colors">Economics</h3>
-                <p class="text-gray-600 text-sm">Micro and macro economics, markets, and policies.</p>
-                <div class="mt-4 flex items-center text-primary font-semibold text-sm">
-                  Explore <i class="fas fa-arrow-right ml-2 group-hover:translate-x-1 transition-transform"></i>
-                </div>
-              </div>
+          <a href="subjects/economics/economics.html" class="bg-white rounded-xl p-4 text-center hover:shadow-lg transition-all duration-300 group">
+            <div class="w-12 h-12 gradient-bg rounded-xl flex items-center justify-center mx-auto mb-3 group-hover:scale-110 transition-transform">
+              <i class="fas fa-chart-line text-white"></i>
             </div>
+            <span class="font-semibold text-gray-900">Economics</span>
           </a>
-
-          <!-- Government -->
-          <a href="subjects/government/government.html" class="subject-card group">
-            <div class="p-5 flex items-start gap-4">
-              <div class="subject-icon flex-shrink-0">
-                <i class="fas fa-landmark"></i>
-              </div>
-              <div>
-                <h3 class="text-lg font-bold text-gray-900 mb-2 group-hover:text-primary transition-colors">Government</h3>
-                <p class="text-gray-600 text-sm">Political systems, governance, constitution, and civic education.</p>
-                <div class="mt-4 flex items-center text-primary font-semibold text-sm">
-                  Explore <i class="fas fa-arrow-right ml-2 group-hover:translate-x-1 transition-transform"></i>
-                </div>
-              </div>
+          <a href="subjects/government/government.html" class="bg-white rounded-xl p-4 text-center hover:shadow-lg transition-all duration-300 group">
+            <div class="w-12 h-12 gradient-bg rounded-xl flex items-center justify-center mx-auto mb-3 group-hover:scale-110 transition-transform">
+              <i class="fas fa-landmark text-white"></i>
             </div>
+            <span class="font-semibold text-gray-900">Government</span>
           </a>
-
-          <!-- Literature -->
-          <a href="subjects/literature/literature.html" class="subject-card group">
-            <div class="p-5 flex items-start gap-4">
-              <div class="subject-icon flex-shrink-0">
-                <i class="fas fa-feather-alt"></i>
-              </div>
-              <div>
-                <h3 class="text-lg font-bold text-gray-900 mb-2 group-hover:text-primary transition-colors">Literature</h3>
-                <p class="text-gray-600 text-sm">Prose, poetry, drama, and literary analysis techniques.</p>
-                <div class="mt-4 flex items-center text-primary font-semibold text-sm">
-                  Explore <i class="fas fa-arrow-right ml-2 group-hover:translate-x-1 transition-transform"></i>
-                </div>
-              </div>
+          <a href="subjects/literature/literature.html" class="bg-white rounded-xl p-4 text-center hover:shadow-lg transition-all duration-300 group">
+            <div class="w-12 h-12 gradient-bg rounded-xl flex items-center justify-center mx-auto mb-3 group-hover:scale-110 transition-transform">
+              <i class="fas fa-feather-alt text-white"></i>
             </div>
+            <span class="font-semibold text-gray-900">Literature</span>
           </a>
-
-          <!-- Accounting -->
-          <a href="subjects/accounting/accounting.html" class="subject-card group">
-            <div class="p-5 flex items-start gap-4">
-              <div class="subject-icon flex-shrink-0">
-                <i class="fas fa-calculator"></i>
-              </div>
-              <div>
-                <h3 class="text-lg font-bold text-gray-900 mb-2 group-hover:text-primary transition-colors">Accounting</h3>
-                <p class="text-gray-600 text-sm">Bookkeeping, financial statements, and accounting principles.</p>
-                <div class="mt-4 flex items-center text-primary font-semibold text-sm">
-                  Explore <i class="fas fa-arrow-right ml-2 group-hover:translate-x-1 transition-transform"></i>
-                </div>
-              </div>
+          <a href="subjects/accounting/accounting.html" class="bg-white rounded-xl p-4 text-center hover:shadow-lg transition-all duration-300 group">
+            <div class="w-12 h-12 gradient-bg rounded-xl flex items-center justify-center mx-auto mb-3 group-hover:scale-110 transition-transform">
+              <i class="fas fa-calculator text-white"></i>
             </div>
+            <span class="font-semibold text-gray-900">Accounting</span>
           </a>
-        </div>
-      </div>
-    </section>
-
-    <!-- Resources Section -->
-    <section id="resources" class="py-20 bg-gray-50">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center mb-12" data-aos="fade-up">
-          <p class="text-sm font-semibold gradient-text uppercase tracking-wider mb-2">Quick Access</p>
-          <h2 class="text-3xl sm:text-4xl font-bold text-gray-900">
-            <span class="gradient-text">Learning Resources</span>
-          </h2>
-        </div>
-
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6" data-aos="fade-up">
-          <a href="video-library.html" class="bg-white rounded-xl sm:rounded-2xl p-6 text-center group hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 relative overflow-hidden">
-            <div class="absolute inset-0 bg-gradient-to-r from-primary/10 to-secondary/10 transform -translate-x-full group-hover:translate-x-0 transition-transform duration-700"></div>
-            <div class="relative z-10">
-              <div class="w-16 h-16 gradient-bg rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform" style="background: linear-gradient(135deg, #1a365d, #800020);">
-                <i class="fas fa-video text-white text-2xl"></i>
-              </div>
-              <h3 class="text-lg font-bold text-gray-900 mb-1">Video Library</h3>
-              <p class="text-gray-500 text-sm">Educational videos & tutorials</p>
+          <a href="subjects/commerce/commerce.html" class="bg-white rounded-xl p-4 text-center hover:shadow-lg transition-all duration-300 group">
+            <div class="w-12 h-12 gradient-bg rounded-xl flex items-center justify-center mx-auto mb-3 group-hover:scale-110 transition-transform">
+              <i class="fas fa-briefcase text-white"></i>
             </div>
-          </a>
-
-          <a href="practical/" class="bg-white rounded-xl sm:rounded-2xl p-6 text-center group hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 relative overflow-hidden">
-            <div class="absolute inset-0 bg-gradient-to-r from-secondary/10 to-primary/10 transform -translate-x-full group-hover:translate-x-0 transition-transform duration-700"></div>
-            <div class="relative z-10">
-              <div class="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform" style="background: linear-gradient(135deg, #1a365d, #800020);">
-                <i class="fas fa-flask text-white text-2xl"></i>
-              </div>
-              <h3 class="text-lg font-bold text-gray-900 mb-1">Practicals</h3>
-              <p class="text-gray-500 text-sm">Hands-on experiments</p>
-            </div>
-          </a>
-
-          <a href="smart-note.html" class="bg-white rounded-xl sm:rounded-2xl p-6 text-center group hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 relative overflow-hidden">
-            <div class="absolute inset-0 bg-gradient-to-r from-primary/10 to-secondary/10 transform -translate-x-full group-hover:translate-x-0 transition-transform duration-700"></div>
-            <div class="relative z-10">
-              <div class="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform" style="background: linear-gradient(135deg, #1a365d, #800020);">
-                <i class="fas fa-sticky-note text-white text-2xl"></i>
-              </div>
-              <h3 class="text-lg font-bold text-gray-900 mb-1">Smart Notes</h3>
-              <p class="text-gray-500 text-sm">AI-powered study notes</p>
-            </div>
-          </a>
-
-          <a href="ai-tutor-chatbot.html" class="bg-white rounded-xl sm:rounded-2xl p-6 text-center group hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 relative overflow-hidden">
-            <div class="absolute inset-0 bg-gradient-to-r from-secondary/10 to-primary/10 transform -translate-x-full group-hover:translate-x-0 transition-transform duration-700"></div>
-            <div class="relative z-10">
-              <div class="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform" style="background: linear-gradient(135deg, #1a365d, #800020);">
-                <i class="fas fa-robot text-white text-2xl"></i>
-              </div>
-              <h3 class="text-lg font-bold text-gray-900 mb-1">AI Tutor</h3>
-              <p class="text-gray-500 text-sm">AI learning assistant</p>
-            </div>
+            <span class="font-semibold text-gray-900">Commerce</span>
           </a>
         </div>
       </div>
@@ -1244,9 +901,9 @@
           <h3 class="text-lg font-semibold mb-4">Quick Links</h3>
           <ul class="space-y-2">
             <li><a href="../girau.html" class="text-gray-300 hover:text-white transition-colors"><i class="fas fa-chevron-right text-xs mr-2"></i>Home</a></li>
+            <li><a href="#workflow" class="text-gray-300 hover:text-white transition-colors"><i class="fas fa-chevron-right text-xs mr-2"></i>How It Works</a></li>
+            <li><a href="#features" class="text-gray-300 hover:text-white transition-colors"><i class="fas fa-chevron-right text-xs mr-2"></i>Features</a></li>
             <li><a href="#subjects" class="text-gray-300 hover:text-white transition-colors"><i class="fas fa-chevron-right text-xs mr-2"></i>Subjects</a></li>
-            <li><a href="#resources" class="text-gray-300 hover:text-white transition-colors"><i class="fas fa-chevron-right text-xs mr-2"></i>Resources</a></li>
-            <li><a href="../girau.html#events" class="text-gray-300 hover:text-white transition-colors"><i class="fas fa-chevron-right text-xs mr-2"></i>Events</a></li>
           </ul>
         </div>
 
