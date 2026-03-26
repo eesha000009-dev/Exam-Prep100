@@ -105,7 +105,7 @@
         .nav-menu {
             display: flex;
             align-items: center;
-            gap: 2.5rem;
+            gap: 2rem;
         }
         
         .nav-link {
@@ -137,6 +137,21 @@
         
         .nav-link:hover::after {
             width: 80%;
+        }
+        
+        .nav-link.e-learning {
+            background: var(--accent-gradient);
+            color: white;
+            padding: 0.6rem 1.2rem;
+        }
+        
+        .nav-link.e-learning:hover {
+            box-shadow: 0 5px 15px rgba(26, 54, 93, 0.3), 0 5px 15px rgba(128, 0, 32, 0.2);
+            color: white;
+        }
+        
+        .nav-link.e-learning::after {
+            display: none;
         }
         
         .mobile-menu-btn {
@@ -381,79 +396,28 @@
             font-size: 0.875rem;
         }
         
-        /* Events Section - Collapsible */
+        /* Events Section */
         .events-section {
-            padding: 2rem 5%;
+            padding: 3rem 5%;
             background: linear-gradient(135deg, rgba(26, 54, 93, 0.02) 0%, rgba(128, 0, 32, 0.02) 100%);
         }
         
-        .events-toggle {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            background: var(--accent-gradient);
-            color: white;
-            padding: 1.5rem 2rem;
-            border-radius: 15px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            max-width: 1400px;
-            margin: 0 auto 1rem;
-        }
-        
-        .events-toggle:hover {
-            box-shadow: 0 10px 30px rgba(26, 54, 93, 0.2), 0 10px 30px rgba(128, 0, 32, 0.1);
-        }
-        
-        .events-toggle-left {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-        }
-        
-        .events-toggle-left i {
-            font-size: 1.5rem;
-        }
-        
-        .events-toggle-left h2 {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.75rem;
-            margin: 0;
-        }
-        
-        .events-toggle-left span {
-            font-size: 0.9rem;
-            opacity: 0.9;
-        }
-        
-        .toggle-icon {
-            font-size: 1.25rem;
-            transition: transform 0.3s ease;
-        }
-        
-        .events-toggle.active .toggle-icon {
-            transform: rotate(180deg);
-        }
-        
-        .events-content {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.5s ease;
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-        
-        .events-content.expanded {
-            max-height: 3000px;
-        }
-        
-        .events-intro {
+        .section-header {
             text-align: center;
             margin-bottom: 2rem;
-            padding: 1rem;
         }
         
-        .events-intro p {
+        .section-header h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            background: var(--accent-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 0.5rem;
+        }
+        
+        .section-header p {
             color: #64748b;
             font-size: 1.125rem;
         }
@@ -462,6 +426,8 @@
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 1.5rem;
+            max-width: 1400px;
+            margin: 0 auto;
         }
         
         .video-card {
@@ -475,6 +441,10 @@
         .video-card:hover {
             transform: translateY(-5px);
             box-shadow: 0 20px 40px rgba(26, 54, 93, 0.15), 0 20px 40px rgba(128, 0, 32, 0.1);
+        }
+        
+        .video-card.hidden {
+            display: none;
         }
         
         .video-wrapper {
@@ -491,6 +461,39 @@
             width: 100%;
             height: 100%;
             border: none;
+        }
+        
+        .see-more-container {
+            text-align: center;
+            margin-top: 2rem;
+        }
+        
+        .see-more-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: var(--accent-gradient);
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: 600;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .see-more-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(26, 54, 93, 0.3), 0 10px 30px rgba(128, 0, 32, 0.2);
+        }
+        
+        .see-more-btn i {
+            transition: transform 0.3s ease;
+        }
+        
+        .see-more-btn.expanded i {
+            transform: rotate(180deg);
         }
         
         /* Footer */
@@ -683,7 +686,7 @@
                 flex-direction: column;
                 padding: 1rem;
                 box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-                gap: 0;
+                gap: 0.5rem;
             }
             
             .nav-menu.active {
@@ -694,6 +697,10 @@
                 width: 100%;
                 padding: 1rem;
                 border-bottom: 1px solid #eee;
+            }
+            
+            .nav-link.e-learning {
+                margin-top: 0.5rem;
             }
             
             .mobile-menu-btn {
@@ -723,14 +730,6 @@
             
             .carousel-btn.next {
                 right: 5px;
-            }
-            
-            .events-toggle {
-                padding: 1rem 1.5rem;
-            }
-            
-            .events-toggle-left h2 {
-                font-size: 1.25rem;
             }
             
             .videos-grid {
@@ -782,6 +781,9 @@
             <a href="#curriculum" class="nav-link">Curriculum</a>
             <a href="#gallery" class="nav-link">Gallery</a>
             <a href="#results" class="nav-link">Past Results</a>
+            <a href="students/index.html" class="nav-link e-learning">
+                <i class="fas fa-graduation-cap"></i> E-Learning Platform
+            </a>
         </nav>
         
         <button class="mobile-menu-btn" id="mobileMenuBtn">
@@ -907,76 +909,73 @@
         </div>
     </section>
 
-    <!-- Events Section - Collapsible -->
+    <!-- Events Section -->
     <section class="events-section" id="events">
-        <div class="events-toggle active" id="eventsToggle" onclick="toggleEvents()">
-            <div class="events-toggle-left">
-                <i class="fas fa-video"></i>
-                <div>
-                    <h2>School Events</h2>
-                    <span>Watch highlights from our memorable moments</span>
-                </div>
-            </div>
-            <i class="fas fa-chevron-down toggle-icon"></i>
+        <div class="section-header">
+            <h2>School Events</h2>
+            <p>Watch highlights from our memorable moments and activities</p>
         </div>
         
-        <div class="events-content expanded" id="eventsContent">
-            <div class="events-intro">
-                <p>Experience the vibrant life at Girau International School through our event highlights</p>
-            </div>
-            
-            <div class="videos-grid">
-                <div class="video-card">
-                    <div class="video-wrapper">
-                        <iframe src="https://www.facebook.com/plugins/video.php?href=https%3A%2F%2Fweb.facebook.com%2Freel%2F671325522402379&show_text=0&width=350" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
-                    </div>
-                </div>
-                <div class="video-card">
-                    <div class="video-wrapper">
-                        <iframe src="https://www.facebook.com/plugins/video.php?href=https%3A%2F%2Fweb.facebook.com%2Freel%2F980406750644472&show_text=0&width=350" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
-                    </div>
-                </div>
-                <div class="video-card">
-                    <div class="video-wrapper">
-                        <iframe src="https://www.facebook.com/plugins/video.php?href=https%3A%2F%2Fweb.facebook.com%2Freel%2F1791508538413422&show_text=0&width=350" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
-                    </div>
-                </div>
-                <div class="video-card">
-                    <div class="video-wrapper">
-                        <iframe src="https://www.facebook.com/plugins/video.php?href=https%3A%2F%2Fweb.facebook.com%2Freel%2F1905275376923242&show_text=0&width=350" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
-                    </div>
-                </div>
-                <div class="video-card">
-                    <div class="video-wrapper">
-                        <iframe src="https://www.facebook.com/plugins/video.php?href=https%3A%2F%2Fweb.facebook.com%2Freel%2F752040697350531&show_text=0&width=350" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
-                    </div>
-                </div>
-                <div class="video-card">
-                    <div class="video-wrapper">
-                        <iframe src="https://www.facebook.com/plugins/video.php?href=https%3A%2F%2Fweb.facebook.com%2Freel%2F1254858088900591&show_text=0&width=350" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
-                    </div>
-                </div>
-                <div class="video-card">
-                    <div class="video-wrapper">
-                        <iframe src="https://www.facebook.com/plugins/video.php?href=https%3A%2F%2Fweb.facebook.com%2Freel%2F1455029252442841&show_text=0&width=350" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
-                    </div>
-                </div>
-                <div class="video-card">
-                    <div class="video-wrapper">
-                        <iframe src="https://www.facebook.com/plugins/video.php?href=https%3A%2F%2Fweb.facebook.com%2Freel%2F1467173951136035&show_text=0&width=350" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
-                    </div>
-                </div>
-                <div class="video-card">
-                    <div class="video-wrapper">
-                        <iframe src="https://www.facebook.com/plugins/video.php?href=https%3A%2F%2Fweb.facebook.com%2Freel%2F1139026344987397&show_text=0&width=350" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
-                    </div>
-                </div>
-                <div class="video-card">
-                    <div class="video-wrapper">
-                        <iframe src="https://www.facebook.com/plugins/video.php?href=https%3A%2F%2Fweb.facebook.com%2Freel%2F1271595494778363&show_text=0&width=350" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
-                    </div>
+        <div class="videos-grid" id="videosGrid">
+            <!-- Initially visible videos (4) -->
+            <div class="video-card">
+                <div class="video-wrapper">
+                    <iframe src="https://www.facebook.com/plugins/video.php?href=https%3A%2F%2Fweb.facebook.com%2Freel%2F671325522402379&show_text=0&width=350" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
                 </div>
             </div>
+            <div class="video-card">
+                <div class="video-wrapper">
+                    <iframe src="https://www.facebook.com/plugins/video.php?href=https%3A%2F%2Fweb.facebook.com%2Freel%2F980406750644472&show_text=0&width=350" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
+                </div>
+            </div>
+            <div class="video-card">
+                <div class="video-wrapper">
+                    <iframe src="https://www.facebook.com/plugins/video.php?href=https%3A%2F%2Fweb.facebook.com%2Freel%2F1791508538413422&show_text=0&width=350" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
+                </div>
+            </div>
+            <div class="video-card">
+                <div class="video-wrapper">
+                    <iframe src="https://www.facebook.com/plugins/video.php?href=https%3A%2F%2Fweb.facebook.com%2Freel%2F1905275376923242&show_text=0&width=350" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
+                </div>
+            </div>
+            <!-- Hidden videos (shown on "See More") -->
+            <div class="video-card hidden">
+                <div class="video-wrapper">
+                    <iframe src="https://www.facebook.com/plugins/video.php?href=https%3A%2F%2Fweb.facebook.com%2Freel%2F752040697350531&show_text=0&width=350" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
+                </div>
+            </div>
+            <div class="video-card hidden">
+                <div class="video-wrapper">
+                    <iframe src="https://www.facebook.com/plugins/video.php?href=https%3A%2F%2Fweb.facebook.com%2Freel%2F1254858088900591&show_text=0&width=350" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
+                </div>
+            </div>
+            <div class="video-card hidden">
+                <div class="video-wrapper">
+                    <iframe src="https://www.facebook.com/plugins/video.php?href=https%3A%2F%2Fweb.facebook.com%2Freel%2F1455029252442841&show_text=0&width=350" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
+                </div>
+            </div>
+            <div class="video-card hidden">
+                <div class="video-wrapper">
+                    <iframe src="https://www.facebook.com/plugins/video.php?href=https%3A%2F%2Fweb.facebook.com%2Freel%2F1467173951136035&show_text=0&width=350" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
+                </div>
+            </div>
+            <div class="video-card hidden">
+                <div class="video-wrapper">
+                    <iframe src="https://www.facebook.com/plugins/video.php?href=https%3A%2F%2Fweb.facebook.com%2Freel%2F1139026344987397&show_text=0&width=350" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
+                </div>
+            </div>
+            <div class="video-card hidden">
+                <div class="video-wrapper">
+                    <iframe src="https://www.facebook.com/plugins/video.php?href=https%3A%2F%2Fweb.facebook.com%2Freel%2F1271595494778363&show_text=0&width=350" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
+                </div>
+            </div>
+        </div>
+        
+        <div class="see-more-container">
+            <button class="see-more-btn" id="seeMoreBtn" onclick="toggleVideos()">
+                <span id="seeMoreText">See More Events</span>
+                <i class="fas fa-chevron-down"></i>
+            </button>
         </div>
     </section>
 
@@ -1059,12 +1058,27 @@
             icon.classList.toggle('fa-times');
         });
         
-        // Events Section Toggle
-        function toggleEvents() {
-            const toggle = document.getElementById('eventsToggle');
-            const content = document.getElementById('eventsContent');
-            toggle.classList.toggle('active');
-            content.classList.toggle('expanded');
+        // See More Videos Toggle
+        let videosExpanded = false;
+        
+        function toggleVideos() {
+            const hiddenVideos = document.querySelectorAll('.video-card.hidden');
+            const btn = document.getElementById('seeMoreBtn');
+            const text = document.getElementById('seeMoreText');
+            
+            videosExpanded = !videosExpanded;
+            
+            hiddenVideos.forEach(video => {
+                video.classList.toggle('hidden', !videosExpanded);
+            });
+            
+            if (videosExpanded) {
+                text.textContent = 'See Less';
+                btn.classList.add('expanded');
+            } else {
+                text.textContent = 'See More Events';
+                btn.classList.remove('expanded');
+            }
         }
         
         // Carousel Functionality
