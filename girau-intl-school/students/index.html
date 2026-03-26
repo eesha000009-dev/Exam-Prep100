@@ -1,1253 +1,619 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Girau International School E-Learning Platform - Access educational resources, subjects, and learning materials.">
-    <title>E-Learning Platform | Girau International School</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="icon" type="image/jpeg" href="../images/branding/logo.jpg">
-    <style>
-        /* CSS Variables - Navy Blue, Maroon & White Blend */
-        :root {
-            --navy: #1a365d;
-            --navy-dark: #0f2442;
-            --navy-light: #2c5282;
-            --maroon: #800020;
-            --maroon-dark: #5c0017;
-            --maroon-light: #a63d56;
-            --white: #ffffff;
-            --gray-light: #f8f9fa;
-            --gray: #e3e7ea;
-            --accent-gradient: linear-gradient(135deg, var(--navy) 0%, var(--maroon) 100%);
-            --accent-gradient-light: linear-gradient(135deg, var(--navy-light) 0%, var(--maroon-light) 100%);
-        }
-        
-        /* Reset */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        html {
-            scroll-behavior: smooth;
-        }
-        
-        body {
-            font-family: 'Poppins', sans-serif;
-            line-height: 1.6;
-            color: #1e293b;
-            background-color: var(--white);
-            min-height: 100vh;
-        }
-        
-        a {
-            text-decoration: none;
-            color: inherit;
-        }
-        
-        /* Top Bar */
-        .top-bar {
-            background: var(--accent-gradient);
-            color: white;
-            padding: 0.75rem 5%;
-        }
-        
-        .top-bar-content {
-            max-width: 1400px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 1rem;
-        }
-        
-        .top-bar a {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            color: white;
-            font-size: 0.875rem;
-            transition: opacity 0.3s ease;
-        }
-        
-        .top-bar a:hover {
-            opacity: 0.8;
-        }
-        
-        .top-bar i {
-            font-size: 1rem;
-        }
-        
-        /* Header */
-        .header {
-            background: var(--white);
-            padding: 1rem 5%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-        }
-        
-        .logo-container {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-        }
-        
-        .logo-img {
-            width: 60px;
-            height: 60px;
-            border-radius: 10px;
-            object-fit: cover;
-            border: 3px solid transparent;
-            background: linear-gradient(var(--white), var(--white)) padding-box,
-                        var(--accent-gradient) border-box;
-        }
-        
-        .logo-text {
-            display: flex;
-            flex-direction: column;
-        }
-        
-        .logo-name {
-            font-size: 1.25rem;
-            font-weight: 700;
-            background: var(--accent-gradient);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            line-height: 1.2;
-        }
-        
-        .logo-subtitle {
-            font-size: 0.75rem;
-            color: #64748b;
-            font-weight: 500;
-        }
-        
-        .back-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            background: var(--accent-gradient);
-            color: white;
-            padding: 0.75rem 1.5rem;
-            border-radius: 50px;
-            font-size: 0.9rem;
-            font-weight: 600;
-            transition: all 0.3s ease;
-        }
-        
-        .back-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 20px rgba(26, 54, 93, 0.3), 0 5px 20px rgba(128, 0, 32, 0.2);
-        }
-        
-        /* Hero Section */
-        .hero-section {
-            background: linear-gradient(135deg, rgba(26, 54, 93, 0.03) 0%, rgba(128, 0, 32, 0.03) 100%);
-            padding: 5rem 5%;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .hero-section::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 5px;
-            background: var(--accent-gradient);
-        }
-        
-        .hero-content {
-            max-width: 1400px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            align-items: center;
-        }
-        
-        .hero-text h1 {
-            font-family: 'Playfair Display', serif;
-            font-size: 3rem;
-            font-weight: 700;
-            color: #1e293b;
-            line-height: 1.2;
-            margin-bottom: 1.5rem;
-        }
-        
-        .hero-text h1 span {
-            background: var(--accent-gradient);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-        
-        .hero-text p {
-            font-size: 1.125rem;
-            color: #64748b;
-            line-height: 1.8;
-            margin-bottom: 2rem;
-        }
-        
-        .hero-buttons {
-            display: flex;
-            gap: 1rem;
-            flex-wrap: wrap;
-        }
-        
-        .btn {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 0.5rem;
-            padding: 1rem 2rem;
-            font-size: 1rem;
-            font-weight: 600;
-            border-radius: 10px;
-            transition: all 0.3s ease;
-            cursor: pointer;
-            border: 2px solid transparent;
-        }
-        
-        .btn-primary {
-            background: var(--accent-gradient);
-            color: white;
-        }
-        
-        .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 30px rgba(26, 54, 93, 0.3), 0 10px 30px rgba(128, 0, 32, 0.2);
-        }
-        
-        .btn-outline {
-            background: transparent;
-            border: 2px solid;
-            border-image: var(--accent-gradient) 1;
-            color: var(--navy);
-        }
-        
-        .btn-outline:hover {
-            background: var(--accent-gradient);
-            color: white;
-            border-image: none;
-        }
-        
-        .hero-image {
-            position: relative;
-        }
-        
-        .hero-image img {
-            width: 100%;
-            max-width: 500px;
-            border-radius: 20px;
-            box-shadow: 0 25px 50px rgba(26, 54, 93, 0.2), 0 25px 50px rgba(128, 0, 32, 0.1);
-        }
-        
-        .hero-image::before {
-            content: '';
-            position: absolute;
-            top: -20px;
-            right: -20px;
-            width: 100px;
-            height: 100px;
-            background: var(--accent-gradient);
-            border-radius: 50%;
-            opacity: 0.1;
-            z-index: -1;
-        }
-        
-        .hero-image::after {
-            content: '';
-            position: absolute;
-            bottom: -30px;
-            left: -30px;
-            width: 150px;
-            height: 150px;
-            background: var(--accent-gradient);
-            border-radius: 50%;
-            opacity: 0.1;
-            z-index: -1;
-        }
-        
-        /* Wave Divider */
-        .wave-divider {
-            position: relative;
-            height: 80px;
-            overflow: hidden;
-        }
-        
-        .wave-divider svg {
-            position: absolute;
-            bottom: 0;
-            width: 100%;
-            height: 100%;
-        }
-        
-        .wave-divider .wave-fill {
-            fill: var(--gray);
-        }
-        
-        /* Stats Section */
-        .stats-section {
-            background: var(--gray);
-            padding: 4rem 5%;
-        }
-        
-        .stats-container {
-            max-width: 1400px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 2rem;
-        }
-        
-        .stat-card {
-            background: var(--white);
-            padding: 2rem;
-            border-radius: 15px;
-            text-align: center;
-            box-shadow: 0 10px 30px rgba(26, 54, 93, 0.08);
-            transition: all 0.3s ease;
-        }
-        
-        .stat-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 20px 40px rgba(26, 54, 93, 0.15);
-        }
-        
-        .stat-icon {
-            width: 60px;
-            height: 60px;
-            background: var(--accent-gradient);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 1rem;
-            font-size: 1.5rem;
-            color: white;
-        }
-        
-        .stat-number {
-            font-size: 2.5rem;
-            font-weight: 700;
-            background: var(--accent-gradient);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-        
-        .stat-label {
-            font-size: 0.875rem;
-            color: #64748b;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-        
-        /* Subjects Section */
-        .subjects-section {
-            padding: 5rem 5%;
-            background: var(--white);
-        }
-        
-        .section-header {
-            text-align: center;
-            margin-bottom: 3rem;
-        }
-        
-        .section-header h5 {
-            font-size: 0.875rem;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            color: var(--maroon);
-            margin-bottom: 0.5rem;
-        }
-        
-        .section-header h2 {
-            font-family: 'Playfair Display', serif;
-            font-size: 2.5rem;
-            font-weight: 700;
-            color: #1e293b;
-        }
-        
-        .section-header h2 span {
-            background: var(--accent-gradient);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-        
-        .subjects-grid {
-            max-width: 1400px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 1.5rem;
-        }
-        
-        .subject-card {
-            background: var(--white);
-            border-radius: 15px;
-            overflow: hidden;
-            box-shadow: 0 10px 30px rgba(26, 54, 93, 0.08);
-            transition: all 0.3s ease;
-            position: relative;
-        }
-        
-        .subject-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 20px 40px rgba(26, 54, 93, 0.15);
-        }
-        
-        .subject-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 5px;
-            background: var(--accent-gradient);
-        }
-        
-        .subject-card-content {
-            padding: 2rem;
-        }
-        
-        .subject-icon {
-            width: 60px;
-            height: 60px;
-            background: linear-gradient(135deg, rgba(26, 54, 93, 0.1) 0%, rgba(128, 0, 32, 0.1) 100%);
-            border-radius: 15px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-        }
-        
-        .subject-card h3 {
-            font-size: 1.25rem;
-            font-weight: 600;
-            color: #1e293b;
-            margin-bottom: 0.5rem;
-        }
-        
-        .subject-card p {
-            font-size: 0.9rem;
-            color: #64748b;
-            margin-bottom: 1rem;
-        }
-        
-        .subject-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            color: var(--navy);
-            font-weight: 600;
-            font-size: 0.9rem;
-            transition: all 0.3s ease;
-        }
-        
-        .subject-link:hover {
-            color: var(--maroon);
-        }
-        
-        /* Why Choose Us Section */
-        .why-section {
-            padding: 5rem 5%;
-            background: var(--gray);
-            position: relative;
-        }
-        
-        .why-section::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 80px;
-            background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 283.5 27.8' preserveAspectRatio='xMidYMax slice'%3E%3Cpath fill='%23e3e7ea' d='M0 0v6.7c1.9-.8 4.7-1.4 8.5-1 9.5 1.1 11.1 6 11.1 6s2.1-.7 4.3-.2c2.1.5 2.8 2.6 2.8 2.6s.2-.5 1.4-.7c1.2-.2 1.7.2 1.7.2s0-2.1 1.9-2.8c1.9-.7 3.6.7 3.6.7s.7-2.9 3.1-4.1 4.7 0 4.7 0 1.2-.5 2.4 0 1.7 1.4 1.7 1.4h1.4c.7 0 1.2.7 1.2.7s.8-1.8 4-2.2c3.5-.4 5.3 2.4 6.2 4.4.4-.4 1-.7 1.8-.9 2.8-.7 4 .7 4 .7s1.7-5 11.1-6c9.5-1.1 12.3 3.9 12.3 3.9s1.2-4.8 5.7-5.7c4.5-.9 6.8 1.8 6.8 1.8s.6-.6 1.5-.9c.9-.2 1.9-.2 1.9-.2s5.2-6.4 12.6-3.3c7.3 3.1 4.7 9 4.7 9s1.9-.9 4 0 2.8 2.4 2.8 2.4 1.9-1.2 4.5-1.2 4.3 1.2 4.3 1.2.2-1 1.4-1.7 2.1-.7 2.1-.7-.5-3.1 2.1-5.5 5.7-1.4 5.7-1.4 1.5-2.3 4.2-1.1c2.7 1.2 1.7 5.2 1.7 5.2s.3-.1 1.3.5c.5.4.8.8.9 1.1.5-1.4 2.4-5.8 8.4-4 7.1 2.1 3.5 8.9 3.5 8.9s.8-.4 2 0 1.1 1.1 1.1 1.1 1.1-1.1 2.3-1.1 2.1.5 2.1.5 1.9-3.6 6.2-1.2 1.9 6.4 1.9 6.4 2.6-2.4 7.4 0c3.4 1.7 3.9 4.9 3.9 4.9s3.3-6.9 10.4-7.9 11.5 2.6 11.5 2.6.8 0 1.2.2c.4.2.9.9.9.9s4.4-3.1 8.3.2c1.9 1.7 1.5 5 1.5 5s.3-1.1 1.6-1.4c1.3-.3 2.3.2 2.3.2s-.1-1.2.5-1.9 1.9-.9 1.9-.9-4.7-9.3 4.4-13.4c5.6-2.5 9.2.9 9.2.9s5-6.2 15.9-6.2 16.1 8.1 16.1 8.1.7-.2 1.6-.4V0H0z'/%3E%3C/svg%3E") no-repeat top center;
-            background-size: cover;
-            transform: scaleY(-1);
-        }
-        
-        .why-grid {
-            max-width: 1400px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 2rem;
-        }
-        
-        .why-card {
-            background: var(--white);
-            border-radius: 15px;
-            overflow: hidden;
-            box-shadow: 0 10px 30px rgba(26, 54, 93, 0.08);
-            transition: all 0.3s ease;
-        }
-        
-        .why-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 20px 40px rgba(26, 54, 93, 0.15);
-        }
-        
-        .why-card-image {
-            height: 200px;
-            background: var(--accent-gradient);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 4rem;
-            color: white;
-        }
-        
-        .why-card-content {
-            padding: 1.5rem;
-        }
-        
-        .why-card h4 {
-            font-size: 1.25rem;
-            font-weight: 600;
-            color: #1e293b;
-            margin-bottom: 0.75rem;
-        }
-        
-        .why-card p {
-            font-size: 0.9rem;
-            color: #64748b;
-            line-height: 1.7;
-        }
-        
-        /* Resources Section */
-        .resources-section {
-            padding: 5rem 5%;
-            background: var(--white);
-        }
-        
-        .resources-grid {
-            max-width: 1400px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 1.5rem;
-        }
-        
-        .resource-card {
-            background: var(--white);
-            border-radius: 15px;
-            padding: 2rem;
-            text-align: center;
-            box-shadow: 0 10px 30px rgba(26, 54, 93, 0.08);
-            transition: all 0.3s ease;
-            border: 1px solid var(--gray);
-        }
-        
-        .resource-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 20px 40px rgba(26, 54, 93, 0.15);
-            border-color: transparent;
-        }
-        
-        .resource-icon {
-            width: 70px;
-            height: 70px;
-            background: var(--accent-gradient);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 1rem;
-            font-size: 1.75rem;
-            color: white;
-        }
-        
-        .resource-card h3 {
-            font-size: 1.125rem;
-            font-weight: 600;
-            color: #1e293b;
-            margin-bottom: 0.5rem;
-        }
-        
-        .resource-card p {
-            font-size: 0.875rem;
-            color: #64748b;
-            margin-bottom: 1rem;
-        }
-        
-        .resource-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            background: var(--accent-gradient);
-            color: white;
-            padding: 0.5rem 1rem;
-            border-radius: 25px;
-            font-size: 0.875rem;
-            font-weight: 500;
-            transition: all 0.3s ease;
-        }
-        
-        .resource-link:hover {
-            box-shadow: 0 5px 15px rgba(26, 54, 93, 0.3), 0 5px 15px rgba(128, 0, 32, 0.2);
-        }
-        
-        /* Footer */
-        .footer {
-            background: var(--accent-gradient);
-            color: white;
-            position: relative;
-        }
-        
-        .footer-wave {
-            height: 80px;
-            overflow: hidden;
-        }
-        
-        .footer-wave svg {
-            width: 100%;
-            height: 100%;
-        }
-        
-        .footer-wave path {
-            fill: var(--maroon);
-        }
-        
-        .footer-content {
-            padding: 3rem 5% 2rem;
-            max-width: 1400px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: 2fr 1fr 1fr;
-            gap: 3rem;
-        }
-        
-        .footer-about {
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-        }
-        
-        .footer-logo {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-        }
-        
-        .footer-logo img {
-            width: 60px;
-            height: 60px;
-            border-radius: 10px;
-            background: white;
-            padding: 5px;
-        }
-        
-        .footer-logo-text {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.25rem;
-            font-weight: 700;
-        }
-        
-        .footer-about p {
-            font-size: 0.9rem;
-            opacity: 0.9;
-            line-height: 1.8;
-        }
-        
-        .footer-heading {
-            font-size: 1.125rem;
-            font-weight: 600;
-            margin-bottom: 1.5rem;
-            position: relative;
-            padding-bottom: 0.5rem;
-        }
-        
-        .footer-heading::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 40px;
-            height: 3px;
-            background: white;
-            opacity: 0.5;
-        }
-        
-        .footer-links {
-            display: flex;
-            flex-direction: column;
-            gap: 0.75rem;
-        }
-        
-        .footer-links a {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            font-size: 0.9rem;
-            opacity: 0.9;
-            transition: all 0.3s ease;
-        }
-        
-        .footer-links a:hover {
-            opacity: 1;
-            padding-left: 5px;
-        }
-        
-        .footer-links i {
-            font-size: 0.75rem;
-        }
-        
-        .footer-contact-item {
-            display: flex;
-            gap: 0.75rem;
-            margin-bottom: 1rem;
-        }
-        
-        .footer-contact-item i {
-            margin-top: 0.25rem;
-        }
-        
-        .footer-contact-item p,
-        .footer-contact-item a {
-            font-size: 0.9rem;
-            opacity: 0.9;
-        }
-        
-        .footer-social {
-            display: flex;
-            gap: 1rem;
-            margin-top: 1rem;
-        }
-        
-        .footer-social a {
-            width: 40px;
-            height: 40px;
-            background: rgba(255, 255, 255, 0.15);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.3s ease;
-        }
-        
-        .footer-social a:hover {
-            background: white;
-            color: var(--navy);
-        }
-        
-        .footer-bottom {
-            border-top: 1px solid rgba(255, 255, 255, 0.2);
-            padding: 1.5rem 5%;
-            text-align: center;
-        }
-        
-        .footer-bottom p {
-            font-size: 0.875rem;
-            opacity: 0.8;
-        }
-        
-        /* Responsive */
-        @media (max-width: 1024px) {
-            .hero-content {
-                grid-template-columns: 1fr;
-                text-align: center;
-            }
-            
-            .hero-text h1 {
-                font-size: 2.5rem;
-            }
-            
-            .hero-buttons {
-                justify-content: center;
-            }
-            
-            .hero-image {
-                order: -1;
-            }
-            
-            .hero-image img {
-                max-width: 400px;
-                margin: 0 auto;
-            }
-            
-            .stats-container {
-                grid-template-columns: repeat(2, 1fr);
-            }
-            
-            .why-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-            
-            .resources-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-            
-            .footer-content {
-                grid-template-columns: 1fr 1fr;
-            }
-        }
-        
-        @media (max-width: 768px) {
-            .top-bar-content {
-                flex-direction: column;
-                text-align: center;
-            }
-            
-            .header {
-                padding: 1rem;
-            }
-            
-            .logo-name {
-                font-size: 1rem;
-            }
-            
-            .back-btn {
-                padding: 0.5rem 1rem;
-                font-size: 0.8rem;
-            }
-            
-            .hero-section {
-                padding: 3rem 5%;
-            }
-            
-            .hero-text h1 {
-                font-size: 2rem;
-            }
-            
-            .stats-container {
-                grid-template-columns: 1fr 1fr;
-                gap: 1rem;
-            }
-            
-            .stat-card {
-                padding: 1.5rem;
-            }
-            
-            .stat-number {
-                font-size: 2rem;
-            }
-            
-            .section-header h2 {
-                font-size: 1.75rem;
-            }
-            
-            .subjects-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .why-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .resources-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .footer-content {
-                grid-template-columns: 1fr;
-                text-align: center;
-            }
-            
-            .footer-heading::after {
-                left: 50%;
-                transform: translateX(-50%);
-            }
-            
-            .footer-links a {
-                justify-content: center;
-            }
-            
-            .footer-contact-item {
-                flex-direction: column;
-                align-items: center;
-            }
-            
-            .footer-social {
-                justify-content: center;
-            }
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Girau International School | E-Learning Platform</title>
+  <meta name="description" content="Girau International School E-Learning Platform - Access educational resources, subjects, and learning materials.">
+  <link rel="icon" type="image/jpeg" href="../images/branding/logo.jpg">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#1a365d',
+            secondary: '#800020',
+            accent: '#2c5282',
+          },
+          fontFamily: {
+            sans: ['Plus Jakarta Sans', 'sans-serif'],
+          },
+        },
+      },
+    }
+  </script>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css">
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <style>
+    html, body {
+      max-width: 100%;
+      overflow-x: hidden;
+    }
+    
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+    }
+
+    .gradient-text {
+      background: linear-gradient(135deg, #1a365d 0%, #800020 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .gradient-bg {
+      background: linear-gradient(135deg, #1a365d 0%, #800020 100%);
+    }
+
+    .gradient-bg-light {
+      background: linear-gradient(135deg, rgba(26, 54, 93, 0.1) 0%, rgba(128, 0, 32, 0.1) 100%);
+    }
+
+    .button-primary {
+      background: linear-gradient(135deg, #1a365d 0%, #800020 100%);
+      color: white;
+      box-shadow: 0 4px 20px rgba(26, 54, 93, 0.3);
+    }
+
+    .button-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 30px rgba(26, 54, 93, 0.4);
+    }
+
+    .button-secondary {
+      background: white;
+      color: #1a365d;
+      border: 2px solid #1a365d;
+    }
+
+    .button-secondary:hover {
+      background: rgba(26, 54, 93, 0.1);
+      transform: translateY(-2px);
+    }
+
+    .stat-card {
+      background: white;
+      border-radius: 16px;
+      box-shadow: 0 8px 32px rgba(26, 54, 93, 0.1);
+      transition: all 0.3s ease;
+    }
+
+    .stat-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 12px 40px rgba(26, 54, 93, 0.15);
+    }
+
+    .feature-card {
+      background: linear-gradient(180deg, rgba(255,255,255,0.9), rgba(250,250,255,0.95));
+      border-radius: 16px;
+      padding: 1.5rem;
+      min-height: 220px;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 12px 30px rgba(16,24,40,0.04);
+      transition: all 0.3s ease;
+      border: 1px solid rgba(15,23,42,0.03);
+    }
+
+    .feature-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 20px 48px rgba(16,24,40,0.08);
+    }
+
+    .subject-card {
+      background: white;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 8px 32px rgba(26, 54, 93, 0.08);
+      transition: all 0.3s ease;
+    }
+
+    .subject-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 16px 48px rgba(26, 54, 93, 0.12);
+    }
+
+    .subject-icon {
+      width: 60px;
+      height: 60px;
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      color: white;
+    }
+
+    .footer {
+      background: linear-gradient(180deg, #1a365d 0%, #0f2442 100%);
+    }
+
+    @keyframes pulse-glow {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(128, 0, 32, 0.4); }
+      50% { box-shadow: 0 0 0 10px rgba(128, 0, 32, 0); }
+    }
+
+    .pulse-badge {
+      animation: pulse-glow 2s infinite;
+    }
+  </style>
 </head>
-<body>
-    <!-- Top Bar -->
-    <div class="top-bar">
-        <div class="top-bar-content">
-            <a href="mailto:girauinternationalschool@gmail.com">
-                <i class="fas fa-envelope"></i>
-                girauinternationalschool@gmail.com
-            </a>
-            <a href="tel:+2347067764310">
-                <i class="fas fa-phone"></i>
-                (+234) 706-776-4310
-            </a>
-        </div>
-    </div>
+<body class="bg-gray-50 font-sans antialiased overflow-x-hidden">
 
-    <!-- Header -->
-    <header class="header">
-        <div class="logo-container">
-            <img src="../images/branding/logo.jpg" alt="Girau International School Logo" class="logo-img">
-            <div class="logo-text">
-                <span class="logo-name">Girau International</span>
-                <span class="logo-subtitle">E-Learning Platform</span>
-            </div>
-        </div>
-        
-        <a href="../girau.html" class="back-btn">
-            <i class="fas fa-arrow-left"></i>
-            Back to Main Site
+  <!-- Header -->
+  <header class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-white/90 backdrop-blur-sm shadow-sm" id="navbar">
+    <div class="container mx-auto px-4">
+      <nav class="flex items-center justify-between py-4">
+        <a href="index.html" class="flex items-center space-x-3">
+          <img src="../images/branding/logo.jpg" alt="Girau Logo" class="h-10 w-10 rounded-lg object-cover">
+          <span class="text-xl font-bold gradient-text">Girau International</span>
         </a>
-    </header>
-
-    <!-- Hero Section -->
-    <section class="hero-section">
-        <div class="hero-content">
-            <div class="hero-text">
-                <h1>Shaping <span>Characters</span>, Igniting the Quest for <span>Knowledge</span></h1>
-                <p>Empowering students to reach their full potential by being responsible and pursuing excellence in life. Access comprehensive educational resources, interactive lessons, and study materials for all subjects.</p>
-                <div class="hero-buttons">
-                    <a href="#subjects" class="btn btn-primary">
-                        <i class="fas fa-book-open"></i>
-                        Browse Subjects
-                    </a>
-                    <a href="#resources" class="btn btn-outline">
-                        <i class="fas fa-play-circle"></i>
-                        Quick Resources
-                    </a>
-                </div>
-            </div>
-            <div class="hero-image">
-                <img src="../images/buildings/school-building.jpeg" alt="Girau International School">
-            </div>
+        <ul class="hidden md:flex items-center space-x-8 font-medium text-gray-600">
+          <li><a href="#features" class="hover:text-primary transition-colors">Features</a></li>
+          <li><a href="#subjects" class="hover:text-primary transition-colors">Subjects</a></li>
+          <li><a href="#resources" class="hover:text-primary transition-colors">Resources</a></li>
+        </ul>
+        <div class="hidden md:flex items-center space-x-4">
+          <a href="../girau.html" class="text-primary font-semibold hover:opacity-80 transition-opacity">
+            <i class="fas fa-arrow-left mr-2"></i>Back to Main Site
+          </a>
         </div>
+        <button class="md:hidden z-50 block" id="mobile-menu-button" aria-label="Open Menu">
+          <i class="fas fa-bars text-2xl text-gray-700"></i>
+        </button>
+      </nav>
+    </div>
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="hidden md:hidden bg-white px-4 pb-4 border-t">
+      <ul class="space-y-4 font-medium text-gray-600 mt-4">
+        <li><a href="#features" class="block hover:text-primary transition-colors">Features</a></li>
+        <li><a href="#subjects" class="block hover:text-primary transition-colors">Subjects</a></li>
+        <li><a href="#resources" class="block hover:text-primary transition-colors">Resources</a></li>
+      </ul>
+      <div class="mt-6">
+        <a href="../girau.html" class="block text-center py-2 px-4 rounded-full gradient-bg text-white font-semibold">
+          <i class="fas fa-arrow-left mr-2"></i>Back to Main Site
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- Hero Section -->
+    <section id="hero" class="relative w-full overflow-hidden bg-gradient-to-b from-gray-50 to-white pt-24">
+      <div class="w-full overflow-hidden px-4 sm:px-6 lg:px-8 py-16 sm:py-20 mx-auto">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center w-full max-w-7xl mx-auto">
+          
+          <!-- Left column: Main content -->
+          <div class="space-y-6 sm:space-y-8" data-aos="fade-up">
+            <!-- Badge -->
+            <div class="inline-flex items-center gradient-bg-light border border-gray-200 rounded-full py-2 px-4">
+              <span class="flex-shrink-0 gradient-bg rounded-full w-2 h-2 mr-2 animate-pulse"></span>
+              <span class="text-gray-700 font-medium text-sm">E-Learning Platform for Girau International School</span>
+            </div>
+
+            <h1 class="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 leading-tight">
+              Shaping <span class="gradient-text">Characters</span>, Igniting the Quest for
+              <span class="gradient-text">Knowledge</span>
+            </h1>
+
+            <p class="text-base sm:text-lg text-gray-600 max-w-xl">
+              Empowering students to reach their full potential by being responsible and pursuing excellence in life. Access comprehensive educational resources, interactive lessons, and study materials for all subjects.
+            </p>
+
+            <div class="flex flex-col sm:flex-row gap-4">
+              <a href="#subjects" class="inline-flex items-center justify-center px-8 py-4 rounded-full button-primary font-semibold transition-all duration-300">
+                Browse Subjects
+                <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                </svg>
+              </a>
+              <a href="#resources" class="inline-flex items-center justify-center px-8 py-4 rounded-full button-secondary font-semibold transition-all duration-300">
+                <i class="fas fa-play-circle mr-2"></i>Quick Resources
+              </a>
+            </div>
+          </div>
+
+          <!-- Right column: Image/Stats -->
+          <div class="relative" data-aos="fade-left">
+            <div class="relative z-10">
+              <img src="../images/buildings/school-building.jpeg" alt="Girau International School" class="rounded-2xl shadow-2xl w-full max-h-[400px] object-cover">
+            </div>
+            
+            <!-- Floating Stats Cards -->
+            <div class="absolute -bottom-6 -left-6 stat-card p-4 shadow-lg pulse-badge" data-aos="zoom-in" data-aos-delay="200">
+              <div class="flex items-center space-x-3">
+                <div class="w-12 h-12 gradient-bg rounded-full flex items-center justify-center">
+                  <i class="fas fa-book text-white text-xl"></i>
+                </div>
+                <div>
+                  <p class="text-2xl font-bold gradient-text">12+</p>
+                  <p class="text-gray-500 text-sm">Subjects</p>
+                </div>
+              </div>
+            </div>
+            
+            <div class="absolute -top-4 -right-4 stat-card p-4 shadow-lg" data-aos="zoom-in" data-aos-delay="400">
+              <div class="flex items-center space-x-3">
+                <div class="w-12 h-12 gradient-bg rounded-full flex items-center justify-center">
+                  <i class="fas fa-list text-white text-xl"></i>
+                </div>
+                <div>
+                  <p class="text-2xl font-bold gradient-text">500+</p>
+                  <p class="text-gray-500 text-sm">Topics</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </section>
 
     <!-- Stats Section -->
-    <section class="stats-section">
-        <div class="stats-container">
-            <div class="stat-card">
-                <div class="stat-icon">
-                    <i class="fas fa-book"></i>
-                </div>
-                <div class="stat-number">12+</div>
-                <div class="stat-label">Subjects</div>
+    <section class="py-16 bg-white">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-6" data-aos="fade-up">
+          <div class="stat-card p-6 text-center">
+            <div class="w-16 h-16 gradient-bg rounded-full flex items-center justify-center mx-auto mb-4">
+              <i class="fas fa-book text-white text-2xl"></i>
             </div>
-            <div class="stat-card">
-                <div class="stat-icon">
-                    <i class="fas fa-list"></i>
-                </div>
-                <div class="stat-number">500+</div>
-                <div class="stat-label">Topics</div>
+            <p class="text-3xl font-bold gradient-text">12+</p>
+            <p class="text-gray-500">Subjects</p>
+          </div>
+          <div class="stat-card p-6 text-center">
+            <div class="w-16 h-16 gradient-bg rounded-full flex items-center justify-center mx-auto mb-4">
+              <i class="fas fa-list text-white text-2xl"></i>
             </div>
-            <div class="stat-card">
-                <div class="stat-icon">
-                    <i class="fas fa-folder-open"></i>
-                </div>
-                <div class="stat-number">100+</div>
-                <div class="stat-label">Resources</div>
+            <p class="text-3xl font-bold gradient-text">500+</p>
+            <p class="text-gray-500">Topics</p>
+          </div>
+          <div class="stat-card p-6 text-center">
+            <div class="w-16 h-16 gradient-bg rounded-full flex items-center justify-center mx-auto mb-4">
+              <i class="fas fa-folder-open text-white text-2xl"></i>
             </div>
-            <div class="stat-card">
-                <div class="stat-icon">
-                    <i class="fas fa-clock"></i>
-                </div>
-                <div class="stat-number">24/7</div>
-                <div class="stat-label">Access</div>
+            <p class="text-3xl font-bold gradient-text">100+</p>
+            <p class="text-gray-500">Resources</p>
+          </div>
+          <div class="stat-card p-6 text-center">
+            <div class="w-16 h-16 gradient-bg rounded-full flex items-center justify-center mx-auto mb-4">
+              <i class="fas fa-clock text-white text-2xl"></i>
             </div>
+            <p class="text-3xl font-bold gradient-text">24/7</p>
+            <p class="text-gray-500">Access</p>
+          </div>
         </div>
+      </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="py-20 bg-gray-50">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-12" data-aos="fade-up">
+          <h2 class="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
+            Why Choose <span class="gradient-text">Our Platform</span>
+          </h2>
+          <p class="text-gray-600 max-w-2xl mx-auto">
+            Experience a modern approach to learning with our comprehensive e-learning platform designed for student success.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8" data-aos="fade-up">
+          <div class="feature-card">
+            <div class="w-14 h-14 gradient-bg rounded-xl flex items-center justify-center mb-4">
+              <i class="fas fa-laptop-code text-white text-2xl"></i>
+            </div>
+            <h3 class="text-xl font-bold text-gray-900 mb-2">Interactive Learning</h3>
+            <p class="text-gray-600">
+              Engage with interactive simulations, quizzes, and hands-on experiments that make learning fun and effective.
+            </p>
+          </div>
+
+          <div class="feature-card">
+            <div class="w-14 h-14 gradient-bg rounded-xl flex items-center justify-center mb-4">
+              <i class="fas fa-chalkboard-teacher text-white text-2xl"></i>
+            </div>
+            <h3 class="text-xl font-bold text-gray-900 mb-2">Expert Content</h3>
+            <p class="text-gray-600">
+              Access carefully curated educational materials aligned with Nigerian and British curriculum standards.
+            </p>
+          </div>
+
+          <div class="feature-card">
+            <div class="w-14 h-14 gradient-bg rounded-xl flex items-center justify-center mb-4">
+              <i class="fas fa-clock text-white text-2xl"></i>
+            </div>
+            <h3 class="text-xl font-bold text-gray-900 mb-2">Learn Anytime</h3>
+            <p class="text-gray-600">
+              Study at your own pace with 24/7 access to all resources. Your learning journey never stops.
+            </p>
+          </div>
+        </div>
+      </div>
     </section>
 
     <!-- Subjects Section -->
-    <section class="subjects-section" id="subjects">
-        <div class="section-header">
-            <h5>Explore Our</h5>
-            <h2><span>Subjects</span></h2>
+    <section id="subjects" class="py-20 bg-white">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-12" data-aos="fade-up">
+          <p class="text-sm font-semibold gradient-text uppercase tracking-wider mb-2">Explore Our</p>
+          <h2 class="text-3xl sm:text-4xl font-bold text-gray-900">
+            <span class="gradient-text">Subjects</span>
+          </h2>
         </div>
-        
-        <div class="subjects-grid">
-            <div class="subject-card">
-                <div class="subject-card-content">
-                    <div class="subject-icon">
-                        <i class="fas fa-square-root-alt"></i>
-                    </div>
-                    <h3>Mathematics</h3>
-                    <p>Algebra, calculus, geometry, trigonometry, and statistics with interactive lessons.</p>
-                    <a href="subjects/mathematics/index.html" class="subject-link">
-                        Explore <i class="fas fa-arrow-right"></i>
-                    </a>
-                </div>
-            </div>
-            
-            <div class="subject-card">
-                <div class="subject-card-content">
-                    <div class="subject-icon">
-                        <i class="fas fa-book"></i>
-                    </div>
-                    <h3>English</h3>
-                    <p>Grammar, comprehension, writing skills, and literature appreciation.</p>
-                    <a href="subjects/english/index.html" class="subject-link">
-                        Explore <i class="fas fa-arrow-right"></i>
-                    </a>
-                </div>
-            </div>
-            
-            <div class="subject-card">
-                <div class="subject-card-content">
-                    <div class="subject-icon">
-                        <i class="fas fa-atom"></i>
-                    </div>
-                    <h3>Physics</h3>
-                    <p>Mechanics, electricity, optics, waves, and modern physics concepts.</p>
-                    <a href="subjects/physics/index.html" class="subject-link">
-                        Explore <i class="fas fa-arrow-right"></i>
-                    </a>
-                </div>
-            </div>
-            
-            <div class="subject-card">
-                <div class="subject-card-content">
-                    <div class="subject-icon">
-                        <i class="fas fa-flask"></i>
-                    </div>
-                    <h3>Chemistry</h3>
-                    <p>Organic, inorganic, physical chemistry, and practical laboratory skills.</p>
-                    <a href="subjects/chemistry/index.html" class="subject-link">
-                        Explore <i class="fas fa-arrow-right"></i>
-                    </a>
-                </div>
-            </div>
-            
-            <div class="subject-card">
-                <div class="subject-card-content">
-                    <div class="subject-icon">
-                        <i class="fas fa-dna"></i>
-                    </div>
-                    <h3>Biology</h3>
-                    <p>Life sciences, genetics, ecology, and human biology studies.</p>
-                    <a href="subjects/biology/index.html" class="subject-link">
-                        Explore <i class="fas fa-arrow-right"></i>
-                    </a>
-                </div>
-            </div>
-            
-            <div class="subject-card">
-                <div class="subject-card-content">
-                    <div class="subject-icon">
-                        <i class="fas fa-chart-line"></i>
-                    </div>
-                    <h3>Economics</h3>
-                    <p>Micro and macro economics, market structures, and policies.</p>
-                    <a href="subjects/economics/economics.html" class="subject-link">
-                        Explore <i class="fas fa-arrow-right"></i>
-                    </a>
-                </div>
-            </div>
-            
-            <div class="subject-card">
-                <div class="subject-card-content">
-                    <div class="subject-icon">
-                        <i class="fas fa-landmark"></i>
-                    </div>
-                    <h3>Government</h3>
-                    <p>Political systems, governance, constitution, and civic education.</p>
-                    <a href="subjects/government/government.html" class="subject-link">
-                        Explore <i class="fas fa-arrow-right"></i>
-                    </a>
-                </div>
-            </div>
-            
-            <div class="subject-card">
-                <div class="subject-card-content">
-                    <div class="subject-icon">
-                        <i class="fas fa-feather-alt"></i>
-                    </div>
-                    <h3>Literature</h3>
-                    <p>Prose, poetry, drama, and literary analysis techniques.</p>
-                    <a href="subjects/literature/literature.html" class="subject-link">
-                        Explore <i class="fas fa-arrow-right"></i>
-                    </a>
-                </div>
-            </div>
-            
-            <div class="subject-card">
-                <div class="subject-card-content">
-                    <div class="subject-icon">
-                        <i class="fas fa-calculator"></i>
-                    </div>
-                    <h3>Accounting</h3>
-                    <p>Bookkeeping, financial statements, and accounting principles.</p>
-                    <a href="subjects/accounting/accounting.html" class="subject-link">
-                        Explore <i class="fas fa-arrow-right"></i>
-                    </a>
-                </div>
-            </div>
-        </div>
-    </section>
 
-    <!-- Why Choose Us Section -->
-    <section class="why-section">
-        <div class="section-header">
-            <h5>Why Choose</h5>
-            <h2><span>Our E-Learning Platform</span></h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6" data-aos="fade-up">
+          <!-- Mathematics -->
+          <a href="subjects/mathematics/index.html" class="subject-card group">
+            <div class="subject-icon gradient-bg">
+              <i class="fas fa-square-root-alt"></i>
+            </div>
+            <div class="p-5">
+              <h3 class="text-lg font-bold text-gray-900 mb-2 group-hover:text-primary transition-colors">Mathematics</h3>
+              <p class="text-gray-600 text-sm">Algebra, calculus, geometry, trigonometry, and statistics.</p>
+              <div class="mt-4 flex items-center text-primary font-semibold text-sm">
+                Explore <i class="fas fa-arrow-right ml-2 group-hover:translate-x-1 transition-transform"></i>
+              </div>
+            </div>
+          </a>
+
+          <!-- English -->
+          <a href="subjects/english/index.html" class="subject-card group">
+            <div class="subject-icon gradient-bg">
+              <i class="fas fa-book"></i>
+            </div>
+            <div class="p-5">
+              <h3 class="text-lg font-bold text-gray-900 mb-2 group-hover:text-primary transition-colors">English</h3>
+              <p class="text-gray-600 text-sm">Grammar, comprehension, writing, and literature appreciation.</p>
+              <div class="mt-4 flex items-center text-primary font-semibold text-sm">
+                Explore <i class="fas fa-arrow-right ml-2 group-hover:translate-x-1 transition-transform"></i>
+              </div>
+            </div>
+          </a>
+
+          <!-- Physics -->
+          <a href="subjects/physics/index.html" class="subject-card group">
+            <div class="subject-icon gradient-bg">
+              <i class="fas fa-atom"></i>
+            </div>
+            <div class="p-5">
+              <h3 class="text-lg font-bold text-gray-900 mb-2 group-hover:text-primary transition-colors">Physics</h3>
+              <p class="text-gray-600 text-sm">Mechanics, electricity, optics, waves, and modern physics.</p>
+              <div class="mt-4 flex items-center text-primary font-semibold text-sm">
+                Explore <i class="fas fa-arrow-right ml-2 group-hover:translate-x-1 transition-transform"></i>
+              </div>
+            </div>
+          </a>
+
+          <!-- Chemistry -->
+          <a href="subjects/chemistry/index.html" class="subject-card group">
+            <div class="subject-icon gradient-bg">
+              <i class="fas fa-flask"></i>
+            </div>
+            <div class="p-5">
+              <h3 class="text-lg font-bold text-gray-900 mb-2 group-hover:text-primary transition-colors">Chemistry</h3>
+              <p class="text-gray-600 text-sm">Organic, inorganic, physical chemistry, and practicals.</p>
+              <div class="mt-4 flex items-center text-primary font-semibold text-sm">
+                Explore <i class="fas fa-arrow-right ml-2 group-hover:translate-x-1 transition-transform"></i>
+              </div>
+            </div>
+          </a>
+
+          <!-- Biology -->
+          <a href="subjects/biology/index.html" class="subject-card group">
+            <div class="subject-icon gradient-bg">
+              <i class="fas fa-dna"></i>
+            </div>
+            <div class="p-5">
+              <h3 class="text-lg font-bold text-gray-900 mb-2 group-hover:text-primary transition-colors">Biology</h3>
+              <p class="text-gray-600 text-sm">Life sciences, genetics, ecology, and human biology.</p>
+              <div class="mt-4 flex items-center text-primary font-semibold text-sm">
+                Explore <i class="fas fa-arrow-right ml-2 group-hover:translate-x-1 transition-transform"></i>
+              </div>
+            </div>
+          </a>
+
+          <!-- Economics -->
+          <a href="subjects/economics/economics.html" class="subject-card group">
+            <div class="subject-icon gradient-bg">
+              <i class="fas fa-chart-line"></i>
+            </div>
+            <div class="p-5">
+              <h3 class="text-lg font-bold text-gray-900 mb-2 group-hover:text-primary transition-colors">Economics</h3>
+              <p class="text-gray-600 text-sm">Micro and macro economics, markets, and policies.</p>
+              <div class="mt-4 flex items-center text-primary font-semibold text-sm">
+                Explore <i class="fas fa-arrow-right ml-2 group-hover:translate-x-1 transition-transform"></i>
+              </div>
+            </div>
+          </a>
+
+          <!-- Government -->
+          <a href="subjects/government/government.html" class="subject-card group">
+            <div class="subject-icon gradient-bg">
+              <i class="fas fa-landmark"></i>
+            </div>
+            <div class="p-5">
+              <h3 class="text-lg font-bold text-gray-900 mb-2 group-hover:text-primary transition-colors">Government</h3>
+              <p class="text-gray-600 text-sm">Political systems, governance, constitution, and civic education.</p>
+              <div class="mt-4 flex items-center text-primary font-semibold text-sm">
+                Explore <i class="fas fa-arrow-right ml-2 group-hover:translate-x-1 transition-transform"></i>
+              </div>
+            </div>
+          </a>
+
+          <!-- Literature -->
+          <a href="subjects/literature/literature.html" class="subject-card group">
+            <div class="subject-icon gradient-bg">
+              <i class="fas fa-feather-alt"></i>
+            </div>
+            <div class="p-5">
+              <h3 class="text-lg font-bold text-gray-900 mb-2 group-hover:text-primary transition-colors">Literature</h3>
+              <p class="text-gray-600 text-sm">Prose, poetry, drama, and literary analysis techniques.</p>
+              <div class="mt-4 flex items-center text-primary font-semibold text-sm">
+                Explore <i class="fas fa-arrow-right ml-2 group-hover:translate-x-1 transition-transform"></i>
+              </div>
+            </div>
+          </a>
+
+          <!-- Accounting -->
+          <a href="subjects/accounting/accounting.html" class="subject-card group">
+            <div class="subject-icon gradient-bg">
+              <i class="fas fa-calculator"></i>
+            </div>
+            <div class="p-5">
+              <h3 class="text-lg font-bold text-gray-900 mb-2 group-hover:text-primary transition-colors">Accounting</h3>
+              <p class="text-gray-600 text-sm">Bookkeeping, financial statements, and accounting principles.</p>
+              <div class="mt-4 flex items-center text-primary font-semibold text-sm">
+                Explore <i class="fas fa-arrow-right ml-2 group-hover:translate-x-1 transition-transform"></i>
+              </div>
+            </div>
+          </a>
         </div>
-        
-        <div class="why-grid">
-            <div class="why-card">
-                <div class="why-card-image">
-                    <i class="fas fa-laptop-code"></i>
-                </div>
-                <div class="why-card-content">
-                    <h4>Interactive Learning</h4>
-                    <p>Engage with interactive simulations, quizzes, and hands-on experiments that make learning fun and effective. Our platform adapts to your learning style.</p>
-                </div>
-            </div>
-            
-            <div class="why-card">
-                <div class="why-card-image">
-                    <i class="fas fa-chalkboard-teacher"></i>
-                </div>
-                <div class="why-card-content">
-                    <h4>Expert Content</h4>
-                    <p>Access carefully curated educational materials aligned with Nigerian and British curriculum standards, prepared by experienced educators.</p>
-                </div>
-            </div>
-            
-            <div class="why-card">
-                <div class="why-card-image">
-                    <i class="fas fa-clock"></i>
-                </div>
-                <div class="why-card-content">
-                    <h4>Learn Anytime, Anywhere</h4>
-                    <p>Study at your own pace with 24/7 access to all resources. Whether at home or on the go, your learning journey never stops.</p>
-                </div>
-            </div>
-        </div>
+      </div>
     </section>
 
     <!-- Resources Section -->
-    <section class="resources-section" id="resources">
-        <div class="section-header">
-            <h5>Quick Access</h5>
-            <h2><span>Learning Resources</span></h2>
+    <section id="resources" class="py-20 bg-gray-50">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-12" data-aos="fade-up">
+          <p class="text-sm font-semibold gradient-text uppercase tracking-wider mb-2">Quick Access</p>
+          <h2 class="text-3xl sm:text-4xl font-bold text-gray-900">
+            <span class="gradient-text">Learning Resources</span>
+          </h2>
         </div>
-        
-        <div class="resources-grid">
-            <div class="resource-card">
-                <div class="resource-icon">
-                    <i class="fas fa-video"></i>
-                </div>
-                <h3>Video Library</h3>
-                <p>Educational videos and tutorials</p>
-                <a href="video-library.html" class="resource-link">
-                    Browse <i class="fas fa-play"></i>
-                </a>
-            </div>
-            
-            <div class="resource-card">
-                <div class="resource-icon">
-                    <i class="fas fa-flask"></i>
-                </div>
-                <h3>Practicals</h3>
-                <p>Hands-on experiments</p>
-                <a href="practical/" class="resource-link">
-                    Start <i class="fas fa-microscope"></i>
-                </a>
-            </div>
-            
-            <div class="resource-card">
-                <div class="resource-icon">
-                    <i class="fas fa-sticky-note"></i>
-                </div>
-                <h3>Smart Notes</h3>
-                <p>AI-powered study notes</p>
-                <a href="smart-note.html" class="resource-link">
-                    Create <i class="fas fa-pen"></i>
-                </a>
-            </div>
-            
-            <div class="resource-card">
-                <div class="resource-icon">
-                    <i class="fas fa-robot"></i>
-                </div>
-                <h3>AI Tutor</h3>
-                <p>AI learning assistant</p>
-                <a href="ai-tutor-chatbot.html" class="resource-link">
-                    Chat <i class="fas fa-comments"></i>
-                </a>
-            </div>
-        </div>
-    </section>
 
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="footer-wave">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 100" preserveAspectRatio="none">
-                <path fill="rgb(128, 0, 32)" opacity="0.33" d="M473,67.3c-203.9,88.3-263.1-34-320.3,0C66,119.1,0,59.7,0,59.7V0h1000v59.7 c0,0-62.1,26.1-94.9,29.3c-32.8,3.3-62.8-12.3-75.8-22.1C806,49.6,745.3,8.7,694.9,4.7S492.4,59,473,67.3z"></path>
-                <path fill="rgb(128, 0, 32)" opacity="0.66" d="M734,67.3c-45.5,0-77.2-23.2-129.1-39.1c-28.6-8.7-150.3-10.1-254,39.1 s-91.7-34.4-149.2,0C115.7,118.3,0,39.8,0,39.8V0h1000v36.5c0,0-28.2-18.5-92.1-18.5C810.2,18.1,775.7,67.3,734,67.3z"></path>
-                <path fill="rgb(128, 0, 32)" d="M766.1,28.9c-200-57.5-266,65.5-395.1,19.5C242,1.8,242,5.4,184.8,20.6C128,35.8,132.3,44.9,89.9,52.5C28.6,63.7,0,0,0,0 h1000c0,0-9.9,40.9-83.6,48.1S829.6,47,766.1,28.9z"></path>
-            </svg>
-        </div>
-        
-        <div class="footer-content">
-            <div class="footer-about">
-                <div class="footer-logo">
-                    <img src="../images/branding/logo.jpg" alt="Girau Logo">
-                    <span class="footer-logo-text">Girau International School</span>
-                </div>
-                <p>Nurturing future leaders through world-class education. Our E-Learning Platform provides students with comprehensive resources to excel academically. Learn. Live. Achieve.</p>
-                <div class="footer-social">
-                    <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-                    <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                    <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-                    <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
-                </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6" data-aos="fade-up">
+          <a href="video-library.html" class="stat-card p-6 text-center group hover:scale-105 transition-all duration-300">
+            <div class="w-16 h-16 gradient-bg rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform">
+              <i class="fas fa-video text-white text-2xl"></i>
             </div>
-            
-            <div>
-                <h5 class="footer-heading">Quick Links</h5>
-                <div class="footer-links">
-                    <a href="../girau.html"><i class="fas fa-check-circle"></i> Home</a>
-                    <a href="#subjects"><i class="fas fa-check-circle"></i> Subjects</a>
-                    <a href="#resources"><i class="fas fa-check-circle"></i> Resources</a>
-                    <a href="../girau.html#events"><i class="fas fa-check-circle"></i> Events</a>
-                    <a href="../girau.html#contact"><i class="fas fa-check-circle"></i> Contact</a>
-                </div>
+            <h3 class="text-lg font-bold text-gray-900 mb-1">Video Library</h3>
+            <p class="text-gray-500 text-sm">Educational videos & tutorials</p>
+          </a>
+
+          <a href="practical/" class="stat-card p-6 text-center group hover:scale-105 transition-all duration-300">
+            <div class="w-16 h-16 gradient-bg rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform">
+              <i class="fas fa-flask text-white text-2xl"></i>
             </div>
-            
-            <div>
-                <h5 class="footer-heading">Contact Us</h5>
-                <div class="footer-contact-item">
-                    <i class="fas fa-map-marker-alt"></i>
-                    <p>Plot 283621 Road B, Beside MPH Estate<br>Millennium City, Kaduna<br>Nigeria, 800104</p>
-                </div>
-                <div class="footer-contact-item">
-                    <i class="fas fa-phone"></i>
-                    <div>
-                        <a href="tel:+2347067764310">0706 776 4310</a>
-                    </div>
-                </div>
-                <div class="footer-contact-item">
-                    <i class="fas fa-envelope"></i>
-                    <a href="mailto:girauinternationalschool@gmail.com">girauinternationalschool@gmail.com</a>
-                </div>
+            <h3 class="text-lg font-bold text-gray-900 mb-1">Practicals</h3>
+            <p class="text-gray-500 text-sm">Hands-on experiments</p>
+          </a>
+
+          <a href="smart-note.html" class="stat-card p-6 text-center group hover:scale-105 transition-all duration-300">
+            <div class="w-16 h-16 gradient-bg rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform">
+              <i class="fas fa-sticky-note text-white text-2xl"></i>
             </div>
+            <h3 class="text-lg font-bold text-gray-900 mb-1">Smart Notes</h3>
+            <p class="text-gray-500 text-sm">AI-powered study notes</p>
+          </a>
+
+          <a href="ai-tutor-chatbot.html" class="stat-card p-6 text-center group hover:scale-105 transition-all duration-300">
+            <div class="w-16 h-16 gradient-bg rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform">
+              <i class="fas fa-robot text-white text-2xl"></i>
+            </div>
+            <h3 class="text-lg font-bold text-gray-900 mb-1">AI Tutor</h3>
+            <p class="text-gray-500 text-sm">AI learning assistant</p>
+          </a>
         </div>
-        
-        <div class="footer-bottom">
-            <p>&copy; 2024 Girau International School E-Learning Platform. All Rights Reserved.</p>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer text-white py-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <!-- About -->
+        <div>
+          <div class="flex items-center space-x-3 mb-4">
+            <img src="../images/branding/logo.jpg" alt="Girau Logo" class="h-12 w-12 rounded-lg">
+            <span class="text-xl font-bold">Girau International School</span>
+          </div>
+          <p class="text-gray-300 mb-4">
+            Nurturing future leaders through world-class education. Learn. Live. Achieve.
+          </p>
+          <div class="flex space-x-4">
+            <a href="#" class="text-gray-300 hover:text-white transition-colors"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" class="text-gray-300 hover:text-white transition-colors"><i class="fab fa-instagram"></i></a>
+            <a href="#" class="text-gray-300 hover:text-white transition-colors"><i class="fab fa-twitter"></i></a>
+            <a href="#" class="text-gray-300 hover:text-white transition-colors"><i class="fab fa-youtube"></i></a>
+          </div>
         </div>
-    </footer>
+
+        <!-- Quick Links -->
+        <div>
+          <h3 class="text-lg font-semibold mb-4">Quick Links</h3>
+          <ul class="space-y-2">
+            <li><a href="../girau.html" class="text-gray-300 hover:text-white transition-colors"><i class="fas fa-chevron-right text-xs mr-2"></i>Home</a></li>
+            <li><a href="#subjects" class="text-gray-300 hover:text-white transition-colors"><i class="fas fa-chevron-right text-xs mr-2"></i>Subjects</a></li>
+            <li><a href="#resources" class="text-gray-300 hover:text-white transition-colors"><i class="fas fa-chevron-right text-xs mr-2"></i>Resources</a></li>
+            <li><a href="../girau.html#events" class="text-gray-300 hover:text-white transition-colors"><i class="fas fa-chevron-right text-xs mr-2"></i>Events</a></li>
+          </ul>
+        </div>
+
+        <!-- Contact -->
+        <div>
+          <h3 class="text-lg font-semibold mb-4">Contact Us</h3>
+          <ul class="space-y-3">
+            <li class="flex items-start space-x-3">
+              <i class="fas fa-map-marker-alt mt-1"></i>
+              <span class="text-gray-300">Plot 283621 Road B, Beside MPH Estate, Millennium City, Kaduna, Nigeria</span>
+            </li>
+            <li class="flex items-center space-x-3">
+              <i class="fas fa-phone"></i>
+              <a href="tel:+2347067764310" class="text-gray-300 hover:text-white transition-colors">0706 776 4310</a>
+            </li>
+            <li class="flex items-center space-x-3">
+              <i class="fas fa-envelope"></i>
+              <a href="mailto:girauinternationalschool@gmail.com" class="text-gray-300 hover:text-white transition-colors">girauinternationalschool@gmail.com</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="border-t border-gray-700 mt-12 pt-8 text-center">
+        <p class="text-gray-400">&copy; 2024 Girau International School E-Learning Platform. All Rights Reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Initialize AOS
+    document.addEventListener('DOMContentLoaded', function() {
+      AOS.init({
+        duration: 800,
+        once: true
+      });
+    });
+
+    // Mobile Menu Toggle
+    const mobileMenuButton = document.getElementById('mobile-menu-button');
+    const mobileMenu = document.getElementById('mobile-menu');
+
+    mobileMenuButton.addEventListener('click', () => {
+      mobileMenu.classList.toggle('hidden');
+      const icon = mobileMenuButton.querySelector('i');
+      icon.classList.toggle('fa-bars');
+      icon.classList.toggle('fa-times');
+    });
+
+    // Smooth scroll for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+          });
+          // Close mobile menu if open
+          mobileMenu.classList.add('hidden');
+        }
+      });
+    });
+  </script>
 </body>
 </html>
