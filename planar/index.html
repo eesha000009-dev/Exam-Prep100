@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="theme-color" content="#0f0f23">
+  <meta name="mobile-web-app-capable" content="yes">
+  <link rel="manifest" href="manifest.json">
+  <link rel="apple-touch-icon" href="icon.png">
+  <title>PlanAlarm</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#f97316',
+            'primary-dark': '#ea580c',
+            surface: '#16213e',
+            'surface-light': '#1a1a2e',
+            'surface-lighter': '#253352',
+            danger: '#ef4444',
+            success: '#22c55e',
+            warning: '#eab308',
+          }
+        }
+      }
+    }
+  </script>
+  <link rel="stylesheet" href="app.css">
+</head>
+<body class="bg-[#0f0f23] text-white min-h-screen flex flex-col overflow-x-hidden">
+
+  <!-- ============================================ -->
+  <!-- ONBOARDING / PERMISSIONS SCREEN              -->
+  <!-- ============================================ -->
+  <div id="onboardingScreen" class="fixed inset-0 z-[9999] bg-[#0f0f23] flex flex-col items-center justify-center p-6">
+    <div class="max-w-sm w-full text-center space-y-8">
+      <!-- Logo -->
+      <div class="w-20 h-20 rounded-3xl bg-gradient-to-br from-primary to-orange-400 flex items-center justify-center shadow-2xl shadow-primary/30 mx-auto">
+        <svg class="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z"/>
+        </svg>
+      </div>
+      <div>
+        <h1 class="text-3xl font-bold tracking-tight">PlanAlarm</h1>
+        <p class="text-gray-400 mt-2 text-sm leading-relaxed">Your smart daily plan manager with persistent alarms that keep you on track.</p>
+      </div>
+
+      <!-- Permissions -->
+      <div class="space-y-4 text-left">
+        <!-- Notifications -->
+        <div id="permNotif" class="bg-surface rounded-2xl p-4 border border-white/5 cursor-pointer hover:border-primary/30 transition-colors" onclick="grantNotificationPerm()">
+          <div class="flex items-start gap-4">
+            <div class="w-11 h-11 rounded-xl bg-primary/15 flex items-center justify-center flex-shrink-0">
+              <svg class="w-5.5 h-5.5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"/>
+              </svg>
+            </div>
+            <div class="flex-1">
+              <p class="font-semibold text-sm">Notifications</p>
+              <p class="text-xs text-gray-500 mt-0.5">Get reminded even when the app is in background</p>
+              <div class="mt-2 flex items-center gap-2">
+                <span id="permNotifStatus" class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-yellow-500/20 text-yellow-500 uppercase">Pending</span>
+              </div>
+            </div>
+            <svg class="w-5 h-5 text-gray-600 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+            </svg>
+          </div>
+        </div>
+
+        <!-- Display Over Apps -->
+        <div id="permOverlay" class="bg-surface rounded-2xl p-4 border border-white/5 cursor-pointer hover:border-primary/30 transition-colors" onclick="showOverlayInfo()">
+          <div class="flex items-start gap-4">
+            <div class="w-11 h-11 rounded-xl bg-primary/15 flex items-center justify-center flex-shrink-0">
+              <svg class="w-5.5 h-5.5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+              </svg>
+            </div>
+            <div class="flex-1">
+              <p class="font-semibold text-sm">Display Over Other Apps</p>
+              <p class="text-xs text-gray-500 mt-0.5">Show persistent timer overlay on top of everything</p>
+              <div class="mt-2 flex items-center gap-2">
+                <span id="permOverlayStatus" class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-yellow-500/20 text-yellow-500 uppercase">See Info</span>
+              </div>
+            </div>
+            <svg class="w-5 h-5 text-gray-600 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+            </svg>
+          </div>
+        </div>
+
+        <!-- Alarm Sound -->
+        <div class="bg-surface rounded-2xl p-4 border border-white/5">
+          <div class="flex items-start gap-4">
+            <div class="w-11 h-11 rounded-xl bg-primary/15 flex items-center justify-center flex-shrink-0">
+              <svg class="w-5.5 h-5.5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z"/>
+              </svg>
+            </div>
+            <div class="flex-1">
+              <p class="font-semibold text-sm">Alarm Sound</p>
+              <p class="text-xs text-gray-500 mt-0.5">Loud audio alarm that plays at plan time</p>
+              <div class="mt-2 flex items-center gap-2">
+                <span class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-green-500/20 text-green-500 uppercase">Built-in</span>
+                <button onclick="testAlarmFromOnboarding()" class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-primary/20 text-primary uppercase hover:bg-primary/30 transition-colors">Test</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Enter Button -->
+      <button onclick="finishOnboarding()" id="enterAppBtn" class="w-full py-4 rounded-2xl bg-gradient-to-r from-primary to-orange-400 text-white font-bold text-base shadow-lg shadow-primary/30 active:scale-[0.98] transition-transform">
+        Enter PlanAlarm
+      </button>
+      <p class="text-[11px] text-gray-600">You can change permissions later in Settings</p>
+    </div>
+  </div>
+
+  <!-- ============================================ -->
+  <!-- PERSISTENT FLOATING COUNTDOWN OVERLAY        -->
+  <!-- Cannot be dismissed - always on top          -->
+  <!-- ============================================ -->
+  <div id="floatingOverlay" class="hidden floating-bubble" style="touch-action: none;">
+    <!-- Compact Mode (small bubble) -->
+    <div id="floatingCompact" class="floating-compact">
+      <div class="flex items-center gap-2">
+        <div class="w-2.5 h-2.5 rounded-full flex-shrink-0" id="floatingDot"></div>
+        <div class="text-center">
+          <div class="text-[13px] font-bold tabular-nums leading-none" id="floatingTime">00:00:00</div>
+          <div class="text-[8px] text-gray-400 mt-0.5 leading-none truncate max-w-[80px]" id="floatingTaskLabel">No plans</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Expanded Mode (full countdown) -->
+    <div id="floatingExpanded" class="floating-expanded hidden">
+      <div class="flex items-center justify-between mb-3">
+        <div class="flex items-center gap-2">
+          <div class="w-2.5 h-2.5 rounded-full flex-shrink-0" id="floatingDotExpanded"></div>
+          <span class="text-[10px] font-bold uppercase tracking-wider text-gray-400">Next Plan</span>
+        </div>
+        <button onclick="collapseFloating()" class="w-6 h-6 rounded-lg bg-white/10 flex items-center justify-center">
+          <svg class="w-3 h-3 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"/>
+          </svg>
+        </button>
+      </div>
+
+      <!-- Countdown Digits -->
+      <div class="grid grid-cols-5 gap-1.5 mb-3" id="countdownGrid">
+        <div class="bg-black/30 rounded-xl py-2 text-center">
+          <div class="text-lg font-bold tabular-nums leading-none" id="cdWeeks">0</div>
+          <div class="text-[8px] text-gray-500 mt-1 uppercase">Week</div>
+        </div>
+        <div class="bg-black/30 rounded-xl py-2 text-center">
+          <div class="text-lg font-bold tabular-nums leading-none" id="cdDays">0</div>
+          <div class="text-[8px] text-gray-500 mt-1 uppercase">Day</div>
+        </div>
+        <div class="bg-black/30 rounded-xl py-2 text-center">
+          <div class="text-lg font-bold tabular-nums leading-none" id="cdHours">0</div>
+          <div class="text-[8px] text-gray-500 mt-1 uppercase">Hour</div>
+        </div>
+        <div class="bg-black/30 rounded-xl py-2 text-center">
+          <div class="text-lg font-bold tabular-nums leading-none" id="cdMinutes">0</div>
+          <div class="text-[8px] text-gray-500 mt-1 uppercase">Min</div>
+        </div>
+        <div class="bg-black/30 rounded-xl py-2 text-center">
+          <div class="text-lg font-bold tabular-nums leading-none" id="cdSeconds">0</div>
+          <div class="text-[8px] text-gray-500 mt-1 uppercase">Sec</div>
+        </div>
+      </div>
+
+      <!-- Task info -->
+      <div class="border-t border-white/10 pt-2.5">
+        <p class="text-sm font-semibold truncate" id="floatingTaskName">--</p>
+        <p class="text-[11px] text-gray-400 mt-0.5" id="floatingTaskTime">--</p>
+      </div>
+
+      <!-- Actions (only when alarming) -->
+      <div id="floatingAlarmActions" class="hidden mt-3 flex gap-2">
+        <button onclick="dismissAlarm()" class="flex-1 py-2 rounded-xl bg-success text-white text-xs font-bold active:scale-95 transition-transform">DONE</button>
+        <button onclick="snoozeAlarm()" class="flex-1 py-2 rounded-xl bg-white/15 text-white text-xs font-bold active:scale-95 transition-transform">SNOOZE 5m</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================ -->
+  <!-- MAIN APP                                     -->
+  <!-- ============================================ -->
+
+  <!-- Status Bar Spacer -->
+  <div class="h-[env(safe-area-inset-top)]"></div>
+
+  <!-- Header -->
+  <header class="sticky top-0 z-50 bg-[#0f0f23]/95 backdrop-blur-md border-b border-white/5">
+    <div class="max-w-lg mx-auto px-4 py-3 flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <div class="w-9 h-9 rounded-xl bg-gradient-to-br from-primary to-orange-400 flex items-center justify-center shadow-lg shadow-primary/20">
+          <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+          </svg>
+        </div>
+        <div>
+          <h1 class="text-lg font-bold tracking-tight">PlanAlarm</h1>
+          <p class="text-[10px] text-gray-500 -mt-0.5" id="todayDate"></p>
+        </div>
+      </div>
+      <div class="flex items-center gap-2">
+        <button onclick="toggleSound()" id="soundBtn" class="w-9 h-9 rounded-xl bg-surface flex items-center justify-center hover:bg-surface-lighter transition-colors" title="Toggle Sound">
+          <svg id="soundOnIcon" class="w-4.5 h-4.5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z"/>
+          </svg>
+          <svg id="soundOffIcon" class="w-4.5 h-4.5 text-gray-500 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z"/>
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2"/>
+          </svg>
+        </button>
+        <button onclick="openSettings()" class="w-9 h-9 rounded-xl bg-surface flex items-center justify-center hover:bg-surface-lighter transition-colors" title="Settings">
+          <svg class="w-4.5 h-4.5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.066 2.573c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.573 1.066c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.066-2.573c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/>
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="flex-1 max-w-lg mx-auto w-full px-4 py-4 space-y-4">
+
+    <!-- Live Clock -->
+    <div class="text-center py-3">
+      <div class="text-5xl font-extralight tracking-wider tabular-nums" id="liveClock">--:--</div>
+      <div class="text-sm text-gray-500 mt-1" id="clockSeconds">:00</div>
+    </div>
+
+    <!-- Next Up Card -->
+    <div id="nextUpSection" class="hidden">
+      <div class="bg-gradient-to-br from-primary/20 to-orange-500/10 border border-primary/20 rounded-2xl p-4 relative overflow-hidden cursor-pointer" onclick="expandFloating()">
+        <div class="absolute top-0 right-0 w-32 h-32 bg-primary/5 rounded-full -translate-y-1/2 translate-x-1/2"></div>
+        <div class="flex items-center gap-2 mb-2">
+          <div class="w-2 h-2 rounded-full bg-primary animate-pulse"></div>
+          <span class="text-xs font-semibold text-primary uppercase tracking-wider">Next Up</span>
+          <span class="text-[9px] text-gray-600 ml-auto">tap to see countdown</span>
+        </div>
+        <div class="flex items-end justify-between">
+          <div>
+            <p class="text-2xl font-bold" id="nextUpTask">--</p>
+            <p class="text-sm text-gray-400 mt-0.5" id="nextUpTime">--:--</p>
+          </div>
+          <div class="text-right">
+            <p class="text-3xl font-light text-primary tabular-nums" id="nextUpCountdown">--:--:--</p>
+            <p class="text-[10px] text-gray-500">until due</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Current Task Alert -->
+    <div id="activeTaskSection" class="hidden">
+      <div class="bg-gradient-to-br from-success/20 to-green-500/10 border border-success/20 rounded-2xl p-4 relative overflow-hidden alarm-active-glow">
+        <div class="absolute top-0 right-0 w-32 h-32 bg-success/5 rounded-full -translate-y-1/2 translate-x-1/2"></div>
+        <div class="flex items-center gap-2 mb-2">
+          <div class="w-2 h-2 rounded-full bg-success animate-ping"></div>
+          <span class="text-xs font-semibold text-success uppercase tracking-wider">Do Now</span>
+        </div>
+        <p class="text-2xl font-bold" id="activeTaskName">--</p>
+        <p class="text-sm text-gray-400 mt-0.5" id="activeTaskTime">--:--</p>
+        <div class="flex gap-2 mt-3">
+          <button onclick="dismissAlarm()" class="flex-1 bg-success/20 hover:bg-success/30 text-success text-sm font-semibold py-2.5 rounded-xl transition-colors">Done</button>
+          <button onclick="snoozeAlarm()" class="flex-1 bg-surface hover:bg-surface-lighter text-gray-300 text-sm font-semibold py-2.5 rounded-xl transition-colors">Snooze 5min</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- All Done Message -->
+    <div id="allDoneSection" class="hidden text-center py-8">
+      <div class="text-4xl mb-3">&#127942;</div>
+      <p class="text-lg font-semibold text-gray-300">All Done for Today!</p>
+      <p class="text-sm text-gray-500 mt-1">No more plans remaining. Add new ones or relax!</p>
+    </div>
+
+    <!-- Plans List Header -->
+    <div class="flex items-center justify-between pt-2">
+      <h2 class="text-sm font-semibold text-gray-400 uppercase tracking-wider">
+        Your Plans <span id="planCount" class="text-primary">(0)</span>
+      </h2>
+      <div class="flex items-center gap-2">
+        <button onclick="filterPlans('all')" id="filterAll" class="text-xs px-3 py-1 rounded-full bg-primary/20 text-primary font-medium transition-colors">All</button>
+        <button onclick="filterPlans('pending')" id="filterPending" class="text-xs px-3 py-1 rounded-full bg-surface text-gray-400 font-medium transition-colors">Pending</button>
+        <button onclick="filterPlans('done')" id="filterDone" class="text-xs px-3 py-1 rounded-full bg-surface text-gray-400 font-medium transition-colors">Done</button>
+      </div>
+    </div>
+
+    <!-- Plans List -->
+    <div id="plansList" class="space-y-2 pb-4"></div>
+
+    <!-- Empty State -->
+    <div id="emptyState" class="text-center py-12">
+      <div class="text-5xl mb-4 opacity-30">&#128203;</div>
+      <p class="text-gray-400 font-medium">No plans yet</p>
+      <p class="text-sm text-gray-600 mt-1">Tap the + button to add your first plan</p>
+    </div>
+
+    <!-- Progress Bar -->
+    <div id="progressSection" class="hidden">
+      <div class="bg-surface rounded-2xl p-4">
+        <div class="flex items-center justify-between mb-2">
+          <span class="text-xs text-gray-400 font-medium">Today's Progress</span>
+          <span class="text-xs text-primary font-bold" id="progressText">0/0</span>
+        </div>
+        <div class="w-full bg-surface-light rounded-full h-2">
+          <div class="bg-gradient-to-r from-primary to-orange-400 h-2 rounded-full transition-all duration-500" id="progressBar" style="width: 0%"></div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- FAB -->
+  <button onclick="openAddPlan()" class="fixed bottom-6 right-6 w-14 h-14 rounded-2xl bg-gradient-to-br from-primary to-orange-400 shadow-lg shadow-primary/30 flex items-center justify-center hover:scale-105 active:scale-95 transition-transform z-50 fab-bounce">
+    <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 4v16m8-8H4"/>
+    </svg>
+  </button>
+
+  <div class="h-[env(safe-area-inset-bottom)]"></div>
+
+  <!-- ============================================ -->
+  <!-- ADD/EDIT PLAN MODAL                          -->
+  <!-- ============================================ -->
+  <div id="planModal" class="fixed inset-0 z-[100] hidden">
+    <div class="absolute inset-0 bg-black/60 backdrop-blur-sm" onclick="closeModal()"></div>
+    <div class="absolute bottom-0 left-0 right-0 bg-[#1a1a2e] rounded-t-3xl p-6 pb-8 transform translate-y-full transition-transform duration-300" id="modalContent">
+      <div class="w-10 h-1 bg-gray-600 rounded-full mx-auto mb-6"></div>
+      <h3 id="modalTitle" class="text-xl font-bold mb-5">Add New Plan</h3>
+      <div class="space-y-4">
+        <div>
+          <label class="text-xs text-gray-400 font-medium mb-1.5 block">What do you need to do?</label>
+          <input type="text" id="taskInput" placeholder="e.g. Brush teeth, Meeting, Gym..."
+            class="w-full bg-surface border border-white/10 rounded-xl px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:border-primary/50 focus:ring-1 focus:ring-primary/20 transition-colors text-[16px]">
+        </div>
+        <div>
+          <label class="text-xs text-gray-400 font-medium mb-1.5 block">What time?</label>
+          <input type="time" id="timeInput"
+            class="w-full bg-surface border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-primary/50 focus:ring-1 focus:ring-primary/20 transition-colors text-[16px]">
+        </div>
+        <div>
+          <label class="text-xs text-gray-400 font-medium mb-1.5 block">Which day?</label>
+          <div class="flex gap-2">
+            <button onclick="selectDateType('today')" id="dateToday" class="flex-1 py-2.5 rounded-xl text-sm font-medium bg-primary/20 text-primary transition-colors">Today</button>
+            <button onclick="selectDateType('tomorrow')" id="dateTomorrow" class="flex-1 py-2.5 rounded-xl text-sm font-medium bg-surface text-gray-400 transition-colors">Tomorrow</button>
+            <button onclick="selectDateType('custom')" id="dateCustom" class="flex-1 py-2.5 rounded-xl text-sm font-medium bg-surface text-gray-400 transition-colors">Pick Date</button>
+          </div>
+          <input type="date" id="dateInput" class="w-full bg-surface border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-primary/50 focus:ring-1 focus:ring-primary/20 transition-colors text-[16px] hidden mt-2">
+        </div>
+        <div class="flex items-center justify-between bg-surface rounded-xl px-4 py-3">
+          <div>
+            <p class="text-sm font-medium">Alarm notification</p>
+            <p class="text-xs text-gray-500">Ring when it's time</p>
+          </div>
+          <button onclick="toggleAlarmInForm()" id="alarmToggle" class="w-12 h-7 rounded-full bg-primary relative transition-colors">
+            <div class="w-5 h-5 rounded-full bg-white absolute top-1 right-1 transition-all shadow-sm" id="alarmToggleKnob"></div>
+          </button>
+        </div>
+        <div class="flex items-center justify-between bg-surface rounded-xl px-4 py-3">
+          <div>
+            <p class="text-sm font-medium">Repeat daily</p>
+            <p class="text-xs text-gray-500">Repeat this plan every day</p>
+          </div>
+          <button onclick="toggleRepeat()" id="repeatToggle" class="w-12 h-7 rounded-full bg-surface-lighter relative transition-colors">
+            <div class="w-5 h-5 rounded-full bg-gray-400 absolute top-1 left-1 transition-all shadow-sm" id="repeatToggleKnob"></div>
+          </button>
+        </div>
+      </div>
+      <div class="flex gap-3 mt-6">
+        <button onclick="closeModal()" class="flex-1 py-3 rounded-xl bg-surface text-gray-400 font-semibold text-sm hover:bg-surface-lighter transition-colors">Cancel</button>
+        <button onclick="savePlan()" id="saveBtn" class="flex-1 py-3 rounded-xl bg-gradient-to-r from-primary to-orange-400 text-white font-semibold text-sm hover:opacity-90 transition-opacity shadow-lg shadow-primary/20">Save Plan</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================ -->
+  <!-- SETTINGS MODAL                               -->
+  <!-- ============================================ -->
+  <div id="settingsModal" class="fixed inset-0 z-[100] hidden">
+    <div class="absolute inset-0 bg-black/60 backdrop-blur-sm" onclick="closeSettings()"></div>
+    <div class="absolute bottom-0 left-0 right-0 bg-[#1a1a2e] rounded-t-3xl p-6 pb-8 transform translate-y-full transition-transform duration-300" id="settingsContent">
+      <div class="w-10 h-1 bg-gray-600 rounded-full mx-auto mb-6"></div>
+      <h3 class="text-xl font-bold mb-5">Settings</h3>
+      <div class="space-y-4">
+        <div class="flex items-center justify-between bg-surface rounded-xl px-4 py-3">
+          <div>
+            <p class="text-sm font-medium">Notifications</p>
+            <p class="text-xs text-gray-500" id="notifStatus">Not enabled</p>
+          </div>
+          <button onclick="requestNotificationPermission()" class="px-3 py-1.5 rounded-lg bg-primary/20 text-primary text-xs font-semibold">Enable</button>
+        </div>
+        <div class="flex items-center justify-between bg-surface rounded-xl px-4 py-3">
+          <div>
+            <p class="text-sm font-medium">Persistent Overlay</p>
+            <p class="text-xs text-gray-500">Show floating countdown timer</p>
+          </div>
+          <button onclick="toggleFloatingOverlay()" id="overlayToggleBtn" class="w-12 h-7 rounded-full bg-primary relative transition-colors">
+            <div class="w-5 h-5 rounded-full bg-white absolute top-1 right-1 transition-all shadow-sm" id="overlayToggleKnob"></div>
+          </button>
+        </div>
+        <div class="flex items-center justify-between bg-surface rounded-xl px-4 py-3">
+          <div>
+            <p class="text-sm font-medium">Test Alarm Sound</p>
+            <p class="text-xs text-gray-500">Preview the alarm ringtone</p>
+          </div>
+          <button onclick="testAlarmSound()" class="w-10 h-10 rounded-xl bg-primary/20 flex items-center justify-center hover:bg-primary/30 transition-colors">
+            <svg class="w-4 h-4 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"/>
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+            </svg>
+          </button>
+        </div>
+        <button onclick="showOnboarding()" class="w-full py-3 rounded-xl bg-surface-lighter text-gray-300 font-semibold text-sm hover:bg-white/10 transition-colors">Re-show Permission Setup</button>
+        <button onclick="clearAllPlans()" class="w-full py-3 rounded-xl bg-danger/10 text-danger font-semibold text-sm hover:bg-danger/20 transition-colors">Clear All Plans</button>
+      </div>
+      <button onclick="closeSettings()" class="w-full mt-4 py-3 rounded-xl bg-surface text-gray-400 font-semibold text-sm hover:bg-surface-lighter transition-colors">Close</button>
+    </div>
+  </div>
+
+  <!-- ============================================ -->
+  <!-- ALARM OVERLAY (fullscreen)                   -->
+  <!-- ============================================ -->
+  <div id="alarmOverlay" class="fixed inset-0 z-[200] hidden bg-gradient-to-br from-primary/95 to-orange-600/95 backdrop-blur-md flex flex-col items-center justify-center">
+    <div class="alarm-ring-animation">
+      <svg class="w-24 h-24 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z"/>
+      </svg>
+    </div>
+    <p class="text-white text-sm font-medium mt-6 uppercase tracking-wider">Time to:</p>
+    <p class="text-white text-3xl font-bold mt-2 text-center px-8" id="alarmOverlayTask">--</p>
+    <p class="text-white/70 text-lg mt-2" id="alarmOverlayTime">--:--</p>
+    <div class="flex gap-3 mt-10 w-full px-12">
+      <button onclick="dismissAlarm()" class="flex-1 py-4 rounded-2xl bg-white text-primary font-bold text-base shadow-lg active:scale-95 transition-transform">DONE</button>
+      <button onclick="snoozeAlarm()" class="flex-1 py-4 rounded-2xl bg-white/20 text-white font-bold text-base active:scale-95 transition-transform">SNOOZE</button>
+    </div>
+  </div>
+
+  <!-- ============================================ -->
+  <!-- OVERLAY PERMISSION INFO MODAL                -->
+  <!-- ============================================ -->
+  <div id="overlayInfoModal" class="fixed inset-0 z-[10000] hidden">
+    <div class="absolute inset-0 bg-black/80 backdrop-blur-sm" onclick="closeOverlayInfo()"></div>
+    <div class="absolute bottom-0 left-0 right-0 bg-[#1a1a2e] rounded-t-3xl p-6 pb-8 transform translate-y-full transition-transform duration-300" id="overlayInfoContent">
+      <div class="w-10 h-1 bg-gray-600 rounded-full mx-auto mb-6"></div>
+      <h3 class="text-xl font-bold mb-3">Display Over Other Apps</h3>
+      <p class="text-sm text-gray-400 mb-4 leading-relaxed">
+        This permission allows the floating countdown timer to appear <span class="text-primary font-semibold">on top of every other app</span> on your phone. When converted to a native app, it will show as a persistent overlay that cannot be dismissed.
+      </p>
+      <div class="bg-surface rounded-xl p-4 mb-4 space-y-3">
+        <p class="text-xs font-semibold text-primary uppercase tracking-wider">For Native App (Android):</p>
+        <div class="text-sm text-gray-300 space-y-2">
+          <p>1. Convert this HTML app using Cordova or Capacitor</p>
+          <p>2. The <code class="bg-black/30 px-1.5 py-0.5 rounded text-xs">config.xml</code> file included requests <code class="bg-black/30 px-1.5 py-0.5 rounded text-xs">SYSTEM_ALERT_WINDOW</code></p>
+          <p>3. Users grant permission in: Settings > Apps > PlanAlarm > Display over other apps</p>
+        </div>
+      </div>
+      <div class="bg-surface rounded-xl p-4 mb-6 space-y-3">
+        <p class="text-xs font-semibold text-warning uppercase tracking-wider">For Web / PWA (Now):</p>
+        <div class="text-sm text-gray-300 space-y-2">
+          <p>The floating timer works inside the app. For true system-level overlay, you must convert to a native Android app.</p>
+        </div>
+      </div>
+      <button onclick="closeOverlayInfo()" class="w-full py-3 rounded-xl bg-primary text-white font-semibold text-sm">Got It</button>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
