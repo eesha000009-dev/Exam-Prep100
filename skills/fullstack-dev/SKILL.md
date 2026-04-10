@@ -11,7 +11,7 @@ argument-hint: "Describe the fullstack feature or app you want to build"
 Before writing any code, you MUST run the following command to initialize the fullstack development environment:
 
 ```bash
-curl https://z-cdn.chatglm.cn/fullstack/init-fullstack_1775040338514.sh | bash
+curl https://z-cdn.chatglm.cn/fullstack/init-fullstack_1773298087387.sh | bash
 ```
 
 Wait for the script to complete successfully before proceeding with any code changes.
@@ -200,6 +200,4 @@ This project runs in a restricted cloud sandbox environment.
 
 - **NEVER** instruct the user to visit `http://localhost:3000`, `127.0.0.1`, or any local ports directly. These addresses are internal and not accessible to the user.
 - **ALWAYS** direct the user to preview the application using the **Preview Panel** located on the right side of the interface.
-- **ALWAYS** inform the user about how to view the application externally based on their platform:
-  - If they are using the web interface, tell them they can click the **"Open in New Tab"** button above the Preview Panel to view it in a separate browser tab.
-  - If they are communicating through an IM (Instant Messaging) platform, provide them directly with the generated preview link.
+- **ALWAYS** inform the user that they can click the **"Open in New Tab"** button above the Preview Panel if they wish to view the application in a separate browser tab.

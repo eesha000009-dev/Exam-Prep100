@@ -33,51 +33,12 @@ import tempfile
 from datetime import datetime, timezone
 from pathlib import Path
 
-import zipfile
-
-import defusedxml.minidom
 from defusedxml import minidom
+from ooxml.scripts.pack import pack_document
+from ooxml.scripts.validation.docx import DOCXSchemaValidator
+from ooxml.scripts.validation.redlining import RedliningValidator
 
 from .utilities import XMLEditor
-
-
-# ---------------------------------------------------------------------------
-# Inline pack utility (replaces former ooxml.scripts.pack dependency)
-# ---------------------------------------------------------------------------
-
-def _condense_xml(xml_file):
-    """Strip unnecessary whitespace from XML, preserving text content."""
-    with open(xml_file, "r", encoding="utf-8") as f:
-        dom = defusedxml.minidom.parse(f)
-    for element in dom.getElementsByTagName("*"):
-        if element.tagName.endswith(":t"):
-            continue
-        for child in list(element.childNodes):
-            if (
-                child.nodeType == child.TEXT_NODE
-                and child.nodeValue
-                and child.nodeValue.strip() == ""
-            ) or child.nodeType == child.COMMENT_NODE:
-                element.removeChild(child)
-    with open(xml_file, "wb") as f:
-        f.write(dom.toxml(encoding="UTF-8"))
-
-
-def _pack_document(input_dir, output_file):
-    """Pack an unpacked directory back into a .docx file."""
-    input_dir = Path(input_dir)
-    output_file = Path(output_file)
-    with tempfile.TemporaryDirectory() as temp_dir:
-        temp_content_dir = Path(temp_dir) / "content"
-        shutil.copytree(input_dir, temp_content_dir)
-        for pattern in ["*.xml", "*.rels"]:
-            for xml_file in temp_content_dir.rglob(pattern):
-                _condense_xml(xml_file)
-        output_file.parent.mkdir(parents=True, exist_ok=True)
-        with zipfile.ZipFile(output_file, "w", zipfile.ZIP_DEFLATED) as zf:
-            for f in temp_content_dir.rglob("*"):
-                if f.is_file():
-                    zf.write(f, f.relative_to(temp_content_dir))
 
 # Path to template files
 TEMPLATE_DIR = Path(__file__).parent / "templates"
@@ -96,14 +57,14 @@ class DocxXMLEditor(XMLEditor):
     """
 
     def __init__(
-        self, xml_path, rsid: str, author: str = "Z.AI", initials: str = "Z"
+        self, xml_path, rsid: str, author: str = "GLM", initials: str = "C"
     ):
         """Initialize with required RSID and optional author.
 
         Args:
             xml_path: Path to XML file to edit
             rsid: RSID to automatically apply to new elements
-            author: Author name for tracked changes and comments (default: "Z.AI")
+            author: Author name for tracked changes and comments (default: "GLM")
             initials: Author initials (default: "C")
         """
         super().__init__(xml_path)
@@ -656,7 +617,7 @@ class Document:
         unpacked_dir,
         rsid=None,
         track_revisions=False,
-        author="Z.AI",
+        author="GLM",
         initials="C",
     ):
         """
@@ -667,7 +628,7 @@ class Document:
             unpacked_dir: Path to unpacked DOCX directory (must contain word/ subdirectory)
             rsid: Optional RSID to use for all comment elements. If not provided, one will be generated.
             track_revisions: If True, enables track revisions in settings.xml (default: False)
-            author: Default author name for comments (default: "Z.AI")
+            author: Default author name for comments (default: "GLM")
             initials: Default author initials for comments (default: "C")
         """
         self.original_path = Path(unpacked_dir)
@@ -682,7 +643,7 @@ class Document:
 
         # Pack original directory into temporary .docx for validation baseline (outside unpacked dir)
         self.original_docx = Path(self.temp_dir) / "original.docx"
-        _pack_document(self.original_path, self.original_docx)
+        pack_document(self.original_path, self.original_docx, validate=False)
 
         self.word_path = self.unpacked_path / "word"
 
@@ -876,16 +837,24 @@ class Document:
 
     def validate(self) -> None:
         """
-        Validate the document (lightweight check).
+        Validate the document against XSD schema and redlining rules.
 
-        Currently performs basic structural checks. XSD schema validation and
-        redlining validation have been removed. Use save(validate=False) to
-        skip validation entirely.
+        Raises:
+            ValueError: If validation fails.
         """
-        # Basic structural check: ensure word/document.xml exists
-        doc_xml = self.unpacked_path / "word" / "document.xml"
-        if not doc_xml.exists():
-            raise ValueError("Validation failed: word/document.xml not found")
+        # Create validators with current state
+        schema_validator = DOCXSchemaValidator(
+            self.unpacked_path, self.original_docx, verbose=False
+        )
+        redlining_validator = RedliningValidator(
+            self.unpacked_path, self.original_docx, verbose=False
+        )
+
+        # Run validations
+        if not schema_validator.validate():
+            raise ValueError("Schema validation failed")
+        if not redlining_validator.validate():
+            raise ValueError("Redlining validation failed")
 
     def save(self, destination=None, validate=True) -> None:
         """
